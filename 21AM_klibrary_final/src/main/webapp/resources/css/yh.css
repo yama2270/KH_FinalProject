@@ -1,1 +1,343 @@
 @charset "UTF-8";
+@charset "UTF-8";
+/* 공지사항 */
+.sech{
+    margin-top: 2%;
+    margin-left: 30%;
+    font-size: 1rem;
+}
+.textbox{
+    width: 300px;
+    font-size: 1rem;
+}
+.table{
+    font-size: 1rem;
+    border:1px solid gray; 
+    border-collapse: collapse; 
+    border-spacing: 0
+}
+.tableMap{
+    /* background-color: gray; */
+    margin-top: 2%;
+    margin-left: 6%;
+    height:635px;
+    width:1150px;
+    /* border: gray 1px solid; */
+}
+.head{
+    width:420px;
+    text-align: center;
+    border: gray 1px solid;
+}
+.head2{
+    width:150px;
+    text-align: center;
+    border: gray 1px solid;
+}
+.head3{
+    width:250px;
+    text-align: center;
+    border: gray 1px solid;
+}
+.fontsize{
+    font-size: 1rem;
+}
+
+/* 공지사항확인 */
+.tableMap2{
+    /* background-color: gray; */
+    margin-top: 1%;
+    margin-left: 6%;
+    height:703px;
+    width:1150px;
+    /* border: gray 1px solid; */
+    text-align: center;
+}
+.table2{
+    font-size: 1rem;
+    border-collapse: collapse; 
+    border-spacing: 0
+}
+.line{
+    border: 1px solid gray;
+    /* background-color: gray; */
+}
+.line2{
+    margin-left: 2%;
+    width:1080px;
+}
+.line3{
+    border: gray 1px solid;    
+}
+.textbox2{
+    margin-top: 1%;
+    height: 500px;
+    width:1150px;
+    background-color: gray;
+}
+.backbutton{
+    font-size: 1rem;
+    margin-top: 2%;
+    /* margin-left: 20%; */
+}
+
+/* 도서관이용시간 */
+#calendarForm {
+    margin-left: 8%;
+    padding: 0;
+    }
+
+    .custom_calendar_table td {
+        text-align: center;
+    }
+
+    .custom_calendar_table thead.cal_date th {
+        font-size: 1rem;
+    }
+
+    .custom_calendar_table thead.cal_date th button {
+        font-size: 1rem;
+        background: none;
+        border: none;
+    }
+
+    .custom_calendar_table thead.cal_week th {
+        background-color: #288CFF;
+        color: #fff;
+        font-size: 1rem;
+    }
+
+    .custom_calendar_table tbody td {
+        cursor: pointer;
+    }
+
+    .custom_calendar_table tbody td:nth-child(1) {
+        color: red;
+    }
+
+    .custom_calendar_table tbody td:nth-child(7) {
+        color: #288CFF;
+    }
+
+    .custom_calendar_table tbody td.select_day {
+        background-color: #288CFF;
+        color: #fff;
+    }
+    .table3{
+        /* background-color: aquamarine; */
+        height: 468px;
+        width:1070px;
+        margin-left: 8%;
+        margin-top: 2%;
+    }
+    .table4{
+        margin-top: 2%;
+        font-size: 1rem;
+        border-collapse: collapse; 
+        border-spacing: 0
+    }
+    .tablehead{
+        width:200px;
+        border: 1px solid gray;
+    }
+    .timehead{
+        border-bottom: gray 1px solid;
+    }
+    #timebody{
+        text-align: center;
+    }
+    #timebody2{
+        text-align: center;
+        color: red;
+    }
+
+/* 자료복사 */
+.notice{
+    margin-top: 2%;
+    margin-left: 6%;
+    /* background-color: gray; */
+    height:690px;
+    width: 1150px;
+    font-size: 1rem;
+}
+.copy{
+    height:50px;
+    border: gray 1px solid;
+    width:700px;
+}
+.copfile{
+    border: gray 1px solid;
+    height:50px;
+    width:140px;
+}
+.money{
+    border: 1px solid gray;
+    height:50px;
+    width:300px;
+}
+
+/* 주차안내 */
+.pakingmain{
+    margin-top: 2%;
+    margin-left: 6%;
+    /* background-color: gray; */
+    height:690px;
+    width: 1150px;
+    font-size: 1rem;
+}
+.parkingtable{
+    border-top: gray 1px solid;
+    border-bottom: gray 1px solid;
+    border-collapse: collapse; 
+    border-spacing: 0;
+}
+.parkingtablehead{
+    background-color: gray;
+    border-right: black 1px solid;
+    height: 50px;
+}
+.parkingtablehead2{
+    background-color: gray;
+    height: 50px;
+    /* border-right: black 1px solid; */
+}
+.parkingtablebody{
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    height:100px;
+    text-align: center;
+}
+.parkingtablebody2{
+    border-top: 1px solid gray;
+    text-align: center;
+}
+#parkingtables{
+    width:200px;
+}
+#parkingtables2{
+    width:450px;
+}
+#parkingtables3{
+    width:500px;
+}
+#parkingtables4{
+    width:250px;
+}
+
+/* 열람실좌석예약 */
+.roombody{
+    margin-top:1%;
+    height:704px;
+    width:1150px;
+    /* background-color: gray; */
+}
+.roomhead{
+    margin-left: 6.5%;
+    width:1150px;
+    height:100px;
+    /* background-color: gray; */
+}
+.roomall{
+    height:50px;
+    width:1150px;
+    background-color: gray;
+}
+.menu{
+    margin-top: 2%;
+    height: 25px;
+    width:70px;
+    text-align: center;
+    color: white;
+    border-radius: 25%;
+    display: inline-block;
+    background-color: blue;
+    margin-left: 80%;
+}
+.menu2{
+    margin-top: 2%;
+    height: 25px;
+    width:70px;
+    text-align: center;
+    color: white;
+    border-radius: 25%;
+    display: inline-block;
+    background-color: gray;
+}
+.menu3{
+    margin-top: 2%;
+    height: 25px;
+    width:70px;
+    text-align: center;
+    color: white;
+    border-radius: 25%;
+    display: inline-block;
+    background-color: green;
+}
+.classinfo{
+    margin-top: 1%;
+    height:535px;
+    width:1150px;
+    background-color: gray;
+}
+.classbody{
+    width:300px;
+    font-size: 2rem;
+    text-align: left;
+}
+
+/* 좌석정보 */
+.seathead {
+    width : 670px;
+    height : 670px;
+    margin : auto;
+    justify-content : space-between;
+    align-items:flex-end;
+}
+.seattable{
+    font-size: 1rem;
+    text-align: center;
+    border-collapse: collapse; 
+    border-spacing: 0;
+}
+.seattablehead{
+    width:300px;
+    height:50px;
+    border: black 1px solid;
+}
+.seatcall{
+    border: black 1px solid;
+    height:50px;
+}
+.seatback{
+    margin-left:42%;
+    margin-top:2%;
+    font-size:1rem;
+}
+
+/* 열람실이용안내 */
+.readingroombody{
+    margin-top: 2%;
+    margin-left: 6%;
+    /* background-color: gray; */
+    height:690px;
+    width:1150px;
+}
+
+.readingroomtablehead{
+    border: 1px solid gray;
+    height: 200px;
+    width:200px;
+}
+.readingroomtablehead2{
+    border: 1px solid gray;
+    height: 50px;
+    width:500px;
+    text-align: center;
+}
+.readingroomred{
+    border: 1px solid gray;
+    height: 50px;
+    width:500px;
+    text-align: center;
+    color: red;
+}
