@@ -21,7 +21,9 @@
     <script src="../js/jquery-3.6.0.min.js"></script>
     <title>메인페이지</title>
 </head>
-	
+<body>
+	<h1>test</h1>
+</body>
 	
 	
 </html>
