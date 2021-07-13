@@ -22,7 +22,7 @@
     <title>메인페이지</title>
 </head>
 <body>
-	<h1>test</h1>
+	<a href="${path }/member/memberInfo.do">MemberInfo Test</a>
 </body>
 	
 	
