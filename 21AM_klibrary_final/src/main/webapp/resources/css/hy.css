@@ -1,1 +1,812 @@
 @charset "UTF-8";
+/* commmon */
+ @font-face { 
+    font-family: 'S-Core'; 
+    src: url("./S-CoreDream-4Regular.woff") format("woff"); 
+  }
+
+*{
+    font-family : 'S-Core';
+}
+
+#ad_body {
+  background-color : #E3E7EA;
+}
+
+/* 관리자 header */
+#ad_header {
+  width : 1500px;
+  height : 100px;
+  margin : auto;
+  display : flex;
+  justify-content : space-between;
+  align-items:flex-end;
+}
+
+#header_title {
+  float : left;
+  font-size : 45px;
+  text-align : center;
+}
+
+#header_options {
+  float : right;
+  font-size : 12px;
+  display : flex;
+  padding-bottom : 5px;
+  margin-right : 5px;
+}
+
+#header_logout {
+  margin-left : 10px;
+  cursor: pointer;
+}
+
+/* 관리자 body */
+
+#ad_container {
+  width : 1500px;
+  height : 800px;
+  margin:auto;
+  background-color : white;
+}
+
+/* 관리자 navigation */
+
+#ad_left {
+  width : 200px;
+  height : 800px;
+  float:left;
+  background-color: #34495E;
+  color : white;
+}
+
+#lefNavList {
+  margin-top : 0px;
+}
+
+#lefNavList,.navOptions  {
+  list-style: none;
+  padding-left : 0px;
+}
+
+#lefNavList>li {
+    width : 200px;
+    border-bottom : 1px solid black;
+    min-height : 50px;
+    line-height : 50px;
+    text-align: center;
+    background-color: #34495E;
+    cursor: pointer;
+}
+
+#lefNavList>li i {
+  float:right;
+  line-height:50px;
+  padding-right:30px;
+}
+
+.navOptions {
+  display : none;
+  padding-left : 0px;
+}
+
+.navOptions li {
+    width : 200px;
+    height : 50px;
+    padding-left : 40px;
+    line-height : 50px;
+    text-align : left;
+    background-color: #9BC3FF;
+}
+
+/* 관리자 Contents */
+
+
+/* 관리자 Contents 아웃라인 */
+
+#ad_right {
+  width : 1300px;
+  float : right;
+}
+
+#contHeader{
+  width : 1150px;
+  margin : auto;
+  margin-top : 40px;
+  border-bottom : 2px gray solid;
+  /* padding-left : 10px; */
+  font-size : 30px;
+}
+
+#contBody {
+  width : 1150px;
+  height : 670px;
+  margin : auto;
+  margin-top : 20px;
+}
+
+/* 관리자 - 메인페이지 */
+
+#mainWrap {
+  width : 1150px;
+  height : 700px;
+  margin : auto;
+  text-align : center;
+  line-height : 700px;
+}
+
+/* 관리자 - cotents - 헤더 */
+
+#contentTitle {
+  width : 1150px;
+  height : 50px;
+  margin : auto;
+  margin-top : 25px;
+  margin-bottom : 5px;
+  font-size : 30px;
+  text-align : center;
+  line-height : 50px;
+}
+
+/* 관리자 - cotents - 검색 */
+
+#searchWrap {
+  /* width : 1150px; */
+  font-size : 10px;
+  float : right;
+}
+
+#searchOption , #searchWord {
+  width : 160px;
+  height : 35px;
+}
+
+#searchBtn {
+  height:35px;
+  width : 75px;
+  line-height:15px;
+}
+
+#detSeaWrap {
+  margin-top : 30px;
+}
+
+#detSeaTab {
+  width : 1150px;
+}
+
+#detSeaTab tr td {
+  height : 50px;
+  text-align : left;
+  border : 1px solid gray;
+}
+
+#detSeaTab tr td:first-child {
+  width : 150px;
+  text-align : center;
+  background-color: #DADADA;
+}
+
+#detSeaTab tr td:last-child {
+  padding-left : 40px;
+}
+
+#detSeaTab tr:first-child td input {
+  margin-left : 15px;
+}
+
+#detSeaBtn {
+  text-align : center;
+  margin-top : 10px;
+}
+
+/* 관리자 - cotents - 테이블 */
+
+/* commons */
+
+#contentTabWrap {
+  margin-top : 50px;
+  width : 1150px;
+  height : 550px;
+}
+
+/* 관리자 - content - 회원 - memberList 테이블 */
+
+#memListTab {
+  width: 1150px;
+  margin : auto;
+  font-size : 13px;
+}
+
+
+#memListTab th , #memListTab td {
+  border : 1px solid black;
+  text-align : center;
+}
+
+#memListTab th {
+  background-color : #DADADA;
+}
+
+#memListTab td {
+  height : 45px;
+  text-align : center;
+  line-height : 30px;
+}
+
+#memListTab tr:first-child {
+  height : 35px;
+}
+
+#memListTab tr button {
+  width:60px;
+  height:30px;
+  font-size : 13px;
+}
+
+#memListBtn {
+  margin-top : 8px;
+  float : right;
+}
+
+#memListBtn button {
+  width : 100px;
+  height : 30px;
+  line-height : 12px;
+}
+
+/* 관리자 - content - 회원 - memberDelete 테이블 */
+
+#memDelTab {
+  width: 1150px;
+  margin : auto;
+  font-size : 13px;
+}
+
+
+#memDelTab th , #memDelTab td {
+  border : 1px solid black;
+  text-align : center;
+}
+
+#memDelTab th {
+  background-color : #DADADA;
+}
+
+#memDelTab td {
+  height : 45px;
+  text-align : center;
+  line-height : 30px;
+}
+
+#memDelTab tr:first-child {
+  height : 35px;
+}
+
+#memDelTab tr button {
+  width:60px;
+  height:30px;
+  font-size : 13px;
+}
+
+#memDelBtn {
+  margin-top : 8px;
+  float : right;
+}
+
+#memDelBtn button {
+  width : 100px;
+  height : 30px;
+  line-height : 12px;
+}
+
+/* 관리자 - content - 회원 - memberDetail 테이블 */
+
+#memberDetail {
+  height : 600px;
+}
+
+#memDetLef {
+  width : 250px;
+  float : left;
+}
+
+#memberImg {
+  width : 250px;
+  height : 300px;
+  background-color : #DADADA;
+  text-align : center;
+  line-height : 300px;
+}
+
+#memDefLefBtn{
+  width : 250px;
+  text-align: center;
+}
+
+#memDefLefBtn button{
+  margin-top : 10px;
+}
+
+#memDetRig{
+  float : right;
+}
+
+
+
+#memberDetTab {
+  width : 850px;
+  height : 500px;
+}
+
+#memberDetTab tr td {
+  height : px;
+  text-align : center;
+  border : 1px solid gray;
+}
+
+#memberDetTab tr th:first-child {
+  width : 120px;
+  text-align : center;
+  background-color : #DADADA;
+  border : 1px solid gray;
+}
+
+#memberDetTab input {
+  width : 200px;
+  height : 30px;
+}
+
+
+#addInpWrap {
+  display : flex;
+  flex-direction : column;
+  justify-content : left;
+}
+
+.addInp {
+  margin-left : 40px;
+}
+
+#memberBooHis {
+  margin-top : 20px;
+  height : 250px;
+}
+
+#booLenHis_header , #booBooHis_header {
+  font-size : 23px;
+}
+
+#booHisLef {
+  float : left;
+}
+
+#booHisRig {
+  float : right;
+}
+
+.booHisTab {
+  margin-top : 5px;
+  width : 500px;
+  height : 200px;
+  border : 1px solid black;
+}
+
+.booHisTab th {
+  height : 45px;
+  background-color: #DADADA;
+  text-align : center;
+  line-height : 50px;
+  border : 1px solid gray;
+}
+
+.booHisTab td {
+  text-align : center;
+  border : 1px solid gray;
+}
+
+
+#memberDetBtn {
+  margin-top : 50px;
+  text-align: center;
+}
+
+
+/* 관리자 - content - 도서 - bookAllList 테이블 */
+
+#bookAllListTab {
+  width: 1150px;
+  margin : auto;
+  font-size : 13px;
+}
+
+
+#bookAllListTab th , #bookAllListTab td {
+  border : 1px solid black;
+  text-align : center;
+}
+
+#bookAllListTab th {
+  background-color : #DADADA;
+}
+
+#bookAllListTab td {
+  height : 45px;
+  text-align : center;
+  line-height : 30px;
+}
+
+#bookAllListTab tr:first-child {
+  height : 35px;
+}
+
+#bookAllListTab tr button {
+  width:60px;
+  height:30px;
+  font-size : 13px;
+}
+
+#bookAllListBtn {
+  margin-top : 8px;
+  float : right;
+}
+
+#bookAllListBtn button {
+  width : 100px;
+  height : 30px;
+  line-height : 12px;
+}
+
+/* 관리자 - content - 도서 - bookRentalList 테이블 */
+
+#bookRentalListTab {
+  width: 1150px;
+  margin : auto;
+  font-size : 13px;
+}
+
+
+#bookRentalListTab th , #bookRentalListTab td {
+  border : 1px solid black;
+  text-align : center;
+}
+
+#bookRentalListTab th {
+  background-color : #DADADA;
+}
+
+#bookRentalListTab td {
+  height : 45px;
+  text-align : center;
+  line-height : 30px;
+}
+
+#bookRentalListTab tr:first-child {
+  height : 35px;
+}
+
+#bookRentalListTab tr button {
+  width:60px;
+  height:30px;
+  font-size : 13px;
+  line-height : 15px;
+}
+
+#bookRentalListBtn {
+  margin-top : 8px;
+  float : right;
+}
+
+#bookRentalListBtn button {
+  width : 100px;
+  height : 30px;
+  line-height : 12px;
+}
+
+/* 관리자 - content - 도서 - bookReservedList 테이블 */
+
+#bookReservedListTab {
+  width: 1150px;
+  margin : auto;
+  font-size : 13px;
+}
+
+
+#bookReservedListTab th , #bookReservedListTab td {
+  border : 1px solid black;
+  text-align : center;
+}
+
+#bookReservedListTab th {
+  background-color : #DADADA;
+}
+
+#bookReservedListTab td {
+  height : 45px;
+  text-align : center;
+  line-height : 30px;
+}
+
+#bookReservedListTab tr:first-child {
+  height : 35px;
+}
+
+#bookReservedListTab tr button {
+  width:60px;
+  height:30px;
+  font-size : 13px;
+  line-height : 15px;
+}
+
+#bookReservedListBtn {
+  margin-top : 8px;
+  float : right;
+}
+
+#bookReservedListBtn button {
+  width : 100px;
+  height : 30px;
+  line-height : 12px;
+}
+
+/* 관리자 - content - 도서 - bookWishList 테이블 */
+
+#bookWishListTab {
+  width: 1150px;
+  margin : auto;
+  font-size : 13px;
+}
+
+
+#bookWishListTab th , #bookWishListTab td {
+  border : 1px solid black;
+  text-align : center;
+}
+
+#bookWishListTab th {
+  background-color : #DADADA;
+}
+
+#bookWishListTab td {
+  height : 45px;
+  text-align : center;
+  line-height : 30px;
+}
+
+#bookWishListTab tr:first-child {
+  height : 35px;
+}
+
+#bookWishListTab tr button {
+  width:60px;
+  height:30px;
+  font-size : 13px;
+  line-height : 15px;
+}
+
+#bookWishListBtn {
+  margin-top : 8px;
+  float : right;
+}
+
+#bookWishListBtn button {
+  width : 100px;
+  height : 30px;
+  line-height : 12px;
+}
+
+/* 관리자 - content - 도서 - bookDetail content */
+
+#bookDetail {
+  height : 250px;
+}
+
+#bookImg {
+  width : 250px;
+  height : 250px;
+  background-color : #DADADA;
+  float : left;
+  text-align : center;
+  line-height : 250px;
+}
+
+#bookDetTab {
+  width : 850px;
+  height : 250px;
+  float : right;
+}
+
+#bookDetTab tr td {
+  height : 50px;
+  text-align : center;
+  border : 1px solid gray;
+}
+
+#bookDetTab tr th:first-child , #bookDetTab tr th:nth-child(3) {
+  width : 120px;
+  text-align : center;
+  background-color : #DADADA;
+  border : 1px solid gray;
+}
+
+
+#bookLenHis {
+  margin-top : 30px;
+}
+
+#bookLenHisHeader {
+  font-size : 23px;
+}
+
+#lenHisTab {
+  width : 1150px;
+  margin-top : 10px;
+  /* height : 400px; */
+  /* background-color: red; */
+}
+
+#lenHisTab tr:first-child th {
+  height : 50px;
+  background-color : #DADADA;
+  text-align : center;
+  border : 1px solid gray;
+}
+
+#lenHisTab tr td {
+  height : 50px;
+  text-align : center;
+  border : 1px solid gray;
+}
+
+#bookDetBtn {
+  margin-top : 50px;
+  text-align: center;
+}
+
+/* 관리자 - content - 열람실 - studyroom_main content */
+
+#usageHeader {
+  font-size : 23px;
+  margin-bottom : 20px;
+}
+
+#useHeaTab {
+  width : 1150px;
+  margin-bottom : 20px;
+}
+
+#useHeaTab tr td {
+  text-align : center;
+  width : 140px;
+  height : 50px;
+  background-color : #DADADA;
+}
+
+#useTab {
+  width : 1150px;
+  height : 230px;
+}
+
+#useTab tr th , #useTab tr td {
+  text-align : center;
+  border : 1px solid gray;
+}
+
+#useTab tr th {
+  background-color : #DADADA;
+  height : 60px;
+}
+
+#resWrap {
+  margin-top : 20px;
+}
+
+#resHeader {
+  font-size : 23px;
+  margin-bottom : 20px;
+}
+
+#resTab {
+  width : 1150px;
+  /* height : 300px; */
+}
+
+#resTab tr th {
+  height : 60px;
+  text-align : center;
+  background-color : #DADADA;
+  border : 1px solid gray;
+}
+
+#resTab tr td {
+  height : 45px;
+  text-align : center;
+  border : 1px solid gray;
+}
+
+#resTab tr td button {
+  width : 60px;
+  height : 30px;
+  line-height : 10px;
+}
+
+/* 관리자 - content - 열람실 - studyroom_room content */
+
+.rooTabTit {
+  font-size : 23px;
+  margin-bottom : 20px;
+}
+
+#roomHeaTab {
+  width : 1150px;
+  margin-bottom : 20px;
+}
+
+#roomHeaTab tr td {
+  text-align : center;
+  width : 140px;
+  height : 50px;
+  background-color : #DADADA;
+}
+
+#roomUseTab {
+  width : 1150px;
+  height : 230px;
+}
+
+#roomUseTab tr th , #roomUseTab tr td {
+  text-align : center;
+  border : 1px solid gray;
+}
+
+#roomUseTab tr th {
+  background-color : #DADADA;
+  height : 60px;
+}
+
+#roomWrap {
+  margin-top : 20px;
+  width : 1150px;
+  height : 500px;
+  background-color : #DADADA;
+}
+
+#room-door {
+  margin : auto;
+  margin-bottom : 50px;
+  width : 200px;
+  height : 40px;
+  background-color: #5F5F5F;
+  text-align : center;
+  line-height : 40px;
+  color : white;
+}
+
+#roomTab {
+  margin : auto;
+  width : 1100px;
+  height : 300px;
+  border-collapse: separate;
+  border-spacing : 5px 10px;
+}
+
+#roomTab tr td {
+  text-align : center;
+  border : 1px solid gray;
+  height : 40px;
+}
+
+#seatSta {
+  width : 1150px;
+  height : 30px;
+  text-align : right;
+}
+
+#seatSta button{
+  width : 70px;
+  height : 30px;
+  text-align : center;
+  font-size : 10px;
+  cursor: none;
+}
