@@ -18,12 +18,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cg.css">
     <!-- fontawsome CDN 불러오기 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="resources/js/jquery-3.6.0.min.js"></script>
     <title>메인페이지</title>
 </head>
 <body>
-	<h1>test</h1>
+	<h1>메인페이지</h1>
 </body>
-	
-	
 </html>
