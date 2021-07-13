@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>    
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+	<jsp:param name="title" value="도서등록"/>
+</jsp:include>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,6 +100,10 @@
                             </td>
                         </tr>
                         <tr>
+                          <td class="reg_book_cate" style="background-color: #eaeaea;">표지</td>
+                          <td><img class="book_image" src="C:\Users\WORK\Desktop\FINAL\img\book1.jpg"></td>
+                      </tr>
+                        <tr>
                             <td class="reg_book_cate" style="background-color: #eaeaea;">저자</td>
                             <td><input type="text" name="" value="" placeholder="저자"></td>
                         </tr>
@@ -148,6 +155,12 @@
         a:focus { text-decoration: none; }
         a:hover, a:active { text-decoration: none; }
 
+		 .book_image{
+          border-radius: 4px;
+          width: 100px;
+          height: 100px;
+          margin-right: 12px;
+        }
 
 
 
@@ -563,3 +576,5 @@ $(function() {
         });
 
     </script>
+    
+     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
