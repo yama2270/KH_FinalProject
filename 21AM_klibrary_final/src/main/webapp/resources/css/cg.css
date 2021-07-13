@@ -1,1 +1,339 @@
-@charset "UTF-8";
+@CHARSET "UTF-8";
+
+div, section, header, aside, footer {padding:10px;}
+
+div#container	{}
+
+section#content		{min-height:600px;}
+
+/* common menu*/
+#UserInfo_Menu_Container{ /*마이페이지 메뉴바*/
+	width:270px;
+	float: left;
+}
+#UserInfo_Container{ /*마이페이지 컨텐츠 전체 div*/
+	width:1530px;
+	margin-left:300px;
+	margin-top:10px; 
+}
+#UserInfo_Paging_Container{ /*마이페이지 페이징 바 */
+	margin-top:100px;
+	margin-left:600px;
+}
+#Ok_Cancel_btn{ /*마이페이지 확인/취소 버튼*/
+	text-align:center;
+	margin-top:100px;
+	margin-left:150px;
+}
+#h2_line2{ /*h2 설정*/
+	border:gray 2px solid;
+}
+
+#book_logo{
+	margin-bottom:10px;
+	float:left;
+}
+
+/* memberInfo */
+#Pw_Check_table{
+	border:black 1px solid;
+	width:700px;
+	weight:300px;
+	margin-left:350px;
+	text-align:center;
+	background-color: lightgray;
+}
+#Pw_Check_table th{
+	border-right: black 1px solid;
+}
+#Pw_Check_table td{
+	text-align:left;
+}
+#Pw_Check_table p{
+	margin-top:10px;
+}
+#Pw_Check_table input{
+	width:350px;
+	height:50px;
+	margin-left:20px;
+	border:none;
+	background-color: transparent;
+}
+
+
+/* memberInfoUpdate */
+#Info_Update_table{
+	border:gray 2px solid;
+	width:1000px;
+	weight:300px;
+	margin-left:150px;
+	text-align:center;
+}
+#Info_Update_table tr{
+	border-bottom: gray 1px solid;
+}
+#Info_Update_table th{
+	border-right:black 1px solid;
+	background-color:lightgray;
+}
+#Info_Update_table td{
+	text-align:left;
+}
+#Info_Update_table .InfoInput{
+	width:350px;
+	height:50px;
+	margin-left:20px;
+	border:none;
+	background-color:transparent;
+}
+#Info_Update_table .phone{
+	width:70px;
+	height:30px;
+	margin-left:20px;
+	background-color: transparent;
+}
+#Info_Update_table #gender{
+	margin-left:20px;
+}
+#Info_Update_table #date{
+	margin-left:20px;
+}
+
+/* memberBorrowing */
+#Borrowing_Info_Container{
+	width:1490px;
+	margin-left:10px;
+	margin-top:10px;
+	height:100px;
+	background-color:lightgray;
+	text-align:center;
+}
+#Borrowing_Info_Container #p1{
+	width:1490px;
+	margin-left:10px;
+	margin-top:10px;
+	height:100px;
+	background-color:lightgray;
+	text-align:center;
+}
+#Borrowing_Info_Container #BIC_p1{
+	margin-top:30px; float:left;
+}
+#Borrowing_Info_Container #BIC_p2{
+	margin-top:30px; 
+}
+#BIC_hr_line{
+	width:1490px;
+	margin-left:10px;
+	margin-top:30px;
+	border:gray 1px solid;
+}
+#BIC_hr_line2{
+	width:1490px;
+	border:gray 1px solid;
+	margin-top:70px;
+}
+#Borrwing_List_table table{
+	font-size:20px;
+	weight:500px;
+	text-align:left;
+}
+#Borrwing_List_table td{
+	font-size:20px;
+	weight:500px;
+	text-align:left;
+}
+#Borrwing_List_table th{
+	text-align:center;
+	width:200px;
+}
+#Borrwing_List_table hr{
+	width:1490px;
+	border:gray 1px dashed;
+	margin-top:50px;
+}
+
+/*memberBorrowed*/
+#Borrowed_Info_Container{
+	width:1490px;
+	margin-left:10px;
+	margin-top:10px;
+	height:100px;
+	background-color:lightgray;
+	text-align:center;
+}
+#Borrowed_Info_Container label{
+	font-size:20px;
+	margin-top:20px;
+}
+#Borrwed_List_title{
+	margin-top:10px; float:left;
+}
+#Borrwed_List_table table{
+	font-size:20px;
+	width:1490px; 
+}
+#Borrwed_List_table td{
+	font-size:20px;
+}
+#Borrwed_List_table th{
+	background-color:lightgray;
+	text-align:center;
+	width:200px;
+}
+#Borrwed_List_table hr{
+	width:1490px;
+	border:gray 1px dashed;
+	margin-top:50px;
+}
+/* Booking */
+#Booking_List_title{
+	margin-top:10px; float:left;
+}
+#BIK_hr_line2{
+	width:1490px;
+	border:gray 1px solid;
+	margin-top:80px;
+}
+#Booking_List_table table{
+	text-align:center;
+	font-size:20px;
+	width:1490px; 
+}
+#Booking_List_table td{
+	font-size:20px;
+}
+#Booking_List_table th{
+	background-color:lightgray;
+	text-align:center;
+	width:200px;
+}
+#Booking_List_table hr{
+	width:1490px;
+	border:gray 1px dashed;
+	margin-top:50px;
+}
+/* HopeBook */
+
+/* HopeBookRecord */
+
+/* BookMark */
+#BookMark_List_title{
+	margin-top:10px; float:left;
+}
+#BMK_hr_line2{
+	width:1490px;
+	border:gray 1px solid;
+	margin-top:80px;
+}
+#BookMark_List_table table{
+	width:1490px; 
+	weight:500px;
+}
+#BookMark_List_table td{
+	font-size:20px;
+}
+#BookMark_List_table th{
+	background-color:lightgray;
+	text-align:center;
+	width:200px;
+}
+#BookMark_List_table hr{
+	width:1490px;
+	border:gray 1px dashed;
+	margin-top:50px;
+}
+#Star_icon{
+	width:30px;
+	height:30px;
+}
+#Star_btn{
+	border:none;
+	background:none;
+}
+
+/* memberReadingRoom*/
+#Room_List_title{
+	margin-top:10px;
+	float:left;
+}
+#RR_hr_line2{
+	width:1490px;
+	border:gray 1px solid;
+	margin-top:80px;
+}
+#Room_Record_Container{
+	width:1490px;
+	margin-left:10px;
+	margin-top:10px;
+	height:140px;
+	background-color:lightgray;
+}
+#Room_Record_Container ul{
+	font-size:20px;
+	float:left;
+}
+#Room_Record_Container button{
+	float:right;
+	margin-top:80px;
+}
+#Room_Record_Container2{
+	margin-top:50px;
+}
+#ReadingRoom_List_table table{
+	font-size:20px;
+	width:1490px; 
+	weight:500px;
+}
+#ReadingRoom_List_table td{
+	font-size:20px;
+}
+#ReadingRoom_List_table th{
+	background-color:lightgray;
+	text-align:center;
+	width:200px;
+}
+#ReadingRoom_List_table hr{
+	width:1490px;
+	border:gray 1px dashed;
+	margin-top:50px;
+}
+
+/* memberShipCard */
+#member_card div{
+	border:black 1px solid;
+	width:500px;
+	height:600px;
+	margin-left:450px;
+	text-align:center;
+	background-color:lightgray;
+}
+#member_card #m-top{
+	margin-top:30px;
+}
+
+/* memberDelete */
+#Dt_Check_table{
+	border:black 1px solid;
+	width:700px;
+	weight:300px;
+	margin-left:350px;
+	text-align:center;
+	background-color: lightgray;
+}
+#Dt_Check_table th{
+	border-right: black 1px solid;
+}
+#Dt_Check_table td{
+	text-align:left;
+}
+#Dt_Check_table p{
+	margin-top:10px;
+}
+#Dt_Check_table input{
+	width:350px;
+	height:50px;
+	margin-left:20px;
+	border:none;
+	background-color:transparent;
+}
