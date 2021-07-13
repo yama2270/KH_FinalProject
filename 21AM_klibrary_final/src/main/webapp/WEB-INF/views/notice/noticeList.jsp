@@ -1,26 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/dg.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hj.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sh.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sy.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cg.css">
-    <!-- fontawsome CDN 불러오기 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <script src="resources/js/jquery-3.6.0.min.js"></script>
-    <title>공지사항</title>
-</head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>    
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+	<jsp:param name="title" value="공지사항목록"/>
+</jsp:include>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
 <body id="ad_body">
     <header id="ad_header">
         <div id="header_title">K-도서관</div>
@@ -60,10 +47,25 @@
                         <th class="head3">등록일</th>
                         <th class="head2">조회수</th>
                     </tr>
+                    <c:choose>
+                    	<c:when test="${not empty list }">
+                    		<c:forEach var="n" items="${list }">
+                    			<tr>
+                    				<td class="head2"><c:out value="${n.noticeNo }"/></td>
+                    				<td class="head2"><c:out value="${n.noticeTitle }"/></td>
+                    				<td class="head2"><c:out value="${n.noticeFile }"/></td>
+                    				<td class="head2"><c:out value="${n.noticeDate }"/></td>
+                    				<td class="head2"><c:out value="${n.noticeCount }"/></td>
+                    			</tr>
+                    		</c:forEach>
+                    	</c:when>
+                    </c:choose>
                 </table>
+                <div id="pagebar-container">
+                	${pageBar }
+                </div>
             </div>
         </div>
     </section>
-
 </body>
-</html>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
