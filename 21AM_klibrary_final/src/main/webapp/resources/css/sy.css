@@ -1,1 +1,914 @@
 @charset "UTF-8";
+
+/* bookDetai페이지 */
+#addBasketBatchBtn,#btnView,#listBtn{
+        background-color:lightgrey;
+        margin-left:10px;
+        
+    }
+    
+    .btnGroup{
+        width:90%;
+        text-align:center;
+        margin-top:2%;
+    }
+    .bookStatusTr{
+        background-color: aliceblue;
+        
+    }
+    .tblhasLibrary th{
+        text-align:center;
+        padding:10px 52px;
+        border-top:1.5px solid black;
+        /* border:1px solid  #ccc; */
+        border-right:1px solid  #ccc;
+       
+    }
+    .tblhasLibrary td{
+        border-right:1px solid #ccc;
+    }
+
+    .tblhasLibrary th:nth-child(3),.tblhasLibrary th:nth-child(4),.tblhasLibrary th:nth-child(5){
+      border-right:0.5px solid  #ccc;
+    }  /*테이블버그떄문에설정*/
+
+    .tblhasLibrary td:nth-child(3),.tblhasLibrary td:nth-child(4),.tblhasLibrary td:nth-child(5){
+      border-right:0.5px solid  #ccc;
+    } /*테이블버그떄문에설정*/
+
+    .tblhasLibrary{
+
+    text-align:center;
+    border-left:1.5px solid #ccc;
+        border-right:1.5px solid #ccc;
+        border-bottom:1.5px solid #ccc;
+    }
+    
+    .bookCurrentStatusTitle{
+        text-align:left;
+    }
+    .resultBookDesc{
+        width:90%;
+        text-align: left;
+        line-height: 200%;
+        margin-top:5%;
+    }
+    #bookInfoTd2{
+        text-align:left;
+    }
+    #bookInfoTd{
+        text-align:left;
+    }
+    #bookTitleTd{
+        font-size:20px;
+        background-color: snow;
+        height:50px;
+        border-radius:10px ; 
+        
+    }
+    
+   #imgContainerDiv{
+   
+    margin-left:5%;
+  } 
+  #buttonWrapTd{
+    vertical-align: 0px;
+  }
+  #searchResultTable{
+      
+    border-collapse: separate;
+    border: solid black 2px ; 
+    
+    border-radius:10px ;   
+    padding-bottom: 10px;
+    width:90%;
+  }
+  #searchResultDiv{
+    margin-top:3%;
+      margin-left:300px;
+     
+     text-align:center;
+    
+  }
+    
+    .buttonWrap{
+        float:right;
+    }
+    .bookDataWrap{
+        margin-left:20px;
+        display:inline-block;
+        margin-top:0px;
+    }
+    #bookImg{
+        width:100px;
+        height:140px;
+        margin-top:0px;
+    }
+    
+   
+  
+  .searchSelect{
+    display:inline-block;
+    padding:0px;
+    height:50px;
+    margin-right:0px;
+    margin-left:10px;
+    
+  }
+  
+  #bookinfotitle1{
+   margin-left:100px;
+
+  }
+#menutitle1{
+height:50px;
+text-align:center;
+color:white;
+background-color:blue;
+}
+  .list-group-container{
+  margin-top: 5%;
+  margin-left: 1%; 
+  width:18%;
+  height:600px;
+  float:left;
+  
+  
+  }
+
+  
+  .list-group-item:not(#menutitle1,#menutitle):hover {
+    background-color: lightgrey;
+    cursor:pointer;
+  }
+  
+  .divcontainer1{
+   display:block;
+   background-color:lightblue;
+   /* text-align:left; */
+   color:mediumblue;
+ 
+  }
+
+ 
+
+.search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 45px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background: #ccc;
+}
+
+/*  bookDetailSearch페이지*/
+
+#bookCategorySelectTd{
+     float:left; 
+    width:100%;
+  }
+  #alphabetCheckTd{
+    float:left;
+  }
+  
+  #book_Category, #book_Category2{
+    border-radius: 5%;
+    padding:0px 6px;
+  }
+  #book_Category{
+  
+  display:inline-block;
+  }
+  
+  #book_Category2{
+ 
+  display:inline-block;
+  }
+   
+     #button21{
+        border:none;
+        border-radius:5px;
+        margin-left:10px;
+        font-size: 20px;
+        padding:10px;
+        background-color: silver;
+        
+    }
+    #button21:hover{
+      background-color: slategray;
+    }
+    
+    #publishYear1{
+        width:50%;
+        float:left;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 6px;
+    }
+    #publishYear2{
+      width:80%;
+        float:left;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 6px;
+    }
+    
+    #bookDetailSearchTbl input:not(#publishYear1,#publishYear2){
+        width:90%;
+        float:left;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 6px;
+    }
+    #bookDetailSearchTbl input:hover{
+        background-color: whitesmoke;
+    }
+    #bookDetailSearchTbl td{
+      text-align:center; 
+    
+    }
+    #bookDetailSearchTbl{
+    border-collapse: separate;
+    border-spacing: 40px 20px;
+    font-size: 20px;
+     margin-left:30px;
+     width:70%;
+    
+  }
+  .list-group-item:not(#menutitle,#menutitle1):hover {
+    background-color: lightgrey;
+    cursor:pointer;
+  }
+  
+  #menutitle{
+height:50px;
+text-align:center;
+color:white;
+background-color:blue;
+}
+   
+  #title11{
+   margin-left:100px;
+
+  }
+
+  .detailsearchcontainer{
+  margin-top: 5%;
+  margin-left:1%;
+  width:18%;
+  float:left;
+ 
+  height:600px;
+  
+  }
+  .divcontainer1{
+   display:block;
+   background-color:lightblue;
+   /* text-align:left; */
+   color:mediumblue;
+ 
+  }
+  
+  /*bookSearch페이지  */
+  
+  #bookSearchForm{
+     text-align:center;
+   }
+  
+  
+  .populor-words{
+    display:block;
+    margin-left:13%;
+  }
+  .searchSelectDiv{
+    display:inline-block;
+    padding:0px;
+    height:50px;
+    margin-right:0px;
+    margin-left:10px;
+    
+  }
+   #searchKey{
+     border-radius:10%;
+     height:43px;
+   }
+  #totalSearchTitle1{
+   margin-left:100px;
+
+  }
+#menutitle{
+height:50px;
+text-align:center;
+color:white;
+background-color:blue;
+}
+  .list-group-container{
+  margin-top: 5%;
+  margin-left: 1%;
+  width:17.8%;
+  float:left;
+  
+  
+  }
+  .list-group-item:not(#menutitle,#menutitle1):hover {
+    background-color: lightgrey;
+    cursor:pointer;
+  }
+  .totalSearchcontainer1{
+   display:block;
+   background-color:lightblue;
+   /* text-align:left; */
+   color:mediumblue;
+ 
+  }
+
+  .book-search-container {
+  margin-top:5%;
+  width:1000px;
+  display:inline-block;
+  
+}
+
+#searchButton{
+  margin-left:0px;
+  
+}
+
+#inputtext {
+  font-size: 17px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width:77%;
+  margin-left:1%;
+  margin-right:0px;
+
+  display: inline-block;
+  text-align: left;
+  
+  
+  padding: 14px;
+  height:43px;
+}
+
+.book-search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 0px;
+  margin-right: 45px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+
+  height:43px;
+  border-radius:10%;
+  
+}
+
+
+.book-search-container button:hover {
+  background: #ccc;
+}
+
+/* bookSearchResult페이지 */
+
+#bookCheckTd{
+        vertical-align: 0px;
+       display:inline-block;
+       width:15px;
+    }
+   #imgContainerDiv{
+   
+    margin-left:5%;
+  } 
+  #buttonWrapTd{
+    vertical-align: 0px;
+  }
+  #searchResultTable2{
+    width:65%;
+    
+  }
+  
+    #searchCaptionTh{
+      text-align:center;
+    }
+    .buttonWrap{
+        float:right;
+    }
+    .bookDataWrap{
+        margin-left:20px;
+        display:inline-block;
+        margin-top:0px;
+    }
+    #bookImg{
+        width:100px;
+        height:140px;
+        margin-top:0px;
+    }
+    /* .booklist{
+        margin-left:50px;
+    } */
+     #button22{
+        border:none;
+        border-radius:5px;
+        margin-left:10px;
+    }
+    .selectForm{
+        margin-left:7%;
+    }
+  .populor-words{
+    display:block;
+    margin-left:13%;
+  }
+  .searchSelect{
+    display:inline-block;
+    padding:0px;
+    height:50px;
+    margin-right:0px;
+    margin-left:10px;
+    
+  }
+   #searchKey{
+     border-radius:10%;
+     height:43px;
+   }
+  #searchtitle1{
+   margin-left:100px;
+
+  }
+#menutitle{
+height:50px;
+text-align:center;
+color:white;
+background-color:blue;
+}
+  .list-group-container{
+  margin-top: 5%;
+  margin-left: 1%; 
+  width:18%;
+  height:600px;
+  float:left;
+  
+  
+  }
+
+  
+  .divcontainer1{
+   display:block;
+   background-color:lightblue;
+   /* text-align:left; */
+   color:mediumblue;
+ 
+  }
+
+  .book-search-container {
+    margin-top:5%;
+  width:1000px;
+  display:inline-block;
+}
+
+
+
+#inputtext {
+  font-size: 17px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width:77%;
+  margin-left:1%;
+  margin-right:0px;
+
+  display: inline-block;
+  text-align: left;
+  
+  
+  padding: 14px;
+  height:43px;
+}
+
+.book-search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 0px;
+  margin-right: 45px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+
+  height:43px;
+  border-radius:10%;
+}
+
+.search-container button:hover {
+  background: #ccc;
+}
+
+
+ /*  categorySearch 페이지*/
+ 
+  td>a>.ico{
+        width:100px;
+        height:100px;
+        border-radius:30px;
+    }
+    #kdcDepth2List_0 tr{
+        
+        vertical-align:top;
+        
+      
+    }
+    #kdcDepth1List{
+        margin-top:5%;
+        
+        margin-left:23%;
+        width:70%;
+        height:400px;
+        text-align:center;
+        line-height:100%;
+        
+        border:2px gainsboro solid;
+        border-collapse:unset;
+        border-radius: 30px;
+       
+    }
+    /* img{
+        border-radius: 50px;
+    } */
+    
+      .txt{
+          font-size:20px;
+      }
+    
+    
+    
+    #kdcDepth2List_0{
+        padding:3% 0 0 0;
+        border-collapse:separate;
+    }
+     /* #kdcDepth2List_0 dl{
+        
+        
+        border-bottom:1px gray solid;
+        
+       
+    }   */
+
+    #kdcDepth2List_0 tr>td, #kdcDepth2List_0 tr>th{
+        padding:3% 0 0 3%;
+        width:13%;
+        line-height:150%;
+        
+    }
+    #kdcDepth2List_0 tr>td>dl>dt{
+       margin-bottom:7%;
+       border-top:2px gray solid;
+       border-bottom:1px gray solid;
+   }
+   
+
+   #kdcDepth2List_0 tr>td>dl>dt>a{
+        color:black;
+        
+    }
+    #kdcDepth2List_0 tr>td>dl>dd>a{
+        color:black;
+    }
+
+    .ico{
+        width:300px;
+        height:300px;
+    }
+   
+  
+
+    .list-group-item:not(#menutitle):hover {
+    background-color: lightgrey;
+    cursor:pointer;
+  }
+  
+  #menutitle{
+height:50px;
+text-align:center;
+color:white;
+background-color:blue;
+}
+   
+  #topContainerTitle{
+   margin-left:100px;
+
+  }
+
+  .menuContainer{
+  margin-top: 5%;
+  margin-left:1%;
+  width:18%;
+  float:left;
+  height:800px;
+
+  }
+  .topContainer1{
+   display:block;
+   background-color:lightblue;
+   /* text-align:left; */
+   color:mediumblue;
+ 
+  }
+  
+  /*wishbook페이지  */
+  
+     #buttonContainer{
+        width:100%;
+        text-align:center;
+    }
+     #button24{
+        border:none;
+        border-radius:5px;
+        margin-left:10px;
+        font-size: 20px;
+        padding:15px;
+        background-color: silver;
+        
+    }
+    #button24:hover{
+      background-color: slategray;
+    }
+   
+    #textContainerTable td{
+        text-align:left;
+    }
+     
+    
+
+     #divContainer{
+        text-align: center;
+    } 
+    #textContainerTable{
+      text-align:left;
+      border-collapse: separate;
+    border-spacing: 40px 20px;
+    font-size: 20px;
+     margin-left:30px;
+     width:70%;
+     line-height:200%;
+    }
+  .list-group-item:hover {
+    background-color: lightgrey;
+  }
+  
+  #menutitle{
+height:50px;
+text-align:center;
+color:white;
+background-color:blue;
+}
+
+.list-group-item:not(#menutitle):hover {
+    background-color: lightgrey;
+    cursor:pointer;
+  }
+   
+  #wishbooktitle1{
+   margin-left:100px;
+
+  }
+
+  .menuContainer{
+  margin-top: 5%;
+  margin-left:1%;
+  width:18%;
+  float:left;
+ 
+  
+  }
+  .divcontainer1{
+   display:block;
+   background-color:lightblue;
+   /* text-align:left; */
+   color:mediumblue;
+ 
+  }
+  
+/* wishbookPopup페이지 */
+
+ #bookInfoDiv{
+    display:inline-block;
+    width:30%;
+   }
+  #bookInfoDiv2{
+    display:inline-block;
+    width:60%;
+  }
+  .closeBtnDiv{     
+     
+     text-align: center;
+     width:95%;
+     margin-left:2%;
+  }
+  #closeBtn{
+    border:none;
+    border-radius:5px;
+    padding:10px 20px;
+        
+  }
+   #imgContainerDiv{
+   
+    margin-left:5%;
+  } 
+  
+  #searchResultTable3{
+    width:95%;
+    margin-left:2%;
+  }
+    #searchCaptionTh{
+      text-align:left;
+    }
+    /* .buttonWrap{
+        float:right;
+    } */
+    .bookDataWrap{
+        margin-left:20px;
+        display:inline-block;
+        margin-top:0px;
+    }
+    #bookImg{
+        width:100px;
+        height:140px;
+        margin-top:0px;
+    }
+    /* .booklist{
+        margin-left:50px;
+    } */
+    #button23{
+        border:none;
+        border-radius:5px;
+        margin-left:10px;
+    }
+    #button23:hover{
+      background: #ccc;
+    }
+    
+  .populor-words{
+    display:block;
+    margin-left:13%;
+  }
+  .searchSelect{
+    display:inline-block;
+    padding:0px;
+    height:50px;
+    margin-right:0px;
+    margin-left:2%;
+    
+  }
+   #searchKey{
+     border-radius:10%;
+     height:35px;
+   }
+  #popupTitle{
+   margin-left:10%;
+   margin-top:0px;
+
+  }
+
+ 
+  
+  .popupTitleContainer{
+   
+   background-color:lightblue;
+   /* text-align:left; */
+   color:mediumblue;
+   height:60px;
+   line-height:100%;
+   
+
+   
+  }
+
+  .search-container {
+  margin-top:5%;
+  width:95%;
+  display:inline-block;
+}
+
+
+
+#inputText {
+  
+  font-size: 17px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width:70%;
+  margin-left:2%;
+  margin-right:0px;
+
+  display: inline-block;
+  text-align: left;
+  
+  margin: 0;
+  padding: 14px;
+  height:40px;
+}
+
+
+.search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 0;
+  margin-right: 45px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  border-radius:10%;
+}
+
+.search-container button:hover {
+  background: #ccc;
+}
+
+/* wishbookRequest페이지 */
+
+  #buttonContainer{
+        width:100%;
+        text-align:center;
+    }
+     #button22{
+        border:none;
+        border-radius:5px;
+        margin-left:10px;
+        font-size: 20px;
+        padding:10px;
+        background-color: silver;
+        
+    }
+    #button22:hover{
+      background-color: slategray;
+    }
+    
+    #publishYear1{
+        width:50%;
+        float:left;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 6px;
+    }
+    
+    #bookinfoinput{
+        width:85%;
+        float:left;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 6px;
+    }
+    #bookinfoinput:hover,#publishYear1:hover{
+        background-color: whitesmoke;
+    }
+    #wishbooktable td{
+      text-align:center;  
+     
+    }
+     #wishbooktable{
+    border-collapse: separate;
+    border-spacing: 40px 20px;
+    font-size: 20px;
+     margin-left:30px;
+     width:70%;
+    
+  }
+  .list-group-item:not(#menutitle):hover {
+    background-color: lightgrey;
+    cursor:pointer;
+  }
+  
+  #menutitle{
+height:50px;
+text-align:center;
+color:white;
+background-color:blue;
+}
+   
+  #wishbooktitle1{
+   margin-left:100px;
+
+  }
+
+  .menucontainer{
+  margin-top: 5%;
+  width:18%;
+  margin-left:1%;
+  float:left;
+  
+  
+  }
+  .divcontainer1{
+   display:block;
+   background-color:lightblue;
+   /* text-align:left; */
+   color:mediumblue;
+ 
+  }
