@@ -9,6 +9,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- css -->
     <link rel="stylesheet" href="${path }/resources/css/hy.css">
     <link rel="stylesheet" href="${path }/resources/css/dg.css">
     <link rel="stylesheet" href="${path }/resources/css/hj.css">
@@ -16,17 +18,32 @@
     <link rel="stylesheet" href="${path }/resources/css/sy.css">
     <link rel="stylesheet" href="${path }/resources/css/yh.css">
     <link rel="stylesheet" href="${path }/resources/css/cg.css">
+    
     <!-- fontawsome CDN 불러오기 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <!-- JQuery -->
+    
+    <!-- jQuery -->
     <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-    <title>메인페이지</title>
+    
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- DatePicker -->
+    <link rel="stylesheet" href="${path }/resources/css/bootstrap-datepicker3.standalone.min.css">
+    <script src="${path }/resources/js/bootstrap-datepicker.js"></script>
+    <script src="${path }/resources/js/bootstrap-datepicker.kr.min.js"></script>
+    
+    <!-- Daum API 주소 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    
+    
+    <title>${title }</title>
 </head>
-
-<body>
-	<h1>메인페이지</h1>
-<%--<a href="${path }/member/memberInfo.do">MemberInfo Test</a>
-	<a href="${path }/notice/noticeList.do">noticeList test</a>
-	<a href="${path }/notice/noticeEnd.do">noticeList test</a> --%>
-</body>
+	<body>
+		
+	</body>
 </html>
+
+
+
