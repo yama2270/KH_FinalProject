@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+	<jsp:param name="title" value="책검색결과"/>
+</jsp:include>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,13 +89,13 @@
 
 <table id=searchResultTable2>
   <tr>
-    <td colspan="5" id="searchCaptionTh">
-  
-        <div id="searchCaption">
+    <th colspan="5" id="searchCaptionTh2">
+      <div style="text-align:center">
+        <div id="searchCaption22">
             <p>서명:푸른사자와니니 에 대한 검색결과 5건  이 검색되었습니다.</p>
         </div>
   
-        <div class="selectForm">
+        <div class="selectForm3">
         <select id="searchType" title="검색선택">
             <option value="ALL">전체</option>
             <option value="TITLE" selected="selected">서명</option>
@@ -108,10 +111,10 @@
           <option value=50>50건</option>
   
         </select>
-        <button id="button22" type="submit">확인</button>
+        <button id="button44" type="submit" style="border:none">확인</button>
       </div>
-
-   </td>
+     </div>
+   </th>
    </tr>
 
   <tr>
@@ -139,7 +142,7 @@
             
     </td>
     <td colspan="2">
-          <div id="bookInfoDiv">
+          <div id="bookInfoDiv3">
             <dl class="authorData">
                <dd>
                     <span class="cate">도서</span>
@@ -163,7 +166,7 @@
 
      </td>
      <td>
-      <div id="bookInfoDiv2">
+      <div id="bookInfoDiv4">
         <dl class="authorData2">
            <dd>
                 
@@ -230,5 +233,6 @@ $(function(){ //전체선택 체크박스 클릭
 
 </script>
 </html>
-	
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	
