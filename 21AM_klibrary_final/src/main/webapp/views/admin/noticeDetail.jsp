@@ -26,7 +26,6 @@
                 <div id="header_logout">로그아웃</div>
         </div>
     </header>
-
     <section id="ad_container">
         <div id="ad_left">
             <div id="leftNav">
@@ -103,7 +102,354 @@
 
         </section>
         <!--section에 적용될 style, script 내용 넣어주세요-->
-        <style>
+   <style>
+            .form-group{
+                font-family: "S-Core";
+                font-weight: 300;
+                margin: 4px;
+
+            }
+            h1{
+                font-family: "S-Core";
+                font-weight: 500;
+                
+            }
+            label{
+                font-family: "S-Core";
+                font-weight: 300;
+                padding:3px;
+            }
+            option{
+                font-family: "S-Core";
+                font-weight: 300;
+            }
+
+
+            button{
+                display:flex;
+                align-items: center;
+                justify-content: center;                
+                appearance: auto;
+                text-rendering: auto;
+                display: inline-block;
+                text-align: center;
+                align-items: flex-start;
+                box-sizing: border-box;
+              
+
+            }
+            .btn-box>ul{
+                list-style:none;
+            }
+            .btn-box>ul>li{
+                float:left;
+                margin: 5px;
+            }
+            .btn-box{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 10px;
+                border-radius: 50%;
+            }
+            .pb{
+                font-family: "Noto Sans KR";
+                font-weight: 300;
+            }
+            .cancel-btn>a{
+                text-decoration: none;
+            }
+            .complete-btn>a{
+                text-decoration: none;
+            }
+            .cancel-btn{
+                width:50px;
+                height:30px;
+                border: 1px solid gray;
+                text-align: center;
+                font-size: 20px;
+            }
+            .complete-btn{
+                width:100px;
+                height:30px;
+                border: 1px solid gray;
+                text-align: center;
+                font-size: 20px;
+            }
+            #wr_content{
+                margin-top: 10px;
+                
+            }
+        
+            @font-face { 
+    font-family: 'S-Core'; 
+    src: url("./S-CoreDream-4Regular.woff") format("woff"); 
+  }
+
+*{
+    font-family : 'S-Core';
+}
+
+#ad_body {
+  background-color : #E3E7EA;
+}
+
+/* 관리자 header */
+#ad_header {
+  width : 1500px;
+  height : 100px;
+  margin : auto;
+  display : flex;
+  justify-content : space-between;
+  align-items:flex-end;
+}
+
+#header_title {
+  float : left;
+  font-size : 45px;
+  text-align : center;
+}
+
+#header_options {
+  float : right;
+  font-size : 12px;
+  display : flex;
+  padding-bottom : 5px;
+  margin-right : 5px;
+}
+
+#header_logout {
+  margin-left : 10px;
+  cursor: pointer;
+}
+
+/* 관리자 body */
+
+#ad_container {
+  width : 1500px;
+  height : 800px;
+  margin:auto;
+  background-color : white;
+}
+
+/* 관리자 navigation */
+
+#ad_left {
+  width : 200px;
+  height : 800px;
+  float:left;
+  background-color: #34495E;
+  color : white;
+}
+
+#lefNavList {
+  margin-top : 0px;
+}
+
+#lefNavList,.navOptions  {
+  list-style: none;
+  padding-left : 0px;
+}
+
+#lefNavList>li {
+    width : 200px;
+    border-bottom : 1px solid black;
+    min-height : 50px;
+    line-height : 50px;
+    text-align: center;
+    /* background-color: #2E353B; */
+    background-color: #34495E;
+    cursor: pointer;
+}
+
+#lefNavList>li i {
+  float:right;
+  line-height:50px;
+  padding-right:30px;
+}
+
+.navOptions {
+  display : none;
+  padding-left : 0px;
+}
+
+.navOptions li {
+    width : 200px;
+    height : 50px;
+    line-height : 50px;
+    background-color: #9BC3FF;
+}
+
+/* 관리자 Contents */
+
+
+/* 관리자 Contents 아웃라인 */
+
+#ad_right {
+  width : 1300px;
+  float : right;
+}
+
+#contHeader{
+  width : 1150px;
+  margin : auto;
+  margin-top : 40px;
+  border-bottom : 2px gray solid;
+  /* padding-left : 10px; */
+  font-size : 30px;
+}
+
+#contBody {
+  width : 1150px;
+  height : 670px;
+  margin : auto;
+  margin-top : 20px;
+}
+
+/* 관리자 - 메인페이지 */
+
+#mainWrap {
+  width : 1150px;
+  height : 700px;
+  margin : auto;
+  text-align : center;
+  line-height : 700px;
+}
+
+/* 관리자 - cotents - 헤더 */
+
+#contentTitle {
+  width : 1150px;
+  height : 50px;
+  margin : auto;
+  margin-top : 25px;
+  margin-bottom : 5px;
+  font-size : 30px;
+  text-align : center;
+  line-height : 50px;
+}
+
+/* 관리자 - cotents - 검색 */
+
+#searchWrap {
+  font-size : 10px;
+  float : right;
+}
+
+#searchOption , #searchWord {
+  width : 160px;
+  height : 35px;
+}
+
+#searchBtn {
+  height:35px;
+  width : 75px;
+  line-height:15px;
+}
+
+/* 관리자 - cotents - 테이블 */
+
+/* commons */
+
+#contentTabWrap {
+  margin-top : 50px;
+  width : 1150px;
+  height : 550px;
+}
+
+/* 관리자 - content - memberList 테이블 */
+
+#memListTab {
+  width: 1150px;
+  margin : auto;
+  font-size : 13px;
+}
+
+
+#memListTab th , #memListTab td {
+  border : 1px solid black;
+  text-align : center;
+}
+
+#memListTab th {
+  background-color : #DADADA;
+}
+
+#memListTab td {
+  height : 45px;
+  text-align : center;
+  line-height : 30px;
+}
+
+#memListTab tr:first-child {
+  height : 35px;
+}
+
+#memListTab tr button {
+  width:60px;
+  height:30px;
+  font-size : 13px;
+}
+
+#memListBtn {
+  margin-top : 8px;
+  float : right;
+}
+
+#memListBtn button {
+  width : 100px;
+  height : 30px;
+  line-height : 12px;
+}
+
+/* 관리자 - content - memberDelete 테이블 */
+
+#memDelTab {
+  width: 1150px;
+  margin : auto;
+  font-size : 13px;
+}
+
+
+#memDelTab th , #memDelTab td {
+  border : 1px solid black;
+  text-align : center;
+}
+
+#memDelTab th {
+  background-color : #DADADA;
+}
+
+#memDelTab td {
+  height : 45px;
+  text-align : center;
+  line-height : 30px;
+}
+
+#memDelTab tr:first-child {
+  height : 35px;
+}
+
+#memDelTab tr button {
+  width:60px;
+  height:30px;
+  font-size : 13px;
+}
+
+#memDelBtn {
+  margin-top : 8px;
+  float : right;
+}
+
+#memDelBtn button {
+  width : 100px;
+  height : 30px;
+  line-height : 12px;
+}
+        
+        
+        
+        
         </style>
 
 
