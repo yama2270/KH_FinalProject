@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* bookDetai페이지 */
+/* bookDetail페이지 */
 #addBasketBatchBtn,#btnView,#listBtn{
         background-color:lightgrey;
         margin-left:10px;
@@ -377,6 +377,9 @@ background-color:blue;
 }
 
 /* bookSearchResult페이지 */
+#searchCaptionTh2{
+	text-align:center;
+}
 
 #bookCheckTd{
         vertical-align: 0px;
@@ -394,9 +397,11 @@ background-color:blue;
     width:65%;
     
   }
-  
-    #searchCaptionTh{
+ 
+    #searchCaptionTh22{
+    width:100%;
       text-align:center;
+      
     }
     .buttonWrap{
         float:right;
@@ -414,7 +419,7 @@ background-color:blue;
     /* .booklist{
         margin-left:50px;
     } */
-     #button22{
+     #button44{
         border:none;
         border-radius:5px;
         margin-left:10px;
@@ -507,6 +512,10 @@ background-color:blue;
 
 .search-container button:hover {
   background: #ccc;
+}
+
+#bookInfoDiv3{
+	width:100%;
 }
 
 
