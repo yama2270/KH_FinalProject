@@ -2,6 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	<typeAliases>
+			<typeAlias type="com.kh.klibrary.faq.model.vo" alias="faq"/>
 			<typeAlias type="com.kh.klibrary.faq.model.vo.Faq" alias="faq"/>
 			<typeAlias type="com.kh.klibrary.notice.vo.Notice" alias="notice"/>
 			<typeAlias type="com.kh.klibrary.member.model.vo.MemberT" alias="membert"/>
