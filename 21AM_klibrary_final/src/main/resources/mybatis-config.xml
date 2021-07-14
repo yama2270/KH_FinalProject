@@ -3,6 +3,5 @@
 <configuration>
 	<typeAliases>
 			<typeAlias type="com.kh.klibrary.faq.model.vo" alias="faq"/>
-			<typeAlias type="com.kh.klibrary.notice.vo.Notice" alias="Notice"/>
 	</typeAliases>
 </configuration>

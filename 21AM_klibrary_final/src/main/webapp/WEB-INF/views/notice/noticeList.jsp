@@ -47,23 +47,9 @@
                         <th class="head3">등록일</th>
                         <th class="head2">조회수</th>
                     </tr>
-                    <c:choose>
-                    	<c:when test="${not empty list }">
-                    		<c:forEach var="n" items="${list }">
-                    			<tr>
-                    				<td class="head2"><c:out value="${n.noticeNo }"/></td>
-                    				<td class="head2"><c:out value="${n.noticeTitle }"/></td>
-                    				<td class="head2"><c:out value="${n.noticeFile }"/></td>
-                    				<td class="head2"><c:out value="${n.noticeDate }"/></td>
-                    				<td class="head2"><c:out value="${n.noticeCount }"/></td>
-                    			</tr>
-                    		</c:forEach>
-                    	</c:when>
-                    </c:choose>
+                   
                 </table>
-                <div id="pagebar-container">
-                	${pageBar }
-                </div>
+               
             </div>
         </div>
     </section>
