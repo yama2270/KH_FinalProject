@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>    
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<link rel="stylesheet" href="${path }/resources/css/cg.css" type="text/css">    
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="개인정보확인"/>
 </jsp:include>
@@ -44,6 +45,11 @@
 	<div id="Ok_Cancel_btn">
 		<button type="button" class="btn btn-outline-primary" onclick="location.assign('${path }/member/memberInfoUpdate.do')">확인</button>
 		<button type="button" class="btn btn-outline-danger">취소</button>
+	</div>
+	<div id="Ok_Cancel_btn">
+		<button type="button" class="btn btn-outline-primary" onclick="location.assign('${path }/member/memberTestLogin.do')">TEST로그인</button>
+		<button type="button" class="btn btn-outline-danger" onclick="location.replace('${path }/member/memberTestlogout.do')">로그아웃</button>
+		<P>현재 TEST 로그인 : ${loginMember.userName}</P>
 	</div>
 </div>
 </section>
