@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-div, section, header, aside, footer {padding:10px;}
+div, section, header, aside, footer {padding:0px;}
 
 div#container	{}
 
