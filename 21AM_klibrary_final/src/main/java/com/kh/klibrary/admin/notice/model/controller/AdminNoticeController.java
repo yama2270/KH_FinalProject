@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class NoticeController {
+public class AdminNoticeController {
 
 	@RequestMapping("/admin/notice/noticeMain.do")
 	public String noticeMain() {
@@ -13,8 +13,9 @@ public class NoticeController {
 	
 	@RequestMapping("/admin/notice/noticeDetail.do")
 	public String noticeDetail() {
-		return "admin/notice/noticeMain";
+		return "admin/notice/noticeDetail";
 	}
 	
 	
 }
+ 
