@@ -25,8 +25,6 @@
 
 <body>
 	<h1>메인페이지</h1>
-<%--<a href="${path }/member/memberInfo.do">MemberInfo Test</a>
-	<a href="${path }/notice/noticeList.do">noticeList test</a>
-	<a href="${path }/notice/noticeEnd.do">noticeList test</a> --%>
+	<%-- <a href="${path }/member/memberInfo.do">MemberInfo Test</a> --%>
 </body>
 </html>
