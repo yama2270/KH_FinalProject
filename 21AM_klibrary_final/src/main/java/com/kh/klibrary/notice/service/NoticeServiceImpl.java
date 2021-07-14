@@ -13,6 +13,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Autowired
 	private SqlSessionTemplate session;
+	
 	@Autowired
 	private NoticeDao dao;
 	
