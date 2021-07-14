@@ -1,6 +1,75 @@
 @charset "UTF-8";
+/* commmon */
+ @font-face { 
+    font-family: 'S-Core'; 
+    src: url("./S-CoreDream-4Regular.woff") format("woff"); 
+  }
 
-    @font-face { 
+*{
+    font-family : 'S-Core';
+}
+
+        a { text-decoration: none; color: black; }
+        a:visited { text-decoration: none; }
+        a:hover { text-decoration: none; }
+        a:focus { text-decoration: none; }
+        a:hover, a:active { text-decoration: none; }
+
+        #notice_box{
+            width:1000px;
+            height:800px;
+            margin:50px auto;
+        }
+        #notice_table_box{
+            min-height: 270px;
+        }
+        #total_notice{
+            margin-top: 10px;
+            width:1000px;
+            height:70px;
+            border:rgb(36, 36, 36) solid 1px;
+        }
+        #total_notice>div{
+            display:flex;
+            justify-content: center;
+            margin: 23.4px 0 23.4px 0;
+        }
+        #total_notice>div>span{
+            margin:0 15px 0 15px;
+            font-size: 18px;
+        }
+        #notice_table{
+            margin-top: 10px;
+            width:1000px;
+            text-align: center;
+            border-collapse: collapse;
+            border-left: none;
+            border-right: none;
+        }
+        #notice_table tr{
+            height:40px;
+        }
+        #notice_box>p+h2{
+            font-size: 30px;
+        }
+        .pagebar{
+            width: 100px;
+            margin: 50px auto;
+        }
+        .pagebar>span{
+            margin:0 6px 0 6px;
+        }
+        .pagebar>span a{
+            text-decoration: none;
+        }
+        .pagebar span>a:hover{
+            color:rgba(123, 209, 159, 0.856);
+            
+        }
+
+
+
+        @font-face { 
     font-family: 'S-Core'; 
     src: url("./S-CoreDream-4Regular.woff") format("woff"); 
   }
@@ -266,262 +335,4 @@
   line-height : 12px;
 }
 
-
-        a { text-decoration: none; color: black; }
-        a:visited { text-decoration: none; }
-        a:hover { text-decoration: none; }
-        a:focus { text-decoration: none; }
-        a:hover, a:active { text-decoration: none; }
-
-        #notice_box{
-            width:1000px;
-            height:800px;
-            margin:50px auto;
-        }
-        #notice_table_box{
-            min-height: 270px;
-        }
-        #total_notice{
-            margin-top: 10px;
-            width:1000px;
-            height:70px;
-            border:rgb(36, 36, 36) solid 1px;
-        }
-        #total_notice>div{
-            display:flex;
-            justify-content: center;
-            margin: 23.4px 0 23.4px 0;
-        }
-        #total_notice>div>span{
-            margin:0 15px 0 15px;
-            font-size: 18px;
-        }
-        #notice_table{
-            margin-top: 10px;
-            width:1000px;
-            text-align: center;
-            border-collapse: collapse;
-            border-left: none;
-            border-right: none;
-        }
-        #notice_table tr{
-            height:40px;
-        }
-        #notice_box>p+h2{
-            font-size: 30px;
-        }
-        .pagebar{
-            width: 100px;
-            margin: 50px auto;
-        }
-        .pagebar>span{
-            margin:0 6px 0 6px;
-        }
-        .pagebar>span a{
-            text-decoration: none;
-        }
-        .pagebar span>a:hover{
-            color:rgba(123, 209, 159, 0.856);
-            
-        }
-        
-        
-                    .form-group{
-                font-family: "S-Core";
-                font-weight: 300;
-                margin: 4px;
-
-            }
-            h1{
-                font-family: "S-Core";
-                font-weight: 500;
-                
-            }
-            label{
-                font-family: "S-Core";
-                font-weight: 300;
-                padding:3px;
-            }
-            option{
-                font-family: "S-Core";
-                font-weight: 300;
-            }
-
-
-            button{
-                display:flex;
-                align-items: center;
-                justify-content: center;                
-                appearance: auto;
-                text-rendering: auto;
-                display: inline-block;
-                text-align: center;
-                align-items: flex-start;
-                box-sizing: border-box;
-              
-
-            }
-            .btn-box>ul{
-                list-style:none;
-            }
-            .btn-box>ul>li{
-                float:left;
-                margin: 5px;
-            }
-            .btn-box{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 10px;
-                border-radius: 50%;
-            }
-            .pb{
-                font-family: "Noto Sans KR";
-                font-weight: 300;
-            }
-            .cancel-btn>a{
-                text-decoration: none;
-            }
-            .complete-btn>a{
-                text-decoration: none;
-            }
-            .cancel-btn{
-                width:50px;
-                height:30px;
-                border: 1px solid gray;
-                text-align: center;
-                font-size: 20px;
-            }
-            .complete-btn{
-                width:100px;
-                height:30px;
-                border: 1px solid gray;
-                text-align: center;
-                font-size: 20px;
-            }
-            #wr_content{
-                margin-top: 10px;
-                
-            }
-            
-                    #QnA_box{
-            width:1000px;
-            height:800px;
-            margin:50px auto;
-        }
-        #QnA_table_box{
-            min-height: 270px;
-        }
-        #total_QnA{
-            margin-top: 30px;
-            width:1000px;
-            height:70px;
-            border:rgb(36, 36, 36) solid 1px;
-        }
-        #total_QnA>div{
-            display:flex;
-            justify-content: center;
-            margin: 23.4px 0 23.4px 0;
-        }
-        #total_QnA>div>span{
-            margin:0 15px 0 15px;
-            font-size: 18px;
-        }
-        #QnA_table{
-            margin-top: 10px;
-            width:1000px;
-            text-align: center;
-            border-collapse: collapse;
-            border-left: none;
-            border-right: none;
-        }
-        #QnA_table tr{
-            height:40px;
-        }
-        #QnA_box>p+h2{
-            font-size: 30px;
-        }
-        
-               #QnA_box{
-            width:1000px;
-            height:800px;
-            margin:50px auto;
-        }
-        #QnA_table_box{
-            min-height: 270px;
-        }
-        #total_QnA{
-            margin-top: 30px;
-            width:1000px;
-            height:70px;
-            border:rgb(36, 36, 36) solid 1px;
-        }
-        #total_QnA>div{
-            display:flex;
-            justify-content: center;
-            margin: 23.4px 0 23.4px 0;
-        }
-        #total_QnA>div>span{
-            margin:0 15px 0 15px;
-            font-size: 18px;
-        }
-        #QnA_table{
-            margin-top: 10px;
-            width:1000px;
-            text-align: center;
-            border-collapse: collapse;
-            border-left: none;
-            border-right: none;
-        }
-        #QnA_table tr{
-            height:40px;
-        }
-        #QnA_box>p+h2{
-            font-size: 30px;
-        }
-        
-        #reg_book_box{
-            width:1000px;
-            height:800px;
-            margin:50px auto;
-        }
-        #reg_book_table_box{
-            min-height: 270px;
-        }
-        #total_reg_book{
-            margin-top: 30px;
-            width:1000px;
-            height:70px;
-            border:rgb(36, 36, 36) solid 1px;
-        }
-        #total_reg_book>div{
-            display:flex;
-            justify-content: center;
-            margin: 23.4px 0 23.4px 0;
-        }
-        #total_reg_book>div>span{
-            margin:0 15px 0 15px;
-            font-size: 18px;
-        }
-        #reg_book_table{
-            margin-top: 10px;
-            width:1000px;
-            text-align: center;
-            border-collapse: collapse;
-            border-left: none;
-            border-right: none;
-        }
-        #reg_book_table tr{
-            height:40px;
-        }
-        #reg_book_box>p+h2{
-            font-size: 30px;
-        }
-        
-        .book_image{
-        border-radius: 4px;
-        width: 80px;
-        height: 80px;
-        margin-right: 12px;
-        }
-        
+   

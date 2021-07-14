@@ -4,19 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>    
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="title" value="공지사항 상세"/>
+	<jsp:param name="title" value="공지사항상세"/>
 </jsp:include>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sh.css">
     <!-- fontawsome CDN 불러오기 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-    <title>공지사항 관리</title>
+    <title>공지사항 상세</title>
 </head>
 <body id="ad_body">
     <header id="ad_header">
@@ -26,7 +20,6 @@
                 <div id="header_logout">로그아웃</div>
         </div>
     </header>
-
     <section id="ad_container">
         <div id="ad_left">
             <div id="leftNav">
@@ -103,13 +96,7 @@
 
         </section>
         <!--section에 적용될 style, script 내용 넣어주세요-->
-        <style>
-        </style>
-
-
-
-
-
+  
         <script>
 
             
