@@ -54,10 +54,10 @@
                         <input type="text" class="sechtext">
                         <input type="submit" value="검색" id="katagori">
                     </form>
-                    <div class="qmenu">PC에서 신규 홈페이지가 정상적으로 열리지 않습니다.</div>
-                        <p class="contents">A 답변2018년 6월 4일 개편된 홈페이지는 반응형 웹페이지로
-											인터넷 브라우러 익스플로러 9 이상의 버전 또는 크롬 브라우저에서 이용이 가능하며,
-											윈도우 XP 환경에서는 이용이 불가능합니다</p>
+                   <c:forEach var="f" items= "${list}">
+                    	<div class="qmenu"><c:out value="${f['FAQ_CATE'] }"/></div>
+                        	<p class="contents"><c:out value="${f['FAQ_CONTENT']}"/></p>
+					</c:forEach>
                     <div class="qmenu">두번째 질문</div>
                         <p class="contents">내용2</p>
                     <div class="qmenu">세번째 질문</div>

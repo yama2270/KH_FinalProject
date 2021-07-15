@@ -1,4 +1,4 @@
-package com.kh.klibrary.book.Configuration;
+package com.kh.klibrary.book.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
