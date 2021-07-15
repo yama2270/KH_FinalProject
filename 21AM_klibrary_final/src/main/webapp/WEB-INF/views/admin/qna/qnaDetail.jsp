@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -18,14 +18,6 @@
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
     <title>공지사항 관리</title>
 </head>
-<body id="ad_body">
-    <header id="ad_header">
-            <div id="header_title">K-도서관</div>
-            <div id="header_options">
-                <div id="header_moveMain">메인페이지</div>
-                <div id="header_logout">로그아웃</div>
-        </div>
-    </header>
     <section id="ad_container">
         <div id="ad_left">
             <div id="leftNav">
@@ -66,11 +58,6 @@
         <div id="ad_right">
             <div id="contHeader">문의사항 답변</div>
             <div id="contbody">
-        
-        </div>
-
-       
-    <section>
         <div id="QnA_box">
                 <table id="QnA_table" class="pa" border>
                     <thead>
@@ -102,10 +89,10 @@
                 <button style="width:50px;height:30px;margin-top:2%;margin-left:88%">이전</button>
                 <button style="width:50px;height:30px;margin-left:1%">완료</button>
             </div>
-  
+  </div>
         </div>
-
     </section>
+
     
     <script>
 

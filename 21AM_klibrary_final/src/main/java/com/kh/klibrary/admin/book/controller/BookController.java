@@ -1,4 +1,4 @@
-package com.kh.klibrary.admin.book.model.controller;
+package com.kh.klibrary.admin.book.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
