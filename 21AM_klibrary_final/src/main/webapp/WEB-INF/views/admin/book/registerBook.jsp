@@ -1,191 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="title" value="도서등록"/>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<jsp:include page="/WEB-INF/views/admin/common/header.jsp">
+	<jsp:param name="title" value="도서등록" />
 </jsp:include>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sh.css">
-    <!-- fontawsome CDN 불러오기 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-    <title>도서 등록</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/sh.css">
+<!-- fontawsome CDN 불러오기 -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+	rel="stylesheet">
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
+<title>도서 등록</title>
 </head>
-    <section id="ad_container">
-        <div id="ad_left">
-            <div id="leftNav">
-                <ul id="lefNavList">
-                    <li>회원관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>회원정보</li>
-                            <li>탈퇴요청</li>
-                        </ul>
-                    </li>                            
-                    <li>도서관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>전체도서목록</li>
-                            <li>도서등록</li>
-                            <li>도서대출현황</li>
-                            <li>도서예약현황</li>
-                        </ul>
-                    </li>
-                    <li>게시글 관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>공지사항 관리</li>
-                            <li>문의사항 관리</li>
-                            <li>자주하는 질문</li>
-                        </ul>
-                    </li>
-                    <li>열람실 관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>전체조회</li>
-                            <li>열람실A</li>
-                            <li>열람실B</li>
-                            <li>열람실C</li>
-                            <li>열람실D</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <div id="ad_right">
-            <div id="contHeader">도서 등록</div>
-            <div id="contbody">
-        </div>
-        
-                <table id="reg_book_table" class="pa" border style="margin-left:10%;margin-top:3%;">
-                    <thead>
-                        <tr>
-                            <td class="reg_book_cate" style="background-color: #eaeaea;">종류</td>
-                            <td>
-                              <select id="book_Category" name="book_Category" style="height:30px;">
-                                <option selected>도서 대분류</option>
-                                <option value="general">총류</option>
-                                <option value="philosophy">철학</option>
-                                <option value="religion">종교</option>
-                                <option value="socialScience">사회과학</option>
-                                <option value="naturalScience">자연과학</option>
-                                <option value="technologyScience">기술과학</option>
-                                <option value="art">예술</option>
-                                <option value="language">언어</option>
-                                <option value="literature">문학</option>
-                                <option value="history">역사</option>
-                              </select>
-                              <select id="book_Category2" name="book_Category2" style="height:30px;">
-                                <option value="" selected>도서 소분류</option>
-                              </select>
-                              
-                        </td>
-                        </tr>
-                        <tr>
-                            <td class="reg_book_cate" style="background-color: #eaeaea;">도서명</td>
-                            <td><input type="text" name="" value="" placeholder="도서명" disabled style="margin-left:45px;">
-                            <button id="search_book" name="검색" value="">검색</button>
-                            </td>
-                        </tr>
-                        <tr>
-                          <td class="reg_book_cate" style="background-color: #eaeaea;">표지</td>
-                          <td><img class="book_image" src="C:\Users\WORK\Desktop\FINAL\img\book1.jpg"></td>
-                      </tr>
-                        <tr>
-                            <td class="reg_book_cate" style="background-color: #eaeaea;">저자</td>
-                            <td><input type="text" name="" value="" placeholder="저자"></td>
-                        </tr>
-                        <tr>
-                            <td class="reg_book_cate" style="background-color: #eaeaea;">출판사</td>
-                            <td><input type="text" name="" value="" placeholder="출판사"></td>
-                        </tr>
-                        <tr>
-                            <td class="reg_book_cate" style="background-color: #eaeaea;">발행일</td>
-                            <td><input type="text" name="" value="" placeholder="발행일"></td>
-                            
-                        </tr>
-                        <tr>
-                          
-                            <td class="reg_book_cate" style="background-color: #eaeaea;">가격</td>
-                            <td><input type="text" name="" value="" placeholder="가격"></td>
-                            
-                        </tr>
-                        <tr>
-                            <td class="reg_book_cate" style="background-color: #eaeaea;">ISBN</td>
-                            <td><input type="text" name="" value="" placeholder="ISBN"></td>
-                        </tr>
-                        <tr>
-                          <td class="reg_book_cate" style="background-color: #eaeaea;">줄거리</td>
-                          <td><input type="text" name="" value="" placeholder="줄거리" style="width:800px;height:200px;"></td>
-                      </tr>
-                    </thead>
-                    
-                    <tbody>
-          
-                    </tbody>
-                </table>
-                <td>
-                  <button style="margin-left: 45%; margin-top:2%;">취소</button>
-                  <button style="margin-left: 1%;">등록</button>
-                </td>
-                
-            </div>
+<section id="ad_container">
+	<div id="ad_left">
+		<div id="leftNav">
+			<ul id="lefNavList">
+				<li>회원관리 <i class="fas fa-plus"></i>
+					<ul class="navOptions">
+						<li>회원정보</li>
+						<li>탈퇴요청</li>
+					</ul>
+				</li>
+				<li>도서관리 <i class="fas fa-plus"></i>
+					<ul class="navOptions">
+						<li>전체도서목록</li>
+						<li>도서등록</li>
+						<li>도서대출현황</li>
+						<li>도서예약현황</li>
+					</ul>
+				</li>
+				<li>게시글 관리 <i class="fas fa-plus"></i>
+					<ul class="navOptions">
+						<li>공지사항 관리</li>
+						<li>문의사항 관리</li>
+						<li>자주하는 질문</li>
+					</ul>
+				</li>
+				<li>열람실 관리 <i class="fas fa-plus"></i>
+					<ul class="navOptions">
+						<li>전체조회</li>
+						<li>열람실A</li>
+						<li>열람실B</li>
+						<li>열람실C</li>
+						<li>열람실D</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+ --%>
+	<div id="ad_right">
+		<div id="contHeader">도서 등록</div>
+		<div id="contBody">
+		<table id="reg_book_table" class="pa">
+				<tr>
+					<td>도서명</td>
+					<td class="reg_book_cate" style="vertical-align:bottom;">
+						<input type="text" name="" value="" placeholder="도서명" disabled >
+						<button type="button" class="btn btn-outline-secondary" style="height:30px;line-height:18px;margin-bottom:4px;">검색</button>
+					</td>
+				</tr>
+				<tr>
+					<td>한국십진분류</td>
+					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="한국십진분류"></td>
+				</tr>
+				<tr>
+					<td>저자</td>
+					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="저자"></td>
+				</tr>
+				<tr>
+					<td>출판사</td>
+					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="출판사"></td>
+				</tr>
+				<tr>
+					<td>발행일</td>
+					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="발행일"></td>
 
-        </div>
+				</tr>
+				<tr>
+					<td>가격</td>
+					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="가격"></td>
+				</tr>
+				<tr>
+					<td>ISBN</td>
+					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="ISBN"></td>
+				</tr>
+				<tr>
+					<td>줄거리</td>
+					<td>
+						<textarea id="" rows="5" cols="30" style="width:800px;height:250px;">
+							줄거리
+						</textarea>
+					</td>
+				</tr>
+		</table>
+		<div id="regBookBtn">
+			<button type="button" class="btn btn-outline-secondary" >뒤로가기</button>
+			<button type="button" class="btn btn-outline-secondary" >등록</button>
+		</div>
+	</div>
+</div>
 
-    </section>
-    <!--section에 적용될 style, script 내용 넣어주세요-->
-    <style>
-    </style>
+</section>
 
- 
+<script>
 
-    <script>
-
-      // navigation 이벤트
-    
-    $(function(){
-
-const naviList = $("#lefNavList").children();
-const options = $(".navOptions")
-
-$(naviList).click((e)=>{
-    $(naviList).children().not('i').hide();
-    $(naviList).children().filter('i').attr("class","fas fa-plus");
-    $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
-    $(e.target).find("ul").show();
-    $(e.target).find("i").attr("class","fas fa-minus");
-})
-
-// navigation - option 이벤트 
-
-$(options).mouseover((e)=>{
-    $(e.target).css("textDecoration","underline");
-})
-
-$(options).mouseout((e)=>{
-    $(e.target).css("textDecoration","");
-})
-
-$(options).click((e)=>{
-    
-    $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
-    $(e.target).css({"font-size":"20px","fontWeight":"bold","backgroundColor":"#7DA5E1"})
-    return false;
-})
-
-})
-    
-$('#odfselect').change(function() {
-    var value = $(this).val();
-    $(this).css('color', value);
-});
-
-$(function() {
+/* /* $(function() {
             $('#book_Category').change(function() {
                 var general = ["총류일반", "도서관,정보학", "일반백과사전","일반전집,총서","필사본,희귀본"];
                 var philosophy = ["철학일반", "고대,중세,동양철학", "서양철학(현대)","형이상학","심리학","윤리학"];
@@ -231,8 +162,8 @@ $(function() {
 
                 }
             });
-        });
+        }); */
 
-    </script>
-    
-     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+        </script>
+
+<jsp:include page="/WEB-INF/views/admin/common/footer.jsp" />

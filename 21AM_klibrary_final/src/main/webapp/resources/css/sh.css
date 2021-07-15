@@ -284,104 +284,48 @@
   height : 550px;
 }
 
-/* 관리자 - content - memberList 테이블 */
 
-#memListTab {
-  width: 1150px;
-  margin : auto;
-  font-size : 13px;
-}
+/* 관리자 - content - bookRegister 테이블 */
 
-
-#memListTab th , #memListTab td {
-  border : 1px solid black;
-  text-align : center;
-}
-
-#memListTab th {
-  background-color : #DADADA;
-}
-
-#memListTab td {
-  height : 45px;
-  text-align : center;
-  line-height : 30px;
-}
-
-#memListTab tr:first-child {
-  height : 35px;
-}
-
-#memListTab tr button {
-  width:60px;
-  height:30px;
-  font-size : 13px;
-}
-
-#memListBtn {
-  margin-top : 8px;
-  float : right;
-}
-
-#memListBtn button {
-  width : 100px;
-  height : 30px;
-  line-height : 12px;
-}
-
-/* 관리자 - content - memberDelete 테이블 */
-
-#memDelTab {
-  width: 1150px;
-  margin : auto;
-  font-size : 13px;
-}
-
-
-#memDelTab th , #memDelTab td {
-  border : 1px solid black;
-  text-align : center;
-}
-
-#memDelTab th {
-  background-color : #DADADA;
-}
-
-#memDelTab td {
-  height : 45px;
-  text-align : center;
-  line-height : 30px;
-}
-
-#memDelTab tr:first-child {
-  height : 35px;
-}
-
-#memDelTab tr button {
-  width:60px;
-  height:30px;
-  font-size : 13px;
-}
-
-#memDelBtn {
-  margin-top : 8px;
-  float : right;
-}
-
-#memDelBtn button {
-  width : 100px;
-  height : 30px;
-  line-height : 12px;
-}
-
-#reg_book_box{
+/* #reg_book_box{
  width:1000px;
  height:800px;
  margin:50px auto;
- }
- #reg_book_table_box{
+ } */
+ 
+ /* #reg_book_table_box{
      min-height: 270px;
+ } */
+ 
+ #reg_book_table {
+ 	margin:auto;
+ 	margin-top : 150px;
+ 	height : 600px;
  }
+ 
+ #reg_book_table tr td:first-child {
+ 	background-color : #DADADA;
+ 	width : 150px;
+ }
+ 
+ #reg_book_table tr td {
+ 	border: 1px solid gray;
+ }
+ 
+ #reg_book_table tr .reg_book_cate {
+ 	text-align : left;
+ 	padding-left : 22px;
+ }
+ 
+ #reg_book_table tr .reg_book_cate input {
+ 	height : 30px;
+ }
+ 
+ #regBookBtn {
+ 	margin-top : 10px;
+ 	text-align : center;
+ }
+ 
  #total_reg_book{
      margin-top: 30px;
      width:1000px;

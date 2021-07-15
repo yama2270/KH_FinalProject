@@ -56,7 +56,7 @@
                 <ul id="lefNavList">
                     <li>회원관리 <i class="fas fa-plus"></i>
                         <ul class="navOptions">
-                            <li>회원정보</li>
+                            <li><a href="${path }/admin/book/bookAllList.do" style="text-decoration:none;">회원정보</a></li>
                             <li>탈퇴요청</li>
                         </ul>
                     </li>                            

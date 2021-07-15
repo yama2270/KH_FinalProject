@@ -20,7 +20,7 @@
 
             // navigation - option 이벤트 
 
-            $(options).mouseover((e) => {
+           /*  $(options).mouseover((e) => {
                 $(e.target).css("textDecoration", "underline");
             })
 
@@ -33,7 +33,7 @@
                 $(options).children().css({ "font-size": "15px", "backgroundColor": "#9BC3FF", "fontWeight": "normal" })
                 $(e.target).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" })
                 return false;
-            })
+            }) */
 
         })
 
