@@ -63,9 +63,10 @@
                     <li>도서관리 <i class="fas fa-plus"></i>
                         <ul class="navOptions">
                             <li>전체도서목록</li>
+                            <li>대출도서목록</li>
+                            <li>예약도서목록</li>
+                            <li>희망도서목록</li>
                             <li>도서등록</li>
-                            <li>도서대출현황</li>
-                            <li>도서예약현황</li>
                         </ul>
                     </li>
                     <li>게시글 관리 <i class="fas fa-plus"></i>

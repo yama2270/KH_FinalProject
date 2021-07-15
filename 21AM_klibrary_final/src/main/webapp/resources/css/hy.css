@@ -243,6 +243,7 @@
   width:60px;
   height:30px;
   font-size : 13px;
+  line-height : 15px;
 }
 
 #memListBtn {
@@ -622,7 +623,7 @@
   height : 250px;
 }
 
-#bookImg {
+#bookDetImg {
   width : 250px;
   height : 250px;
   background-color : #DADADA;

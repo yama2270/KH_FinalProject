@@ -11,4 +11,9 @@ public class AdminMemberController {
 		return "admin/member/memberDetail";
 	}
 	
+	@RequestMapping("/admin/member/memberList.do")
+	public String memberList() {
+		return "admin/member/memberList";
+	}
+	
 }
