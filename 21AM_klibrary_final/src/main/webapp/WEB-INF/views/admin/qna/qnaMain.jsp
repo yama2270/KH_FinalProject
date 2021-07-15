@@ -1,31 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+e<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="문의사항 관리"/>
 </jsp:include>
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/resources/css/sh.css" rel="stylesheet" />
     <!-- fontawsome CDN 불러오기 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-    <title>공지사항 관리</title>
-</head>
-<body id="ad_body">
-    <header id="ad_header">
-            <div id="header_title">K-도서관</div>
-            <div id="header_options">
-                <div id="header_moveMain">메인페이지</div>
-                <div id="header_logout">로그아웃</div>
-        </div>
-    </header>
+    <title>문의사항 관리</title>
+</head>	
     <section id="ad_container">
         <div id="ad_left">
             <div id="leftNav">
@@ -68,7 +54,7 @@
             <div id="contHeader">문의사항 관리</div>
             <div id="contbody">
          
-        </div>
+        
  
         <div id="QnA_box">
             <div id="QnA_table_box">
@@ -201,18 +187,13 @@
                 <span><a href="">2</a></span>
                 <span><a href="">3</a></span>
              
+            </div>
                 <!--출력할 데이터 개수에 따라 페이지가 추가되도록 함-->
             </div>
         </div>
 
     </section>
-    <!--section에 적용될 style, script 내용 넣어주세요-->
-    <style>
-   
-    </style>
-
- 
-
+    
     <script>
 
       // navigation 이벤트
@@ -262,4 +243,4 @@ $(function(){ //전체선택 체크박스 클릭
 
     </script>
     
-     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+        <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

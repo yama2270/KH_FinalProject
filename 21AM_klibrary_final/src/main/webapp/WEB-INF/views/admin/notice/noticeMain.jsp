@@ -6,20 +6,12 @@
 	<jsp:param name="title" value="공지사항관리"/>
 </jsp:include>
 <head>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/sh.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sh.css" />
     <!-- fontawsome CDN 불러오기 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
     <title>공지사항 관리</title>
 </head>
-<body id="ad_body">
-    <header id="ad_header">
-            <div id="header_title">K-도서관</div>
-            <div id="header_options">
-                <div id="header_moveMain">메인페이지</div>
-                <div id="header_logout">로그아웃</div>
-        </div>
-    </header>
     <section id="ad_container">
         <div id="ad_left">
             <div id="leftNav">
@@ -61,8 +53,8 @@
           <div id="contHeader">공지사항 관리</div>
           <div id="contbody">
        
-      </div>
-
+      
+	
         <div id="notice_box">
             <div id="notice_table_box">
                 <div id="total_notice" style="margin-left:-3%;">

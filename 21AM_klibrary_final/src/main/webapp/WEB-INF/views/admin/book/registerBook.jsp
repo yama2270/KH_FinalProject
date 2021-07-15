@@ -18,14 +18,6 @@
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
     <title>도서 등록</title>
 </head>
-<body id="ad_body">
-    <header id="ad_header">
-            <div id="header_title">K-도서관</div>
-            <div id="header_options">
-                <div id="header_moveMain">메인페이지</div>
-                <div id="header_logout">로그아웃</div>
-        </div>
-    </header>
     <section id="ad_container">
         <div id="ad_left">
             <div id="leftNav">

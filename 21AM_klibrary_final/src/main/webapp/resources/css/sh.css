@@ -14,10 +14,49 @@
         a:hover { text-decoration: none; }
         a:focus { text-decoration: none; }
         a:hover, a:active { text-decoration: none; }
+        
+         #QnA_box{
+            width:1000px;
+            height:600px;
+            margin:50px auto;
+            
+        }
+        #QnA_table_box{
+            min-height: 270px;
+        }
+        #total_QnA{
+            margin-top: 30px;
+            width:1000px;
+            height:70px;
+            border:rgb(36, 36, 36) solid 1px;
+        }
+        #total_QnA>div{
+            display:flex;
+            justify-content: center;
+            margin: 23.4px 0 23.4px 0;
+        }
+        #total_QnA>div>span{
+            margin:0 15px 0	 15px;
+            font-size: 18px;
+        }
+        #QnA_table{
+            margin-top: 10px;
+            width:1000px;
+            text-align: center;
+            border-collapse: collapse;
+            border-left: none;
+            border-right: none;
+        }
+        #QnA_table tr{
+            height:40px;
+        }
+        #QnA_box>p+h2{
+            font-size: 30px;
+        }
 
         #notice_box{
             width:1000px;
-            height:800px;
+            height:600px;
             margin:50px auto;
         }
         #notice_table_box{
@@ -189,7 +228,7 @@
 
 #contBody {
   width : 1150px;
-  height : 670px;
+  height : 500px;
   margin : auto;
   margin-top : 20px;
 }
@@ -334,5 +373,51 @@
   height : 30px;
   line-height : 12px;
 }
+
+#reg_book_box{
+ width:1000px;
+ height:800px;
+ margin:50px auto;
+ }
+ #reg_book_table_box{
+     min-height: 270px;
+ }
+ #total_reg_book{
+     margin-top: 30px;
+     width:1000px;
+     height:70px;
+     border:rgb(36, 36, 36) solid 1px;
+ }
+ #total_reg_book>div{
+     display:flex;
+     justify-content: center;
+     margin: 23.4px 0 23.4px 0;
+ }
+ #total_reg_book>div>span{
+     margin:0 15px 0 15px;
+     font-size: 18px;
+ }
+ #reg_book_table{
+     margin-top: 10px;
+     width:1000px;
+     text-align: center;
+     border-collapse: collapse;
+     border-left: none;
+     border-right: none;
+ }
+
+ .book_image{
+   border-radius: 4px;
+   width: 80px;
+   height: 80px;
+   margin-right: 12px;
+ }
+
+ #reg_book_table tr{
+     height:40px;
+ }
+ #reg_book_box>p+h2{
+     font-size: 30px;
+ }
 
    
