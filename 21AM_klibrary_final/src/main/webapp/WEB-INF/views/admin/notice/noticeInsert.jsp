@@ -52,10 +52,16 @@
         <div id="ad_right">
             <div id="contHeader">공지사항 작성</div>
             <div id="contbody">
-        
         </div>
+        
+            <div class="form-group" style="margin-left:95px;margin-top:30px;">
+                <label for="user_Id">작성자</label>
+                <input class="user_Id" type="text" name="user_id" value="" id="user_id" placeholder="작성자명">
+            </div>
 
-        <div id="contents" class="container" style="margin-top:30px;margin-left:60px;">
+
+		<form action='<c:url value='/notice/noticeList'/>' method="post">
+        <div id="contents" class="container">
             <div class="form-group">
             <label for="ca_name">분류</label>
              <select class="form-control form-control-sm w-auto" id="ca_name" name="ca_name" required>
@@ -63,24 +69,25 @@
                     <option value="일정">일정</option>
                     <option value="행사">행사</option>
                     <option value="신간">신간</option>
+                    <option value="모집">모집</option>
             </select>
             
             </div>
             <div class="form-group">
                 <label for="wr_subject">제목</label>
-                <input class="title" type="text" name="wr_subject" value="" id="wr_subject" required size="100" maxlength="200" placeholder="제목">
+                <input class="title" type="text" name="notice_title" value="" id="wr_subject" required size="100" maxlength="200" placeholder="제목">
             </div>
 
             <div class="form-group d-cke-none">
-                <textarea id="wr_content" name="wr_content" class="smarteditor2" maxlength="1000" style="width:900px; height: 400px;"
+                <textarea id="wr_content" name="notice_contents" class="smarteditor2" maxlength="1000" style="width:900px; height: 400px;"
                 placeholder="내용을 입력해주세요">
                 </textarea>
             </div>
             <input type="file" style="width:200px;height:30px;"></a></td></button>
             
             <div class="write" style="margin-left:24%">
-            <button id="image_upload" style="width:100px;height:30px;margin-left:400px;">취소</a></td></button>
-            <button id="image_upload" style="width:100px;height:30px;">작성</a></td></button>
+            <a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:60%;margin-top:2%;">취소</a>
+            <a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:1%;margin-top:2%;">작성</a>
             </div>
     </div>
 
