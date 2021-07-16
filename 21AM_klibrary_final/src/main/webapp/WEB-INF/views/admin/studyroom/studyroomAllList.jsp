@@ -9,11 +9,11 @@
 </jsp:include>
 
 <div id="ad_right">
-	<div id="contHeader">열람실 관리>전체조회</div>
+	<div id="contHeader">열람실 관리>열람실 조회</div>
 	<div style="overflow: overlay; margin: auto;">
 		<div id="contBody">
 			<div id="useWrap">
-				<div id="usageHeader">전체조회</div>
+				<div id="usageHeader">열람실 조회</div>
 				<table id="useHeaTab">
 					<tr>
 						<td>총좌석 : X</td>
@@ -116,6 +116,43 @@
 						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
 						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
 					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>아이디</td>
+						<td>이름</td>
+						<td>예약번호</td>
+						<td>열람실</td>
+						<td>좌석번호</td>
+						<td>시작시간</td>
+						<td>종료시간</td>
+						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
+						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>아이디</td>
+						<td>이름</td>
+						<td>예약번호</td>
+						<td>열람실</td>
+						<td>좌석번호</td>
+						<td>시작시간</td>
+						<td>종료시간</td>
+						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
+						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>아이디</td>
+						<td>이름</td>
+						<td>예약번호</td>
+						<td>열람실</td>
+						<td>좌석번호</td>
+						<td>시작시간</td>
+						<td>종료시간</td>
+						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
+						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+					</tr>
+					
 				</table>
 			</div>
 		</div>

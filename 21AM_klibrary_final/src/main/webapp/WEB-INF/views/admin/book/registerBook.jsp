@@ -99,7 +99,7 @@
 				<tr>
 					<td>줄거리</td>
 					<td>
-						<textarea id="" rows="5" cols="30" style="width:800px;height:250px;">
+						<textarea id="" rows="5" cols="30" style="width:800px;height:250px;resize:none;">
 							줄거리
 						</textarea>
 					</td>

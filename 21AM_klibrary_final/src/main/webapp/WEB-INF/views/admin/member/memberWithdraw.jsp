@@ -5,13 +5,13 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
-	<jsp:param name="title" value="회원관리"/>
+	<jsp:param name="title" value="회원탈퇴목록"/>
 </jsp:include>
 
-	<div id="ad_right">
-            <div id="contHeader">회원관리>회원목록</div>
+<div id="ad_right">
+            <div id="contHeader">회원관리>탈퇴요청</div>
             <div id="contBody">
-                <div id="contentTitle">회원목록</div>
+                <div id="contentTitle">탈퇴요청</div>
                 <div id="searchWrap">
                     <div class="container-fluid" style="padding-right:0px;">
                         <form class="d-flex">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div id="contentTabWrap">
-                    <table id="memListTab" class="table table-hover">
+                    <table id="memDelTab" class="table table-hover">
                         <tr>
                             <th style="width:50px;line-height:18px;"><input type="checkbox"/></th>
                             <th style="width:70px;">&nbsp;번호 <i class="fas fa-arrows-alt-v"></i></th>
@@ -41,8 +41,8 @@
                             <th>주소</th>
                             <th style="width:130px;">휴대전화</th>
                             <th style="width:100px;">가입일</th>
-                            <th style="width:100px;">수정</th>
-                            <th style="width:100px;">삭제</th>
+                            <th style="width:100px;">요청취소</th>
+                            <th style="width:100px;">탈퇴</th>
                         </tr>
                         <tr>
                             <td><input type="checkbox"/></td>
@@ -54,8 +54,8 @@
                             <td>주소</td>
                             <td>휴대전화</td>
                             <td>가입일</td>
-                            <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">취소</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">수락</button></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox"/></td>
@@ -67,8 +67,8 @@
                             <td>주소</td>
                             <td>휴대전화</td>
                             <td>가입일</td>
-                            <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">취소</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">수락</button></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox"/></td>
@@ -80,8 +80,8 @@
                             <td>주소</td>
                             <td>휴대전화</td>
                             <td>가입일</td>
-                            <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">취소</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">수락</button></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox"/></td>
@@ -93,8 +93,8 @@
                             <td>주소</td>
                             <td>휴대전화</td>
                             <td>가입일</td>
-                            <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">취소</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">수락</button></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox"/></td>
@@ -106,8 +106,8 @@
                             <td>주소</td>
                             <td>휴대전화</td>
                             <td>가입일</td>
-                            <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">취소</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">수락</button></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox"/></td>
@@ -119,8 +119,8 @@
                             <td>주소</td>
                             <td>휴대전화</td>
                             <td>가입일</td>
-                            <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">취소</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">수락</button></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox"/></td>
@@ -132,8 +132,8 @@
                             <td>주소</td>
                             <td>휴대전화</td>
                             <td>가입일</td>
-                            <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">취소</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">수락</button></td>
                         </tr>
                         <tr>
                             <td><input type="checkbox"/></td>
@@ -145,30 +145,17 @@
                             <td>주소</td>
                             <td>휴대전화</td>
                             <td>가입일</td>
-                            <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>번호</td>
-                            <td>아이디</td>
-                            <td>이름</td>
-                            <td>이메일</td>
-                            <td>생년월일</td>
-                            <td>주소</td>
-                            <td>휴대전화</td>
-                            <td>가입일</td>
-                            <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">취소</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary">수락</button></td>
                         </tr>
                     </table>
-                    <div id="memListBtn">
-                        <button type="button" class="btn btn-outline-secondary">선택삭제</button>
+                    <div id="memDelBtn">
+                        <button type="button" class="btn btn-outline-secondary">요청취소</button>
+                        <button type="button" class="btn btn-outline-secondary">탈퇴수락</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 
 <jsp:include page="/WEB-INF/views/admin/common/footer.jsp"/>
