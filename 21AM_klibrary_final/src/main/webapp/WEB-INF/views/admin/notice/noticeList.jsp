@@ -12,6 +12,7 @@
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
     <title>공지사항 관리</title>
 </head>
+	<body id="ad_body">
     <section id="ad_container">
         <div id="ad_left">
             <div id="leftNav">
@@ -48,13 +49,11 @@
                     </li>
                 </ul>
             </div>
-        </div>
-        <div id="ad_right">
-          <div id="contHeader">공지사항 관리</div>
-          <div id="contbody">
-       
-      
-	
+        </div>      
+	        <div id="ad_right">
+            <div id="contHeader">공지사항 작성</div>
+            <div id="contbody">
+            
         <div id="notice_box">
             <div id="notice_table_box">
                 <div id="total_notice" style="margin-left:-3%;">
@@ -90,103 +89,38 @@
                             <th width=150>작성자</th>
                             <th width=150>작성일</th>
                             <th width=100>조회수</th>
-                            
                         </tr>
-                        <tr>
-                          <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                          <td>10</td>
-                          <td class="notice_title"><a href="">7월 신간 안내</a></td>
-                          <td>도서관 관리자</td>
-                          <td>21.07.01</td>
-                          <td></td>
-                         
-                      </tr>
-                      <tr>
-                          <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                          <td>9</td>
-                          <td><a href="">7월의 행사</a></td>
-                          <td>도서관 관리자</td>
-                          <td>21.07.01</td>
-                          <td></td>
-                      </tr>
-                      <tr>
-                          <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                          <td>8</td>
-                          <td><a href="">대출공지</a></td>
-                          <td>도서관 관리자</td>
-                          <td>21.07.01</td>
-                          <td></td>
-                         
-                      </tr>
-                      <tr>
-                          <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                          <td>7</td>
-                          <td><a href="">홈페이지 점검 안내입니다</a></td>
-                          <td>운영자</td>
-                          <td>21.06.27</td>
-                          <td></td>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>6</td>
-                            <td><a href="">7월 신간 안내</a></td>
-                            <td>도서관 관리자</td>
-                            <td>21.07.01</td>
-                            <td></td>
-                           
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>5</td>
-                            <td><a href="">7월의 행사</a></td>
-                            <td>도서관 관리자</td>
-                            <td>21.07.01</td>
-                            <td></td>
-                          
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>4</td>
-                            <td><a href="">대출공지</a></td>
-                            <td>도서관 관리자</td>
-                            <td>21.07.01</td>
-                            <td></td>
-                           
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>3</td>
-                            <td><a href="">홈페이지 점검 안내입니다</a></td>
-                            <td>운영자</td>
-                            <td>21.06.27</td>
-                            <td></td>
-                          
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>2</td>
-                            <td><a href="">대출 연장 관련 공지</a></td>
-                            <td>도서관 관리자</td>
-                            <td>21.06.26</td>
-                            <td></td>
-                            
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>1</td>
-                            <td><a href="">도서관 주말오픈시간 안내</a></td>
-                            <td>도서관 관리자</td>
-                            <td>21.06.25</td>
-                            <td></td>
-
-                        </tr>
-
+                        <c:choose> 
+   					<c:when test="${not empty list }">
+   					<c:forEach var="n" items="${list }">
+   						<tr>
+   							<td class="cols"><c:out value="${n.noticeNo }"/></td>
+   							<td class="cols">
+   								<a href="${path }/admin/notice/noticeView.do?no=${n.noticeNo}">
+   									<c:out value="${n.noticeTitle }"/>
+   								</a>
+   							</td>
+   							<td class="cols"><c:out value="${n.userid }"/></td>
+   							<td class="cols"><c:out value="${n.noticeDate }"/></td>
+   							<td class="cols"><c:out value="${n.attachments.size() }"/></td>   							
+   							<td class="cols"><c:out value="${n.noticeCount }"/></td>
+   						</tr>
+   					</c:forEach>
+   				</c:when>
+   				<c:otherwise>
+   					<tr>
+   					<td colspan="6">조회된 자료가 없습니다</td>
+   					</tr>
+   				</c:otherwise>       		
+          	</c:choose>
+                      
                     </thead>
                     <tbody>
 
                     </tbody>
                 </table>
             </div>
-            <a href='<c:url value='/admin/notice/noticeInsert.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:84%;margin-top:2%;">작성</a>
+            <a href='<c:url value='/admin/notice/noticeForm.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:84%;margin-top:2%;">작성</a>
         	<a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:1%;margin-top:2%;">삭제</a>
             <div id="c_pagebar" class="pagebar">
                 <span><a href="">1</a></span>

@@ -20,6 +20,7 @@ import lombok.ToString;
 
 public class Notice {
 	private int noticeNo;
+	private String userId;
 	private String noticeTitle;
 	private String noticeContent;
 	private String noticeFile;

@@ -85,93 +85,39 @@ e<%@ page language="java" contentType="text/html; charset=UTF-8"
                 <table id="QnA_table" class="pa" border style="margin-left:-3%;">
                     <thead>
                         <tr style="background-color: #eaeaea;">
-                            <th><input type="checkbox" id="allCheck" value="yyy" checked></td>
-                            <th width=225>번호</th>
+                            <th width=50><input type="checkbox" id="allCheck" value="yyy" checked></td>
+                            <th width=100>번호</th>
                             <th width=450>제목</th>
                             <th width=150>글쓴이</th>
                             <th width=150>작성일</th>
                             <th width=150>답변상태</th>
+                            <th width=75>조회수</th>
                         </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>6</td>
-                            <td><a href="">대출문의입니다</a></td>
-                            <td>박유현</td>
-                            <td>21.07.01</td>
-                            <td>답변 대기중</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>6</td>
-                            <td><a href="">대출문의입니다</a></td>
-                            <td>박유현</td>
-                            <td>21.07.01</td>
-                            <td>답변 대기중</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>6</td>
-                            <td><a href="">대출문의입니다</a></td>
-                            <td>박유현</td>
-                            <td>21.07.01</td>
-                            <td>답변 대기중</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>6</td>
-                            <td><a href="">대출문의입니다</a></td>
-                            <td>박유현</td>
-                            <td>21.07.01</td>
-                            <td>답변 대기중</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>6</td>
-                            <td><a href="">대출문의입니다</a></td>
-                            <td>박유현</td>
-                            <td>21.07.01</td>
-                            <td>답변 대기중</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>5</td>
-                            <td><a href="">대출문의입니다</a></td>
-                            <td>최찬규</td>
-                            <td>21.07.01</td>
-                            <td>답변 대기중</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>4</td>
-                            <td><a href="">대출문의입니다</a></td>
-                            <td>김동규</td>
-                            <td>21.07.01</td>
-                            <td>답변 대기중</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>3</td>
-                            <td><a href="">대출문의입니다</a></td>
-                            <td>곽승혁</td>
-                            <td>21.06.27</td>
-                            <td>답변 대기중</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>2</td>
-                            <td><a href="">대출 연장문의</a></td>
-                            <td>양화영</td>
-                            <td>21.06.26</td>
-                            <td>답변 대기중</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="xxx" value="yyy" checked></td>
-                            <td>1</td>
-                            <td><a href="">도서관 주말오픈시간 문의</a></td>
-                            <td>권설영</td>
-                            <td>21.06.25</td>
-                            <td>답변 완료</td>
-                        </tr>
+                         <c:choose> 
+   					<c:when test="${not empty list }">
+   					<c:forEach var="q" items="${list }">
+   						<tr>
+   							<td class="cols"><c:out value="${q.qnaNo }"/></td>
+   							<td class="cols">
+   								<a href="${path }/admin/notice/qnaView.do?no=${q.qnaNo}">
+   									<c:out value="${q.qnaTitle }"/>
+   								</a>
+   							</td>
+   							<td class="cols"><c:out value="${q.qnaTitle }"/></td>
+   							<td class="cols"><c:out value="${q.userId }"/></td>
+   							<td class="cols"><c:out value="${q.qnaDate }"/></td>
+   							<td class="cols"><c:out value="${q.qnaState }"/></td>   	  							
+   							<td class="cols"><c:out value="${q.qnaCount }"/></td>
+   						</tr>
+   					</c:forEach>
+   				</c:when>
+   				<c:otherwise>
+   					<tr>
+   					<td colspan="6">조회된 자료가 없습니다</td>
+   					</tr>
+   				</c:otherwise>       		
+          	</c:choose>
+                       
 
                     </thead>
                     <tbody>
