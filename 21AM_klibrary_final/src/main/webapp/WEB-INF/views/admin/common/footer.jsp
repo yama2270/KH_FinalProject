@@ -19,15 +19,13 @@
             })
 
             // navigation - option 이벤트 
-
-            
             $(options).find('li').hover((e)=>{
             	$(e.target).css("textDecoration", "underline");
             },(e)=>{
             	$(e.target).css("textDecoration", "");
             })
 
-            
+            // 부모 상속 이벤트 중단 
             $(options).click((e) => {
 				e.stopPropagation();
                 /* $(options).children().css({ "font-size": "15px", "backgroundColor": "#9BC3FF", "fontWeight": "normal" });
