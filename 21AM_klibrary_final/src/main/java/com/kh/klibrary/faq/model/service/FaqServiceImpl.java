@@ -19,10 +19,19 @@ public class FaqServiceImpl implements FaqService {
 	@Autowired
 	private FaqDao dao;
 	
-	@Override
-	public List<Map> selectFaqList() {
-		// TODO Auto-generated method stub
-		return dao.selectFaqList(sqlSession);
-	}
+	
+	  @Override public List<Map> selectFaqList() { 
+		  // TODO Auto-generated method stub 
+		  return dao.selectFaqList(sqlSession); }
+	 
+		/*
+		 * @Override public List<Faq> listAll(String searchOption, String keyword)
+		 * throws Exception { // TODO Auto-generated method stub return
+		 * dao.listAll(searchOption, keyword); }
+		 * 
+		 * @Override public int countArticle(String searchOption, String keyword) throws
+		 * Exception { // TODO Auto-generated method stub return
+		 * dao.countArticle(searchOption, keyword); }
+		 */
 	
 }
