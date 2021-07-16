@@ -13,27 +13,26 @@
             $(naviList).click((e) => {
                 $(naviList).children().not('i').hide();
                 $(naviList).children().filter('i').attr("class", "fas fa-plus");
-                $(options).children().css({ "font-size": "15px", "backgroundColor": "#9BC3FF", "fontWeight": "normal" })
+                $(options).children().css({ "font-size": "15px", "backgroundColor": "#9BC3FF", "fontWeight": "normal" });
                 $(e.target).find("ul").show();
                 $(e.target).find("i").attr("class", "fas fa-minus");
             })
 
             // navigation - option 이벤트 
 
-           /*  $(options).mouseover((e) => {
-                $(e.target).css("textDecoration", "underline");
+            
+            $(options).find('li').hover((e)=>{
+            	$(e.target).css("textDecoration", "underline");
+            },(e)=>{
+            	$(e.target).css("textDecoration", "");
             })
 
-            $(options).mouseout((e) => {
-                $(e.target).css("textDecoration", "");
-            })
-
+            
             $(options).click((e) => {
-
-                $(options).children().css({ "font-size": "15px", "backgroundColor": "#9BC3FF", "fontWeight": "normal" })
-                $(e.target).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" })
-                return false;
-            }) */
+				e.stopPropagation();
+                /* $(options).children().css({ "font-size": "15px", "backgroundColor": "#9BC3FF", "fontWeight": "normal" });
+                $(e.target).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" }); */
+            })
 
         })
 
