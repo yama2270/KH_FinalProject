@@ -10,6 +10,14 @@
 <title>Insert title here</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- css -->
+    <link rel="stylesheet" href="${path }/resources/css/hy.css">
+    <link rel="stylesheet" href="${path }/resources/css/dg.css">
+    <link rel="stylesheet" href="${path }/resources/css/hj.css">
+    <link rel="stylesheet" href="${path }/resources/css/sh.css">
+    <link rel="stylesheet" href="${path }/resources/css/sy.css">
+    <link rel="stylesheet" href="${path }/resources/css/yh.css">
+    <link rel="stylesheet" href="${path }/resources/css/cg.css">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Popper JS -->
