@@ -56,7 +56,7 @@
                                 <td class="title">분류</td>
                                 <td class="name">
                                     <select name="katagori">
-                                        <option value="도서">도서</option>
+                                        <option value	="도서">도서</option>
                                         <option value="기타">기타</option>
                                     </select>
                                 </td>
