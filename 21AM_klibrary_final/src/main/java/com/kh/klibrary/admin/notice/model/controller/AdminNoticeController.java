@@ -27,7 +27,7 @@ public class AdminNoticeController {
 
 	@RequestMapping("/admin/notice/noticeList.do")
 	public String noticeList() {
-		return "admin/notice/noticeMain";
+		return "admin/notice/noticeList";
 	}
 	
 	@RequestMapping("/admin/notice/noticeForm.do")
@@ -100,5 +100,50 @@ public class AdminNoticeController {
 		mv.setViewName("common/msg");
 		return mv;
 	}*/
+	/*
+	 * @RequestMapping("/admin/notice/noticeInsert.do") public ModelAndView
+	 * insertBoard(Notice notice,ModelAndView mv,
+	 * 
+	 * @RequestParam(value="upFile", required=false) MultipartFile[] upFile,
+	 * HttpServletRequest req) { log.info("파일명 : "+upFile[0].getOriginalFilename());
+	 * log.info("파일크기{} : ",upFile[0].getSize());
+	 * log.info("파일명 : "+upFile[1].getOriginalFilename());
+	 * log.info("파일크기{} : ",upFile[1].getSize());
+	 * 
+	 * //저장경로설정하기 -> 실제경로를 가져와야함. String
+	 * path=req.getServletContext().getRealPath("/resources/upload/notice/"); File
+	 * dir=new File(path); //폴더가 없다면 생성 if(!dir.exists()) dir.mkdirs();
+	 * 
+	 * //업로드처리하기 다중 for(MultipartFile f : upFile) { if(!f.isEmpty()) { String
+	 * originalFilename=f.getOriginalFilename(); String
+	 * ext=originalFilename.substring(originalFilename.lastIndexOf(".")); //.jpg
+	 * .pdf
+	 * 
+	 * //리네임규칙설정 SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+	 * int rndNum=(int)(Math.random()*10000); String
+	 * reName=sdf.format(System.currentTimeMillis())+"_"+rndNum+ext;
+	 * 
+	 * //리네임으로 파일업로드하기 try { f.transferTo(new File(path+reName));
+	 * 
+	 * notice.getAttachments().add(Attachment.builder()
+	 * .originalFilename(originalFilename) .renamedFilename(reName).build());
+	 * 
+	 * }catch(IOException e) { e.printStackTrace(); }
+	 * 
+	 * } }//for문끝
+	 * 
+	 * log.info("{}",notice);
+	 * 
+	 * String msg="등록성공"; try { service.insertNotice(notice);
+	 * }catch(RuntimeException e) { msg="등록실패";
+	 * 
+	 * 
+	 * 
+	 * }
+	 * 
+	 * mv.addObject("msg",msg); mv.addObject("loc","/admin/notice/noticeList.do");
+	 * 
+	 * mv.setViewName("common/msg"); return mv; }
+	 */
 	
 }

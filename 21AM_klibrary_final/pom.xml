@@ -12,7 +12,13 @@
       <org.springframework-version>5.2.0.RELEASE</org.springframework-version>
       <org.aspectj-version>1.9.4</org.aspectj-version>
       <org.slf4j-version>1.7.28</org.slf4j-version>
+      
+      <spring.maven.artifact.version>4.3.22.RELEASE</spring.maven.artifact.version>
+       <egovframework.rte.version>3.9.0</egovframework.rte.version>
+        <jackson.version>2.11.3</jackson.version>
+
    </properties>
+  
    <dependencies>
       <!-- Spring -->
       <dependency>
@@ -175,7 +181,46 @@
 	    <version>0.2.7</version>
 	</dependency>
             
+           <!-- json등록 --> 
+	 <dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>20171018</version>
+	</dependency>
+			
+	<dependency>
+	     <groupId>com.googlecode.json-simple</groupId>
+	     <artifactId>json-simple</artifactId>
+	     <version>1.1.1</version>
+	</dependency>   
+	
+	     <!--net.sf.json등록  --> 
+	     <dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.3</version>
+			<classifier>jdk15</classifier>
+		</dependency>  
+		<!--jsonView적용하기  -->
+			 <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib-ext-spring -->
+			<dependency>
+			    <groupId>net.sf.json-lib</groupId>
+			    <artifactId>json-lib-ext-spring</artifactId>
+			    <version>1.0.2</version>
+			</dependency>
+		<!-- jackson databind -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.12.3</version>
+		</dependency>
+
+		
+		
    </dependencies>
+
+
     <build>
         <plugins>
             <plugin>

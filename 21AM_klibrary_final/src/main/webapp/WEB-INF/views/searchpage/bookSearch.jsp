@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="통합검색"/>
 </jsp:include>
+
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,9 +29,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  
-</head>
 <body>
   
   <div class="totalSearchcontainer1">
