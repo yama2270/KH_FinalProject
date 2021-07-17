@@ -1,66 +1,75 @@
 package com.kh.klibrary.search.controller;
 
-import java.util.List;
+import java.util.Map;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.klibrary.search.service.SearchServiceImp;
+
+
 
 @Controller
 public class SearchController {
 	
 	@Autowired
 	private SearchServiceImp service;
+	@Autowired
+	private ObjectMapper mapper;
+	
+	
+@RequestMapping("/searchpage/bookSearch.do")
+public String totalSearch() {
 
 	
-@RequestMapping("search/bookSearch.do")
-public String totalSearch(){
-	
-	return "searchpage/bookSearch";
+	return "/searchpage/bookSearch";
    }
 
-@RequestMapping("search/bookDetail.do")
+@RequestMapping("/searchpage/bookDetail.do")
+
 public String bookDetail(){
 	
-	return "searchpage/bookDetail";
+	return "/searchpage/bookDetail";
    }
 
-@RequestMapping("search/detailSearch.do")
+@RequestMapping("/searchpage/detailSearch.do")
 public String detailSearch(){
 	
-	return "searchpage/bookDetailSearch";
+	return "/searchpage/bookDetailSearch";
    }
 
-@RequestMapping("search/bookSearchResult.do")
+@RequestMapping("/searchpage/bookSearchResult.do")
 public String bookSearchResult(){
 	
-	return "searchpage/bookSearchResult";
+	return "/searchpage/bookSearchResult";
    }
 
-@RequestMapping("search/categorySearch.do")
+@RequestMapping("/searchpage/categorySearch.do")
 public String categorySearch(){
 	
-	return "searchpage/categorySearch";
+	return "/searchpage/categorySearch";
    }
 
-@RequestMapping("search/wishbook.do")
+@RequestMapping("/searchpage/wishbook.do")
 public String wishbook(){
 	
-	return "searchpage/wishbook";
+	return "/searchpage/wishbook";
    }
 
-@RequestMapping("search/wishbookPopup.do")
+@RequestMapping("/searchpage/wishbookPopup.do")
 public String wishbookPopup(){
 	
 	return "searchpage/wishbookPopup";
    }
 
-@RequestMapping("search/wishbookRequest.do")
+@RequestMapping("/searchpage/wishbookRequest.do")
 public String wishbookRequest(){
 	
 	return "searchpage/wishbookRequest";
@@ -76,13 +85,54 @@ public String wishbookRequest(){
 //	return "searchpage/wishbookPopup";
 //}
 
-@RequestMapping("searchpage/wishbookPopup")
-public String searchNaverApi( ModelAndView mv){
-	System.out.println(service.searchNaverApi());
+@RequestMapping("/searchpage/wishbookPopup")
+public ModelAndView searchNaverApi( ModelAndView mv) throws JsonProcessingException, ParseException{
 	
-	mv.addObject("bookList",service.searchNaverApi() );
+//	ResponseEntity<String> result=service.searchNaverApi();
+//	//String result2=new JSONSerializer().toJSON(result).toString();
+//	JSON result2=new JSONSerializer().toJSON(result);
+//	JSONParser parse=new JSONParser();
+//	JSONObject obj=(JSONObject)parse.parse(result.getBody());
+//	JSONArray item=(JSONArray)obj.get("documents");
+//	for(Object o : item) {
+//		System.out.println(o);
+//	}
+//	System.out.println("result2테스트"+result2);
+//	System.out.println(result2.isArray());
+	
+	
+	
+//	List<Book> bookList= new ArrayList<Book>();
+//	Book b = new Book();
+//	   for(int i=0;i<= result2.size(); i++ ) {
+//		   
+//		   bookList.add(b);
+//	   }
+//	JSONObject jObject=new JSONObject(result2);
+	//JSONArray jArray= jObject.getJSONArray(result2);
+	
+
+	//System.out.println(bookList);
+//	String test=mapper.writeValueAsString(result.getBody());
+//	System.out.println(test);
+//	mv.addObject("bookList",mapper.writeValueAsString(result.getBody()).replaceAll("\"","\\\""));
 	mv.setViewName("searchpage/wishbookPopup");
-	return "searchpage/wishbookPopup";
+	return mv;
 }
+
+@RequestMapping(value="/searchpage/searchapiBook",produces = "application/text;charset=UTF-8")
+@ResponseBody
+public String searchApiBook(@RequestParam Map param) {
+	
+	return service.searchNaverApi(param).getBody();
+}
+
+//@RequestMapping(value="/searchpage/searchapiBook",produces = "application/text;charset=UTF-8")
+//@ResponseBody
+//public ModelAndView searchApiBook(ModelAndView mv, @RequestParam Map param) {
+//	mv.addObject("data",service.searchNaverApi(param).getBody());
+//	mv.setViewName("searchpage/wishbookPopup");
+//	return mv;
+//}
 
 }

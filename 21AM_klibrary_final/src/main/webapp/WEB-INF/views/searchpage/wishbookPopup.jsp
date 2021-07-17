@@ -24,7 +24,7 @@
 	
 	
 	 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-  <script src="../js/jquery-3.6.0.min.js"></script>
+  
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -43,33 +43,34 @@
 <div class="search-container">
   <div class="populor-words">
   
-    <span>※아래 검색결과에서 원하시는 희망도서를 클릭하세요.</span>
+    <span id="spanTextInfo"></span>
     
     
   </div>
-  <form action="/action_page.php">
+  <form action="">
 
     <div class="searchSelect">
       <label for="searchKey" class="blind"></label>
       <select id="searchKey" name="searchKey" title="검색 선택">
-        <option value="ALL">전체</option>
-        <option value="TITLE" selected="selected">서명</option>
-        <option value="AUTHOR">저자</option>
-        <option value="PUBLISHER">발행자</option>
-        <option value="KEYWORD">키워드</option>
+        <option value="all">전체</option>
+        <option value="title" selected="selected">도서명</option>
+        <option value="person">저자</option>
+        <option value="publisher">출판사</option>
+        <option value="isbn">ISBN</option>
 
       </select>
 
     </div>
 
     <input type="text" placeholder="  검색" name="search" id="inputText">
-    <button type="submit"><i class="fa fa-search"></i>검색</button>
+    <button type="button" onclick="fn_searchBook()"><i class="fa fa-search"></i>검색</button>
   </form>
 </div>
 <br><br><br><br>
 
+<div id="searchResultTable3Div">
 
-<table id=searchResultTable3>
+<!-- <table id=searchResultTable3 >
   <tr>
     <td colspan="3" id="searchCaptionTh">
   
@@ -136,7 +137,7 @@
           <dl>
                          
               <dd class="authorData2">
-                  <span> 이현 지음 ; 오윤화 그림</span><br>
+                  <span> 이현 지음 ; 오윤화 그림 </span><br>
                   <span> 창비</span><br>                    
                   <span> 2019</span><br>                   
               
@@ -165,8 +166,10 @@
          <hr>
       </td>
     </tr>
-  </table>
-
+  </table> -->
+  
+</div>
+  
   
           <div class="closeBtnDiv">
            
@@ -180,4 +183,129 @@
 </body>
 
 </html>
+<script>
+var showPageList=function(total, keyword, display){
+	   if(total>200){
+		   total=200;
+	   }
+	   //int pageCount = (total-1)/display+1; <=자바에서 페이지수 구하기
+	   var pageCount=Math.floor((total-1)/display+1);
+	   
+	   var str="<ul class='pagination justify-content-center'>";
+	   /*
+	   	i	start	display
+	   [1]	1		10
+	   [2]	11		10
+	   [3]	21		10
+	   
+	   start = (i-1)*display+1;
+	   */
+	   
+	   for(var i=1;i<=pageCount;i++){
+		   var start =(i-1)*display+1;
+		   str+="<li class='page-item' id='a"+start+"'><a class='page-link' onclick='fn_searchBook("+start +")'>"+i;
+		   str+="</a></li>";
+	   }
+	   str+="</ul>";
+	   $('#searchResultTable3Div').append(str);
+}
 
+function fn_searchBook(start){
+	$.get("${pageContext.request.contextPath}/searchpage/searchapiBook?category="+$("#searchKey").val()+"&keyword="+$("#inputText").val()+"&page="+start,data=>{
+		
+		
+		console.log("category테스트"+$("#searchKey").val());
+		let obj=JSON.parse(data).documents;
+		let obj2=JSON.parse(data).meta;
+		console.log(obj2["total_count"]);
+		
+			var str="<table id='searchResultTable3' >";
+			  str+="<tr>";
+			
+			  str+="<td colspan='3' id='searchCaptionTh'>"			  
+			  str+="<div id='searchCaption'>"
+			  str+="검색건수 :"+obj2["total_count"]+"건</p>"
+			  str+="</div>"
+			  str+="</td>"
+			  str+="</tr>"
+			  str+="<tr>"
+			  str+="<td colspan='3'>"
+			  str+="<hr>"
+			  str+="</td>"
+			  str+="</tr>"
+			  
+		for(let i=0;i<obj.length;i++){			
+			
+			  str+="<tr>"
+			  str+="<td id='imgContainerDiv' rowspan='2'>"
+			  str+="<img id='bookImg' src='"+obj[i]["thumbnail"]+"' alt='준비중' onclick='fn_bookDetail("+obj[i]["isbn"]+")'>"
+			  str+="</td>"
+			  str+="<td colspan='2'>"
+			  str+="<dt class='tit'>"
+			  //str+="<span class='cate'>도서</span>"
+			  str+="<a onclick='fn_bookDetail("+obj[i]["isbn"]+")'>"+obj[i]["title"]+"</a>"
+			  str+="<br><br>"
+			  str+="</dt>" 
+			  str+="</td>"
+			  str+="</tr>"			  
+			  str+="<tr >"			      			    
+			  str+="<td id='bookInfoDiv'>"
+			  str+="<div >"
+			  str+="<dl>"			                         
+			  str+="<dd class='authorData'>"
+			  str+="<span>저자 </span><br>"
+		      str+="<span>발행자</span><br>"                  
+		      str+="<span>발행연도</span> <br>"                                
+		      str+="<span>ISBN</span><br>"     
+		      str+="<span>가격</span><br>"			                        		                                            
+		      str+="</dd>"
+		      str+="<dd>"
+		      str+="<button id='button23' type='submit' onclick='fn_bookRequest("+obj[i]["isbn"]+")'>희망도서신청</button>"
+		      str+="</dd>"         
+		      str+="</dl>"
+		      str+="</div>"			          			 
+		      str+="</td>"
+		      str+="<td id='bookInfoDiv2'>"
+		      str+="<div >"
+		      str+="<dl>"			                         
+		      str+="<dd class='authorData2'>"
+		      str+="<span>"+obj[i]["authors"]+"</span><br>"
+		      str+="<span>"+obj[i]["publisher"]+"</span><br>"                   
+		      str+="<span>"+obj[i]["datetime"].substring(0,10)+"</span><br> "                 
+		      str+="<span>"+obj[i]["isbn"]+"</span><br>"
+		      str+="<span>"+obj[i]["price"]+"원</span><br>"			                                                        
+		      str+="</dd>"
+		      str+="<dd>"
+		      str+="<br>"
+		      str+="</dd>"    
+		      str+="</dl>"
+		      str+="</div>"
+		      str+="</td>"
+		      str+="</tr>"
+		     str+="<tr>"
+		      str+="<td colspan='3'>"
+		      str+="<hr>"
+		      str+="</td>"
+		      str+="</tr>"
+		}
+		
+		     str+="</table>"	
+		     
+		    	 $('#searchResultTable3Div').html(str).show(500); 
+		     
+		     $('#spanTextInfo').text("※아래 검색결과에서 원하시는 희망도서를 클릭하세요.").show(500);
+		     
+		     let total=obj2["total_count"];
+		     let keyword=$("#inputText").val();
+		     let display=10;
+		     showPageList(total,keyword,display);
+	}); 
+ }
+ 
+
+
+/* var show=function(start,keyword){
+	   //alert(start+"/"+query);
+	   $('#a'+start).addClass('active');
+} */
+</script>
