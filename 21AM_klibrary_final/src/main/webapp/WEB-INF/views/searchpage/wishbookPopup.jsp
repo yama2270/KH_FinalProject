@@ -8,25 +8,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/dg.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hj.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sh.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sy.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cg.css">
-    <!-- fontawsome CDN 불러오기 -->
-    
+   
     <title>희망도서검색팝업창</title>
 
-	
-	
 	 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-  
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   
 </head>
@@ -60,8 +48,8 @@
 
     </div>
 
-    <input type="text" placeholder="  검색" name="search" id="inputText">
-    <button type="button" onclick="fn_searchBook()"><i class="fa fa-search"></i>검색</button>
+    <input type="text" placeholder="  검색" name="search" id="inputText" onkeypress="if(event.keyCode == 13){fn_searchBook(); return false;}">
+    <button type="button"  onclick="fn_searchBook()"><i class="fa fa-search"></i>검색</button>
   </form>
 </div>
 <br><br><br><br>
@@ -270,7 +258,7 @@ function fn_searchBook(start){
 		      str+="<span>"+obj[i]["authors"]+"</span><br>"
 		      str+="<span>"+obj[i]["publisher"]+"</span><br>"                   
 		      str+="<span>"+obj[i]["datetime"].substring(0,10)+"</span><br> "                 
-		      str+="<span>"+obj[i]["isbn"]+"</span><br>"
+		      str+="<span>"+obj[i]["isbn"].substring(0,10)+"</span><br>"
 		      str+="<span>"+obj[i]["price"]+"원</span><br>"			                                                        
 		      str+="</dd>"
 		      str+="<dd>"
@@ -306,4 +294,17 @@ function fn_searchBook(start){
 	   //alert(start+"/"+query);
 	   $('#a'+start).addClass('active');
 } */
+
+/* function enterkey() { 
+	if (window.event.keyCode == 13) {
+		fn_searchBook();
+	 } 
+	} */
+	
+	/* $("#inputText").keyup(function(e){if(e.keyCode == 13)  fn_searchBook(start); }); */
+
+
+
+
+	
 </script>
