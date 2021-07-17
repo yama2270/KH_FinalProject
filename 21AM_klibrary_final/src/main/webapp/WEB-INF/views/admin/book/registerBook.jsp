@@ -165,5 +165,16 @@
         }); */
 
         </script>
+        
+        <script>
+	
+	    $(function(){
+	        // ul show()
+	        $(".navOptions").eq(1).show();
+	        // ul li 배경화면 
+	        $(".navOptions").eq(1).children().eq(4).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+	    })
+    
+	</script>
 
 <jsp:include page="/WEB-INF/views/admin/common/footer.jsp" />

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+	<select id="selectMember" resultMap="MemberT">
+		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
+	</select>
+	
+	<update id="updateMember">
+		UPDATE MEMBER SET USER_PASSWORD=#{userPassword},
+						  PHONE=#{phone},
+						  BIRTH_DATE=#{birthDate},
+						  ADDRESS=#{address},
+						  EMAIL=#{email}
+		WHERE USER_ID=#{userId}
+	</update>
+	
+	<resultMap type="com.kh.klibrary.member.model.vo.MemberT" id="MemberT">
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PASSWORD" property="userPassword"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="EMAIL" property="email"/>
+		<result column="BIRTH_DATE" property="birthDate"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="PHONE" property="phone"/>
+		<result column="SIGNUP_DATE" property="signupDate"/>
+	</resultMap>
+	
+	<select id="selectLHList" resultMap="LH">
+		SELECT * FROM LENDING_HISTORY WHERE USER_ID=#{userId} ORDER BY LENDING_HISTORY_NO DESC
+	</select>
+	
+	<resultMap type="com.kh.klibrary.member.model.vo.LendingHistory" id="LH">
+		<result column="LENDING_HISTORY_NO" property="lendingHistroyNo"/>
+		<result column="LENDING_NO" property="lendingNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="BOOK_NO" property="bookNo"/>
+		<result column="LENDING_DATE" property="lendingDate"/>
+		<result column="RETURN_DATE" property="returnDate"/>
+		<result column="BOOK_EXTENDS" property="bookExtend"/>
+	</resultMap>
+</mapper>

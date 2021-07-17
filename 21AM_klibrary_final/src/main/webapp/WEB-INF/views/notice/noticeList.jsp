@@ -15,17 +15,16 @@
         </div>
     </header>
     <section id="ad_container">
-        <div id="ad_left">
-            <div id="leftNav">
-                <ul id="lefNavList">
-                    <li><a href="${path }/notice/noticeList.do">공지사항</a></li>                            
-                    <li><a href="">Q&A묻고답하기</a></li>
-                    <li><a href="">FAQ 자주하는질문</a></li>
-                </ul>
-            </div>
+        <div class="leftmenu" >
+            <ul class="list-group">
+              <li class="list-group-item" id="menutitle">이용안내</li>
+              <li class="list-group-item"><a href="${path }/notice/noticeList.do">공지사항</a></li>
+              <li class="list-group-item">자주묻는질문</li>
+              <li class="list-group-item">QNA</li>
+            </ul>
         </div>
-        <div id="ad_right">
-            <div id="contHeader">공지사항</div>
+        <div id="he_right">
+            <div id="titleheadname">공지사항</div>
             <div id="contbody" class="sech">
                 <form>
                     <select required class="fontsize">

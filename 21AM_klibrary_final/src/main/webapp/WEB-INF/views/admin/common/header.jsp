@@ -71,17 +71,17 @@
                     </li>
                     <li>게시글 관리 <i class="fas fa-plus"></i>
                         <ul class="navOptions">
-                            <li><a href="${path }/admin/book/bookAllList.do" class="opStyle">공지사항 관리</a></li>
-                            <li><a href="${path }/admin/book/bookAllList.do" class="opStyle">문의사항 관리</a></li>
+                            <li><a href="${path }/admin/notice/noticeMain.do" class="opStyle">공지사항 관리</a></li>
+                            <li><a href="${path }/admin/qna/qnaMain.do" class="opStyle">문의사항 관리</a></li>
                         </ul>
                     </li>
                     <li>열람실 관리 <i class="fas fa-plus"></i>
                         <ul class="navOptions">
-                            <li><a href="${path }/admin/studyroom/studyroomAllList.do" class="opStyle">열람실조회</a></li>
-                            <li><a href="${path }/admin/studyroom/studyroomA.do" class="opStyle">열람실A</a></li>
-                            <li><a href="${path }/admin/studyroom/studyroomB.do" class="opStyle">열람실B</a></li>
-                            <li><a href="${path }/admin/studyroom/studyroomC.do" class="opStyle">열람실C</a></li>
-                            <li><a href="${path }/admin/studyroom/studyroomD.do" class="opStyle">열람실D</a></li>
+                            <li><a href="${path }/admin/studyroom/studyroomAllList.do" class="opStyle">열람실 조회</a></li>
+                            <li><a href="${path }/admin/studyroom/studyroomA.do" class="opStyle">열람실 A</a></li>
+                            <li><a href="${path }/admin/studyroom/studyroomB.do" class="opStyle">열람실 B</a></li>
+                            <li><a href="${path }/admin/studyroom/studyroomC.do" class="opStyle">열람실 C</a></li>
+                            <li><a href="${path }/admin/studyroom/studyroomD.do" class="opStyle">열람실 D</a></li>
                         </ul>
                     </li>
                 </ul>
