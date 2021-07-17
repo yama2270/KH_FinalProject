@@ -27,7 +27,7 @@ public class AdminNoticeController {
 
 	@RequestMapping("/admin/notice/noticeList.do")
 	public String noticeList() {
-		return "admin/notice/noticeList";
+		return "admin/notice/noticeMain";
 	}
 	
 	@RequestMapping("/admin/notice/noticeForm.do")
@@ -40,8 +40,8 @@ public class AdminNoticeController {
 		return "admin/notice/noticeView";
 	}
 	
-	@RequestMapping("/admin/notice/noticeInsert.do")
-	public ModelAndView insertBoard(Notice notice,ModelAndView mv, 
+	/* @RequestMapping("/admin/notice/noticeInsert.do") */
+	/*public ModelAndView insertBoard(Notice notice,ModelAndView mv, 
 			@RequestParam(value="upFile", required=false) MultipartFile[] upFile,
 			HttpServletRequest req) {
 		log.info("파일명 : "+upFile[0].getOriginalFilename());
@@ -99,6 +99,6 @@ public class AdminNoticeController {
 		
 		mv.setViewName("common/msg");
 		return mv;
-	}
+	}*/
 	
 }

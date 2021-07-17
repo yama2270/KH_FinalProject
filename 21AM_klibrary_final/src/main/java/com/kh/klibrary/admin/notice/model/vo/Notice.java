@@ -24,5 +24,6 @@ public class Notice {
 	private String noticeFile;
 	private Date noticeDate;
 	private int noticeCount;
+	private Attachment attachments;
 	/* private List<Attachment> attachments=new ArrayList(); */
 }
