@@ -68,7 +68,7 @@
 					<td>도서명</td>
 					<td class="reg_book_cate" style="vertical-align:bottom;">
 						<input type="text" name="" value="" placeholder="도서명" disabled >
-						<button type="button" class="btn btn-outline-secondary" style="height:30px;line-height:18px;margin-bottom:4px;">검색</button>
+						<button type="button" class="btn btn-outline-secondary" style="height:30px;line-height:15px;margin-bottom:4px;" onclick="regPopup()">검색</button>
 					</td>
 				</tr>
 				<tr>
@@ -174,6 +174,11 @@
 	        // ul li 배경화면 
 	        $(".navOptions").eq(1).children().eq(4).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
 	    })
+	    
+	    const regPopup = function(){
+	    	/* const popOption = ; */
+	    	window.open("${path}/search/wishbookPopup.do","regPopup","width=500,height=500,scrollbars=yes");
+	    }
     
 	</script>
 
