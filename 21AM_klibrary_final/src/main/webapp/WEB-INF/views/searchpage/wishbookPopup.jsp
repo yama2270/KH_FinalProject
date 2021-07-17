@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cg.css">
     <!-- fontawsome CDN 불러오기 -->
     
-    <title>ISBN 도서검색</title>
+    <title>희망도서검색팝업창</title>
 
 	
 	
@@ -68,11 +68,7 @@
     </div>
 
     <input type="text" placeholder="  검색" name="search" id="inputText">
-<<<<<<< HEAD
-    <button type="button" onclick="fn_searchBook()"><i class="fa fa-search"></i>검색</button>
-=======
     <button type="button" onclick="fn_searIsbn()"><i class="fa fa-search"></i>검색</button>
->>>>>>> branch 'master' of https://github.com/yama2270/KH_FinalProject.git
   </form>
 </div>
 <br><br><br><br>
@@ -188,21 +184,7 @@
    
   
    <br><br>
-	
-	<script>
-		function fn_searIsbn(){
-			
-			$.ajax({
-				url:"http: //seoji.nl.go.kr/landingPage/SearchApi.do?",
-				success : function(data){
-					console.log(data);
-				}
-			})
-			
-		}
-	</script>
-	
-	
+
 </body>
 
 </html>
