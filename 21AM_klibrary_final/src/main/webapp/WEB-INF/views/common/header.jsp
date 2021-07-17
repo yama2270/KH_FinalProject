@@ -6,6 +6,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- css -->
+    <link rel="stylesheet" href="${path }/resources/css/hy.css">
+    <link rel="stylesheet" href="${path }/resources/css/dg.css">
+    <link rel="stylesheet" href="${path }/resources/css/hj.css">
+    <link rel="stylesheet" href="${path }/resources/css/sh.css">
+    <link rel="stylesheet" href="${path }/resources/css/sy.css">
+    <link rel="stylesheet" href="${path }/resources/css/yh.css">
+    <link rel="stylesheet" href="${path }/resources/css/cg.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -6,8 +6,6 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="공지사항목록"/>
 </jsp:include>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
 <body id="ad_body">
     <header id="ad_header">
         <div id="header_title">K-도서관</div>
@@ -17,17 +15,16 @@
         </div>
     </header>
     <section id="ad_container">
-        <div id="ad_left">
-            <div id="leftNav">
-                <ul id="lefNavList">
-                    <li><a href="">공지사항</a></li>                            
-                    <li><a href="">Q&A묻고답하기</a></li>
-                    <li><a href="">FAQ 자주하는질문</a></li>
-                </ul>
-            </div>
+        <div class="leftmenu" >
+            <ul class="list-group">
+              <li class="list-group-item" id="menutitle">이용안내</li>
+              <li class="list-group-item"><a href="${path }/notice/noticeList.do">공지사항</a></li>
+              <li class="list-group-item">자주묻는질문</li>
+              <li class="list-group-item">QNA</li>
+            </ul>
         </div>
-        <div id="ad_right">
-            <div id="contHeader">공지사항</div>
+        <div id="he_right">
+            <div id="titleheadname">공지사항</div>
             <div id="contbody" class="sech">
                 <form>
                     <select required class="fontsize">
@@ -47,9 +44,31 @@
                         <th class="head3">등록일</th>
                         <th class="head2">조회수</th>
                     </tr>
-                   
+                    <!-- 게시글 출력 -->
+                    <c:choose>
+                    	<c:when test="${not empty list }">
+                    		<c:forEach var="n" items="${list }">
+                    			<tr>
+                    				<td class="head2"><c:out value="${n.noticeNo }"/></td>
+                    				<td class="head"><c:out value="${n.noticeTitle }"/></td>
+                    				<td class="head2"><c:out value="${n.noticeFile }"/></td>
+                    				<td class="head3"><c:out value="${n.noticeDate }"/></td>
+                    				<td class="head2"><c:out value="${n.noticeCount }"/></td>
+                    				
+                    			</tr>
+                    		</c:forEach>
+                    	</c:when>
+		                <c:otherwise>
+		                   <tr>
+		                   	<td clospan="6">조회된 공지사항이 없습니다</td>
+		                   </tr>
+		                </c:otherwise>
+                    </c:choose>
                 </table>
-               
+                <!-- 페이징처리 -->
+               <div id="pagebar-container">
+               	${pageBar }
+               </div>
             </div>
         </div>
     </section>
