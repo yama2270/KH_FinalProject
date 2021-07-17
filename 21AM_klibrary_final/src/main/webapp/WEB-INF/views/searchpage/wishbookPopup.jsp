@@ -295,7 +295,7 @@ var showPageList=function(total, keyword, display){
 	   $('#a'+start).addClass('active');
 	   fn_searchBook(start);
 	   document.getElementById( 'inputText' ).removeAttribute( 'onkeypress' );
-	   document.getElementById( 'inputText' ).setAttribute( 'onkeypress', 'if(event.keyCode == 13){fn_searchBook('+start+'); return false;}' );
+	   document.getElementById( 'inputText' ).setAttribute( 'onkeypress', 'if(event.keyCode == 13){fn_searchBook(1); return false;}' );
 	   
 } 
 
