@@ -7,13 +7,13 @@ div#container	{}
 section#content		{min-height:600px;}
 
 /* common menu*/
-#UserInfo_Menu_Container{ /*마이페이지 메뉴바*/
+#UserInfo_Menu_Container{ /*마이페이지 메뉴바 del*/
 	width:270px;
 	float: left;
 }
 #UserInfo_Container{ /*마이페이지 컨텐츠 전체 div*/
-	width:1530px;
-	margin-left:300px;
+	width:1500px;
+	margin-left:400px;
 	margin-top:10px; 
 }
 #UserInfo_Paging_Container{ /*마이페이지 페이징 바 */
@@ -33,13 +33,49 @@ section#content		{min-height:600px;}
 	margin-bottom:10px;
 	float:left;
 }
+#TitleContainer{
+	display:block;
+	background-color:lightblue;
+	color:mediumblue;
+}
+#TitleContainer h2{
+	padding-top:28px;
+	margin-left:100px;
+	padding-bottom:28px;
+
+}
+#menutitle{	/*마이페이지 메뉴바*/
+	height:50px;
+	text-align:center;
+	color:white;
+	background-color:blue;
+}
+.list-group-container{
+	margin-top: 90px;
+	margin-left: 20px;
+	width:350px;
+	float:left;
+	text-align:center;
+}
+.list-group-container button{
+	width:100%;
+	height:100%;
+	background-color:transparent;
+	border:none;
+}
+.list-group-item:not(#menutitle,#menutitle1):hover {
+	background-color: lightgrey;
+	cursor:pointer;
+}
+
 
 /* memberInfo */
 #Pw_Check_table{
 	border:black 1px solid;
 	width:700px;
 	weight:300px;
-	margin-left:350px;
+	margin-left:450px;
+	margin-top:200px;
 	text-align:center;
 	background-color: lightgray;
 }
@@ -86,10 +122,11 @@ section#content		{min-height:600px;}
 	border:none;
 	background-color:transparent;
 }
-#Info_Update_table .phone{
-	width:70px;
+#Info_Update_table #phone{
+	width:200px;
 	height:30px;
 	margin-left:20px;
+	border:none;
 	background-color: transparent;
 }
 #Info_Update_table #gender{
@@ -103,7 +140,7 @@ section#content		{min-height:600px;}
 #Borrowing_Info_Container{
 	width:1490px;
 	margin-left:10px;
-	margin-top:10px;
+	margin-top:30px;
 	height:100px;
 	background-color:lightgray;
 	text-align:center;
@@ -117,26 +154,24 @@ section#content		{min-height:600px;}
 	text-align:center;
 }
 #Borrowing_Info_Container #BIC_p1{
-	margin-top:30px; float:left;
+	padding-left:100px;
+	margin-top:40px;
+	float:left;
 }
 #Borrowing_Info_Container #BIC_p2{
-	margin-top:30px; 
+	padding-top:40px; 
 }
 #BIC_hr_line{
-	width:1490px;
-	margin-left:10px;
+	width:1500px;
+	margin-left:0px;
 	margin-top:30px;
 	border:gray 1px solid;
-}
-#BIC_hr_line2{
-	width:1490px;
-	border:gray 1px solid;
-	margin-top:70px;
 }
 #Borrwing_List_table table{
 	font-size:20px;
 	weight:500px;
 	text-align:left;
+	margin-top:30px;
 }
 #Borrwing_List_table td{
 	font-size:20px;
@@ -155,9 +190,8 @@ section#content		{min-height:600px;}
 
 /*memberBorrowed*/
 #Borrowed_Info_Container{
-	width:1490px;
-	margin-left:10px;
-	margin-top:10px;
+	width:1500px;
+	margin-top:30px;
 	height:100px;
 	background-color:lightgray;
 	text-align:center;
@@ -167,9 +201,10 @@ section#content		{min-height:600px;}
 	margin-top:20px;
 }
 #Borrwed_List_title{
-	margin-top:10px; float:left;
+	margin-top:30px;
 }
 #Borrwed_List_table table{
+	margin-top:20px;
 	font-size:20px;
 	width:1490px; 
 }
@@ -188,14 +223,15 @@ section#content		{min-height:600px;}
 }
 /* Booking */
 #Booking_List_title{
-	margin-top:10px; float:left;
+	margin-top:30px;
 }
 #BIK_hr_line2{
-	width:1490px;
+	width:1500px;
 	border:gray 1px solid;
-	margin-top:80px;
+	margin-top:30px;
 }
 #Booking_List_table table{
+	margin-top:30px;
 	text-align:center;
 	font-size:20px;
 	width:1490px; 
@@ -219,12 +255,12 @@ section#content		{min-height:600px;}
 
 /* BookMark */
 #BookMark_List_title{
-	margin-top:10px; float:left;
+	margin-top:30px;
 }
 #BMK_hr_line2{
-	width:1490px;
+	width:1500px;
 	border:gray 1px solid;
-	margin-top:80px;
+	margin-top:30px;
 }
 #BookMark_List_table table{
 	width:1490px; 
@@ -254,18 +290,17 @@ section#content		{min-height:600px;}
 
 /* memberReadingRoom*/
 #Room_List_title{
-	margin-top:10px;
-	float:left;
+	margin-top:30px;
 }
 #RR_hr_line2{
-	width:1490px;
+	width:1530px;
 	border:gray 1px solid;
-	margin-top:80px;
+	margin-top:30px;
 }
 #Room_Record_Container{
 	width:1490px;
 	margin-left:10px;
-	margin-top:10px;
+	margin-top:30px;
 	height:140px;
 	background-color:lightgray;
 }
@@ -275,6 +310,7 @@ section#content		{min-height:600px;}
 }
 #Room_Record_Container button{
 	float:right;
+	margin-right:20px;
 	margin-top:80px;
 }
 #Room_Record_Container2{

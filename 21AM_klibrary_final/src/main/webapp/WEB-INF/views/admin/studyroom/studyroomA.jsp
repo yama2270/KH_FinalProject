@@ -131,4 +131,15 @@
 </div>
 </section>
 
+	<script>
+	
+    $(function(){
+        // ul show()
+        $(".navOptions").eq(3).show();
+        // ul li 배경화면 
+        $(".navOptions").eq(3).children().eq(1).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+    })
+    
+	</script>
+
 <jsp:include page="/WEB-INF/views/admin/common/footer.jsp" />
