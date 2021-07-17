@@ -13,6 +13,14 @@
  <link rel="stylesheet" href="${path }/resources/css/sy.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- css -->
+    <link rel="stylesheet" href="${path }/resources/css/hy.css">
+    <link rel="stylesheet" href="${path }/resources/css/dg.css">
+    <link rel="stylesheet" href="${path }/resources/css/hj.css">
+    <link rel="stylesheet" href="${path }/resources/css/sh.css">
+    <link rel="stylesheet" href="${path }/resources/css/sy.css">
+    <link rel="stylesheet" href="${path }/resources/css/yh.css">
+    <link rel="stylesheet" href="${path }/resources/css/cg.css">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Popper JS -->
@@ -20,6 +28,30 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/dg.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hj.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sh.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sy.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cg.css">
+    <!-- fontawsome CDN 불러오기 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <script src="../js/jquery-3.6.0.min.js"></script>	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<title>Insert title here</title>
 </head>
 <body>
 <header>

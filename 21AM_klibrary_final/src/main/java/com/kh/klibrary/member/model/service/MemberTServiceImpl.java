@@ -1,5 +1,6 @@
 package com.kh.klibrary.member.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.klibrary.member.model.dao.MemberTDao;
+import com.kh.klibrary.member.model.vo.LendingHistory;
 import com.kh.klibrary.member.model.vo.MemberT;
 @Service
 public class MemberTServiceImpl implements MemberTService {
@@ -21,6 +23,17 @@ public class MemberTServiceImpl implements MemberTService {
 	public MemberT selectMember(Map m1) {
 		// TODO Auto-generated method stub
 		return dao.selectMember(session, m1);
+	}
+	@Override
+	public int updateMember(MemberT m) {
+		// TODO Auto-generated method stub
+		return dao.updateMember(session, m);
+	}
+	
+	@Override
+	public List<LendingHistory> selectLHList(String userId) {
+		// TODO Auto-generated method stub
+		return dao.selectLHList(session, userId);
 	}
 
 }

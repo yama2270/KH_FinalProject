@@ -14,5 +14,9 @@
 
 			<typeAlias type="com.kh.klibrary.member.model.vo.MemberT" alias="membert"/> 
 			
+			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo" alias="faq"/> -->
+			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo.Faq" alias="faq"/> -->
+			<typeAlias type="com.kh.klibrary.admin.notice.model.vo.Notice" alias="notice"/>
+			<typeAlias type="com.kh.klibrary.member.model.vo.MemberT" alias="membert"/>
 	</typeAliases>
 </configuration>

@@ -17,28 +17,31 @@
             </div>
         </header>
         <section id="ad_container">
-            <div id="ad_left">
-                <div id="leftNav">
-                    <ul id="lefNavList">
-                        <li>이용시간</li>                            
-                        <li>편의시설 <i class="fas fa-plus"></i>
-                            <ul class="navOptions">
-                                <li>자료복사</li>
-                                <li>주차안내</li>
-                            </ul>
-                        </li>
-                        <li>열람실 안내 <i class="fas fa-plus"></i>
-                            <ul class="navOptions">
-                                <li>좌석예약</li>
-                                <li>이용안내</li>
-                            </ul>
-                        </li>
+           <div class="leftmenu" >
+	            <ul class="list-group">
+	              <li class="list-group-item" id="menutitle">이용안내</li>
+	              <li class="list-group-item">이용시간</li>
+	              <li class="list-group-item">편의시설 <i class="fas fa-plus"></i>
+	              	<ul class="submenu">
+	                    <li>자료복사</li>
+	                    <li>주차안내</li>
                     </ul>
-                </div>
-            </div>
-            <div id="ad_right">
-                <div id="contHeader">이용시간</div>
-                <div  id="contbody" class="sech"></div>
+	              </li>
+	              <li class="list-group-item">열람실 안내<i class="fas fa-plus"></i>
+	              	<ul class="submenu">
+	                    <li>열람실 A</li>
+	                    <li>열람실 B</li>
+	                    <li>열람실 C</li>
+	                    <li>열람실 D</li>
+	                    <li>열람실 E</li>
+	                    <li>열람실이용안내</li>
+                    </ul>
+	              </li>
+	            </ul>
+        	</div>
+            <div id="he_right">
+                <div id="titleheadname">이용시간</div>
+                
                 <div id="calendarForm"></div>
                 <div class="table3">
                     <div class="timehead">이용시간</div>
@@ -203,13 +206,13 @@
     
     $(function(){
 
-        const naviList = $("#lefNavList").children();
-        const options = $(".navOptions")
+        const naviList = $(".list-group").children();
+        const options = $(".submenu")
 
         $(naviList).click((e)=>{
             $(naviList).children().not('i').hide();
             $(naviList).children().filter('i').attr("class","fas fa-plus");
-            $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
+            $(options).children().css({"font-size":"15px","fontWeight":"normal"})
             $(e.target).find("ul").show();
             $(e.target).find("i").attr("class","fas fa-minus");
         })
@@ -225,9 +228,8 @@
         })
 
         $(options).click((e)=>{
-            
-            $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
-            $(e.target).css({"font-size":"20px","fontWeight":"bold","backgroundColor":"#7DA5E1"})
+            $(options).children().css({"font-size":"15px","fontWeight":"normal"})
+            $(e.target).css({"font-size":"20px","fontWeight":"bold"})
             return false;
         })
 

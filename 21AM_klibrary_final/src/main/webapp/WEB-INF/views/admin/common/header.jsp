@@ -58,31 +58,32 @@
                 <ul id="lefNavList">
                     <li>회원관리 <i class="fas fa-plus"></i>
                         <ul class="navOptions">
-                            <li>회원정보</li>
-                            <li>탈퇴요청</li>
+                            <li><a href="${path }/admin/member/memberList.do" class="opStyle">회원조회</a></li>
+                            <li><a href="${path }/admin/member/memberWithdraw.do" class="opStyle">탈퇴요청</a></li>
                         </ul>
                     </li>                            
                     <li>도서관리 <i class="fas fa-plus"></i>
                         <ul class="navOptions">
-                            <li>전체도서목록</li>
-                            <li>도서등록</li>
-                            <li>도서대출현황</li>
-                            <li>도서예약현황</li>
+                            <li><a href="${path }/admin/book/bookAllList.do" class="opStyle">도서조회</a></li>
+                            <li><a href="${path }/admin/book/bookRentalList.do" class="opStyle">대출도서</a></li>
+                            <li><a href="${path }/admin/book/bookReservedList.do" class="opStyle">예약도서</a></li>
+                            <li><a href="${path }/admin/book/bookWishList.do" class="opStyle">희망도서</a></li>
+                            <li><a href="${path }/admin/book/registerBook.do" class="opStyle">도서등록</a></li>
                         </ul>
                     </li>
                     <li>게시글 관리 <i class="fas fa-plus"></i>
                         <ul class="navOptions">
-                            <li>공지사항 관리</li>
-                            <li>문의사항 관리</li>
+                            <li><a href="${path }/admin/notice/noticeMain.do" class="opStyle">공지사항 관리</a></li>
+                            <li><a href="${path }/admin/qna/qnaMain.do" class="opStyle">문의사항 관리</a></li>
                         </ul>
                     </li>
                     <li>열람실 관리 <i class="fas fa-plus"></i>
                         <ul class="navOptions">
-                            <li>전체조회</li>
-                            <li>열람실A</li>
-                            <li>열람실B</li>
-                            <li>열람실C</li>
-                            <li>열람실D</li>
+                            <li><a href="${path }/admin/studyroom/studyroomAllList.do" class="opStyle">열람실 조회</a></li>
+                            <li><a href="${path }/admin/studyroom/studyroomA.do" class="opStyle">열람실 A</a></li>
+                            <li><a href="${path }/admin/studyroom/studyroomB.do" class="opStyle">열람실 B</a></li>
+                            <li><a href="${path }/admin/studyroom/studyroomC.do" class="opStyle">열람실 C</a></li>
+                            <li><a href="${path }/admin/studyroom/studyroomD.do" class="opStyle">열람실 D</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -9,41 +9,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/dg.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hj.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sh.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sy.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cg.css">
     <!-- fontawsome CDN 불러오기 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="../js/jquery-3.6.0.min.js"></script>
-    <title>메인페이지</title>
+    <title>FAQ자주하는질문</title>
 </head>
+
+
+
 <body id="ad_body">
     <header id="ad_header">
         <div id="header_title">K-도서관</div>
-        <div id="header_options">
-            <div id="header_moveMain">메인페이지</div>
-            <div id="header_logout">로그아웃</div>
-        </div>
     </header>
     <section id="ad_container">
-        <div id="ad_left">
-            <div id="leftNav">
-                <ul id="lefNavList">
-                    <li><a href="">공지사항</a></li>                            
-                    <li><a href="">Q&A묻고답하기</a></li>
-                    <li><a href="">FAQ 자주하는질문</a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="ad_right">
-            <div id="contHeader">FAQ 자주하는질문</div>
+        <div class="list-group-container" >
+            <ul class="list-group">
+              <li class="list-group-item" id="menutitle">이용안내</li>
+              <li class="list-group-item">공지사항</li>
+              <li class="list-group-item">자주묻는질문</li>
+              <li class="list-group-item">QNA</li>
+            </ul>
+          </div>
+        <div id="ad_right_fq">
+            <div id="contHeaderd">FAQ 자주하는질문</div>
             <div id="contbody">
                 <div class="qabody">
                     <form class="qsech">
@@ -54,10 +43,10 @@
                         <input type="text" class="sechtext">
                         <input type="submit" value="검색" id="katagori">
                     </form>
-                    <div class="qmenu">PC에서 신규 홈페이지가 정상적으로 열리지 않습니다.</div>
-                        <p class="contents">A 답변2018년 6월 4일 개편된 홈페이지는 반응형 웹페이지로
-											인터넷 브라우러 익스플로러 9 이상의 버전 또는 크롬 브라우저에서 이용이 가능하며,
-											윈도우 XP 환경에서는 이용이 불가능합니다</p>
+						<c:forEach var="f" items= "${list}">
+	                    	<div class="qmenu"><c:out value="${f['FAQ_CATE'] }"/></div>
+	                        	<p class="contents"><c:out value="${f['FAQ_CONTENT']}"/></p>
+						</c:forEach>
                     <div class="qmenu">두번째 질문</div>
                         <p class="contents">내용2</p>
                     <div class="qmenu">세번째 질문</div>
@@ -70,15 +59,15 @@
             </div>
         </div>
     </section>
-</body>
 <script>
     let flag=true;
     $(".contents").prev().on("click",(e)=>{
         console.log(e.target);
         console.log($(e.target).next());
-        $(e.target).next().slideToggle(1000);
+        $(e.target).next().slideToggle(500);
         $(".contents").not($(e.target).next()).css("display","none");
     });
 </script>
-    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+</body>
 </html>

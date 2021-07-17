@@ -43,7 +43,7 @@
 <div class="search-container">
   <div class="populor-words">
   
-    <span id="spanTextInfo"></span>
+    <span>※아래 검색결과에서 원하시는 도서를 클릭하세요.</span>
     
     
   </div>
@@ -52,11 +52,16 @@
     <div class="searchSelect">
       <label for="searchKey" class="blind"></label>
       <select id="searchKey" name="searchKey" title="검색 선택">
-        <option value="all">전체</option>
-        <option value="title" selected="selected">도서명</option>
-        <option value="person">저자</option>
-        <option value="publisher">출판사</option>
-        <option value="isbn">ISBN</option>
+        <option value="ALL">전체</option>
+        <option value="TITLE" selected>도서명</option>
+        <option value="AUTHOR">저자</option>
+        <option value="PUBLISHER">출판사</option>
+        <option value="KEYWORD">키워드</option>
+        <option value="ALL">전체</option>
+        <option value="TITLE" selected>도서명</option>
+        <option value="AUTHOR">저자</option>
+        <option value="PUBLISHER">출판사</option>
+        <option value="KEYWORD">키워드</option>
 
       </select>
 
