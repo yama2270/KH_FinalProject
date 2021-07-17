@@ -5,15 +5,8 @@
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="공지사항관리"/>
 </jsp:include>
-<head>
-    <!-- fontawsome CDN 불러오기 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-    <title>공지사항 관리</title>
-</head>
-      
 	        <div id="ad_right">
-            <div id="contHeader">공지사항 작성</div>
+            <div id="contHeader">공지사항 관리</div>
             <div id="contbody">
             
         <div id="notice_box">
@@ -99,9 +92,14 @@
 
     <script>
 
-      // navigation 이벤트
-    
     $(function(){
+        // ul show()
+        $(".navOptions").eq(2).show();
+        // ul li 배경화면 
+        $(".navOptions").eq(2).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+    })
+    
+/*     $(function(){
 
 const naviList = $("#lefNavList").children();
 const options = $(".navOptions")
@@ -131,7 +129,7 @@ $(options).click((e)=>{
     return false;
 })
 
-})
+}) */
 
 $(function(){ //전체선택 체크박스 클릭 
   $("#allCheck").click(function(){ //만약 전체 선택 체크박스가 체크된상태일경우 
@@ -145,4 +143,4 @@ $(function(){ //전체선택 체크박스 클릭
 
     </script>
     
- <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+ <jsp:include page="/WEB-INF/views/admin/common/footer.jsp"/>

@@ -6,25 +6,18 @@
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="공지사항상세"/>
 </jsp:include>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sh.css">
-    <!-- fontawsome CDN 불러오기 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-    <title>공지사항 상세</title>
 </head>
         <div id="ad_right">
-            <div id="contHeader">공지사항	상세</div>
+            <div id="contHeader">공지사항 상세</div>
             <div id="contbody">
         </div>
-        
+        	<form name="noticeFrm" action="${path }/admin/notice/insertNotice.do" method="post" enctype="multipart/form-data" >
             <div class="form-group" style="margin-left:95px;margin-top:30px;">
-                <label for="user_id">작성자</label>
-                <input class="user_Id" type="text" name="user_id" value="" id="user_id" placeholder="작성자명" disabled>
+                <label for="userId">작성자</label>
+                <input class="userId" type="text" name="user_id" value="${loginMember.userId }" id="userId" placeholder="작성자명" readonly required>
             </div>
 
-
-		<form action='<c:url value='/notice/noticeList'/>' method="post">
-        <div id="contents" class="container">
+        <div id="contents" class="container" style="margin-left:85px;">
             <div class="form-group">
             <label for="ca_name">분류</label>
              <select class="form-control form-control-sm w-auto" id="ca_name" name="ca_name" required>
@@ -38,20 +31,21 @@
             </div>
             <div class="form-group">
                 <label for="wr_subject">제목</label>
-                <input class="title" type="text" name="notice_title" value="${notice.noticeTitle}" id="wr_subject" required size="100" maxlength="200" placeholder="제목">
+                <input class="title" type="text" name="notice_title" value="" id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;margin-top:15px;">
             </div>
 
             <div class="form-group d-cke-none">
-                <textarea id="wr_content" name="notice_content" value="${notice.noticeContent}" class="smarteditor2" maxlength="1000" style="width:900px; height: 400px;"
+                <textarea id="wr_content" name="notice_content" class="smarteditor2" maxlength="1000" style="width:900px; height: 400px;margin-top:20px;"
                 placeholder="내용을 입력해주세요">
                 </textarea>
             </div>
             <input type="file" style="width:200px;height:30px;"></a></td></button>
             
             <div class="write" style="margin-left:24%">
-            <a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:60%;margin-top:1%;">취소</a>
-            <a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:1%;margin-top:1%;">작성</a>
+            <a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:47%;margin-top:1%;">취소</a>
+            <input type="submit" class="btn btn-outline-dark" style="margin-left:1%;margin-top:1%;" value="작성">
             </div>
+            </form>
     </div>
 
 
@@ -62,9 +56,14 @@
         <script>
 
             
-      // navigation 이벤트
+        $(function(){
+            // ul show()
+            $(".navOptions").eq(2).show();
+            // ul li 배경화면 
+            $(".navOptions").eq(2).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+        })
     
-            $(function(){
+         /*    $(function(){
 
         const naviList = $("#lefNavList").children();
         const options = $(".navOptions")
@@ -92,12 +91,12 @@
             $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
             $(e.target).css({"font-size":"20px","fontWeight":"bold","backgroundColor":"#7DA5E1"})
             return false;
-        })
-
-        })
+        }) */
+/* 
+        }) */
             
 
 
         </script>
         
-        <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+        <jsp:include page="/WEB-INF/views/admin/common/footer.jsp"/>

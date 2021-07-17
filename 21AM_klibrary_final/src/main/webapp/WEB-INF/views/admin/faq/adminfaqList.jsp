@@ -6,11 +6,7 @@
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="공지사항상세"/>
 </jsp:include>
-    <!-- fontawsome CDN 불러오기 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-    <title>공지사항 상세</title>
-</head>
+
         <div id="ad_right">
             <div id="contHeader">공지사항 작성</div>
             <div id="contbody">

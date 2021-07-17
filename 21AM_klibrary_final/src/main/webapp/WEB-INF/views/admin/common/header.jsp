@@ -71,8 +71,8 @@
                     </li>
                     <li>게시글 관리 <i class="fas fa-plus"></i>
                         <ul class="navOptions">
-                            <li><a href="${path }/admin/notice/noticeMain.do" class="opStyle">공지사항 관리</a></li>
-                            <li><a href="${path }/admin/qna/qnaMain.do" class="opStyle">문의사항 관리</a></li>
+                            <li><a href="${path }/admin/notice/noticeList.do" class="opStyle">공지사항 관리</a></li>
+                            <li><a href="${path }/admin/qna/adminqnaList.do" class="opStyle">문의사항 관리</a></li>
                         </ul>
                     </li>
                     <li>열람실 관리 <i class="fas fa-plus"></i>
