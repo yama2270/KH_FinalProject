@@ -35,15 +35,15 @@
   
   <div class="popupTitleContainer">
     <br>
-    <h3 id="popupTitle">희망도서검색</h1>
+    <h3 id="popupTitle">ISBN 도서검색</h1>
     <br>
   </div>
 
 
-<div class="search-container">
+<div class="search-container" style="width:750px;">
   <div class="populor-words">
   
-    <span>※아래 검색결과에서 원하시는 희망도서를 클릭하세요.</span>
+    <span>※아래 검색결과에서 원하시는 도서를 클릭하세요.</span>
     
     
   </div>
@@ -53,9 +53,9 @@
       <label for="searchKey" class="blind"></label>
       <select id="searchKey" name="searchKey" title="검색 선택">
         <option value="ALL">전체</option>
-        <option value="TITLE" selected="selected">서명</option>
+        <option value="TITLE" selected>도서명</option>
         <option value="AUTHOR">저자</option>
-        <option value="PUBLISHER">발행자</option>
+        <option value="PUBLISHER">출판사</option>
         <option value="KEYWORD">키워드</option>
 
       </select>
@@ -65,7 +65,7 @@
     <input type="text" placeholder="  검색" name="search" id="inputText">
     <button type="submit"><i class="fa fa-search"></i>검색</button>
   </form>
-</div>
+  </div>
 <br><br><br><br>
 
 
