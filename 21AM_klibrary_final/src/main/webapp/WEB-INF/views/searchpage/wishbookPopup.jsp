@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,23 +51,17 @@
     <div class="searchSelect">
       <label for="searchKey" class="blind"></label>
       <select id="searchKey" name="searchKey" title="검색 선택">
-        <option value="ALL">전체</option>
-        <option value="TITLE" selected>도서명</option>
-        <option value="AUTHOR">저자</option>
-        <option value="PUBLISHER">출판사</option>
-        <option value="KEYWORD">키워드</option>
-        <option value="ALL">전체</option>
-        <option value="TITLE" selected>도서명</option>
-        <option value="AUTHOR">저자</option>
-        <option value="PUBLISHER">출판사</option>
-        <option value="KEYWORD">키워드</option>
-
+        <option value="all">전체</option>
+        <option value="title" selected>도서명</option>
+        <option value="person">저자</option>
+        <option value="publisher">출판사</option>
+        <option value="isbn">ISBN</option>
       </select>
 
     </div>
 
     <input type="text" placeholder="  검색" name="search" id="inputText">
-    <button type="button" onclick="fn_searIsbn()"><i class="fa fa-search"></i>검색</button>
+    <button type="button" onclick="fn_searchBook()"><i class="fa fa-search"></i>검색</button>
   </form>
 </div>
 <br><br><br><br>
