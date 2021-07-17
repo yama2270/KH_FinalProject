@@ -28,7 +28,7 @@ public class SearchServiceImp {
     
     private  final String url1 = "https://dapi.kakao.com/v3/search/book";
 	
-  public ResponseEntity<String> searchNaverApi(Map param){
+  public ResponseEntity<String> searchNaverApi(String keyword,String category,int page,int size){
 	  
 	  final HttpHeaders headers = new HttpHeaders();
 //      headers.set("X-Naver-Client-Id", "ZfCG0ZXj8iiW9LwvANg"); 
@@ -36,20 +36,22 @@ public class SearchServiceImp {
 	    headers.set("Authorization","KakaoAK 810a4c928e125944de3726d437eb789f");
 	    
 	    
-	    String queryString = "?query="+(String)param.get("keyword");
+	    String queryString = "?query="+keyword;
 	    String queryString2="";
 	    String queryString3="&page="+1; //선택페이지
 	    String queryString4="&size="+10;  //한페이지에나올데이터수
 	    
-	    if((String)param.get("category")!="") {
-	    	queryString2="&target="+(String)param.get("category");
+	    if(category!="") {
+	    	queryString2="&target="+category;
 	    }
-	    if((String)param.get("page")!="") {
-	    	queryString3="&page="+(Integer)param.get("pageNum");
+	    if(page!=0) {
+	    	
+	    	queryString3="&page="+page;
 	    }
 	    
-	    if((String)param.get("size")!="") {
-	    	queryString4="&size="+(Integer)param.get("size");
+	    if(size!=0) {
+	    	
+	    	queryString4="&size="+size;
 	    }
 	    
 	    String url=url1+queryString+queryString2+queryString3+queryString4;

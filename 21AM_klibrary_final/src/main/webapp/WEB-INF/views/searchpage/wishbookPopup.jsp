@@ -48,8 +48,8 @@
 
     </div>
 
-    <input type="text" placeholder="  검색" name="search" id="inputText" onkeypress="if(event.keyCode == 13){fn_searchBook(); return false;}">
-    <button type="button"  onclick="fn_searchBook()"><i class="fa fa-search"></i>검색</button>
+    <input type="text" placeholder="  검색" name="search" id="inputText" onkeypress="if(event.keyCode == 13){fn_searchBook(1); return false;}">
+    <button type="button"  onclick="fn_searchBook(1)"><i class="fa fa-search"></i>검색</button>
   </form>
 </div>
 <br><br><br><br>
@@ -170,31 +170,7 @@
 
 </html>
 <script>
-var showPageList=function(total, keyword, display){
-	   if(total>200){
-		   total=200;
-	   }
-	   //int pageCount = (total-1)/display+1; <=자바에서 페이지수 구하기
-	   var pageCount=Math.floor((total-1)/display+1);
-	   
-	   var str="<ul class='pagination justify-content-center'>";
-	   /*
-	   	i	start	display
-	   [1]	1		10
-	   [2]	11		10
-	   [3]	21		10
-	   
-	   start = (i-1)*display+1;
-	   */
-	   
-	   for(var i=1;i<=pageCount;i++){
-		   var start =(i-1)*display+1;
-		   str+="<li class='page-item' id='a"+start+"'><a class='page-link' onclick='fn_searchBook("+start +")'>"+i;
-		   str+="</a></li>";
-	   }
-	   str+="</ul>";
-	   $('#searchResultTable3Div').append(str);
-}
+
 
 function fn_searchBook(start){
 	$.get("${pageContext.request.contextPath}/searchpage/searchapiBook?category="+$("#searchKey").val()+"&keyword="+$("#inputText").val()+"&page="+start,data=>{
@@ -288,20 +264,44 @@ function fn_searchBook(start){
 	}); 
  }
  
+var showPageList=function(total, keyword, display){
+	   if(total>200){
+		   total=200;
+	   }
+	   //int pageCount = (total-1)/display+1; <=자바에서 페이지수 구하기
+	   var pageCount=Math.floor((total-1)/display+1);
+	   
+	   var str="<ul class='pagination justify-content-center'>";
+	   /*
+	   	i	start	display
+	   [1]	1		10
+	   [2]	11		10
+	   [3]	21		10
+	   
+	   start = (i-1)*display+1;
+	   */
+	   
+	   for(var i=1;i<=pageCount;i++){
+		   var start =(i-1)*display+1;
+		   str+="<li class='page-item' id='a"+start+"'><a class='page-link' onclick='show("+start+",\""+keyword+"\")'>"+i;
+		   str+="</a></li>";
+	   }
+	   str+="</ul>";
+	   $('#searchResultTable3Div').append(str);
+}
 
-
-/* var show=function(start,keyword){
+ var show=function(start,keyword){
 	   //alert(start+"/"+query);
 	   $('#a'+start).addClass('active');
-} */
+	   fn_searchBook(start);
+	   document.getElementById( 'inputText' ).removeAttribute( 'onkeypress' );
+	   document.getElementById( 'inputText' ).setAttribute( 'onkeypress', 'if(event.keyCode == 13){fn_searchBook('+start+'); return false;}' );
+	   
+} 
 
-/* function enterkey() { 
-	if (window.event.keyCode == 13) {
-		fn_searchBook();
-	 } 
-	} */
+
 	
-	/* $("#inputText").keyup(function(e){if(e.keyCode == 13)  fn_searchBook(start); }); */
+	
 
 
 
