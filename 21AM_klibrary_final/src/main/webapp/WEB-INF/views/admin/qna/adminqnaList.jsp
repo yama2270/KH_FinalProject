@@ -2,7 +2,7 @@ e<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="문의사항 관리"/>
 </jsp:include>
 <head>
@@ -11,45 +11,7 @@ e<%@ page language="java" contentType="text/html; charset=UTF-8"
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
     <title>문의사항 관리</title>
-</head>	
-    <section id="ad_container">
-        <div id="ad_left">
-            <div id="leftNav">
-                <ul id="lefNavList">
-                    <li>회원관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>회원정보</li>
-                            <li>탈퇴요청</li>
-                        </ul>
-                    </li>                            
-                    <li>도서관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>전체도서목록</li>
-                            <li>도서등록</li>
-                            <li>도서대출현황</li>
-                            <li>도서예약현황</li>
-                        </ul>
-                    </li>
-                    <li>게시글 관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>공지사항 관리</li>
-                            <li>문의사항 관리</li>
-                            <li>자주하는 질문</li>
-                        </ul>
-                    </li>
-                    <li>열람실 관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>전체조회</li>
-                            <li>열람실A</li>
-                            <li>열람실B</li>
-                            <li>열람실C</li>
-                            <li>열람실D</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
+</head>	        
         <div id="ad_right">
             <div id="contHeader">문의사항 관리</div>
             <div id="contbody">

@@ -21,7 +21,7 @@
                 <input class="userId" type="text" name="user_id" value="${loginMember.userId }" id="userId" placeholder="작성자명" readonly required>
             </div>
 
-        <div id="contents" class="container" style="margin-left:85px;">
+        <div id="contents" class="container">
             <div class="form-group">
             <label for="ca_name">분류</label>
              <select class="form-control form-control-sm w-auto" id="ca_name" name="ca_name" required>
@@ -59,43 +59,8 @@
   
         <script>
 
-            
-      // navigation 이벤트
-    
-            $(function(){
-
-        const naviList = $("#lefNavList").children();
-        const options = $(".navOptions")
-
-        $(naviList).click((e)=>{
-            $(naviList).children().not('i').hide();
-            $(naviList).children().filter('i').attr("class","fas fa-plus");
-            $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
-            $(e.target).find("ul").show();
-            $(e.target).find("i").attr("class","fas fa-minus");
-        })
-
-        // navigation - option 이벤트 
-
-        $(options).mouseover((e)=>{
-            $(e.target).css("textDecoration","underline");
-        })
-
-        $(options).mouseout((e)=>{
-            $(e.target).css("textDecoration","");
-        })
-
-        $(options).click((e)=>{
-            
-            $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
-            $(e.target).css({"font-size":"20px","fontWeight":"bold","backgroundColor":"#7DA5E1"})
-            return false;
-        })
-
-        })
-            
 
 
         </script>
         
-        <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+        <jsp:include page="/WEB-INF/views/admin/common/footer.jsp"/>
