@@ -1,4 +1,57 @@
 @charset "UTF-8";
+
+
+
+.nameq{
+    border-bottom: gray 1px solid;
+}
+#ad_right_qf{
+    width:1200px;
+    float:right;
+}
+.tableMapqa{
+    margin: auto;
+}
+#ad_right_fq {
+    width : 1200px;
+    float : right;
+  }
+.qabody {
+    margin-top:1%;
+    margin-left:23%;
+    /* background-color: gray; */
+    height: 703px;
+    width: 1150px;
+}
+
+#contHeaderd {
+width: 1150px;
+		/* margin: auto; */
+		margin-left: 23%;
+		margin-top: 40px;
+		border-bottom: 2px gray solid;
+		/* padding-left: 10px; */
+		font-size: 30px;
+}
+/* 설영누나 메뉴 css */
+#menutitle{
+height:50px;
+text-align:center;
+color:white;
+background-color:blue;
+}
+  .list-group-container{
+  margin-top: 5%;
+  margin-left: 1%;
+  width:17.8%;
+  float:left;
+  
+  
+  }
+  .list-group-item:not(#menutitle,#menutitle1):hover {
+    background-color: lightgrey;
+    cursor:pointer;
+  }
 /* Q&A묻고답하기 */
 .writing{
     margin-left: 85%;
@@ -105,13 +158,7 @@
     margin:0;
     padding:0;
 }
-.qabody{
-    margin-top: 1%;
-    margin-left: 6%;
-    /* background-color: gray; */
-    height: 703px;
-    width:1150px;
-}
+
 .qmenu{
     border-bottom: gray 1px solid;
     font-size: 2rem;

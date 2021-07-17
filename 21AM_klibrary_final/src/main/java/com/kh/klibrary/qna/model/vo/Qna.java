@@ -1,4 +1,4 @@
-package com.kh.klibrary.qna.modelvo;
+package com.kh.klibrary.qna.model.vo;
 
 import java.util.Date;
 
