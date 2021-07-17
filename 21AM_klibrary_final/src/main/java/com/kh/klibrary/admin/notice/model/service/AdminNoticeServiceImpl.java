@@ -35,21 +35,14 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 
 	@Override
 	public int insertNotice(Notice n) throws RuntimeException{
-		int result=dao.insertNotice(session, n);
-		log.info("{}",n.getNoticeNo());
-		if(result>0) {
-			if(n.getAttachments()!=null&&n.getAttachments().size()>0) {
-				for(Attachment a : n.getAttachments()) {
-					try {
-						a.setNoticeNo(n.getNoticeNo());
-						result=dao.insertAttachment(session,a);
-					}catch(RuntimeException e){
-						throw new RuntimeException("작성실패");
-					}
-				}
-			}
-		}
-		return result;
+		/*
+		 * int result=dao.insertNotice(session, n); log.info("{}",n.getNoticeNo());
+		 * if(result>0) { if(n.getAttachments()!=null&&n.getAttachments().size()>0) {
+		 * for(Attachment a : n.getAttachments()) { try {
+		 * a.setNoticeNo(n.getNoticeNo()); result=dao.insertAttachment(session,a);
+		 * }catch(RuntimeException e){ throw new RuntimeException("작성실패"); } } } }
+		 */
+		return 0;
 	}
 	
 
