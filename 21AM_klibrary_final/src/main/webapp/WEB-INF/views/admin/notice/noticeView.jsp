@@ -31,11 +31,11 @@
             </div>
             <div class="form-group">
                 <label for="wr_subject">제목</label>
-                <input class="title" type="text" name="notice_title" value="" id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;margin-top:15px;">
+                <input class="title" type="text" name="notice_title" value="${notice.noticeTitle }" id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;margin-top:15px;">
             </div>
 
             <div class="form-group d-cke-none">
-                <textarea id="wr_content" name="notice_content" class="smarteditor2" maxlength="1000" style="width:900px; height: 400px;margin-top:20px;"
+                <textarea id="wr_content" name="notice_content" value="${notice.noticeContent }" maxlength="1000" style="width:900px; height: 400px;margin-top:20px;"
                 placeholder="내용을 입력해주세요">
                 </textarea>
             </div>

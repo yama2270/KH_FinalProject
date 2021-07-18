@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="공지사항관리"/>
 </jsp:include>
@@ -13,14 +15,14 @@
             <div id="notice_table_box">
                 <div id="total_notice" style="margin-left:-3%;">
                     <div>
-                        <span class="category"><a href="">전체</a></span>
-                        <span class="category"><a href="">일정</a></span>
-                        <span class="category"><a href="">행사</a></span>
-                        <span class="category"><a href="">신간</a></span>
-                        <span class="category"><a href="">모집</a></span>
+                        <input type="button" id="button" name="button" value="전체" class="btn btn btn-secondary btn-bg" style="margin-bottom:3%;margin-right:2%;"/>
+                        <input type="button" id="button" name="button" value="일정" class="btn btn btn-secondary btn-bg" style="margin-bottom:3%;margin-right:2%;"/>
+						<input type="button" id="button" name="button" value="행사" class="btn btn btn-secondary btn-bg" style="margin-bottom:3%;margin-right:2%;"/>
+						<input type="button" id="button" name="button" value="신간" class="btn btn btn-secondary btn-bg" style="margin-bottom:3%;margin-right:2%;"/>
+						<input type="button" id="button" name="button" value="모집" class="btn btn btn-secondary btn-bg" style="margin-bottom:3%;margin-right:2%;"/>
                         <div class="dropdown">
                           <div id="dropdown_category">
-                              <select class="odfselect" style="height:30px;margin-left:10%;margin-top:-5%">
+                              <select class="odfselect" style="height:30px;margin-left:10%;margin-top:1%">
                                   <option selected>제목</option>
                                   <option>내용</option>
                                   <option>글쓴이</option>
@@ -39,7 +41,8 @@
                     <thead>
                         <tr style="background-color: #eaeaea;">
                             <th><input type="checkbox" id="allCheck" value="yyy" checked></td>
-                            <th width=225>번호</th>
+                            <th width=100>번호</th>
+                            <th width=100>분류</th>
                             <th width=450>제목</th>
                             <th width=150>작성자</th>
                             <th width=150>작성일</th>
@@ -47,18 +50,19 @@
                         </tr>
                         <c:choose> 
    					<c:when test="${not empty list }">
-   					<c:forEach var="n" items="${list }">
+   					<c:forEach var="notice" items="${list }">
    						<tr>
-   							<td class="cols"><c:out value="${n.noticeNo }"/></td>
+   							<td class="cols"><input type="checkbox"/>
+   							<td class="cols"><c:out value="${notice.noticeNo }"/></td>
+   							<td class="cols"><c:out value="${notice.noticeCate }"/></td>
    							<td class="cols">
-   								<a href="${path }/admin/notice/noticeView.do?no=${n.noticeNo}">
-   									<c:out value="${n.noticeTitle }"/>
+   								<a href="${path }/admin/notice/noticeView.do?no=${notice.noticeNo}">
+   									<c:out value="${notice.noticeTitle }"/>
    								</a>
    							</td>
-   							<td class="cols"><c:out value="${n.userid }"/></td>
-   							<td class="cols"><c:out value="${n.noticeDate }"/></td>
-   							<td class="cols"><c:out value="${n.attachments.size() }"/></td>   							
-   							<td class="cols"><c:out value="${n.noticeCount }"/></td>
+   							<td class="cols"><c:out value="관리자"/></td>
+   							<td class="cols"><c:out value="${notice.noticeDate }"/></td>					
+   							<td class="cols"><c:out value="${notice.noticeCount }"/></td>
    						</tr>
    					</c:forEach>
    				</c:when>
@@ -76,7 +80,7 @@
                 </table>
             </div>
             <a href='<c:url value='/admin/notice/noticeForm.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:84%;margin-top:2%;">작성</a>
-        	<a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:1%;margin-top:2%;">삭제</a>
+        	<input type="button" value="삭제" class="btn btn-outline-dark" style="margin-left:1%;margin-top:2%; onclick="del(${noticeNo })">
             <div id="c_pagebar" class="pagebar">
                 <span><a href="">1</a></span>
                 <span><a href="">2</a></span>
@@ -91,6 +95,15 @@
 
 
     <script>
+    
+ 
+	function del(noticeNo) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='delete?noticeNo='+noticeNo;
+		}
+	}	
+
 
     $(function(){
         // ul show()
@@ -98,6 +111,8 @@
         // ul li 배경화면 
         $(".navOptions").eq(2).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
     })
+    
+   
     
 /*     $(function(){
 

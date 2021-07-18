@@ -12,5 +12,6 @@ public interface AdminNoticeDao {
 	int selectNoticeCount(SqlSessionTemplate session);
 	int insertNotice(SqlSessionTemplate session, Notice n);
 	int insertAttachment(SqlSessionTemplate session, Attachment a);
-	Notice selectNoticeView(SqlSessionTemplate session,int no);
+	Notice selectNoticeView(SqlSessionTemplate session,int noticeNo);
+	int deleteNotice(SqlSessionTemplate session, int noticeNo);
 }

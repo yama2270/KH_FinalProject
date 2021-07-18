@@ -15,7 +15,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @Builder
 
-
 public class Notice {
 	private int noticeNo;
 	private String userId;
@@ -25,5 +24,6 @@ public class Notice {
 	private Date noticeDate;
 	private int noticeCount;
 	private Attachment attachments;
+	private String noticeCate;
 	/* private List<Attachment> attachments=new ArrayList(); */
 }

@@ -14,7 +14,7 @@
         	<form name="noticeFrm" action="${path }/admin/notice/insertNotice.do" method="post" enctype="multipart/form-data" >
             <div class="form-group" style="margin-left:95px;margin-top:30px;">
                 <label for="userId">작성자</label>
-                <input class="userId" type="text" name="user_id" value="${loginMember.userId }" id="userId" placeholder="작성자명" readonly required>
+                <input class="userId" type="text" name="user_id" value="관리자" id="userId" placeholder="작성자명" readonly required>
             </div>
 
         <div id="contents" class="container" style="margin-left:85px;">
@@ -31,19 +31,20 @@
             </div>
             <div class="form-group">
                 <label for="wr_subject">제목</label>
-                <input class="title" type="text" name="notice_title" value="" id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;margin-top:15px;">
+                <input class="title" type="text" name="notice_title"  id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;margin-top:10px;">
             </div>
 
             <div class="form-group d-cke-none">
-                <textarea id="wr_content" name="notice_content" class="smarteditor2" maxlength="1000" style="width:900px; height: 400px;margin-top:20px;"
+                <textarea id="wr_content" name="notice_content"  maxlength="1000" style="width:900px; height: 400px;margin-top:10px;"
                 placeholder="내용을 입력해주세요">
                 </textarea>
             </div>
-            <input type="file" style="width:200px;height:30px;"></a></td></button>
+            <input type="file" name="upFile" style="width:200px;height:30px;"></a></td></button>
+            
             
             <div class="write" style="margin-left:24%">
-            <a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:47%;margin-top:1%;">취소</a>
-            <input type="submit" class="btn btn-outline-dark" style="margin-left:1%;margin-top:1%;" value="작성">
+            <a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:59%;margin-top:-7%;">취소</a>
+            <input type="submit" class="btn btn-outline-dark" style="margin-left:1%;margin-top:-7%;" value="작성">
             </div>
             </form>
     </div>
@@ -63,6 +64,16 @@
             $(".navOptions").eq(2).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
         })
     
+        
+    
+		$(function(){
+			$("[name=upFile]").change(e=>{
+				const fileName=$(e.target).prop('files')[0].name;
+				$(e.target).next(".custom-file-label").html(fileName);
+			});
+		})
+	
+        
 /*             $(function(){
 
         const naviList = $("#lefNavList").children();

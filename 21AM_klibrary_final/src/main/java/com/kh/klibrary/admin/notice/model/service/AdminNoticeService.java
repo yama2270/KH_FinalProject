@@ -8,5 +8,6 @@ public interface AdminNoticeService {
 	List<Notice> selectNoticeList(int cPage, int numPerpage);
 	int selectNoticeCount();
 	int insertNotice(Notice n);
-	Notice selectNoticeView(int no);
+	Notice selectNoticeView(int noticeNo);
+	int deleteNotice(int noticeNo);
 }

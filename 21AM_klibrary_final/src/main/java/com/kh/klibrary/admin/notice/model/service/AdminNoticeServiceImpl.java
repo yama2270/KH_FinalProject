@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.klibrary.admin.notice.model.dao.AdminNoticeDao;
 import com.kh.klibrary.admin.notice.model.vo.Notice;
@@ -35,20 +36,22 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 
 	@Override
 	public int insertNotice(Notice n) throws RuntimeException{
-		/*
-		 * int result=dao.insertNotice(session, n); log.info("{}",n.getNoticeNo());
-		 * if(result>0) { if(n.getAttachments()!=null&&n.getAttachments().size()>0) {
-		 * for(Attachment a : n.getAttachments()) { try {
-		 * a.setNoticeNo(n.getNoticeNo()); result=dao.insertAttachment(session,a);
-		 * }catch(RuntimeException e){ throw new RuntimeException("작성실패"); } } } }
-		 */
-		return 0;
+		int result=dao.insertNotice(session,  n);
+		return result;
+		
 	}
 	
 
 	@Override
-	public Notice selectNoticeView(int no) {
+	public Notice selectNoticeView(int noticeNo) {
 		// TODO Auto-generated method stub
-		return dao.selectNoticeView(session, no);
+		return dao.selectNoticeView(session, noticeNo);
+	}
+
+	@Override
+	public int deleteNotice(int noticeNo) {
+		// TODO Auto-generated method stub
+		
+		return dao.deleteNotice(session,noticeNo);
 	}
 }

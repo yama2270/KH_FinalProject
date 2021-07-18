@@ -31,11 +31,17 @@ public int insertNotice(SqlSessionTemplate session, Notice n) {
 @Override
 public int insertAttachment(SqlSessionTemplate session, Attachment a) {
 	// TODO Auto-generated method stub
-	return session.insert("board.insertAttachment",a);
+	return session.insert("notice.insertAttachment",a);
 }
 @Override
-public Notice selectNoticeView(SqlSessionTemplate session, int no) {
+public Notice selectNoticeView(SqlSessionTemplate session, int noticeNo) {
 	// TODO Auto-generated method stub
-	return session.selectOne("notice.selectNoticeView", no);
+	return session.selectOne("notice.selectNoticeView", noticeNo);
+}
+
+@Override
+public int deleteNotice(SqlSessionTemplate session, int noticeNo) {
+	// TODO Auto-generated method stub
+	return session.delete("notice.deleteNotice", noticeNo);
 }
 }
