@@ -73,6 +73,7 @@ public class SearchServiceImp {
      // RequestEntity<String> rq = new RequestEntity<>(headers, HttpMethod.GET, url);
       ResponseEntity<String> re = restTemplate.exchange(url, HttpMethod.GET,entity, String.class);
       
+      
      return re;
       //return result;
 

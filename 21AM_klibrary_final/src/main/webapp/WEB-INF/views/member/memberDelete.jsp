@@ -11,7 +11,7 @@
 <section id="container">
 <div>
 	<div id="TitleContainer">
-		<h2>통합검색</h2>
+		<h2>회원 탈퇴</h2>
 	</div>
 
 	<div class="list-group-container" >

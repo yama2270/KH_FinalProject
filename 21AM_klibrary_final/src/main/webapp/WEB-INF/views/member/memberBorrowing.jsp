@@ -11,7 +11,7 @@
 <section id="container">
 <div>
 	<div id="TitleContainer">
-		<h2>통합검색</h2>
+		<h2>도서이용내역</h2>
 	</div>
 
 	<div class="list-group-container" >
@@ -67,49 +67,50 @@
 			<hr id="BIC_hr_line2">
 		</div>
 		<div id="Borrwing_List_table">
-			<table> <!-- 데이터 입력시 테이블 구조&CSS 수정 해야됨 -->
-				<tr>
-					<th rowspan="4"><img src="${path }/resources/images/Book_img.png"></th>
-					<th>ISBN : </th>
-					<td>00000000</td>
-				</tr>
-				<tr>
-					<th>제 목 : </th>
-					<td>Spring final Project</td>
-				</tr>
-				<tr>
-					<th>저 자 : </th>
-					<td>홍길동</td>
-				</tr>
-				<tr>
-					<th>대출기간 : </th>
-					<td>2021-07-06 ~ 2021-07-31</td>
-				</tr>
-			</table>
-			<hr>
+		<c:choose>
+			<c:when test="${not empty list }">
+				<c:forEach var="l" items="${list }">
+					<table> <!-- 데이터 입력시 테이블 구조&CSS 수정 해야됨 -->
+						<tr>
+							<th rowspan="7"><img width=185px height=185px src="${path }/resources/images/<c:out value="${l.book.get(0).bookInfo.get(0).bookImg }"/>" ></th>
+							<th>대출 번호 : </th>
+							<td><c:out value="${l.lendingNo }"/></td>
+						</tr>
+						<tr>
+							<th>도서 번호 : </th>
+							<td><c:out value="${l.bookNo }"/></td>
+						</tr>
+						<tr>
+							<th>ISBN 명 : </th>
+							<td><c:out value="${l.book.get(0).bookInfo.get(0).isbnNo }"/></td>
+						</tr>
+						 <tr>
+							<th>도 서 명 : </th>
+							<td><c:out value="${l.book.get(0).bookInfo.get(0).bookName  }"/></td>
+						</tr>
+						<tr>
+							<th>저 자 명 : </th>
+							<td><c:out value="${l.book.get(0).bookInfo.get(0).bookWriter  }"/></td>
+						</tr>
+						<tr>
+							<th>대출/반납일자 : </th>
+							<td><c:out value="${l.lendingDate }"/>~<c:out value="${l.returnDate }"/></td>
+						</tr>
+						<tr>
+							<th>연장 횟수 : </th>
+							<td><c:out value="${l.bookExtend }"/></td>
+						</tr>
+					</table>
+					<hr>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<h2>대여중인 도서가 없습니다.</h2>
+			</c:otherwise>
+		</c:choose>
+		
 		</div>
-		<div id="Borrwing_List_table">
-			<table>
-				<tr>
-					<th rowspan="4"><img src="${path }/resources/images/Book_img.png"></th>
-					<th>ISBN : </th>
-					<td>00000000</td>
-				</tr>
-				<tr>
-					<th>제 목 : </th>
-					<td>Spring final Project</td>
-				</tr>
-				<tr>
-					<th>저 자 : </th>
-					<td>홍길동</td>
-				</tr>
-				<tr>
-					<th>대출기간 : </th>
-					<td>2021-07-06 ~ 2021-07-31</td>
-				</tr>
-			</table>
-			<hr>
-		</div>
+
 		
 		<ul class="pagination" id="UserInfo_Paging_Container">
 		  <li class="page-item"><a class="page-link" href="#">이전</a></li>

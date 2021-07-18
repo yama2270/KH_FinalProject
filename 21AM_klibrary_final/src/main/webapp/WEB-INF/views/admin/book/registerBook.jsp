@@ -167,7 +167,8 @@
         </script>
         
         <script>
-	
+		
+        // navigation 클릭 이벤트 
 	    $(function(){
 	        // ul show()
 	        $(".navOptions").eq(1).show();
@@ -175,9 +176,9 @@
 	        $(".navOptions").eq(1).children().eq(4).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
 	    })
 	    
+        // 팝업창 
 	    const regPopup = function(){
-	    	/* const popOption = ; */
-	    	window.open("${path}/search/wishbookPopup.do","regPopup","width=500,height=500,scrollbars=yes");
+	    	window.open("${path}/admin/book/searchIsbn.do","regPopup","width=600,height=600,scrollbars=yes");
 	    }
     
 	</script>

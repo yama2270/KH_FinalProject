@@ -32,9 +32,11 @@
 	
 	<beans:bean class="com.fasterxml.jackson.databind.ObjectMapper"/>
 	
+	<!-- Jackson 등록 -->
 		<beans:bean id="jacksonConverter"
 	    class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 	    
+	<!-- annotation -->    
 	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 	   <beans:property name="messageConverters">
 	    <beans:list>

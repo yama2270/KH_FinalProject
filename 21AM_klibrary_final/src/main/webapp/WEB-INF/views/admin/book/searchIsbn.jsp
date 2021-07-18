@@ -1,62 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sy.css">
-   
-    <title>희망도서검색팝업창</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/hy.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/dg.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/hj.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/sh.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/sy.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/yh.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/cg.css">
+	
+<title>ISBN 검색</title>
 
-	 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  
+<!-- icon  -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+	rel="stylesheet">
+
+<!-- Jquery -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- bootstrap -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 <body>
-  
-  <div class="popupTitleContainer">
-    <br>
-    <h3 id="popupTitle">희망도서검색</h1>
-    <br>
-  </div>
+
+	<div class="popupTitleContainer">
+		<br>
+		<h3 id="popupTitle">
+			희망도서검색
+			</h1>
+			<br>
+	</div>
 
 
-<div class="search-container">
-  <div class="populor-words">
-  
-    <span>※아래 검색결과에서 원하시는 도서를 클릭하세요.</span>
-    
-    
-  </div>
-  <form action="">
+	<div class="search-container">
+		<div class="populor-words">
 
-    <div class="searchSelect">
-      <label for="searchKey" class="blind"></label>
-      <select id="searchKey" name="searchKey" title="검색 선택">
-        <option value="all">전체</option>
-        <option value="title" selected>도서명</option>
-        <option value="person">저자</option>
-        <option value="publisher">출판사</option>
-        <option value="isbn">ISBN</option>
-      </select>
+			<span>※아래 검색결과에서 원하시는 도서를 클릭하세요.</span>
 
-    </div>
 
-    <input type="text" placeholder="  검색" name="search" id="inputText" onkeypress="if(event.keyCode == 13){fn_searchBook(1); return false;}">
-    <button type="button"  onclick="fn_searchBook(1)"><i class="fa fa-search"></i>검색</button>
-  </form>
-</div>
-<br><br><br><br>
+		</div>
+		<form action="">
 
-<div id="searchResultTable3Div">
+			<div class="searchSelect">
+				<label for="searchKey" class="blind"></label> <select id="searchKey"
+					name="searchKey" title="검색 선택">
+					<option value="all">전체</option>
+					<option value="title" selected>도서명</option>
+					<option value="person">저자</option>
+					<option value="publisher">출판사</option>
+					<option value="isbn">ISBN</option>
+				</select>
 
-<!-- <table id=searchResultTable3 >
+			</div>
+
+			<input type="text" placeholder="  검색" name="search" id="inputText">
+			<button type="button" onclick="fn_searchIsbn()">
+				<i class="fa fa-search"></i>검색
+			</button>
+		</form>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div id="searchResultTable3Div">
+
+		<!-- <table id=searchResultTable3 >
   <tr>
     <td colspan="3" id="searchCaptionTh">
   
@@ -153,35 +182,59 @@
       </td>
     </tr>
   </table> -->
-  
-</div>
-  
-  
-          <div class="closeBtnDiv">
-           
-                <button id="closeBtn" type="submit" onclick="location.href='joinUs.jsp' ">닫기</button> 
-                
-          </div>
-   
-  
-   <br><br>
+
+	</div>
+
+
+	<div class="closeBtnDiv">
+
+		<button id="closeBtn" type="submit"
+			onclick="location.href='joinUs.jsp' ">닫기</button>
+
+	</div>
+
+
+	<br>
+	<br>
 
 </body>
 
 </html>
 <script>
 
+/* var showPageList=function(total, keyword, display){
+	   if(total>200){
+		   total=200;
+	   }
+	   //int pageCount = (total-1)/display+1; <=자바에서 페이지수 구하기
+	   var pageCount=Math.floor((total-1)/display+1);
+	   
+	   var str="<ul class='pagination justify-content-center'>";
+	   /*
+	   	i	start	display
+	   [1]	1		10
+	   [2]	11		10
+	   [3]	21		10
+	   
+	   start = (i-1)*display+1;
+	   */
+	   
+	   /* for(var i=1;i<=pageCount;i++){
+		   var start =(i-1)*display+1;
+		   str+="<li class='page-item' id='a"+start+"'><a class='page-link' onclick='fn_searchBook("+start +")'>"+i;
+		   str+="</a></li>";
+	   }
+	   str+="</ul>";
+	   $('#searchResultTable3Div').append(str);
+}
 
 function fn_searchBook(start){
 	$.get("${pageContext.request.contextPath}/searchpage/searchapiBook?category="+$("#searchKey").val()+"&keyword="+$("#inputText").val()+"&page="+start,data=>{
 		
 		
 		console.log("category테스트"+$("#searchKey").val());
-		console.log(data);
-		/* let obj=JSON.parse(data).documents;
-		let obj2=JSON.parse(data).meta; */
-		let obj=data.documents;
-		let obj2=data.meta;
+		let obj=JSON.parse(data).documents;
+		let obj2=JSON.parse(data).meta;
 		console.log(obj2["total_count"]);
 		
 			var str="<table id='searchResultTable3' >";
@@ -237,7 +290,7 @@ function fn_searchBook(start){
 		      str+="<span>"+obj[i]["authors"]+"</span><br>"
 		      str+="<span>"+obj[i]["publisher"]+"</span><br>"                   
 		      str+="<span>"+obj[i]["datetime"].substring(0,10)+"</span><br> "                 
-		      str+="<span>"+obj[i]["isbn"].substring(0,10)+"</span><br>"
+		      str+="<span>"+obj[i]["isbn"]+"</span><br>"
 		      str+="<span>"+obj[i]["price"]+"원</span><br>"			                                                        
 		      str+="</dd>"
 		      str+="<dd>"
@@ -265,49 +318,17 @@ function fn_searchBook(start){
 		     let display=10;
 		     showPageList(total,keyword,display);
 	}); 
- }
+ } */
  
-var showPageList=function(total, keyword, display){
-	   if(total>200){
-		   total=200;
-	   }
-	   //int pageCount = (total-1)/display+1; <=자바에서 페이지수 구하기
-	   var pageCount=Math.floor((total-1)/display+1);
-	   
-	   var str="<ul class='pagination justify-content-center'>";
-	   /*
-	   	i	start	display
-	   [1]	1		10
-	   [2]	11		10
-	   [3]	21		10
-	   
-	   start = (i-1)*display+1;
-	   */
-	   
-	   for(var i=1;i<=pageCount;i++){
-		   var start =(i-1)*display+1;
-		   str+="<li class='page-item' id='a"+start+"'><a class='page-link' onclick='show("+start+",\""+keyword+"\")'>"+i;
-		   str+="</a></li>";
-	   }
-	   str+="</ul>";
-	   $('#searchResultTable3Div').append(str);
-}
-
- var show=function(start,keyword){
-	   //alert(start+"/"+query);
-	   $('#a'+start).addClass('active');
-	   fn_searchBook(start);
-	   document.getElementById( 'inputText' ).removeAttribute( 'onkeypress' );
-	   document.getElementById( 'inputText' ).setAttribute( 'onkeypress', 'if(event.keyCode == 13){fn_searchBook(1); return false;}' );
-	   
-} 
+ const fn_searchIsbn = function(){
+	$.ajax({
+		url:'${path}/admin/book/searchBook.do',
+		success:function(data){
+			console.log(data);
+		}
+	 })
+ };
+ 
 
 
-	
-	
-
-
-
-
-	
 </script>

@@ -16,7 +16,7 @@
         <div id="header_title">K-도서관</div>
     </header>
     <section id="ad_container">
-        <div class="list-group-container" >
+        <div class="list-group-containerhj" >
             <ul class="list-group">
               <li class="list-group-item" id="menutitle">이용안내</li>
               <li class="list-group-item">공지사항</li>

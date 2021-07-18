@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.klibrary.member.model.dao.MemberTDao;
+import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 import com.kh.klibrary.member.model.vo.MemberT;
 @Service
@@ -34,6 +35,12 @@ public class MemberTServiceImpl implements MemberTService {
 	public List<LendingHistory> selectLHList(String userId) {
 		// TODO Auto-generated method stub
 		return dao.selectLHList(session, userId);
+	}
+	
+	@Override
+	public List<Lending> selectLendingList(String userId, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.selectLendingList(session, userId, cPage, numPerpage);
 	}
 
 }
