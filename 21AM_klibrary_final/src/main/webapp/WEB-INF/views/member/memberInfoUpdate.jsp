@@ -12,7 +12,7 @@
 <section id="container">
 <div>
 	<div id="TitleContainer">
-		<h2>통합검색</h2>
+		<h2>개인 정보 확인</h2>
 	</div>
 
 	<div class="list-group-container" >

@@ -81,8 +81,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberBorrowing.do")
-	public String borrowing(ModelAndView mv, @ModelAttribute("loginMember") MemberT m) {
-		return "member/memberBorrowing";
+	public ModelAndView borrowing(ModelAndView mv, @ModelAttribute("loginMember") MemberT m,
+								 @RequestParam(value="cPage", defaultValue="1") int cPage,
+								 @RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
+		mv.addObject("list", service.selectLendingList(m.getUserId(), cPage, numPerpage));
+		
+		System.out.println(mv.getModel().get("list").toString());
+		mv.setViewName("member/memberBorrowing");
+		return mv;
 	}
 	
 	@RequestMapping("/member/memberBorrowed.do")
