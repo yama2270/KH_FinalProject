@@ -19,8 +19,8 @@
             <ul class="list-group">
               <li class="list-group-item" id="menutitle">이용안내</li>
               <li class="list-group-item"><a href="${path }/notice/noticeList.do">공지사항</a></li>
-              <li class="list-group-item">자주묻는질문</li>
-              <li class="list-group-item">QNA</li>
+              <li class="list-group-item"><a href="${path }/faq/faqList.do">자주묻는질문</a></li>
+              <li class="list-group-item"><a href="${path }/qna/qnaList.do">QNA</a></li>
             </ul>
         </div>
         <div id="he_right">
