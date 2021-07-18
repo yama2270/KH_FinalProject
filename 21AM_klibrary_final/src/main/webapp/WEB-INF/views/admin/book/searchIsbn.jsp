@@ -58,12 +58,9 @@
 
 
 		</div>
-		<form action="">
-
 			<div class="searchSelect">
 				<label for="searchKey" class="blind"></label> <select id="searchKey"
 					name="searchKey" title="검색 선택">
-					<option value="all">전체</option>
 					<option value="title" selected>도서명</option>
 					<option value="person">저자</option>
 					<option value="publisher">출판사</option>
@@ -76,123 +73,17 @@
 			<button type="button" onclick="fn_searchIsbn()">
 				<i class="fa fa-search"></i>검색
 			</button>
-		</form>
 	</div>
 	<br>
 	<br>
 	<br>
 	<br>
 
-	<div id="searchResultTable3Div">
-
-		<!-- <table id=searchResultTable3 >
-  <tr>
-    <td colspan="3" id="searchCaptionTh">
-  
-        <div id="searchCaption">
-            <p>책제목:  검색건수 : 0 건</p>
-        </div>
-
-   </td>
-   </tr>
-
-   <tr>
-       <td colspan="3">
-          <hr>
-       </td>
-   </tr>
-   <tr>
-      <td id="imgContainerDiv" rowspan="2">
-        <img id="bookImg" src="http://image.yes24.com/momo/TopCate530/MidCate010/52990774.jpg" alt="푸른사자와니니">
-      </td>
-      <td colspan="2">
-        <dt class="tit">
-          <span class="cate">도서</span>
-          <a href="#link" onclick="javascript:fnSearchResultDetail(59846269,59846271,'BO'); return false;">푸른 사자 와니니 : 이현 장편동화. 2, 검은 땅의 주인</a>
-          <br><br>
-        </dt>   
-      </td>
-
-
-   </tr>
-  
-  <tr >
-      
-    
-    <td id="bookInfoDiv">
-          <div >
-            <dl>
-                         
-                <dd class="authorData">
-                    <span>저자 </span><br>
-                    <span>발행자</span><br>                    
-                    <span>발행연도</span> <br>                  
-               
-                    
-                        <span>ISBN</span><br>
-                        
-                        <span>가격</span><br>
-                        
-                        <span>
-                            청구기호
-                                                  
-                        </span>                                      
-                </dd>
-                <dd>
-                    <button id="button23" type="submit" onclick="location.href='joinUs.jsp' ">희망도서신청</button>
-                </dd>
-                
-            </dl>
-          </div>
-          
- 
-      </td>
-      <td id="bookInfoDiv2">
-        <div >
-          <dl>
-                         
-              <dd class="authorData2">
-                  <span> 이현 지음 ; 오윤화 그림 </span><br>
-                  <span> 창비</span><br>                    
-                  <span> 2019</span><br>                   
-              
-                  
-                      <span> 9788936443054</span><br>
-                      
-                      <span>10000원</span><br>
-                      
-                      <span>
-                           아 808.3-창48ㅊ-v.305=c.2
-                                                
-                      </span>                                      
-              </dd>
-              <dd>
-                  <br>
-              </dd>
-              
-          </dl>
-        </div>
-
-      </td>
-
-    </tr>
-    <tr>
-      <td colspan="3">
-         <hr>
-      </td>
-    </tr>
-  </table> -->
-
-	</div>
-
-
+	<div id="searchResultTable3Div"></div>
+	<div id='searchPageBar' style="width:800px;height:100px;"></div>
 	<div class="closeBtnDiv">
-
-		<button id="closeBtn" type="submit"
-			onclick="location.href='joinUs.jsp' ">닫기</button>
-
+		<button id="closeBtn" type="submit" onclick="location.href='joinUs.jsp' ">닫기</button>
 	</div>
-
 
 	<br>
 	<br>
@@ -202,47 +93,50 @@
 </html>
 <script>
 
-/* var showPageList=function(total, keyword, display){
-	   if(total>200){
-		   total=200;
-	   }
-	   //int pageCount = (total-1)/display+1; <=자바에서 페이지수 구하기
-	   var pageCount=Math.floor((total-1)/display+1);
-	   
-	   var str="<ul class='pagination justify-content-center'>";
-	   /*
-	   	i	start	display
-	   [1]	1		10
-	   [2]	11		10
-	   [3]	21		10
-	   
-	   start = (i-1)*display+1;
-	   */
-	   
-	   /* for(var i=1;i<=pageCount;i++){
-		   var start =(i-1)*display+1;
-		   str+="<li class='page-item' id='a"+start+"'><a class='page-link' onclick='fn_searchBook("+start +")'>"+i;
-		   str+="</a></li>";
-	   }
-	   str+="</ul>";
-	   $('#searchResultTable3Div').append(str);
-}
-
-function fn_searchBook(start){
-	$.get("${pageContext.request.contextPath}/searchpage/searchapiBook?category="+$("#searchKey").val()+"&keyword="+$("#inputText").val()+"&page="+start,data=>{
+ 
+ 
+ /* Ajax로 도서정보 검색하기 */
+ const fn_searchIsbn = function(cPage){
+	 
+	 /* 청구기호 가져오기 */
+	 /* 도서검색 */
+	 
+		/* $.ajax({
+	 		url:'https://www.nl.go.kr/NL/search/openApi/search.do?key=1d86b36fbb82daa3f582eea8d7fb0da3d7a6605c95a3f4a0eae32bbb0db43e5c&apiType=json&srchTarget=title&kwd=미움받을 용기&pageSize=10&pageNum=1&sort=&category=%EB%8F%84%EC%84%9C',
+			success:function(data){
+				
+				/* isbn 파싱 처리 후 도서 겅색  */
+			/* 	console.log(data);
+				
+			}
+		}) */ 
 		
-		
-		console.log("category테스트"+$("#searchKey").val());
-		let obj=JSON.parse(data).documents;
-		let obj2=JSON.parse(data).meta;
-		console.log(obj2["total_count"]);
-		
-			var str="<table id='searchResultTable3' >";
+			// 검색키워드 
+			let target = $("#searchKey").val();
+	 		let kwd = $("#inputText").val();
+	 		
+	 		// 페이징처리 
+	 		if(cPage == null){
+	 			console.log("cPage null");
+	 			cPage = 1;
+	 		}
+	 		
+	 		console.log(cPage);
+			// 카카오 api
+			$.ajax({
+			url:'https://dapi.kakao.com/v3/search/book?query='+kwd+'&target='+target+'&page='+cPage,
+			beforeSend : function(req){
+				req.setRequestHeader("Authorization","KakaoAK 810a4c928e125944de3726d437eb789f");
+				},		
+			success:function(data){
+				
+			  // 검색 결과 헤더 
+			  let str="<table id='searchResultTable3' >";
 			  str+="<tr>";
 			
 			  str+="<td colspan='3' id='searchCaptionTh'>"			  
 			  str+="<div id='searchCaption'>"
-			  str+="검색건수 :"+obj2["total_count"]+"건</p>"
+			  str+="검색건수 :"+data.meta.pageable_count+"건</p>"
 			  str+="</div>"
 			  str+="</td>"
 			  str+="</tr>"
@@ -251,17 +145,17 @@ function fn_searchBook(start){
 			  str+="<hr>"
 			  str+="</td>"
 			  str+="</tr>"
-			  
-		for(let i=0;i<obj.length;i++){			
-			
+			   
+			  // 검색 결과 파싱처리 
+ 			$.each(data.documents,function(i,v){
 			  str+="<tr>"
 			  str+="<td id='imgContainerDiv' rowspan='2'>"
-			  str+="<img id='bookImg' src='"+obj[i]["thumbnail"]+"' alt='준비중' onclick='fn_bookDetail("+obj[i]["isbn"]+")'>"
+			  str+="<img id='bookImg' src='"+v["thumbnail"]+"' alt='준비중' onclick='fn_bookDetail("+v["isbn"]+")'>"
 			  str+="</td>"
 			  str+="<td colspan='2'>"
 			  str+="<dt class='tit'>"
 			  //str+="<span class='cate'>도서</span>"
-			  str+="<a onclick='fn_bookDetail("+obj[i]["isbn"]+")'>"+obj[i]["title"]+"</a>"
+			  str+="<a onclick='fn_bookDetail("+v["isbn"]+")'>"+v["title"]+"</a>"
 			  str+="<br><br>"
 			  str+="</dt>" 
 			  str+="</td>"
@@ -278,7 +172,7 @@ function fn_searchBook(start){
 		      str+="<span>가격</span><br>"			                        		                                            
 		      str+="</dd>"
 		      str+="<dd>"
-		      str+="<button id='button23' type='submit' onclick='fn_bookRequest("+obj[i]["isbn"]+")'>희망도서신청</button>"
+		      str+="<button id='button23' type='submit' onclick='fn_bookRequest("+v["isbn"]+")'>희망도서신청</button>"
 		      str+="</dd>"         
 		      str+="</dl>"
 		      str+="</div>"			          			 
@@ -287,11 +181,11 @@ function fn_searchBook(start){
 		      str+="<div >"
 		      str+="<dl>"			                         
 		      str+="<dd class='authorData2'>"
-		      str+="<span>"+obj[i]["authors"]+"</span><br>"
-		      str+="<span>"+obj[i]["publisher"]+"</span><br>"                   
-		      str+="<span>"+obj[i]["datetime"].substring(0,10)+"</span><br> "                 
-		      str+="<span>"+obj[i]["isbn"]+"</span><br>"
-		      str+="<span>"+obj[i]["price"]+"원</span><br>"			                                                        
+		      str+="<span>"+v["authors"]+"</span><br>"
+		      str+="<span>"+v["publisher"]+"</span><br>"                   
+		      str+="<span>"+v["datetime"].substring(0,10)+"</span><br> "                 
+		      str+="<span>"+v["isbn"].substring(0,10)+"</span><br>"
+		      str+="<span>"+v["price"]+"원</span><br>"			                                                        
 		      str+="</dd>"
 		      str+="<dd>"
 		      str+="<br>"
@@ -300,35 +194,67 @@ function fn_searchBook(start){
 		      str+="</div>"
 		      str+="</td>"
 		      str+="</tr>"
-		     str+="<tr>"
+		      str+="<tr>"
 		      str+="<td colspan='3'>"
 		      str+="<hr>"
 		      str+="</td>"
 		      str+="</tr>"
-		}
-		
-		     str+="</table>"	
-		     
-		    	 $('#searchResultTable3Div').html(str).show(500); 
-		     
-		     $('#spanTextInfo').text("※아래 검색결과에서 원하시는 희망도서를 클릭하세요.").show(500);
-		     
-		     let total=obj2["total_count"];
-		     let keyword=$("#inputText").val();
-		     let display=10;
-		     showPageList(total,keyword,display);
-	}); 
- } */
+				})
+		      str+="</table>"	
+		      
+		    // 페이징처리 
+			let numPerPage =10;
+			let totalData = data.meta.pageable_count;
+			let totalPage = Math.round(totalData/numPerPage);					
+			
+			let pageBarSize = 5;
+			let pageNo = Math.floor((cPage-1)/pageBarSize)*pageBarSize+1;
+			let pageEnd = pageNo+pageBarSize-1;
+			
+			let pageBar = "";
+			pageBar += "<ul class='pagination justifycontent-center pagination-sm' style='margin-top:20px;margin-left:270px'>";
+			
+			if(pageNo == 1){
+				pageBar += "<li class='page-item disabled'>";
+				pageBar += "<a class='page-link' href='#'>이전</a>";
+				pageBar += "</li>";
+			} else {
+				pageBar += "<li class='page-item'>";
+				pageBar += "<a class='page-link' href='javascript:fn_searchIsbn("+(pageNo-1)+")'>이전</a>";
+				pageBar += "</li>";
+			}
+			
+			while(!(pageNo>pageEnd || pageNo>totalPage)){
+				if(cPage == pageNo){
+					pageBar += "<li class='page-item active'>";
+					pageBar += "<a class='page-link' href='#'>"+pageNo+"</a>";
+					pageBar += "</li>";
+				} else {
+					pageBar += "<li class='page-item'>";
+					pageBar += "<a class='page-link' href='javascript:fn_searchIsbn("+pageNo+")'>"+pageNo+"</a>";
+					pageBar += "</li>";
+				}
+				pageNo++;
+			}
+			
+			if(pageNo>totalPage){
+				pageBar += "<li class='page-item disabled'>";
+				pageBar += "<a class='page-link'>다음</a>";
+				pageBar += "</li>";
+			} else {
+				pageBar += "<li class='page-item'>";
+				pageBar += "<a class='page-link' href='javascript:fn_searchIsbn("+pageNo+")'>다음</a>";
+				pageBar += "</li>";
+			}
+			
+			pageBar += "</ul>";
+			
+			$("#searchResultTable3Div").html(str);		
+			$("#searchPageBar").html(pageBar);
+				}//success 
+			}) // aJax
+		}; // function 
  
- const fn_searchIsbn = function(){
-	$.ajax({
-		url:'${path}/admin/book/searchBook.do',
-		success:function(data){
-			console.log(data);
-		}
-	 })
- };
- 
-
-
+	
+			
 </script>
