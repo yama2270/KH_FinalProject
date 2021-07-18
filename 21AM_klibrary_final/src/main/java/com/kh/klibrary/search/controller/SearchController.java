@@ -5,6 +5,7 @@ import java.util.Map;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -122,9 +123,20 @@ public ModelAndView searchNaverApi( ModelAndView mv) throws JsonProcessingExcept
 
 @RequestMapping(value="/searchpage/searchapiBook",produces = "application/json;charset=UTF-8")
 @ResponseBody
-public String searchApiBook(@RequestParam Map param) {
+public String searchApiBook(
+		@RequestParam("keyword") String keyword,
+		@RequestParam("category") String category,
+		@RequestParam(value="page",required=false,defaultValue="1") int page,
+		@RequestParam(value="size",required=false,defaultValue="10") int size) {
 	
-	return service.searchNaverApi(param).getBody();
+	System.out.println(page);
+	System.out.println(size);
+	/*
+	 * int pageNo = Integer.parseInt(page); int sizeNo = Integer.parseInt(size);
+	 */
+	 
+	 return service.searchNaverApi(keyword,category,page,size).getBody(); 
+	
 }
 
 //@RequestMapping(value="/searchpage/searchapiBook",produces = "application/text;charset=UTF-8")

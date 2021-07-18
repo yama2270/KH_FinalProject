@@ -14,7 +14,7 @@ section#content		{min-height:600px;}
 #UserInfo_Container{ /*마이페이지 컨텐츠 전체 div*/
 	width:1500px;
 	margin-left:400px;
-	margin-top:10px; 
+	margin-top:100px; 
 }
 #UserInfo_Paging_Container{ /*마이페이지 페이징 바 */
 	margin-top:100px;
@@ -23,7 +23,7 @@ section#content		{min-height:600px;}
 #Ok_Cancel_btn{ /*마이페이지 확인/취소 버튼*/
 	text-align:center;
 	margin-top:100px;
-	margin-left:150px;
+	margin-left:-150px;
 }
 #h2_line2{ /*h2 설정*/
 	border:gray 2px solid;
@@ -74,7 +74,7 @@ section#content		{min-height:600px;}
 	border:black 1px solid;
 	width:700px;
 	weight:300px;
-	margin-left:450px;
+	margin-left:350px;
 	margin-top:200px;
 	text-align:center;
 	background-color: lightgray;
@@ -102,6 +102,7 @@ section#content		{min-height:600px;}
 	border:gray 2px solid;
 	width:1000px;
 	weight:300px;
+	margin-top:50px;
 	margin-left:150px;
 	text-align:center;
 }

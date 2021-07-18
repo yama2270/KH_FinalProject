@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface SearchService {
 
-	ResponseEntity<String> searchNaverApi(Map param);
+	ResponseEntity<String> searchNaverApi(String keyword,String category,int page,int size);
 	
 	
 }

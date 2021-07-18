@@ -3,58 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/> 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="문의사항 등록"/>
 </jsp:include>   
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sh.css">
-    <!-- fontawsome CDN 불러오기 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-    <title>공지사항 관리</title>
-</head>
-    <section id="ad_container">
-        <div id="ad_left">
-            <div id="leftNav">
-                <ul id="lefNavList">
-                    <li>회원관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>회원정보</li>
-                            <li>탈퇴요청</li>
-                        </ul>
-                    </li>                            
-                    <li>도서관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>전체도서목록</li>
-                            <li>도서등록</li>
-                            <li>도서대출현황</li>
-                            <li>도서예약현황</li>
-                        </ul>
-                    </li>
-                    <li>게시글 관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>공지사항 관리</li>
-                            <li>문의사항 관리</li>
-                            <li>자주하는 질문</li>
-                        </ul>
-                    </li>
-                    <li>열람실 관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>전체조회</li>
-                            <li>열람실A</li>
-                            <li>열람실B</li>
-                            <li>열람실C</li>
-                            <li>열람실D</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div id="ad_right">
             <div id="contHeader">문의사항 답변</div>
             <div id="contbody">
@@ -96,9 +47,14 @@
     
     <script>
 
-      // navigation 이벤트
-    
     $(function(){
+        // ul show()
+        $(".navOptions").eq(2).show();
+        // ul li 배경화면 
+        $(".navOptions").eq(2).children().eq(1).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+    })
+    
+/*     $(function(){
 
 const naviList = $("#lefNavList").children();
 const options = $(".navOptions")
@@ -128,9 +84,9 @@ $(options).click((e)=>{
     return false;
 })
 
-})
+}) */
     
 
     </script>
     
-    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+    <jsp:include page="/WEB-INF/views/admin/common/footer.jsp"/>
