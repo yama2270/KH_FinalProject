@@ -120,7 +120,7 @@ public ModelAndView searchNaverApi( ModelAndView mv) throws JsonProcessingExcept
 	return mv;
 }
 
-@RequestMapping(value="/searchpage/searchapiBook",produces = "application/text;charset=UTF-8")
+@RequestMapping(value="/searchpage/searchapiBook",produces = "application/json;charset=UTF-8")
 @ResponseBody
 public String searchApiBook(@RequestParam Map param) {
 	
