@@ -26,10 +26,10 @@
         <div id="he_right">
             <div id="titleheadname">공지사항</div>
             <div id="contbody" class="sech">
-                <form>
+                <form action="">
                     <select required class="fontsize">
-                        <option value="">제목</option>
-                        <option value="">내용</option>
+                        <option value="제목">제목</option>
+                        <option value="내용">내용</option>
                     </select>
                     <input type="text" class="textbox">
                     <input type="submit" value="검색" class="fontsize">
@@ -49,8 +49,12 @@
                     	<c:when test="${not empty list }">
                     		<c:forEach var="n" items="${list }">
                     			<tr>
-                    				<td class="head2"><c:out value="${n.noticeNo }"/></td>
-                    				<td class="head"><c:out value="${n.noticeTitle }"/></td>
+                    				<td class="head2">
+                    				<c:out value="${n.noticeNo }"/></td>
+                    				<td class="head">
+	                    				<a href="${path }/notice/noticeEnd.do?no=${n.noticeNo }"/>
+	                    				<c:out value="${n.noticeTitle }"/>
+                    				</td>
                     				<td class="head2"><c:out value="${n.noticeFile }"/></td>
                     				<td class="head3"><c:out value="${n.noticeDate }"/></td>
                     				<td class="head2"><c:out value="${n.noticeCount }"/></td>
