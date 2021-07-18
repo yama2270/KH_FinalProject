@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="qna리스트"/>
@@ -17,7 +19,10 @@
         <div id="header_title">K-도서관</div>
     </header>
     <section id="ad_container">
-        <div class="list-group-container" >
+    	<!-- totalContents 선언 -->
+    	
+    	<c:set var="totalContents" value="${requestScope.list.size() }"/>
+        <div class="list-group-containerhj" >
             <ul class="list-group">
               <li class="list-group-item" id="menutitle">이용안내</li>
               <li class="list-group-item">공지사항</li>
@@ -36,8 +41,8 @@
                     <input type="text" class="textbox">
                     <input type="submit" value="검색" class="fontsize">
                 </form>
-                <button class="writing">글쓰기</button>
             </div>
+                <button class="writing" onclick="Location.assign('${path}/qna/qnaForm.do;')">글쓰기</button>
             <div class="tableMapqa">
                 <table class="table">
                     <tr>
@@ -48,9 +53,38 @@
                         <th class="head2">조회수</th>
                         <th class="head2">처리상태</th>
                     </tr>
+                    <c:choose>
+	                     <c:when test="${not empty requestScope.list }">
+	                     	<c:forEach var="q" items="${requestScope.list }">
+	                     		<tr onclick="fn_qnaView(event);">
+	                     			<td class="qnaNo"><c:out value="${q.qnaNo }"/></td>
+	                     			<td><c:out value="${q.qnaTitle }"/></td>
+	                     			<td><c:out value="${q.attachments.size() }"/></td>
+	                     			<td><c:out value="${q.qnaDate }"/></td>
+	                     			<td><c:out value="${q.qnaCount }"/></td>
+	                     			<td><c:out value="${q.qnaState }"/></td>
+	                     		</tr>	
+	                     	</c:forEach>
+	                     </c:when>
+	                     <c:otherwise>
+	                     	<tr colspan="6">
+	                     		<td> 조회된 자료가 없습니다 </td>
+	                     	</tr>
+	                     </c:otherwise>	
+                    </c:choose>
                 </table>
+                <div id="pagebar-container">
+    				${ pagebar }
+    			</div>
             </div>
         </div>
+        
+        <script>
+        	const fn_qnaView = (e) => {
+        		let qnaNo =$(e.target).parent().find("td.boardNo").text();
+        		location.assign("${path}/qna/qnaView.do?no=" + qnaNo);
+        	}
+        </script>
 </section>        
 </body>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

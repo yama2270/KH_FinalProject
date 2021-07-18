@@ -1,4 +1,26 @@
 @charset "UTF-8";
+#contHeaderfq{
+	
+}
+
+#ad_right_qae{
+    float:right;
+}
+
+.nameq{
+    border-bottom: gray 1px solid;
+}
+#ad_right_qf{
+    width:1200px;
+    float:right;
+}
+.tableMapqa{
+    margin: auto;
+}
+#ad_right_fq {
+    width : 1200px;
+    float : right;
+  }
 
 
 
@@ -40,10 +62,11 @@ text-align:center;
 color:white;
 background-color:blue;
 }
-  .list-group-container{
+
+.list-group-container{
   margin-top: 5%;
   margin-left: 1%;
-  width:17.8%;
+  width:250px;
   float:left;
   
   
