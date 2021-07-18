@@ -3,20 +3,36 @@
 <mapper namespace="notice">
   <resultMap type="notice" id="noticeMap">
   	<id column="NOTICE_NO" property="noticeNo"/>
+  	<result column="USER_ID" property="userId"/>
   	<result column="NOTICE_TITLE" property="noticeTitle"/>
   	<result column="NOTICE_CONTENT" property="noticeContent"/>
   	<result column="NOTICE_FILE" property="noticeFile"/>
   	<result column="NOTICE_DATE" property="noticeDate"/>
   	<result column="NOTICE_COUNT" property="noticeCount"/>
+  	<result column="NOTICE_CATE" property="noticeCate"/>
   </resultMap>
   
   <select id="selectNoticeList" resultMap="noticeMap">
   	SELECT * 
   	FROM NOTICE
-  	ORDER BY NOTICE_DATE DESC
+  	ORDER BY NOTICE_NO DESC
   </select>
   
   <select id="selectNoticeCount" resultType="_int">
   	SELECT COUNT(*) FROM NOTICE
   </select>
+  
+  <insert id="insertNotice">
+		INSERT INTO NOTICE 
+		VALUES(NOTICE_SEQ.NEXTVAL ,#{noticeTitle},#{noticeContent},#{noticeFile},
+		default,0,#{noticeCate})
+		<selectKey keyProperty="noticeNo" resultType="_int" order="AFTER">
+			SELECT NOTICE_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+  
+  <delete id="deleteNotice" parameterType="int">
+  	DELETE FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
+  </delete>
+  
 </mapper>
