@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.klibrary.admin.notice.model.dao.AdminNoticeDao;
 import com.kh.klibrary.admin.notice.model.vo.Notice;
-import com.kh.klibrary.admin.notice.model.vo.Attachment;
+import com.kh.klibrary.faq.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
 

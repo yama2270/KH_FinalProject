@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.klibrary.admin.notice.model.service.AdminNoticeService;
 import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.common.PageFactory;
-import com.kh.klibrary.admin.notice.model.vo.Attachment;
+import com.kh.klibrary.faq.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
 

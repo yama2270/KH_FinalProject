@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
-import com.kh.klibrary.admin.notice.model.vo.Attachment;
 import com.kh.klibrary.admin.notice.model.vo.Notice;
+import com.kh.klibrary.faq.model.vo.Attachment;
 
 public interface AdminNoticeDao {
 	List<Notice> selectNoticeList(SqlSessionTemplate session, int cPage, int numPerpage);

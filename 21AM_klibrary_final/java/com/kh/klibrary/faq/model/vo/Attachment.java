@@ -1,4 +1,4 @@
-package com.kh.klibrary.admin.notice.model.vo;
+package com.kh.klibrary.faq.model.vo;
 
 import java.sql.Date;
 
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Attachment {
 	private int attachmentNo;
-	private int noticeNo;
+	private int qnaNo;
 	private String originalFilename;
 	private String renamedFilename;
 	private Date uploadDate;

@@ -2,6 +2,8 @@ package com.kh.klibrary.admin.notice.model.vo;
 
 import java.sql.Date;
 
+import com.kh.klibrary.faq.model.vo.Attachment;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
