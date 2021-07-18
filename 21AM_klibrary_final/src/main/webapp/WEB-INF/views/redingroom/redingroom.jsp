@@ -18,30 +18,30 @@
     </header>
 
     <section id="ad_container">
-        <div id="ad_left">
-            <div id="leftNav">
-                <ul id="lefNavList">
-                    <li>이용시간</li>                            
-                    <li>편의시설 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>자료복사</li>
-                            <li>주차안내</li>
-                        </ul>
-                    </li>
-                    <li>열람실 안내<i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>열람실A</li>
-                            <li>열람실B</li>
-                            <li>열람실C</li>
-                            <li>열람실D</li>
-                            <li>이용안내</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div id="ad_right">
-            <div id="contHeader">열람실안내 -> 좌석예약</div>
+        <div class="leftmenu" >
+	            <ul class="list-group">
+	              <li class="list-group-item" id="menutitle">이용안내</li>
+	              <li class="list-group-item">이용시간</li>
+	              <li class="list-group-item">편의시설 <i class="fas fa-plus"></i>
+	              	<ul class="submenu">
+	                    <li>자료복사</li>
+	                    <li>주차안내</li>
+                    </ul>
+	              </li>
+	              <li class="list-group-item">열람실 안내<i class="fas fa-plus"></i>
+	              	<ul class="submenu">
+	                    <li>열람실 A</li>
+	                    <li>열람실 B</li>
+	                    <li>열람실 C</li>
+	                    <li>열람실 D</li>
+	                    <li>열람실 E</li>
+	                    <li>열람실이용안내</li>
+                    </ul>
+	              </li>
+	            </ul>
+        	</div>
+        <div id="he_right">
+            <div id="titleheadname">열람실안내 -> 좌석예약</div>
             <div id="contbody">
                 <div class="roombody">
                     <div class="roomhead">
@@ -76,37 +76,36 @@
     
     // navigation 이벤트
     
-    $(function(){
+   $(function(){
 
-    const naviList = $("#lefNavList").children();
-    const options = $(".navOptions")
-    
-    $(naviList).click((e)=>{
-        $(naviList).children().not('i').hide();
-        $(naviList).children().filter('i').attr("class","fas fa-plus");
-        $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
-        $(e.target).find("ul").show();
-        $(e.target).find("i").attr("class","fas fa-minus");
+        const naviList = $(".list-group").children();
+        const options = $(".submenu")
+
+        $(naviList).click((e)=>{
+            $(naviList).children().not('i').hide();
+            $(naviList).children().filter('i').attr("class","fas fa-plus");
+            $(options).children().css({"font-size":"15px","fontWeight":"normal"})
+            $(e.target).find("ul").show();
+            $(e.target).find("i").attr("class","fas fa-minus");
+        })
+
+        // navigation - option 이벤트 
+
+        $(options).mouseover((e)=>{
+            $(e.target).css("textDecoration","underline");
+        })
+
+        $(options).mouseout((e)=>{
+            $(e.target).css("textDecoration","");
+        })
+
+        $(options).click((e)=>{
+            $(options).children().css({"font-size":"15px","fontWeight":"normal"})
+            $(e.target).css({"font-size":"20px","fontWeight":"bold"})
+            return false;
+        })
+
     })
-
-    // navigation - option 이벤트 
-
-    $(options).mouseover((e)=>{
-        $(e.target).css("textDecoration","underline");
-    })
-
-    $(options).mouseout((e)=>{
-        $(e.target).css("textDecoration","");
-    })
-
-    $(options).click((e)=>{
-        
-        $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
-        $(e.target).css({"font-size":"20px","fontWeight":"bold","backgroundColor":"#7DA5E1"})
-        return false;
-    })
-})
-
 </script>
 
 

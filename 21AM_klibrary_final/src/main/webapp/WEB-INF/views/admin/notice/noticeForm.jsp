@@ -3,53 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>    
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="공지사항상세"/>
 </jsp:include>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sh.css">
-    <!-- fontawsome CDN 불러오기 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-    <title>공지사항 상세</title>
 </head>
-  	<body id="ad_body">
-    <section id="ad_container">
-        <div id="ad_left">
-            <div id="leftNav">
-                <ul id="lefNavList">
-                    <li>회원관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>회원정보</li>
-                            <li>탈퇴요청</li>
-                        </ul>
-                    </li>                            
-                    <li>도서관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>전체도서목록</li>
-                            <li>도서등록</li>
-                            <li>도서대출현황</li>
-                            <li>도서예약현황</li>
-                        </ul>
-                    </li>
-                    <li>게시글 관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>공지사항 관리</li>
-                            <li>문의사항 관리</li>
-                            <li>자주하는 질문</li>
-                        </ul>
-                    </li>
-                    <li>열람실 관리 <i class="fas fa-plus"></i>
-                        <ul class="navOptions">
-                            <li>전체조회</li>
-                            <li>열람실A</li>
-                            <li>열람실B</li>
-                            <li>열람실C</li>
-                            <li>열람실D</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div id="ad_right">
             <div id="contHeader">공지사항 작성</div>
             <div id="contbody">
@@ -60,7 +17,7 @@
                 <input class="userId" type="text" name="user_id" value="${loginMember.userId }" id="userId" placeholder="작성자명" readonly required>
             </div>
 
-        <div id="contents" class="container">
+        <div id="contents" class="container" style="margin-left:85px;">
             <div class="form-group">
             <label for="ca_name">분류</label>
              <select class="form-control form-control-sm w-auto" id="ca_name" name="ca_name" required>
@@ -74,18 +31,18 @@
             </div>
             <div class="form-group">
                 <label for="wr_subject">제목</label>
-                <input class="title" type="text" name="notice_title" value="" id="wr_subject" required size="100" maxlength="200" placeholder="제목">
+                <input class="title" type="text" name="notice_title" value="" id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;margin-top:15px;">
             </div>
 
             <div class="form-group d-cke-none">
-                <textarea id="wr_content" name="notice_content" class="smarteditor2" maxlength="1000" style="width:900px; height: 400px;"
+                <textarea id="wr_content" name="notice_content" class="smarteditor2" maxlength="1000" style="width:900px; height: 400px;margin-top:20px;"
                 placeholder="내용을 입력해주세요">
                 </textarea>
             </div>
             <input type="file" style="width:200px;height:30px;"></a></td></button>
             
             <div class="write" style="margin-left:24%">
-            <a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:60%;margin-top:1%;">취소</a>
+            <a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:47%;margin-top:1%;">취소</a>
             <input type="submit" class="btn btn-outline-dark" style="margin-left:1%;margin-top:1%;" value="작성">
             </div>
             </form>
@@ -99,9 +56,14 @@
         <script>
 
             
-      // navigation 이벤트
+        $(function(){
+            // ul show()
+            $(".navOptions").eq(2).show();
+            // ul li 배경화면 
+            $(".navOptions").eq(2).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+        })
     
-            $(function(){
+/*             $(function(){
 
         const naviList = $("#lefNavList").children();
         const options = $(".navOptions")
@@ -132,9 +94,9 @@
         })
 
         })
-            
+             */
 
 
         </script>
         
-        <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+        <jsp:include page="/WEB-INF/views/admin/common/footer.jsp"/>

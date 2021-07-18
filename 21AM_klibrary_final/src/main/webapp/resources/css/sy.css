@@ -153,7 +153,7 @@ background-color:blue;
  
 
 .search-container button {
-  float: right;
+  /* float: right; */
   padding: 6px 10px;
   margin-top: 8px;
   margin-right: 45px;
@@ -811,7 +811,7 @@ background-color:blue;
   font-size: 17px;
   border: 1px solid black;
   border-radius: 5px;
-  width:70%;
+  width:500px;
   margin-left:2%;
   margin-right:0px;
 
@@ -825,7 +825,7 @@ background-color:blue;
 
 
 .search-container button {
-  float: right;
+  /* float: right; */
   padding: 6px 10px;
   margin-top: 0;
   margin-right: 45px;
