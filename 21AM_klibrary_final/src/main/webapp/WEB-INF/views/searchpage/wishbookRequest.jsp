@@ -31,8 +31,8 @@
             </td>
             <td colspan="3">
 
-                <input type="text" name="bookName" placeholder="내용을 입력해주세요" id="bookinfoinput">
-                <button id="button22" type="submit" onclick="location.href='joinUs.jsp'">검색</button>
+                <input type="text" name="bookName" placeholder="내용을 입력해주세요" class="bookinfoinput" onkeypress="if(event.keyCode == 13){fn_searchPopup(); return false;}" id="bookinfoinput">
+                <button id="button22" type="submit" onclick="fn_searchPopup();">검색</button>
                 
             </td>
             
@@ -131,5 +131,32 @@
 	
 	
 </html>
+<script>
+function fn_searchPopup(){
+	if($(".bookinfoinput").val()==""){
+		alert("검색어를 입력해주세요")		
+	}
+	console.log($(".bookinfoinput").val());
+	if($(".bookinfoinput").val()!=""){
+		let keyword2=$(".bookinfoinput").val();
+		
+		 const url=${path }+"/searchpage/wishbookPopup";
+		
+		 
+		 window.open("${path}/klibrary/searchpage/wishbookPopup?keyword2="+keyword2,"regPopup","width=800,height=600,scrollbars=yes");
+	    	
+	    	
+	}
+	
+}
+
+$('#bookinfoinput').not($(".bookinfoinput")).focus(function(){
+	if($(".bookinfoinput").val()==""){
+		
+		alert("도서명을 먼저 검색해주세요.")
+	}
+})
+
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
