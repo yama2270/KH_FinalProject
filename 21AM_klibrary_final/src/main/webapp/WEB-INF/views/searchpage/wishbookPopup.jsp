@@ -177,8 +177,11 @@ function fn_searchBook(start){
 		
 		
 		console.log("category테스트"+$("#searchKey").val());
-		let obj=JSON.parse(data).documents;
-		let obj2=JSON.parse(data).meta;
+		console.log(data);
+		/* let obj=JSON.parse(data).documents;
+		let obj2=JSON.parse(data).meta; */
+		let obj=data.documents;
+		let obj2=data.meta;
 		console.log(obj2["total_count"]);
 		
 			var str="<table id='searchResultTable3' >";
