@@ -1,6 +1,22 @@
 @charset "UTF-8";
-#contHeaderfq{
-	
+#he_right{
+	width: 1200px;
+	float: right;
+}
+#titleheadname{
+  width : 1150px;
+  /* margin : auto; */
+  margin-top : 40px;
+  border-bottom : 2px gray solid;
+  /* padding-left : 10px; */
+  font-size : 30px;
+}
+.leftmenu {
+    margin-top: 50px;
+    margin-left: 20px;
+    width: 250px;
+    float: left;
+    text-align: center;
 }
 
 #ad_right_qae{
@@ -40,7 +56,6 @@
   }
 .qabody {
     margin-top:1%;
-    margin-left:23%;
     /* background-color: gray; */
     height: 703px;
     width: 1150px;
@@ -49,7 +64,6 @@
 #contHeaderd {
 width: 1150px;
 		/* margin: auto; */
-		margin-left: 23%;
 		margin-top: 40px;
 		border-bottom: 2px gray solid;
 		/* padding-left: 10px; */

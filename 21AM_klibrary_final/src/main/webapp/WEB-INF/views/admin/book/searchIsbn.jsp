@@ -51,7 +51,7 @@
 	</div>
 
 
-	<div class="search-container">
+	<div class="pop-container">
 		<div class="populor-words">
 
 			<span>※아래 검색결과에서 원하시는 도서를 클릭하세요.</span>
@@ -80,7 +80,7 @@
 	<br>
 
 	<div id="searchResultTable3Div"></div>
-	<div id='searchPageBar' style="width:800px;height:100px;"></div>
+	<div id='searchPageBar' style="width:800px;height:70px;"></div>
 	<div class="closeBtnDiv">
 		<button id="closeBtn" type="submit" onclick="location.href='joinUs.jsp' ">닫기</button>
 	</div>
@@ -212,7 +212,7 @@
 			let pageEnd = pageNo+pageBarSize-1;
 			
 			let pageBar = "";
-			pageBar += "<ul class='pagination justifycontent-center pagination-sm' style='margin-top:20px;margin-left:270px'>";
+			pageBar += "<ul class='pagination justifycontent-center pagination-sm' style='margin-top:20px;margin-left:240px'>";
 			
 			if(pageNo == 1){
 				pageBar += "<li class='page-item disabled'>";

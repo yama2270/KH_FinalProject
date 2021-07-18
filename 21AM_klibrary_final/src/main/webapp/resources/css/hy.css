@@ -840,3 +840,11 @@
   font-size : 10px;
   cursor: none;
 }
+
+/* 관리자 - content - 도서검색  content */
+
+.pop-container {
+    margin-top: 5%;
+    width: 800px;
+    display: inline-block;
+}

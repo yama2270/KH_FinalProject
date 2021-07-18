@@ -27,43 +27,43 @@
     </header>
 
     <section id="ad_container">
-        <div class="list-group-containerhj" >
+        <div class="leftmenu" >
             <ul class="list-group">
-              <li class="list-group-item" id="menutitle">이용안내</li>
-              <li class="list-group-item">공지사항</li>
-              <li class="list-group-item">자주묻는질문</li>
-              <li class="list-group-item">QNA</li>
-            </ul>
+              	<li class="list-group-item" id="menutitle">이용안내</li>             
+              	<li class="list-group-item"><a href="${path}/notice/noticeList.do">공지사항</a></li>
+            	<li class="list-group-item"><a href="${path }/faq/faqList.do">자주묻는질문</a></li>	
+            	<li class="list-group-item"><a href="${path }/qna/qnaList.do">QNA</a></li>
+            </ul>	
           </div>
-        <div id="ad_right_qae">
-            <div id="contHeader">Q&A 묻고답하기</div>
-            <div id="contbody">
-                <div class="titlebody">
-                    <div class="titlename">
-                        <table>
-                            <tr>
-                                <td class="tabletitle"><c:out value="${q.qnaTitle }"/></td>
-                                <td class="tabletitle"><c:out value="${q.qnaDate }"/></td>
-                            </tr>
-                            <tr>
-                                <td class="tabletitle"><c:out value="${q.qnaWriter }"/></td>
-                                <td class="tabletitle"><c:out value="${q.qnaCount }"/></td>
-                            </tr>
-                        </table>
-                        <div class="border"></div>
-                        <div class="coment">답글</div>
-                        <div class="newcoment">
-                            <div>
-                                작성자
-                                <input type="text" class="comenttext">
-                                <input type="submit" value="등록" class="submitbutton">
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+	        <div id="he_right">
+	            <div id="contHeader">Q&A 묻고답하기</div>
+	            <div id="contbody">
+	                <div class="titlebody">
+	                    <div class="titlename">
+	                        <table>
+	                            <tr>
+	                                <td class="tabletitle"><c:out value="${q.qnaTitle }"/></td>
+	                                <td class="tabletitle"><c:out value="${q.qnaDate }"/></td>
+	                            </tr>
+	                            <tr>
+	                                <td class="tabletitle"><c:out value="${q.qnaWriter }"/></td>
+	                                <td class="tabletitle"><c:out value="${q.qnaCount }"/></td>
+	                            </tr>
+	                        </table>
+	                        <div class="border"></div>
+	                        <div class="coment">답글</div>
+	                        <div class="newcoment">
+	                            <div>
+	                                작성자
+	                                <input type="text" class="comenttext">
+	                                <input type="submit" value="등록" class="submitbutton">
+	                            </div>
+	                            
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
     </section>
 
 <script>

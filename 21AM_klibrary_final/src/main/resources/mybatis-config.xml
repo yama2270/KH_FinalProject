@@ -20,6 +20,8 @@
 			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo.Faq" alias="faq"/> -->
 			<typeAlias type="com.kh.klibrary.admin.notice.model.vo.Notice" alias="notice"/>
 			<typeAlias type="com.kh.klibrary.member.model.vo.MemberT" alias="membert"/>
+			<typeAlias type="com.kh.klibrary.qna.model.vo.Attachment" alias="attachment"/>
+			<typeAlias type="com.kh.klibrary.qna.model.vo.Qna" alias="qna"/>
 			
 			<typeAlias type="com.kh.klibrary.qna.model.vo.Qna" alias="qna"/>
          	<typeAlias type="com.kh.klibrary.qna.model.vo.Attachment" alias="Attachment"/> 

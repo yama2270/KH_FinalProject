@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+
+<% 
+  request.setCharacterEncoding("UTF-8");
+ String keyword2 = request.getParameter("keyword2");
+
+%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -199,7 +205,15 @@ function fn_searchBook(start){
 			  str+="</td>"
 			  str+="</tr>"
 			  
-		for(let i=0;i<obj.length;i++){			
+		for(let i=0;i<obj.length;i++){	
+			let bookName=obj[i]["title"];
+			let bookWriter=obj[i]["authors"];
+			let bookCompany=obj[i]["publisher"];
+			let isbnNo=obj[i]["isbn"];
+			let bookPrice=obj[i]["price"];
+			let bookDate=obj[i]["datetime"];
+			
+			/* document.getElementById( 'button23' ).setAttribute( 'onclick', 'fn_bookRequest()' ); */
 			
 			  str+="<tr>"
 			  str+="<td id='imgContainerDiv' rowspan='2'>"
@@ -225,7 +239,7 @@ function fn_searchBook(start){
 		      str+="<span>가격</span><br>"			                        		                                            
 		      str+="</dd>"
 		      str+="<dd>"
-		      str+="<button id='button23' type='submit' onclick='fn_bookRequest("+obj[i]["isbn"]+")'>희망도서신청</button>"
+		      str+="<button id='button23' type='submit' onclick='fn_bookRequest()' >희망도서신청</button>"
 		      str+="</dd>"         
 		      str+="</dl>"
 		      str+="</div>"			          			 
@@ -295,6 +309,7 @@ var showPageList=function(total, keyword, display){
 
  var show=function(start,keyword){
 	   //alert(start+"/"+query);
+	   console.log("start테스트"+start+keyword);
 	   $('#a'+start).addClass('active');
 	   fn_searchBook(start);
 	   document.getElementById( 'inputText' ).removeAttribute( 'onkeypress' );
@@ -303,10 +318,25 @@ var showPageList=function(total, keyword, display){
 } 
 
 
-	
+	$(function(){
+		   let keyword2="<%=keyword2%>";
+		if(keyword2!=""){
+			document.getElementById( 'inputText' ).value=keyword2;
+			console.log(keyword2);
+			
+			fn_searchBook(1);
+		 } 
+	});
 	
 
+	function fn_bookRequest(bookName,bookWriter,bookCompany,isbnNo,bookPrice,bookDate){
+		console.log(bookName+","+bookWriter);
+		
+		opener.document.getElementById("bookinfoinput").first().value = bookName;
 
+		window.close();
+		
+	}
 
 
 	
