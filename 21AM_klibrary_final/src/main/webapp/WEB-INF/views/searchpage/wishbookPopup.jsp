@@ -165,7 +165,7 @@
   
           <div class="closeBtnDiv">
            
-                <button id="closeBtn" type="submit" onclick="location.href='joinUs.jsp' ">닫기</button> 
+                <button id="closeBtn" type="submit" onclick="fn_close()">닫기</button> 
                 
           </div>
    
@@ -206,14 +206,14 @@ function fn_searchBook(start){
 			  str+="</tr>"
 			  
 		for(let i=0;i<obj.length;i++){	
-			let bookName=obj[i]["title"];
+			/* let bookName=obj[i]["title"];
 			let bookWriter=obj[i]["authors"];
 			let bookCompany=obj[i]["publisher"];
 			let isbnNo=obj[i]["isbn"];
 			let bookPrice=obj[i]["price"];
-			let bookDate=obj[i]["datetime"];
+			let bookDate=obj[i]["datetime"]; */
 			
-			/* document.getElementById( 'button23' ).setAttribute( 'onclick', 'fn_bookRequest()' ); */
+			
 			
 			  str+="<tr>"
 			  str+="<td id='imgContainerDiv' rowspan='2'>"
@@ -239,7 +239,8 @@ function fn_searchBook(start){
 		      str+="<span>가격</span><br>"			                        		                                            
 		      str+="</dd>"
 		      str+="<dd>"
-		      str+="<button id='button23' type='submit' onclick='fn_bookRequest()' >희망도서신청</button>"
+		      str+="<button id='button23' type='submit'";
+		      str+=" onclick='fn_bookRequest(\""+obj[i]["title"]+"\",\""+obj[i]["authors"]+"\",\""+obj[i]["publisher"]+"\",\""+obj[i]["isbn"]+"\",\""+obj[i]["price"]+"\",\""+obj[i]["datetime"]+"\")' >희망도서신청</button>"
 		      str+="</dd>"         
 		      str+="</dl>"
 		      str+="</div>"			          			 
@@ -282,7 +283,58 @@ function fn_searchBook(start){
  }
  
 var showPageList=function(total, keyword, display){
-	   if(total>200){
+	/* let numPerPage =10;
+	let totalData = total;
+	let totalPage = Math.round(totalData/numPerPage);
+            let cPage = 1;	
+	
+	let pageBarSize = 5;
+	let pageNo = Math.floor((cPage-1)/pageBarSize)*pageBarSize+1;
+	let pageEnd = pageNo+pageBarSize-1;
+	
+	let pageBar = "";
+	pageBar += "<ul class='pagination justifycontent-center pagination-sm' style='margin-top:20px;margin-left:240px'>";
+	
+	if(pageNo == 1){
+		pageBar += "<li class='page-item disabled'>";
+		pageBar += "<a class='page-link' href='#'>이전</a>";
+		pageBar += "</li>";
+	} else {
+		pageBar += "<li class='page-item'>";
+		pageBar += "<a class='page-link' href='javascript:fn_searchBook("+(pageNo-1)+")'>이전</a>";
+		pageBar += "</li>";
+	}
+	
+	while(!(pageNo>pageEnd || pageNo>totalPage)){
+		if(cPage == pageNo){
+			pageBar += "<li class='page-item active'>";
+			pageBar += "<a class='page-link' href='#'>"+pageNo+"</a>";
+			pageBar += "</li>";
+		} else {
+			pageBar += "<li class='page-item'>";
+			pageBar += "<a class='page-link' href='javascript:fn_searchBook("+pageNo+")'>"+pageNo+"</a>";
+			pageBar += "</li>";
+		}
+		pageNo++;
+	}
+	
+	if(pageNo>totalPage){
+		pageBar += "<li class='page-item disabled'>";
+		pageBar += "<a class='page-link'>다음</a>";
+		pageBar += "</li>";
+	} else {
+		pageBar += "<li class='page-item'>";
+		pageBar += "<a class='page-link' href='javascript:fn_searchBook("+pageNo+")'>다음</a>";
+		pageBar += "</li>";
+	}
+	
+	pageBar += "</ul>";
+	
+	
+
+                           $('#searchResultTable3Div').append(pageBar); */
+	
+	  if(total>200){
 		   total=200;
 	   }
 	   //int pageCount = (total-1)/display+1; <=자바에서 페이지수 구하기
@@ -298,13 +350,13 @@ var showPageList=function(total, keyword, display){
 	   start = (i-1)*display+1;
 	   */
 	   
-	   for(var i=1;i<=pageCount;i++){
+	    for(var i=1;i<=pageCount;i++){
 		   var start =(i-1)*display+1;
 		   str+="<li class='page-item' id='a"+start+"'><a class='page-link' onclick='show("+start+",\""+keyword+"\")'>"+i;
 		   str+="</a></li>";
 	   }
 	   str+="</ul>";
-	   $('#searchResultTable3Div').append(str);
+	   $('#searchResultTable3Div').append(str); 
 }
 
  var show=function(start,keyword){
@@ -332,12 +384,26 @@ var showPageList=function(total, keyword, display){
 	function fn_bookRequest(bookName,bookWriter,bookCompany,isbnNo,bookPrice,bookDate){
 		console.log(bookName+","+bookWriter);
 		
-		opener.document.getElementById("bookinfoinput").first().value = bookName;
-
-		window.close();
+		window.opener.bookRequestInfo(bookName,bookWriter,bookCompany,isbnNo,bookPrice,bookDate);
+		
+		/* window.opener.document.getElementsByClassName('bookinfoinput1').value = bookName;
+		window.opener.document.getElementsByClassName('bookinfoinput2').value = bookWriter;
+		window.opener.document.getElementsByClassName('bookinfoinput3').value = bookCompany;
+		window.opener.document.getElementsByClassName('bookinfoinput4').value = isbnNo;
+		window.opener.document.getElementsByClassName('bookinfoinput5').value = bookPrice;
+		window.opener.document.getElementsByClassName('bookinfoinput6').value = bookDate; */
+		
+		 window.close(); 
 		
 	}
 
 
+	function fn_close(){
+		
+		window.close();
+	}
+	
+	
+	
 	
 </script>
