@@ -6,6 +6,10 @@
 		INSERT INTO MEMBER VALUES(#{userId},#{userPassword},#{userName},#{email},#{birthDate},#{address},#{phone},default)
 	</insert>
 	
+	<select id="selectMember1" resultType="Member">
+		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
+	</select>
+	
 	<select id="selectMember" resultMap="MemberT">
 		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
 	</select>

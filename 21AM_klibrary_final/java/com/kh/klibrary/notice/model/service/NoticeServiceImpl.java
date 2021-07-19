@@ -29,4 +29,33 @@ public class NoticeServiceImpl implements NoticeService {
 		return dao.selectNoticeCount(session);
 	}
 
+	@Override
+	public Notice selectNoticeView(int no) {
+		// TODO Auto-generated method stub
+		return dao.selectNoticeView(session,no);
+	}
+
+	@Override
+	public List<Notice> searchnotice(String text) {
+		// TODO Auto-generated method stub
+		return dao.searchnotice(session,text);
+	}
+
+	@Override
+	public List<Notice> searchnoticecontent(String text) {
+		// TODO Auto-generated method stub
+		return dao.searchnoticecontent(session,text);
+	}
+	
+	
+	
+	
+
+
+	
+
+	
+	
+	
+
 }

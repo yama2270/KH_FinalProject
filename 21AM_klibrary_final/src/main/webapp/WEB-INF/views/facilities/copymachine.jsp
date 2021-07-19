@@ -6,9 +6,6 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
-<body id="ad_body">
 <body id="ad_body">
     <header id="ad_header">
             <div id="header_title">K-도서관</div>
@@ -22,21 +19,21 @@
         <div class="leftmenu" >
 	            <ul class="list-group">
 	              <li class="list-group-item" id="menutitle">이용안내</li>
-	              <li class="list-group-item">이용시간</li>
+	              <li class="list-group-item" onclick="location.assign('${path}/notice/booktime.do')">이용시간</li>
 	              <li class="list-group-item">편의시설 <i class="fas fa-plus"></i>
 	              	<ul class="submenu">
-	                    <li>자료복사</li>
-	                    <li>주차안내</li>
+	                    <li onclick="location.assign('${path}/notice/copymachine.do')">자료복사</li>
+	                    <li onclick="location.assign('${path}/notice/parkinglot.do')">주차안내</li>
                     </ul>
 	              </li>
 	              <li class="list-group-item">열람실 안내<i class="fas fa-plus"></i>
 	              	<ul class="submenu">
-	                    <li>열람실 A</li>
-	                    <li>열람실 B</li>
-	                    <li>열람실 C</li>
-	                    <li>열람실 D</li>
-	                    <li>열람실 E</li>
-	                    <li>열람실이용안내</li>
+	                    <li onclick="location.assign('${path})">열람실 A</li>
+	                    <li onclick="location.assign('${path})">열람실 B</li>
+	                    <li onclick="location.assign('${path})">열람실 C</li>
+	                    <li onclick="location.assign('${path})">열람실 D</li>
+	                    <li onclick="location.assign('${path})">열람실 E</li>
+	                    <li onclick="location.assign('${path}/notice/redingroomnotice.do')">열람실이용안내</li>
                     </ul>
 	              </li>
 	            </ul>

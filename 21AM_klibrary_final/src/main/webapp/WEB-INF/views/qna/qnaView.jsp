@@ -42,15 +42,15 @@
 	                    <div class="titlename">
 	                        <table>
 	                            <tr>
-	                                <td class="tabletitle"><c:out value="${q.qnaTitle }"/></td>
-	                                <td class="tabletitle"><c:out value="${q.qnaDate }"/></td>
+	                                <td class="tabletitle">제목 : <c:out value="${qna.qnaTitle }"/></td>
+	                                <td class="tabletitle">작성일 : <c:out value="${qna.qnaDate }"/></td>
 	                            </tr>
 	                            <tr>
-	                                <td class="tabletitle"><c:out value="${q.qnaWriter }"/></td>
-	                                <td class="tabletitle"><c:out value="${q.qnaCount }"/></td>
+	                                <td class="tabletitle">작성자 : <c:out value ="${qna.userId }"/></td>
+	                                <td class="tabletitle">조회수 : <c:out value ="${qna.qnaCount }"/></td>
 	                            </tr>
 	                        </table>
-	                        <div class="border"></div>
+	                        <div class="border">내용: <c:out value="${qna.qnaContent }"/></div>
 	                        <div class="coment">답글</div>
 	                        <div class="newcoment">
 	                            <div>

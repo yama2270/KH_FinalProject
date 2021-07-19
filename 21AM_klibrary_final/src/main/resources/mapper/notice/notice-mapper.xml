@@ -3,10 +3,9 @@
 <mapper namespace="notice">
   <resultMap type="notice" id="noticeMap">
   	<id column="NOTICE_NO" property="noticeNo"/>
-  	<result column="USER_ID" property="userId"/>
   	<result column="NOTICE_TITLE" property="noticeTitle"/>
   	<result column="NOTICE_CONTENT" property="noticeContent"/>
-  	<result column="NOTICE_FILE" property="noticeFile"/>
+  	<result column="NOTICE_FILE" property="originalFile"/>
   	<result column="NOTICE_DATE" property="noticeDate"/>
   	<result column="NOTICE_COUNT" property="noticeCount"/>
   	<result column="NOTICE_CATE" property="noticeCate"/>
@@ -22,10 +21,9 @@
   	SELECT COUNT(*) FROM NOTICE
   </select>
   
-  <insert id="insertNotice">
+	<insert id="insertNotice">
 		INSERT INTO NOTICE 
-		VALUES(NOTICE_SEQ.NEXTVAL ,#{noticeTitle},#{noticeContent},#{noticeFile},
-		default,0,#{noticeCate})
+		VALUES(NOTICE_SEQ.NEXTVAL,#{noticeTitle},#{noticeContent},#{originalFile},SYSDATE,0,#{noticeCate})
 		<selectKey keyProperty="noticeNo" resultType="_int" order="AFTER">
 			SELECT NOTICE_SEQ.CURRVAL FROM DUAL
 		</selectKey>
@@ -34,5 +32,28 @@
   <delete id="deleteNotice" parameterType="int">
   	DELETE FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
   </delete>
+  
+  <select id="selectNoticeView" resultMap="noticeMap">
+  	SELECT *
+  	FROM NOTICE
+  	WHERE NOTICE_NO=#{no}
+  </select>
+  
+  <select id="searchnotice" resultMap="noticeMap">
+  	SELECT * 
+  	FROM NOTICE
+  	WHERE NOTICE_TITLE=#{text}
+  </select>
+  
+  <select id="searchnoticecontent" resultMap="noticeMap">
+  	SELECT *
+  	FROM NOTICE
+  	WHERE NOTICE_CONTENT=#{text}
+  </select>
+  
+  
+  
+  
+  
   
 </mapper>

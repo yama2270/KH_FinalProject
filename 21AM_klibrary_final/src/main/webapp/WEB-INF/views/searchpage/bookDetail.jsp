@@ -2,6 +2,10 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="도서상세페이지"/>
 </jsp:include>
+<%   request.setCharacterEncoding("UTF-8");
+String pageId = request.getParameter("pageId");
+
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -18,11 +22,11 @@
 <div class="list-group-container" >
   <!-- <h2 id="title">자료검색</h2> -->
   <ul class="list-group">
-    <li class="list-group-item" id="menutitle1">자료검색</li>
-    <li class="list-group-item">통합검색</li>
-    <li class="list-group-item">상세검색</li>
-    <li class="list-group-item">주제별검색</li>
-    <li class="list-group-item">희망도서신청</li>
+    <li class="list-group-item" id="menutitle">자료검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/bookSearch.do')">통합검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/detailSearch.do')">상세검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/categorySearch.do')">주제별검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/wishbook.do')">희망도서신청</li>
   </ul>
 </div>
 
@@ -173,4 +177,37 @@
 	
 	
 </html>
+<script>
+$(function(){
+	console.log(window.location.href );
+	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'){
+		  console.log(document.getElementsByClassName('list-group-item')[1]);
+		  document.getElementsByClassName('list-group-item')[1].style.background = "";
+		  document.getElementsByClassName('list-group-item')[2].style.background = "";
+		  document.getElementsByClassName('list-group-item')[3].style.background = "";
+		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
+		  
+	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'){
+		  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
+		  document.getElementsByClassName('list-group-item')[2].style.background = "";
+		  document.getElementsByClassName('list-group-item')[3].style.background = "";
+		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'){
+		  document.getElementsByClassName('list-group-item')[1].style.background = "";
+		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
+		  document.getElementsByClassName('list-group-item')[3].style.background = "";
+		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'){
+		  document.getElementsByClassName('list-group-item')[1].style.background = "";
+		  document.getElementsByClassName('list-group-item')[2].style.background = "";
+		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
+		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+	  }
+	
+	 
+	   
+	})
+
+
+</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	

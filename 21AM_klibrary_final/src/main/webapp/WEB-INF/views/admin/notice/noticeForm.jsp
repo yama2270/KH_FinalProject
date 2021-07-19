@@ -11,42 +11,41 @@
             <div id="contHeader">공지사항 작성</div>
             <div id="contbody">
         </div>
-        	<form name="noticeFrm" action="${path }/admin/notice/insertNotice.do" method="post" enctype="multipart/form-data" >
-            <div class="form-group" style="margin-left:95px;margin-top:30px;">
-                <label for="userId">작성자</label>
-                <input class="userId" type="text" name="user_id" value="관리자" id="userId" placeholder="작성자명" readonly required>
-            </div>
-
-        <div id="contents" class="container" style="margin-left:85px;">
-            <div class="form-group">
-            <label for="ca_name">분류</label>
-             <select class="form-control form-control-sm w-auto" id="ca_name" name="ca_name" required>
-                    <option value="">선택하세요</option>
-                    <option value="일정">일정</option>
-                    <option value="행사">행사</option>
-                    <option value="신간">신간</option>
-                    <option value="모집">모집</option>
-            </select>
-            
-            </div>
-            <div class="form-group">
-                <label for="wr_subject">제목</label>
-                <input class="title" type="text" name="notice_title"  id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;margin-top:10px;">
-            </div>
-
-            <div class="form-group d-cke-none">
-                <textarea id="wr_content" name="notice_content"  maxlength="1000" style="width:900px; height: 400px;margin-top:10px;"
-                placeholder="내용을 입력해주세요">
-                </textarea>
-            </div>
-            <input type="file" name="upFile" style="width:200px;height:30px;"></a></td></button>
-            
-            
-            <div class="write" style="margin-left:24%">
+        	<form name="noticeForm" action="${path }/admin/notice/insertNotice.do" method="post" enctype="multipart/form-data" >
+	            <div class="form-group" style="margin-left:95px;margin-top:30px;">
+	                <label for="userId">작성자</label>
+	                <!-- <input class="userId" type="text" value="관리자" placeholder="작성자명" readonly required> -->
+	            </div>
+	
+	       	 <div id="contents" class="container" style="margin-left:85px;">
+	            <div class="form-group">
+	            <label for="ca_name">분류</label>
+	             <select class="form-control form-control-sm w-auto" name="noticeCate" required>
+	                    <option value="">선택하세요</option>
+	                    <option value="일정">일정</option>
+	                    <option value="행사">행사</option>
+	                    <option value="신간">신간</option>
+	                    <option value="모집">모집</option>
+	            </select>
+	            
+	            </div>
+	            <div class="form-group">
+	                <label for="wr_subject">제목</label>
+	                <input class="title" type="text" name="noticeTitle"  id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;margin-top:10px;">
+	            </div>
+	
+	            <div class="form-group d-cke-none">
+	                <textarea id="wr_content" name="noticeContent"  maxlength="1000" style="width:900px; height: 400px;margin-top:10px;"
+	                placeholder="내용을 입력해주세요"></textarea>
+	            </div>
+	            <input type="file" name="noticeFile" style="width:200px;height:30px;">
+	            
+	            
+	            <div class="write" style="margin-left:24%">
             <a href='<c:url value='/admin/notice/noticeList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:59%;margin-top:-7%;">취소</a>
-            <input type="submit" class="btn btn-outline-dark" style="margin-left:1%;margin-top:-7%;" value="작성">
-            </div>
-            </form>
+	            <input type="submit" class="btn btn-outline-dark" style="margin-left:1%;margin-top:-7%;" value="작성">
+	            </div>
+          	</form>
     </div>
 
 

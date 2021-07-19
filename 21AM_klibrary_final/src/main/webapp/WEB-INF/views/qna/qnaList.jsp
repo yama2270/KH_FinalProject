@@ -63,13 +63,24 @@
 		                    <c:choose>
 			                     <c:when test="${not empty requestScope.list }">
 			                     	<c:forEach var="q" items="${requestScope.list }">
-			                     		<tr onclick="fn_qnaView(event);">
+			                     		<!-- <tr onclick="fn_qnaView(event);"> -->
+			                     		<tr>	
 			                     			<td class="qnaNo"><c:out value="${q.qnaNo }"/></td>
-			                     			<td><c:out value="${q.qnaTitle }"/></td>
-			                     			<td><c:out value="${q.attachments.size() }"/></td>
+			                     			<td><a href="${ path }/qna/qnaView.do?no=${q.qnaNo }"><c:out value="${q.qnaTitle }"/></a></td>
+				                     		<td>
+					                     		<c:choose>
+					                     		<c:when test="${q.attachments.size() >0 && q.attachments[0].originalFileName!=null }">
+					                     			<c:out value="${q.attachments.size() }"/>
+					                     		</c:when>
+					                     		<c:otherwise>
+					                     			<c:out value="없음"/>
+					                     		</c:otherwise>
+					                     		</c:choose>
+				                     		</td>
 			                     			<td><c:out value="${q.qnaDate }"/></td>
 			                     			<td><c:out value="${q.qnaCount }"/></td>
 			                     			<td><c:out value="${q.qnaState }"/></td>
+			                     		
 			                     		</tr>	
 			                     	</c:forEach>
 			                     </c:when>

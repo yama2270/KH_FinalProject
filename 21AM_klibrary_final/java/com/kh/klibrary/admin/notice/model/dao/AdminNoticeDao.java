@@ -10,8 +10,7 @@ import com.kh.klibrary.faq.model.vo.Attachment;
 public interface AdminNoticeDao {
 	List<Notice> selectNoticeList(SqlSessionTemplate session, int cPage, int numPerpage);
 	int selectNoticeCount(SqlSessionTemplate session);
-	int insertNotice(SqlSessionTemplate session, Notice n);
-	int insertAttachment(SqlSessionTemplate session, Attachment a);
+	int insertNotice(SqlSessionTemplate session, Notice notice);
 	Notice selectNoticeView(SqlSessionTemplate session,int noticeNo);
 	int deleteNotice(SqlSessionTemplate session, int noticeNo);
 }

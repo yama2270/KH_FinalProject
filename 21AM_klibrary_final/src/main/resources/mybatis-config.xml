@@ -27,5 +27,9 @@
          	<typeAlias type="com.kh.klibrary.qna.model.vo.Attachment" alias="Attachment"/> 
          	
          	
+         	
+         	<typeAlias type="com.kh.klibrary.member.model.vo.Member" alias ="member"/>
+         	
+
 	</typeAliases> 
 </configuration>
