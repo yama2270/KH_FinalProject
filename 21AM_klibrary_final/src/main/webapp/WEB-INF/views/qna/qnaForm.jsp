@@ -16,15 +16,15 @@
         <div id="header_title">K-도서관</div>
     </header>
     <section id="ad_container">
-        <div class="list-group-containerhj" >
+        <div class="leftmenu" >
             <ul class="list-group">
               <li class="list-group-item" id="menutitle">이용안내</li>
-              <li class="list-group-item">공지사항</li>
-              <li class="list-group-item">자주묻는질문</li>
-              <li class="list-group-item">QNA</li>
+              	<li class="list-group-item"><a href="${path }/notice/noticeList.do">공지사항 </a></li>
+              	<li class="list-group-item"><a href="${path }/faq/faqList.do">자주묻는질문</a></li>	
+              	<li class="list-group-item"><a href="${path }/qna/qnaList.do">QNA</a></li>
             </ul>
           </div>
-        <div id="ad_right_qf">
+        <div id="he_right">
             <div id="contHeader">QNA 묻고답하기 -> 글작성</div>
             <div id="contbody" class="sech"></div>
                 <div class="borderbody">
@@ -57,12 +57,16 @@
                         </table>
                         <textarea name="" id="" cols="110" rows="10" class="textarea"></textarea>
                         <input type="submit" value="등록" class="newtext" style= "margin-left: 35%;">
-                        <button type="onclick" id="backtext">취소</button>
+                        <a href="${path }/qna/qnaList.do">	
+                        	<button class="qf-cancel" >취소</button>
+                        </a>		
                     </form>
                 </div>
             </div>
 </section>        
-      
+
+<script>
+</script>  
 </body>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 

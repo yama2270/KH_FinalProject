@@ -18,20 +18,20 @@
         <div class="leftmenu" >
             <ul class="list-group">
               <li class="list-group-item" id="menutitle">이용안내</li>
-              <li class="list-group-item"><a href="${path }/notice/noticeList.do">공지사항</a></li>
-              <li class="list-group-item">자주묻는질문</li>
-              <li class="list-group-item">QNA</li>
+              <li class="list-group-item" onclick="location.assign('${path}/notice/noticeList.do')">공지사항</li>
+              <li class="list-group-item" onclick="location.assign('${path}/faq/faqList.do')">자주묻는질문</li>
+              <li class="list-group-item" onclick="location.assign('${path}/qna/qnaList.do')">QNA</li>
             </ul>
         </div>
         <div id="he_right">
             <div id="titleheadname">공지사항</div>
             <div id="contbody" class="sech">
-                <form action="">
-                    <select required class="fontsize">
+                <form action="${path }/notice/noticesearch.do" method="post">
+                    <select required class="fontsize" name="searchType">
                         <option value="제목">제목</option>
                         <option value="내용">내용</option>
                     </select>
-                    <input type="text" class="textbox">
+                    <input type="text" class="textbox" name="text">
                     <input type="submit" value="검색" class="fontsize">
                 </form>
             </div>
@@ -76,5 +76,14 @@
             </div>
         </div>
     </section>
+    <script>
+    $(function(){
+	   $('.list-group-item').click(function(){
+	      $('.list-group-item').removeClass('on')
+	        $(this).addClass('on')
+	   })
+	   
+	})
+</script>
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

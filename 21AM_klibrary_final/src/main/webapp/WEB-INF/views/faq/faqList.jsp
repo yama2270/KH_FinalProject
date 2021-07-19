@@ -23,15 +23,15 @@
         <div id="header_title">K-도서관</div>
     </header>
     <section id="ad_container">
-        <div class="list-group-container" >
+        <div class="leftmenu" >
             <ul class="list-group">
-              <li class="list-group-item" id="menutitle">이용안내</li>
-              <li class="list-group-item">공지사항</li>
-              <li class="list-group-item">자주묻는질문</li>
-              <li class="list-group-item">QNA</li>
+           		<li class="list-group-item" id="menutitle">이용안내</li>            
+              	<li class="list-group-item"><a href="${path}/notice/noticeList.do">공지사항</a></li>  	
+            	<li class="list-group-item"><a href="${path }/faq/faqList.do"></a>자주묻는질문</li>	
+            	<li class="list-group-item"><a href="${path }/qna/qnaList.do">QNA</a></li>	
             </ul>
           </div>
-        <div id="ad_right_fq">
+        <div id="he_right">
             <div id="contHeaderd">FAQ 자주하는질문</div>
             <div id="contbody">
                 <div class="qabody">

@@ -35,4 +35,27 @@
   	DELETE FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
   </delete>
   
+  <select id="selectNoticeView" resultMap="noticeMap">
+  	SELECT *
+  	FROM NOTICE
+  	WHERE NOTICE_NO=#{no}
+  </select>
+  
+  <select id="searchnotice" resultMap="noticeMap">
+  	SELECT * 
+  	FROM NOTICE
+  	WHERE NOTICE_TITLE=#{text}
+  </select>
+  
+  <select id="searchnoticecontent" resultMap="noticeMap">
+  	SELECT *
+  	FROM NOTICE
+  	WHERE NOTICE_CONTENT=#{text}
+  </select>
+  
+  
+  
+  
+  
+  
 </mapper>

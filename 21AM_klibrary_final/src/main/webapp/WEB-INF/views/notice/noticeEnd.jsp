@@ -21,8 +21,8 @@
             <ul class="list-group">
               <li class="list-group-item" id="menutitle">이용안내</li>
               <li class="list-group-item"><a href="${path }/notice/noticeList.do">공지사항</a></li>
-              <li class="list-group-item">자주묻는질문</li>
-              <li class="list-group-item">QNA</li>
+              <li class="list-group-item"><a href="${path }/faq/faqList.do">자주묻는질문</a></li>
+              <li class="list-group-item"><a href="${path }/qna/qnaList.do">QNA</a></li>
             </ul>
         </div>
         <div id="he_right">
@@ -31,26 +31,35 @@
                 <table class="table2">
                     <tr class="line">
                         <td class="line3">제목</td>
-                        <td class="line2">ddd</td>
+                        <td class="line2"><c:out value="${list.noticeTitle }"/></td>
                     </tr>
                     <tr class="line">
                         <td class="line3">등록일</td>
-                        <td class="line2">ddd</td>
+                        <td class="line2"><c:out value="${list.noticeDate }"/></td>
                     </tr>
-                    <tr class="line">
-                        <td class="line3">첨부파일</td>
-                        <td class="line2">dddd</td>
-                    </tr>
+	                    <tr class="line">
+	                        <td class="line3">첨부파일</td>
+	                        <td class="line2">
+					        	
+	                
+	                        </td>
+	                    </tr>
                     <tr class="line">
                         <td class="line3">조회수</td>
-                        <td class="line2">0</td>
+                        <td class="line2"><c:out value="${list.noticeCount }"/></td>
                     </tr>
                 </table>
-                <div class="textbox2"></div>
-                <button class="backbutton">목록으로</button>
+                <div class="contentbox"><c:out value="${list.noticeContent }"/></div>
+                <button class="backbutton" onclick="backbutton();">목록으로</button>
             </div>
         </div>
     </section>
+    
+    <script>
+    	const backbutton=()=>{
+    		location.assign("${path}/notice/noticeList.do")
+    	}
+    </script>
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

@@ -14,9 +14,8 @@
                 <div id="header_logout">로그아웃</div>
         </div>
     </header>
-
-    <section id="ad_container">
-        <div class="leftmenu" >
+        <section id="ad_container">
+           <div class="leftmenu" >
 	            <ul class="list-group">
 	              <li class="list-group-item" id="menutitle">이용안내</li>
 	              <li class="list-group-item" onclick="location.assign('${path}/notice/booktime.do')">이용시간</li>
@@ -39,41 +38,49 @@
 	            </ul>
         	</div>
         <div id="he_right">
-            <div id="titleheadname">편의시설 -> 자료복사</div>
+            <div id="titleheadname">편의시설 -> 주차안내</div>
             <div id="contbody">
-                <div class="notice">
-                    <div class="noticehead">이용안내</div>
+                <div class="pama">
+                    <h2>주차장 이용 안내</h2>
+                    <p>「도서관 이용 사전예약자」에 한에 이용가능합니다.</p>
                     <ul>
-                        <li>도서관 자료복사는 저작권법에 의거하여 부분복사(1/3)만 가능</li>
-                        <li>고서 원문 데이터베이스의 자료는 도서관 외부에서 직접 출력 가능</li>
-                        <li>자료복사는 각 층의 복사실에서 가능하며, 외부 전문복사업체에서 복사실을 운영함</li>
-                        <li>자료의 복사와 프린터 출력은 유료(저작권료 포함)</li>
-                        <li>도서관을 방문하여 필요한 자료를 찾아 관내에서 직접 복사</li>
-                        <li>출력: 도서관 홈페이지에서 원문자료 출력 (A4 1면 기준: 흑백 55원, 컬러 500원)</li>
-                        <li>스캔: A4 1면 기준 100원</li>
+                        <li>주차장 운영시간</li>
+                        <p>평일(월~금) / 주말 : 08:00~19:00(운영시간 이후 입차.출차 불가)</p>
+                        <p>* 도서관 이용 사전예약 하신 분에 한해 도서관 운영 시간내에서 이용 가능합니다.</p>
                     </ul>
-                    <table class="table">
+                    <h2>주차요금</h2>
+                    <table class="parkingtable">
                         <tr>
-                            <th class="copfile">대상자료</th>
-                            <th class="copy">이용방법</th>
-                            <th class="money">요금(면당)</th>
+                            <th class="parkingtablehead" id="parkingtables">구분</th>
+                            <th class="parkingtablehead" id="parkingtables2">주차요금</th>
+                            <th class="parkingtablehead2" id="parkingtables3">비고</th>
                         </tr>
                         <tr>
-                            <td class="copyfile">도서관소장자료</td>
-                            <td class="copy">
-                                <ul>
-                                    <li>도서관을 방문하여 필요한 자료를 관내에서 직접 복사</li>
-                                    <li>이용시간: 평일 09:00~21:00</li>
-                                    <li>이용장소: 3~4층 복사실</li>
-                                </ul>
-                            </td>
-                            <td class="money">
-                                <ul>
-                                    <li>A4 기준: 40원</li>
-                                    <li>B4 기준: 60원</li>
-                                    <li>A3 기준: 80원</li>
-                                </ul>
-                            </td>
+                            <td class="parkingtablebody" id="parkingtables">일반 이용자</td>
+                            <td class="parkingtablebody" id="parkingtables2">30분 초과 시 매 15분마다 500원
+                                (1일 최고요금 10,000원)</td>
+                            <td class="parkingtablebody2" id="parkingtables3">1일 1회에 한하여 30분 이내 무료</td>
+                        </tr>
+                    </table>
+                    <h2>차량 요일제 실시</h2>
+                    <table class="parkingtable">
+                        <tr>
+                            <th class="parkingtablehead" id="parkingtables4">구분</th>
+                            <th class="parkingtablehead" id="parkingtables">월요일</th>
+                            <th class="parkingtablehead" id="parkingtables">화요일</th>
+                            <th class="parkingtablehead" id="parkingtables">수요일</th>
+                            <th class="parkingtablehead" id="parkingtables">목요일</th>
+                            <th class="parkingtablehead" id="parkingtables">금요일</th>
+                            <th class="parkingtablehead2" id="parkingtables">공휴일(토요일,일요일)</th>
+                        </tr>
+                        <tr>
+                            <td class="parkingtablebody">출입제한 승용차 끝번호</td>
+                            <td class="parkingtablebody">1,6</td>
+                            <td class="parkingtablebody">2,7</td>
+                            <td class="parkingtablebody">3,8</td>
+                            <td class="parkingtablebody">4,9</td>
+                            <td class="parkingtablebody">5,0</td>
+                            <td class="parkingtablebody2">-</td>
                         </tr>
                     </table>
                 </div>
@@ -117,6 +124,9 @@
     })
 
 </script>
+
+</body>
+</html>
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

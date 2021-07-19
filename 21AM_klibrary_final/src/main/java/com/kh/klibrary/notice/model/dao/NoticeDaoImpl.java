@@ -22,4 +22,34 @@ public class NoticeDaoImpl implements NoticeDao {
 		return session.selectOne("notice.selectNoticeCount");
 	}
 
+	@Override
+	public Notice selectNoticeView(SqlSessionTemplate session, int no) {
+		// TODO Auto-generated method stub
+		return session.selectOne("notice.selectNoticeView",no);
+	}
+
+	@Override
+	public List<Notice> searchnotice(SqlSessionTemplate session, String text) {
+		// TODO Auto-generated method stub
+		return session.selectList("notice.searchnotice",text);
+	}
+
+	@Override
+	public List<Notice> searchnoticecontent(SqlSessionTemplate session, String text) {
+		// TODO Auto-generated method stub
+		return session.selectList("notice.searchnoticecontent",text);
+	}
+	
+	
+	
+	
+
+	
+
+	
+
+	
+	
+	
+
 }
