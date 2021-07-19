@@ -6,11 +6,13 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.klibrary.qna.model.vo.Attachment;
 import com.kh.klibrary.qna.model.vo.Qna;
 
 @Repository
 public class QnaDaoImpl implements QnaDao {
-
+	
+	//페이징처리
 	@Override
 	public int countQna(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
@@ -29,5 +31,29 @@ public class QnaDaoImpl implements QnaDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("qna.selectQna", qnaNo);
 	}
+
+	//파일 업로드
+	@Override
+	public int insertQna(Qna q, SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.insert("qna.insertQna", q);
+	}
+
+	@Override
+	public int insertAttachment(SqlSessionTemplate session, Attachment a) {
+		// TODO Auto-generated method stub
+		return session.insert("qna.insertAttachment",a);
+	}
+	
+	//QNA 읽기
+	@Override
+	public Qna selectQnaView(SqlSessionTemplate session, int no) {
+		// TODO Auto-generated method stub
+		return session.selectOne("qna.selectQnaView", no);
+	}
+	
+	
+	
+	
 	
 }
