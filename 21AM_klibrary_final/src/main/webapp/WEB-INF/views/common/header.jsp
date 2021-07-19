@@ -55,21 +55,27 @@
 </head>
 <body>
 <header>
-	<div id="header">
-		<div id="logo">
-			<a href="" class="header_a">logo</a>
-		</div>
-		<div id="header_top">
-			<ul id="header_ul">
-				<li>
-					<a href="" class="header_a">로그인</a>
-				</li>
-				<li>
-					<a href="" class="header_a">회원가입</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+	<div id="header_top">
+                <ul id="header_ul">
+                <c:if test="${loginMember1==null }">
+                    <li>
+                        <a href="${path }/member/memberLogin.do" class="header_a">로그인</a>
+                    </li>
+                    <li>
+                        <a href="${path }/member/memberEnroll.do"  class="header_a">회원가입</a>
+                    </li>
+                </c:if>
+                <c:if test="${loginMember1!=null }">
+                	<li>
+                		<a href="" class="hader_a">마이페이지</a>
+                	</li>
+                	<li>
+                		<button class="btn btn-outline-light text-dark" type="button" onclick="${path}/member/memberLogout.do }">로그아웃</button>
+                	</li>
+                </c:if>
+                </ul>
+            </div>
+        </div>
 	<div id="nav">
 		<ul id="main-menu">
 			<li><a href="">자료검색</a>
@@ -92,8 +98,13 @@
 			</li>
 			<li><a href="${path }/member/memberInfo.do">마이페이지</a>
 				<ul id="sub-menu">
-					<li><a href="" aria-label="subemnu">뭐넣지</a></li>
-					<li><a href="" aria-label="subemnu">뭐넣지</a></li>                    
+					<li><a href="" aria-label="subemnu">개인정보확인</a></li>
+					<li><a href="" aria-label="subemnu">도서이용내역</a></li>    
+					<li><a href="" aria-label="subemnu">희망도서</a></li>
+					<li><a href="" aria-label="subemnu">관심도서</a></li>
+					<li><a href="" aria-label="subemnu">열람실 이용내역</a></li>
+					<li><a href="" aria-label="subemnu">모바일 회원증</a></li>  
+					<li><a href="" aria-label="subemnu">회원탈퇴</a></li>              
 				</ul>
 			</li>
 		</ul>
