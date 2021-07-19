@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminBook">
+	
+	<!-- isbn 중복검사 -->
+	<select id="checkIsbn" parameterType="String" resultType="_int">
+		SELECT COUNT(*) FROM BOOK_INFO WHERE ISBN_NO = #{isbnNo}
+	</select>
+	
+	<!-- isbn 등록 -->
+	<insert id="insertBookInfo" parameterType="bookInfo">
+		INSERT INTO BOOK_INFO VALUES(#{isbnNo},#{bookName},#{bookWriter},#{bookCompany},#{bookDate},#{bookPrice},#{bookLocation},#{bookContent},#{bookImg},#{bookKdc})
+	</insert>
+	
+	<!-- 도서등록 -->
+	<insert id="insertBook" parameterType="bookInfo">
+		INSERT INTO BOOK VALUES(SEQ_BOOK_NO.NEXTVAL,#{isbnNo},default,default)
+	</insert>
+	
+	
+</mapper>

@@ -24,7 +24,7 @@ public class BookInfo {
 	private String bookLocation;
 	private String bookContent;
 	private String bookImg;
-	private int bookKdc;
+	private String bookKdc;
 	
 	
 

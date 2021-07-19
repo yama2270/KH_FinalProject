@@ -45,7 +45,7 @@
 	<div class="popupTitleContainer">
 		<br>
 		<h3 id="popupTitle">
-			희망도서검색
+			도서검색
 			</h1>
 			<br>
 	</div>
@@ -82,7 +82,7 @@
 	<div id="searchResultTable3Div"></div>
 	<div id='searchPageBar' style="width:800px;height:70px;"></div>
 	<div class="closeBtnDiv">
-		<button id="closeBtn" type="submit" onclick="location.href='joinUs.jsp' ">닫기</button>
+		<button id="closeBtn" type="submit" onclick="fn_closePop()">닫기</button>
 	</div>
 
 	<br>
@@ -98,30 +98,16 @@
  /* Ajax로 도서정보 검색하기 */
  const fn_searchIsbn = function(cPage){
 	 
-	 /* 청구기호 가져오기 */
-	 /* 도서검색 */
-	 
-		/* $.ajax({
-	 		url:'https://www.nl.go.kr/NL/search/openApi/search.do?key=1d86b36fbb82daa3f582eea8d7fb0da3d7a6605c95a3f4a0eae32bbb0db43e5c&apiType=json&srchTarget=title&kwd=미움받을 용기&pageSize=10&pageNum=1&sort=&category=%EB%8F%84%EC%84%9C',
-			success:function(data){
-				
-				/* isbn 파싱 처리 후 도서 겅색  */
-			/* 	console.log(data);
-				
-			}
-		}) */ 
-		
+				 
 			// 검색키워드 
 			let target = $("#searchKey").val();
 	 		let kwd = $("#inputText").val();
 	 		
 	 		// 페이징처리 
 	 		if(cPage == null){
-	 			console.log("cPage null");
 	 			cPage = 1;
 	 		}
 	 		
-	 		console.log(cPage);
 			// 카카오 api
 			$.ajax({
 			url:'https://dapi.kakao.com/v3/search/book?query='+kwd+'&target='+target+'&page='+cPage,
@@ -129,6 +115,7 @@
 				req.setRequestHeader("Authorization","KakaoAK 810a4c928e125944de3726d437eb789f");
 				},		
 			success:function(data){
+				console.log(data);
 				
 			  // 검색 결과 헤더 
 			  let str="<table id='searchResultTable3' >";
@@ -148,14 +135,13 @@
 			   
 			  // 검색 결과 파싱처리 
  			$.each(data.documents,function(i,v){
-			  str+="<tr>"
+			  str+="<tr>";
 			  str+="<td id='imgContainerDiv' rowspan='2'>"
-			  str+="<img id='bookImg' src='"+v["thumbnail"]+"' alt='준비중' onclick='fn_bookDetail("+v["isbn"]+")'>"
+			  str+="<img id='bookImg' src='"+v["thumbnail"]+"' alt='준비중'>"
 			  str+="</td>"
 			  str+="<td colspan='2'>"
 			  str+="<dt class='tit'>"
-			  //str+="<span class='cate'>도서</span>"
-			  str+="<a onclick='fn_bookDetail("+v["isbn"]+")'>"+v["title"]+"</a>"
+			  str+="<a href='#' onclick='fn_chooseBook(this)'>"+v["title"]+"</a>"
 			  str+="<br><br>"
 			  str+="</dt>" 
 			  str+="</td>"
@@ -172,10 +158,9 @@
 		      str+="<span>가격</span><br>"			                        		                                            
 		      str+="</dd>"
 		      str+="<dd>"
-		      str+="<button id='button23' type='submit' onclick='fn_bookRequest("+v["isbn"]+")'>희망도서신청</button>"
 		      str+="</dd>"         
 		      str+="</dl>"
-		      str+="</div>"			          			 
+		      str+="</div>"
 		      str+="</td>"
 		      str+="<td id='bookInfoDiv2'>"
 		      str+="<div >"
@@ -185,7 +170,7 @@
 		      str+="<span>"+v["publisher"]+"</span><br>"                   
 		      str+="<span>"+v["datetime"].substring(0,10)+"</span><br> "                 
 		      str+="<span>"+v["isbn"].substring(0,10)+"</span><br>"
-		      str+="<span>"+v["price"]+"원</span><br>"			                                                        
+		      str+="<span>"+v["price"]+"원</span><br>"	
 		      str+="</dd>"
 		      str+="<dd>"
 		      str+="<br>"
@@ -196,9 +181,22 @@
 		      str+="</tr>"
 		      str+="<tr>"
 		      str+="<td colspan='3'>"
-		      str+="<hr>"
-		      str+="</td>"
-		      str+="</tr>"
+		      str+="<hr>";
+		      str+="</td>";
+		      str+="</tr>";
+		      str+="<tr style='display:none'>";
+		      str+="<td>";
+ 		      str+="<input class='bookInfo' value='"+v["isbn"].substring(0,10)+"' style='display:none;'/>";
+ 		      str+="<input class='bookInfo' value='"+v["title"]+"' style='display:none;'/>";
+ 		      str+="<input class='bookInfo' value='"+v["authors"]+"' style='display:none;'/>";
+ 		      str+="<input class='bookInfo' value='"+v["publisher"]+"' style='display:none;'/>";
+ 		      str+="<input class='bookInfo' value='"+v["datetime"].substring(0,10)+"' style='display:none;'/>";
+ 		      str+="<input class='bookInfo' value='"+v["price"]+"' style='display:none;'/>";
+ 		      str+="<input class='bookInfo' value='"+v["contents"]+"' style='display:none;'/>";
+ 		      str+="<input class='bookInfo' value='"+v["url"]+"' style='display:none;'/>";
+ 		     str+="<input class='bookInfo' value='"+cPage+"' style='display:none;'/>";
+			  str+= "</td>";		      
+		      str+="</tr>";
 				})
 		      str+="</table>"	
 		      
@@ -254,7 +252,69 @@
 				}//success 
 			}) // aJax
 		}; // function 
- 
+ 		
+		
+		/* close window  */
+		const fn_closePop = function(){
+			window.close();
+		}
+		
+		
+		
+		/* 팝업창 내에서 도서선택 */
+		const fn_chooseBook = function(e){
+			
+			const bookInfo = $(e).parent().parent().parent().next().next().next().children().children();
+			
+			// 동일한 키워드 검색 
+			let kwd = $("#inputText").val();
+			// 페이지 번호
+			const pageNo = $(bookInfo[8]).val();
+			
+			// ajax 청구기호 가져오기
+			$.ajax({
+			url:'https://www.nl.go.kr/NL/search/openApi/search.do?key=1d86b36fbb82daa3f582eea8d7fb0da3d7a6605c95a3f4a0eae32bbb0db43e5c&apiType=json&srchTarget=total&kwd='+kwd+'&pageSize=10&pageNum='+pageNo,	 				
+			success:function(data){ 
+				console.log(data);
+				/* ISBN 매칭 되는 도서 찾기 */
+				/* let result = data.result;
+				$.each(result,function(i,v){
+					if(isbn == v['isbn'].substring(0,10)){
+					console.log(v['isbn']);
+						callNo = v['callNo'];
+						classNo = v['classNo'];
+					} 
+				}) */
+				}
+			})// ajax end  
+						
+			// 부모 창에 데이터 전송 
+			$(opener.document).find("#bookName").val($(bookInfo[1]).val());
+			$(opener.document).find("#author").val($(bookInfo[2]).val());
+			$(opener.document).find("#publisher").val($(bookInfo[3]).val());
+			$(opener.document).find("#regDate").val($(bookInfo[4]).val());
+			$(opener.document).find("#price").val($(bookInfo[5]).val());
+			$(opener.document).find("#isbn").val($(bookInfo[0]).val());
+			$(opener.document).find("#content").val($(bookInfo[6]).val());
+			$(opener.document).find("#img").val($(bookInfo[7]).val());
+			
+			//isbn 중복체크
+			$.ajax({
+				url:'${path}/admin/book/checkIsbn.do?isbnNo='+$(bookInfo[0]).val(),
+				success:function(data){
+					console.log(data);
+					if(data.flag=='true'){
+						$(opener.document).find("#isbnMsg").html("신규도서").css("color","green");
+						$(opener.document).find("#isbnMsg").append("<input type='text' name='newBook' value='true' style='display:none'>");
+					} else {
+						$(opener.document).find("#isbnMsg").html("중복도서").css("color","red");
+						$(opener.document).find("#isbnMsg").append("<input type='text' name='newBook' value='false' style='display:none'>");
+					}
+				}
+			})
+			
+		}
+		
 	
 			
 </script>
