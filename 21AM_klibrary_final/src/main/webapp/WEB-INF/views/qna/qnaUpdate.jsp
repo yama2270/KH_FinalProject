@@ -50,7 +50,10 @@
 	                                <td class="tabletitle">조회수 : <c:out value ="${qna.qnaCount }"/></td>
 	                            </tr>
 	                        </table>
-	                        <div class="border">내용: <c:out value="${qna.qnaContent }"/></div>
+                            <textarea class=""name="" cols="100" rows="20">
+                            	<c:out value="${qna.qnaContent }"/>
+                            </textarea> 
+	                        <!-- <div class="border">내용: <c:out value="${qna.qnaContent }"/></div> -->
 	                        <div class="coment">답글</div>
 	                        <div class="newcoment">
 	                            <div>
