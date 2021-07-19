@@ -33,12 +33,22 @@
 
             <div id="header_top">
                 <ul id="header_ul">
+                <c:if test="${loginMember1==null }">
                     <li>
-                        <a href="" class="header_a">로그인</a>
+                        <a href="${path }/member/memberLogin.do" class="header_a">로그인</a>
                     </li>
                     <li>
                         <a href="${path }/member/memberEnroll.do"  class="header_a">회원가입</a>
                     </li>
+                </c:if>
+                <c:if test="${loginMember1!=null }">
+                	<li>
+                		<a href="" class="hader_a">마이페이지</a>
+                	</li>
+                	<li>
+                		<button class="btn btn-outline-light text-dark" type="button" onclick="${path}/member/memberLogout.do }">로그아웃</button>
+                	</li>
+                </c:if>
                 </ul>
             </div>
         </div>
