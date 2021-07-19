@@ -3,7 +3,6 @@
 <mapper namespace="notice">
   <resultMap type="notice" id="noticeMap">
   	<id column="NOTICE_NO" property="noticeNo"/>
-  	<result column="USER_ID" property="userId"/>
   	<result column="NOTICE_TITLE" property="noticeTitle"/>
   	<result column="NOTICE_CONTENT" property="noticeContent"/>
   	<result column="NOTICE_FILE" property="noticeFile"/>
@@ -22,10 +21,9 @@
   	SELECT COUNT(*) FROM NOTICE
   </select>
   
-  <insert id="insertNotice">
+	<insert id="insertNotice">
 		INSERT INTO NOTICE 
-		VALUES(NOTICE_SEQ.NEXTVAL ,#{noticeTitle},#{noticeContent},#{noticeFile},
-		default,0,#{noticeCate})
+		VALUES(NOTICE_SEQ.NEXTVAL,#{noticeTitle},#{noticeContent},#{originalFile},SYSDATE,0,#{noticeCate})
 		<selectKey keyProperty="noticeNo" resultType="_int" order="AFTER">
 			SELECT NOTICE_SEQ.CURRVAL FROM DUAL
 		</selectKey>

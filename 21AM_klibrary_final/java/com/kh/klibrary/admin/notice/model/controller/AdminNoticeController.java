@@ -1,11 +1,5 @@
 package com.kh.klibrary.admin.notice.model.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.admin.notice.model.service.AdminNoticeService;
 import com.kh.klibrary.admin.notice.model.vo.Notice;
-import com.kh.klibrary.common.PageFactory;
-import com.kh.klibrary.faq.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,7 +28,7 @@ public class AdminNoticeController {
 
 	@RequestMapping("/admin/notice/noticeForm.do")
 	public String noticeForm() {
-		return "admin/notice/noticeForm";
+		return "admin/notice/noticeForm"; 	
 	}
 
 	@RequestMapping("/admin/notice/noticeView.do")
@@ -49,7 +41,17 @@ public class AdminNoticeController {
 	}
 
 	@RequestMapping("/admin/notice/insertNotice.do")
-		public String insertNotice() {
-		return null;
+	public ModelAndView noticeInsert(Notice notice,MultipartFile noticeFile, ModelAndView mv) {
+		int result=service.insertNotice(notice);
+		String msg="";
+		if(result>0) {
+			msg="공지사항입력완료";
+		}else{
+			msg="공지사항입력실패";
 		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/admin/notice/noticeList.do");
+		mv.setViewName("common/msg");
+		return mv;
 	}
+}

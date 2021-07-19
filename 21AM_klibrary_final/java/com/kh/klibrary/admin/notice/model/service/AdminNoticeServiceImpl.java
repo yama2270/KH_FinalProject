@@ -35,8 +35,8 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	
 
 	@Override
-	public int insertNotice(Notice n) throws RuntimeException{
-		int result=dao.insertNotice(session,  n);
+	public int insertNotice(Notice notice) throws RuntimeException{
+		int result=dao.insertNotice(session,  notice);
 		return result;
 		
 	}

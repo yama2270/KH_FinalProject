@@ -23,16 +23,11 @@ public int selectNoticeCount(SqlSessionTemplate session) {
 	return session.selectOne("board.selectBoardCount");
 }
 @Override
-public int insertNotice(SqlSessionTemplate session, Notice n) {
+public int insertNotice(SqlSessionTemplate session, Notice notice) {
 	// TODO Auto-generated method stub
-	return session.insert("notice.insertNotice",n);
+	return session.insert("notice.insertNotice",notice);
 }
 
-@Override
-public int insertAttachment(SqlSessionTemplate session, Attachment a) {
-	// TODO Auto-generated method stub
-	return session.insert("notice.insertAttachment",a);
-}
 @Override
 public Notice selectNoticeView(SqlSessionTemplate session, int noticeNo) {
 	// TODO Auto-generated method stub
