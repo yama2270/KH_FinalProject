@@ -5,7 +5,7 @@
   	<id column="NOTICE_NO" property="noticeNo"/>
   	<result column="NOTICE_TITLE" property="noticeTitle"/>
   	<result column="NOTICE_CONTENT" property="noticeContent"/>
-  	<result column="NOTICE_FILE" property="noticeFile"/>
+  	<result column="NOTICE_FILE" property="originalFile"/>
   	<result column="NOTICE_DATE" property="noticeDate"/>
   	<result column="NOTICE_COUNT" property="noticeCount"/>
   	<result column="NOTICE_CATE" property="noticeCate"/>
