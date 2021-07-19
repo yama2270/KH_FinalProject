@@ -80,8 +80,10 @@
 		<ul id="main-menu">
 			<li><a href="">자료검색</a>
 				<ul id="sub-menu">
-					<li><a href="" aria-label="subemnu">뭐넣지</a></li>
-					<li><a href="" aria-label="subemnu">뭐넣지</a></li>
+					<li><a href="${path}/searchpage/bookSearch.do" aria-label="subemnu">통합검색</a></li>
+					<li><a href="${path}/searchpage/detailSearch.do" aria-label="subemnu">상세검색</a></li>
+					<li><a href="${path}/searchpage/categorySearch.do" aria-label="subemnu">주제별검색</a></li>
+					<li><a href="${path}/searchpage/wishbook.do" aria-label="subemnu">희망도서신청</a></li>
 				</ul>
 			</li>
 			<li><a href="">열람실</a>

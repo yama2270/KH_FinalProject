@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%   request.setCharacterEncoding("UTF-8");
+String pageId = request.getParameter("pageId");
+
+%>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="희망도서요청"/>
 </jsp:include>
@@ -13,14 +17,14 @@
     <br>
   </div>
 
-<div class="menucontainer" >
+<div class="list-group-container" >
   <!-- <h2 id="title">자료검색</h2> -->
   <ul class="list-group">
     <li class="list-group-item" id="menutitle">자료검색</li>
-    <li class="list-group-item">통합검색</li>
-    <li class="list-group-item">상세검색</li>
-    <li class="list-group-item">주제별검색</li>
-    <li class="list-group-item">희망도서신청</li>
+    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/bookSearch.do')">통합검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/detailSearch.do')">상세검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/categorySearch.do')">주제별검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/wishbook.do')">희망도서신청</li>
   </ul>
 </div>
 <br><br><br>
@@ -31,7 +35,7 @@
             </td>
             <td colspan="3">
 
-                <input type="text" name="bookName" placeholder="내용을 입력해주세요" class="bookinfoinput" onkeypress="if(event.keyCode == 13){fn_searchPopup(); return false;}" id="bookinfoinput">
+                <input type="text" name="bookName" placeholder="내용을 입력해주세요" class="bookinfoinput" onkeypress="if(event.keyCode == 13){fn_searchPopup(); return false;}" id="bookinfoinput1">
                 <button id="button22" type="submit" onclick="fn_searchPopup();">검색</button>
                 
             </td>
@@ -43,7 +47,7 @@
               저자명
             </td>
             <td colspan="3">
-               <input type="text" name="author" placeholder="내용을 입력해주세요" id="bookinfoinput">
+               <input type="text" name="author" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput2">
                 
             </td>
             <td>
@@ -59,7 +63,7 @@
                 출판사
             </td>
             <td colspan="3">
-                <input type="text" name="publisher" placeholder="내용을 입력해주세요" id="bookinfoinput">
+                <input type="text" name="publisher" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput3">
                 
             </td>
             <td>
@@ -75,7 +79,7 @@
               ISBN
             </td>
             <td colspan="3">
-                <input type="text" name="ISBN" placeholder="내용을 입력해주세요" id="bookinfoinput">
+                <input type="text" name="ISBN" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput4">
                 
             </td>
             <td>
@@ -91,7 +95,7 @@
             가격
           </td>
           <td colspan="3">
-              <input type="text" name="ISBN" placeholder="내용을 입력해주세요" id="bookinfoinput">
+              <input type="text" name="price" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput5">
               
           </td>
           <td>
@@ -108,7 +112,7 @@
             </td>
             <td colspan="3">
             
-                <input id="publishYear1" type="text" name="publishYear" placeholder="발행년(시작)">
+                <input id="publishYear1" type="text" name="publishYear" class="bookinfoinput" placeholder="발행년(시작)">
                 
             </td>
             
@@ -120,8 +124,8 @@
 </table>
 <br><br><br>
 <div id="buttonContainer">
-<button id="button22" type="submit">신청확인</button>
-<button id="button22" type="submit">취소</button>
+<button id="button22" type="submit" onclick='fn_requestSubmit()'>신청확인</button>
+<button id="button22" type="submit" onclick='fn_requestCancel()'>초기화</button>
 </div>
 <br><br><br>
 
@@ -133,12 +137,12 @@
 </html>
 <script>
 function fn_searchPopup(){
-	if($(".bookinfoinput").val()==""){
+	if($("#bookinfoinput1").val()==""){
 		alert("검색어를 입력해주세요")		
 	}
-	console.log($(".bookinfoinput").val());
-	if($(".bookinfoinput").val()!=""){
-		let keyword2=$(".bookinfoinput").val();
+	console.log($("#bookinfoinput1").val());
+	if($("#bookinfoinput1").val()!=""){
+		let keyword2=$("#bookinfoinput1").val();
 		
 		 const url=${path }+"/searchpage/wishbookPopup";
 		
@@ -150,12 +154,88 @@ function fn_searchPopup(){
 	
 }
 
-$('#bookinfoinput').not($(".bookinfoinput")).focus(function(){
-	if($(".bookinfoinput").val()==""){
+
+
+function bookRequestInfo(bookName,bookWriter,bookCompany,isbnNo,bookPrice,bookDate){
+	console.log("들어왔나test"+bookName+bookWriter);
+	
+	let bookDate1=bookDate.substring(0,10);
+	let isbnNo1=isbnNo.substring(0,10);
+	
+	 
+	 document.getElementById('bookinfoinput1').value=bookName;
+	 document.getElementById('bookinfoinput2').value=bookWriter;
+	document.getElementById('bookinfoinput3').value=bookCompany;
+	document.getElementById('bookinfoinput4').value=isbnNo1;
+	document.getElementById('bookinfoinput5').value=bookPrice;
+	
+	document.getElementById( 'publishYear1' ).value=bookDate1;
+     
+	
+	
+}
+
+function fn_requestSubmit(){
+	console.log("테스트");
+	let bookinfoinput=document.getElementsByClassName('bookinfoinput');
+	console.log(bookinfoinput);
+	for(var i=0; i< bookinfoinput.length; i++){
 		
-		alert("도서명을 먼저 검색해주세요.")
+		console.log(bookinfoinput[i]);
+		if(bookinfoinput[i].value==""){
+			alert("내용을 전부 입력해주세요");
+			break;
+		}
+	
 	}
-})
+	
+	
+	
+	
+}
+
+	function fn_requestCancel(){
+	 
+		 document.getElementById('bookinfoinput1').value="";
+		 document.getElementById('bookinfoinput2').value="";
+		document.getElementById('bookinfoinput3').value="";
+		document.getElementById('bookinfoinput4').value="";
+		document.getElementById('bookinfoinput5').value="";
+		
+		document.getElementById( 'publishYear1' ).value="";
+}
+
+
+$(function(){
+	console.log(window.location.href );
+	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'||pageId=="희망도서신청"){
+		  console.log(document.getElementsByClassName('list-group-item')[1]);
+		  document.getElementsByClassName('list-group-item')[1].style.background = "";
+		  document.getElementsByClassName('list-group-item')[2].style.background = "";
+		  document.getElementsByClassName('list-group-item')[3].style.background = "";
+		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
+		  
+	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'){
+		  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
+		  document.getElementsByClassName('list-group-item')[2].style.background = "";
+		  document.getElementsByClassName('list-group-item')[3].style.background = "";
+		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'){
+		  document.getElementsByClassName('list-group-item')[1].style.background = "";
+		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
+		  document.getElementsByClassName('list-group-item')[3].style.background = "";
+		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'){
+		  document.getElementsByClassName('list-group-item')[1].style.background = "";
+		  document.getElementsByClassName('list-group-item')[2].style.background = "";
+		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
+		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+	  }
+	
+	 
+	   
+	})
+	
 
 </script>
 
