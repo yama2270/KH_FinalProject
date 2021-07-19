@@ -23,6 +23,7 @@
               <li class="list-group-item" onclick="location.assign('${path}/qna/qnaList.do')">QNA</li>
             </ul>
         </div>
+        
         <div id="he_right">
             <div id="titleheadname">공지사항</div>
             <div id="contbody" class="sech">
@@ -84,6 +85,6 @@
 	   })
 	   
 	})
-</script>
+	</script>
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

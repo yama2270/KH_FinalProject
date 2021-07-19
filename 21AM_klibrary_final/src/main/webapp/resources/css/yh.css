@@ -54,14 +54,6 @@
 .fontsize{
     font-size: 1rem;
 }
-.list-group-item(#menutitle):hover {
-   
-    cursor:pointer;
-  }
-  
- .list-group-item(#menutitle).on{
-    background-color: lightgrey;
-  }
 
 /* 공지사항확인 */
 #titleheadname{
