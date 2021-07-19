@@ -37,4 +37,14 @@ public class MemberTDaoImpl implements MemberTDao {
 		return session.selectList("member.selectLendingList", userId, new RowBounds((cPage-1)*numPerpage, numPerpage));
 	}
 
+	@Override
+	public int insertMember(SqlSessionTemplate session, MemberT m) {
+		// TODO Auto-generated method stub
+		return session.insert("member.insertMember", m);
+	}
+
+	
+	
+	
+
 }

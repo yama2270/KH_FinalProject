@@ -13,7 +13,7 @@ import com.kh.klibrary.member.model.vo.LendingHistory;
 import com.kh.klibrary.member.model.vo.MemberT;
 @Service
 public class MemberTServiceImpl implements MemberTService {
-
+	
 	@Autowired
 	private SqlSessionTemplate session;
 	
@@ -41,6 +41,13 @@ public class MemberTServiceImpl implements MemberTService {
 	public List<Lending> selectLendingList(String userId, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		return dao.selectLendingList(session, userId, cPage, numPerpage);
+	}
+	
+	@Override
+	public int insertMember(MemberT m) {
+		// TODO Auto-generated method stub
+		
+		return dao.insertMember(session, m);
 	}
 
 }

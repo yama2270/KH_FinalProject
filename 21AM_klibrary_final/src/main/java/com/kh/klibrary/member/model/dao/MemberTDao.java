@@ -14,4 +14,7 @@ public interface MemberTDao {
 	int updateMember(SqlSessionTemplate session, MemberT m);
 	List<LendingHistory> selectLHList(SqlSessionTemplate session, String userId);
 	List<Lending> selectLendingList(SqlSessionTemplate session, String userId, int cPage, int numPerpage);
+	
+	//회원가입
+	int insertMember(SqlSessionTemplate session, MemberT m);
 }

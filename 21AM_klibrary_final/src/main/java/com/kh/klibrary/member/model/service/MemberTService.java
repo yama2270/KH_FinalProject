@@ -13,4 +13,7 @@ public interface MemberTService {
 	int updateMember(MemberT m);
 	List<LendingHistory> selectLHList(String userId);
 	List<Lending> selectLendingList(String userId, int cPage, int numPerpage);
+	
+	//회원가입 
+	int insertMember(MemberT m);
 }	

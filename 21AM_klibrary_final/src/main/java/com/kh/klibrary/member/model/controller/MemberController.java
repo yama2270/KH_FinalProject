@@ -1,7 +1,6 @@
 package com.kh.klibrary.member.model.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.member.model.service.MemberTService;
-import com.kh.klibrary.member.model.vo.LendingHistory;
 import com.kh.klibrary.member.model.vo.MemberT;
 
 @Controller
@@ -26,6 +24,24 @@ public class MemberController {
 	
 	@Autowired
 	private MemberTService service;
+	
+	//회원가입
+	@RequestMapping("/member/memberEnroll.do")
+	public String memberEnroll() {
+		
+		return "member/memberEnroll";
+	}
+	
+	//회원등록 완료
+	@RequestMapping("/member/memberEnrollEnd.do")
+	public String memberEnrollEnd(MemberT m, Model model) {
+		
+		int result=service.insertMember(m);
+		model.addAttribute("msg", result>=0?"회원가입성공":"회원가입실패");
+		model.addAttribute("loc","/");
+		
+		return "common/msg";
+	}
 	
 	//임시 로그인 테스트 -cg-
 	@RequestMapping("/member/memberTestLogin.do")
