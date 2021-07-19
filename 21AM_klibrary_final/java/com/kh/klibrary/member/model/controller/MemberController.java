@@ -1,7 +1,6 @@
 package com.kh.klibrary.member.model.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -16,13 +15,50 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.klibrary.member.model.service.MemberService;
 import com.kh.klibrary.member.model.service.MemberTService;
-import com.kh.klibrary.member.model.vo.LendingHistory;
+import com.kh.klibrary.member.model.vo.Member;
 import com.kh.klibrary.member.model.vo.MemberT;
 
 @Controller
 @SessionAttributes({"loginMember"})
 public class MemberController {
+	
+	@RequestMapping("/member/memberEnroll.do")
+	public String memberEnroll() {
+		
+		return "member/memberEnroll";
+	}
+	
+	@Autowired
+	private MemberService service1;
+	
+	@RequestMapping("/member/memberEnrollEnd.do")
+	public String memberEnrollEnd(Member m, Model model) {
+		
+		int result=service1.insertMember(m);
+		model.addAttribute("msg", result>0?"회원가입성공":"회원가입실패");
+		model.addAttribute("loc","/");
+		return "common/msg";
+	}
+	
+	@RequestMapping("/member/memberLogin.do")
+	public String memberLogin() {
+		
+		return "member/memberLogin";
+	}
+	
+	@RequestMapping("/member/memberLoginCheck.do")
+	public String memberLogin(@RequestParam Map param, HttpSession session, Model model) {
+		
+		Member m = service1.selectMember1(param);
+		if(m!=null) {
+			session.setAttribute("loginMember1", m);
+		}
+		model.addAttribute("msg", m!=null?"로그인성공":"로그인실패");
+		model.addAttribute("loc","/");
+		return "common/msg";
+	}
 	
 	@Autowired
 	private MemberTService service;

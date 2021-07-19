@@ -90,15 +90,19 @@
 .line3{
     border: gray 1px solid;    
 }
-.textbox2{
+
+.contentbox{
     margin-top: 1%;
     height: 500px;
     width:1150px;
-    background-color: gray;
+    border: 1px solid gray;
+    color:black;
 }
+
 .backbutton{
     font-size: 1rem;
     margin-top: 2%;
+    
     /* margin-left: 20%; */
 }
 
@@ -215,9 +219,8 @@
 }
 
 /* 주차안내 */
-.pakingmain{
+.pama{
     margin-top: 2%;
-    margin-left: 6%;
     /* background-color: gray; */
     height:690px;
     width: 1150px;
