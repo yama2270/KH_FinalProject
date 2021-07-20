@@ -206,15 +206,7 @@ function fn_searchBook(start){
 			  str+="</tr>"
 			  
 		for(let i=0;i<obj.length;i++){	
-			/* let bookName=obj[i]["title"];
-			let bookWriter=obj[i]["authors"];
-			let bookCompany=obj[i]["publisher"];
-			let isbnNo=obj[i]["isbn"];
-			let bookPrice=obj[i]["price"];
-			let bookDate=obj[i]["datetime"]; */
-			
-			
-			
+	
 			  str+="<tr>"
 			  str+="<td id='imgContainerDiv' rowspan='2'>"
 			  str+="<img id='bookImg' src='"+obj[i]["thumbnail"]+"' alt='준비중' onclick='fn_bookDetail("+obj[i]["isbn"]+")'>"
@@ -275,64 +267,69 @@ function fn_searchBook(start){
 		     
 		     $('#spanTextInfo').text("※아래 검색결과에서 원하시는 희망도서를 클릭하세요.").show(500);
 		     
+		    /*  showPageList(total,keyword,display); */
+		     //페이징
 		     let total=obj2["total_count"];
 		     let keyword=$("#inputText").val();
 		     let display=10;
-		     showPageList(total,keyword,display);
+		     let cPage=start;
+		     
+		     let numPerPage =10;
+		 	let totalData = total;
+		 	let totalPage = Math.round(totalData/numPerPage);
+		            
+		 	
+		 	let pageBarSize = 5;
+		 	let pageNo = Math.floor((cPage-1)/pageBarSize)*pageBarSize+1;
+		 	let pageEnd = pageNo+pageBarSize-1;
+		 	
+		 	let pageBar = "";
+		 	pageBar += "<ul class='pagination justifycontent-center pagination-sm' style='margin-top:20px;margin-left:240px'>";
+		 	
+		 	if(pageNo == 1){
+		 		pageBar += "<li class='page-item disabled'>";
+		 		pageBar += "<a class='page-link' href='#'>이전</a>";
+		 		pageBar += "</li>";
+		 	} else {
+		 		pageBar += "<li class='page-item'>";
+		 		pageBar += "<a class='page-link' href='javascript:fn_searchBook("+(pageNo-1)+")'>이전</a>";
+		 		pageBar += "</li>";
+		 	}
+		 	
+		 	while(!(pageNo>pageEnd || pageNo>totalPage)){
+		 		if(cPage == pageNo){
+		 			pageBar += "<li class='page-item active'>";
+		 			pageBar += "<a class='page-link' href='#'>"+pageNo+"</a>";
+		 			pageBar += "</li>";
+		 		} else {
+		 			pageBar += "<li class='page-item'>";
+		 			pageBar += "<a class='page-link' href='javascript:fn_searchBook("+pageNo+")'>"+pageNo+"</a>";
+		 			pageBar += "</li>";
+		 		}
+		 		pageNo++;
+		 	}
+		 	
+		 	if(pageNo>totalPage){
+		 		pageBar += "<li class='page-item disabled'>";
+		 		pageBar += "<a class='page-link'>다음</a>";
+		 		pageBar += "</li>";
+		 	} else {
+		 		pageBar += "<li class='page-item'>";
+		 		pageBar += "<a class='page-link' href='javascript:fn_searchBook("+pageNo+")'>다음</a>";
+		 		pageBar += "</li>";
+		 	}
+		 	
+		 	pageBar += "</ul>";
+		 	
+		 	
+      $('#searchResultTable3Div').append(pageBar);
+      
+      
 	}); 
  }
  
-var showPageList=function(total, keyword, display){
-	/* let numPerPage =10;
-	let totalData = total;
-	let totalPage = Math.round(totalData/numPerPage);
-            let cPage = 1;	
-	
-	let pageBarSize = 5;
-	let pageNo = Math.floor((cPage-1)/pageBarSize)*pageBarSize+1;
-	let pageEnd = pageNo+pageBarSize-1;
-	
-	let pageBar = "";
-	pageBar += "<ul class='pagination justifycontent-center pagination-sm' style='margin-top:20px;margin-left:240px'>";
-	
-	if(pageNo == 1){
-		pageBar += "<li class='page-item disabled'>";
-		pageBar += "<a class='page-link' href='#'>이전</a>";
-		pageBar += "</li>";
-	} else {
-		pageBar += "<li class='page-item'>";
-		pageBar += "<a class='page-link' href='javascript:fn_searchBook("+(pageNo-1)+")'>이전</a>";
-		pageBar += "</li>";
-	}
-	
-	while(!(pageNo>pageEnd || pageNo>totalPage)){
-		if(cPage == pageNo){
-			pageBar += "<li class='page-item active'>";
-			pageBar += "<a class='page-link' href='#'>"+pageNo+"</a>";
-			pageBar += "</li>";
-		} else {
-			pageBar += "<li class='page-item'>";
-			pageBar += "<a class='page-link' href='javascript:fn_searchBook("+pageNo+")'>"+pageNo+"</a>";
-			pageBar += "</li>";
-		}
-		pageNo++;
-	}
-	
-	if(pageNo>totalPage){
-		pageBar += "<li class='page-item disabled'>";
-		pageBar += "<a class='page-link'>다음</a>";
-		pageBar += "</li>";
-	} else {
-		pageBar += "<li class='page-item'>";
-		pageBar += "<a class='page-link' href='javascript:fn_searchBook("+pageNo+")'>다음</a>";
-		pageBar += "</li>";
-	}
-	
-	pageBar += "</ul>";
-	
-	
-
-                           $('#searchResultTable3Div').append(pageBar); */
+/* var showPageList=function(total, keyword, display){
+   
 	
 	  if(total>200){
 		   total=200;
@@ -348,7 +345,7 @@ var showPageList=function(total, keyword, display){
 	   [3]	21		10
 	   
 	   start = (i-1)*display+1;
-	   */
+	   
 	   
 	    for(var i=1;i<=pageCount;i++){
 		   var start =(i-1)*display+1;
@@ -357,9 +354,9 @@ var showPageList=function(total, keyword, display){
 	   }
 	   str+="</ul>";
 	   $('#searchResultTable3Div').append(str); 
-}
+}*/
 
- var show=function(start,keyword){
+/*  var show=function(start,keyword){
 	   //alert(start+"/"+query);
 	   console.log("start테스트"+start+keyword);
 	   $('#a'+start).addClass('active');
@@ -367,7 +364,7 @@ var showPageList=function(total, keyword, display){
 	   document.getElementById( 'inputText' ).removeAttribute( 'onkeypress' );
 	   document.getElementById( 'inputText' ).setAttribute( 'onkeypress', 'if(event.keyCode == 13){fn_searchBook(1); return false;}' );
 	   
-} 
+}  */
 
 
 	$(function(){

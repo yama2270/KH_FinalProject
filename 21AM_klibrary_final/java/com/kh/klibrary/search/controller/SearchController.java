@@ -1,5 +1,6 @@
 package com.kh.klibrary.search.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.json.simple.parser.ParseException;
@@ -76,6 +77,13 @@ public String wishbookRequest(){
 	return "searchpage/wishbookRequest";
    }
 
+@RequestMapping("/searchpage/bookRegisterTest.do")
+public String bookRegisterTest1(){
+	
+	return "searchpage/bookRegisterTest";
+   }
+
+
 
 //@RequestMapping("searchpage/wishbookPopup.do/{title}")
 //public String searchNaverApi(@PathVariable("title") String title, ModelAndView mv){
@@ -146,5 +154,10 @@ public String searchApiBook(
 //	mv.setViewName("searchpage/wishbookPopup");
 //	return mv;
 //}
+
+
+
+
+
 
 }
