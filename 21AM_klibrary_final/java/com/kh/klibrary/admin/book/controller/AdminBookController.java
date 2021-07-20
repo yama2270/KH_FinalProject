@@ -3,6 +3,8 @@ package com.kh.klibrary.admin.book.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,13 +82,14 @@ public class AdminBookController {
 	
 	// 도서등록 
 	@RequestMapping("/admin/book/insertBook.do")
-	public ModelAndView insertBook(BookInfo bookInfo,String newBook,ModelAndView mv) {
+	public ModelAndView insertBook(BookInfo bookInfo,String newBook,ModelAndView mv,HttpServletRequest req) {
 		
 		int result = service.insertBook(bookInfo,newBook);
 		mv.addObject("msg",result>0?"등록성공":"등록실패");
 		mv.addObject("loc","/admin/book/registerBook.do");
 		mv.setViewName("common/msg");
 		return mv;
+		
 	}
 	
 }
