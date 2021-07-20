@@ -39,4 +39,10 @@ public int deleteNotice(SqlSessionTemplate session, int noticeNo) {
 	// TODO Auto-generated method stub
 	return session.delete("notice.deleteNotice", noticeNo);
 }
+
+@Override
+public int noticeUpdate(SqlSessionTemplate session, Notice notice) {
+	// TODO Auto-generated method stub
+	return session.update("notice.noticeUpdate", notice);
+}
 }

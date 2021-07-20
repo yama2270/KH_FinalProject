@@ -52,4 +52,10 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	public int deleteNotice(int noticeNo) {	
 		return dao.deleteNotice(session,noticeNo);
 	}
+
+	@Override
+	public int noticeUpdate(Notice notice) {
+		// TODO Auto-generated method stub
+		return dao.noticeUpdate(session, notice);
+	}
 }

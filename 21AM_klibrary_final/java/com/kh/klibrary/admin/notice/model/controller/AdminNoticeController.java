@@ -2,6 +2,9 @@ package com.kh.klibrary.admin.notice.model.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -54,11 +57,24 @@ public class AdminNoticeController {
 		return mv;
 	}
 	
-	@RequestMapping("/admin/notice/deleteNotice.do")
-	public String deleteNotice() {
-		return null;
+	@RequestMapping("/admin/notice/noticeDelete.do")
+	public ModelAndView noticeDelete(int noticeNo, ModelAndView mv) {
+		mv.addObject("notice",service.deleteNotice(noticeNo));
+		mv.setViewName("/admin/notice/noticeDelete");
+		return mv;
 	}
 	
+	@GetMapping("/admin/notice/noticeUpdate.do")
+	public String noticeUpdate(Model model, int noticeNo) {
+		model.addAttribute("notice", service.selectNoticeView(noticeNo));
+		return "admin/notice/noticeUpdate";
+	}
 	
+	@PostMapping("/admin/notice/noticeUpdate.do")
+		public String noticeUpdateEnd(Notice notice) {
+			service.noticeUpdate(notice);
+		return "redirect:/admin/notice/noticeView.do?noticeNo="+notice.getNoticeNo();
+			
+		}
+	}
 	
-}

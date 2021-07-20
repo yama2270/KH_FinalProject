@@ -36,8 +36,14 @@
                         <td class="line2"><c:out value="${notice.noticeCount }"/></td>
                     </tr>
                 </table>
+                
                 <div class="contentbox"><c:out value="${notice.noticeContent }"/></div>
+             	    <div class="notice_update">
+                      <a href="${path }/admin/notice/noticeUpdate.do?noticeNo=${notice.noticeNo}">	
+                         <button class="notice_update_bt" >수정하기</button>
+						 </a>	
                 <button class="backbutton" onclick="backbutton();">목록으로</button>
+                    </div>
             </div>
         </div>
     </section>
