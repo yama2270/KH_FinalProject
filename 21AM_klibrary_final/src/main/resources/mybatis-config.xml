@@ -12,7 +12,7 @@
 			<!-- <typeAlias type="com.kh.klibrary.notice.vo.Notice" alias="notice"/>
 			 <typeAlias type="com.kh.klibrary.notice.vo.Notice" alias="notice"/> -->
 
-			<typeAlias type="com.kh.klibrary.member.model.vo.MemberT" alias="membert"/> 
+			<typeAlias type="com.kh.klibrary.member.model.vo.Member" alias="member"/> 
 			<typeAlias type="com.kh.klibrary.member.model.vo.Booking" alias="booking"/> 
 			<typeAlias type="com.kh.klibrary.book.model.vo.BookInfo" alias="bookInfo"/>
 			<typeAlias type="com.kh.klibrary.book.model.vo.Book" alias="book"/>
@@ -20,16 +20,13 @@
 			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo" alias="faq"/> -->
 			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo.Faq" alias="faq"/> -->
 			<typeAlias type="com.kh.klibrary.admin.notice.model.vo.Notice" alias="notice"/>
-			<typeAlias type="com.kh.klibrary.member.model.vo.MemberT" alias="membert"/>
 			<typeAlias type="com.kh.klibrary.qna.model.vo.Attachment" alias="attachment"/>
 			<typeAlias type="com.kh.klibrary.qna.model.vo.Qna" alias="qna"/>
 			
-			<typeAlias type="com.kh.klibrary.qna.model.vo.Qna" alias="qna"/>
          	<typeAlias type="com.kh.klibrary.qna.model.vo.Attachment" alias="Attachment"/> 
          	
          	
          	
-         	<typeAlias type="com.kh.klibrary.member.model.vo.Member" alias ="member"/>
          	
 
 	</typeAliases> 
