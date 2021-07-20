@@ -18,17 +18,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.member.model.service.MemberService;
-import com.kh.klibrary.member.model.service.MemberTService;
 import com.kh.klibrary.member.model.vo.Member;
-import com.kh.klibrary.member.model.vo.MemberT;
 
 @Controller
 @SessionAttributes({"loginMember"})
 public class MemberController {
 	
 	@Autowired
-	private MemberService service1;
+	private MemberService service;
 	
+	//dg
 	@RequestMapping("/member/memberEnroll.do")
 	public String memberEnroll() {
 		
@@ -38,7 +37,7 @@ public class MemberController {
 	@RequestMapping("/member/memberEnrollEnd.do")
 	public String memberEnrollEnd(Member m, Model model) {
 		
-		int result=service1.insertMember(m);
+		int result=service.insertMember(m);
 		model.addAttribute("msg", result>0?"회원가입성공":"회원가입실패");
 		model.addAttribute("loc","/");
 		return "common/msg";
@@ -53,18 +52,17 @@ public class MemberController {
 	@RequestMapping("/member/memberLoginCheck.do")
 	public String memberLogin(@RequestParam Map param, HttpSession session, Model model) {
 		
-		Member m = service1.selectMember1(param);
+		Member m = service.selectMember1(param);
 		if(m!=null) {
-			session.setAttribute("loginMember1", m);
+			model.addAttribute("loginMember", m);
 		}
 		model.addAttribute("msg", m!=null?"로그인성공":"로그인실패");
 		model.addAttribute("loc","/");
 		return "common/msg";
 	}
 	
-	@Autowired
-	private MemberTService service;
 	
+	//cg
 	//임시 로그인 테스트 -cg-
 	@RequestMapping("/member/memberTestLogin.do")
 	public String memberTestLogin(Model model) {
@@ -76,15 +74,16 @@ public class MemberController {
 		m1.put("userPassword", "test");
 		
 		String msg="로그인 실패";
-		MemberT mt = service.selectMember(m1);
-		if(mt!=null) {
-			model.addAttribute("loginMember", mt);
+		Member m = service.selectMember(m1);
+		if(m!=null) {
+			model.addAttribute("loginMember", m);
 			msg="로그인 성공";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("loc","/");
 		return "common/msg";
 	}
+	
 	//임시 로그아웃 테스트 -cg-
 	@RequestMapping("/member/memberTestlogout.do")
 	public String logout(HttpSession session, SessionStatus ss) {
@@ -96,7 +95,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberPwck.do")
-	public String memberPwck(@RequestParam String password,@ModelAttribute("loginMember") MemberT m, Model model) {
+	public String memberPwck(@RequestParam String password,@ModelAttribute("loginMember") Member m, Model model) {
 		String msg="비밀번호가 확인되었습니다.";
 		String loc="/member/memberInfoUpdate.do";
 		if(!password.equals(m.getUserPassword())) {
@@ -119,7 +118,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberBorrowing.do")
-	public ModelAndView borrowing(ModelAndView mv, @ModelAttribute("loginMember") MemberT m,
+	public ModelAndView borrowing(ModelAndView mv, @ModelAttribute("loginMember") Member m,
 								 @RequestParam(value="cPage", defaultValue="1") int cPage,
 								 @RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
 		mv.addObject("list", service.selectLendingList(m.getUserId(), cPage, numPerpage));
@@ -131,7 +130,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberBorrowed.do")
-	public ModelAndView borrowed(ModelAndView mv, @ModelAttribute("loginMember") MemberT m,
+	public ModelAndView borrowed(ModelAndView mv, @ModelAttribute("loginMember") Member m,
 								@RequestParam(value="cPage", defaultValue="1") int cPage,
 								@RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
 		mv.addObject("list", service.selectLHList(m.getUserId(), cPage, numPerpage));
@@ -143,7 +142,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberBorrowedDate.do")
-	public ModelAndView borrowedDate(ModelAndView mv, @ModelAttribute("loginMember") MemberT m,
+	public ModelAndView borrowedDate(ModelAndView mv, @ModelAttribute("loginMember") Member m,
 									@RequestParam Date inputDate1, @RequestParam Date inputDate2,
 									@RequestParam(value="cPage", defaultValue="1") int cPage,
 									@RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
@@ -163,7 +162,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberBooking.do")
-	public ModelAndView Booking(ModelAndView mv, @ModelAttribute("loginMember") MemberT m,
+	public ModelAndView Booking(ModelAndView mv, @ModelAttribute("loginMember") Member m,
 								@RequestParam(value="cPage", defaultValue="1") int cPage,
 								@RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
 		mv.addObject("list", service.selectBookingList(m.getUserId(), cPage, numPerpage));
@@ -174,7 +173,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/cancelBooking.do")
-	public String cancelBooking(@ModelAttribute("loginMember") MemberT m, @RequestParam String bookNo, Model model) {
+	public String cancelBooking(@ModelAttribute("loginMember") Member m, @RequestParam String bookNo, Model model) {
 		Map m1= new HashMap();
 		m1.put("userId", m.getUserId());
 		m1.put("bookNo", bookNo);
@@ -197,7 +196,7 @@ public class MemberController {
 		return "member/memberInfoUpdate";
 	}
 	@RequestMapping("/member/memberInfoUpdateEnd.do")
-	public String memberInfoUpdateEnd(MemberT m, HttpSession session, SessionStatus ss, Model model) {
+	public String memberInfoUpdateEnd(Member m, HttpSession session, SessionStatus ss, Model model) {
 		int result=service.updateMember(m); //회원정보 수정
 		
 		String msg="회원정보 수정에 실패하였습니다.";
@@ -206,7 +205,7 @@ public class MemberController {
 		Map map = new HashMap();  
 		map.put("userId", m.getUserId());
 		map.put("userPassword", m.getUserPassword());
-		MemberT mt=service.selectMember(map); //수정된 회원정보
+		Member mt=service.selectMember(map); //수정된 회원정보
 		
 		if(result>0) {
 			if(mt!=null) {

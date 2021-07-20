@@ -14,8 +14,8 @@ public class Booking {
 	private String userId;
 	private String bookNo;
 	private Date bookingDate;
-	private Date bookingPicUpDate;
+	private Date bookingPickUpDate;
 	
-	private List<MemberT> memberT=new ArrayList();
+	private List<Member> member=new ArrayList();
 	private List<Book> book=new ArrayList();
 }

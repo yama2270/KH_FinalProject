@@ -6,11 +6,11 @@
 		INSERT INTO MEMBER VALUES(#{userId},#{userPassword},#{userName},#{email},#{birthDate},#{address},#{phone},default)
 	</insert>
 	
-	<select id="selectMember1" resultType="Member">
+	<select id="selectMember1" resultMap="Member">
 		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
 	</select>
 	
-	<select id="selectMember" resultMap="MemberT">
+	<select id="selectMember" resultMap="Member">
 		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
 	</select>
 	
@@ -23,7 +23,7 @@
 		WHERE USER_ID=#{userId}
 	</update>
 	
-	<resultMap type="com.kh.klibrary.member.model.vo.MemberT" id="MemberT">
+	<resultMap type="com.kh.klibrary.member.model.vo.Member" id="Member">
 		<result column="USER_ID" property="userId"/>
 		<result column="USER_PASSWORD" property="userPassword"/>
 		<result column="USER_NAME" property="userName"/>
@@ -77,7 +77,7 @@
 		<result column="LENDING_DATE" property="lendingDate"/>
 		<result column="RETURN_DATE" property="returnDate"/>
 		<result column="BOOK_EXTEND" property="bookExtend"/>
-		<collection property="memberT" ofType="memberT">
+		<collection property="member" ofType="member">
 			<id column="USER_ID" property="userId"/>
 			<result column="USER_PASSWORD" property="userPassword"/>
 			<result column="USER_NAME" property="userName"/>
@@ -129,7 +129,7 @@
 		<result column="BOOK_NO" property="bookNo"/>
 		<result column="BOOKING_DATE" property="bookingDate"/>
 		<result column="BOOKING_PICKUP_DATE" property="bookingPickUpDate"/>
-		<collection property="memberT" ofType="memberT">
+		<collection property="member" ofType="member">
 			<id column="USER_ID" property="userId"/>
 			<result column="USER_PASSWORD" property="userPassword"/>
 			<result column="USER_NAME" property="userName"/>
