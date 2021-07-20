@@ -39,10 +39,12 @@
   	WHERE NOTICE_NO=#{no}
   </select>
   
-  <select id="searchnotice" resultMap="noticeMap">
+  
+  
+  <select id="searchNotice" resultMap="noticeMap">
   	SELECT * 
   	FROM NOTICE
-  	WHERE NOTICE_TITLE=#{text}
+  	WHERE NOTICE_TITLE=#{noticeTitle}
   </select>
   
   <select id="searchnoticecontent" resultMap="noticeMap">
@@ -51,7 +53,9 @@
   	WHERE NOTICE_CONTENT=#{text}
   </select>
   
-  
+  <update id="updateNoticeCount">
+   UPDATE NOTICE SET NOTICE_COUNT = NOTICE_COUNT + 1 WHERE NOTICE_NO = #{NOTICE_NO}
+	</update>
   
   
   

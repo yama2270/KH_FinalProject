@@ -54,4 +54,12 @@ public class AdminNoticeController {
 		mv.setViewName("common/msg");
 		return mv;
 	}
+	
+	@RequestMapping("/admin/notice/deleteNotice.do")
+	public String deleteNotice() {
+		return null;
+	}
+	
+	
+	
 }
