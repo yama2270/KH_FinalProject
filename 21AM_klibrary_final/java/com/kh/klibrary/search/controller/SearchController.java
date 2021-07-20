@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.search.service.SearchServiceImp;
 
 
@@ -146,6 +148,28 @@ public String searchApiBook(
 	 return service.searchNaverApi(keyword,category,page,size).getBody(); 
 	
 }
+
+@RequestMapping(value="/searchpage/bookTotalSearch")
+public ModelAndView bookTotalSearch(
+		  @RequestParam("keyword") String keyword,
+		  @RequestParam("category") String category,
+		  @RequestParam(value="searchNumber", required=false, defaultValue="10") int searchNumber,
+		  @RequestParam(value="cPage", required=false, defaultValue="1") int cPage,
+		                     ModelAndView mv     ) {
+	   System.out.println(keyword+","+category+","+searchNumber+","+cPage);
+	mv.addObject("list", service.bookTotalSearch(category,keyword,searchNumber,cPage));
+		List<BookInfo> bookList=service.bookTotalSearch(category,keyword,searchNumber,cPage);
+		System.out.println(bookList);
+		int totalData=bookList.size();
+	mv.addObject(PageFactory.getPageBar(totalData, cPage, searchNumber, "bookTotalSearch"));
+	mv.addObject("totalData",totalData);
+	
+	mv.setViewName("/searchpage/bookSearch");
+	return mv;
+}
+
+
+
 
 //@RequestMapping(value="/searchpage/searchapiBook",produces = "application/text;charset=UTF-8")
 //@ResponseBody

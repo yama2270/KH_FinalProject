@@ -2694,26 +2694,20 @@ $(function(){
 	console.log(window.location.href );
 	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'){
 		  console.log(document.getElementsByClassName('list-group-item')[1]);
-		  document.getElementsByClassName('list-group-item')[1].style.background = "";
-		  document.getElementsByClassName('list-group-item')[2].style.background = "";
-		  document.getElementsByClassName('list-group-item')[3].style.background = "";
+		
 		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
 		  
 	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'){
 		  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
-		  document.getElementsByClassName('list-group-item')[2].style.background = "";
-		  document.getElementsByClassName('list-group-item')[3].style.background = "";
-		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+		
 	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'){
-		  document.getElementsByClassName('list-group-item')[1].style.background = "";
+		
 		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
-		  document.getElementsByClassName('list-group-item')[3].style.background = "";
-		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+		
 	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'){
-		  document.getElementsByClassName('list-group-item')[1].style.background = "";
-		  document.getElementsByClassName('list-group-item')[2].style.background = "";
+		 
 		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
-		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+		 
 	  }
 	
 	 
