@@ -1,7 +1,7 @@
 package com.kh.klibrary.member.model.controller;
 
+import java.sql.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.member.model.service.MemberTService;
-import com.kh.klibrary.member.model.vo.LendingHistory;
 import com.kh.klibrary.member.model.vo.MemberT;
 
 @Controller
@@ -85,25 +85,71 @@ public class MemberController {
 								 @RequestParam(value="cPage", defaultValue="1") int cPage,
 								 @RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
 		mv.addObject("list", service.selectLendingList(m.getUserId(), cPage, numPerpage));
-		
-		System.out.println(mv.getModel().get("list").toString());
+		int totalData=service.selectLendingCount(m.getUserId());
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberInfo.do"));
+		mv.addObject("totalData",totalData);
 		mv.setViewName("member/memberBorrowing");
 		return mv;
 	}
 	
 	@RequestMapping("/member/memberBorrowed.do")
-	public ModelAndView borrowed(ModelAndView mv, @ModelAttribute("loginMember") MemberT m) {
-		mv.addObject("list", service.selectLHList(m.getUserId()));
-		
-		System.out.println(mv.getModel().get("list").toString());
-		
+	public ModelAndView borrowed(ModelAndView mv, @ModelAttribute("loginMember") MemberT m,
+								@RequestParam(value="cPage", defaultValue="1") int cPage,
+								@RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
+		mv.addObject("list", service.selectLHList(m.getUserId(), cPage, numPerpage));
+		int totalData=service.selectLHCount(m.getUserId());
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBorrowed.do"));
+		mv.addObject("totalData",totalData);
+		mv.setViewName("member/memberBorrowed");
+		return mv;
+	}
+	@RequestMapping("/member/memberBorrowedDate.do")
+	public ModelAndView borrowedDate(ModelAndView mv, @ModelAttribute("loginMember") MemberT m,
+									@RequestParam Date inputDate1, @RequestParam Date inputDate2,
+									@RequestParam(value="cPage", defaultValue="1") int cPage,
+									@RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
+		System.out.println(inputDate1);
+		System.out.println(inputDate2);
+		Map m1 = new HashMap();
+		m1.put("userId", m.getUserId());
+		m1.put("Date1", inputDate1);
+		m1.put("Date2", inputDate2);
+		mv.addObject("Date1",inputDate1);
+		mv.addObject("Date2",inputDate2);
+		mv.addObject("list", service.selectDate(m1, cPage, numPerpage));
+		int totalData=service.selectDateCount(m1);
+		mv.addObject("totalData",totalData);
 		mv.setViewName("member/memberBorrowed");
 		return mv;
 	}
 	
 	@RequestMapping("/member/memberBooking.do")
-	public String Booking() {
-		return "member/memberBooking";
+	public ModelAndView Booking(ModelAndView mv, @ModelAttribute("loginMember") MemberT m,
+								@RequestParam(value="cPage", defaultValue="1") int cPage,
+								@RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
+		mv.addObject("list", service.selectBookingList(m.getUserId(), cPage, numPerpage));
+		int totalPage=service.selectBookingCount(m.getUserId());
+		mv.addObject("totalPage",totalPage);
+		mv.setViewName("member/memberBooking");
+		return mv;
+	}
+	@RequestMapping("/member/cancelBooking.do")
+	public String cancelBooking(@ModelAttribute("loginMember") MemberT m, @RequestParam String bookNo, Model model) {
+		Map m1= new HashMap();
+		m1.put("userId", m.getUserId());
+		m1.put("bookNo", bookNo);
+		int result= service.cancelBooking(m1);
+		System.out.println("resultresultresultresultresultresult : " + result);
+		String msg="예약취소를 실패하었습니다.";
+		String loc="/member/memberBooking.do";
+		
+		if(result>0) {
+			msg="예약을 취소하였습니다.";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "common/msg";
 	}
 	
 	@RequestMapping("/member/memberInfoUpdate.do")

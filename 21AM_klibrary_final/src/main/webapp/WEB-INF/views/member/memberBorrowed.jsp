@@ -57,8 +57,17 @@
 			<hr id="h2_line2">
 		</div>
 		<div id="Borrowed_Info_Container">
-			<label>시작일	<input type="date"></label> 
-			<label>~	종료일	<input type="date"></label>
+			<form action="${path }/member/memberBorrowedDate.do" method="post">
+				<c:if test="${Date1!=null and Date2!=null}">
+					<label>시작일	<input type="date" name="inputDate1" value="${Date1 }"></label>&emsp;
+					<label>종료일	<input type="date" name="inputDate2" value="${Date2 }"></label>
+				</c:if>
+				<c:if test="${Date1==null and Date2==null}">
+					<label>시작일	<input type="date" name="inputDate1" required></label>&emsp;
+					<label>종료일	<input type="date" name="inputDate2" required></label>
+				</c:if>
+				<button type="submit" class="btn btn-outline-primary">검색</button>
+			</form>
 		</div>
 		<hr id="BIC_hr_line">
 		<div>
@@ -70,49 +79,36 @@
 			<table class="table table-hover" style="text-align:center">
 				<thead>
 					<tr>
-						<th>ISBN</th>
+						<th>대출내역번호</th>
+						<th>대출번호</th>
 						<th>도서번호</th>
-						<th>제  목</th>
-						<th>대 출 일</th>
-						<th>반 납 일</th>
+						<th>대출/반납일자</th>
+						<th>연장횟수</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>00000000</td>
-						<td>a2121212</td>
-						<td>springframework</td>
-						<td>2021-06-03</td>
-						<td>2021-06-05</td>
-					</tr>
-					<tr>
-						<td>11111111</td>
-						<td>b23333b2</td>
-						<td>apache</td>
-						<td>2021-06-27</td>
-						<td>2021-07-03</td>
-					</tr>
-					<tr>
-						<td>22222222</td>
-						<td>c879c523</td>
-						<td>Server</td>
-						<td>2021-07-01</td>
-						<td>2021-07-06</td>
-					</tr>
+				<c:choose>
+					<c:when test="${not empty list }">
+						<c:forEach var="l" items="${list }">
+							<tr>
+								<td><c:out value="${l.lendingHistroyNo}"/></td>
+								<td><c:out value="${l.lendingNo}"/></td>
+								<td><c:out value="${l.bookNo}"/></td>
+								<td><c:out value="${l.lendingDate}"/>~<c:out value="${l.returnDate}"/></td>
+								<td><c:out value="${l.bookExtend}"/></td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
 				</tbody>
 			</table>
 			<hr id="Borrwed_List_table" >
 		</div>
-		
-		<ul class="pagination" id="UserInfo_Paging_Container">
-		  <li class="page-item"><a class="page-link" href="#">이전</a></li>
-		  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-		  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		  <li class="page-item"><a class="page-link" href="#">다음</a></li>
-		</ul>
+		<div id="pagebar-container">
+        	${pageBar }
+        </div>
 	</div>
 </div>
 </section>

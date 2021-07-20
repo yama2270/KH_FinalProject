@@ -155,9 +155,9 @@ section#content		{min-height:600px;}
 	text-align:center;
 }
 #Borrowing_Info_Container #BIC_p1{
-	padding-left:100px;
-	margin-top:40px;
-	float:left;
+	/* padding-left:100px;
+	margin-top:40px; */
+	padding-top:40px;
 }
 #Borrowing_Info_Container #BIC_p2{
 	padding-top:40px; 
