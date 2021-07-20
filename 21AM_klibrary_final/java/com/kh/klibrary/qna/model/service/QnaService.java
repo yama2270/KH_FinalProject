@@ -19,4 +19,6 @@ public interface QnaService {
 	//QNA 보기
 	Qna selectQnaView(int no);
 	
+	//QNA 수정
+	int updateQna(Qna q);
 }

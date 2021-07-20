@@ -51,6 +51,13 @@ public class QnaDaoImpl implements QnaDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("qna.selectQnaView", no);
 	}
+
+	//QNA 수정
+	@Override
+	public int updateQna(SqlSessionTemplate session, Qna q) {
+		// TODO Auto-generated method stub
+		return session.update("qna.updateQna", q);
+	}
 	
 	
 	
