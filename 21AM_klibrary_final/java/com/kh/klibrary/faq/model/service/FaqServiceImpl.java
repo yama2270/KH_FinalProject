@@ -20,9 +20,23 @@ public class FaqServiceImpl implements FaqService {
 	private FaqDao dao;
 	
 	
-	  @Override public List<Map> selectFaqList() { 
+	  @Override public List<Faq> selectFaqList() { 
 		  // TODO Auto-generated method stub 
 		  return dao.selectFaqList(sqlSession); }
+
+	//faq검색  
+	@Override
+	public List<Faq> searchFaqTitle(String keyWord) {
+		// TODO Auto-generated method stub
+		return dao.searchFaqTitle(sqlSession,keyWord);
+	}
+
+	//faq검색
+	@Override
+	public List<Faq> searchFaqContent(String keyWord) {
+		// TODO Auto-generated method stub
+		return dao.searchFaqContent(sqlSession,keyWord);
+	}
 	 
 		/*
 		 * @Override public List<Faq> listAll(String searchOption, String keyword)
