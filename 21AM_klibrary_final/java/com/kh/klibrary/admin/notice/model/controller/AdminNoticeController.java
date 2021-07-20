@@ -31,15 +31,14 @@ public class AdminNoticeController {
 		return "admin/notice/noticeForm"; 	
 	}
 
+	// 공지사항 읽기
 	@RequestMapping("/admin/notice/noticeView.do")
-	public ModelAndView noticeView(int noticeNo,ModelAndView mv) {
-		
+	public ModelAndView noticeView(int noticeNo, ModelAndView mv) {
 		mv.addObject("notice",service.selectNoticeView(noticeNo));
-		mv.setViewName("admin/notice/noticeView");
-		
+		mv.setViewName("/admin/notice/noticeView");
 		return mv;
 	}
-
+	
 	@RequestMapping("/admin/notice/insertNotice.do")
 	public ModelAndView noticeInsert(Notice notice,MultipartFile noticeFile, ModelAndView mv) {
 		int result=service.insertNotice(notice);

@@ -41,7 +41,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 		
 	}
 	
-
+	//notice 보기  
 	@Override
 	public Notice selectNoticeView(int noticeNo) {
 		// TODO Auto-generated method stub
@@ -49,9 +49,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	}
 
 	@Override
-	public int deleteNotice(int noticeNo) {
-		// TODO Auto-generated method stub
-		
+	public int deleteNotice(int noticeNo) {	
 		return dao.deleteNotice(session,noticeNo);
 	}
 }

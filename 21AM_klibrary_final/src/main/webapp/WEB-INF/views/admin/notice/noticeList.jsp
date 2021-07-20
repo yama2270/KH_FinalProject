@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="공지사항관리"/>
@@ -56,7 +57,7 @@
    							<td class="cols"><c:out value="${notice.noticeNo }"/></td>
    							<td class="cols"><c:out value="${notice.noticeCate }"/></td>
    							<td class="cols">
-   								<a href="${path }/admin/notice/noticeView.do?no=${notice.noticeNo}">
+   								<a href="${path }/admin/notice/noticeView.do?noticeNo=${notice.noticeNo}">
    									<c:out value="${notice.noticeTitle }"/>
    								</a>
    							</td>

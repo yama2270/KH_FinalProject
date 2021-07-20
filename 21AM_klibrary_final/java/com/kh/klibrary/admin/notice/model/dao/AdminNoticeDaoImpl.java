@@ -27,7 +27,7 @@ public int insertNotice(SqlSessionTemplate session, Notice notice) {
 	// TODO Auto-generated method stub
 	return session.insert("notice.insertNotice",notice);
 }
-
+//notice 보기  
 @Override
 public Notice selectNoticeView(SqlSessionTemplate session, int noticeNo) {
 	// TODO Auto-generated method stub
