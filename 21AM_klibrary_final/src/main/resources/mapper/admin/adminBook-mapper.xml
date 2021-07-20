@@ -17,5 +17,41 @@
 		INSERT INTO BOOK VALUES(SEQ_BOOK_NO.NEXTVAL,#{isbnNo},default,default)
 	</insert>
 	
+	<!-- 도서목록 -->
+	<select id="selectBookList" resultMap="bookMap">
+		select * from BOOK JOIN BOOK_INFO USING(ISBN_NO) JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO)
+	</select>
+	
+	<!-- resultMap -->
+	<!-- book -->
+	<resultMap type="book" id="bookMap">
+		<id column="book_no" property="bookNo"/>
+		<result column="isbn_no" property="isbnNo"/> 
+		<result column="booking_state" property="bookingState"/>
+		<result column="lending_state" property="lendingState"/>
+		<collection property="bookInfo" ofType="bookInfo">
+			<id column="isbn_no" property="isbnNo"/>
+			<result column="book_name" property="bookName"/>
+			<result column="book_writer" property="bookWriter"/>
+			<result column="book_company" property="bookCompany"/>
+			<result column="book_date" property="bookDate"/>
+			<result column="book_price" property="bookPrice"/>
+			<result column="book_location" property="bookLocation"/>
+			<result column="book_content" property="bookContent"/>
+			<result column="book_img" property="bookImg"/>
+			<result column="book_kdc" property="bookKdc"/>
+ 			<collection property="kdcDetail" ofType="kdcDetail">
+				<id column="kdc_detail_no" property="kdcDetailNo"/>
+				<result column="kdc_detail_name" property="kdcDetailName"/>
+				<result column="kdc_no" property="kdcNo"/>
+				<collection property="kdcType" ofType="kdcType">
+					<id column="kdc_no" property="kdcNo"/>
+					<result column="kdc_name" property="kdcName"/>
+				</collection>
+			</collection>
+		</collection>
+	</resultMap>
+			
+			
 	
 </mapper>

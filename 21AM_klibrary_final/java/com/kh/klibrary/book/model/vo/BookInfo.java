@@ -5,15 +5,12 @@ import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class BookInfo {
 	private String isbnNo;
 	private String bookName;
@@ -25,7 +22,6 @@ public class BookInfo {
 	private String bookContent;
 	private String bookImg;
 	private String bookKdc;
+	private KdcDetail kdcDetail;
 	
-	
-
 }

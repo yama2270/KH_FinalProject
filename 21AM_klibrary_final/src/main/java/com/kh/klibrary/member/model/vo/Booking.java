@@ -7,18 +7,15 @@ import java.util.List;
 import com.kh.klibrary.book.model.vo.Book;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
-
-public class Lending {
-	private String lendingNo;
+public class Booking {
+	private int bookingNo;
 	private String userId;
 	private String bookNo;
-	private Date lendingDate;
-	private Date returnDate;
-	private int bookExtend;
-	private List<Member> member=new ArrayList();
+	private Date bookingDate;
+	private Date bookingPickUpDate;
+	
+	private List<MemberT> memberT=new ArrayList();
 	private List<Book> book=new ArrayList();
 }

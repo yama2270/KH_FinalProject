@@ -1,15 +1,21 @@
 package com.kh.klibrary.admin.book.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.admin.book.model.service.AdminBookService;
+import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 
 @Controller
@@ -20,7 +26,16 @@ public class AdminBookController {
 
 	// 도서목록
 	@RequestMapping("/admin/book/bookAllList.do")
-	public String bookAllList() {
+	public String bookAllList(
+			@RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
+			@RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage, 
+			Model m) {
+		List<Book> list = service.selectBookList(cPage,numPerPage);
+		System.out.println(list.get(0));
+		System.out.println(list.get(3));
+		System.out.println(list.get(6));
+		System.out.println(list.get(8));
+		m.addAttribute("list",list);
 		return "admin/book/bookAllList";
 	}
 
@@ -57,16 +72,6 @@ public class AdminBookController {
 	public String searchIsbn() {
 		return "admin/book/searchIsbn";
 	}
-
-	// 국립중앙도서관 open api
-	/*
-	 * @RequestMapping(value="/admin/book/searchBook.do",produces=
-	 * "application/xml;charset=UTF-8")
-	 * 
-	 * @ResponseBody public Object searchBook(@RequestParam Map param) { Object obj
-	 * = service.searchBook(param); System.out.println(obj); return
-	 * service.searchBook(param).getBody(); return obj; }
-	 */
 	
 	// isbn 중복여부 확인
 	@RequestMapping("/admin/book/checkIsbn.do")
@@ -80,13 +85,24 @@ public class AdminBookController {
 	
 	// 도서등록 
 	@RequestMapping("/admin/book/insertBook.do")
-	public ModelAndView insertBook(BookInfo bookInfo,String newBook,ModelAndView mv) {
+	public ModelAndView insertBook(BookInfo bookInfo,String newBook,ModelAndView mv,HttpServletRequest req) {
 		
-		int result = service.insertBook(bookInfo,newBook);
-		mv.addObject("msg",result>0?"등록성공":"등록실패");
+//		int result = service.insertBook(bookInfo,newBook);
+//		mv.addObject("msg",result>0?"등록성공":"등록실패");
+		
+		//transaction 처리하기
+		String msg = "등록성공";
+		try {
+			service.insertBook(bookInfo, newBook);
+		} catch(RuntimeException e) {
+			msg = "등록실패";
+		}
+		mv.addObject("msg",msg);
 		mv.addObject("loc","/admin/book/registerBook.do");
+		
 		mv.setViewName("common/msg");
 		return mv;
+		
 	}
 	
 }

@@ -6,11 +6,11 @@
 		INSERT INTO MEMBER VALUES(#{userId},#{userPassword},#{userName},#{email},#{birthDate},#{address},#{phone},default)
 	</insert>
 	
-	<select id="selectMember1" resultType="Member">
+	<select id="selectMember1" resultMap="Member">
 		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
 	</select>
 	
-	<select id="selectMember" resultMap="MemberT">
+	<select id="selectMember" resultMap="Member">
 		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
 	</select>
 	
@@ -23,7 +23,7 @@
 		WHERE USER_ID=#{userId}
 	</update>
 	
-	<resultMap type="com.kh.klibrary.member.model.vo.MemberT" id="MemberT">
+	<resultMap type="com.kh.klibrary.member.model.vo.Member" id="Member">
 		<result column="USER_ID" property="userId"/>
 		<result column="USER_PASSWORD" property="userPassword"/>
 		<result column="USER_NAME" property="userName"/>
@@ -36,6 +36,16 @@
 	
 	<select id="selectLHList" resultMap="LH">
 		SELECT * FROM LENDING_HISTORY WHERE USER_ID=#{userId} ORDER BY LENDING_HISTORY_NO DESC
+	</select>
+	<select id="selectLHCount" resultType="_int">
+		SELECT COUNT(*) FROM LENDING_HISTORY WHERE USER_ID=#{userId}
+	</select>
+	
+	<select id="selectDate" resultMap="LH">
+		SELECT * FROM LENDING_HISTORY WHERE USER_ID=#{userId} AND <![CDATA[LENDING_DATE >= #{Date1} AND RETURN_DATE <= #{Date2}]]>
+	</select>
+	<select id="selectDateCount" resultType="_int">
+		SELECT COUNT(*) FROM LENDING_HISTORY WHERE USER_ID=#{userId} AND <![CDATA[LENDING_DATE >= #{Date1} AND RETURN_DATE <= #{Date2}]]>
 	</select>
 	
 	<resultMap type="com.kh.klibrary.member.model.vo.LendingHistory" id="LH">
@@ -54,6 +64,12 @@
 		WHERE USER_ID=#{userId}
 	</select>
 	
+	<select id="selectLendingCount" resultType="_int">
+		SELECT COUNT(*) FROM
+		LENDING LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
+		WHERE USER_ID=#{userId}
+	</select>
+	
 	<resultMap type="com.kh.klibrary.member.model.vo.Lending" id="lending">
 		<id column="LENDING_NO" property="lendingNo"/>
 		<result column="USER_ID" property="userId"/>
@@ -61,7 +77,59 @@
 		<result column="LENDING_DATE" property="lendingDate"/>
 		<result column="RETURN_DATE" property="returnDate"/>
 		<result column="BOOK_EXTEND" property="bookExtend"/>
-		<collection property="memberT" ofType="memberT">
+		<collection property="member" ofType="member">
+			<id column="USER_ID" property="userId"/>
+			<result column="USER_PASSWORD" property="userPassword"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="EMAIL" property="email"/>
+			<result column="BIRTH_DATE" property="birthDate"/>
+			<result column="ADDRESS" property="address"/>
+			<result column="PHONE" property="phone"/>
+			<result column="SIGNUP_DATE" property="signupDate"/>
+		</collection>
+		<collection property="book" ofType="book">
+			<id column="BOOK_NO" property="bookNo"/>
+			<result column="ISBN_NO" property="bookingState"/>
+			<result column="BOOKING_STATE" property="bookingState"/>
+			<result column="LENDING_STATE" property="lendingState"/>
+			<collection property="bookInfo" ofType="bookInfo">
+				<id column="ISBN_NO" property="isbnNo"/>
+				<result column="BOOK_NAME" property="bookName"/>
+				<result column="BOOK_WRITER" property="bookWriter"/>
+				<result column="BOOK_COMPANY" property="bookCompany"/>
+				<result column="BOOK_DATE" property="bookDate"/>
+				<result column="BOOK_PRICE" property="bookPrice"/>
+				<result column="BOOK_LOCATION" property="bookLocation"/>
+				<result column="BOOK_CONTENT" property="bookContent"/>
+				<result column="BOOK_IMG" property="bookImg"/>
+				<result column="BOOK_KDC" property="bookKdc"/>
+			</collection>
+		</collection>
+	</resultMap>
+	
+	<select id="selectBookingList" resultMap="booking">
+		SELECT * FROM
+		BOOKING LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
+		WHERE USER_ID=#{userId}
+	</select>
+	
+	<select id="selectBookingCount" resultType="_int">
+		SELECT COUNT(*) FROM
+		BOOKING LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
+		WHERE USER_ID=#{userId}
+	</select>
+	
+	<delete id="cancelBooking">
+		DELETE FROM BOOKING WHERE USER_ID=#{userId} AND BOOK_NO=#{bookNo}
+	</delete>
+	
+	<resultMap type="com.kh.klibrary.member.model.vo.Booking" id="booking">
+		<id column="BOOKING_NO" property="bookingNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="BOOK_NO" property="bookNo"/>
+		<result column="BOOKING_DATE" property="bookingDate"/>
+		<result column="BOOKING_PICKUP_DATE" property="bookingPickUpDate"/>
+		<collection property="member" ofType="member">
 			<id column="USER_ID" property="userId"/>
 			<result column="USER_PASSWORD" property="userPassword"/>
 			<result column="USER_NAME" property="userName"/>

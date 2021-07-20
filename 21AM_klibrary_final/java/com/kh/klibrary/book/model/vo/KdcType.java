@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Book {
-	private String bookNo;
-	private String isbnNo;
-	private String bookingState;
-	private String lendingState;
-	private BookInfo bookInfo;
+public class KdcType {
+	private String kdcNo;
+	private String kdcName;
 }

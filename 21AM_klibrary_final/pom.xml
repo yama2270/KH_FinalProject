@@ -229,7 +229,12 @@
 		    <version>2.6</version>
 		</dependency>
 		
-		
+		<!-- aspectWeaver -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
+		</dependency>
    </dependencies>
 
 

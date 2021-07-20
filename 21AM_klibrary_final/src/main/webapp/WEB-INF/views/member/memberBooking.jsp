@@ -61,36 +61,31 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
+						<th>예약번호</th>
 						<th>도서번호</th>
 						<th>제  목</th>
 						<th>저  자</th>
-						<th>예 약 일</th>
+						<th>대출예정일자</th>
 						<th>취  소</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>00000000</td>
-						<td>springframework</td>
-						<td>a2121212</td>
-						<td>2021-06-03</td>
-						<td><button type="button" class="btn btn-outline-danger">취소</button></td>
-					</tr>
-					<tr>
-						<td>11111111</td>
-						<td>apache</td>
-						<td>b23333b2</td>
-						<td>2021-06-27</td>
-						<td><button type="button" class="btn btn-outline-danger">취소</button></td>
-					</tr>
-					<tr>
-						<td>22222222</td>
-						<td>Server</td>
-						<td>c879c523</td>
-						<td>2021-07-01</td>
-						<td><button type="button" class="btn btn-outline-danger">취소</button></td>
-					</tr>
-				</tbody>
+				<c:choose>
+					<c:when test="${not empty list }">
+						<c:forEach var="l" items="${list }">
+							<tr>
+								<td><c:out value="${l.bookingNo }"/></td>
+								<td><c:out value="${l.bookNo }"/></td>
+								<td><c:out value="${l.book.get(0).bookInfo.get(0).bookName}"/></td> <!-- 제목 -->
+								<td><c:out value="${l.book.get(0).bookInfo.get(0).bookWriter}"/></td> <!-- 저자 -->
+								<td><c:out value="${l.bookingPickUpDate }"/></td>
+								<td><button type="button" class="btn btn-outline-danger" onclick="location.assign('${path }/member/cancelBooking.do?bookNo=${l.bookNo }')">취소</button></td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<h2>예약중인 도서가 없습니다.</h2>
+					</c:otherwise>
+				</c:choose>
 			</table>
 			<hr id="Booking_List_table">
 		</div>

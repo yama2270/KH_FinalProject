@@ -57,7 +57,7 @@
 <header>
 	<div id="header_top">
                 <ul id="header_ul">
-                <c:if test="${loginMember1==null }">
+                <c:if test="${loginMember==null }">
                     <li>
                         <a href="${path }/member/memberLogin.do" class="header_a">로그인</a>
                     </li>
@@ -65,7 +65,7 @@
                         <a href="${path }/member/memberEnroll.do"  class="header_a">회원가입</a>
                     </li>
                 </c:if>
-                <c:if test="${loginMember1!=null }">
+                <c:if test="${loginMember!=null }">
                 	<li>
                 		<a href="" class="hader_a">마이페이지</a>
                 	</li>

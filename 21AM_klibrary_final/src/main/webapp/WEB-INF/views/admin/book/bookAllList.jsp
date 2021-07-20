@@ -110,66 +110,23 @@
                                 <th style="width:80px;">예약여부</th>
                                 <th style="width:80px;">대출여부</th>
                             </tr>
+                            <c:forEach var="b" items="${list }">
                             <tr>
                                 <td><input type="checkbox" /></td>
-                                <td>번호</td>
-                                <td>ISBN</td>
-                                <td>도서이름</td>
-                                <td>저자</td>
-                                <td>출판사</td>
-                                <td>발행일</td>
-                                <td>가격</td>
-                                <td>청구기호</td>
-                                <td>분류</td>
-                                <td>상세분류</td>
-                                <td>예약여부</td>
-                                <td>대출여부</td>
+                                <td><c:out value="${b.bookNo }"/></td>
+                                <td><c:out value="${b.isbnNo }"/></td>
+                                <td><c:out value="${b.bookInfo.bookName }"/></td>
+                                <td><c:out value="${b.bookInfo.bookWriter }"/></td>
+                                <td><c:out value="${b.bookInfo.bookCompany }"/></td>
+                                <td><c:out value="${b.bookInfo.bookDate }"/></td>
+                                <td><c:out value="${b.bookInfo.bookPrice }"/></td>
+                                <td><c:out value="${b.bookInfo.bookLocation }"/></td>
+                                <td><c:out value="${b.bookInfo.kdcDetail.kdcType.kdcName }"/></td>
+                                <td><c:out value="${b.bookInfo.kdcDetail.kdcDetailName }"/></td>
+                                <td><c:out value="${b.bookingState }"/></td>
+                                <td><c:out value="${b.lendingState }"/></td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox" /></td>
-                                <td>번호</td>
-                                <td>ISBN</td>
-                                <td>도서이름</td>
-                                <td>저자</td>
-                                <td>출판사</td>
-                                <td>발행일</td>
-                                <td>가격</td>
-                                <td>청구기호</td>
-                                <td>분류</td>
-                                <td>상세분류</td>
-                                <td>예약여부</td>
-                                <td>대출여부</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" /></td>
-                                <td>번호</td>
-                                <td>ISBN</td>
-                                <td>도서이름</td>
-                                <td>저자</td>
-                                <td>출판사</td>
-                                <td>발행일</td>
-                                <td>가격</td>
-                                <td>청구기호</td>
-                                <td>분류</td>
-                                <td>상세분류</td>
-                                <td>예약여부</td>
-                                <td>대출여부</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" /></td>
-                                <td>번호</td>
-                                <td>ISBN</td>
-                                <td>도서이름</td>
-                                <td>저자</td>
-                                <td>출판사</td>
-                                <td>발행일</td>
-                                <td>가격</td>
-                                <td>청구기호</td>
-                                <td>분류</td>
-                                <td>상세분류</td>
-                                <td>예약여부</td>
-                                <td>대출여부</td>
-                            </tr>
+                            </c:forEach>
                         </table>
                         <div id="bookAllListBtn">
                             <button type="button" class="btn btn-outline-secondary">삭제</button>

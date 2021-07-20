@@ -57,8 +57,8 @@
 			<hr id="h2_line2">
 		</div>
 		<div id="Borrowing_Info_Container" >
-			<p id="BIC_p1">대출연체권수 : </p>
-			<p id="BIC_p2">대출정지만기일 : </p>
+			<p id="BIC_p1">총 대출 권수 : <c:out value="${totalData }"/>권</p>
+			<!-- <p id="BIC_p2">대출정지만기일 : </p> -->
 		</div>
 		<hr id="BIC_hr_line">
 		<div>
@@ -108,19 +108,10 @@
 				<h2>대여중인 도서가 없습니다.</h2>
 			</c:otherwise>
 		</c:choose>
-		
 		</div>
-
-		
-		<ul class="pagination" id="UserInfo_Paging_Container">
-		  <li class="page-item"><a class="page-link" href="#">이전</a></li>
-		  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-		  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		  <li class="page-item"><a class="page-link" href="#">다음</a></li>
-		</ul>
+		<div id="pagebar-container">
+        	${pageBar }
+        </div>
 	</div>
 </div>
 </section>
