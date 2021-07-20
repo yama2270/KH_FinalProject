@@ -4,109 +4,85 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="title" value="qna묻고답하기확인"/>
+	<jsp:param name="title" value="qna작성폼"/>
 </jsp:include> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/HW.css">
-    <link rel="stylesheet" href="../css/yh.css">
-    <!-- fontawsome CDN 불러오기 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <title>묻고답하기확인</title>
+    <title>QnA 작성 폼</title>
 </head>
 <body id="ad_body">
     <header id="ad_header">
-            <div id="header_title">K-도서관</div>
+        <div id="header_title">K-도서관</div>
     </header>
-
     <section id="ad_container">
         <div class="leftmenu" >
             <ul class="list-group">
-              	<li class="list-group-item" id="menutitle">이용안내</li>             
-              	<li class="list-group-item"><a href="${path}/notice/noticeList.do">공지사항</a></li>
-            	<li class="list-group-item"><a href="${path }/faq/faqList.do">자주묻는질문</a></li>	
-            	<li class="list-group-item"><a href="${path }/qna/qnaList.do">QNA</a></li>
-            </ul>	
+              <li class="list-group-item" id="menutitle">이용안내</li>
+              	<li class="list-group-item"><a href="${path }/notice/noticeList.do">공지사항 </a></li>
+              	<li class="list-group-item"><a href="${path }/faq/faqList.do">자주묻는질문</a></li>	
+              	<li class="list-group-item"><a href="${path }/qna/qnaList.do">QNA</a></li>
+            </ul>
           </div>
-	        <div id="he_right">
-	            <div id="contHeader">Q&A 묻고답하기</div>
-	            <div id="contbody">
-	                <div class="titlebody">
-	                    <div class="titlename">
-	                        <table>
-	                            <tr>
-	                                <td class="tabletitle">제목 : <c:out value="${qna.qnaTitle }"/></td>
-	                                <td class="tabletitle">작성일 : <c:out value="${qna.qnaDate }"/></td>
-	                            </tr>
-	                            <tr>
-	                                <td class="tabletitle">작성자 : <c:out value ="${qna.userId }"/></td>
-	                                <td class="tabletitle">조회수 : <c:out value ="${qna.qnaCount }"/></td>
-	                            </tr>
-	                        </table>
-                            <textarea class=""name="" cols="100" rows="20">
-                            	<c:out value="${qna.qnaContent }"/>
-                            </textarea> 
-	                        <!-- <div class="border">내용: <c:out value="${qna.qnaContent }"/></div> -->
-	                        <div class="coment">답글</div>
-	                        <div class="newcoment">
-	                            <div>
-	                                작성자
-	                                <input type="text" class="comenttext">
-	                                <input type="submit" value="등록" class="submitbutton">
-	                            </div>
-	                            
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-    </section>
+          
+        <div id="he_right">
+            <div id="contHeader">QNA 묻고답하기 -> 글작성</div>
+            <div id="contbody" class="sech"></div>
+                <div class="borderbody">
+                    <form name="qnaForm" action="${path }/qna/updateQna.do" method="post" enctype="multipart/form-data">
+                        <table class="table2">
+                            <input type="hidden" name="qnaNo" value="${qna.qnaNo }">
+                            <tr>
+                                <td class="title">제목</td>
+                                <td class="nameq"><input type="text" class="titlename2" name="qnaTitle" readonly="readonly" value="${qna.qnaTitle }"></td>
+                            </tr>
+                            <tr>
+                                <td class="title" >분류</td>
+                                <td class="nameq">
+                                    <select name="qnaCate" >
+                                        <option value="도서">도서</option>
+                                        <option value="기타">기타</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">작성자</td>
+                                <td><input type="text" name="userId" readonly="readonly" value="${qna.userId }"></td>
+                            </tr>
+				<!-- 			<tr>
+                                <td class="title">작성일</td>
+                                <td><input type="date" name="qnaDate" value="2020-07-22"min="2018-01-01" max="2021-12-31"></td>
+                            </tr> -->
+                            </tr> 
+                            <tr>
+                            	<td class="title">첨부파일</td>
+                            	<td class="custom-file">
+								  <div class="custom-file">                          	
+                            		<input type="file" class="custom-file-input" name="upFile" id="upFile=1">
+                            		<label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
+                            	  </div>	
+                            </tr>
+                            <tr>
+                            	<td class="title">첨부파일2</td>
+                            	<td class="custom-file">
+								  <div class="custom-file">                          	
+                            		<input type="file" class="custom-file-input" name="upFile" id="upFile=1">
+                            		<label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
+                            	  </div>	
+                            </tr>		
+                        </table>
+                        <textarea name="qnaContent" id="" cols="110" rows="10" class="textarea"><c:out value="${qna.qnaContent }"/></textarea>
+                        <input type="submit" value="수정" class="newtext" style= "margin-left: 35%;">                        	                        		
+                    </form>
+                        <button class="qf-cancel" onclick="fn_moveQnaList();" >취소</button>
+                </div>
+            </div>
+</section>        
 
 <script>
-    
-    // navigation 이벤트
-    
-    $(function(){
-
-    const naviList = $("#lefNavList").children();
-    const options = $(".navOptions")
-    
-    $(naviList).click((e)=>{
-        $(naviList).children().not('i').hide();
-        $(naviList).children().filter('i').attr("class","fas fa-plus");
-        $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
-        $(e.target).find("ul").show();
-        $(e.target).find("i").attr("class","fas fa-minus");
-    })
-
-    // navigation - option 이벤트 
-
-    $(options).mouseover((e)=>{
-        $(e.target).css("textDecoration","underline");
-    })
-
-    $(options).mouseout((e)=>{
-        $(e.target).css("textDecoration","");
-    })
-
-    $(options).click((e)=>{
-        
-        $(options).children().css({"font-size":"15px","backgroundColor":"#9BC3FF","fontWeight":"normal"})
-        $(e.target).css({"font-size":"20px","fontWeight":"bold","backgroundColor":"#7DA5E1"})
-        return false;
-    })
-
-})
-
-</script>
-
+	const fn_moveQnaList =()=>{
+		location.assign("${path}/qna/qnaList.do")}
+</script>  
 </body>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 

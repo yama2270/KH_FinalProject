@@ -52,5 +52,11 @@
  		SELECT * FROM QNA LEFT JOIN ATTACHMENT USING(QNA_NO)
  		WHERE QNA_NO = #{no}
  	</select>
+ 	
+ 	<!-- qna 수정  -->
+ 	<update id="updateQna">
+ 		UPDATE QNA SET QNA_CONTENT=#{qnaContent}
+ 		WHERE QNA_NO=#{qnaNo}
+ 	</update>
 </mapper>
  

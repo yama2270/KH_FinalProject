@@ -7,57 +7,64 @@
 	<jsp:param name="title" value="도서등록" />
 </jsp:include>
 	<div id="ad_right">
+	<form action="${path }/admin/book/insertBook.do" method="post">
 		<div id="contHeader">도서 등록</div>
 		<div id="contBody">
 		<table id="reg_book_table" class="pa">
 				<tr>
 					<td>도서명</td>
 					<td class="reg_book_cate" style="vertical-align:bottom;">
-						<input type="text" name="" value="" placeholder="도서명" disabled >
+						<input type="text" name="bookName" id="bookName" value="" placeholder="도서명" readonly required>
 						<button type="button" class="btn btn-outline-secondary" style="height:30px;line-height:15px;margin-bottom:4px;" onclick="regPopup()">검색</button>
+						<span id="isbnMsg"></span>
 					</td>
 				</tr>
 				<tr>
 					<td>한국십진분류</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="한국십진분류"></td>
+					<td class="reg_book_cate"><input type="text" name="bookKdc" id="classNo" value="" placeholder="한국십진분류" required></td>
+				</tr>
+				<tr>
+					<td>청구기호</td>
+					<td class="reg_book_cate"><input type="text" name="bookLocation" id="callNo" value="" placeholder="청구기호" required></td>
 				</tr>
 				<tr>
 					<td>저자</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="저자"></td>
+					<td class="reg_book_cate"><input type="text" name="bookWriter" id="author" value="" placeholder="저자" required></td>
 				</tr>
 				<tr>
 					<td>출판사</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="출판사"></td>
+					<td class="reg_book_cate"><input type="text" name="bookCompany" id="publisher" value="" placeholder="출판사" required></td>
 				</tr>
 				<tr>
 					<td>발행일</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="발행일"></td>
+					<td class="reg_book_cate"><input type="text" name="bookDate" id="regDate" value="" placeholder="발행일" required></td>
 
 				</tr>
 				<tr>
 					<td>가격</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="가격"></td>
+					<td class="reg_book_cate"><input type="text" name="bookPrice" id="price" value="" placeholder="가격" required></td>
 				</tr>
 				<tr>
 					<td>ISBN</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="ISBN"></td>
+					<td class="reg_book_cate"><input type="text" name="isbnNo" id="isbn" value="" placeholder="ISBN" required></td>
 				</tr>
 				<tr>
 					<td>줄거리</td>
 					<td>
-						<textarea id="" rows="5" cols="30" style="width:800px;height:250px;resize:none;">
+						<textarea name = "bookContent" id="content" rows="5" cols="30" style="width:800px;height:250px;resize:none;">
 							줄거리
 						</textarea>
 					</td>
 				</tr>
+				<input type="text" name="bookImg" id="img" value="" style="display:none;"/>
 		</table>
 		<div id="regBookBtn">
 			<button type="button" class="btn btn-outline-secondary" >뒤로가기</button>
-			<button type="button" class="btn btn-outline-secondary" >등록</button>
+			<button type="submit" class="btn btn-outline-secondary" >등록</button>
 		</div>
 	</div>
+</form>
 </div>
-
 </section>
 
 <script>
@@ -124,8 +131,14 @@
 	    
         // 팝업창 
 	    const regPopup = function(){
-	    	window.open("${path}/admin/book/searchIsbn.do","regPopup","width=650,height=600,scrollbars=yes");
+	    	window.open("${path}/admin/book/searchIsbn.do","regPopup","width=550,height=600,scrollbars=yes");
 	    }
+        
+        // 책 등록 
+        const fn_insertBook=()=>{
+        	location.href="${path}/admin/book/insertBook.do";
+        }
+	        	
     
 	</script>
 
