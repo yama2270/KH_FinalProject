@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.kh.klibrary.member.model.controller;
 
 import java.sql.Date;
@@ -104,6 +103,7 @@ public class MemberController {
 		mv.setViewName("member/memberBorrowed");
 		return mv;
 	}
+	
 	@RequestMapping("/member/memberBorrowedDate.do")
 	public ModelAndView borrowedDate(ModelAndView mv, @ModelAttribute("loginMember") MemberT m,
 									@RequestParam Date inputDate1, @RequestParam Date inputDate2,
@@ -217,5 +217,3 @@ public class MemberController {
 	}
 	
 }
-=======
->>>>>>> refs/remotes/origin/master
