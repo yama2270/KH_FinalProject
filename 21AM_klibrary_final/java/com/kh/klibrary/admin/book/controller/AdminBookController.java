@@ -84,9 +84,19 @@ public class AdminBookController {
 	@RequestMapping("/admin/book/insertBook.do")
 	public ModelAndView insertBook(BookInfo bookInfo,String newBook,ModelAndView mv,HttpServletRequest req) {
 		
-		int result = service.insertBook(bookInfo,newBook);
-		mv.addObject("msg",result>0?"등록성공":"등록실패");
+//		int result = service.insertBook(bookInfo,newBook);
+//		mv.addObject("msg",result>0?"등록성공":"등록실패");
+		
+		//transaction 처리하기
+		String msg = "등록성공";
+		try {
+			service.insertBook(bookInfo, newBook);
+		} catch(RuntimeException e) {
+			msg = "등록실패";
+		}
+		mv.addObject("msg",msg);
 		mv.addObject("loc","/admin/book/registerBook.do");
+		
 		mv.setViewName("common/msg");
 		return mv;
 		
