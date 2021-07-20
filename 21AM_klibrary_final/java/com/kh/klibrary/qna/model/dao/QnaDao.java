@@ -27,4 +27,6 @@ public interface QnaDao {
 	
 	Qna selectQnaView(SqlSessionTemplate session, int no );
 	
+	//QNA 수정
+	int updateQna(SqlSessionTemplate session, Qna q);
 }

@@ -58,7 +58,11 @@
 	                                <input type="text" class="comenttext">
 	                                <input type="submit" value="등록" class="submitbutton">
 	                            </div>
-	                            
+	                            	<div class="qna_update">
+	                            	 <a href="${path }/qna/updateQna.do?no=${qna.qnaNo}">	
+	                            		<button class="qna_update_bt">수정</button>
+									 </a>	
+	                            	</div>
 	                        </div>
 	                    </div>
 	                </div>
@@ -67,6 +71,7 @@
     </section>
 
 <script>
+    fuction 
     
     // navigation 이벤트
     

@@ -58,6 +58,13 @@ public class QnaServiceImpl implements QnaService {
 		// TODO Auto-generated method stub
 		return dao.selectQnaView(session, no);
 	}
+
+	//QNA 수정
+	@Override
+	public int updateQna(Qna q) {
+		// TODO Auto-generated method stub
+		return dao.updateQna(session, q);
+	}
 	
 }
 
