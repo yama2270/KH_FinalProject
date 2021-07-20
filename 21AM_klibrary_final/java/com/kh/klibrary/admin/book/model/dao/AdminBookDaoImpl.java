@@ -1,8 +1,12 @@
 package com.kh.klibrary.admin.book.model.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 
 @Repository
@@ -23,5 +27,12 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	@Override
 	public int insertBook(BookInfo bookInfo,SqlSessionTemplate session) {
 		return session.insert("adminBook.insertBook",bookInfo);
+	}
+	
+	// 도서목록 
+	@Override 
+	public List<Book> selectBookList(int cPage,int numPerPage,SqlSessionTemplate session){
+		RowBounds row = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return session.selectList("adminBook.selectBookList",null,row);
 	}
 }
