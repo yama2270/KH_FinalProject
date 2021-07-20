@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	
+	<insert id="insertMember">
+		INSERT INTO MEMBER VALUES(#{userId},#{userPassword},#{userName},#{email},#{birthDate},#{address},#{phone},default)
+	</insert>
+	
+	<select id="selectMember1" resultType="Member">
+		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
+	</select>
+	
 	<select id="selectMember" resultMap="MemberT">
 		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
 	</select>

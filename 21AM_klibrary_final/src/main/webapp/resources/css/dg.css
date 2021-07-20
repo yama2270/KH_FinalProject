@@ -1,1 +1,132 @@
 @charset "UTF-8";
+
+/* 메인페이지 */
+#header_ul{
+          list-style:none;
+          float:right;
+      }
+      #header_ul>li{
+          float:left;
+          padding-right:20px;
+      }
+      .header_a{
+          text-decoration:none;
+          color:black;
+      }
+      #header_top{
+          padding:10px;
+          width:60%;
+          float:left;
+      }
+      
+      #logo{
+          padding:50px;
+          padding-left:100px;
+          width:30%;
+          float:left;
+      }
+      #nav{
+        clear:left;
+      }
+
+      #main-menu{
+        display:table;
+        list-style:none;
+        margin-left:auto;
+        margin-right:auto;
+      }
+      #main-menu > li {
+        float: left;
+        position: relative;
+        margin:100px;
+      }
+
+    #main-menu > li > a {
+        font-size: 40px;
+        color: black;
+        text-align: left;
+        text-decoration: none;
+        display: block;
+      }
+
+    #sub-menu {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.15s ease-in;
+        z-index:10000;
+      }
+
+    #sub-menu > li >  a {
+        color: black;
+        text-decoration: none;
+        font-size:20px;
+      }
+
+    #main-menu > li:hover #sub-menu {
+        opacity: 1;
+        visibility: visible;
+      }
+
+    #sub-menu > li >  a:hover {
+        text-decoration: underline;
+      }
+      .image_container{
+        height:300px;
+        margin:20px;
+        z-index:0;
+        opacity:10.0;
+      }
+      .image_readingroom{
+          height:200px;
+          margin-left:20px;
+      }
+      .readingroom{
+          width:45%;
+          float:left;  
+          border:1px;        
+      }
+      #user_info{
+          margin:20px;
+      }
+      #use_inform{
+          text-align:left;
+      }
+      .use_inform{
+          float:left;
+          width:20%;
+          margin-bottom:20px;
+      }
+      .use_inform>ul{
+          font-size:25px;
+      }
+      .use_inform>ul>li{
+          font-size:15px;
+      }
+      #library_tab{
+          clear:left;
+          margin:20px;
+      }
+      #main_cate{
+          display:flex;
+          margin:30px auto;
+      }
+      #main_cate>button{
+          
+          margin:0px 7%;
+          width:100px;
+          
+      }
+
+      #main_list{
+          border:1px solid black;
+          width:90%;
+          height:500px;
+          margin: auto;
+
+      }
+
+      #footer{
+          text-align:center;
+          clear:left;
+      }

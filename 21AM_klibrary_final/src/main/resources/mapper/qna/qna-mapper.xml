@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="qna">
+	<select id="selectQnaList" resultMap="qnaMap">
+		SELECT * 
+		FROM QNA LEFT JOIN ATTACHMENT USING(QNA_NO)
+		ORDER BY QNA_DATE DESC
+	</select>  	
+  	
+  	<select id="countQna" resultType="_int">
+  		SELECT COUNT(*) FROM QNA
+  	</select>
+  	
+  	<resultMap type="qna" id="qnaMap">
+  		<id column="qna_no" property="qnaNo"/> <!-- id는 pk -->
+  		<result column="user_id" property="userId"/> <!-- result는 row -->
+  		<result column="qna_title" property="qnaTitle"/>
+  		<result column="qna_content" property="qnaContent"/>
+  		<result column="qna_date" property="qnaDate"/>
+  		<result column="qna_count" property="qnaCount"/>
+  		<result column="qna_state" property="qnaState"/>
+  		<result column="qna_cate" property="qnaCate"/>
+  		
+ 		<collection property="attachments" ofType="attachment">
+		 <id column="attachment_no" property="attachmentNo"/>
+		 <result  column="original_file_name" property="originalFileName"/>
+		 <result column="rename_file_name" property="renameFileName"/>
+		 <result column="upload_date" property="UploadDate"/>	  			
+ 		</collection>
+  	</resultMap>
+  	
+  	<resultMap type="attachment" id="attachmentMap">
+  	
+  	</resultMap>
+  	
+  	<select id="selectBoard" parameterType="_int" resultMap="qnaMap">
+		SELECT * FROM QNA LEFT JOIN ATTACHMENT USING(QNA_NO) WHERE QNA_NO= #{no}  	
+ 	</select>
+ 	
+ 	<!-- qna쓰기 -->
+ 	
+ 	<insert id="insertQna">
+ 		INSERT INTO QNA VALUES(SEQ_QNA_NO.NEXTVAL, #{userId}, #{qnaTitle}, #{qnaContent}, SYSDATE, #{qnaCount}, default, default)
+ 	</insert>
+ 	
+ 	<insert id="insertAttachment">
+ 		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENT_NO.NEXTVAL, #{qnaNo}, #{originalFileName}, #{renameFileName} ,default)
+ 	</insert>
+ 	
+ 	<!-- qna읽기  -->
+ 	<select id="selectQnaView" resultMap="qnaMap">
+ 		SELECT * FROM QNA LEFT JOIN ATTACHMENT USING(QNA_NO)
+ 		WHERE QNA_NO = #{no}
+ 	</select>
+</mapper>
+ 

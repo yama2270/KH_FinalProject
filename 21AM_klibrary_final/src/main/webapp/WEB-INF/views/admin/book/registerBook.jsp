@@ -6,112 +6,65 @@
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="도서등록" />
 </jsp:include>
-<%-- <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/sh.css">
-<!-- fontawsome CDN 불러오기 -->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-	rel="stylesheet">
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.min.js"></script>
-<title>도서 등록</title>
-</head>
-<section id="ad_container">
-	<div id="ad_left">
-		<div id="leftNav">
-			<ul id="lefNavList">
-				<li>회원관리 <i class="fas fa-plus"></i>
-					<ul class="navOptions">
-						<li>회원정보</li>
-						<li>탈퇴요청</li>
-					</ul>
-				</li>
-				<li>도서관리 <i class="fas fa-plus"></i>
-					<ul class="navOptions">
-						<li>전체도서목록</li>
-						<li>도서등록</li>
-						<li>도서대출현황</li>
-						<li>도서예약현황</li>
-					</ul>
-				</li>
-				<li>게시글 관리 <i class="fas fa-plus"></i>
-					<ul class="navOptions">
-						<li>공지사항 관리</li>
-						<li>문의사항 관리</li>
-						<li>자주하는 질문</li>
-					</ul>
-				</li>
-				<li>열람실 관리 <i class="fas fa-plus"></i>
-					<ul class="navOptions">
-						<li>전체조회</li>
-						<li>열람실A</li>
-						<li>열람실B</li>
-						<li>열람실C</li>
-						<li>열람실D</li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</div>
- --%>
 	<div id="ad_right">
+	<form action="${path }/admin/book/insertBook.do" method="post">
 		<div id="contHeader">도서 등록</div>
 		<div id="contBody">
 		<table id="reg_book_table" class="pa">
 				<tr>
 					<td>도서명</td>
 					<td class="reg_book_cate" style="vertical-align:bottom;">
-						<input type="text" name="" value="" placeholder="도서명" disabled >
+						<input type="text" name="bookName" id="bookName" value="" placeholder="도서명" readonly required>
 						<button type="button" class="btn btn-outline-secondary" style="height:30px;line-height:15px;margin-bottom:4px;" onclick="regPopup()">검색</button>
+						<span id="isbnMsg"></span>
 					</td>
 				</tr>
 				<tr>
 					<td>한국십진분류</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="한국십진분류"></td>
+					<td class="reg_book_cate"><input type="text" name="bookKdc" id="classNo" value="" placeholder="한국십진분류" required></td>
+				</tr>
+				<tr>
+					<td>청구기호</td>
+					<td class="reg_book_cate"><input type="text" name="bookLocation" id="callNo" value="" placeholder="청구기호" required></td>
 				</tr>
 				<tr>
 					<td>저자</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="저자"></td>
+					<td class="reg_book_cate"><input type="text" name="bookWriter" id="author" value="" placeholder="저자" required></td>
 				</tr>
 				<tr>
 					<td>출판사</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="출판사"></td>
+					<td class="reg_book_cate"><input type="text" name="bookCompany" id="publisher" value="" placeholder="출판사" required></td>
 				</tr>
 				<tr>
 					<td>발행일</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="발행일"></td>
+					<td class="reg_book_cate"><input type="text" name="bookDate" id="regDate" value="" placeholder="발행일" required></td>
 
 				</tr>
 				<tr>
 					<td>가격</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="가격"></td>
+					<td class="reg_book_cate"><input type="text" name="bookPrice" id="price" value="" placeholder="가격" required></td>
 				</tr>
 				<tr>
 					<td>ISBN</td>
-					<td class="reg_book_cate"><input type="text" name="" value="" placeholder="ISBN"></td>
+					<td class="reg_book_cate"><input type="text" name="isbnNo" id="isbn" value="" placeholder="ISBN" required></td>
 				</tr>
 				<tr>
 					<td>줄거리</td>
 					<td>
-						<textarea id="" rows="5" cols="30" style="width:800px;height:250px;resize:none;">
+						<textarea name = "bookContent" id="content" rows="5" cols="30" style="width:800px;height:250px;resize:none;">
 							줄거리
 						</textarea>
 					</td>
 				</tr>
+				<input type="text" name="bookImg" id="img" value="" style="display:none;"/>
 		</table>
 		<div id="regBookBtn">
 			<button type="button" class="btn btn-outline-secondary" >뒤로가기</button>
-			<button type="button" class="btn btn-outline-secondary" >등록</button>
+			<button type="submit" class="btn btn-outline-secondary" >등록</button>
 		</div>
 	</div>
+</form>
 </div>
-
 </section>
 
 <script>
@@ -167,7 +120,8 @@
         </script>
         
         <script>
-	
+		
+        // navigation 클릭 이벤트 
 	    $(function(){
 	        // ul show()
 	        $(".navOptions").eq(1).show();
@@ -175,10 +129,16 @@
 	        $(".navOptions").eq(1).children().eq(4).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
 	    })
 	    
+        // 팝업창 
 	    const regPopup = function(){
-	    	/* const popOption = ; */
-	    	window.open("${path}/search/wishbookPopup.do","regPopup","width=500,height=500,scrollbars=yes");
+	    	window.open("${path}/admin/book/searchIsbn.do","regPopup","width=550,height=600,scrollbars=yes");
 	    }
+        
+        // 책 등록 
+        const fn_insertBook=()=>{
+        	location.href="${path}/admin/book/insertBook.do";
+        }
+	        	
     
 	</script>
 

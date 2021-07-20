@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.kh.klibrary.member.model.controller;
 
 import java.sql.Date;
@@ -216,3 +217,5 @@ public class MemberController {
 	}
 	
 }
+=======
+>>>>>>> refs/remotes/origin/master

@@ -80,3 +80,4 @@ public class MemberTDaoImpl implements MemberTDao {
 		return session.delete("member.cancelBooking", m1);
 	}
 }
+

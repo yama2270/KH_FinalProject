@@ -138,8 +138,12 @@ background-color:blue;
 
   
   .list-group-item:not(#menutitle1,#menutitle):hover {
-    background-color: lightgrey;
+   
     cursor:pointer;
+  }
+  
+  .list-group-item:not(#menutitle,#menutitle1).on{
+    background-color: lightgrey;
   }
   
   .divcontainer1{
@@ -242,8 +246,12 @@ background-color:blue;
     
   }
   .list-group-item:not(#menutitle,#menutitle1):hover {
-    background-color: lightgrey;
+    
     cursor:pointer;
+  }
+  
+  .list-group-item:not(#menutitle,#menutitle1).on{
+    background-color: lightgrey;
   }
   
   #menutitle{
@@ -316,10 +324,18 @@ background-color:blue;
   
   
   }
-  .list-group-item:not(#menutitle,#menutitle1):hover {
-    background-color: lightgrey;
+   .list-group-item:not(#menutitle1,#menutitle):hover {
+   
     cursor:pointer;
   }
+  
+  .list-group-item:not(#menutitle,#menutitle1).on{
+    background-color: lightgrey;
+  }
+  
+  
+  
+  
   .totalSearchcontainer1{
    display:block;
    background-color:lightblue;
@@ -596,9 +612,13 @@ background-color:blue;
    
   
 
-    .list-group-item:not(#menutitle):hover {
-    background-color: lightgrey;
+    .list-group-item:not(#menutitle1,#menutitle):hover {
+   
     cursor:pointer;
+  }
+  
+  .list-group-item:not(#menutitle,#menutitle1).on{
+    background-color: lightgrey;
   }
   
   #menutitle{
@@ -666,7 +686,12 @@ background-color:blue;
      width:70%;
      line-height:200%;
     }
-  .list-group-item:hover {
+   .list-group-item:not(#menutitle1,#menutitle):hover {
+   
+    cursor:pointer;
+  }
+  
+  .list-group-item:not(#menutitle,#menutitle1).on{
     background-color: lightgrey;
   }
   
@@ -677,11 +702,7 @@ color:white;
 background-color:blue;
 }
 
-.list-group-item:not(#menutitle):hover {
-    background-color: lightgrey;
-    cursor:pointer;
-  }
-   
+
   #wishbooktitle1{
    margin-left:100px;
 
@@ -867,14 +888,14 @@ background-color:blue;
         padding: 6px;
     }
     
-    #bookinfoinput{
+    .bookinfoinput{
         width:85%;
         float:left;
         border: 1px solid black;
         border-radius: 5px;
         padding: 6px;
     }
-    #bookinfoinput:hover,#publishYear1:hover{
+    .bookinfoinput:hover,#publishYear1:hover{
         background-color: whitesmoke;
     }
     #wishbooktable td{
@@ -889,10 +910,7 @@ background-color:blue;
      width:70%;
     
   }
-  .list-group-item:not(#menutitle):hover {
-    background-color: lightgrey;
-    cursor:pointer;
-  }
+  
   
   #menutitle{
 height:50px;
