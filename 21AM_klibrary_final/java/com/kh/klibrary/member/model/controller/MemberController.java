@@ -221,21 +221,23 @@ public class MemberController {
 		return "common/msg";
 	}
 	
-	@RequestMapping("/member/memberHopeBook.do")
-	public String memberHopeBook() {
-		return "member/memberHopeBook";
-	}
-	
 	@RequestMapping("/member/memberHopeBookRecord.do")
-	public String memberHopeBookRecord() {
-		return "member/memberHopeBookRecord";
+	public ModelAndView memberHopeBookRecord(ModelAndView mv,@ModelAttribute("loginMember") Member m,
+										    @RequestParam(value="cPage", defaultValue="1") int cPage,
+										    @RequestParam(value="numPerPage", defaultValue="5") int numPerpage) {
+		
+		mv.addObject("list",service.selectHopeRecordList(m.getUserId(), cPage, numPerpage));
+		int totalData=service.selectHopeRecordCount(m.getUserId());
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberHopeBookRecord.do"));
+		mv.addObject("totalData",totalData);
+		mv.setViewName("member/memberHopeBookRecord");
+		return mv;
 	}
 	
 	@RequestMapping("/member/memberBookMark.do")
 	public ModelAndView memberBookMark(ModelAndView mv, @ModelAttribute("loginMember") Member m,
 									  @RequestParam(value="cPage", defaultValue="1") int cPage,
 									  @RequestParam(value="numPerPage", defaultValue="5") int numPerpage) {
-		System.out.println(m.getUserId());
 		mv.addObject("list",service.selectBookMarkList(m.getUserId(), cPage, numPerpage));
 		int totalData=service.selectBookMarkCount(m.getUserId());
 		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBookMark.do"));

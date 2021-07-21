@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.dao.MemberDao;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.Lending;
@@ -81,6 +82,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public List<WishBook> selectHopeRecordList(String userId, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.selectHopeRecordList(session,userId, cPage, numPerpage);
+	}
+	
+	@Override
 	public int selectLendingCount(String userId) {
 		// TODO Auto-generated method stub
 		return dao.selectLendingCount(session, userId);
@@ -120,5 +127,11 @@ public class MemberServiceImpl implements MemberService {
 	public int cancelMark(Map m1) {
 		// TODO Auto-generated method stub
 		return dao.cancelMark(session, m1);
+	}
+	
+	@Override
+	public int selectHopeRecordCount(String userId) {
+		// TODO Auto-generated method stub
+		return dao.selectHopeRecordCount(session, userId);
 	}
 }

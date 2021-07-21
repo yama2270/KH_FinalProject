@@ -11,129 +11,100 @@ String pageId = request.getParameter("pageId");
 
 <body>
   
-  <div class="divcontainer1">
-    <br>
-    <h2 id="wishbooktitle1">희망도서신청</h2>
-    <br>
-  </div>
-
-<div class="list-group-container" >
-  <!-- <h2 id="title">자료검색</h2> -->
-  <ul class="list-group">
-    <li class="list-group-item" id="menutitle">자료검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/bookSearch.do')">통합검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/detailSearch.do')">상세검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/categorySearch.do')">주제별검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/wishbook.do')">희망도서신청</li>
-  </ul>
-</div>
-<br><br><br>
-<table id="wishbooktable">
-        <tr>
-            <td>
-               도서명
-            </td>
-            <td colspan="3">
-
-                <input type="text" name="bookName" placeholder="내용을 입력해주세요" class="bookinfoinput" onkeypress="if(event.keyCode == 13){fn_searchPopup(); return false;}" id="bookinfoinput1">
-                <button id="button22" type="submit" onclick="fn_searchPopup();">검색</button>
-                
-            </td>
-            
-
-        </tr>
-        <tr>
-            <td>
-              저자명
-            </td>
-            <td colspan="3">
-               <input type="text" name="author" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput2">
-                
-            </td>
-            <td>
-
-            </td>
-            <td>
-
-            </td>
-
-        </tr>
-        <tr>
-            <td>
-                출판사
-            </td>
-            <td colspan="3">
-                <input type="text" name="publisher" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput3">
-                
-            </td>
-            <td>
-
-            </td>
-            <td>
-
-            </td>
-
-        </tr>
-        <tr>
-            <td>
-              ISBN
-            </td>
-            <td colspan="3">
-                <input type="text" name="ISBN" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput4">
-                
-            </td>
-            <td>
-
-            </td>
-            <td>
-
-            </td>
-
-        </tr>
-        <tr>
-          <td>
-            가격
-          </td>
-          <td colspan="3">
-              <input type="text" name="price" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput5">
-              
-          </td>
-          <td>
-
-          </td>
-          <td>
-
-          </td>
-
-      </tr>
-        <tr>
-            <td>
-               발행연도
-            </td>
-            <td colspan="3">
-            
-                <input id="publishYear1" type="text" name="publishYear" class="bookinfoinput" placeholder="발행년(시작)">
-                
-            </td>
-            
-            
-
-        </tr>
-
-
-</table>
-<br><br><br>
-<div id="buttonContainer">
-<button id="button22" type="submit" onclick='fn_requestSubmit()'>신청확인</button>
-<button id="button22" type="submit" onclick='fn_requestCancel()'>초기화</button>
-</div>
-<br><br><br>
-
-
-
+	<div class="divcontainer1">
+	  <br>
+	  <h2 id="wishbooktitle1">희망도서신청</h2>
+	  <br>
+	</div>
+	
+	<div class="list-group-container" >
+	  <!-- <h2 id="title">자료검색</h2> -->
+	  <ul class="list-group">
+	    <li class="list-group-item" id="menutitle">자료검색</li>
+	    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/bookSearch.do')">통합검색</li>
+	    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/detailSearch.do')">상세검색</li>
+	    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/categorySearch.do')">주제별검색</li>
+	    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/wishbook.do')">희망도서신청</li>
+	  </ul>
+	</div>
+	
+	<br><br><br>
+	<form action="${path}/klibrary/searchpage/wishBookCheckInsert.do" method="post" id="BookSearchInfoForm">
+		<table id="wishbooktable">
+		       <tr>
+		           <td>
+		              도서명
+		           </td>
+		           <td colspan="3">
+		               <input type="text" name="bookName" placeholder="내용을 입력해주세요" class="bookinfoinput" onkeypress="if(event.keyCode == 13){fn_searchPopup(); return false;}" id="bookinfoinput1">
+		               <button id="button22" type="button" onclick="fn_searchPopup();">검색</button>
+		           </td>
+		       </tr>
+		       <tr>
+		           <td>
+		             저자명
+		           </td>
+		           <td colspan="3">
+		              <input type="text" name="author" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput2">
+		           </td>
+		           <td>
+		           </td>
+		           <td>
+		           </td>
+		       </tr>
+		       <tr>
+		           <td>
+		               출판사
+		           </td>
+		           <td colspan="3">
+		               <input type="text" name="publisher" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput3">
+		           </td>
+		           <td>
+		           </td>
+		           <td>
+		           </td>
+		       </tr>
+		       <tr>
+		           <td>
+		             ISBN
+		           </td>
+		           <td colspan="3">
+		               <input type="text" name="isbn" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput4">
+		           </td>
+		           <td>
+		           </td>
+		           <td>
+		           </td>
+		       </tr>
+		       <tr>
+		         <td>
+		           가격
+		         </td>
+		         <td colspan="3">
+		             <input type="text" name="price" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput5">
+		         </td>
+		         <td>
+		         </td>
+		         <td>
+		         </td>
+		     </tr>
+		       <tr>
+		           <td>
+		              발행연도
+		           </td>
+		           <td colspan="3">
+		               <input id="publishYear1" type="text" name="publishYear" class="bookinfoinput" placeholder="발행년(시작)">
+		           </td>
+		       </tr>
+		</table>
+	</form>
+	<br><br><br>
+	<div id="buttonContainer">
+		<button id="button22" type="submit" onclick='fn_requestSubmit()'>신청하기</button>
+		<button id="button22" type="submit" onclick='fn_requestCancel()'>초기화</button>
+	</div>
+	<br><br><br>
 </body>
-	
-	
 </html>
 <script>
 function fn_searchPopup(){
@@ -179,14 +150,20 @@ function fn_requestSubmit(){
 	console.log("테스트");
 	let bookinfoinput=document.getElementsByClassName('bookinfoinput');
 	console.log(bookinfoinput);
+	var form=document.getElementById('BookSearchInfoForm')
+	var check=0;
 	for(var i=0; i< bookinfoinput.length; i++){
 		
 		console.log(bookinfoinput[i]);
 		if(bookinfoinput[i].value==""){
 			alert("내용을 전부 입력해주세요");
 			break;
+		}else{
+			check+=1;
 		}
-	
+		if(check==6){
+			form.submit();
+		}
 	}
 	
 	

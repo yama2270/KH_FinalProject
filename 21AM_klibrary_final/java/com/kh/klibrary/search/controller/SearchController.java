@@ -6,23 +6,28 @@ import java.util.Map;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kh.klibrary.search.service.SearchServiceImp;
+import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Member;
+import com.kh.klibrary.search.service.SearchService;
 
 
 
 @Controller
+@SessionAttributes({"loginMember"})
 public class SearchController {
 	
 	@Autowired
-	private SearchServiceImp service;
+	private SearchService service;
 	@Autowired
 	private ObjectMapper mapper;
 	
@@ -76,6 +81,31 @@ public String wishbookRequest(){
 	
 	return "searchpage/wishbookRequest";
    }
+
+
+@RequestMapping("/searchpage/wishBookCheckInsert.do") //검색 및 Insert
+public String wishBookCheckInsert(@ModelAttribute("loginMember") Member m, Model model , @RequestParam Map param) {
+	param.put("userId", m.getUserId());
+	System.out.println(param.toString());
+	List<BookInfo> bookInfo = service.selectBookInfoList(param);
+	int result=0;
+	String msg = null;
+	String loc = null;
+	//wishbook테이블 중복검사 한번 더해야함.
+	if(bookInfo.size() == 0) {
+		result=service.insertWishBook(param);
+	}
+	if(result==0) {
+		msg="이미 보유한 도서입니다.";
+		loc="/searchpage/wishbook.do";
+	}else if(result>0) {
+		msg="희망도서 신청하였습니다.";
+		loc="/searchpage/wishbook.do";
+	}
+	model.addAttribute("msg", msg);
+	model.addAttribute("loc", loc);
+	return "common/msg";
+}
 
 @RequestMapping("/searchpage/bookRegisterTest.do")
 public String bookRegisterTest1(){

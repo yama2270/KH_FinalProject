@@ -197,4 +197,22 @@
 		</collection>
 	</resultMap>
 	
+	<select id="selectHopeRecordList" resultMap="wishBook">
+		SELECT * FROM WISHBOOK WHERE USER_ID=#{userId} ORDER BY WISH_BOOK_NO DESC
+	</select>
+	
+	<select id="selectHopeRecordCount" resultType="_int">
+		SELECT COUNT(*) FROM WISHBOOK WHERE USER_ID=#{userId}
+	</select>
+	
+	<resultMap type="com.kh.klibrary.book.model.vo.WishBook" id="wishBook">
+		<id column="WISH_BOOK_NO" property="wishBookNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="ISBN_NO" property="isbnNo"/>
+		<result column="BOOK_NAME" property="bookName"/>
+		<result column="BOOK_WRITER" property="bookWriter"/>
+		<result column="BOOK_COMPANY" property="bookCompany"/>
+		<result column="BOOK_DATE" property="bookDate"/>
+		<result column="BOOK_PRICE" property="bookPrice"/>
+	</resultMap>
 </mapper>
