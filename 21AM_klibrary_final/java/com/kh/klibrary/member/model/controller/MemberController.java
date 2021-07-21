@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -123,7 +124,7 @@ public class MemberController {
 								 @RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
 		mv.addObject("list", service.selectLendingList(m.getUserId(), cPage, numPerpage));
 		int totalData=service.selectLendingCount(m.getUserId());
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberInfo.do"));
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBorrowing.do"));
 		mv.addObject("totalData",totalData);
 		mv.setViewName("member/memberBorrowing");
 		return mv;
@@ -156,6 +157,7 @@ public class MemberController {
 		mv.addObject("Date2",inputDate2);
 		mv.addObject("list", service.selectDate(m1, cPage, numPerpage));
 		int totalData=service.selectDateCount(m1);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBorrowed.do"));
 		mv.addObject("totalData",totalData);
 		mv.setViewName("member/memberBorrowed");
 		return mv;
@@ -166,8 +168,9 @@ public class MemberController {
 								@RequestParam(value="cPage", defaultValue="1") int cPage,
 								@RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
 		mv.addObject("list", service.selectBookingList(m.getUserId(), cPage, numPerpage));
-		int totalPage=service.selectBookingCount(m.getUserId());
-		mv.addObject("totalPage",totalPage);
+		int totalData=service.selectBookingCount(m.getUserId());
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBooking.do"));
+		mv.addObject("totalData",totalData);
 		mv.setViewName("member/memberBooking");
 		return mv;
 	}
@@ -178,7 +181,6 @@ public class MemberController {
 		m1.put("userId", m.getUserId());
 		m1.put("bookNo", bookNo);
 		int result= service.cancelBooking(m1);
-		System.out.println("resultresultresultresultresultresult : " + result);
 		String msg="예약취소를 실패하었습니다.";
 		String loc="/member/memberBooking.do";
 		
@@ -230,8 +232,34 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberBookMark.do")
-	public String memberBookMark() {
-		return "member/memberBookMark";
+	public ModelAndView memberBookMark(ModelAndView mv, @ModelAttribute("loginMember") Member m,
+									  @RequestParam(value="cPage", defaultValue="1") int cPage,
+									  @RequestParam(value="numPerPage", defaultValue="5") int numPerpage) {
+		System.out.println(m.getUserId());
+		mv.addObject("list",service.selectBookMarkList(m.getUserId(), cPage, numPerpage));
+		int totalData=service.selectBookMarkCount(m.getUserId());
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBookMark.do"));
+		mv.addObject("totalData",totalData);
+		mv.setViewName("member/memberBookMark");
+		return mv;
+	}
+	
+	@RequestMapping("/member/cancelMark.do")
+	public String cancelMark(@ModelAttribute("loginMember") Member m, @RequestParam String isbnNo, Model model) {
+		Map m1= new HashMap();
+		m1.put("userId", m.getUserId());
+		m1.put("isbnNo", isbnNo);
+		int result= service.cancelMark(m1);
+		String msg="관심도서 취소를 실패하었습니다.";
+		String loc="/member/memberBookMark.do";
+		
+		if(result>0) {
+			msg="관심도서를 취소하였습니다.";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "common/msg";
 	}
 	
 	@RequestMapping("/member/memberReadingRoom.do")
