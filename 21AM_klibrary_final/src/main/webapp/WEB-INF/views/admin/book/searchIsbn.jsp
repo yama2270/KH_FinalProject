@@ -193,7 +193,7 @@
  		      str+="<input class='bookInfo' value='"+v["datetime"].substring(0,10)+"' style='display:none;'/>";
  		      str+="<input class='bookInfo' value='"+v["price"]+"' style='display:none;'/>";
  		      str+="<input class='bookInfo' value='"+v["contents"]+"' style='display:none;'/>";
- 		      str+="<input class='bookInfo' value='"+v["url"]+"' style='display:none;'/>";
+ 		      str+="<input class='bookInfo' value='"+v["thumbnail"]+"' style='display:none;'/>";
  		     str+="<input class='bookInfo' value='"+cPage+"' style='display:none;'/>";
 			  str+= "</td>";		      
 		      str+="</tr>";
