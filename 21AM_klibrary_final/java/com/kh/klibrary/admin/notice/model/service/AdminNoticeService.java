@@ -10,4 +10,5 @@ public interface AdminNoticeService {
 	int insertNotice(Notice notice);
 	Notice selectNoticeView(int noticeNo);
 	int deleteNotice(int noticeNo);
+	int noticeUpdate(Notice notice);
 }

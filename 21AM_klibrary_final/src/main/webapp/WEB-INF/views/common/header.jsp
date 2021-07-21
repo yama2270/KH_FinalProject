@@ -31,13 +31,6 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/dg.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hj.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sh.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sy.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cg.css">
     <!-- fontawsome CDN 불러오기 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <!-- <script src="../js/jquery-3.6.0.min.js"></script> -->	
@@ -70,7 +63,7 @@
                 		<a href="" class="hader_a">마이페이지</a>
                 	</li>
                 	<li>
-                		<button class="btn btn-outline-light text-dark" type="button" onclick="${path}/member/memberLogout.do }">로그아웃</button>
+                		<button class="btn btn-outline-light text-dark" type="button" onclick="location.replace('${path}/member/memberLogout.do');">로그아웃</button>
                 	</li>
                 </c:if>
                 </ul>
@@ -114,75 +107,3 @@
 </header> 
 <hr>
 </head>
-<style>
-  #header_ul{
-      list-style:none;
-      float:right;
-  }
-  #header_ul>li{
-      float:left;
-      padding-right:20px;
-  }
-  .header_a{
-      text-decoration:none;
-      color:black;
-  }
-  #header_top{
-      padding:10px;
-      width:60%;
-      float:left;
-  }
-  
-  #logo{
-      padding:50px;
-      padding-left:100px;
-      width:30%;
-      float:left;
-  }
-  #nav{
-    clear:left;
-  }
-
-  #main-menu{
-    display:table;
-    list-style:none;
-    margin-left:auto;
-    margin-right:auto;
-  }
-  #main-menu > li {
-    float: left;
-    position: relative;
-    margin:100px;
-  }
-
-#main-menu > li > a {
-    font-size: 40px;
-    color: black;
-    text-align: left;
-    text-decoration: none;
-    display: block;
-  }
-
-#sub-menu {
-    position: absolute;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.15s ease-in;
-    z-index:10000;
-  }
-
-#sub-menu > li >  a {
-    color: black;
-    text-decoration: none;
-    font-size:20px;
-  }
-
-#main-menu > li:hover #sub-menu {
-    opacity: 1;
-    visibility: visible;
-  }
-
-#sub-menu > li >  a:hover {
-    text-decoration: underline;
-  }
-</style>
