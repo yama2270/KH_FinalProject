@@ -4,6 +4,9 @@
 String pageId = request.getParameter("pageId");
 
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/> 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="책검색결과"/>
 </jsp:include>
@@ -20,10 +23,10 @@ String pageId = request.getParameter("pageId");
   <!-- <h2 id="title">자료검색</h2> -->
   <ul class="list-group">
     <li class="list-group-item" id="menutitle">자료검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/bookSearch.do')">통합검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/detailSearch.do')">상세검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/categorySearch.do')">주제별검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/wishbook.do')">희망도서신청</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/bookSearch.do')">통합검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/detailSearch.do')">상세검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/categorySearch.do')">주제별검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/wishbook.do')">희망도서신청</li>
   </ul>
 </div>
 
@@ -111,7 +114,7 @@ String pageId = request.getParameter("pageId");
 
           
             
-            <img id="bookImg" src="http://image.yes24.com/momo/TopCate530/MidCate010/52990774.jpg" alt="푸른사자와니니">
+            <img id="bookImg" src="https://search.daum.net/search?w=bookpage&bookId=1168779&q=%ED%95%B4%EB%A6%AC%ED%8F%AC%ED%84%B0%28Harry+Potter%29%3A+%EB%B9%84%EB%B0%80%EC%9D%98+%EB%B0%A9%28%EC%96%91%EC%9E%A5%EB%B3%B8+HardCover%29" alt="푸른사자와니니">
             
     </td>
     <td colspan="2">
@@ -217,27 +220,20 @@ $(function(){ //전체선택 체크박스 클릭
 $(function(){
 	console.log(window.location.href );
 	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'||pageId=="희망도서신청"){
-		  console.log(document.getElementsByClassName('list-group-item')[1]);
-		  document.getElementsByClassName('list-group-item')[1].style.background = "";
-		  document.getElementsByClassName('list-group-item')[2].style.background = "";
-		  document.getElementsByClassName('list-group-item')[3].style.background = "";
+		  console.log(document.getElementsByClassName('list-group-item')[1]);		  
 		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
 		  
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'||pageId=="통합검색"){
+	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'||(window.location.href).includes('http://localhost:9090/klibrary/searchpage/bookTotalSearch')){
 		  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
-		  document.getElementsByClassName('list-group-item')[2].style.background = "";
-		  document.getElementsByClassName('list-group-item')[3].style.background = "";
-		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+		  
 	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'||pageId=="상세검색"){
-		  document.getElementsByClassName('list-group-item')[1].style.background = "";
+		 
 		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
-		  document.getElementsByClassName('list-group-item')[3].style.background = "";
-		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+		 
 	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'||pageId=="주제별검색"){
-		  document.getElementsByClassName('list-group-item')[1].style.background = "";
-		  document.getElementsByClassName('list-group-item')[2].style.background = "";
+		 
 		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
-		  document.getElementsByClassName('list-group-item')[4].style.background = "";
+		 
 	  }
 	
 	 

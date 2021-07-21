@@ -59,7 +59,6 @@
 				<input type="text" name="bookImg" id="img" value="" style="display:none;"/>
 		</table>
 		<div id="regBookBtn">
-			<button type="button" class="btn btn-outline-secondary" >뒤로가기</button>
 			<button type="submit" class="btn btn-outline-secondary" >등록</button>
 		</div>
 	</div>

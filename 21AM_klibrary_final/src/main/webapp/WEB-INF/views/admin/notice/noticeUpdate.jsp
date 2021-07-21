@@ -11,16 +11,16 @@
             <div id="contHeader">공지사항 수정</div>
             <div id="contbody">
         </div>
-        	<form name="noticeForm" action="${path }/admin/notice/insertNotice.do" method="post" enctype="multipart/form-data" >
+        	<form name="noticeForm" action="${path}/admin/notice/noticeView.do?noticeNo=${notice.noticeNo }" method="post" enctype="multipart/form-data" >
 	            <div class="form-group" style="margin-left:95px;margin-top:30px;">
 	                <label for="userId">작성자</label>
-	                <!-- <input class="userId" type="text" value="관리자" placeholder="작성자명" readonly required> -->
+	                <input class="userId" type="text" value="관리자" placeholder="작성자명" readonly required>
 	            </div>
 	
 	       	 <div id="contents" class="container" style="margin-left:85px;">
 	            <div class="form-group">
 	            <label for="ca_name">분류</label>
-	             <select class="form-control form-control-sm w-auto" name="noticeCate" required>
+	             <select class="form-control form-control-sm w-auto" name="noticeCate" required  ><c:out value="${notice.noticeCate}"/>
 	                    <option value="">선택하세요</option>
 	                    <option value="일정">일정</option>
 	                    <option value="행사">행사</option>
@@ -31,14 +31,14 @@
 	            </div>
 	            <div class="form-group">
 	                <label for="wr_subject">제목</label>
-	                <input class="title" type="text" name="noticeTitle"  id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;margin-top:10px;">
+	                <textarea class="title" type="text" name="noticeTitle"  id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;height:30px;margin-top:5px;"><c:out value="${notice.noticeTitle}"/></textarea>
 	            </div>
 	
 	            <div class="form-group d-cke-none">
-	                <textarea id="wr_content" name="noticeContent"  maxlength="1000" style="width:900px; height: 400px;margin-top:10px;"
-	                placeholder="내용을 입력해주세요" value=></textarea>
+	                <textarea id="wr_content" name="noticeContent"  maxlength="1000" style="width:900px; height: 400px;margin-top:5px;
+	                placeholder="내용을 입력해주세요" ><c:out value="${notice.noticeContent}"/></textarea>
 	            </div>
-	            <input type="file" name="noticeFile" style="width:200px;height:30px;">
+	            <input type="file" name="originalFile" style="width:200px;height:30px;">
 	            
 	            
 	            <div class="write" style="margin-left:24%">

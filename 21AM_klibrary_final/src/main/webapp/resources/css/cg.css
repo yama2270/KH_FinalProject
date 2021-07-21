@@ -250,9 +250,35 @@ section#content		{min-height:600px;}
 	border:gray 1px dashed;
 	margin-top:50px;
 }
-/* HopeBook */
 
 /* HopeBookRecord */
+
+#HopeRecord_List_title{
+	margin-top:30px;
+}
+#HR_hr_line2{
+	width:1500px;
+	border:gray 1px solid;
+	margin-top:30px;
+}
+#HopeRecord_List_table table{
+	width:1490px; 
+	weight:500px;
+	text-align:center
+}
+#HopeRecord_List_table td{
+	font-size:20px;
+}
+#HopeRecord_List_table th{
+	background-color:lightgray;
+	text-align:center;
+	width:200px;
+}
+#HopeRecord_List_table hr{
+	width:1490px;
+	border:gray 1px dashed;
+	margin-top:50px;
+}
 
 /* BookMark */
 #BookMark_List_title{

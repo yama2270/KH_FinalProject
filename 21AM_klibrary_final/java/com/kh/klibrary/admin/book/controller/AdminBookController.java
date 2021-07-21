@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.admin.book.model.service.AdminBookService;
+import com.kh.klibrary.admin.common.AdminPagingTemplate;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 
@@ -31,14 +32,51 @@ public class AdminBookController {
 			@RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage, 
 			Model m) {
 		List<Book> list = service.selectBookList(cPage,numPerPage);
-		System.out.println(list.get(0));
-		System.out.println(list.get(3));
-		System.out.println(list.get(6));
-		System.out.println(list.get(8));
+		
+		// 총 도서 구하기 
+		int totalBook = service.totalBook();
+		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
+		
 		m.addAttribute("list",list);
+		m.addAttribute("pageBar",pageBar);
 		return "admin/book/bookAllList";
 	}
 
+	// 도서목록 - 검색 
+	@RequestMapping("/admin/book/searchKeyBook.do")
+	public ModelAndView searchTypeBook(@RequestParam Map param, 
+							   @RequestParam(required=false,defaultValue="1") int cPage,
+							   @RequestParam(required=false,defaultValue="2") int numPerPage,ModelAndView mv) {
+		
+		// 도서 key 검색
+		List<Book> list = service.searchKeyBook(param,cPage,numPerPage);
+
+		// 총 도서 구하기 
+		int totalBook = service.totalKeyBook(param);
+		// pageBar 
+		String pageBar = new AdminPagingTemplate().searchKeyPagingTemplate(cPage,numPerPage,totalBook);
+		
+		mv.addObject("list",list);
+		mv.addObject("pageBar",pageBar);
+		mv.addObject("param",param);
+		mv.setViewName("admin/book/bookAllList");
+		
+		return mv;
+	}
+	
+	// 도서목록 - 도서삭제 
+	@RequestMapping("/admin/book/deleteBook.do")
+	public String deleteBook(@RequestParam String bookNo,Model mo) {
+		
+		// 도서번호 받기 
+		Map m = new HashMap();
+		m.put("bookNo",bookNo.split(","));
+		
+		mo.addAttribute("msg",service.deleteBook(m)>0?"삭제성공":"삭제실패");
+		mo.addAttribute("loc","/admin/book/bookAllList.do");
+		return "common/msg";
+	}
+	
 	// 대출도서목록
 	@RequestMapping("/admin/book/bookRentalList.do")
 	public String rentalList() {

@@ -284,7 +284,13 @@ background-color:blue;
   }
   
   /*bookSearch페이지  */
-  
+  #bookTitleDl{
+  width:350px;
+  }
+  #imgContainerDiv{
+  width:200px;
+  margin-right:50px;
+  }
   #bookSearchForm{
      text-align:center;
    }

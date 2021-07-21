@@ -32,9 +32,6 @@ public class QnaController {
 	@Autowired //서비스 연결
 	private QnaService service;
 	
-	
-	
-	
 	//qnaUpdate(수정)
 	@GetMapping("/qna/updateQna.do")
 	public String qnaUpdate(Model model, int no) {
