@@ -1,5 +1,6 @@
 package com.kh.klibrary.search.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,4 +14,7 @@ public interface SearchService {
 	List<BookInfo> selectBookInfoList(Map param);
 	int insertWishBook(Map param);
 	
+	List<BookInfo> bookTotalSearch(HashMap<String, Object> hashMap);
+	List<BookInfo> bookTotalSearch2(HashMap<String, Object> hashMap);
+	int selectBookCount();
 }

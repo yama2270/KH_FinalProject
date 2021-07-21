@@ -31,13 +31,6 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/dg.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hj.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sh.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/sy.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cg.css">
     <!-- fontawsome CDN 불러오기 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <!-- <script src="../js/jquery-3.6.0.min.js"></script> -->	
@@ -70,7 +63,7 @@
                 		<a href="" class="hader_a">마이페이지</a>
                 	</li>
                 	<li>
-                		<button class="btn btn-outline-light text-dark" type="button" onclick="${path}/member/memberLogout.do }">로그아웃</button>
+                		<button class="btn btn-outline-light text-dark" type="button" onclick="location.replace('${path}/member/memberLogout.do');">로그아웃</button>
                 	</li>
                 </c:if>
                 </ul>

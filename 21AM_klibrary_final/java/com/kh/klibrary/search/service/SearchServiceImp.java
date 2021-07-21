@@ -1,6 +1,8 @@
 package com.kh.klibrary.search.service;
 
  
+import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,23 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.search.dao.SearchDao;
+import com.kh.klibrary.search.dao.SearchDaoImpl;
  
 
 
 
 @Service
 public class SearchServiceImp implements SearchService{
-	@Autowired 
-	private  RestTemplate restTemplate;
 	
 	@Autowired
-	private SqlSessionTemplate session;
+	SqlSessionTemplate session;
+	
+	@Autowired 
+	private  RestTemplate restTemplate;
 	
 	@Autowired
 	private SearchDao dao;
@@ -92,7 +97,27 @@ public class SearchServiceImp implements SearchService{
 		// TODO Auto-generated method stub
 		return dao.insertWishBook(session, param);
 	}
-  
+	@Override
+	 public List<BookInfo> bookTotalSearch(HashMap<String, Object> hashMap){
+			  
+			 return dao.bookTotalSearch(session,hashMap); 
+			 
+	 
+	   }
+
+	@Override
+	public List<BookInfo> bookTotalSearch2(HashMap<String, Object> hashMap){
+			  
+			 return dao.bookTotalSearch2(session,hashMap); 
+			 
+	
+	  }
+	  
+	@Override
+	 public int selectBookCount() {
+		 
+		 return dao.selectBookCount(session); 
+	 }
 	
 	
 	

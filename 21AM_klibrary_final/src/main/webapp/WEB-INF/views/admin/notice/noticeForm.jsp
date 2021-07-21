@@ -14,7 +14,7 @@
         	<form name="noticeForm" action="${path }/admin/notice/insertNotice.do" method="post" enctype="multipart/form-data" >
 	            <div class="form-group" style="margin-left:95px;margin-top:30px;">
 	                <label for="userId">작성자</label>
-	                <!-- <input class="userId" type="text" value="관리자" placeholder="작성자명" readonly required> -->
+	                <input class="userId" type="text" value="관리자" placeholder="작성자명" readonly required>
 	            </div>
 	
 	       	 <div id="contents" class="container" style="margin-left:85px;">
@@ -38,7 +38,7 @@
 	                <textarea id="wr_content" name="noticeContent"  maxlength="1000" style="width:900px; height: 400px;margin-top:10px;"
 	                placeholder="내용을 입력해주세요"></textarea>
 	            </div>
-	            <input type="file" name="noticeFile" style="width:200px;height:30px;">
+	            <input type="file" name="originalFile" style="width:200px;height:30px;">
 	            
 	            
 	            <div class="write" style="margin-left:24%">
