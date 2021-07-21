@@ -27,6 +27,18 @@
 		SELECT COUNT(*) FROM BOOK
 	</select>
 	
+	<!-- 도서 Key 목록 -->
+	<select id="searchKeyBook" parameterType="Map" resultMap="bookMap">
+		SELECT * FROM BOOK JOIN BOOK_INFO USING(ISBN_NO) JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO) 
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+	</select>
+	
+	<!-- 도서 key 총 도서 -->
+	<select id="totalKeyBook" parameterType="Map" resultType="_int">
+		SELECT COUNT(*) FROM BOOK JOIN BOOK_INFO USING(ISBN_NO) JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO) 
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+	</select>
+	
 	<!-- 도서삭제 -->
 	<delete id="deleteBook" parameterType="Map">
 		DELETE FROM BOOK WHERE BOOK_NO IN 

@@ -120,5 +120,11 @@ public class NoticeController {
 	public String parkinglot() {
 		return "/facilities/parkinglot";
 	}
+	
+	@RequestMapping("/notice/calendar.do")
+	public String calendar() {
+		
+		return "/facilities/calendar";
+	}
 
 }

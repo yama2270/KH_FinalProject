@@ -60,6 +60,18 @@ public class AdminBookServiceImpl implements AdminBookService {
 		return dao.totalBook(session);
 	}
 	
+	// 도서 key 검색 
+	@Override 
+	public List<Book> searchKeyBook(Map param,int cPage, int numPerPage){
+		return dao.searchKeyBook(param,cPage,numPerPage,session);
+	}
+	
+	// 도서 key 총도서
+	@Override
+	public int totalKeyBook(Map param) {
+		return dao.totalKeyBook(param,session);
+	}
+	
 	// 도서삭제 
 	@Override
 	public int deleteBook(Map m) {

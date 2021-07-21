@@ -6,8 +6,6 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
 <body id="ad_body">
         <header id="ad_header">
             <div id="header_title">K-도서관</div>
@@ -29,11 +27,11 @@
 	              </li>
 	              <li class="list-group-item">열람실 안내<i class="fas fa-plus"></i>
 	              	<ul class="submenu">
-	                    <li onclick="location.assign('${path})">열람실 A</li>
-	                    <li onclick="location.assign('${path})">열람실 B</li>
-	                    <li onclick="location.assign('${path})">열람실 C</li>
-	                    <li onclick="location.assign('${path})">열람실 D</li>
-	                    <li onclick="location.assign('${path})">열람실 E</li>
+	                    <li onclick="location.assign('${path}/notice/noticeroomA.do')">열람실 A</li>
+	                    <li onclick="location.assign('${path}/notice/noticeroomB.do')">열람실 B</li>
+	                    <li onclick="location.assign('${path}/notice/noticeroomC.do')">열람실 C</li>
+	                    <li onclick="location.assign('${path}/notice/noticeroomD.do')">열람실 D</li>
+	                    <li onclick="location.assign('${path}/notice/noticeroomE.do')">열람실 E</li>
 	                    <li onclick="location.assign('${path}/notice/redingroomnotice.do')">열람실이용안내</li>
                     </ul>
 	              </li>
@@ -198,9 +196,11 @@
             $(".custom_calendar_table").on("click", "td", function () {
                 $(".custom_calendar_table .select_day").removeClass("select_day");
                 $(this).removeClass("select_day").addClass("select_day");
-               
+               	console.log($(this).removeClass("select_day").addClass("select_day")[0].innerText);
+               	const searchday=$(this).removeClass("select_day").addClass("select_day")[0].innerText;
+               	//open("${path}/notice/calendar.do?no="+searchday,"_blank","height=300,width=600");
+               	open("${path}/notice/calendar.do","_blank","height=300,width=600");
             });
-        
         }
     }
 
