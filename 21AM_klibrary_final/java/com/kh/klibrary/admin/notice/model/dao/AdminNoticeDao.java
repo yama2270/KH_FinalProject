@@ -13,4 +13,6 @@ public interface AdminNoticeDao {
 	int insertNotice(SqlSessionTemplate session, Notice notice);
 	Notice selectNoticeView(SqlSessionTemplate session,int noticeNo);
 	int deleteNotice(SqlSessionTemplate session, int noticeNo);
+	int noticeUpdate(SqlSessionTemplate session, Notice notice);
+	
 }
