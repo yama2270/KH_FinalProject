@@ -10,7 +10,6 @@
 	<jsp:param name="title" value="회원가입"/>
 </jsp:include>
 
-    <hr>
     <div id="login-nav">
         <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
@@ -23,10 +22,10 @@
         <div id="login-group">
             <ul class="list-group">
                 <li class="list-group-item active" aria-current="true">회원정보</li>
-                <li class="list-group-item"><a href="">로그인</a></li>
-                <li class="list-group-item"><a href="">아이디 찾기</a></li>
-                <li class="list-group-item"><a href="">비밀번호 재발급</a></li>
-                <li class="list-group-item"><a href="">회원가입</a></li>
+                <li class="list-group-item"><a href="${path }/member/memberLogin.do">로그인</a></li>
+                <li class="list-group-item"><a href="${path }/member/memberIdFind.do">아이디 찾기</a></li>
+                <li class="list-group-item"><a href="${path }/member/memberPwFind.do">비밀번호 재발급</a></li>
+                <li class="list-group-item"><a href="${path }/member/memberEnroll.do">회원가입</a></li>
             </ul>
         </div>
         <section>

@@ -61,6 +61,26 @@ public class MemberController {
 		return "common/msg";
 	}
 	
+	@RequestMapping("/member/memberLogout.do")
+	public String memberLogout(HttpSession session, SessionStatus ss) {
+		if(session!=null) session.invalidate();
+		if(!ss.isComplete()) {
+			ss.setComplete();
+		}
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/member/memberIdFind.do")
+	public String memberIdFindView() {
+		
+		return "member/memberIdFind";
+	}
+	
+	@RequestMapping("/member/memberPwFind.do")
+	public String memberPwFindView() {
+		
+		return "member/memberPwFind";
+	}
 	
 	//cg
 	//임시 로그인 테스트 -cg-
