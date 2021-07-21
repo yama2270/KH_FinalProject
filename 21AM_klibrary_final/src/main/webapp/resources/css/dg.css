@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@CHARSET "UTF-8";
 
 /* 헤더 */
 
@@ -15,9 +15,8 @@
       color:black;
   }
   #header_top{
-      padding:10px;
-      width:60%;
       float:left;
+      width:95%
   }
   
   #logo{
@@ -75,82 +74,12 @@
 
 
 /* 메인페이지 */
-#header_ul{
-          list-style:none;
-          float:right;
-      }
-      #header_ul>li{
-          float:left;
-          padding-right:20px;
-      }
-      .header_a{
-          text-decoration:none;
-          color:black;
-      }
-      #header_top{
-          padding:10px;
-          width:60%;
-          float:left;
-      }
-      
-      #logo{
-          padding:50px;
-          padding-left:100px;
-          width:30%;
-          float:left;
-      }
-      #nav{
-        clear:left;
-      }
 
-      #main-menu{
-        display:table;
-        list-style:none;
-        margin-left:auto;
-        margin-right:auto;
-      }
-      #main-menu > li {
-        float: left;
-        position: relative;
-        margin:100px;
-      }
-
-    #main-menu > li > a {
-        font-size: 40px;
-        color: black;
-        text-align: left;
-        text-decoration: none;
-        display: block;
-      }
-
-    #sub-menu {
-        position: absolute;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.15s ease-in;
-        z-index:10000;
-      }
-
-    #sub-menu > li >  a {
-        color: black;
-        text-decoration: none;
-        font-size:20px;
-      }
-
-    #main-menu > li:hover #sub-menu {
-        opacity: 1;
-        visibility: visible;
-      }
-
-    #sub-menu > li >  a:hover {
-        text-decoration: underline;
-      }
-      .image_container{
-        height:300px;
-        margin:20px;
-        z-index:0;
-        opacity:10.0;
-      }
+		.w-100 {
+		    width: 100%!important;
+		    height: 300px;
+		}
+		
       .image_readingroom{
           height:200px;
           margin-left:20px;
@@ -208,76 +137,7 @@
       
       
       /* 회원가입 */
-      #header_ul{
-            list-style:none;
-            float:right;
-        }
-        #header_ul>li{
-            float:left;
-            padding-right:20px;
-        }
-        .header_a{
-            text-decoration:none;
-            color:black;
-        }
-        #header_top{
-            padding:10px;
-            width:60%;
-            float:left;
-        }
-        
-        #logo{
-            padding:50px;
-            padding-left:100px;
-            width:30%;
-            float:left;
-        }
-        #nav{
-        clear:left;
-      }
-
-      #main-menu{
-        display:table;
-        list-style:none;
-        margin-left:auto;
-        margin-right:auto;
-      }
-      #main-menu > li {
-        float: left;
-        position: relative;
-        margin:100px;
-      }
-
-    #main-menu > li > a {
-        font-size: 40px;
-        color: black;
-        text-align: left;
-        text-decoration: none;
-        display: block;
-      }
-
-    #sub-menu {
-        position: absolute;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.15s ease-in;
-        z-index:10000;
-      }
-
-    #sub-menu > li >  a {
-        color: black;
-        text-decoration: none;
-        font-size:20px;
-      }
-
-    #main-menu > li:hover #sub-menu {
-        opacity: 1;
-        visibility: visible;
-      }
-
-    #sub-menu > li >  a:hover {
-        text-decoration: underline;
-      }
+     
     #login-group{
         float:left;
         width:20%;
@@ -434,76 +294,7 @@
 
 
 /* 로그인 */
- #header_ul{
-            list-style:none;
-            float:right;
-        }
-        #header_ul>li{
-            float:left;
-            padding-right:20px;
-        }
-        .header_a{
-            text-decoration:none;
-            color:black;
-        }
-        #header_top{
-            padding:10px;
-            width:60%;
-            float:left;
-        }
-        
-        #logo{
-            padding:50px;
-            padding-left:100px;
-            width:30%;
-            float:left;
-        }
-        #nav{
-        clear:left;
-      }
-
-      #main-menu{
-        display:table;
-        list-style:none;
-        margin-left:auto;
-        margin-right:auto;
-      }
-      #main-menu > li {
-        float: left;
-        position: relative;
-        margin:100px;
-      }
-
-    #main-menu > li > a {
-        font-size: 40px;
-        color: black;
-        text-align: left;
-        text-decoration: none;
-        display: block;
-      }
-
-    #sub-menu {
-        position: absolute;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.15s ease-in;
-        z-index:10000;
-      }
-
-    #sub-menu > li >  a {
-        color: black;
-        text-decoration: none;
-        font-size:20px;
-      }
-
-    #main-menu > li:hover #sub-menu {
-        opacity: 1;
-        visibility: visible;
-      }
-
-    #sub-menu > li >  a:hover {
-        text-decoration: underline;
-      }
+ 
     #login-group{
         float:left;
         width:20%;
@@ -561,4 +352,139 @@
         color:black;
         margin-top:20px;
         padding-right:40px;
+    }
+    
+    /* 비밀번호 찾기 */
+     
+    #login-group{
+        float:left;
+        width:20%;
+        
+    }
+    .list-group>li>a{
+        text-decoration:none;
+        color:black;
+    }
+    
+    .active{
+        text-align:center;
+    }
+
+    #login-group{
+        margin:20px;
+    }
+
+    #login-nav{
+        margin:20px;
+    }
+
+    #login-content{
+        float:center;
+    }
+
+    #login-container{
+        display:flex;
+        align-items:center;
+        flex-direction:row;
+        justify-content:center;
+    }
+    
+    #login-input{
+        margin-top:70px;
+    }
+
+    .login-input{
+        margin:5px;
+        padding-right:70px;
+    }
+
+    .login-btn{
+        background-color:rgba(227, 242, 253);
+        border: 1px solid rgba(227, 242, 253);
+    }
+    .login-member{
+        padding-right:80px;
+    }
+    .memberBtn{
+        display: inline-block !important;
+        width: 150px;
+        text-align: center;
+        text-decoration: none;
+        color:black;
+        margin-top:20px;
+        padding-right:40px;
+    }
+    .findId-btn{
+        margin-top:20px;
+        margin-left:70px;
+        background-color:rgba(227, 242, 253);
+        border: 1px solid rgba(227, 242, 253);
+    }
+    
+    
+    /* 아이디 찾기 */
+    
+    #login-group{
+        float:left;
+        width:20%;
+        
+    }
+    .list-group>li>a{
+        text-decoration:none;
+        color:black;
+    }
+    
+    .active{
+        text-align:center;
+    }
+
+    #login-group{
+        margin:20px;
+    }
+
+    #login-nav{
+        margin:20px;
+    }
+
+    #login-content{
+        float:center;
+    }
+
+    #login-container{
+        display:flex;
+        align-items:center;
+        flex-direction:row;
+        justify-content:center;
+    }
+    
+    #login-input{
+        margin-top:70px;
+    }
+
+    .login-input{
+        margin:5px;
+        padding-right:70px;
+    }
+
+    .login-btn{
+        background-color:rgba(227, 242, 253);
+        border: 1px solid rgba(227, 242, 253);
+    }
+    .login-member{
+        padding-right:80px;
+    }
+    .memberBtn{
+        display: inline-block !important;
+        width: 150px;
+        text-align: center;
+        text-decoration: none;
+        color:black;
+        margin-top:20px;
+        padding-right:40px;
+    }
+    .findId-btn{
+        margin-top:20px;
+        margin-left:70px;
+        background-color:rgba(227, 242, 253);
+        border: 1px solid rgba(227, 242, 253);
     }

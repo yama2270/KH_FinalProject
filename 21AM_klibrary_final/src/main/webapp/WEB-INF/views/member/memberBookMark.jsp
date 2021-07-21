@@ -61,45 +61,35 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>도서번호</th>
+						<th>ISBN</th>
 						<th>제  목</th>
 						<th>저  자</th>
 						<th><img src="${path }/resources/images/icon-star.png" id="Star_icon"></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>00000000</td>
-						<td>springframework</td>
-						<td>a2121212</td>
-						<td><button type="button" id="Star_btn"><img src="${path }/resources/images/icon-star-yellow.png" width=30px height=30px></button></td>
-					</tr>
-					<tr>
-						<td>11111111</td>
-						<td>apache</td>
-						<td>b23333b2</td>
-						<td><button type="button" id="Star_btn"><img src="${path }/resources/images/icon-star-yellow.png" width=30px height=30px></button></td>
-					</tr>
-					<tr>
-						<td>22222222</td>
-						<td>Server</td>
-						<td>c879c523</td>
-						<td><button type="button" id="Star_btn"><img src="${path }/resources/images/icon-star-yellow.png" width=30px height=30px></button></td>
-					</tr>
+				<c:choose>
+					<c:when test="${not empty list }">
+						<c:forEach var="l" items="${list }">
+							<tr>
+								<td><c:out value="${l.isbnNo }"/></td>
+								<td><c:out value="${l.bookInfo.get(0).bookName }"/></td>
+								<td><c:out value="${l.bookInfo.get(0).bookWriter }"/></td>
+								<td><button type="button" id="Star_btn" onclick="location.assign('${path}/member/cancelMark.do?isbnNo=${l.isbnNo}')"><img src="${path }/resources/images/icon-star-yellow.png" width=30px height=30px></button></td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<h2>관심 도서가 없습니다.</h2>
+					</c:otherwise>
+				</c:choose>
 				</tbody>
 			</table>
 			<hr style="" >
 		</div>
-		
-		<ul class="pagination" id="UserInfo_Paging_Container">
-		  <li class="page-item"><a class="page-link" href="#">이전</a></li>
-		  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-		  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		  <li class="page-item"><a class="page-link" href="#">다음</a></li>
-		</ul>
+		<div id="pagebar-container">
+        	${pageBar }
+        </div>
 	</div>
 </div>
 </section>
