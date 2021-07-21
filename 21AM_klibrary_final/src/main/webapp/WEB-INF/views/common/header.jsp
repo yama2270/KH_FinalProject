@@ -87,8 +87,12 @@
 			</li>
 			<li><a href="">이용안내</a>
 				<ul id="sub-menu">
-					<li><a href="#" aria-label="subemnu">뭐넣지</a></li>
-					<li><a href="#" aria-label="subemnu">뭐넣지</a></li>
+					<li><a href="" aria-label="subemnu">이용시간</a></li>
+					<li><a href="" aria-label="subemnu">편의시설</a></li>
+					<li><a href="" aria-label="subemnu">열람실안내</a></li>
+					<li><a href="" aria-label="subemnu">공지사항</a></li>
+					<li><a href="" aria-label="subemnu">자주묻는질문</a></li>
+					<li><a href="" aria-label="subemnu">QNA</a></li>
 				</ul>
 			</li>
 			<li><a href="${path }/member/memberInfo.do">마이페이지</a>
