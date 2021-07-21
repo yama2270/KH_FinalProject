@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
+import com.kh.klibrary.member.model.vo.Likes;
 import com.kh.klibrary.member.model.vo.Member;
 
 public interface MemberDao {
@@ -22,9 +23,12 @@ public interface MemberDao {
 	List<Lending> selectLendingList(SqlSessionTemplate session, String userId, int cPage, int numPerpage);
 	List<LendingHistory> selectDate(SqlSessionTemplate session, Map m1, int cPage, int numPerpage);
 	List<Booking> selectBookingList(SqlSessionTemplate session, String userId, int cPage, int numPerpage);
+	List<Likes> selectBookMarkList(SqlSessionTemplate session, String userId, int cPage, int numPerpage);
 	int selectLendingCount(SqlSessionTemplate session, String userId);
 	int selectLHCount(SqlSessionTemplate session, String userId);
 	int selectDateCount(SqlSessionTemplate session, Map m1);
 	int selectBookingCount(SqlSessionTemplate session, String userId);
 	int cancelBooking(SqlSessionTemplate session, Map m1);
+	int selectBookMarkCount(SqlSessionTemplate session, String userId);
+	int cancelMark(SqlSessionTemplate session,Map m1);
 }
