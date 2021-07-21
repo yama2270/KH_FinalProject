@@ -15,17 +15,17 @@
                     <div id="contentTitle">전체도서목록</div>
                     <div id="searchWrap">
                         <div class="container-fluid" style="padding-right:0px;">
-                            <form class="d-flex">
-                                <select id="searchOption" class="form-select" aria-label="Default select example">
-                                    <option selected>검색옵션</option>
-                                    <option value="1">도서번호</option>
-                                    <option value="2">ISBN</option>
-                                    <option value="3">도서명</option>
-                                    <option value="4">저자</option>
-                                    <option value="5">출판사</option>
+                            <form class="d-flex" action="${path }/admin/book/searchKeyBook.do" method="post">
+                                <select id="searchOption" name="searchOption" class="form-select" aria-label="Default select example" required>
+                                    <option value="" ${param.searchOption != null? "":"selected"}selected>검색옵션</option>
+                                    <option value="book_no" ${param.searchOption == "book_no"? "selected":""}>도서번호</option>
+                                    <option value="isbn_no" ${param.searchOption == "isbn_no"? "selected":""}>ISBN</option>
+                                    <option value="book_name" ${param.searchOption == "book_name"? "selected":""}>도서명</option>
+                                    <option value="book_writer" ${param.searchOption == "book_writer"? "selected":""}>저자</option>
+                                    <option value="book_company" ${param.searchOption == "book_company"? "selected":""}>출판사</option>
                                 </select>
-                                <input id="searchWord" class="form-control me-2" type="search" placeholder="Search"
-                                    aria-label="Search" style="margin-left:5px;">
+                                <input id="searchWord" class="form-control me-2" name ="searchWord" type="search" placeholder="Search" value='${param.searchWord!=null?param.searchWord:"" }'
+                                    aria-label="Search" style="margin-left:5px;" required>
                                 <button id="searchBtn" class="btn btn-outline-success" type="submit">Search</button>
                                 <button id="searchDeBtn" class="btn btn-outline-success"
                                     style="width:90px;margin-left:5px;" type="button"
@@ -193,6 +193,13 @@
     		alert("도서를 선택해주세요");
     	}
     })
+    
+    // 도서 key 검색 
+	const fn_searchKey = function(cPage){
+    	const searchKey = $("#searchOption").val();
+     	const searchWord = $("#searchWord").val();
+		location.assign('${path}/admin/book/searchKeyBook.do?cPage='+cPage+"&searchOption="+searchKey+"&searchWord="+searchWord);
+	}
     
 	</script>
 

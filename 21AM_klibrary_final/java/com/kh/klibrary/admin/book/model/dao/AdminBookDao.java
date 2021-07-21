@@ -26,6 +26,12 @@ public interface AdminBookDao {
 	// 총 도서 
 	int totalBook(SqlSessionTemplate session);
 	
+	// 도서 key 검색 
+	List<Book> searchKeyBook(Map param,int cPage,int numPerPage,SqlSessionTemplate session);
+	
+	// 도서 key 총 도서 
+	int totalKeyBook(Map param,SqlSessionTemplate session);
+	
 	// 도서삭제
 	int deleteBook(Map m,SqlSessionTemplate session);
 
