@@ -2,6 +2,7 @@ package com.kh.klibrary.admin.notice.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
@@ -14,5 +15,10 @@ public interface AdminNoticeDao {
 	Notice selectNoticeView(SqlSessionTemplate session,int noticeNo);
 	int deleteNotice(SqlSessionTemplate session, int noticeNo);
 	int noticeUpdate(SqlSessionTemplate session, Notice notice);
+	
+	@Delete({" <script> ", " delete from board where no in ", " <foreach item=\"item\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">", " #{item} ", " </foreach>", " </script>"}) 
+	public int[] noticeMultiDelete(SqlSessionTemplate session, int[] noList);
+
+	
 	
 }

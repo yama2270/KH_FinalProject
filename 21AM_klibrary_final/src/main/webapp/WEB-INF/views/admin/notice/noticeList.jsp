@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="공지사항관리"/>
 </jsp:include>
@@ -53,7 +52,7 @@
    					<c:when test="${not empty list }">
    					<c:forEach var="notice" items="${list }">
    						<tr>
-   							<td class="cols"><input type="checkbox" name="RowCheck" value="${notice.noticeNo }"/>
+   							<td class="cols"><input type="checkbox" name="noList" value="${notice.noticeNo }"/>
    							<td class="cols"><c:out value="${notice.noticeNo }"/></td>
    							<td class="cols"><c:out value="${notice.noticeCate }"/></td>
    							<td class="cols">
