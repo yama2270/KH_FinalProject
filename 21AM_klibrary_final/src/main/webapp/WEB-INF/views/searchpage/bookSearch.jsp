@@ -3,12 +3,18 @@
  <%   request.setCharacterEncoding("UTF-8");
 String pageId = request.getParameter("pageId");
 %> 
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/> 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="통합검색"/>
 </jsp:include>
-
+<%
+request.setCharacterEncoding("UTF-8");
+String keyword = request.getParameter("keyword");
+String category =  request.getParameter("category");
+String totalData=request.getParameter("totalData");
+%>
 
 
 
@@ -24,10 +30,10 @@ String pageId = request.getParameter("pageId");
   <!-- <h2 id="title">자료검색</h2> -->
   <ul class="list-group">
     <li class="list-group-item" id="menutitle">자료검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/bookSearch.do')">통합검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/detailSearch.do')">상세검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/categorySearch.do')">주제별검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/wishbook.do')">희망도서신청</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/bookSearch.do')">통합검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/detailSearch.do')">상세검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/categorySearch.do')">주제별검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/wishbook.do')">희망도서신청</li>
   </ul>
 </div>
 
@@ -42,13 +48,13 @@ String pageId = request.getParameter("pageId");
     
   </div>
 
-  <form id="bookSearchForm" action="${path}/klibrary/searchpage/bookTotalSearch">
+  <form id="bookSearchForm" action="${path}/searchpage/bookTotalSearch">
 
     <div class="searchSelectDiv">
       <label for="searchKey" class="blind"></label>
       <select id="searchKey" name="category" title="검색 선택">
-        <option value="all">전체</option>
-        <option value="book_name" selected="selected">도서명</option>
+        <option value="all" selected="selected">전체</option>
+        <option value="book_name" >도서명</option>
         <option value="book_writer">저자</option>
         <option value="book_company">발행자</option>
         
@@ -56,8 +62,10 @@ String pageId = request.getParameter("pageId");
       </select>
 
     </div>
-
-    <input type="text" placeholder="  검색" name="keyword" id="inputtext" onkeypress="if(event.keyCode == 13){fn_searchBook(); return false;}">
+      
+    <input type="text" placeholder="  검색" name="keyword" id="inputtext" onkeypress="if(event.keyCode == 13){fn_searchBook(); return false;}"
+    <%if(keyword!= null) {%>
+    value="<%=keyword %>" <%} %>>
     <button id="searchButton" type="submit" ><i class="fa fa-search"></i>검색</button>
   </form>
 
@@ -66,11 +74,16 @@ String pageId = request.getParameter("pageId");
 
 
 <table id=searchResultTable2>
+
+ <c:choose> 
+   	<c:when test="${not empty list }">
+   	
+  
   <tr>
     <th colspan="5" id="searchCaptionTh2">
       <div style="text-align:center">
         <div id="searchCaption22">
-            <p>서명:푸른사자와니니 에 대한 검색결과 5건  이 검색되었습니다.</p>
+            <p><%=keyword %> 검색결과 ${totalData }건  이 검색되었습니다.</p>
         </div>
   
         <div class="selectForm3">
@@ -94,37 +107,44 @@ String pageId = request.getParameter("pageId");
      </div>
    </th>
    </tr>
-
-  <tr>
+   
+   <tr>
     <td colspan="5">
       <hr>
       
-      <input type="checkbox" name="bookSelect" id="allCheck" value="all"><button id="button22" type="submit">관심자료담기</button>
+      <input type="checkbox" name="bookSelect" id="allCheck" value="all"><button id="button22" type="submit">관심도서담기</button>
       <hr>
    </td>
   </tr>
-
+ 		  
+     </c:when>
+     </c:choose>
+   
+    <c:choose> 
+   	<c:when test="${not empty list }">
+   		<c:forEach var="b" items="${list }">
+   
  
-  
+ 
   
   <tr>
       <td id="bookCheckTd" rowspan="2" >
           <input type="checkbox" name="bookCheck" id="bookCheck" value=""> 
     
       </td>
-    <td id="imgContainerDiv" rowspan="2" >
+    <td id="imgContainerDiv"  rowspan="2" >
 
           
             
-            <img id="bookImg" src="http://image.yes24.com/momo/TopCate530/MidCate010/52990774.jpg" alt="푸른사자와니니">
+            <img id="totalSearchbookImg"  src="${b.bookImg }" alt="${b.bookName} ">
             
     </td>
     <td colspan="2">
           <div id="bookInfoDiv3">
-            <dl class="authorData">
+            <dl class="authorData" id="bookTitleDl" >
                <dd>
-                    <span class="cate">도서</span>
-                    <a href="#link" onclick="javascript:fnSearchResultDetail(59846269,59846271,'BO'); return false;">푸른 사자 와니니 : 이현 장편동화. 2, 검은 땅의 주인</a>
+                    <span class="cate"><c:out value="${b.bookName }"/></span>
+                    <a href="#link" onclick=""></a>
             
                     </dd>
             </dl>
@@ -153,10 +173,8 @@ String pageId = request.getParameter("pageId");
                 <span>발행자</span><br>                    
                 <span>발행연도</span> <br>                  
                 <span>ISBN</span><br>
-                 <span>등록번호</span><br>
-                  <span>
-                        청구기호                       
-                </span>                                      
+                 <span>분류번호</span><br>
+                                                       
             
                   </dd>
         </dl>
@@ -169,31 +187,40 @@ String pageId = request.getParameter("pageId");
            <dd>
                 
                   
-                <span>이현 지음 ; 오윤화 그림</span><br>
-                <span>창비</span><br>                    
-                <span>2019</span><br>                            
-                <span>9788936443054</span><br>
-                 <span>JC0000013401</span><br>
-                  <span>
-                        아 808.3-창48ㅊ-v.305=c.2                           
-                  </span>                                                  
+                <span><c:out value="${b.bookWriter }"/></span><br>
+                <span><c:out value="${b.bookCompany }"/></span><br>                    
+                <span><c:out value="${b.bookDate }"/></span><br>                            
+                <span><c:out value="${b.isbnNo }"/></span><br>
+                 <span><c:out value="${b.bookKdc }"/></span><br>
+                                                                    
                   </dd>
         </dl>
       </div>
-
-
      </td>
+     
      <td>
 
      </td>
     </tr>
-    <tr>
-      <td colspan="5">
-         <hr>
-      </td>
-    </tr>
+    
+		    <tr>
+		      <td colspan="5">
+		         <hr>
+		      </td>
+		    </tr>
+    </c:forEach>
+    </c:when>
+    
+    <c:otherwise>
+   					<tr>
+   					<td colspan="5"></td>
+   					</tr>
+   				</c:otherwise>  
+    </c:choose>
   </table>
-
+  <div id="pagebar-container">
+        	${pageBar }
+        </div>
 
 
 </body>
@@ -207,7 +234,7 @@ String pageId = request.getParameter("pageId");
 	
 	console.log(keyword);
 	console.log(category);
-	location.href="${path}/klibrary/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category;
+	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category;
 	
 	
 }
@@ -217,10 +244,21 @@ function fn_searchBook2(){
 	let category=$("#searchType").val();
 	let searchNumber=$("#searchNumber").val();
 	
-	location.href="${path}/klibrary/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category+"&searchNumber="+searchNumber;
+	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category+"&searchNumber="+searchNumber;
 	
 	
 } 
+
+function fn_paging(pageNo,totalData){
+	console.log(totalData);
+	let totalData2=parseInt(totalData);
+	let keyword=$("#inputtext").val();
+	let category=$("#searchType").val();
+	let searchNumber=$("#searchNumber").val();
+	
+	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category+"&searchNumber="+searchNumber+"&cPage="+pageNo+"&totalData="+totalData2;
+	
+}
 
 
 
@@ -241,7 +279,7 @@ $(function(){
 		  
 		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
 		  
-	  } if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'){
+	  } if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'||(window.location.href).includes('http://localhost:9090/klibrary/searchpage/bookTotalSearch') ){
 		  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
 		 
 	  } if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'){

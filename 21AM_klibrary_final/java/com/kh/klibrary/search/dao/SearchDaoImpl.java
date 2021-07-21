@@ -13,14 +13,25 @@ import com.kh.klibrary.book.model.vo.BookInfo;
 public class SearchDaoImpl implements SearchDao{
 
 	@Override
-	public List<BookInfo> bookTotalSearch(SqlSessionTemplate session,String category,String keyword,int searchNumber,int cPage){
-		 HashMap<String, String> hashMap = new HashMap<>();
-		 hashMap.put("category", category);
-		 hashMap.put("keyword", keyword);
+	public List<BookInfo> bookTotalSearch(SqlSessionTemplate session,HashMap<String, Object> hashMap){
+		 
 		 System.out.println(hashMap);
-		System.out.println(category+","+keyword+","+searchNumber+","+cPage);
+		int cPage=(int)hashMap.get("cPage");
+		int searchNumber=(int)hashMap.get("searchNumber");
 		
-		return session.selectList("search.selectBookList");
+		
+		return session.selectList("search.selectBookList",hashMap);
+	}
+	
+	@Override
+	public List<BookInfo> bookTotalSearch2(SqlSessionTemplate session,HashMap<String, Object> hashMap){
+		 
+		 System.out.println(hashMap);
+		int cPage=(int)hashMap.get("cPage");
+		int searchNumber=(int)hashMap.get("searchNumber");
+		
+		
+		return session.selectList("search.selectBookList",hashMap,new RowBounds((cPage-1)*searchNumber,searchNumber));
 	}
 	
 	@Override

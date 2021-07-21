@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-
+<c:set var="path" value="${pageContext.request.contextPath }"/> 
 <% 
   request.setCharacterEncoding("UTF-8");
  String keyword2 = request.getParameter("keyword2");
@@ -206,7 +206,7 @@ function fn_searchBook(start){
 			  str+="</tr>"
 			  
 		for(let i=0;i<obj.length;i++){	
-	
+	          
 			  str+="<tr>"
 			  str+="<td id='imgContainerDiv' rowspan='2'>"
 			  str+="<img id='bookImg' src='"+obj[i]["thumbnail"]+"' alt='준비중' onclick='fn_bookDetail("+obj[i]["isbn"]+")'>"

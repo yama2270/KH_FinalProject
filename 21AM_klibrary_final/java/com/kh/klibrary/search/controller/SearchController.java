@@ -1,5 +1,6 @@
 package com.kh.klibrary.search.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.common.PageFactory;
+import com.kh.klibrary.common.PageFactory2;
 import com.kh.klibrary.search.service.SearchServiceImp;
 
 
@@ -157,11 +159,23 @@ public ModelAndView bookTotalSearch(
 		  @RequestParam(value="cPage", required=false, defaultValue="1") int cPage,
 		                     ModelAndView mv     ) {
 	   System.out.println(keyword+","+category+","+searchNumber+","+cPage);
-	mv.addObject("list", service.bookTotalSearch(category,keyword,searchNumber,cPage));
-		List<BookInfo> bookList=service.bookTotalSearch(category,keyword,searchNumber,cPage);
+	   
+	   HashMap<String, Object> hashMap = new HashMap<>();
+	   hashMap.put("category", category);
+	   hashMap.put("keyword", keyword);
+	   hashMap.put("searchNumber", searchNumber);
+	   hashMap.put("cPage", cPage);
+	   
+		List<BookInfo> bookList=service.bookTotalSearch(hashMap);
 		System.out.println(bookList);
 		int totalData=bookList.size();
-	mv.addObject(PageFactory.getPageBar(totalData, cPage, searchNumber, "bookTotalSearch"));
+		System.out.println("totalData사이즈테스트"+totalData);
+		System.out.println("페이지별 데이터"+(service.bookTotalSearch2(hashMap)).size());
+		
+		mv.addObject("list", service.bookTotalSearch2(hashMap));
+		mv.addObject("keyword",keyword);
+		mv.addObject("category",category);
+	mv.addObject("pageBar",PageFactory2.getPageBar(totalData, cPage, searchNumber, "bookTotalSearch"));
 	mv.addObject("totalData",totalData);
 	
 	mv.setViewName("/searchpage/bookSearch");

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/> 
 <%   request.setCharacterEncoding("UTF-8");
 String pageId = request.getParameter("pageId");
 
@@ -20,10 +23,10 @@ String pageId = request.getParameter("pageId");
   <!-- <h2 id="title">자료검색</h2> -->
   <ul class="list-group">
     <li class="list-group-item" id="menutitle">자료검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/bookSearch.do')">통합검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/detailSearch.do')">상세검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/categorySearch.do')">주제별검색</li>
-    <li class="list-group-item" onclick="location.replace('${path}/klibrary/searchpage/wishbook.do')">희망도서신청</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/bookSearch.do')">통합검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/detailSearch.do')">상세검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/categorySearch.do')">주제별검색</li>
+    <li class="list-group-item" onclick="location.replace('${path}/searchpage/wishbook.do')">희망도서신청</li>
   </ul>
 </div>
 <br><br><br>
@@ -261,7 +264,7 @@ String pageId = request.getParameter("pageId");
 			
 			  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
 			  
-		  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'){
+		  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'||(window.location.href).includes('http://localhost:9090/klibrary/searchpage/bookTotalSearch')){
 			  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
 			 
 		  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'){

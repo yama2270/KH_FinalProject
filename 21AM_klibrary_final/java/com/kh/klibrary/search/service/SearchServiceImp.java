@@ -2,6 +2,7 @@ package com.kh.klibrary.search.service;
 
  
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ import com.kh.klibrary.search.dao.SearchDaoImpl;
 @Service
 public class SearchServiceImp implements SearchService{
 	
+	@Autowired
 	SqlSessionTemplate session;
 	@Autowired 
 	private  RestTemplate restTemplate;
@@ -89,12 +91,20 @@ public class SearchServiceImp implements SearchService{
       
   }
 @Override
- public List<BookInfo> bookTotalSearch(String category,String keyword,int searchNumber,int cPage){
+ public List<BookInfo> bookTotalSearch(HashMap<String, Object> hashMap){
 		  
-		 return dao.bookTotalSearch(session,category,keyword,searchNumber,cPage); 
+		 return dao.bookTotalSearch(session,hashMap); 
 		 
  
    }
+
+@Override
+public List<BookInfo> bookTotalSearch2(HashMap<String, Object> hashMap){
+		  
+		 return dao.bookTotalSearch2(session,hashMap); 
+		 
+
+  }
   
 @Override
  public int selectBookCount() {

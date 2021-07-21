@@ -17,7 +17,22 @@
 		
 		<select id="selectBookList" resultMap="bookInfoMap">
 		SELECT * FROM BOOK_INFO
-	
+	       <trim prefix="WHERE" prefixOverrides="AND|OR">
+		 <if test= 'category == "all"' >
+		   OR BOOK_NAME like '%'||#{keyword}||'%' OR
+		    BOOK_WRITER like '%'||#{keyword}||'%' OR
+		    BOOK_COMPANY like '%'||#{keyword}||'%' 
+		  </if>
+		  <if test= 'category =="book_name" and keyword != null'>
+		   OR BOOK_NAME like '%'|| #{keyword}|| '%'
+		  </if>
+		  <if test= 'category =="book_writer" and keyword != null'>
+		  OR BOOK_WRITER like '%'|| #{keyword}||'%'
+		  </if>
+		  <if test= 'category =="book_company" and keyword !=null'>
+		  OR BOOK_COMPANY like '%'|| #{keyword}||'%'
+		  </if>
+		  </trim>
 		</select>
   
         
