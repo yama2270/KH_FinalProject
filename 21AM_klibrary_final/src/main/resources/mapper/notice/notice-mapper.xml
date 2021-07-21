@@ -42,13 +42,13 @@
   <select id="searchnotice" resultMap="noticeMap">
   	SELECT * 
   	FROM NOTICE
-  	WHERE NOTICE_TITLE=#{text}
+  	WHERE NOTICE_TITLE LIKE '%'||#{text}||'%'
   </select>
   
   <select id="searchnoticecontent" resultMap="noticeMap">
   	SELECT *
   	FROM NOTICE
-  	WHERE NOTICE_CONTENT=#{text}
+  	WHERE NOTICE_CONTENT LIKE '%'||#{text}||'%'
   </select>
   
   

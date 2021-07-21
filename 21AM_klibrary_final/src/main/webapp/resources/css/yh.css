@@ -107,6 +107,20 @@
 }
 
 /* 도서관이용시간 */
+.seatback2{
+	margin-top:2%;
+	margin-left:35%;
+}
+.calendarhead{
+	width : 500px;
+    height : 283px;
+    margin : auto;
+    justify-content : space-between;
+    align-items:flex-end;
+}
+.cal_week {
+	text-align: center;
+}
 .submenu {
   display : none;
   padding-left : 0px;
@@ -180,6 +194,7 @@
     }
     .tablehead{
         width:200px;
+        text-align: center;
         border: 1px solid gray;
     }
     .timehead{
@@ -350,7 +365,7 @@
     height:50px;
 }
 .seatback{
-    margin-left:42%;
+    margin-left:41%;
     margin-top:2%;
     font-size:1rem;
 }
