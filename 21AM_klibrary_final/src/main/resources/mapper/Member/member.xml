@@ -7,8 +7,16 @@
 	</insert>
 	
 	<select id="selectMember1" resultMap="Member">
-		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
+		SELECT * FROM MEMBER WHERE USER_ID=#{userId}
 	</select>
+	
+	<select id="findId" resultMap="Member">
+		SELECT * FROM MEMBER WHERE USER_NAME=#{userName} AND EMAIL=#{email}
+	</select>
+	
+	<update id="findPw">
+		UPDATE MEMBER SET USER_PASSWORD=#{userPassword} WHERE USER_ID=#{userId} AND USER_NAME=#{userName} AND EMAIL=#{email}
+	</update>
 	
 	<select id="selectMember" resultMap="Member">
 		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}

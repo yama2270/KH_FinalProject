@@ -13,7 +13,8 @@ public interface MemberService {
 	//dg
 	int insertMember(Member m);
 	Member selectMember1(Map param);
-	
+	Member memberFindId(Map param);
+	int memberFindPw(Member m);
 	//cg
 	Member selectMember(Map m1);
 	int updateMember(Member m);

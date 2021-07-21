@@ -31,10 +31,10 @@
 
         <div id="login-container">
             <div id="login-input">
-            <form>
-                <input type="text" name="memberId" class="login-input" placeholder="아이디 입력"><br>
-                <input type="text" name="memberName" class="login-input" placeholder="이름 입력"><br>
-                <input type="email" name=memberPw" class="login-input" placeholder="이메일 입력">
+            <form action="${path }/member/memberPwCheck.do" method="post">
+                <input type="text" name="userId" class="login-input" placeholder="아이디 입력"><br>
+                <input type="text" name="userName" class="login-input" placeholder="이름 입력"><br>
+                <input type="email" name="email" class="login-input" placeholder="이메일 입력">
                 <input type="button" value="이메일 인증" class="login-btn"><br>
                 <input type="submit" value="비밀번호 재발급" class="findId-btn">
 

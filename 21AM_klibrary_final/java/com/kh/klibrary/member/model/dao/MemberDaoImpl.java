@@ -20,6 +20,20 @@ public class MemberDaoImpl implements MemberDao {
 	public int insertMember(SqlSessionTemplate session, Member m) {
 		
 		return session.insert("member.insertMember", m);
+		
+	}
+
+	@Override
+	public Member memberFindId(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		
+		return session.selectOne("member.findId", param);
+	}
+
+	@Override
+	public int memberFindPw(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.update("member.findPw", m);
 	}
 
 	@Override

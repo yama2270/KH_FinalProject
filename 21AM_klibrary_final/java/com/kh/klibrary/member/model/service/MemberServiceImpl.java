@@ -36,9 +36,20 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectMember1(session, param);
 	}
 	
+	@Override
+	public Member memberFindId(Map param) {
+		// TODO Auto-generated method stub
+		return dao.memberFindId(session, param);
+	}
+	
+	@Override
+	public int memberFindPw(Member m) {
+		// TODO Auto-generated method stub
+		return dao.memberFindPw(session, m);
+	}
 	
 	//cg
-
+	
 	@Override
 	public Member selectMember(Map m1) {
 		// TODO Auto-generated method stub
