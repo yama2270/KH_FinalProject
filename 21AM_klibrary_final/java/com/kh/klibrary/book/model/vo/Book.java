@@ -13,6 +13,6 @@ public class Book {
 	private String bookNo;
 	private String isbnNo;
 	private String bookingState;
-	private String lendingState;
+	private String lendingState;	
 	private BookInfo bookInfo;
 }

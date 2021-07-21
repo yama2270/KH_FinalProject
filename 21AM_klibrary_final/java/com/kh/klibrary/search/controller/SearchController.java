@@ -1,8 +1,11 @@
 package com.kh.klibrary.search.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.common.PageFactory2;
+import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.search.service.SearchServiceImp;
 
 
@@ -40,9 +45,21 @@ public String totalSearch() {
 
 @RequestMapping("/searchpage/bookDetail.do")
 
-public String bookDetail(){
+public ModelAndView bookDetail(
+		@RequestParam(value="isbnNo", required=true) String isbnNo,
+		ModelAndView mv){
+	mv.addObject("book",service.selectBook(isbnNo));	
+	System.out.println("selectbook테스트"+service.selectBook(isbnNo));
 	
-	return "/searchpage/bookDetail";
+	Book b=service.selectBook(isbnNo);
+	String bookNo=b.getBookNo();
+	if(service.selectLending(bookNo)!=null) {
+		mv.addObject("lending",service.selectLending(bookNo));
+	}
+	System.out.println("lending테스트"+service.selectLending(bookNo));
+	mv.setViewName("/searchpage/bookDetail");
+		
+	return mv;
    }
 
 @RequestMapping("/searchpage/detailSearch.do")
@@ -166,19 +183,42 @@ public ModelAndView bookTotalSearch(
 	   hashMap.put("searchNumber", searchNumber);
 	   hashMap.put("cPage", cPage);
 	   
-		List<BookInfo> bookList=service.bookTotalSearch(hashMap);
-		System.out.println(bookList);
-		int totalData=bookList.size();
-		System.out.println("totalData사이즈테스트"+totalData);
-		System.out.println("페이지별 데이터"+(service.bookTotalSearch2(hashMap)).size());
+	   int totalData=service.bookTotalCount(hashMap);
+		System.out.println(totalData);
 		
-		mv.addObject("list", service.bookTotalSearch2(hashMap));
+		System.out.println("totalData사이즈테스트"+totalData);
+		System.out.println("페이지별 데이터"+(service.selectBookList(hashMap)).size());
+		
+		
+		if(keyword!="") {
+			mv.addObject("list", service.selectBookList(hashMap));			
+			mv.addObject("pageBar",PageFactory2.getPageBar(totalData, cPage, searchNumber, "bookTotalSearch"));
+		}
 		mv.addObject("keyword",keyword);
 		mv.addObject("category",category);
-	mv.addObject("pageBar",PageFactory2.getPageBar(totalData, cPage, searchNumber, "bookTotalSearch"));
 	mv.addObject("totalData",totalData);
 	
 	mv.setViewName("/searchpage/bookSearch");
+	return mv;
+}
+
+@RequestMapping("/searchpage/interestingbook")
+public ModelAndView interestingbook ( 
+		HttpServletRequest request,
+		ModelAndView mv
+		        ) {
+	String[] bookCheckArray = request.getParameterValues("bookCheck");
+		List<String> bookCheckArray2=new ArrayList();
+	for(int i=0;i<bookCheckArray.length;i++) {
+		
+		if( bookCheckArray[i]!="") {			
+	
+		bookCheckArray2.add(bookCheckArray[i]);
+		}
+	  
+	}
+	
+	System.out.println("배열결과"+bookCheckArray2+"배열사이즈"+bookCheckArray2.size());
 	return mv;
 }
 

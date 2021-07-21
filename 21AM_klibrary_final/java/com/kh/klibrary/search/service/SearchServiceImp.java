@@ -18,7 +18,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.search.dao.SearchDaoImpl;
  
 
@@ -91,20 +93,34 @@ public class SearchServiceImp implements SearchService{
       
   }
 @Override
- public List<BookInfo> bookTotalSearch(HashMap<String, Object> hashMap){
+ public int bookTotalCount(HashMap<String, Object> hashMap){
 		  
-		 return dao.bookTotalSearch(session,hashMap); 
+		 return dao.bookTotalCount(session,hashMap); 
 		 
  
    }
 
 @Override
-public List<BookInfo> bookTotalSearch2(HashMap<String, Object> hashMap){
+public List<BookInfo> selectBookList(HashMap<String, Object> hashMap){
 		  
-		 return dao.bookTotalSearch2(session,hashMap); 
+		 return dao.selectBookList(session,hashMap); 
 		 
 
   }
+
+@Override
+public Book selectBook(String isbnNo){
+	
+	return dao.selectBook(session, isbnNo);
+}
+
+@Override
+public Lending selectLending(String bookNo) {
+	return dao.selectLending(session, bookNo);
+};
+
+
+
   
 @Override
  public int selectBookCount() {

@@ -35,12 +35,14 @@ String pageId = request.getParameter("pageId");
 
 
 <div id="searchResultDiv">
+ <c:choose> 
+   	<c:when test="${not empty book }">
 <table  id=searchResultTable>
  <tr>
      <td id="bookTitleTd" colspan="3">
         
             <span class="cate">도서</span>
-            <span >푸른 사자 와니니 : 이현 장편동화. 2, 검은 땅의 주인</span>
+            <span ><c:out value="${book.bookInfo.bookName }"/></span>
            
      </td>
  </tr>
@@ -52,7 +54,7 @@ String pageId = request.getParameter("pageId");
 
           
             
-            <img id="bookImg" src="http://image.yes24.com/momo/TopCate530/MidCate010/52990774.jpg" alt="푸른사자와니니">
+            <img id="bookImg" src="${book.bookInfo.bookImg }" alt="푸른사자와니니">
             
     </td>
     <th id="bookInfoTd">
@@ -62,8 +64,9 @@ String pageId = request.getParameter("pageId");
                     발행자     <br>              
                     발행연도   <br>            
                     ISBN  <br>
-                    등록번호 <br>     
-                    청구기호   <br>                                             
+                    분류번호 <br>
+                    위치번호      
+                                                               
                                                             
                
           
@@ -71,36 +74,37 @@ String pageId = request.getParameter("pageId");
 
       </th>
       <td id="bookInfoTd2">
-        이현 지음 ; 오윤화 그림<br>
-        창비 <br>
-        2019  <br>
-        9788936443054<br>
-        JC0000013401<br>
-        아 808.3-창48ㅊ-v.305=c.2   <br>
+         <span><c:out value="${book.bookInfo.bookWriter }"/></span><br>
+                <span><c:out value="${book.bookInfo.bookCompany }"/></span><br>                    
+                <span><c:out value="${book.bookInfo.bookDate }"/></span><br>                            
+                <span><c:out value="${book.bookInfo.isbnNo }"/></span><br>
+                 <span><c:out value="${book.bookInfo.bookKdc }"/></span><br>
+                 <span><c:out value="${book.bookInfo.bookLocation }"/></span>
+        
       </td>
       
     </tr>
    
   </table>
+  </c:when>
+  </c:choose>
+  
 
   <div class="resultBookDesc">
 							
     <div >
-        <h3 >상세정보</h3>
+        <h3 >내용</h3>
         
             
-                <a href="http://book.naver.com/bookdb/book_detail.php?bid=9220379" class="btn_marc ml05 mobileHide" target="_blank" title="새창열림">도서정보 상세보기</a>
-            
-            
+                
         
     </div>
     <div class="desc">
-        <p>서로 다른 모습 그대로, 초원을 달린다!《짜장면 불어요!》《장수 만세!》《로봇의 별》과 
-            같은 새로운 이야기로 한국 아동문학의 외연을 넓혀 온 작가 이현의 신작 장편동화 
-            『푸른 사자 와니니』. 쓸모없다는 이유로 무리에서 쫓겨난 사자 와니니가 
-            초원을 떠돌며 겪는 일들을 그린 동화로, 아프리카의 광활한...</p>
+        <p>
+         ${book.bookInfo.bookContent}
+        </p><span>...</span>
     </div>
-    <span class="provider">[NAVER 제공]</span>
+   
 
 
 </div>
