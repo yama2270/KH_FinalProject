@@ -158,4 +158,43 @@
 			</collection>
 		</collection>
 	</resultMap>
+	
+	<select id="selectBookMarkList" resultMap="likes">
+		SELECT * FROM LIKES LEFT JOIN MEMBER USING(USER_ID) LEFT JOIN BOOK_INFO USING(ISBN_NO)
+		WHERE USER_ID=#{userId}
+	</select>
+	<select id="selectBookMarkCount" resultType="_int">
+		SELECT COUNT(*) FROM LIKES LEFT JOIN MEMBER USING(USER_ID) LEFT JOIN BOOK_INFO USING(ISBN_NO)
+		WHERE USER_ID=#{userId}
+	</select>
+	<delete id="cancelMark">
+		DELETE FROM LIKES WHERE USER_ID=#{userId} AND ISBN_NO=#{isbnNo}
+	</delete>
+	<resultMap type="com.kh.klibrary.member.model.vo.Likes" id="likes">
+		<result column="USER_ID" property="userId"/>
+		<result column="ISBN_NO" property="isbnNo"/>
+		<collection property="member" ofType="member">
+			<id column="USER_ID" property="userId"/>
+			<result column="USER_PASSWORD" property="userPassword"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="EMAIL" property="email"/>
+			<result column="BIRTH_DATE" property="birthDate"/>
+			<result column="ADDRESS" property="address"/>
+			<result column="PHONE" property="phone"/>
+			<result column="SIGNUP_DATE" property="signupDate"/>
+		</collection>
+		<collection property="bookInfo" ofType="bookInfo">
+			<id column="ISBN_NO" property="isbnNo"/>
+			<result column="BOOK_NAME" property="bookName"/>
+			<result column="BOOK_WRITER" property="bookWriter"/>
+			<result column="BOOK_COMPANY" property="bookCompany"/>
+			<result column="BOOK_DATE" property="bookDate"/>
+			<result column="BOOK_PRICE" property="bookPrice"/>
+			<result column="BOOK_LOCATION" property="bookLocation"/>
+			<result column="BOOK_CONTENT" property="bookContent"/>
+			<result column="BOOK_IMG" property="bookImg"/>
+			<result column="BOOK_KDC" property="bookKdc"/>
+		</collection>
+	</resultMap>
+	
 </mapper>

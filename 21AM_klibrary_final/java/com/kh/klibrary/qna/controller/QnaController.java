@@ -39,7 +39,7 @@ public class QnaController {
 	@GetMapping("/qna/updateQna.do")
 	public String qnaUpdate(Model model, int no) {
 		
-		//jsp에 수정할 데이터 보내기.(데이터 db에 있음.)
+		//jsp에 수정 할 데이터 보내기.(데이터 db에 있음.)
 		
 		model.addAttribute("qna", service.selectQnaView(no));
 		return "qna/qnaUpdate";

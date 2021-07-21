@@ -6,63 +6,6 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="메인페이지"/>
 </jsp:include>
-
-	<%-- <h1>메인페이지</h1>
-    <header>
-        <div id="header">
-            <div id="logo">
-                <a href="" class="header_a">logo</a>
-            </div>
-
-            <div id="header_top">
-                <ul id="header_ul">
-                <c:if test="${loginMember1==null }">
-                    <li>
-                        <a href="${path }/member/memberLogin.do" class="header_a">로그인</a>
-                    </li>
-                    <li>
-                        <a href="${path }/member/memberEnroll.do"  class="header_a">회원가입</a>
-                    </li>
-                </c:if>
-                <c:if test="${loginMember1!=null }">
-                	<li>
-                		<a href="" class="hader_a">마이페이지</a>
-                	</li>
-                	<li>
-                		<button class="btn btn-outline-light text-dark" type="button" onclick="${path}/member/memberLogout.do }">로그아웃</button>
-                	</li>
-                </c:if>
-                </ul>
-            </div>
-        </div>
-
-        <div id="nav">
-            <ul id="main-menu">
-                <li><a href="">자료검색</a></li>
-                  <ul id="sub-menu">
-                    <li><a href="" aria-label="subemnu">뭐넣지</a></li>
-                    <li><a href="" aria-label="subemnu">뭐넣지</a></li>
-                  </ul>
-                <li><a href="">열람실</a>
-                  <ul id="sub-menu">
-                    <li><a href="" aria-label="subemnu">뭐넣지</a></li>
-                    <li><a href="" aria-label="subemnu">뭐넣지</a></li>
-                  </ul>
-                </li>
-                <li><a href="">이용안내</a>
-                  <ul id="sub-menu">
-                    <li><a href="#" aria-label="subemnu">뭐넣지</a></li>
-                    <li><a href="#" aria-label="subemnu">뭐넣지</a></li>
-                  </ul>
-                </li>
-                <li><a href="">마이페이지</a>
-                  <ul id="sub-menu">
-                    <li><a href="" aria-label="subemnu">뭐넣지</a></li>
-                    <li><a href="" aria-label="subemnu">뭐넣지</a></li>                    
-                  </ul>
-              </ul>
-        </div>
-    </header>  --%>
  
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">

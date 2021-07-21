@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="${path }/resources/css/dg.css" type="text/css"> 
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="title" value="회원가입"/>
+	<jsp:param name="title" value="아이디찾기"/>
 </jsp:include>
 
-    <div id="login-nav">
+<div id="login-nav">
         <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">로그인</span>
+            <span class="navbar-brand mb-0 h1">아이디 찾기</span>
             </div>
         </nav>
     </div>
@@ -31,19 +31,31 @@
 
         <div id="login-container">
             <div id="login-input">
-            <form action="${path }/member/memberLoginCheck.do" method="post">
-                <input type="text" name="userId" class="login-input" placeholder="아이디 입력"><br>
-                <input type="password" name="userPassword" class="login-input" placeholder="비밀번호 입력">
-                <input type="submit" value="로그인" class="login-btn">
+            <form>
+                <input type="text" name="memberId" class="login-input" placeholder="이름 입력"><br>
+                <input type="email" name=memberPw" class="login-input" placeholder="이메일 입력">
+                <input type="button" value="이메일 인증" class="login-btn"><br>
+                <input type="submit" value="아이디 찾기" class="findId-btn">
+
             </form>
-                <div class="login-member"> 
-                    <a class="memberBtn" href="">아이디 찾기</a>
-                    <a class="memberBtn" href="">비밀번호 찾기</a>
-                    <a class="memberBtn" href="">회원가입</a>
-                </div>
-            
             </div>
         </div>
     
-    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+    <!-- As a heading -->
     
+    
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+    
+     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
