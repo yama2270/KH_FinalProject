@@ -22,6 +22,20 @@
 		select * from BOOK JOIN BOOK_INFO USING(ISBN_NO) JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO)
 	</select>
 	
+	<!-- 총도서 -->
+	<select id="totalBook" resultType="_int">
+		SELECT COUNT(*) FROM BOOK
+	</select>
+	
+	<!-- 도서삭제 -->
+	<delete id="deleteBook" parameterType="Map">
+		DELETE FROM BOOK WHERE BOOK_NO IN 
+		<foreach collection="bookNo" item="b" open="(" separator="," close=")">
+			#{b}
+		</foreach>
+		   
+	</delete>
+	
 	<!-- resultMap -->
 	<!-- book -->
 	<resultMap type="book" id="bookMap">

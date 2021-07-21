@@ -14,15 +14,15 @@
                 <table class="table2">
                      <tr class="line">
                         <td class="line3">분류</td>
-                        <td class="line2"><c:out value="${notice.noticeCate }"/></td>
+                        <td class="line2"><c:out value="${notice.noticeCate}"/></td>
                     </tr>
                     <tr class="line">
                         <td class="line3">제목</td>
-                        <td class="line2"><c:out value="${notice.noticeTitle }"/></td>
+                        <td class="line2"><c:out value="${notice.noticeTitle}"/></td>
                     </tr>
                     <tr class="line">
                         <td class="line3">등록일</td>
-                        <td class="line2"><c:out value="${notice.noticeDate }"/></td>
+                        <td class="line2"><c:out value="${notice.noticeDate}"/></td>
                     </tr>
 	                    <tr class="line">
 	                        <td class="line3">첨부파일</td>
@@ -33,11 +33,11 @@
 	                    </tr>
                     <tr class="line">
                         <td class="line3">조회수</td>
-                        <td class="line2"><c:out value="${notice.noticeCount }"/></td>
+                        <td class="line2"><c:out value="${notice.noticeCount}"/></td>
                     </tr>
                 </table>
                 
-                <div class="contentbox"><c:out value="${notice.noticeContent }"/></div>
+                <div class="contentbox"><c:out value="${notice.noticeContent}"/></div>
              	    <div class="notice_update">
                       <a href="${path }/admin/notice/noticeUpdate.do?noticeNo=${notice.noticeNo}">	
                          <button class="notice_update_bt" >수정하기</button>
