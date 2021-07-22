@@ -13,7 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="../js/jquery-3.6.0.min.js"></script>
-    <title>FAQ자주하는질문</title>
+    <title>FAQ검색</title>
 </head>
 
 
@@ -29,7 +29,6 @@
               	<li class="list-group-item"><a href="${path}/notice/noticeList.do">공지사항</a></li>  	
 				<li class="list-group-item"><a href="${path}/faq/faqList.do"></a>자주묻는질문</li>	
             	<li class="list-group-item"><a href="${path}/qna/qnaList.do">QNA</a></li>	
-	
             </ul>	
 		</div>
         <div id="he_right">
@@ -45,8 +44,8 @@
                         <input type="submit" value="검색" id="katagori">
                     </form>
 						<c:forEach var="f" items= "${list}">
-	                    	<div class="qmenu"><c:out value="${f['FAQ_CATE']}"/></div>
-	                        	<p class="contents"><c:out value="${f['FAQ_CONTENT']}"/></p>
+	                    	<div class="qmenu"><c:out value="${f['faqCate']}"/></div>
+	                        	<p class="contents"><c:out value="${f.faqContent}"/></p>
 						</c:forEach>
                 </div>
             </div>
