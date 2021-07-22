@@ -15,10 +15,5 @@ public interface AdminNoticeDao {
 	Notice selectNoticeView(SqlSessionTemplate session,int noticeNo);
 	int deleteNotice(SqlSessionTemplate session, int noticeNo);
 	int noticeUpdate(SqlSessionTemplate session, Notice notice);
-	
-	@Delete({" <script> ", " delete from board where no in ", " <foreach item=\"item\" collection=\"array\" open=\"(\" separator=\",\" close=\")\">", " #{item} ", " </foreach>", " </script>"}) 
-	public int[] noticeMultiDelete(SqlSessionTemplate session, int[] noList);
-
-	
-	
+	int noticeCount(SqlSessionTemplate session, int noticeNo);
 }

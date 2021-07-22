@@ -16,7 +16,14 @@
         background-color: aliceblue;
         
     }
-    .tblhasLibrary th{
+    #firstTh{
+    width:5%;
+    border-top:1.5px solid black;
+    border-right:1px solid  #ccc;
+    
+    }
+    
+    .tblhasLibrary th:not(#firstTh){
         text-align:center;
         padding:10px 52px;
         border-top:1.5px solid black;

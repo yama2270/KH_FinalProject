@@ -16,6 +16,6 @@ public class Booking {
 	private Date bookingDate;
 	private Date bookingPickUpDate;
 	
-	private List<Member> member=new ArrayList();
-	private List<Book> book=new ArrayList();
+	private Member member;
+	private Book book;
 }

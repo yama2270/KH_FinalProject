@@ -7,8 +7,10 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/> 
 <%   request.setCharacterEncoding("UTF-8");
 String pageId = request.getParameter("pageId");
-
+String keyword = request.getParameter("keyword");
+String category = request.getParameter("category");
 %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -41,7 +43,7 @@ String pageId = request.getParameter("pageId");
  <tr>
      <td id="bookTitleTd" colspan="3">
         
-            <span class="cate">도서</span>
+            <span class="cate">도서 &nbsp;&nbsp;&nbsp;</span>
             <span ><c:out value="${book.bookInfo.bookName }"/></span>
            
      </td>
@@ -54,7 +56,7 @@ String pageId = request.getParameter("pageId");
 
           
             
-            <img id="bookImg" src="${book.bookInfo.bookImg }" alt="푸른사자와니니">
+            <img id="bookImg" src="${book.bookInfo.bookImg }" alt="${book.bookInfo.bookName }">
             
     </td>
     <th id="bookInfoTd">
@@ -119,14 +121,16 @@ String pageId = request.getParameter("pageId");
 		<thead class="bookStatusThead">
 			<tr class="bookStatusTr">
 
-            	<th >선택</th>				
-				<th >대출상태</th>
+            	<th id="firstTh"><span>선택</span></th>				
+				<th >대출가능여부</th>
 				<th >청구기호</th>
-				<th >등록번호</th>
-				<th >반납예정일</th>
-								
-				
-				<th >도서예약</th>
+				<th >도서번호</th>
+					<c:choose>
+					<c:when test="${not empty lending }">	
+					<th >반납예정일</th>
+					</c:when>
+					</c:choose>
+				<th >예약가능여부</th>
 				
 			</tr>
 		</thead>
@@ -134,30 +138,37 @@ String pageId = request.getParameter("pageId");
 			
 				<tr>
 					
-					<td><input type="checkbox" name="check" id="check1" value="879929^1663848^BO"></td>
+					<td><input type="checkbox" name="bookCheck" id="check1" value="${book.isbnNo }"></td>
 					
 					<td>
-						대출불가<br>[대출중]
+						<c:out value="${book.lendingState }"/>
 						
 					</td>
 					<td>
-						아 808.3-창48ㅊ-v.280
 						
-							<br><a href="#btn" onclick="javascript:fnCallNoPrintPop('mglib', 1663848, 'BO', 'WEB'); return false;" title="새창열림" class="button print mobileHide">청구기호출력</a>
 						
-					</td>
-					<td>JC0000009939</td>
-					<td>
-						
-							
-							2021-07-12
+							<a><c:out value="${book.bookInfo.bookLocation }"/></a>
 						
 					</td>
+					<td><c:out value="${book.bookNo }"/></td>
+						<c:choose>
+							<c:when test="${not empty lending }">	
+								<td>
+								   <c:out value="${lending.returnDate }"/>
+								</td>
+							</c:when>					
+						</c:choose>
 				
 						<td>
-							
-									<a href="#btn" onclick="javascript:fnLoanReservationApply('JC','JC0000009939','MD','BO'); return false;" class="tblBtn tB01">예약하기</a>
-
+						<c:choose>
+						<c:when test="${book.lendingState eq '가능'}">
+						<span>예약가능</span><br>
+						<a href="#btn" onclick="" name="booking" value="${book.isbnNo }" class="tblBtn tB01">예약하기</a>
+   					    </c:when>
+   					    <c:otherwise>
+   					       <span>예약불가</span>
+   					    </c:otherwise>
+   					    </c:choose>
 						</td>
 	
 				</tr>
@@ -171,7 +182,7 @@ String pageId = request.getParameter("pageId");
         <a href="" id="btnView" class="btn down themeBtn">관심도서보기</a>
     
     
-        <a href="" id="listBtn" class="btn down themeBtn">목록으로</a>
+        <a href="${path}/searchpage/bookTotalSearch?keyword=<%=keyword %>&category=<%=category %>" id="listBtn" class="btn down themeBtn">목록으로</a>
     
         </div>
 </div>

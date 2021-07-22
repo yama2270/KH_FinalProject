@@ -11,7 +11,9 @@
             <div id="contHeader">공지사항 수정</div>
             <div id="contbody">
         </div>
-        	<form name="noticeForm" action="${path}/admin/notice/noticeView.do?noticeNo=${notice.noticeNo }" method="post" enctype="multipart/form-data" >
+        	<form name="noticeForm" action="${path}/admin/notice/noticeUpdateEnd.do" method="post" enctype="multipart/form-data" >
+        		<input type="hidden" name="noticeNo" value="${notice.noticeNo }"/>
+        		${notice.noticeNo }
 	            <div class="form-group" style="margin-left:95px;margin-top:30px;">
 	                <label for="userId">작성자</label>
 	                <input class="userId" type="text" value="관리자" placeholder="작성자명" readonly required>
@@ -21,7 +23,7 @@
 	            <div class="form-group">
 	            <label for="ca_name">분류</label>
 	             <select class="form-control form-control-sm w-auto" name="noticeCate" required  ><c:out value="${notice.noticeCate}"/>
-	                    <option value="">선택하세요</option>
+	                    <option value="선택">선택하세요</option>
 	                    <option value="일정">일정</option>
 	                    <option value="행사">행사</option>
 	                    <option value="신간">신간</option>
@@ -31,7 +33,7 @@
 	            </div>
 	            <div class="form-group">
 	                <label for="wr_subject">제목</label>
-	                <textarea class="title" type="text" name="noticeTitle"  id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;height:30px;margin-top:5px;"><c:out value="${notice.noticeTitle}"/></textarea>
+	                <textarea class="title" name="noticeTitle"  id="wr_subject" required size="100" maxlength="200" placeholder="제목" style="width:865px;height:30px;margin-top:5px;"><c:out value="${notice.noticeTitle}"/></textarea>
 	            </div>
 	
 	            <div class="form-group d-cke-none">

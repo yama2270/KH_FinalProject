@@ -72,7 +72,7 @@
 				<c:forEach var="l" items="${list }">
 					<table> <!-- 데이터 입력시 테이블 구조&CSS 수정 해야됨 -->
 						<tr>
-							<th rowspan="7"><img width=185px height=185px src="${path }/resources/images/<c:out value="${l.book.get(0).bookInfo.get(0).bookImg }"/>" ></th>
+							<th rowspan="7"><img width=185px height=185px src="${path }/resources/images/<c:out value="${l.book.bookInfo.bookImg }"/>" ></th>
 							<th>대출 번호 : </th>
 							<td><c:out value="${l.lendingNo }"/></td>
 						</tr>
@@ -82,15 +82,15 @@
 						</tr>
 						<tr>
 							<th>ISBN 명 : </th>
-							<td><c:out value="${l.book.get(0).bookInfo.get(0).isbnNo }"/></td>
+							<td><c:out value="${l.book.bookInfo.isbnNo }"/></td>
 						</tr>
 						 <tr>
 							<th>도 서 명 : </th>
-							<td><c:out value="${l.book.get(0).bookInfo.get(0).bookName  }"/></td>
+							<td><c:out value="${l.book.bookInfo.bookName  }"/></td>
 						</tr>
 						<tr>
 							<th>저 자 명 : </th>
-							<td><c:out value="${l.book.get(0).bookInfo.get(0).bookWriter  }"/></td>
+							<td><c:out value="${l.book.bookInfo.bookWriter  }"/></td>
 						</tr>
 						<tr>
 							<th>대출/반납일자 : </th>

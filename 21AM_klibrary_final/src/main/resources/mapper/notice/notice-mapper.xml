@@ -5,7 +5,7 @@
   	<id column="NOTICE_NO" property="noticeNo"/>
   	<result column="NOTICE_TITLE" property="noticeTitle"/>
   	<result column="NOTICE_CONTENT" property="noticeContent"/>
-  	<result column="NOTICE_FILE" property="originalFile"/>
+  	<result column="NOTICE_FILE" property="originalFileName"/>
   	<result column="NOTICE_DATE" property="noticeDate"/>
   	<result column="NOTICE_COUNT" property="noticeCount"/>
   	<result column="NOTICE_CATE" property="noticeCate"/>
@@ -23,7 +23,7 @@
   
 	<insert id="insertNotice">
 		INSERT INTO NOTICE 
-		VALUES(NOTICE_SEQ.NEXTVAL,#{noticeTitle},#{noticeContent},#{originalFile},SYSDATE,0,#{noticeCate})
+		VALUES(NOTICE_SEQ.NEXTVAL,#{noticeTitle},#{noticeContent},#{originalFileName},SYSDATE,0,#{noticeCate})
 		<selectKey keyProperty="noticeNo" resultType="_int" order="AFTER">
 			SELECT NOTICE_SEQ.CURRVAL FROM DUAL
 		</selectKey>
@@ -59,11 +59,11 @@
   	WHERE NOTICE_CONTENT LIKE '%'||#{text}||'%'
   </select>
   
-  <update id="updateNoticeCount">
+  <update id="updateNoticeCount" parameterType="int">
    UPDATE NOTICE SET NOTICE_COUNT = NOTICE_COUNT + 1 WHERE NOTICE_NO = #{NOTICE_NO}
 	</update>
-  
-  
+  	
+
   
   
 </mapper>

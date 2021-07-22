@@ -73,8 +73,8 @@
 						<c:forEach var="l" items="${list }">
 							<tr>
 								<td><c:out value="${l.isbnNo }"/></td>
-								<td><c:out value="${l.bookInfo.get(0).bookName }"/></td>
-								<td><c:out value="${l.bookInfo.get(0).bookWriter }"/></td>
+								<td><c:out value="${l.bookInfo.bookName }"/></td>
+								<td><c:out value="${l.bookInfo.bookWriter }"/></td>
 								<td><button type="button" id="Star_btn" onclick="location.assign('${path}/member/cancelMark.do?isbnNo=${l.isbnNo}')"><img src="${path }/resources/images/icon-star-yellow.png" width=30px height=30px></button></td>
 							</tr>
 						</c:forEach>

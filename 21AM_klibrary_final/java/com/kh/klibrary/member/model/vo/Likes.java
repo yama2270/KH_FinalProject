@@ -11,6 +11,6 @@ public class Likes {
 	private String userId;
 	private String isbnNo;
 	
-	private List<Member> member = new ArrayList();
-	private List<BookInfo> bookInfo = new ArrayList();
+	private Member member;
+	private BookInfo bookInfo;
 }
