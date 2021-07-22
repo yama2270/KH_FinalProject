@@ -51,22 +51,20 @@
 	    </li>
 	  </ul>
 	</div>
-	<div id="UserInfo_Container">
-		<div>
-			<h2>회원탈퇴</h2>
-			<hr id="h2_line2" >
+	<form action="${path }/member/memberDropRequest.do" method="post">
+		<div id="UserInfo_Container">
+			<table id="Dt_Check_table">
+				<tr>
+					<th><p>비밀번호 입력</p></th>
+					<td><input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요."></td>
+				</tr>
+			</table>
 		</div>
-		<table id="Dt_Check_table">
-			<tr>
-				<th><p>비밀번호 입력</p></th>
-				<td><input type="password" id="password" placeholder="비밀번호를 입력하세요."></td>
-			</tr>
-		</table>
-	</div>
-	<div id="Ok_Cancel_btn">
-		<button type="button" class="btn btn-outline-primary" onclick="location.assign('${path }/member/memberInfoUpdate.do')">확인</button>
-		<button type="button" class="btn btn-outline-danger">취소</button>
-	</div>
+		<div id="Ok_Cancel_btn">
+			<button type="submit" class="btn btn-outline-primary">확인</button>
+			<button type="button" class="btn btn-outline-danger"  onclick="location.assign('${path }/member/memberInfoUpdate.do')">취소</button>
+		</div>
+	</form>
 </div>
 </section>
 
