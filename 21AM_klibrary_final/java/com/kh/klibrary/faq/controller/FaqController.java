@@ -1,12 +1,5 @@
 package com.kh.klibrary.faq.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -16,13 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.klibrary.faq.model.service.FaqService;
 
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Controller//어노테이션 처리
 public class FaqController {
 	
-	/*
-	 * @Inject FaqService FaqService;
-	 */
 	
 	private final FaqService service;
 	//final 반드시 있어야한다.
