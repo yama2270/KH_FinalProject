@@ -19,6 +19,6 @@ public class Lending {
 	private Date lendingDate;
 	private Date returnDate;
 	private int bookExtend;
-	private List<Member> member=new ArrayList();
-	private List<Book> book=new ArrayList();
+	private Member member;
+	private Book book;
 }

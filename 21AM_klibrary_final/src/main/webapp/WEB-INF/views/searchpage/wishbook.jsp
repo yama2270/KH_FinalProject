@@ -92,8 +92,8 @@ String pageId = request.getParameter("pageId");
         </table>
         <br><br><br>
 <div id="buttonContainer">
-<button id="button24" type="button" onclick="location.replace('${path}/klibrary/member/memberHopeBookRecord.do')">신청조회</button>
-<button id="button24" type="button" onclick="location.replace('${path}/klibrary/searchpage/wishbookRequest.do')">신청하기</button>
+<button id="button24" type="button" onclick="location.assign('${path}/member/memberHopeBookRecord.do')">신청조회</button>
+<button id="button24" type="button" onclick="location.assign('${path}/searchpage/wishbookRequest.do')">신청하기</button>
 </div>
 </div>
 <br><br><br>

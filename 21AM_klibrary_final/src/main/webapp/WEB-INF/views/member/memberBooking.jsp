@@ -75,8 +75,8 @@
 							<tr>
 								<td><c:out value="${l.bookingNo }"/></td>
 								<td><c:out value="${l.bookNo }"/></td>
-								<td><c:out value="${l.book.get(0).bookInfo.get(0).bookName}"/></td> <!-- 제목 -->
-								<td><c:out value="${l.book.get(0).bookInfo.get(0).bookWriter}"/></td> <!-- 저자 -->
+								<td><c:out value="${l.book.bookInfo.bookName}"/></td> <!-- 제목 -->
+								<td><c:out value="${l.book.bookInfo.bookWriter}"/></td> <!-- 저자 -->
 								<td><c:out value="${l.bookingPickUpDate }"/></td>
 								<td><button type="button" class="btn btn-outline-danger" onclick="location.assign('${path }/member/cancelBooking.do?bookNo=${l.bookNo }')">취소</button></td>
 							</tr>
