@@ -43,7 +43,7 @@ public class AdminNoticeController {
 	}
 	
 	@RequestMapping("/admin/notice/insertNotice.do")
-	public ModelAndView noticeInsert(Notice notice,MultipartFile noticeFile, ModelAndView mv) {
+	public ModelAndView noticeInsert(Notice notice,MultipartFile originalFile, ModelAndView mv) {
 		int result=service.insertNotice(notice);
 		String msg="";
 		if(result>0) {
@@ -64,6 +64,19 @@ public class AdminNoticeController {
 		return mv;
 	}
 	
+	@RequestMapping("/admin/notice/noticeMultiDelete")
+	public ModelAndView boardMultiDel(Notice notice) { 
+		ModelAndView mv = new ModelAndView(); 
+		for(int noticeNo :notice.getNoList()) { 
+			System.out.println("no="+noticeNo); 
+			} 
+		int[] result = service.noticeMultiDelete(notice.getNoList()); 
+		System.out.println("삭제된 레코드 수 ="+ result); mv.setViewName("redirect:list"); return mv; 
+		}
+
+	
+	
+	
 	@GetMapping("/admin/notice/noticeUpdate.do")
 	public String noticeUpdate(Model model, int noticeNo) {
 		model.addAttribute("notice", service.selectNoticeView(noticeNo));
@@ -71,10 +84,9 @@ public class AdminNoticeController {
 	}
 	
 	@PostMapping("/admin/notice/noticeUpdate.do")
-		public String noticeUpdateEnd(Notice notice) {
+	public String noticeUpdate(Notice notice) {
 			service.noticeUpdate(notice);
-		return "redirect:/admin/notice/noticeView.do?noticeNo="+notice.getNoticeNo();
+		return "/admin/notice/noticeView.do?noticeNo="+notice.getNoticeNo();
 			
 		}
-	}
-	
+}

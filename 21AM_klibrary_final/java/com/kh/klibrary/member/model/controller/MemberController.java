@@ -7,10 +7,10 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -28,6 +28,9 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
+	
 	//dg
 	@RequestMapping("/member/memberEnroll.do")
 	public String memberEnroll() {
@@ -37,6 +40,8 @@ public class MemberController {
 	
 	@RequestMapping("/member/memberEnrollEnd.do")
 	public String memberEnrollEnd(Member m, Model model) {
+		
+		m.setUserPassword(pwEncoder.encode(m.getUserPassword()));
 		
 		int result=service.insertMember(m);
 		model.addAttribute("msg", result>0?"회원가입성공":"회원가입실패");
@@ -51,14 +56,19 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberLoginCheck.do")
-	public String memberLogin(@RequestParam Map param, HttpSession session, Model model) {
+	public String memberLoginCheck(@RequestParam Map param, HttpSession session, Model model) {
 		
 		Member m = service.selectMember1(param);
-		if(m!=null) {
+		
+		String msg="로그인 실패";
+		String loc="/member/memberLogin.do";
+		if(m!=null && pwEncoder.matches((String)param.get("userPassword"), m.getUserPassword())) {
 			model.addAttribute("loginMember", m);
+			msg = "로그인 성공";
+			loc = "/";
 		}
-		model.addAttribute("msg", m!=null?"로그인성공":"로그인실패");
-		model.addAttribute("loc","/");
+		model.addAttribute("msg", msg);
+		model.addAttribute("loc", loc);
 		return "common/msg";
 	}
 	
@@ -72,7 +82,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberIdFind.do")
-	public String memberIdFindView() {
+	public String memberIdFindView(@RequestParam Map param, HttpSession session, Model model) {
 		
 		return "member/memberIdFind";
 	}
@@ -81,6 +91,46 @@ public class MemberController {
 	public String memberPwFindView() {
 		
 		return "member/memberPwFind";
+	}
+	
+	@RequestMapping("/member/memberIdCheck.do")
+	public String memberIdFind(@RequestParam Map param, HttpSession session, Model model) {
+		
+		Member m = service.memberFindId(param);
+		System.out.println(m);
+		if(m!=null) {
+			model.addAttribute("findId", m);
+		}
+		model.addAttribute("msg", m!=null?"아이디는"+m.getUserId()+"입니다":"잘못입력하셨습니다.");
+		model.addAttribute("loc","/member/memberLogin.do");
+		
+		return "common/msg";
+	}
+	
+	@RequestMapping("/member/memberPwCheck.do")
+	public String memberPwFind(@RequestParam Member m, HttpSession session, Model model) {
+		
+		String pw = "";
+		String pwView = "";
+		String msg="잘못된 정보입니다.";
+		String loc="/member/memberPwFind.do";
+		for(int i=0; i<8; i++)
+		{
+			pw += (char) ((Math.random()*26)+97);
+		}
+		
+		m.setUserPassword(pwEncoder.encode(pw));
+		
+		int result = service.memberFindPw(m);
+		
+		if(result>0)
+		{
+			msg="임시비밀번호는"+pw+"입니다.";
+			loc="/member/memberLogin.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("loc",loc);
+		}
+		return "common/msg";
 	}
 	
 	//cg
@@ -241,21 +291,23 @@ public class MemberController {
 		return "common/msg";
 	}
 	
-	@RequestMapping("/member/memberHopeBook.do")
-	public String memberHopeBook() {
-		return "member/memberHopeBook";
-	}
-	
 	@RequestMapping("/member/memberHopeBookRecord.do")
-	public String memberHopeBookRecord() {
-		return "member/memberHopeBookRecord";
+	public ModelAndView memberHopeBookRecord(ModelAndView mv,@ModelAttribute("loginMember") Member m,
+										    @RequestParam(value="cPage", defaultValue="1") int cPage,
+										    @RequestParam(value="numPerPage", defaultValue="5") int numPerpage) {
+		
+		mv.addObject("list",service.selectHopeRecordList(m.getUserId(), cPage, numPerpage));
+		int totalData=service.selectHopeRecordCount(m.getUserId());
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberHopeBookRecord.do"));
+		mv.addObject("totalData",totalData);
+		mv.setViewName("member/memberHopeBookRecord");
+		return mv;
 	}
 	
 	@RequestMapping("/member/memberBookMark.do")
 	public ModelAndView memberBookMark(ModelAndView mv, @ModelAttribute("loginMember") Member m,
 									  @RequestParam(value="cPage", defaultValue="1") int cPage,
 									  @RequestParam(value="numPerPage", defaultValue="5") int numPerpage) {
-		System.out.println(m.getUserId());
 		mv.addObject("list",service.selectBookMarkList(m.getUserId(), cPage, numPerpage));
 		int totalData=service.selectBookMarkCount(m.getUserId());
 		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBookMark.do"));

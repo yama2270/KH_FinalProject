@@ -1,6 +1,7 @@
 package com.kh.klibrary.admin.book.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -34,5 +35,29 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	public List<Book> selectBookList(int cPage,int numPerPage,SqlSessionTemplate session){
 		RowBounds row = new RowBounds((cPage-1)*numPerPage,numPerPage);
 		return session.selectList("adminBook.selectBookList",null,row);
+	}
+	
+	// 총 도서 
+	@Override
+	public int totalBook(SqlSessionTemplate session) {
+		return session.selectOne("adminBook.totalBook");
+	}
+	
+	// 도서 key 목록 
+	@Override
+	public List<Book> searchKeyBook(Map param,int cPage,int numPerPage,SqlSessionTemplate session){
+		RowBounds row = new RowBounds((cPage-1)*numPerPage,numPerPage); 
+		return session.selectList("adminBook.searchKeyBook",param,row);
+	}
+	
+	// 도서 key 총도서 
+	public int totalKeyBook(Map param,SqlSessionTemplate session) {
+		return session.selectOne("adminBook.totalKeyBook",param);
+	}
+	
+	//도서 삭제 
+	@Override
+	public int deleteBook(Map m,SqlSessionTemplate session) {
+		return session.delete("adminBook.deleteBook",m);
 	}
 }

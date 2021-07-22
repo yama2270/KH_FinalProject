@@ -87,13 +87,14 @@
                         <p class="mark-required">*</p>
                       </div>
                       <div>
-                        <!-- <div class="regiester-container-address">
-                          <input type="text" name="memberPostNo" id="memberPostNo" class="postal-code regiester-form" maxlength="6">
-                          <button type="button" class="regiester-btn-frame basic" onclick="">우편번호</button>
-                        </div> -->
                         <div class="regiester-container-address">
-                          <input type="text" name="address" id="address" class="regiester-form address">
-                          <p class="guide">기본 주소</p>
+                          <!-- <input type="text" name="memberPostNo" id="address1" class="postal-code regiester-form" maxlength="6"> --> 
+                          <input type="text" name="address" id="address1" class="regiester-form address">
+                          <button type="button" class="regiester-btn-frame basic" onclick="findAddr();">우편번호</button>
+                        </div>
+                        <div class="regiester-container-address">
+                          <input type="text" name="address" id="address2" class="regiester-form address">
+                          <p class="guide">상세주소</p>
                         </div>
                         <!-- <div class="regiester-container-no-margin">
                           <input type="text" name="memberAddressEnd" id="memberAddressEnd" class="regiester-form address">
@@ -123,7 +124,25 @@
     
     <!-- As a heading -->
     
+    <script>
     
+    function findAddr(){
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	        	var addr="";
+	        	//지번인지 도로명인지 분기처리
+	        	if(data.userSelectedType =='R'){ //도로명 선택
+	        		addr=data.roadAddress;
+	        	}else{ //지번선택
+	        		addr=data.jibunAddress;
+	        	}
+	       		document.getElementById('address1').value = addr;
+	       		document.getElementById('address2').focus();
+	        }
+	    }).open();
+	}
+    
+    </script>
 
 
 

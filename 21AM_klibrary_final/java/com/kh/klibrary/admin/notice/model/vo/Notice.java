@@ -20,4 +20,7 @@ public class Notice {
 	private Date noticeDate;
 	private int noticeCount;
 	private String noticeCate;
+	
+	private int[] noList;
+	
 }

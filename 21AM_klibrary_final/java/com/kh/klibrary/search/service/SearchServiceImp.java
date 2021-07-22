@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -20,7 +18,11 @@ import org.springframework.web.client.RestTemplate;
 
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+
 import com.kh.klibrary.member.model.vo.Lending;
+
+import com.kh.klibrary.search.dao.SearchDao;
+
 import com.kh.klibrary.search.dao.SearchDaoImpl;
  
 
@@ -31,18 +33,19 @@ public class SearchServiceImp implements SearchService{
 	
 	@Autowired
 	SqlSessionTemplate session;
+	
 	@Autowired 
 	private  RestTemplate restTemplate;
+	
 	@Autowired
-	private SearchDaoImpl dao;
-
-
+	private SearchDao dao;
     
     private  final String url1 = "https://dapi.kakao.com/v3/search/book";
-	
-   @Override
-  public ResponseEntity<String> searchNaverApi(String keyword,String category,int page,int size){
+    
+    @Override
+	public ResponseEntity<String> searchNaverApi(String keyword,String category,int page,int size){
 	  
+
 	  final HttpHeaders headers = new HttpHeaders();
 //      headers.set("X-Naver-Client-Id", "ZfCG0ZXj8iiW9LwvANg"); 
 //      headers.set("X-Naver-Client-Secret","VfuM4hfF8r");
@@ -92,21 +95,9 @@ public class SearchServiceImp implements SearchService{
 
       
   }
-@Override
- public int bookTotalCount(HashMap<String, Object> hashMap){
-		  
-		 return dao.bookTotalCount(session,hashMap); 
-		 
- 
-   }
 
-@Override
-public List<BookInfo> selectBookList(HashMap<String, Object> hashMap){
-		  
-		 return dao.selectBookList(session,hashMap); 
-		 
 
-  }
+
 
 @Override
 public Book selectBook(String isbnNo){
@@ -122,11 +113,41 @@ public Lending selectLending(String bookNo) {
 
 
   
-@Override
- public int selectBookCount() {
+
+
+	@Override
+	public List<BookInfo> selectBookInfoList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.selectBookInfoList(session, param);
+	}//wishbook
+	
+	@Override
+	public int insertWishBook(Map param) {
+		// TODO Auto-generated method stub
+		return dao.insertWishBook(session, param);
+	}
+	
+	@Override
+	 public List<BookInfo> selectBookList(HashMap<String, Object> hashMap){
+			  
+			 return dao.selectBookList(session,hashMap); 
+			 
+
 	 
-	 return dao.selectBookCount(session); 
- }
+	   }
+	
+	@Override
+	 public int bookTotalCount(HashMap<String, Object> hashMap){
+			  
+			 return dao.bookTotalCount(session,hashMap); 
+			 
+
+	 
+	   }
+
+
+	
+	
 	
 	
 }

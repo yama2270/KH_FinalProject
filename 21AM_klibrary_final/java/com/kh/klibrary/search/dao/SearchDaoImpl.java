@@ -2,6 +2,7 @@ package com.kh.klibrary.search.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -43,6 +44,7 @@ public class SearchDaoImpl implements SearchDao{
 	}
 	
 	@Override
+
 	public Book selectBook(SqlSessionTemplate session, String isbnNo){
 		
 		return session.selectOne("search.selectBookInfo",isbnNo);
@@ -53,4 +55,17 @@ public class SearchDaoImpl implements SearchDao{
 		return session.selectOne("search.selectLending", bookNo);
 	}
 	
+
+	public List<BookInfo> selectBookInfoList(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.selectBookInfoList", param);
+	}
+	
+	@Override
+	public int insertWishBook(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("search.insertWishBook", param);
+	}
+
+
 }

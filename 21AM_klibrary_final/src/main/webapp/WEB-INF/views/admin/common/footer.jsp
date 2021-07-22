@@ -33,7 +33,21 @@
             })
 
         })
-
+	
+     	// check button 
+        const fn_selBox =()=>{
+        	const checkBoxs = $("input:checkbox[name=checkFl]");
+        	// uncheck -> check 
+        	if($("#selBox").is(":checked")){
+        		$.each(checkBoxs,function(i,v){
+        			$(v).prop("checked",true);
+        		})
+        	} else {
+        		$.each(checkBoxs,function(i,v){
+        			$(v).prop("checked",false);
+        		})
+        	}
+        }
 
     </script>
 

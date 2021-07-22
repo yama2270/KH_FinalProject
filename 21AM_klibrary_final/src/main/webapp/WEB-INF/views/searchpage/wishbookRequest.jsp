@@ -13,6 +13,11 @@ String pageId = request.getParameter("pageId");
 
 <body>
   
+	<div class="divcontainer1">
+	  <br>
+	  <h2 id="wishbooktitle1">희망도서신청</h2>
+	  <br>
+	</div>
   <div class="divcontainer1">
     <br>
     <h2 id="wishbooktitle1">희망도서신청</h2>
@@ -181,14 +186,20 @@ function fn_requestSubmit(){
 	console.log("테스트");
 	let bookinfoinput=document.getElementsByClassName('bookinfoinput');
 	console.log(bookinfoinput);
+	var form=document.getElementById('BookSearchInfoForm')
+	var check=0;
 	for(var i=0; i< bookinfoinput.length; i++){
 		
 		console.log(bookinfoinput[i]);
 		if(bookinfoinput[i].value==""){
 			alert("내용을 전부 입력해주세요");
 			break;
+		}else{
+			check+=1;
 		}
-	
+		if(check==6){
+			form.submit();
+		}
 	}
 	
 	

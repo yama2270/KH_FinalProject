@@ -7,8 +7,16 @@
 	</insert>
 	
 	<select id="selectMember1" resultMap="Member">
-		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
+		SELECT * FROM MEMBER WHERE USER_ID=#{userId}
 	</select>
+	
+	<select id="findId" resultMap="Member">
+		SELECT * FROM MEMBER WHERE USER_NAME=#{userName} AND EMAIL=#{email}
+	</select>
+	
+	<update id="findPw">
+		UPDATE MEMBER SET USER_PASSWORD=#{userPassword} WHERE USER_ID=#{userId} AND USER_NAME=#{userName} AND EMAIL=#{email}
+	</update>
 	
 	<select id="selectMember" resultMap="Member">
 		SELECT * FROM MEMBER WHERE USER_ID=#{userId} AND USER_PASSWORD=#{userPassword}
@@ -197,4 +205,22 @@
 		</collection>
 	</resultMap>
 	
+	<select id="selectHopeRecordList" resultMap="wishBook">
+		SELECT * FROM WISHBOOK WHERE USER_ID=#{userId} ORDER BY WISH_BOOK_NO DESC
+	</select>
+	
+	<select id="selectHopeRecordCount" resultType="_int">
+		SELECT COUNT(*) FROM WISHBOOK WHERE USER_ID=#{userId}
+	</select>
+	
+	<resultMap type="com.kh.klibrary.book.model.vo.WishBook" id="wishBook">
+		<id column="WISH_BOOK_NO" property="wishBookNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="ISBN_NO" property="isbnNo"/>
+		<result column="BOOK_NAME" property="bookName"/>
+		<result column="BOOK_WRITER" property="bookWriter"/>
+		<result column="BOOK_COMPANY" property="bookCompany"/>
+		<result column="BOOK_DATE" property="bookDate"/>
+		<result column="BOOK_PRICE" property="bookPrice"/>
+	</resultMap>
 </mapper>
