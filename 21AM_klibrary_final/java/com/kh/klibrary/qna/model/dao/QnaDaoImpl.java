@@ -2,7 +2,10 @@ package com.kh.klibrary.qna.model.dao;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +14,7 @@ import com.kh.klibrary.qna.model.vo.Qna;
 
 @Repository
 public class QnaDaoImpl implements QnaDao {
+	
 	
 	//페이징처리
 	@Override
@@ -57,6 +61,19 @@ public class QnaDaoImpl implements QnaDao {
 	public int updateQna(SqlSessionTemplate session, Qna q) {
 		// TODO Auto-generated method stub
 		return session.update("qna.updateQna", q);
+	}
+
+	//QNA 검색
+	@Override
+	public List<Qna> searchQnaTitle(SqlSessionTemplate session, String keyWord) {
+		// TODO Auto-generated method stub
+		return session.selectList("qna.searchQnaTitle", keyWord);
+	}
+
+	@Override
+	public List<Qna> searchQnaContent(SqlSessionTemplate session, String keyWord) {
+		// TODO Auto-generated method stub
+		return session.selectList("qna.searchQnaContent", keyWord);
 	}
 	
 	
