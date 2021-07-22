@@ -1,5 +1,6 @@
 package com.kh.klibrary.faq.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -17,8 +18,8 @@ public class FaqController {
 	 * @Inject FaqService FaqService;
 	 */
 	
-	
-	private final FaqService service;
+	@Autowired
+	private FaqService service;
 	//final 반드시 있어야한다.
 	//@Autowired  	
 	/*
@@ -43,9 +44,9 @@ public class FaqController {
 		  }
 		  
 		  if ("제목".equals(title)) {
-			  model.addAttribute("list", service.searchFaqTitle(keyWord));
+			  //model.addAttribute("list", service.searchFaqTitle(keyWord));
 		  }else {
-			  model.addAttribute("list", service.searchFaqContent(keyWord));
+			  //model.addAttribute("list", service.searchFaqContent(keyWord));
 		  }
 		  
 		  return "/faq/faqSearch";
