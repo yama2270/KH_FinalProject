@@ -16,6 +16,11 @@ public class Book {
 	private String bookNo;
 	private String isbnNo;
 	private String bookingState;
-	private String lendingState;
-	private List<BookInfo> bookInfo=new ArrayList();
+
+	private String lendingState;	
+	private BookInfo bookInfo;
+
+	
+//	private List<BookInfo> bookInfo=new ArrayList();
+
 }

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,11 +33,28 @@ public class QnaController {
 	@Autowired //서비스 연결
 	private QnaService service;
 	
+	//QNA 검색
+	@PostMapping("/qna/qnaSearch.do")
+	public String qnaSearch(@RequestParam("category") String title, @RequestParam(required=false)String keyWord, Model model) {
+		//공백이면
+		if(!StringUtils.hasText(keyWord)) {
+			return "redirect:/qna/qnaList";
+		}
+		if("제목".equals(title)) {
+			model.addAttribute("list",service.searchQnaTitle(keyWord));
+		}else {
+			model.addAttribute("list", service.searchQnaContent(keyWord));
+		}
+		
+		return "/qna/qnaSearch";
+	}
+	
+
 	//qnaUpdate(수정)
 	@GetMapping("/qna/updateQna.do")
 	public String qnaUpdate(Model model, int no) {
 		
-		//jsp에 수정 할 데이터 보내기.(데이터 db에 있음.)
+		//jsp에 수정할 데이터 보내기.(데이터 db에 있음.)
 		
 		model.addAttribute("qna", service.selectQnaView(no));
 		return "qna/qnaUpdate";

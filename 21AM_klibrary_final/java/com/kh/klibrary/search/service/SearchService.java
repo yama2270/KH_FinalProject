@@ -6,15 +6,25 @@ import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 
+import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Lending;
 
 public interface SearchService {
 
 	ResponseEntity<String> searchNaverApi(String keyword,String category,int page,int size);
-	List<BookInfo> selectBookInfoList(Map param);
+
+	int bookTotalCount(HashMap<String, Object> hashMap);//sy,통합검색
+	List<BookInfo> selectBookList(HashMap<String, Object> hashMap);//sy,통합검색
+	
+	Book selectBook(String isbnNo);
+	Lending selectLending(String bookNo);
+	
+	List<BookInfo> selectBookInfoList(Map param);//wishbook,cg
+
+	
 	int insertWishBook(Map param);
 	
-	List<BookInfo> bookTotalSearch(HashMap<String, Object> hashMap);
-	List<BookInfo> bookTotalSearch2(HashMap<String, Object> hashMap);
-	int selectBookCount();
+
+	
 }

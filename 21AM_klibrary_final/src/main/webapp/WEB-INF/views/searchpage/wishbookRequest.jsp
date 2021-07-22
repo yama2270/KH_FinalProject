@@ -35,6 +35,7 @@ String pageId = request.getParameter("pageId");
   </ul>
 </div>
 <br><br><br>
+<form action="${page }/klibrary/searchpage/wishBookCheckInsert.do" id="BookSearchInfoForm" method="post">
 <table id="wishbooktable">
         <tr>
             <td>
@@ -43,7 +44,7 @@ String pageId = request.getParameter("pageId");
             <td colspan="3">
 
                 <input type="text" name="bookName" placeholder="내용을 입력해주세요" class="bookinfoinput" onkeypress="if(event.keyCode == 13){fn_searchPopup(); return false;}" id="bookinfoinput1">
-                <button id="button22" type="submit" onclick="fn_searchPopup();">검색</button>
+                <button id="button22" type="button" onclick="fn_searchPopup();">검색</button>
                 
             </td>
             
@@ -86,7 +87,7 @@ String pageId = request.getParameter("pageId");
               ISBN
             </td>
             <td colspan="3">
-                <input type="text" name="ISBN" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput4">
+                <input type="text" name="isbn" placeholder="내용을 입력해주세요" class="bookinfoinput" id="bookinfoinput4">
                 
             </td>
             <td>
@@ -129,10 +130,11 @@ String pageId = request.getParameter("pageId");
 
 
 </table>
+</form>
 <br><br><br>
 <div id="buttonContainer">
-<button id="button22" type="submit" onclick='fn_requestSubmit()'>신청확인</button>
-<button id="button22" type="submit" onclick='fn_requestCancel()'>초기화</button>
+<button id="button22" type="button" onclick='fn_requestSubmit()'>신청하기</button>
+<button id="button22" type="button" onclick='fn_requestCancel()'>초기화</button>
 </div>
 <br><br><br>
 

@@ -138,6 +138,34 @@
       
       /* 회원가입 */
      
+      .list-group-item:not(#menutitle1,#menutitle):hover {
+   
+    cursor:pointer;
+  }
+  
+  .list-group-item:not(#menutitle,#menutitle1).on{
+    background-color: lightgrey;
+  }
+     
+     #menutitle{
+	height:50px;
+	text-align:center;
+	color:white;
+	background-color:blue;
+	}
+	  .list-group-container{
+	  margin-top: 5%;
+	  margin-left: 1%;
+	  width:17.8%;
+	  float:left;
+	  
+	  
+	  }
+	  .list-group-item:not(#menutitle,#menutitle1):hover {
+	    background-color: lightgrey;
+	    cursor:pointer;
+	  }
+     
     #login-group{
         float:left;
         width:20%;

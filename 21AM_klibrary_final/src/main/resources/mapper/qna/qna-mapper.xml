@@ -32,7 +32,17 @@
   	<resultMap type="attachment" id="attachmentMap">
   	
   	</resultMap>
-  	
+	
+	<!-- QNA 검색 내용 -->
+	<select id="searchQnaContent" resultMap="qnaMap">
+		SELECT * FROM QNA WHERE QNA_CONTENT LIKE '%'||#{keyWord}||'%'
+	</select>	
+	
+	<!--QNA검색 제목  -->
+	<select id="searchQnaTitle" resultMap="qnaMap">
+		SELECT * FROM QNA WHERE QNA_TITLE LIKE '%'||#{keyWord}||'%'
+	</select>  	
+	
   	<select id="selectBoard" parameterType="_int" resultMap="qnaMap">
 		SELECT * FROM QNA LEFT JOIN ATTACHMENT USING(QNA_NO) WHERE QNA_NO= #{no}  	
  	</select>
