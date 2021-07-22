@@ -19,15 +19,17 @@
     </div>
     
     <div id=login-content>
-        <div id="login-group">
-            <ul class="list-group">
-                <li class="list-group-item active" aria-current="true">회원정보</li>
-                <li class="list-group-item"><a href="${path }/member/memberLogin.do">로그인</a></li>
-                <li class="list-group-item"><a href="${path }/member/memberIdFind.do">아이디 찾기</a></li>
-                <li class="list-group-item"><a href="${path }/member/memberPwFind.do">비밀번호 재발급</a></li>
-                <li class="list-group-item"><a href="${path }/member/memberEnroll.do">회원가입</a></li>
-            </ul>
-        </div>
+        <div class="list-group-container" >
+		  <!-- <h2 id="title">회원정보</h2> -->
+		  <ul class="list-group">
+		    <li class="list-group-item" id="menutitle">회원정보</li>
+		    <li class="list-group-item"><a href="${path }/member/memberLogin.do">로그인</a></li>
+		    <li class="list-group-item"><a href="${path }/member/memberIdFind.do">아이디 찾기</a></li>
+		    <li class="list-group-item"><a href="${path }/member/memberPwFind.do">비밀번호 재발급</a></li>
+		    <li class="list-group-item"><a href="${path }/member/memberEnroll.do">회원가입</a></li>
+		  </ul>
+		</div>
+	</div>
         <section>
             <div class="container-regiester">
                   <form action="${path }/member/memberEnrollEnd.do" method="post" id="memberForm" name="memberEnrollFrm" >
@@ -87,13 +89,14 @@
                         <p class="mark-required">*</p>
                       </div>
                       <div>
-                        <!-- <div class="regiester-container-address">
-                          <input type="text" name="memberPostNo" id="memberPostNo" class="postal-code regiester-form" maxlength="6">
-                          <button type="button" class="regiester-btn-frame basic" onclick="">우편번호</button>
-                        </div> -->
                         <div class="regiester-container-address">
-                          <input type="text" name="address" id="address" class="regiester-form address">
-                          <p class="guide">기본 주소</p>
+                          <!-- <input type="text" name="memberPostNo" id="address1" class="postal-code regiester-form" maxlength="6"> --> 
+                          <input type="text" name="address" id="address1" class="regiester-form address">
+                          <button type="button" class="regiester-btn-frame basic" onclick="findAddr();">우편번호</button>
+                        </div>
+                        <div class="regiester-container-address">
+                          <input type="text" name="address" id="address2" class="regiester-form address">
+                          <p class="guide">상세주소</p>
                         </div>
                         <!-- <div class="regiester-container-no-margin">
                           <input type="text" name="memberAddressEnd" id="memberAddressEnd" class="regiester-form address">
@@ -118,12 +121,40 @@
                   </div>
                   </form>
                 </div>
-              </div>
           </section>
     
     <!-- As a heading -->
     
+    <script>
     
+    function findAddr(){
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	        	var addr="";
+	        	//지번인지 도로명인지 분기처리
+	        	if(data.userSelectedType =='R'){ //도로명 선택
+	        		addr=data.roadAddress;
+	        	}else{ //지번선택
+	        		addr=data.jibunAddress;
+	        	}
+	       		document.getElementById('address1').value = addr;
+	       		document.getElementById('address2').focus();
+	        }
+	    }).open();
+	}
+    
+   
+    
+    $(function(){
+$('.list-group-item').click(function(){
+  $('.list-group-item').removeClass('on')
+    $(this).addClass('on')
+})
+
+})
+ 
+    
+    </script>
 
 
 

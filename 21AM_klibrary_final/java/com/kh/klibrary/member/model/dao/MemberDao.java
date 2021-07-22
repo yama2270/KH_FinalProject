@@ -16,6 +16,8 @@ public interface MemberDao {
 	//dg
 	int insertMember(SqlSessionTemplate session, Member m);
 	Member selectMember1(SqlSessionTemplate session, Map param);
+	Member memberFindId(SqlSessionTemplate session, Map param);
+	int memberFindPw(SqlSessionTemplate session, Member m);
 	
 	//cg
 	Member selectMember(SqlSessionTemplate session, Map m1);

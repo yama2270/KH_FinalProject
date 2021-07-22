@@ -10,30 +10,32 @@
 	<jsp:param name="title" value="아이디찾기"/>
 </jsp:include>
 
-<div id="login-nav">
+
+	<div id="login-nav">
         <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">아이디 찾기</span>
             </div>
         </nav>
     </div>
-    
-    <div id=login-content>
-        <div id="login-group">
-            <ul class="list-group">
-                <li class="list-group-item active" aria-current="true">회원정보</li>
-                <li class="list-group-item"><a href="${path }/member/memberLogin.do">로그인</a></li>
-                <li class="list-group-item"><a href="${path }/member/memberIdFind.do">아이디 찾기</a></li>
-                <li class="list-group-item"><a href="${path }/member/memberPwFind.do">비밀번호 재발급</a></li>
-                <li class="list-group-item"><a href="${path }/member/memberEnroll.do">회원가입</a></li>
-            </ul>
-        </div>
+	<div id=login-content>
+        <div class="list-group-container" >
+		  <!-- <h2 id="title">회원정보</h2> -->
+		  <ul class="list-group">
+		    <li class="list-group-item" id="menutitle">회원정보</li>
+		    <li class="list-group-item"><a href="${path }/member/memberLogin.do">로그인</a></li>
+		    <li class="list-group-item"><a href="${path }/member/memberIdFind.do">아이디 찾기</a></li>
+		    <li class="list-group-item"><a href="${path }/member/memberPwFind.do">비밀번호 재발급</a></li>
+		    <li class="list-group-item"><a href="${path }/member/memberEnroll.do">회원가입</a></li>
+		  </ul>
+		</div>
+	</div>
 
         <div id="login-container">
             <div id="login-input">
-            <form>
-                <input type="text" name="memberId" class="login-input" placeholder="이름 입력"><br>
-                <input type="email" name=memberPw" class="login-input" placeholder="이메일 입력">
+            <form action="${path }/member/memberIdCheck.do" method="post">
+                <input type="text" name="userName" class="login-input" placeholder="이름 입력"><br>
+                <input type="email" name="email" class="login-input" placeholder="이메일 입력">
                 <input type="button" value="이메일 인증" class="login-btn"><br>
                 <input type="submit" value="아이디 찾기" class="findId-btn">
 
@@ -58,4 +60,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
     
+    <script>
+        
+        $(function(){
+   $('.list-group-item').click(function(){
+      $('.list-group-item').removeClass('on')
+        $(this).addClass('on')
+   })
+   
+})
+</script>  
      <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

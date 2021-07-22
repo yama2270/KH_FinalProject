@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
+	<!-- <settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings> -->
+
 	<typeAliases>
 
 			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo" alias="faq"/>
@@ -14,6 +19,8 @@
 
 			<typeAlias type="com.kh.klibrary.member.model.vo.Member" alias="member"/> 
 			<typeAlias type="com.kh.klibrary.member.model.vo.Booking" alias="booking"/> 
+			<typeAlias type="com.kh.klibrary.member.model.vo.Lending" alias="lending"/>
+			
 			
 			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo" alias="faq"/> -->
 			<typeAlias type="com.kh.klibrary.faq.model.vo.Faq" alias="faq"/>

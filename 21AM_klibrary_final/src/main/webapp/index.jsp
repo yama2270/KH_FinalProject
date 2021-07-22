@@ -85,11 +85,11 @@
             <button type="button" class="btn btn-outline-secondary">수학</button>
         </div>  
         
-      </div>
+      <!-- </div>
 
       <div id="main_list">
 
-      </div>
+      </div> -->
 
 
 

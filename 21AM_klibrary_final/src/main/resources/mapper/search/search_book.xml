@@ -16,24 +16,99 @@
 		</resultMap>
 		
 		<select id="selectBookList" resultMap="bookInfoMap">
+		
 		SELECT * FROM BOOK_INFO
+		
 	       <trim prefix="WHERE" prefixOverrides="AND|OR">
-		 <if test= 'category == "all"' >
+		 <if test= 'category == "all" and keyword != ""' >
 		   OR BOOK_NAME like '%'||#{keyword}||'%' OR
 		    BOOK_WRITER like '%'||#{keyword}||'%' OR
-		    BOOK_COMPANY like '%'||#{keyword}||'%' 
+		    BOOK_COMPANY like '%'||#{keyword}||'%' OR
+		    ISBN_NO like '%'||#{keyword}||'%'
 		  </if>
-		  <if test= 'category =="book_name" and keyword != null'>
+		  <if test= 'category =="book_name" and keyword != ""'>
 		   OR BOOK_NAME like '%'|| #{keyword}|| '%'
 		  </if>
-		  <if test= 'category =="book_writer" and keyword != null'>
+		  <if test= 'category =="book_writer" and keyword != ""'>
 		  OR BOOK_WRITER like '%'|| #{keyword}||'%'
 		  </if>
-		  <if test= 'category =="book_company" and keyword !=null'>
+		  <if test= 'category =="book_company" and keyword !=""'>
 		  OR BOOK_COMPANY like '%'|| #{keyword}||'%'
+		  </if>
+		   <if test= 'category =="isbnNo" and keyword !=""'>
+		  OR ISBN_NO like '%'|| #{keyword}||'%'
 		  </if>
 		  </trim>
 		</select>
+		
+			<select id="selectBookCount" resultType="_int">
+		
+		SELECT COUNT(*) FROM BOOK_INFO
+		
+	       <trim prefix="WHERE" prefixOverrides="AND|OR">
+		 <if test= 'category == "all" and keyword != ""' >
+		   OR BOOK_NAME like '%'||#{keyword}||'%' OR
+		    BOOK_WRITER like '%'||#{keyword}||'%' OR
+		    BOOK_COMPANY like '%'||#{keyword}||'%' OR
+		    ISBN_NO like '%'||#{keyword}||'%'
+		  </if>
+		  <if test= 'category =="book_name" and keyword != ""'>
+		   OR BOOK_NAME like '%'|| #{keyword}|| '%'
+		  </if>
+		  <if test= 'category =="book_writer" and keyword != ""'>
+		  OR BOOK_WRITER like '%'|| #{keyword}||'%'
+		  </if>
+		  <if test= 'category =="book_company" and keyword !=""'>
+		  OR BOOK_COMPANY like '%'|| #{keyword}||'%'
+		  </if>
+		   <if test= 'category =="isbnNo" and keyword !=""'>
+		  OR ISBN_NO like '%'|| #{keyword}||'%'
+		  </if>
+		  </trim>
+		</select>
+		
+		<resultMap type="com.kh.klibrary.book.model.vo.Book" id="book">		
+			<id column="BOOK_NO" property="bookNo"/>
+			<result column="ISBN_NO" property="bookingState"/>
+			<result column="BOOKING_STATE" property="bookingState"/>
+			<result column="LENDING_STATE" property="lendingState"/>
+			<collection property="bookInfo" ofType="bookInfo">
+				<id column="ISBN_NO" property="isbnNo"/>
+				<result column="BOOK_NAME" property="bookName"/>
+				<result column="BOOK_WRITER" property="bookWriter"/>
+				<result column="BOOK_COMPANY" property="bookCompany"/>
+				<result column="BOOK_DATE" property="bookDate"/>
+				<result column="BOOK_PRICE" property="bookPrice"/>
+				<result column="BOOK_LOCATION" property="bookLocation"/>
+				<result column="BOOK_CONTENT" property="bookContent"/>
+				<result column="BOOK_IMG" property="bookImg"/>
+				<result column="BOOK_KDC" property="bookKdc"/>
+			</collection>		
+	</resultMap>
   
+  <select id="selectBookInfo" resultMap="book">
+		SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO) WHERE ISBN_NO=#{isbnNo}
+	</select>
+	
+	 <resultMap type="com.kh.klibrary.member.model.vo.Lending" id="lending">
+		<id column="LENDING_NO" property="lendingNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="BOOK_NO" property="bookNo"/>
+		<result column="LENDING_DATE" property="lendingDate"/>
+		<result column="RETURN_DATE" property="returnDate"/>
+		<result column="BOOK_EXTEND" property="bookExtend"/>		
+		<result column="USER_ID" property="userId"/>			
+		<collection property="book" ofType="book">
+			<id column="BOOK_NO" property="bookNo"/>
+			<result column="ISBN_NO" property="bookingState"/>
+			<result column="BOOKING_STATE" property="bookingState"/>
+			<result column="LENDING_STATE" property="lendingState"/>			
+			<result column="ISBN_NO" property="isbnNo"/>				
+		</collection>
+	</resultMap>
+	
+	 <select id="selectLending" resultMap="lending">
+	SELECT * FROM LENDING JOIN BOOK USING(BOOK_NO) WHERE BOOK_NO=#{isbnNo}
+	</select> 
         
 </mapper>
