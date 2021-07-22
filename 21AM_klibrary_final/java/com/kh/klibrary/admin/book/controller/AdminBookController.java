@@ -1,6 +1,7 @@
 package com.kh.klibrary.admin.book.controller;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +61,40 @@ public class AdminBookController {
 		mv.addObject("pageBar",pageBar);
 		mv.addObject("param",param);
 		mv.setViewName("admin/book/bookAllList");
+		
+		return mv;
+	}
+	
+	// 도서목록 - 상세검색 
+	@RequestMapping("/admin/book/searchDetBook.do")
+	public ModelAndView searchDetBook(@RequestParam Map param,
+							@RequestParam(required=false,defaultValue="1") int cPage,
+							@RequestParam(required=false,defaultValue="10") int numPerPage,
+							ModelAndView mv 
+			) {
+		
+		// 파라미터 데이터 체크 
+		Iterator iterator = param.keySet().iterator();
+		while(iterator.hasNext()) {
+			String key = (String)iterator.next();
+			System.out.println(key +":"+param.get(key));
+		}
+		
+		// 초성 배열로 변경 
+		if(!((String)param.get("iniArr")).equals("")){
+			param.put("iniArr",((String)param.get("iniArr")).split(","));
+		}
+		
+		
+		List<Book> list = service.searchDetBook(param,cPage,numPerPage);
+		int totalData = service.totalDetBook(param);
+		String pageBar = new AdminPagingTemplate().searchDetPagingTemplate(cPage,numPerPage,totalData);
+		
+		mv.addObject("list", list);
+		mv.addObject("pageBar", pageBar);
+		mv.addObject("param", param);
+		
+		mv.setViewName("admin/book/searchDetBookAjax");
 		
 		return mv;
 	}

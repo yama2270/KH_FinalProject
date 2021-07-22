@@ -17,6 +17,9 @@ public interface AdminBookDao {
 	// 도서ISBN 등록
 	int insertBookInfo(BookInfo bookInfo,SqlSessionTemplate session);
 	
+	// 도서 parsing
+//	int insertBookParsing(Map m,SqlSessionTemplate session);
+	
 	// 도서등록
 	int insertBook(BookInfo bookInfo,SqlSessionTemplate session);	
 	
@@ -31,6 +34,12 @@ public interface AdminBookDao {
 	
 	// 도서 key 총 도서 
 	int totalKeyBook(Map param,SqlSessionTemplate session);
+	
+	// 도서 Detail 검색 
+	List<Book> searchDetBook(Map param,int cPage,int numPerPage,SqlSessionTemplate session);
+	
+	// 도서 Detail 총도서
+	int totalDetBook(Map param,SqlSessionTemplate session);
 	
 	// 도서삭제
 	int deleteBook(Map m,SqlSessionTemplate session);
