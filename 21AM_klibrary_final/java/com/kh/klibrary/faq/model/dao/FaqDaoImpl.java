@@ -17,25 +17,26 @@ public class FaqDaoImpl implements FaqDao {
 	SqlSession sqlSession;
 
 	
-	  @Override public List<Map> selectFaqList(SqlSessionTemplate sqlsession) { 
-		  //TODO Auto-generated method stub 
-		  // returnsqlsession.selectList("faq.selectFaqList"); 
-		  
-		  return sqlsession.selectList("faq.selectFaqList"); }
+  	@Override public List<Faq> selectFaqList(SqlSessionTemplate sqlsession) { 
+	  //TODO Auto-generated method stub 
+	  // returnsqlsession.selectList("faq.selectFaqList"); 
+	  
+	  return sqlSession.selectList("faq.selectFaqList"); }
+
+  	
+  	//Faq  검색
+	@Override
+	public List<Faq> searchFaqTitle(SqlSessionTemplate sqlsession, String keyWord) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("faq.searchFaqTitle",keyWord);
+	}
+
+	//Faq 검색
+	@Override
+	public List<Faq> searchFaqContent(SqlSessionTemplate sqlsession, String keyWord) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("faq.searchFaqContent", keyWord);
+	}
 	
-	  /*
-	 * @Override public List<Faq> listAll(String searchOption, String keyword)
-	 * throws Exception { // 검색옵션, 키워드 맵에 저장 Map<String, String> map= new
-	 * HashMap<String, String>(); map.put("searchOption",searchOption);
-	 * map.put("keyword", keyword); return sqlSession.selectList("faq.listAll",map);
-	 * }
-	 * 
-	 * //게시글 갯수
-	 * 
-	 * @Override public int countArticle(String searchOption, String keyword) throws
-	 * Exception { Map<String, String> map= new HashMap<String, String>();
-	 * map.put("searchOption", searchOption); map.put("keyword", keyword); return
-	 * sqlSession.selectOne("faq.countArticle",map); }
-	 */
-	
+	  
 }
