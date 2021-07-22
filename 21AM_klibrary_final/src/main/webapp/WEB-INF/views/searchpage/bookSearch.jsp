@@ -57,6 +57,7 @@ String totalData=request.getParameter("totalData");
         <option value="book_name" >도서명</option>
         <option value="book_writer">저자</option>
         <option value="book_company">발행자</option>
+        <option value="isbnNo">ISBN</option>
         
 
       </select>
@@ -72,7 +73,7 @@ String totalData=request.getParameter("totalData");
 </div>
 <br><br><br><br>
 
-
+<form id="searchResultForm" method="get" action="interestingbook">
 <table id=searchResultTable2>
 
  <c:choose> 
@@ -92,6 +93,7 @@ String totalData=request.getParameter("totalData");
             <option value="book_name" selected="selected">도서명</option>
           <option value="book_writer">저자</option>
           <option value="book_company">발행자</option>
+          <option value="isbnNo">ISBN</option>
   
         </select>
         <select id="searchNumber" title="검색건수" name="searchNumber">
@@ -112,7 +114,8 @@ String totalData=request.getParameter("totalData");
     <td colspan="5">
       <hr>
       
-      <input type="checkbox" name="bookSelect" id="allCheck" value="all"><button id="button22" type="submit">관심도서담기</button>
+      <input type="checkbox" name="bookSelect" id="allCheck" onclick="selectAll(this)" value="all">
+      <button id="button22" type="submit" name="bookCheck" value="" >관심도서담기</button>
       <hr>
    </td>
   </tr>
@@ -129,22 +132,24 @@ String totalData=request.getParameter("totalData");
   
   <tr>
       <td id="bookCheckTd" rowspan="2" >
-          <input type="checkbox" name="bookCheck" id="bookCheck" value=""> 
+          <input type="checkbox" name="bookCheck" id="bookCheck" value="${b.isbnNo }"> 
     
       </td>
     <td id="imgContainerDiv"  rowspan="2" >
 
           
             
-            <img id="totalSearchbookImg"  src="${b.bookImg }" alt="${b.bookName} ">
+            <img id="totalSearchbookImg"  src="${b.bookImg }" alt="${b.bookName} " 
+            onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'" style="cursor:pointer;">
             
     </td>
     <td colspan="2">
           <div id="bookInfoDiv3">
             <dl class="authorData" id="bookTitleDl" >
                <dd>
-                    <span class="cate"><c:out value="${b.bookName }"/></span>
-                    <a href="#link" onclick=""></a>
+                    
+                    <a href="#link" onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'" 
+                    style="cursor:pointer;"><c:out value="${b.bookName }"/></a>
             
                     </dd>
             </dl>
@@ -154,8 +159,8 @@ String totalData=request.getParameter("totalData");
       </td>
       <td id="buttonWrapTd" rowspan="2">
         <div class="buttonWrap">
-          <button id="button22" type="submit" onclick="location.href='joinUs.jsp' ">도서예약신청</button>
-          <button id="button22" type="submit" onclick="location.href='joinUs.jsp' ">관심도서담기</button>
+          <button id="button22" type="button" onclick="bookReservation(${b.isbnNo })" >도서예약신청</button>
+          <button id="button22" type="submit" name="bookCheck" value="${b.isbnNo }" >관심도서담기</button>
           </div>
       </td>
     </tr>
@@ -174,6 +179,7 @@ String totalData=request.getParameter("totalData");
                 <span>발행연도</span> <br>                  
                 <span>ISBN</span><br>
                  <span>분류번호</span><br>
+                 <span>위치번호</span>
                                                        
             
                   </dd>
@@ -192,6 +198,7 @@ String totalData=request.getParameter("totalData");
                 <span><c:out value="${b.bookDate }"/></span><br>                            
                 <span><c:out value="${b.isbnNo }"/></span><br>
                  <span><c:out value="${b.bookKdc }"/></span><br>
+                 <span><c:out value="${b.bookLocation }"/></span>
                                                                     
                   </dd>
         </dl>
@@ -218,6 +225,7 @@ String totalData=request.getParameter("totalData");
    				</c:otherwise>  
     </c:choose>
   </table>
+  </form>
   <div id="pagebar-container">
         	${pageBar }
         </div>
@@ -260,23 +268,38 @@ function fn_paging(pageNo,totalData){
 	
 }
 
+function bookReservation(isbnNo){
+	console.log(isbnNo);
+	
+	
+}
+
+function selectAll(selectAll)  {
+	  const checkboxes 
+	       = document.getElementsByName('bookCheck');
+	 
+	  checkboxes.forEach((checkbox) => {
+		  
+		  checkbox.checked = selectAll.checked;
+    	    
+	  })
+	}
+	
+	 /* function interestingBook(){
+		 const checkboxes 
+	       = document.getElementsByName('bookCheck').value;
+		 alert("관심도서를선택하세요.");
+		 console.log(checkboxes);
+			
+		
+	}  */
 
 
-$(function(){ //전체선택 체크박스 클릭 
-	  $("#allCheck").click(function(){ //만약 전체 선택 체크박스가 체크된상태일경우 
-	    if($("#allCheck").prop("checked")) { 
-	      //해당화면에 전체 checkbox들을 체크해준다 
-	      $("#bookCheck").prop("checked",true); // 전체선택 체크박스가 해제된 경우 
-	    } else { //해당화면에 모든 checkbox들의 체크를해제시킨다. 
-	      $("#bookCheck").prop("checked",false); } 
-	    })
-	   })
 	   
 $(function(){
 	console.log(window.location.href );
 	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'){
-		  console.log(document.getElementsByClassName('list-group-item')[1]);
-		  
+		  console.log(document.getElementsByClassName('list-group-item')[1]);		  
 		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
 		  
 	  } if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'||(window.location.href).includes('http://localhost:9090/klibrary/searchpage/bookTotalSearch') ){
@@ -286,7 +309,7 @@ $(function(){
 		  
 		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
 		  
-	  } if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'){
+	  } if(window.location.href=='http://localhost:9090/klibrary/klibrary/searchpage/categorySearch.do'){
 		
 		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
 		 
