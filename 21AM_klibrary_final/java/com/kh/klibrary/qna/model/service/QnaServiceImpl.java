@@ -16,7 +16,23 @@ public class QnaServiceImpl implements QnaService {
 	private QnaDao dao;
 	
 	@Autowired SqlSessionTemplate session;
+	
+	//QNA검색
+	
+	@Override
+	public List<Qna> searchQnaTitle(String keyWord) {
+		// TODO Auto-generated method stub
+		return dao.searchQnaTitle(session,keyWord);
+	}
 
+	@Override
+	public List<Qna> searchQnaContent(String keyWord) {
+		// TODO Auto-generated method stub
+		return dao.searchQnaContent(session, keyWord);
+	}
+	
+	
+	//페이징처리
 	@Override
 	public int CountQna() {
 		// TODO Auto-generated method stub

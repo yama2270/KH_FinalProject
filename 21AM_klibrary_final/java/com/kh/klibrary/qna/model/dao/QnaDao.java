@@ -29,4 +29,8 @@ public interface QnaDao {
 	
 	//QNA 수정
 	int updateQna(SqlSessionTemplate session, Qna q);
+	
+	//QNA 검색
+	List<Qna> searchQnaTitle(SqlSessionTemplate session, String keyWord);
+	List<Qna> searchQnaContent(SqlSessionTemplate session, String keyWord);
 }

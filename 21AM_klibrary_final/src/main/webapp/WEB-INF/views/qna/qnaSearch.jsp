@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>QnA묻고답하기</title>
+    <title>QnA검색</title>
 </head>
 
 <body id="ad_body">
@@ -34,7 +34,7 @@
 		        <div id="ad_right_fq">
 		            <div id="titleheadname">Q&A 묻고답하기</div>
 			            <div id="contbody" class="sech">
-			                <form class="qnasech" action="${path}/qna/qnaSearch.do" method="post">
+			                <form class="qnasech" action="${path}/qna/qnaSearch.do"	 method="post">
 			                    <select required class="fontsize" name="category" name="searchType">
 			                        <option value="제목">제목</option>
 			                        <option value="내용">내용</option>
