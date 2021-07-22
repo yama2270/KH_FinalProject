@@ -18,11 +18,7 @@ String pageId = request.getParameter("pageId");
 	  <h2 id="wishbooktitle1">희망도서신청</h2>
 	  <br>
 	</div>
-  <div class="divcontainer1">
-    <br>
-    <h2 id="wishbooktitle1">희망도서신청</h2>
-    <br>
-  </div>
+ 
 
 <div class="list-group-container" >
   <!-- <h2 id="title">자료검색</h2> -->

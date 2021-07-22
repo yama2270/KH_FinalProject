@@ -56,6 +56,8 @@ public String totalSearch() {
 
 public ModelAndView bookDetail(
 		@RequestParam(value="isbnNo", required=true) String isbnNo,
+		@RequestParam(value="keyword", required=true) String keyword,
+		@RequestParam(value="category", required=true) String category,
 		ModelAndView mv){
 	mv.addObject("book",service.selectBook(isbnNo));	
 	System.out.println("selectbook테스트"+service.selectBook(isbnNo));
@@ -65,6 +67,9 @@ public ModelAndView bookDetail(
 	if(service.selectLending(bookNo)!=null) {
 		mv.addObject("lending",service.selectLending(bookNo));
 	}
+	mv.addObject("keyword",keyword);
+	mv.addObject("category",category);
+	mv.addObject("lending",null);
 	System.out.println("lending테스트"+service.selectLending(bookNo));
 	mv.setViewName("/searchpage/bookDetail");
 		

@@ -140,7 +140,7 @@ String totalData=request.getParameter("totalData");
           
             
             <img id="totalSearchbookImg"  src="${b.bookImg }" alt="${b.bookName} " 
-            onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'" style="cursor:pointer;">
+            onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }&keyword=<%=keyword %>&category=<%=category %>'" style="cursor:pointer;">
             
     </td>
     <td colspan="2">
@@ -148,7 +148,7 @@ String totalData=request.getParameter("totalData");
             <dl class="authorData" id="bookTitleDl" >
                <dd>
                     
-                    <a href="#link" onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'" 
+                    <a href="#link" onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }&keyword=<%=keyword %>&category=<%=category %>'" 
                     style="cursor:pointer;"><c:out value="${b.bookName }"/></a>
             
                     </dd>
