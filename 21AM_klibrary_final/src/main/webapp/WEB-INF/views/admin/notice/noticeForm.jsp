@@ -21,7 +21,7 @@
 	            <div class="form-group">
 	            <label for="ca_name">분류</label>
 	             <select class="form-control form-control-sm w-auto" name="noticeCate" required>
-	                    <option value="">선택하세요</option>
+	                    <option value="선택">선택하세요</option>
 	                    <option value="일정">일정</option>
 	                    <option value="행사">행사</option>
 	                    <option value="신간">신간</option>
@@ -66,7 +66,7 @@
         
     
 		$(function(){
-			$("[name=upFile]").change(e=>{
+			$("[name=originalFile]").change(e=>{
 				const fileName=$(e.target).prop('files')[0].name;
 				$(e.target).next(".custom-file-label").html(fileName);
 			});

@@ -47,10 +47,11 @@ public int noticeUpdate(SqlSessionTemplate session, Notice notice) {
 }
 
 @Override
-public int[] noticeMultiDelete(SqlSessionTemplate session, int[] noList) {
+public int noticeCount(SqlSessionTemplate session, int noticeNo) {
 	// TODO Auto-generated method stub
-	return null;
+	return session.update("notice.noticeCount", noticeNo);
 }
+
 
 
 
