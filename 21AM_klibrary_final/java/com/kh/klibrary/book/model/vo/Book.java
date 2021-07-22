@@ -21,6 +21,6 @@ public class Book {
 	private BookInfo bookInfo;
 
 	
-	/* private List<BookInfo> bookInfo=new ArrayList(); */
+//	private List<BookInfo> bookInfo=new ArrayList();
 
 }

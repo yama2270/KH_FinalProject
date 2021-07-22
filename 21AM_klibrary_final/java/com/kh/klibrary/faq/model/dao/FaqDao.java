@@ -8,12 +8,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.klibrary.faq.model.vo.Faq;
 
 public interface FaqDao {
-	
-	  List<Map> selectFaqList(SqlSessionTemplate sqlsession);
-	 	
-	/*
-	 * public List<Faq> listAll(String searchOption, String keyword) throws
-	 * Exception; public int countArticle (String searchOption, String keyword)
-	 * throws Exception;
-	 */
+	  //faq리스트 불러오기
+	  List<Faq> selectFaqList(SqlSessionTemplate sqlSession);
+	  
+	  //faq검색
+	  List<Faq> searchFaqTitle(SqlSessionTemplate sqlsession, String keyWord);
+	  List<Faq> searchFaqContent(SqlSessionTemplate sqlsession, String keyWord);
+	  
+
 }
