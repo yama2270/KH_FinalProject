@@ -17,27 +17,11 @@ public class FaqDaoImpl implements FaqDao {
 	SqlSession sqlSession;
 
 	
-	  @Override public List<Faq> selectFaqList(SqlSessionTemplate sqlsession) { 
+	  @Override public List<Map> selectFaqList(SqlSessionTemplate sqlsession) { 
 		  //TODO Auto-generated method stub 
 		  // returnsqlsession.selectList("faq.selectFaqList"); 
 		  
 		  return sqlsession.selectList("faq.selectFaqList"); }
-
-	//faq검색
-	@Override
-	public List<Faq> searchFaqTitle(SqlSessionTemplate sqlSession, String keyWord) {
-		// TODO Auto-generated method stub
-		List<Faq> findTitle = sqlSession.selectList("faq.searchFaqTitle", keyWord);
-		System.out.println(getClass().getSimpleName() + ": " + findTitle.get(0));
-		return findTitle;
-	}
-
-	//faq 검색
-	@Override
-	public List<Faq> searchFaqContent(SqlSessionTemplate sqlSession, String keyWord) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("faq.searchFaqContent", keyWord);
-	}
 	
 	  /*
 	 * @Override public List<Faq> listAll(String searchOption, String keyword)

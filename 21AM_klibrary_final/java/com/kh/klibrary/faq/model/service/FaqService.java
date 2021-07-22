@@ -7,12 +7,11 @@ import com.kh.klibrary.faq.model.vo.Faq;
 
 public interface FaqService {
 	
-	  //faq 리스트불러오기
-	  List<Faq> selectFaqList();
+	  List<Map> selectFaqList();
 	 	
-
-	 
-	  //faq검색
-	  List<Faq> searchFaqTitle(String keyWord);
-	  List<Faq> searchFaqContent(String KeyWord);
+	/*
+	 * public List<Faq> listAll(String searchOption, String keyword) throws
+	 * Exception; public int countArticle(String searchOption, String keyword)
+	 * throws Exception;
+	 */
 }

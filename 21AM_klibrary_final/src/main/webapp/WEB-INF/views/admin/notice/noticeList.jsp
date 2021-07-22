@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="공지사항관리"/>
 </jsp:include>
@@ -40,7 +40,7 @@
                 <table id="notice_table" class="pa" border style="margin-left:-3%;">
                     <thead>
                         <tr style="background-color: #eaeaea;">
-                            <th><input type="checkbox" id="allCheck" value="yyy" checked></td>
+                            <th><input type="checkbox" id="allCheck" name="allCheck" checked/></th>
                             <th width=100>번호</th>
                             <th width=100>분류</th>
                             <th width=450>제목</th>
@@ -52,11 +52,11 @@
    					<c:when test="${not empty list }">
    					<c:forEach var="notice" items="${list }">
    						<tr>
-   							<td class="cols"><input type="checkbox"/>
+   							<td class="cols"><input type="checkbox" name="noList" value="${notice.noticeNo }"/>
    							<td class="cols"><c:out value="${notice.noticeNo }"/></td>
    							<td class="cols"><c:out value="${notice.noticeCate }"/></td>
    							<td class="cols">
-   								<a href="${path }/admin/notice/noticeView.do?no=${notice.noticeNo}">
+   								<a href="${path }/admin/notice/noticeView.do?noticeNo=${notice.noticeNo}">
    									<c:out value="${notice.noticeTitle }"/>
    								</a>
    							</td>
@@ -80,7 +80,7 @@
                 </table>
             </div>
             <a href='<c:url value='/admin/notice/noticeForm.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:84%;margin-top:2%;">작성</a>
-        	<input type="button" value="삭제" class="btn btn-outline-dark" style="margin-left:1%;margin-top:2%; onclick="del(${noticeNo })">
+        	<a href="${path }/admin/notice/noticeDelete.do?noticeNo=${notice.noticeNo}" class="btn btn-outline-dark" style="margin-top:2%;" onclick="deleteNotice();">삭제</a>
             <div id="c_pagebar" class="pagebar">
                 <span><a href="">1</a></span>
                 <span><a href="">2</a></span>
@@ -97,12 +97,7 @@
     <script>
     
  
-	function del(noticeNo) {
-		var chk = confirm("정말 삭제하시겠습니까?");
-		if (chk) {
-			location.href='delete?noticeNo='+noticeNo;
-		}
-	}	
+
 
 
     $(function(){

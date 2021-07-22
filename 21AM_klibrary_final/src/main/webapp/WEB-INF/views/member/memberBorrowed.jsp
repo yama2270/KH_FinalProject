@@ -33,7 +33,7 @@
 	    <li class="list-group-item">
 	    	<button type="button" data-toggle="collapse" data-target="#hope">희망 도서</button>
 			<div id="hope" class="collapse">
-				<a class="dropdown-item" href="${path }/member/memberHopeBook.do">▷희망도서 신청</a>
+				<a class="dropdown-item" href="${path }/searchpage/wishbook.do">▷희망도서 신청</a>
 		      	<a class="dropdown-item" href="${path }/member/memberHopeBookRecord.do">▷희망도서 신청/이력 조회</a>
 			</div>
 	    </li>
@@ -100,6 +100,7 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
+						<h2>예약중인 도서가 없습니다.</h2>
 					</c:otherwise>
 				</c:choose>
 				</tbody>

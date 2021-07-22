@@ -2,6 +2,9 @@ package com.kh.klibrary.admin.notice.model.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,17 +34,16 @@ public class AdminNoticeController {
 		return "admin/notice/noticeForm"; 	
 	}
 
+	// 공지사항 읽기
 	@RequestMapping("/admin/notice/noticeView.do")
-	public ModelAndView noticeView(int noticeNo,ModelAndView mv) {
-		
+	public ModelAndView noticeView(int noticeNo, ModelAndView mv) {
 		mv.addObject("notice",service.selectNoticeView(noticeNo));
-		mv.setViewName("admin/notice/noticeView");
-		
+		mv.setViewName("/admin/notice/noticeView");
 		return mv;
 	}
-
+	
 	@RequestMapping("/admin/notice/insertNotice.do")
-	public ModelAndView noticeInsert(Notice notice,MultipartFile noticeFile, ModelAndView mv) {
+	public ModelAndView noticeInsert(Notice notice,MultipartFile originalFile, ModelAndView mv) {
 		int result=service.insertNotice(notice);
 		String msg="";
 		if(result>0) {
@@ -54,4 +56,37 @@ public class AdminNoticeController {
 		mv.setViewName("common/msg");
 		return mv;
 	}
+	
+	@RequestMapping("/admin/notice/noticeDelete.do")
+	public ModelAndView noticeDelete(int noticeNo, ModelAndView mv) {
+		mv.addObject("notice",service.deleteNotice(noticeNo));
+		mv.setViewName("/admin/notice/noticeDelete");
+		return mv;
+	}
+	
+	@RequestMapping("/admin/notice/noticeMultiDelete")
+	public ModelAndView boardMultiDel(Notice notice) { 
+		ModelAndView mv = new ModelAndView(); 
+		for(int noticeNo :notice.getNoList()) { 
+			System.out.println("no="+noticeNo); 
+			} 
+		int[] result = service.noticeMultiDelete(notice.getNoList()); 
+		System.out.println("삭제된 레코드 수 ="+ result); mv.setViewName("redirect:list"); return mv; 
+		}
+
+	
+	
+	
+	@GetMapping("/admin/notice/noticeUpdate.do")
+	public String noticeUpdate(Model model, int noticeNo) {
+		model.addAttribute("notice", service.selectNoticeView(noticeNo));
+		return "admin/notice/noticeUpdate";
+	}
+	
+	@PostMapping("/admin/notice/noticeUpdate.do")
+	public String noticeUpdate(Notice notice) {
+			service.noticeUpdate(notice);
+		return "/admin/notice/noticeView.do?noticeNo="+notice.getNoticeNo();
+			
+		}
 }

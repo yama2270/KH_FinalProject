@@ -33,7 +33,7 @@
 	    <li class="list-group-item">
 	    	<button type="button" data-toggle="collapse" data-target="#hope">희망 도서</button>
 			<div id="hope" class="collapse">
-				<a class="dropdown-item" href="${path }/member/memberHopeBook.do">▷희망도서 신청</a>
+				<a class="dropdown-item" href="${path }/searchpage/wishbook.do">▷희망도서 신청</a>
 		      	<a class="dropdown-item" href="${path }/member/memberHopeBookRecord.do">▷희망도서 신청/이력 조회</a>
 			</div>
 	    </li>
@@ -51,73 +51,48 @@
 	    </li>
 	  </ul>
 	</div>
-	<div style="width:1530px; margin-left:400px; margin-top:10px;">
+	<div id="UserInfo_Container">
 		<div>
-			<h2>희망도서 신청/이력 조회</h2>
-			<hr style="border:gray 2px solid" >
+			<img src="${path }/resources/images/book-logo.png" width=50px height=50px id="book_logo">
+			<h2 id="HopeRecord_List_title">신청 내역</h2>
+			<hr id="HR_hr_line2" >
 		</div>
-		<div>
-			<img src="${path }/resources/images/book-logo.png" width=50px height=50px style="margin-bottom:10px; float:left;">
-			<h2 style="margin-top:10px; float:left;">신청 내역</h2>
-			<hr style="width:1490px; border:gray 1px solid; margin-top:70px;" >
-		</div>
-		<div>
-			<table class="table table-hover" style="text-align:center">
+		<div id="HopeRecord_List_table">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>도서번호</th>
 						<th>제  목</th>
 						<th>저  자</th>
 						<th>출 판 사</th>
+						<th>가  격</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>00000000</td>
-						<td>springframework</td>
-						<td>a2121212</td>
-						<td>2021-06-03</td>
-					</tr>
-					<tr>
-						<td>11111111</td>
-						<td>apache</td>
-						<td>b23333b2</td>
-						<td>2021-06-27</td>
-					</tr>
-					<tr>
-						<td>22222222</td>
-						<td>Server</td>
-						<td>c879c523</td>
-						<td>2021-07-01</td>
-					</tr>
+				<c:choose>
+					<c:when test="${not empty list }">
+						<c:forEach var="l" items="${list }">
+							<tr>
+								<td><c:out value="${l.isbnNo }"/></td>
+								<td><c:out value="${l.bookName }"/></td>
+								<td><c:out value="${l.bookWriter }"/></td>
+								<td><c:out value="${l.bookCompany }"/></td>
+								<td><c:out value="${l.bookPrice }"/></td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<h2>관심 도서가 없습니다.</h2>
+					</c:otherwise>
+				</c:choose>
 				</tbody>
 			</table>
-			<hr style="width:1490px; border:gray 1px dashed; margin-top:50px;" >
 		</div>
-		
-		<ul class="pagination" style="margin-top:100px;margin-left:600px;">
-		  <li class="page-item"><a class="page-link" href="#">이전</a></li>
-		  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-		  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		  <li class="page-item"><a class="page-link" href="#">다음</a></li>
-		</ul>
+		<div id="pagebar-container">
+        	${pageBar }
+        </div>
 	</div>
 </div>
 </section>
-<style>
-	table, td{
-	font-size:20px;
-	width:1000px; 
-	weight:500px;
-	}
-	th {
-	background-color:lightgray;
-	text-align:center;
-	width:200px;
-	}
-</style>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

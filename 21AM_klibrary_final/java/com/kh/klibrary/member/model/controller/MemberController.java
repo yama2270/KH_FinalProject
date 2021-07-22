@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,6 +28,9 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
+	
 	//dg
 	@RequestMapping("/member/memberEnroll.do")
 	public String memberEnroll() {
@@ -36,6 +40,8 @@ public class MemberController {
 	
 	@RequestMapping("/member/memberEnrollEnd.do")
 	public String memberEnrollEnd(Member m, Model model) {
+		
+		m.setUserPassword(pwEncoder.encode(m.getUserPassword()));
 		
 		int result=service.insertMember(m);
 		model.addAttribute("msg", result>0?"회원가입성공":"회원가입실패");
@@ -50,17 +56,82 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberLoginCheck.do")
-	public String memberLogin(@RequestParam Map param, HttpSession session, Model model) {
+	public String memberLoginCheck(@RequestParam Map param, HttpSession session, Model model) {
 		
 		Member m = service.selectMember1(param);
-		if(m!=null) {
+		
+		String msg="로그인 실패";
+		String loc="/member/memberLogin.do";
+		if(m!=null && pwEncoder.matches((String)param.get("userPassword"), m.getUserPassword())) {
 			model.addAttribute("loginMember", m);
+			msg = "로그인 성공";
+			loc = "/";
 		}
-		model.addAttribute("msg", m!=null?"로그인성공":"로그인실패");
-		model.addAttribute("loc","/");
+		model.addAttribute("msg", msg);
+		model.addAttribute("loc", loc);
 		return "common/msg";
 	}
 	
+	@RequestMapping("/member/memberLogout.do")
+	public String memberLogout(HttpSession session, SessionStatus ss) {
+		if(session!=null) session.invalidate();
+		if(!ss.isComplete()) {
+			ss.setComplete();
+		}
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/member/memberIdFind.do")
+	public String memberIdFindView(@RequestParam Map param, HttpSession session, Model model) {
+		
+		return "member/memberIdFind";
+	}
+	
+	@RequestMapping("/member/memberPwFind.do")
+	public String memberPwFindView() {
+		
+		return "member/memberPwFind";
+	}
+	
+	@RequestMapping("/member/memberIdCheck.do")
+	public String memberIdFind(@RequestParam Map param, HttpSession session, Model model) {
+		
+		Member m = service.memberFindId(param);
+		System.out.println(m);
+		if(m!=null) {
+			model.addAttribute("findId", m);
+		}
+		model.addAttribute("msg", m!=null?"아이디는"+m.getUserId()+"입니다":"잘못입력하셨습니다.");
+		model.addAttribute("loc","/member/memberLogin.do");
+		
+		return "common/msg";
+	}
+	
+	@RequestMapping("/member/memberPwCheck.do")
+	public String memberPwFind(@RequestParam Member m, HttpSession session, Model model) {
+		
+		String pw = "";
+		String pwView = "";
+		String msg="잘못된 정보입니다.";
+		String loc="/member/memberPwFind.do";
+		for(int i=0; i<8; i++)
+		{
+			pw += (char) ((Math.random()*26)+97);
+		}
+		
+		m.setUserPassword(pwEncoder.encode(pw));
+		
+		int result = service.memberFindPw(m);
+		
+		if(result>0)
+		{
+			msg="임시비밀번호는"+pw+"입니다.";
+			loc="/member/memberLogin.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("loc",loc);
+		}
+		return "common/msg";
+	}
 	
 	//cg
 	//임시 로그인 테스트 -cg-
@@ -123,7 +194,7 @@ public class MemberController {
 								 @RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
 		mv.addObject("list", service.selectLendingList(m.getUserId(), cPage, numPerpage));
 		int totalData=service.selectLendingCount(m.getUserId());
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberInfo.do"));
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBorrowing.do"));
 		mv.addObject("totalData",totalData);
 		mv.setViewName("member/memberBorrowing");
 		return mv;
@@ -156,6 +227,7 @@ public class MemberController {
 		mv.addObject("Date2",inputDate2);
 		mv.addObject("list", service.selectDate(m1, cPage, numPerpage));
 		int totalData=service.selectDateCount(m1);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBorrowed.do"));
 		mv.addObject("totalData",totalData);
 		mv.setViewName("member/memberBorrowed");
 		return mv;
@@ -166,8 +238,9 @@ public class MemberController {
 								@RequestParam(value="cPage", defaultValue="1") int cPage,
 								@RequestParam(value="numPerpage", defaultValue="5") int numPerpage) {
 		mv.addObject("list", service.selectBookingList(m.getUserId(), cPage, numPerpage));
-		int totalPage=service.selectBookingCount(m.getUserId());
-		mv.addObject("totalPage",totalPage);
+		int totalData=service.selectBookingCount(m.getUserId());
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBooking.do"));
+		mv.addObject("totalData",totalData);
 		mv.setViewName("member/memberBooking");
 		return mv;
 	}
@@ -178,7 +251,6 @@ public class MemberController {
 		m1.put("userId", m.getUserId());
 		m1.put("bookNo", bookNo);
 		int result= service.cancelBooking(m1);
-		System.out.println("resultresultresultresultresultresult : " + result);
 		String msg="예약취소를 실패하었습니다.";
 		String loc="/member/memberBooking.do";
 		
@@ -219,19 +291,47 @@ public class MemberController {
 		return "common/msg";
 	}
 	
-	@RequestMapping("/member/memberHopeBook.do")
-	public String memberHopeBook() {
-		return "member/memberHopeBook";
-	}
-	
 	@RequestMapping("/member/memberHopeBookRecord.do")
-	public String memberHopeBookRecord() {
-		return "member/memberHopeBookRecord";
+	public ModelAndView memberHopeBookRecord(ModelAndView mv,@ModelAttribute("loginMember") Member m,
+										    @RequestParam(value="cPage", defaultValue="1") int cPage,
+										    @RequestParam(value="numPerPage", defaultValue="5") int numPerpage) {
+		
+		mv.addObject("list",service.selectHopeRecordList(m.getUserId(), cPage, numPerpage));
+		int totalData=service.selectHopeRecordCount(m.getUserId());
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberHopeBookRecord.do"));
+		mv.addObject("totalData",totalData);
+		mv.setViewName("member/memberHopeBookRecord");
+		return mv;
 	}
 	
 	@RequestMapping("/member/memberBookMark.do")
-	public String memberBookMark() {
-		return "member/memberBookMark";
+	public ModelAndView memberBookMark(ModelAndView mv, @ModelAttribute("loginMember") Member m,
+									  @RequestParam(value="cPage", defaultValue="1") int cPage,
+									  @RequestParam(value="numPerPage", defaultValue="5") int numPerpage) {
+		mv.addObject("list",service.selectBookMarkList(m.getUserId(), cPage, numPerpage));
+		int totalData=service.selectBookMarkCount(m.getUserId());
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberBookMark.do"));
+		mv.addObject("totalData",totalData);
+		mv.setViewName("member/memberBookMark");
+		return mv;
+	}
+	
+	@RequestMapping("/member/cancelMark.do")
+	public String cancelMark(@ModelAttribute("loginMember") Member m, @RequestParam String isbnNo, Model model) {
+		Map m1= new HashMap();
+		m1.put("userId", m.getUserId());
+		m1.put("isbnNo", isbnNo);
+		int result= service.cancelMark(m1);
+		String msg="관심도서 취소를 실패하었습니다.";
+		String loc="/member/memberBookMark.do";
+		
+		if(result>0) {
+			msg="관심도서를 취소하였습니다.";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "common/msg";
 	}
 	
 	@RequestMapping("/member/memberReadingRoom.do")

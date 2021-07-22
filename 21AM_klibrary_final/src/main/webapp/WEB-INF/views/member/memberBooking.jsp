@@ -33,7 +33,7 @@
 	    <li class="list-group-item">
 	    	<button type="button" data-toggle="collapse" data-target="#hope">희망 도서</button>
 			<div id="hope" class="collapse">
-				<a class="dropdown-item" href="${path }/member/memberHopeBook.do">▷희망도서 신청</a>
+				<a class="dropdown-item" href="${path }/searchpage/wishbook.do">▷희망도서 신청</a>
 		      	<a class="dropdown-item" href="${path }/member/memberHopeBookRecord.do">▷희망도서 신청/이력 조회</a>
 			</div>
 	    </li>
@@ -89,16 +89,9 @@
 			</table>
 			<hr id="Booking_List_table">
 		</div>
-		
-		<ul class="pagination" id="UserInfo_Paging_Container">
-		  <li class="page-item"><a class="page-link" href="#">이전</a></li>
-		  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-		  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		  <li class="page-item"><a class="page-link" href="#">다음</a></li>
-		</ul>
+		<div id="pagebar-container">
+        	${pageBar }
+        </div>
 	</div>
 </div>
 </section>

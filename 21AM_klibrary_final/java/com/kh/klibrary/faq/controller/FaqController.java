@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.klibrary.faq.model.service.FaqService;
 
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor//롬복으로 생성자 만들어줌
 @Controller//어노테이션 처리
 public class FaqController {
 	
