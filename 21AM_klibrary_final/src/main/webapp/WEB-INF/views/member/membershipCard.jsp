@@ -60,8 +60,8 @@
 			<div>
 				<h2 id="m-top">KH도서관</h2>
 				<img src="${path }/resources/images/profile.png" width=300px height=300px id="m-top">
-				<p id="m-top">회원 번호 : 00-00000</p>
-				<p>성  명 : 홍 길 동</p>
+				<p id="m-top">성  명 : <c:out value="${loginMember.userName }"/></p>
+				<p>회원 이메일 : <c:out value="${loginMember.email }"/></p>
 			</div>
 		</div>
 	</div>
