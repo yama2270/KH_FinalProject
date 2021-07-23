@@ -25,6 +25,12 @@ public class AdminBookDaoImpl implements AdminBookDao {
 		return session.insert("adminBook.insertBookInfo",bookInfo);
 	}
 	
+	// 도서Parsing 등록 
+//	@Override 
+//	public int insertBookParsing(Map m,SqlSessionTemplate session) {
+//		return session.insert("adminBook.insertBookParsing",m);
+//	} 
+	
 	// 도서등록
 	@Override
 	public int insertBook(BookInfo bookInfo,SqlSessionTemplate session) {
@@ -54,6 +60,18 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	// 도서 key 총도서 
 	public int totalKeyBook(Map param,SqlSessionTemplate session) {
 		return session.selectOne("adminBook.totalKeyBook",param);
+	}
+	
+	// 도서 Detail 도서 
+	@Override
+	public List<Book> searchDetBook(Map param,int cPage,int numPerPage,SqlSessionTemplate session){
+		return session.selectList("adminBook.searchDetBook",param,new RowBounds((cPage-1)*numPerPage,numPerPage));
+	}
+	
+	// 도서 Detail 총도서 
+	@Override
+	public int totalDetBook(Map param,SqlSessionTemplate session) {
+		return session.selectOne("adminBook.totalDetBook",param);
 	}
 	
 	//도서 삭제 

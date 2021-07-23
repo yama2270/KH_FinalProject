@@ -37,57 +37,46 @@
                         <form action="" method="post">
                             <table id="detSeaTab">
                                 <tr>
-                                    <td>도서명</td>
+                                    <td>초성</td>
                                     <td>
-                                        <input type="checkbox"> ㄱ
-                                        <input type="checkbox"> ㄴ
-                                        <input type="checkbox"> ㄷ
-                                        <input type="checkbox"> ㄹ
-                                        <input type="checkbox"> ㅁ
-                                        <input type="checkbox"> ㅂ
-                                        <input type="checkbox"> ㅅ
-                                        <input type="checkbox"> ㅇ
-                                        <input type="checkbox"> ㅈ
-                                        <input type="checkbox"> ㅊ
-                                        <input type="checkbox"> ㅋ
-                                        <input type="checkbox"> ㅌ
-                                        <input type="checkbox"> ㅍ
-                                        <input type="checkbox"> ㅎ
-                                        <br>
-                                        <input type="checkbox"> ㄲ
-                                        <input type="checkbox"> ㄸ
-                                        <input type="checkbox"> ㅃ
-                                        <input type="checkbox"> ㅆ
-                                        <input type="checkbox"> ㅉ
+                                        <input type="checkbox" name="detIni" value="44700,45207"> ㄱ
+                                        <input type="checkbox" name="detIni" value="45208,45795"> ㄴ
+                                        <input type="checkbox" name="detIni" value="45796,46971"> ㄷ
+                                        <input type="checkbox" name="detIni" value="46972,47559"> ㄹ
+                                        <input type="checkbox" name="detIni" value="47560,48147"> ㅁ
+                                        <input type="checkbox" name="detIni" value="48148,49323"> ㅂ
+                                        <input type="checkbox" name="detIni" value="49324,50499"> ㅅ
+                                        <input type="checkbox" name="detIni" value="50450,51087"> ㅇ
+                                        <input type="checkbox" name="detIni" value="51088,52263"> ㅈ
+                                        <input type="checkbox" name="detIni" value="52264,52851"> ㅊ
+                                        <input type="checkbox" name="detIni" value="52852,53439"> ㅋ
+                                        <input type="checkbox" name="detIni" value="53440,54027"> ㅌ
+                                        <input type="checkbox" name="detIni" value="54028,54615"> ㅍ
+                                        <input type="checkbox" name="detIni" value="54616,55203"> ㅎ
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>도서명</td>
-                                    <td><input type="text"></td>
+                                    <td><input type="text" name="detBookName" id="detBookName"  value='${param.searchOption == "book_name"? param.searchWord:""}'></td>
                                 </tr>
                                 <tr>
                                     <td>ISBN</td>
-                                    <td><input type="text"></td>
+                                    <td><input type="text" name="detIsbn" id="detIsbn" value='${param.searchOption == "isbn_no"? param.searchWord:""}'></td>
                                 </tr>
                                 <tr>
                                     <td>저자</td>
-                                    <td><input type="text"></td>
+                                    <td><input type="text" name="detWriter" id="detWriter" value='${param.searchOption == "book_writer"? param.searchWord:""}'></td>
                                 </tr>
                                 <tr>
                                     <td>출판사</td>
-                                    <td><input type="text"></td>
-                                </tr>
-                                <tr>
-                                    <td>가격</td>
-                                    <td><input type="text"> ~ <input type="text"></td>
+                                    <td><input type="text" name="detPublisher" id="detPublisher" value='${param.searchOption == "book_company"? param.searchWord:""}'></td>
                                 </tr>
                                 <tr>
                                     <td>발행년</td>
-                                    <td><input type="text"> ~ <input type="text"></td>
+                                    <td><input type="date" name="detLow" id="detLow"> ~ <input type="date" name="detHigh" id="detHigh"></td>
                                 </tr>
                             </table>
                             <div id="detSeaBtn">
-                                <button type="button" class="btn btn-outline-secondary">검색하기</button>
                                 <button type="button" class="btn btn-outline-secondary"
                                     onclick="closeDetSea()">접기</button>
                             </div>
@@ -154,7 +143,6 @@
         $("#detSeaWrap").hide();
     }
     
-    
 	</script>
 	
 	<script>
@@ -165,13 +153,6 @@
         // ul li 배경화면 
         $(".navOptions").eq(1).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
     })
-    
-    // 페이지 이동 
-    const fn_paging = function(cPage){
-    	location.assign('${path}/admin/book/bookAllList.do?cPage='+cPage);
-    }
-    
-    
     
     // 선택 도서 삭제 
     $("button[id=delBookBtn]").click(e=>{
@@ -194,12 +175,67 @@
     	}
     })
     
-    // 도서 key 검색 
+    // 페이지 도서 key 검색 
 	const fn_searchKey = function(cPage){
     	const searchKey = $("#searchOption").val();
      	const searchWord = $("#searchWord").val();
 		location.assign('${path}/admin/book/searchKeyBook.do?cPage='+cPage+"&searchOption="+searchKey+"&searchWord="+searchWord);
 	}
+    
+    // 페이지 이동 
+    const fn_paging = function(cPage){
+    	location.assign('${path}/admin/book/bookAllList.do?cPage='+cPage);
+    }
+    
+    // 상세검색 이벤트 
+    $("#detSeaTab input").on("input onchange",e=>{
+    	
+    	// 객체들 받아오기 
+    	let ini = $("input:checkbox[name=detIni]");
+    	let inicheck = $("input:checkbox[name=detIni]:checked").val();
+    	let detBookName = $("#detBookName").val();
+    	let detIsbn = $("#detIsbn").val();
+    	let detWriter = $("#detWriter").val();
+    	let detPublisher = $("#detPublisher").val();
+    	let detLow = $("#detLow").val();
+    	let detHigh = $("#detHigh").val();
+		
+    	// 초성 하나만 체크 
+    	ini.click(function(e){
+    		ini.not($(e.target)).prop("checked",false);
+    	})
+    	
+    	$.ajax({
+	   		url:"${path}/admin/book/searchDetBook.do?iniArr="+inicheck+"&detBookName="+detBookName+"&detIsbn="+detIsbn+"&detWriter="+detWriter+"&detPublisher="+detPublisher+"&detLow="+detLow+"&detHigh="+detHigh,
+			success:function(data){
+				console.log(data);
+				$("#contentTabWrap").html(data);
+			}    				
+    	})
+    })
+    
+    // 상세검색 페이징 함수 
+    const fn_searchDet = function(cPage){
+    	
+    	// 데이터 받아오기 
+    	let inicheck = $("input:checkbox[name=detIni]:checked").val();
+    	let detBookName = $("#detBookName").val();
+    	let detIsbn = $("#detIsbn").val();
+    	let detWriter = $("#detWriter").val();
+    	let detPublisher = $("#detPublisher").val();
+    	let detLow = $("#detLow").val();
+    	let detHigh = $("#detHigh").val();
+    	
+    	$.ajax({
+	   		url:"${path}/admin/book/searchDetBook.do?cPage="+cPage+"&iniArr="+inicheck+"&detBookName="+detBookName+"&detIsbn="+detIsbn+"&detWriter="+detWriter+"&detPublisher="+detPublisher+"&detLow="+detLow+"&detHigh="+detHigh,
+			success:function(data){
+				console.log(data);
+				$("#contentTabWrap").html(data);
+			}    				
+    	})
+    }
+    
+    
     
 	</script>
 

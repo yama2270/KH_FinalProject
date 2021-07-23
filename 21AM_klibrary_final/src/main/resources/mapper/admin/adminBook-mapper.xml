@@ -12,6 +12,11 @@
 		INSERT INTO BOOK_INFO VALUES(#{isbnNo},#{bookName},#{bookWriter},#{bookCompany},#{bookDate},#{bookPrice},#{bookLocation},#{bookContent},#{bookImg},#{bookKdc})
 	</insert>
 	
+	<!-- 도서 parsing -->
+	<!-- <insert id="insertBookParsing" parameterType="Map">
+		INSERT INTO BOOK_INFO_PARSING VALUES(SEQ_BOOK_PARSING_NO.NEXTVAL,#{isbnNo},#{bookParName},#{bookParWriter},#{bookParCompany})
+	</insert> -->
+	
 	<!-- 도서등록 -->
 	<insert id="insertBook" parameterType="bookInfo">
 		INSERT INTO BOOK VALUES(SEQ_BOOK_NO.NEXTVAL,#{isbnNo},default,default)
@@ -37,6 +42,71 @@
 	<select id="totalKeyBook" parameterType="Map" resultType="_int">
 		SELECT COUNT(*) FROM BOOK JOIN BOOK_INFO USING(ISBN_NO) JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO) 
 		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+	</select>
+	
+	<!-- 도서 Detail 목록 -->
+	<select id="searchDetBook" parameterType="Map" resultMap="bookMap">
+		SELECT * FROM BOOK JOIN BOOK_INFO USING(ISBN_NO) JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO) 
+		WHERE 1=1
+		
+		<if test="iniArr != null and iniArr != ''">
+		AND BOOK_NAME 
+		<foreach collection="iniArr" item="i" open="BETWEEN" close="" separator="AND" >
+				NCHR(#{i})
+		</foreach> 
+		</if>
+		
+		<if test="detBookName != null and detBookName != ''">
+			AND BOOK_NAME LIKE '%'||#{detBookName}||'%'
+		</if>
+		<if test="detIsbn != null and detIsbn!= ''">
+			AND ISBN_NO LIKE '%'||#{detIsbn}||'%'
+		</if>
+		<if test="detWriter != null and detWriter != ''">
+			AND BOOK_WRITER LIKE '%'||#{detWriter}||'%'
+		</if>
+		<if test="detPublisher != null and detPublisher != ''">
+			AND BOOK_COMPANY LIKE '%'||#{detPublisher}||'%'
+		</if>
+		<if test="detLow != null and detLow != '' and detHigh != null and detHigh!= '' ">
+			AND BOOK_DATE BETWEEN #{detLow} AND #{detHigh}
+		</if>
+		<if test="detLow != null and detLow != '' and (detHigh == null or detHigh == '') ">
+			AND BOOK_DATE BETWEEN #{detLow} AND SYSDATE
+		</if>
+		
+	</select>
+	
+	<select id="totalDetBook" parameterType="Map" resultType="_int">
+		SELECT COUNT(*) FROM BOOK JOIN BOOK_INFO USING(ISBN_NO) JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO) 
+		WHERE 1=1
+		
+		<if test="iniArr != null and iniArr != ''">
+		AND BOOK_NAME 
+		<foreach collection="iniArr" item="i" open="BETWEEN" close="" separator="AND" >
+				NCHR(#{i})
+		</foreach> 
+		</if>
+		
+		<if test="detBookName != null and detBookName != ''">
+			AND BOOK_NAME LIKE '%'||#{detBookName}||'%'
+		</if>
+		<if test="detIsbn != null and detIsbn!= ''">
+			AND ISBN_NO LIKE '%'||#{detIsbn}||'%'
+		</if>
+		<if test="detWriter != null and detWriter != ''">
+			AND BOOK_WRITER LIKE '%'||#{detWriter}||'%'
+		</if>
+		<if test="detPublisher != null and detPublisher != ''">
+			AND BOOK_COMPANY LIKE '%'||#{detPublisher}||'%'
+		</if>
+		<if test="detLow != null and detLow != '' and detHigh != null and detHigh!= '' ">
+			AND BOOK_DATE BETWEEN #{detLow} AND #{detHigh}
+		</if>
+		<if test="detLow != null and detLow != '' and (detHigh == null or detHigh == '') ">
+			AND BOOK_DATE BETWEEN #{detLow} AND SYSDATE
+		</if>
+		
 	</select>
 	
 	<!-- 도서삭제 -->

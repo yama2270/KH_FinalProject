@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +51,7 @@ public class AdminBookController {
 	@RequestMapping("/admin/book/searchKeyBook.do")
 	public ModelAndView searchTypeBook(@RequestParam Map param, 
 							   @RequestParam(required=false,defaultValue="1") int cPage,
-							   @RequestParam(required=false,defaultValue="2") int numPerPage,ModelAndView mv) {
+							   @RequestParam(required=false,defaultValue="10") int numPerPage,ModelAndView mv) {
 		
 		// 도서 key 검색
 		List<Book> list = service.searchKeyBook(param,cPage,numPerPage);
@@ -64,6 +65,39 @@ public class AdminBookController {
 		mv.addObject("pageBar",pageBar);
 		mv.addObject("param",param);
 		mv.setViewName("admin/book/bookAllList");
+		
+		return mv;
+	}
+	
+	// 도서목록 - 상세검색 
+	@RequestMapping("/admin/book/searchDetBook.do")
+	public ModelAndView searchDetBook(@RequestParam Map param,
+							@RequestParam(required=false,defaultValue="1") int cPage,
+							@RequestParam(required=false,defaultValue="10") int numPerPage,
+							ModelAndView mv 
+			) {
+		
+		// 파라미터 데이터 체크 
+//		Iterator iterator = param.keySet().iterator();
+//		while(iterator.hasNext()) {
+//			String key = (String)iterator.next();
+//			System.out.println(key +":"+param.get(key));
+//		}
+		
+		// 초성 배열로 변경 
+		if(!((String)param.get("iniArr")).equals("")){
+			param.put("iniArr",((String)param.get("iniArr")).split(","));
+		}
+		
+		
+		List<Book> list = service.searchDetBook(param,cPage,numPerPage);
+		int totalData = service.totalDetBook(param);
+		String pageBar = new AdminPagingTemplate().searchDetPagingTemplate(cPage,numPerPage,totalData);
+		
+		mv.addObject("list", list);
+		mv.addObject("pageBar", pageBar);
+		
+		mv.setViewName("admin/book/searchDetBookAjax");
 		
 		return mv;
 	}
@@ -144,17 +178,19 @@ public class AdminBookController {
 		return "admin/book/bookWishList";
 	}
 
-	//
+	// 도서 등록 
 	@RequestMapping("/admin/book/registerBook.do")
 	public String registerBook() {
 		return "admin/book/registerBook";
 	}
-
+	
+	// 도서상세 
 	@RequestMapping("/admin/book/bookDetail.do")
 	public String bookDetail() {
 		return "admin/book/bookDetail";
 	}
-
+	
+	// 도서 ISBN 검색 
 	@RequestMapping("/admin/book/searchIsbn.do")
 	public String searchIsbn() {
 		return "admin/book/searchIsbn";

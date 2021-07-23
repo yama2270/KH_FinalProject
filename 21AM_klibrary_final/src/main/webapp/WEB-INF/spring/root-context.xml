@@ -40,7 +40,18 @@
 		<property name="dataSource" ref="datasource"/>
 	</bean>
 	
-	<!-- Transaction annotation -->
+	<!-- Transaction annotation방식 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- transaction XML방식 -->
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+		<tx:method name="insert*" />
+		</tx:attributes>
+	</tx:advice>	
+	<aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(* com.kh.spring..*ServiceImpl.insert*(..))" id="txp"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txp"/>
+	</aop:config> -->
 	
 </beans>

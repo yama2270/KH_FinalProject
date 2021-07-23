@@ -11,5 +11,6 @@ public interface AdminNoticeService {
 	Notice selectNoticeView(int noticeNo);
 	int deleteNotice(int noticeNo);
 	int noticeUpdate(Notice notice);
-	int[] noticeMultiDelete(int[] noList);
+	int noticeCount(int noticeNo);
+
 }

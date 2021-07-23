@@ -27,6 +27,12 @@ public interface AdminBookService {
 	// 도서 key 총도서 
 	int totalKeyBook(Map param);
 	
+	// 도서 Detail 검색 
+	List<Book> searchDetBook(Map param,int cPage,int numPerPage);
+	
+	// 도서 Detail 총도서 
+	int totalDetBook(Map param);
+	
 	// 도서삭제
 	int deleteBook(Map m);
 	
