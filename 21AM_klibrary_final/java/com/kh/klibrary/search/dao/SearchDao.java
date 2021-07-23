@@ -18,8 +18,8 @@ public interface SearchDao {
 	 int selectBookCount(SqlSessionTemplate session);
 	 Book selectBook(SqlSessionTemplate session, String isbnNo);
 	 Lending selectLending(SqlSessionTemplate session, String bookNo);
-
-
+	 List<BookInfo> selectDetailSearch(SqlSessionTemplate session, Map param,int cPage, int searchNumber);//상세검색
+     int selectDetailSearchCount(SqlSessionTemplate session, Map param);
 	
 	List<BookInfo> selectBookInfoList(SqlSessionTemplate session, Map param);
 	int insertWishBook(SqlSessionTemplate session, Map param);

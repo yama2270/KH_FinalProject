@@ -184,6 +184,10 @@ background-color:blue;
      float:left; 
     width:100%;
   }
+  
+  #bookCategorySelectTd select{
+    float:left;
+  }
   #alphabetCheckTd{
     float:left;
   }

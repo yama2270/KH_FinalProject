@@ -1,7 +1,10 @@
 package com.kh.klibrary.search.controller;
 
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +27,7 @@ import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.common.PageFactory2;
-
+import com.kh.klibrary.common.PageFactory3;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.search.service.SearchServiceImp;
 
@@ -231,11 +234,12 @@ public ModelAndView bookTotalSearch(
 		
 		if(keyword!="") {
 			mv.addObject("list", service.selectBookList(hashMap));			
-			mv.addObject("pageBar",PageFactory2.getPageBar(totalData, cPage, searchNumber, "bookTotalSearch"));
+			mv.addObject("pageBar",PageFactory2.getPageBar(totalData, cPage, searchNumber));
 		}
 		mv.addObject("keyword",keyword);
 		mv.addObject("category",category);
 	mv.addObject("totalData",totalData);
+	mv.addObject("searchNumber",searchNumber);
 	
 	mv.setViewName("/searchpage/bookSearch");
 	return mv;
@@ -261,16 +265,116 @@ public ModelAndView interestingbook (
 	return mv;
 }
 
+@RequestMapping("/searchpage/detailSearch")
+    public ModelAndView detailSearch(
+    		        @RequestParam Map param,
+    		        @RequestParam(value="book_Category", required=false) String bookCategory,
+    		        @RequestParam(value="init", required=false) String init,
+    		        @RequestParam(value="bookName",required=false) String bookName,
+    		        @RequestParam(value="author",required=false) String author,
+    		        @RequestParam(value="publisher",required=false) String publisher,
+    		        @RequestParam(value="isbnNo",required=false) String isbnNo,
+    		        @RequestParam(value="price",required=false) String price,
+    		        @RequestParam(value="publishYear1",required=false) String publishYear1,
+    		        @RequestParam(value="publishYear2",required=false) String publishYear2,
+					@RequestParam(value="searchNumber", required=false, defaultValue="10") int searchNumber,
+					@RequestParam(value="cPage", required=false, defaultValue="1") int cPage,
+					ModelAndView mv
+					    ) {
+				Iterator iterator = param.keySet().iterator();
+				while(iterator.hasNext()) {
+					String key = (String)iterator.next();
+					System.out.println(key +":"+param.get(key));
+				}
+				
+			 
+			
+			// 초성 배열로 변경 
+			if(init!=null||init!="undefined"){
+				param.put("init",((String)param.get("init")).split(","));
+			}else {
+				param.put("init", null);
+				init="undefined";
+			}
+			System.out.println(publishYear1);
+			if(bookCategory==""||bookCategory=="undefined") {
+				param.put("book_Category",null);
+				bookCategory="undefined";
+			}else {
+			 param.put("book_Category",bookCategory);
+			}
+			if(bookName==""||bookName=="undefined") {
+			 param.put("bookName", null);
+			 bookName= "undefined";
+			}else {
+				param.put("bookName", bookName);
+			}
+			if(author==""||author=="undefined") {
+				param.put("author", null);
+				author="undefined";
+			}else {
+				param.put("author", author);
+			}
+			if(publisher==""||publisher=="undefined") {
+				param.put("publisher", null);
+				publisher="undefined";
+			}else {
+				param.put("publisher", publisher);
+			}
+			if(isbnNo==""||isbnNo=="undefined") {
+				param.put("isbnNo",null);
+				isbnNo="undefined";
+			}else {
+				param.put("isbnNo", isbnNo);
+			}
+			 if(price==""||price=="undefined") {
+				 param.put("price", null);
+				 price="undefined";
+			 }else {
+				 param.put("price", price);
+			 }
+			 if(publishYear1==""||publishYear1=="undefined") {
+				 param.put("publishYear1", null);
+				 publishYear1="undefined";
+			 }else {
+				 param.put("publishYear1",publishYear1);
+			 }
+			 if(publishYear2==""||publishYear2=="undefined") {
+				 param.put("publishYear2", null);
+				 publishYear2="undefined";
+			 }else {
+				 param.put("publishYear2", publishYear2);
+			 }
+			 if(searchNumber==0) {
+				 param.put("searchNumber", 0);
+				 searchNumber=0;
+			 }else {
+				 param.put("searchNumber", searchNumber); 
+			 }
+			 if(cPage==0) {
+				 param.put("cPage", 1);
+				 cPage=1;
+			 }else {
+				 param.put("cPage", cPage); 
+			 }
+			 
+			 //다음 페이징처리를 위한 변수받기, 페이지바 함수에서의 ""에러처리
+		   	
+	
+			    List<BookInfo> bookList1 =service.selectDetailSearch(param,cPage,searchNumber);
+			    int bookListCount=service.selectDetailSearchCount(param);
+		
+		
+			  mv.addObject("totalData", bookListCount);
+			  mv.addObject("list",bookList1);
+			  mv.addObject("pageBar",PageFactory3.getPageBar(bookListCount, cPage, searchNumber,init,bookCategory,bookName,author,publisher,isbnNo,price,publishYear1,publishYear2)); 
+			  mv.setViewName("/searchpage/bookSearch");
+			     
+	return mv;
+}
 
 
 
-//@RequestMapping(value="/searchpage/searchapiBook",produces = "application/text;charset=UTF-8")
-//@ResponseBody
-//public ModelAndView searchApiBook(ModelAndView mv, @RequestParam Map param) {
-//	mv.addObject("data",service.searchNaverApi(param).getBody());
-//	mv.setViewName("searchpage/wishbookPopup");
-//	return mv;
-//}
 
 
 
