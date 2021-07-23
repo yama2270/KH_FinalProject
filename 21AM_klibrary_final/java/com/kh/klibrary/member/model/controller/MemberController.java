@@ -348,6 +348,34 @@ public class MemberController {
 	public String memberDelete() {
 		return "member/memberDelete";
 	}
+	@RequestMapping("/member/memberDropRequest.do")
+	public String memberDropRequest(@RequestParam String password,@ModelAttribute("loginMember") Member m, Model model) {
+		String msg="비밀번호가 확인되었습니다. 회원님의 계정을 탈퇴를 요청합니다.";
+		String loc="/member/memberDelete.do";
+		Map map = new HashMap();
+		map.put("userId", m.getUserId());
+		map.put("request", "Y");
+		int result=0;
+		if(!password.equals(m.getUserPassword())) {
+			msg="비밀번호가 일치하지 않습니다.";
+			loc="/member/memberDelete.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("loc",loc);
+		}else{
+			Member md=service.selectMemberDropRequestList(map);
+			if(md==null) {
+				result=service.insertMemberDropRequest(map);
+				System.out.println("result값 : " + result);
+			}else {
+				msg="이미 탈퇴요청된 계정입니다.";
+			}
+			model.addAttribute("msg",msg);
+			model.addAttribute("loc",loc);
+		}
+		
+		return "common/msg";
+	}
+	
 	
 	@RequestMapping("/member/memberTest.do")
 	public String memberTest() {

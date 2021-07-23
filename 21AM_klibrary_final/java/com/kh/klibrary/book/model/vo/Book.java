@@ -19,7 +19,6 @@ public class Book {
 
 	private String lendingState;	
 	private BookInfo bookInfo;
-
 	
 //	private List<BookInfo> bookInfo=new ArrayList();
 

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kh.klibrary.admin.book.model.dao.AdminBookDao;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Lending;
 
 @Service
 public class AdminBookServiceImpl implements AdminBookService {
@@ -78,4 +79,38 @@ public class AdminBookServiceImpl implements AdminBookService {
 		return dao.deleteBook(m,session);
 	}
 	
+	//대출도서 리스트
+	@Override
+	public List<Lending> selectRentalList(int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.selectRentalList(session, cPage, numPerPage);
+	}
+	
+	//대출도서 카운트
+	@Override
+	public int selectRentalCount() {
+		// TODO Auto-generated method stub
+		return dao.selectRentalCount(session);
+	}
+	
+	//대출도서 검색
+	@Override
+	public List<Lending> SearchRentalList(Map param, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.SearchRentalList(session, param, cPage, numPerPage);
+	}	
+	
+	//대출도서 검색 카운트
+	@Override
+	public int SearchRentalCount(Map param) {
+		// TODO Auto-generated method stub
+		return dao.SearchRentalCount(session, param);
+	}
+	
+	//대출도서 연장
+	@Override
+	public int addBookExtend(Map param) {
+		// TODO Auto-generated method stub
+		return dao.addBookExtend(session, param);
+	}
 }

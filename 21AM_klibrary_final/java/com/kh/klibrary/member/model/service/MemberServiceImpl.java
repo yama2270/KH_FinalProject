@@ -99,6 +99,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public Member selectMemberDropRequestList(Map m1) {
+		// TODO Auto-generated method stub
+		return dao.selectMemberDropRequestList(session, m1);
+	}
+	
+	@Override
 	public int selectLendingCount(String userId) {
 		// TODO Auto-generated method stub
 		return dao.selectLendingCount(session, userId);
@@ -144,5 +150,11 @@ public class MemberServiceImpl implements MemberService {
 	public int selectHopeRecordCount(String userId) {
 		// TODO Auto-generated method stub
 		return dao.selectHopeRecordCount(session, userId);
+	}
+	
+	@Override
+	public int insertMemberDropRequest(Map m1) {
+		// TODO Auto-generated method stub
+		return dao.insertMemberDropRequest(session, m1);
 	}
 }

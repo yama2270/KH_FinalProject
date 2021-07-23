@@ -95,6 +95,12 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public Member selectMemberDropRequestList(SqlSessionTemplate session, Map m1) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectMemberDropRequestList", m1);
+	}
+	
+	@Override
 	public int selectLendingCount(SqlSessionTemplate session, String userId) {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.selectLendingCount", userId);
@@ -140,5 +146,11 @@ public class MemberDaoImpl implements MemberDao {
 	public int selectHopeRecordCount(SqlSessionTemplate session, String userId) {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.selectHopeRecordCount", userId);
+	}
+	
+	@Override
+	public int insertMemberDropRequest(SqlSessionTemplate session, Map m1) {
+		// TODO Auto-generated method stub
+		return session.insert("member.insertMemberDropRequest", m1);
 	}
 }

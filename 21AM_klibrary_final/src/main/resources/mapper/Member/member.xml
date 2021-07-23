@@ -223,4 +223,29 @@
 		<result column="BOOK_DATE" property="bookDate"/>
 		<result column="BOOK_PRICE" property="bookPrice"/>
 	</resultMap>
+	
+	<select id="selectMemberDropRequestList" resultMap="memberDrop">
+		SELECT * FROM MEMBERDROP WHERE USER_ID=#{userId}
+	</select>
+	
+	<insert id="insertMemberDropRequest">
+		INSERT INTO MEMBERDROP VALUES(#{userId},#{request})
+	</insert>
+	
+	<resultMap type="com.kh.klibrary.member.model.vo.MemberDrop" id="memberDrop">
+		<result column="USER_ID" property="userId"/>
+		<result column="DROP_REQUEST" property="dropRequest"/>
+		<collection property="member" ofType="member">
+			<id column="USER_ID" property="userId"/>
+			<result column="USER_PASSWORD" property="userPassword"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="EMAIL" property="email"/>
+			<result column="BIRTH_DATE" property="birthDate"/>
+			<result column="ADDRESS" property="address"/>
+			<result column="PHONE" property="phone"/>
+			<result column="SIGNUP_DATE" property="signupDate"/>
+		</collection>
+	</resultMap>
+	
+	
 </mapper>

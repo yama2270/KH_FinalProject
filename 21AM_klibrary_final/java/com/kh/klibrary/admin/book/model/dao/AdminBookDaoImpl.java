@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Lending;
 
 @Repository
 public class AdminBookDaoImpl implements AdminBookDao {
@@ -60,4 +61,40 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	public int deleteBook(Map m,SqlSessionTemplate session) {
 		return session.delete("adminBook.deleteBook",m);
 	}
+	
+	//대출도서 리스트
+	@Override
+	public List<Lending> selectRentalList(SqlSessionTemplate session, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.selectRentalList", null, new RowBounds((cPage-1)*numPerPage,numPerPage));
+	}
+	
+	//대출도서 카운트
+	@Override
+	public int selectRentalCount(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("adminBook.selectRentalCount");
+	}
+	
+	//대출도서 검색 리스트
+	@Override
+	public List<Lending> SearchRentalList(SqlSessionTemplate session, Map param, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.SearchRentalList",param);
+	}
+	
+	//대출도서 검색 카운트
+	@Override
+	public int SearchRentalCount(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("adminBook.SearchRentalCount",param);
+	}
+	
+	//대출도서 연장
+@Override
+	public int addBookExtend(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("adminBook.addBookExtend",param);
+	}
+	
 }

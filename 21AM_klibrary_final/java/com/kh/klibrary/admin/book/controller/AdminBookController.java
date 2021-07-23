@@ -1,5 +1,8 @@
 package com.kh.klibrary.admin.book.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +21,7 @@ import com.kh.klibrary.admin.book.model.service.AdminBookService;
 import com.kh.klibrary.admin.common.AdminPagingTemplate;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Lending;
 
 @Controller
 public class AdminBookController {
@@ -79,10 +83,55 @@ public class AdminBookController {
 	
 	// 대출도서목록
 	@RequestMapping("/admin/book/bookRentalList.do")
-	public String rentalList() {
+	public String rentalList(Model m,
+							@RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
+							@RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage ) {
+		List<Lending> list=service.selectRentalList(cPage, numPerPage);
+		m.addAttribute("list",list);
+		int totalBook = service.selectRentalCount();
+		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
+		
+		m.addAttribute("list",list);
+		m.addAttribute("pageBar",pageBar);
 		return "admin/book/bookRentalList";
 	}
-
+	
+	// 대출도서 목록 검색
+	@RequestMapping("/admin/book/SearchRentalList.do")
+	public String SearchRentalList(Model m, @RequestParam Map param,
+								   @RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
+								   @RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage) {
+		List<Lending> list=service.SearchRentalList(param, cPage, numPerPage);
+		int totalBook = service.SearchRentalCount(param);
+		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
+		m.addAttribute("list",list);
+		m.addAttribute("param",param);
+		m.addAttribute("pageBar",pageBar);
+		
+		return "admin/book/bookRentalList";
+	}
+	
+	@RequestMapping("/admin/book/addBookExtend.do")
+	public String addBookExtend(@RequestParam Map param, Model model) {
+		int bookExtend=Integer.parseInt(param.get("bookExtend").toString());
+		param.put("bookExtend", bookExtend+1);
+		param.put("returnDate", addDate(param.get("returnDate").toString()));
+		String msg="연장 횟수 3회로 추가연장 실패하였습니다.";
+		String loc="/admin/book/bookRentalList.do";
+		if(bookExtend>=3){
+			model.addAttribute("msg",msg);
+			model.addAttribute("loc",loc);
+		}else {
+			int result=service.addBookExtend(param);
+			msg="연장에 실패하였습니다.";
+			if(result>0) {
+				msg="연장에 성공하였습니다.";
+			}
+			model.addAttribute("msg",msg);
+			model.addAttribute("loc",loc);
+		}
+		return "common/msg";
+	}
 	// 예약도서목록
 	@RequestMapping("/admin/book/bookReservedList.do")
 	public String reservedList() {
@@ -143,4 +192,20 @@ public class AdminBookController {
 		
 	}
 	
+	public String addDate(String date) {
+		try {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+			Date d=format.parse(date);
+			
+			Calendar cal=Calendar.getInstance();
+			cal.setTime(d);
+			cal.add(Calendar.DATE, 7);
+			
+			date=format.format(cal.getTime());
+			
+		}catch(Exception e) {
+			
+		}
+		return date;
+	}
 }

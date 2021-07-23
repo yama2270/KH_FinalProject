@@ -28,6 +28,7 @@ public interface MemberDao {
 	List<Booking> selectBookingList(SqlSessionTemplate session, String userId, int cPage, int numPerpage);
 	List<Likes> selectBookMarkList(SqlSessionTemplate session, String userId, int cPage, int numPerpage);
 	List<WishBook> selectHopeRecordList(SqlSessionTemplate session, String userId, int cPage, int numPerpage);
+	Member selectMemberDropRequestList(SqlSessionTemplate session, Map m1);
 	int selectLendingCount(SqlSessionTemplate session, String userId);
 	int selectLHCount(SqlSessionTemplate session, String userId);
 	int selectDateCount(SqlSessionTemplate session, Map m1);
@@ -36,4 +37,5 @@ public interface MemberDao {
 	int selectBookMarkCount(SqlSessionTemplate session, String userId);
 	int cancelMark(SqlSessionTemplate session, Map m1);
 	int selectHopeRecordCount(SqlSessionTemplate session, String userId);
+	int insertMemberDropRequest(SqlSessionTemplate session, Map m1);
 }
