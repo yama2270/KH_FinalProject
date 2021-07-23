@@ -19,7 +19,7 @@
 	
 	<!-- 도서등록 -->
 	<insert id="insertBook" parameterType="bookInfo">
-		INSERT INTO BOOK VALUES(SEQ_BOOK_NO.NEXTVAL,#{isbnNo},default,defaul)
+		INSERT INTO BOOK VALUES(SEQ_BOOK_NO.NEXTVAL,#{isbnNo},default,default)
 	</insert>
 	
 	<!-- 도서목록 -->
