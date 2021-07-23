@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Lending;
+import com.kh.klibrary.member.model.vo.LendingHistory;
 
 public interface AdminBookService {
 	
@@ -17,6 +18,12 @@ public interface AdminBookService {
 	
 	// 도서목록 
 	List<Book> selectBookList(int cPage,int numPerPage);
+	
+	// 도서 상세
+	Book selectBook(String bookNo);
+	
+	// 도서 대출내역 
+	List<LendingHistory> selectLenHis(String bookNo);
 	
 	// 총 도서
 	int totalBook();

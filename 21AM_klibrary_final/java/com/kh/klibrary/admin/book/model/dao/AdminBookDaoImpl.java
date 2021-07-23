@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Lending;
+import com.kh.klibrary.member.model.vo.LendingHistory;
 
 @Repository
 public class AdminBookDaoImpl implements AdminBookDao {
@@ -42,6 +43,16 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	public List<Book> selectBookList(int cPage,int numPerPage,SqlSessionTemplate session){
 		RowBounds row = new RowBounds((cPage-1)*numPerPage,numPerPage);
 		return session.selectList("adminBook.selectBookList",null,row);
+	}
+	
+	// 도서 상세
+	public Book selectBook(String bookNo,SqlSessionTemplate session) {
+		return session.selectOne("adminBook.selectBook",bookNo);
+	}
+	
+	// 도서 대출내역
+	public List<LendingHistory> selectLenHis(String bookNo,SqlSessionTemplate session){
+		return session.selectList("adminBook.selectLenHis",bookNo);
 	}
 	
 	// 총 도서 

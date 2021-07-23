@@ -27,6 +27,18 @@
 		select * from BOOK JOIN BOOK_INFO USING(ISBN_NO) JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO)
 	</select>
 	
+	<!-- 도서 상세 -->
+	<select id="selectBook" parameterType="String" resultMap="bookMap">
+		select * from BOOK JOIN BOOK_INFO USING(ISBN_NO) JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO) 
+		WHERE BOOK_NO = #{bookNo}
+	</select>
+	
+	<!-- 도서대출내역 -->
+	<select id="selectLenHis" parameterType="String" resultMap="lenHisMap">
+		SELECT * FROM LENDING_HISTORY
+		WHERE BOOK_NO = #{bookNo}
+	</select>
+	
 	<!-- 총도서 -->
 	<select id="totalBook" resultType="_int">
 		SELECT COUNT(*) FROM BOOK
@@ -147,6 +159,7 @@
 	</update>
 	
 	<!-- resultMap -->
+	
 	<!-- book -->
 	<resultMap type="book" id="bookMap">
 		<id column="book_no" property="bookNo"/>
@@ -176,6 +189,7 @@
 		</collection>
 	</resultMap>
 			
+	<!-- Lending -->		
 	<resultMap type="com.kh.klibrary.member.model.vo.Lending" id="lending">
 		<id column="LENDING_NO" property="lendingNo"/>
 		<result column="USER_ID" property="userId"/>
@@ -211,6 +225,17 @@
 				<result column="BOOK_KDC" property="bookKdc"/>
 			</collection>
 		</collection>
+	</resultMap>
+	
+	<!-- Lending History -->
+	<resultMap id="lenHisMap" type="com.kh.klibrary.member.model.vo.LendingHistory">
+		<id column="lending_history_no" property="lendingHistoryNo"/>
+		<result column="lending_no" property="lendingNo"/>
+		<result column="lending_date" property="lendingDate"/>
+		<result column="return_date" property="returnDate"/>
+		<result column="book_extend" property="bookExtend"/>
+		<result column="book_no" property="bookNo"/>
+		<result column="user_id" property="userId"/>
 	</resultMap>
 	
 </mapper>

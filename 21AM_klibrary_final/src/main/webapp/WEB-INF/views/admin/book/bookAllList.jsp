@@ -100,7 +100,7 @@
                                 <th style="width:80px;">대출여부</th>
                             </tr>
                             <c:forEach var="b" items="${list }">
-                            <tr class="bookInfo">
+                            <tr class="bookInfo" onclick="fn_bookDetail(this);" style="cursor:pointer;">
                                 <td><input type="checkbox" name="checkFl" class="checkFl" value="${b.bookNo }" /></td>
                                 <td><c:out value="${b.bookNo }"/></td>
                                 <td><c:out value="${b.isbnNo }"/></td>
@@ -233,6 +233,12 @@
 				$("#contentTabWrap").html(data);
 			}    				
     	})
+    }
+    
+    // 도서 상세 이동 
+    const fn_bookDetail = function(e){
+    	let bookNo = $(e).find("input:checkbox").val();
+    	location.assign("${path}/admin/book/bookDetail.do?bookNo="+bookNo);
     }
     
     

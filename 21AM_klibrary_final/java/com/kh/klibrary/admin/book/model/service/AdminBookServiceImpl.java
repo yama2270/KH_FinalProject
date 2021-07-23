@@ -1,6 +1,5 @@
 package com.kh.klibrary.admin.book.model.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,10 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.klibrary.admin.book.model.dao.AdminBookDao;
-import com.kh.klibrary.admin.common.SplitHangeulToConsonant;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Lending;
+import com.kh.klibrary.member.model.vo.LendingHistory;
 
 @Service
 public class AdminBookServiceImpl implements AdminBookService {
@@ -84,6 +83,16 @@ public class AdminBookServiceImpl implements AdminBookService {
 	@Override
 	public int totalKeyBook(Map param) {
 		return dao.totalKeyBook(param,session);
+	}
+	
+	@Override
+	public Book selectBook(String bookNo) {
+		return dao.selectBook(bookNo,session);
+	}
+	
+	@Override
+	public List<LendingHistory> selectLenHis(String bookNo){
+		return dao.selectLenHis(bookNo,session); 
 	}
 	
 	// 도서 Detail 검색 

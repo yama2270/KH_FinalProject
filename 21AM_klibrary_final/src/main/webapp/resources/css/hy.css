@@ -649,10 +649,17 @@
   line-height : 250px;
 }
 
+.booDetInp {
+	border:none;
+	width:250px;
+	height:35px;
+}
+
 #bookDetTab {
   width : 850px;
   height : 250px;
   float : right;
+  table-layout:fixed;
 }
 
 #bookDetTab tr td {
