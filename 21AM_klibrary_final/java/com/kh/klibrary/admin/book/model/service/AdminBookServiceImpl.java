@@ -31,32 +31,33 @@ public class AdminBookServiceImpl implements AdminBookService {
 	
 	// 도서등록 
 	@Override
-	@Transactional(rollbackFor= {Exception.class})
-	public int insertBook(BookInfo bookInfo,String newBook) throws RuntimeException{
+	@Transactional
+	public int insertBook(BookInfo bookInfo,String newBook) {
 		
 		int result = 0;
 		
 		// isbn 등록
-		if(newBook.equals("true")) {
-			result += dao.insertBookInfo(bookInfo,session);
-			
-			// Parsing 처리
-//			Map m = new HashMap();
-//			SplitHangeulToConsonant p = new SplitHangeulToConsonant();
-//			m.put("isbnNo", bookInfo.getIsbnNo());
-//			m.put("bookParName",p.splitHangeulToConsonant(bookInfo.getBookName()));
-//			m.put("bookParWriter",p.splitHangeulToConsonant(bookInfo.getBookWriter()));
-//			m.put("bookParCompany",p.splitHangeulToConsonant(bookInfo.getBookCompany()));
-			
-//			result += dao.insertBookParsing(m,session);
-		}
+		try {
+			if(newBook.equals("true")) {
+				result += dao.insertBookInfo(bookInfo,session);
+				
+				// Parsing 처리
+	//			Map m = new HashMap();
+	//			SplitHangeulToConsonant p = new SplitHangeulToConsonant();
+	//			m.put("isbnNo", bookInfo.getIsbnNo());
+	//			m.put("bookParName",p.splitHangeulToConsonant(bookInfo.getBookName()));
+	//			m.put("bookParWriter",p.splitHangeulToConsonant(bookInfo.getBookWriter()));
+	//			m.put("bookParCompany",p.splitHangeulToConsonant(bookInfo.getBookCompany()));
+				
+	//			result += dao.insertBookParsing(m,session);
+			}
 		
 		// book 등록 
-		try {
 			result += dao.insertBook(bookInfo,session);
-		} catch(RuntimeException e) {
+		}	catch(RuntimeException e) {
 			throw new RuntimeException("작성실패");
 		}
+		
 		return result;
 	}
 	

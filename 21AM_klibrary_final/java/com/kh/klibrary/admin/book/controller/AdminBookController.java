@@ -129,17 +129,19 @@ public class AdminBookController {
 		return "admin/book/bookWishList";
 	}
 
-	//
+	// 도서 등록 
 	@RequestMapping("/admin/book/registerBook.do")
 	public String registerBook() {
 		return "admin/book/registerBook";
 	}
-
+	
+	// 도서상세 
 	@RequestMapping("/admin/book/bookDetail.do")
 	public String bookDetail() {
 		return "admin/book/bookDetail";
 	}
-
+	
+	// 도서 ISBN 검색 
 	@RequestMapping("/admin/book/searchIsbn.do")
 	public String searchIsbn() {
 		return "admin/book/searchIsbn";
