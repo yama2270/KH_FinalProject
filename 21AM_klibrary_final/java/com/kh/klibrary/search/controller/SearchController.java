@@ -287,15 +287,18 @@ public ModelAndView interestingbook (
 					System.out.println(key +":"+param.get(key));
 				}
 				
+				 System.out.println(init);
 			 
 			
 			// 초성 배열로 변경 
-			if(init!=null||init!="undefined"){
-				param.put("init",((String)param.get("init")).split(","));
-			}else {
+			
+			if(init==null||init=="undifined") {
 				param.put("init", null);
 				init="undefined";
+			}else {
+				param.put("init",init.split(","));
 			}
+						
 			System.out.println(publishYear1);
 			if(bookCategory==""||bookCategory=="undefined") {
 				param.put("book_Category",null);
