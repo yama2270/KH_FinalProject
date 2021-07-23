@@ -47,7 +47,7 @@ public class AdminBookController {
 	@RequestMapping("/admin/book/searchKeyBook.do")
 	public ModelAndView searchTypeBook(@RequestParam Map param, 
 							   @RequestParam(required=false,defaultValue="1") int cPage,
-							   @RequestParam(required=false,defaultValue="2") int numPerPage,ModelAndView mv) {
+							   @RequestParam(required=false,defaultValue="10") int numPerPage,ModelAndView mv) {
 		
 		// 도서 key 검색
 		List<Book> list = service.searchKeyBook(param,cPage,numPerPage);
@@ -74,11 +74,11 @@ public class AdminBookController {
 			) {
 		
 		// 파라미터 데이터 체크 
-		Iterator iterator = param.keySet().iterator();
-		while(iterator.hasNext()) {
-			String key = (String)iterator.next();
-			System.out.println(key +":"+param.get(key));
-		}
+//		Iterator iterator = param.keySet().iterator();
+//		while(iterator.hasNext()) {
+//			String key = (String)iterator.next();
+//			System.out.println(key +":"+param.get(key));
+//		}
 		
 		// 초성 배열로 변경 
 		if(!((String)param.get("iniArr")).equals("")){
@@ -92,7 +92,6 @@ public class AdminBookController {
 		
 		mv.addObject("list", list);
 		mv.addObject("pageBar", pageBar);
-		mv.addObject("param", param);
 		
 		mv.setViewName("admin/book/searchDetBookAjax");
 		

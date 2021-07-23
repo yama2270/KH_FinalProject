@@ -214,6 +214,29 @@
     	})
     })
     
+    // 상세검색 페이징 함수 
+    const fn_searchDet = function(cPage){
+    	
+    	// 데이터 받아오기 
+    	let inicheck = $("input:checkbox[name=detIni]:checked").val();
+    	let detBookName = $("#detBookName").val();
+    	let detIsbn = $("#detIsbn").val();
+    	let detWriter = $("#detWriter").val();
+    	let detPublisher = $("#detPublisher").val();
+    	let detLow = $("#detLow").val();
+    	let detHigh = $("#detHigh").val();
+    	
+    	$.ajax({
+	   		url:"${path}/admin/book/searchDetBook.do?cPage="+cPage+"&iniArr="+inicheck+"&detBookName="+detBookName+"&detIsbn="+detIsbn+"&detWriter="+detWriter+"&detPublisher="+detPublisher+"&detLow="+detLow+"&detHigh="+detHigh,
+			success:function(data){
+				console.log(data);
+				$("#contentTabWrap").html(data);
+			}    				
+    	})
+    }
+    
+    
+    
 	</script>
 
 <jsp:include page="/WEB-INF/views/admin/common/footer.jsp"/>
