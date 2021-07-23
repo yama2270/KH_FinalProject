@@ -55,6 +55,22 @@ public class SearchDaoImpl implements SearchDao{
 		return session.selectOne("search.selectLending", bookNo);
 	}
 	
+	
+	
+	
+	
+	@Override
+	public List<BookInfo> selectDetailSearch(SqlSessionTemplate session, Map param,int cPage, int searchNumber){
+		String ISBN=((String)param.get("isbnNo"));
+		param.put("isbnNo", ISBN);
+		return session.selectList("search.selectDetail", param,new RowBounds((cPage-1)*searchNumber,searchNumber));
+	}
+	
+	@Override
+	public int selectDetailSearchCount(SqlSessionTemplate session, Map param) {
+		return session.selectOne("search.selectDetailCount",param);
+	}
+	
 
 	public List<BookInfo> selectBookInfoList(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub

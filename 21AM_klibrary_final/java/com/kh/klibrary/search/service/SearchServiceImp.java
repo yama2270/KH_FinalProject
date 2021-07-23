@@ -145,8 +145,17 @@ public Lending selectLending(String bookNo) {
 	 
 	   }
 
+	 @Override
+	 public List<BookInfo> selectDetailSearch(Map param,int cPage, int searchNumber){
+		 
+		 return dao.selectDetailSearch(session,param,cPage, searchNumber);
+	 }
 
-	
+	 @Override
+	 public int selectDetailSearchCount(Map param){
+		 
+		 return dao.selectDetailSearchCount(session,param);
+	 }
 	
 	
 	
