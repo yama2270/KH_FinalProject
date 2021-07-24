@@ -30,7 +30,7 @@ String pageId = request.getParameter("pageId");
   </ul>
 </div>
 <br><br><br>
-<form method="post" id="bookDetailSearchForm" action="${path}/searchpage/detailSearch">
+<form method="get" id="bookDetailSearchForm" action="${path}/searchpage/detailSearch">
 
  
    <table id="bookDetailSearchTbl">
