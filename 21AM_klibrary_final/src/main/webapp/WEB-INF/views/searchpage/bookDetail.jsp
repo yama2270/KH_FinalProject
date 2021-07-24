@@ -6,9 +6,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/> 
 <%   request.setCharacterEncoding("UTF-8");
-String pageId = request.getParameter("pageId");
+/* String pageId = request.getParameter("pageId");
 String keyword = request.getParameter("keyword");
-String category = request.getParameter("category");
+String category = request.getParameter("category"); */
+
+
 %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -181,9 +183,11 @@ String category = request.getParameter("category");
         <a href="" id="addBasketBatchBtn" class="btn down themeBtn">관심도서담기</a>
         <a href="" id="btnView" class="btn down themeBtn">관심도서보기</a>
     
-    
+        
+        <a href="javascript:history.back();" id="listBtn" class="btn down themeBtn">목록으로</a>
+       <%--  <%if( keyword!=null) {%>
         <a href="${path}/searchpage/bookTotalSearch?keyword=<%=keyword %>&category=<%=category %>" id="listBtn" class="btn down themeBtn">목록으로</a>
-    
+        <%} %> --%>
         </div>
 </div>
 <br><br><br><br>
