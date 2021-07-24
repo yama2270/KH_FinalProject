@@ -285,11 +285,12 @@ public ModelAndView interestingbook (
 			
 			// 초성 배열로 변경 
 			
-			if(init==null) {
-				param.put("init", null);
+			if(init=="44700,55203") {
+				System.out.println("init테스트"+init);			
 				
 			}else {
 				param.put("init",init.split(","));
+				System.out.println("init테스트2"+init);
 			}
 						
 			 
@@ -297,12 +298,24 @@ public ModelAndView interestingbook (
 		   	
 	
 			    List<BookInfo> bookList1 =service.selectDetailSearch(param,cPage,searchNumber);
+			    System.out.println("bookList1테스트"+bookList1);
 			    int bookListCount=service.selectDetailSearchCount(param);
-		
+			    System.out.println("bookListCount테스트"+bookListCount);
 		
 			  mv.addObject("totalData", bookListCount);
 			  mv.addObject("list",bookList1);
-			  mv.addObject("pageBar",PageFactory3.getPageBar(bookListCount, cPage, searchNumber)); 
+			  mv.addObject("pageBar",PageFactory3.getPageBar(bookListCount, cPage, searchNumber)); 			  
+			  mv.addObject("init",init);
+			  mv.addObject("book_Category",(String)param.get("book_Category"));
+			  mv.addObject("bookName",(String)param.get("bookName"));
+			  mv.addObject("author",(String)param.get("author"));
+			  mv.addObject("publisher",(String)param.get("publisher"));
+			  mv.addObject("isbnNo",(String)param.get("isbnNo"));
+			  mv.addObject("publishYear",(String)param.get("publishYear"));
+			  mv.addObject("publishYear2",(String)param.get("publishYear2"));
+			  mv.addObject("searchNumber",(String)param.get("searchNumber"));
+			  
+			  
 			  mv.setViewName("/searchpage/bookDetailSearch");
 			     
 	return mv;

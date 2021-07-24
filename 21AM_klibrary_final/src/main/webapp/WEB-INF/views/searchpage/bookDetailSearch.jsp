@@ -32,8 +32,7 @@ String pageId = request.getParameter("pageId");
 <br><br><br>
 <form method="post" id="bookDetailSearchForm" action="${path}/searchpage/detailSearch">
 
-<c:choose> 
-   <c:when test="${empty list }">
+ 
    <table id="bookDetailSearchTbl">
         <tr>
           <td>
@@ -42,24 +41,24 @@ String pageId = request.getParameter("pageId");
           <td id="bookCategorySelectTd" colspan="2">
             <span>
              <select id="book_Category" name="book_Category" style="height:30px;">
-              <option selected>도서 대분류</option>
-              <option value="000">총류</option>
-              <option value="100">철학</option>
-              <option value="200">종교</option>
-              <option value="600">예술</option>
-              <option value="700">언어</option>
-              <option value="800">문학</option>
-              <option value="900">역사</option>
-              <option value="843">소설</option>
-              <option value="101">이론 및 철학의 효용</option>
-              <option value="004">컴퓨터과학</option>
-              <option value="005">프로그래밍</option>              
-              <option value="209">종교사</option>
-              <option value="603">미술사전</option>
-              <option value="609">미술사</option>
-              <option value="704">강연집</option>
-              <option value="803">사전</option>
-              <option value="902">역사보조학</option>
+              <option ${book_Category == "도서 대분류"?"selected" : "" }>도서 대분류</option>
+              <option value="000" ${book_Category == "000"?"selected" : "" }>총류</option>
+              <option value="100" ${book_Category == "100"?"selected" : "" }>철학</option>
+              <option value="200" ${book_Category == "200"?"selected" : "" }>종교</option>
+              <option value="600" ${book_Category == "600"?"selected" : "" }>예술</option>
+              <option value="700" ${book_Category == "700"?"selected" : "" }>언어</option>
+              <option value="800" ${book_Category == "800"?"selected" : "" }>문학</option>
+              <option value="900" ${book_Category == "900"?"selected" : "" }>역사</option>
+              <option value="843" ${book_Category == "843"?"selected" : "" }>소설</option>
+              <option value="101" ${book_Category == "101"?"selected" : "" }>이론 및 철학의 효용</option>
+              <option value="004" ${book_Category == "004"?"selected" : "" }>컴퓨터과학</option>
+              <option value="005" ${book_Category == "005"?"selected" : "" }>프로그래밍</option>              
+              <option value="209" ${book_Category == "209"?"selected" : "" }">종교사</option>
+              <option value="603" ${book_Category == "603"?"selected" : "" }>미술사전</option>
+              <option value="609" ${book_Category == "609"?"selected" : "" }>미술사</option>
+              <option value="704" ${book_Category == "704"?"selected" : "" }>강연집</option>
+              <option value="803" ${book_Category == "803"?"selected" : "" }>사전</option>
+              <option value="902" ${book_Category == "902"?"selected" : "" }>역사보조학</option>
               
               <!-- <option value="socialScience">사회과학</option>
               <option value="naturalScience">자연과학</option>
@@ -85,20 +84,21 @@ String pageId = request.getParameter("pageId");
             초성검색
           </td>
           <td id="alphabetCheckTd" colspan="2">
-            <label><input type="radio" name="init" value="44700,45207">ㄱ</label>
-            <label><input type="radio" name="init" value="45208,45795">ㄴ</label>
-            <label><input type="radio" name="init" value="45796,46971">ㄷ</label>
-            <label><input type="radio" name="init" value="46972,47559">ㄹ</label>
-            <label><input type="radio" name="init" value="47560,48147">ㅁ</label>
-            <label><input type="radio" name="init" value="48148,49323">ㅂ</label>
-            <label><input type="radio" name="init" value="49324,50499">ㅅ</label>
-            <label><input type="radio" name="init" value="50450,51087">ㅇ</label>
-            <label><input type="radio" name="init" value="51088,52263">ㅈ</label>
-            <label><input type="radio" name="init" value="52264,52851">ㅊ</label>
-            <label><input type="radio" name="init" value="52852,53439">ㅋ</label>
-            <label><input type="radio" name="init" value="53440,54027">ㅌ</label>
-            <label><input type="radio" name="init" value="54028,54615">ㅍ</label>
-            <label><input type="radio" name="init" value="54616,55203">ㅎ</label>
+            <label><input type="radio" name="init" value="44700,55203"   ${empty init || init == "44700,55203" ? "checked" : ""}>선택안함</label>&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="init" value="44700,45207" ${init == "44700,45207" ?"checked" : "" }>ㄱ</label>
+            <label><input type="radio" name="init" value="45208,45795" ${init == "45208,45795" ?"checked" : "" }>ㄴ</label>
+            <label><input type="radio" name="init" value="45796,46971" ${init == "45796,46971" ?"checked" : "" }>ㄷ</label>
+            <label><input type="radio" name="init" value="46972,47559" ${init == "46972,47559" ?"checked" : "" }>ㄹ</label>
+            <label><input type="radio" name="init" value="47560,48147" ${init == "47560,48147" ?"checked" : "" }>ㅁ</label>
+            <label><input type="radio" name="init" value="48148,49323" ${init == "48148,49323" ?"checked" : "" }>ㅂ</label>
+            <label><input type="radio" name="init" value="49324,50499" ${init == "49324,50499" ?"checked" : "" }>ㅅ</label>
+            <label><input type="radio" name="init" value="50450,51087" ${init == "50450,51087" ?"checked" : "" }>ㅇ</label>
+            <label><input type="radio" name="init" value="51088,52263" ${init == "51088,52263" ?"checked" : "" }>ㅈ</label>
+            <label><input type="radio" name="init" value="52264,52851" ${init == "52264,52851" ?"checked" : "" }>ㅊ</label>
+            <label><input type="radio" name="init" value="52852,53439" ${init == "52852,53439" ?"checked" : "" }>ㅋ</label>
+            <label><input type="radio" name="init" value="53440,54027" ${init == "53440,54027" ?"checked" : "" }>ㅌ</label>
+            <label><input type="radio" name="init" value="54028,54615" ${init == "54028,54615" ?"checked" : "" }>ㅍ</label>
+            <label><input type="radio" name="init" value="54616,55203" ${init == "54616,55203" ?"checked" : "" }>ㅎ</label>
           </td>
          
  
@@ -109,7 +109,7 @@ String pageId = request.getParameter("pageId");
                도서명
             </td>
             <td colspan="2">
-           <input type="text" name="bookName" placeholder="내용을 입력해주세요" id="inputtext2">
+           <input type="text" name="bookName" placeholder="내용을 입력해주세요" id="inputtext2" value="${bookName }">
             </td>           
 
         </tr>
@@ -118,7 +118,7 @@ String pageId = request.getParameter("pageId");
               저자명
             </td>
             <td colspan="2">
-               <input type="text" name="author" placeholder="내용을 입력해주세요" id="inputtext2">
+               <input type="text" name="author" placeholder="내용을 입력해주세요" id="inputtext2" value="${author }">
                 
             </td>  
 
@@ -128,7 +128,7 @@ String pageId = request.getParameter("pageId");
                 출판사
             </td>
             <td colspan="2">
-                <input type="text" name="publisher" placeholder="내용을 입력해주세요" id="inputtext2">
+                <input type="text" name="publisher" placeholder="내용을 입력해주세요" id="inputtext2" value="${publisher }">
                 
             </td>
 
@@ -138,7 +138,7 @@ String pageId = request.getParameter("pageId");
               ISBN
             </td>
             <td colspan="2">
-                <input type="text" name="isbnNo" placeholder="내용을 입력해주세요" id="inputtext2">
+                <input type="text" name="isbnNo" placeholder="내용을 입력해주세요" id="inputtext2" value="${isbnNo }">
                 
             </td>
            
@@ -149,7 +149,7 @@ String pageId = request.getParameter("pageId");
             가격
           </td>
           <td colspan="2">
-              <input type="text" name="price" placeholder="내용을 입력해주세요" id="inputtext2">
+              <input type="text" name="price" placeholder="내용을 입력해주세요" id="inputtext2" value="${price }">
               
           </td>
           
@@ -162,14 +162,14 @@ String pageId = request.getParameter("pageId");
             </td>
             <td >
            
-            <input id="publishYear1" type="date" name="publishYear" placeholder="발행년(시작)">-
+            <input id="publishYear1" type="date" name="publishYear" placeholder="발행년(시작)" value="${publishYear }">-
                
                
             </td>
             
              <td >
               
-                <input id="publishYear2" type="date" name="publishYear2" placeholder="발행년(끝)">
+                <input id="publishYear2" type="date" name="publishYear2" placeholder="발행년(끝)" value="${publishYear2}">
                 
             </td>
             
@@ -181,8 +181,8 @@ String pageId = request.getParameter("pageId");
 
             <br><br><br>
             <div id="buttonContainer">
-            <button id="button21" type="button" onclick="">입력초기화</button>
-            <button id="button21" type="submit" onclick="fn_searchDetail()">검색</button>
+            <button id="button21" type="button" onclick="fn_searchReset()">입력초기화</button>
+            <button id="button21" type="submit" >검색</button>
             </div>
             <br><br><br>
 
@@ -194,11 +194,9 @@ String pageId = request.getParameter("pageId");
 
    </table>
    
-   </c:when>
-  </c:choose>
 </form>
 
-<c:choose> 
+<%-- <c:choose> 
    	<c:when test="${not empty list }">
 		<div class="book-search-container">
 		  <div class="populor-words">
@@ -234,10 +232,10 @@ String pageId = request.getParameter("pageId");
 		 </div>
 	</c:when>
 </c:choose>
-<br><br><br><br>
+<br><br><br><br> --%>
 
 <form id="searchResultForm" method="get" action="interestingbook">
-<table id=searchResultTable2>
+<table id=searchResultTable2 >
 
  <c:choose> 
    	<c:when test="${not empty list }">
@@ -253,14 +251,7 @@ String pageId = request.getParameter("pageId");
         </div>
   
         <div class="selectForm3">
-        <select id="searchType" title="검색선택" name="category">
-            <option value="all" selected="selected">전체</option>
-            <option value="book_name" >도서명</option>
-          <option value="book_writer">저자</option>
-          <option value="book_company">발행자</option>
-          <option value="isbnNo">ISBN</option>
-  
-        </select>
+       
         <select id="searchNumber" title="검색건수" name="searchNumber">
           <option value=10 ${searchNumber == 10? "selected":""}>10건</option>
           <option value=20 ${searchNumber == 20? "selected":""}>20건</option>
@@ -402,117 +393,52 @@ String pageId = request.getParameter("pageId");
 
 </body>
 	<script>
- /*  $(function() {
-            $('#book_Category').change(function() {
-                var general = ["총류일반", "도서관,정보학", "일반백과사전","일반전집,총서","필사본,희귀본"];
-                var philosophy = ["철학일반", "고대,중세,동양철학", "서양철학(현대)","형이상학","심리학","윤리학"];
-                var religion = ["기독교", "자연신학", "불교 및 한국종교","이슬람교","조로아스터교"];
-                var socialScience = ["사회과학일반", "정치학", "법학","사회복지","무역","일반통계학","경제학","행정학","교육학"];
-                var naturalScience = ["수학일반", "천문학", "물리학","화학","지구과학","생물학","식물학","동물학"];
-                var technologyScience = ["기술과학일반", "일반공학", "화학공학","의학","농업","제조","건축"];
-                var art = ["예술일반", "그림,장식예술", "판화,판각","음악","도시,풍경예술","조각","회화","사진술"];
-                var language = ["어학일반", "영어", "불어","스페인,포르투갈어","고대그리스어","한국어","독어","이태리어","기타언어"];
-                var history = ["지리,역사일반", "유럽역사", "아프리카역사","남아메리카 역사","아시아 역사","북아메리카 역사"];
-                var changeItem;
-                if (this.value == "general") {
-                    changeItem = general;
-                } else if (this.value == "philosophy") {
-                    changeItem = philosophy;
-                }
-                else if (this.value == "religion") {
-                    changeItem = religion;
-                }
-                else if (this.value == "socialScience") {
-                    changeItem = socialScience;
-                }
-                else if (this.value == "naturalScience") {
-                    changeItem = naturalScience;
-                }
-                else if (this.value == "technologyScience") {
-                changeItem = technologyScience;
-                }
-                else if (this.value == "art") {
-                changeItem = art;
-                }
-                else if (this.value == "language") {
-                changeItem = language;
-              }
-                else if (this.value == "history") {
-                changeItem = history;
-                }
-                
-                $('#book_Category2').empty();
-                for (var count = 0; count < changeItem.length; count++) {
-                    var option = $("<option>" + changeItem[count] + "</option>");
-                    $('#book_Category2').append(option);
 
-                }
-            });
-        }); */
-       function fn_searchDetail(){
-        	 $("#bookDetailSearchTbl").hide(); 
+   
+        function fn_searchBook2(){
         	
-        	/* console.log("test1")
-        	let bookCategory=$("#book_Category option:selected").val();
+            let searchNumber=$("#searchNumber").val();
+        	
+        	/* const formElement = $("#bookDetailSearchForm");
+        	const table = $("#bookDetailSearchTbl");*/
+        	
+        	
+        	let bookCategory=$("select[name=book_Category]").val();
         	let init=$('input[name="init"]:checked').val();
         	let bookName=$('input[name=bookName]').val();
         	let author=$('input[name=author]').val();
         	let publisher=$('input[name=author]').val();
+        	
         	let isbnNo=$('input[name=isbnNo]').val();
         	let price=$('input[name=price]').val();
-        	let publishYear1=$('input[name=publishYear1]').val();
+        	let publishYear1=$('input[name=publishYear]').val();
         	let publishYear2=$('input[name=publishYear2]').val();
         	console.log("test2")
         	console.log("bookcategory="+bookCategory+"init="+init+"bookNane="+bookName+"author="+author+"publisher="+publisher+"isbnNo="+isbnNo+"price="+price+"publishYear1"+publishYear1+"publishYear2="+publishYear2)
         	
-        	let str="${path}/searchpage/detailSearch?";
-        	if (bookCategory!=null && bookCategory!=""){
+        	let str="${path}/searchpage/detailSearch?";        	
         		str+="bookCategory="+bookCategory;
-        	}else if (init!=null && init!=""){
+        	console.log(str);        
         		str+="&init="+init;
-        	}else if(bookName!=null && bookName!=""){
+        		console.log(str);        	
         		str+="&bookName="+bookName;
-        	}else if(author!=null && author!=""){
+        		console.log(str);       	
         		str+="&author="+author;
-        	}else if(publisher!=null && publisher!=""){
+        		console.log(str);       	
         		str+="&publisher="+publisher;
-        	}else if(isbnNo!=null && isbnNo!=""){
+        		console.log(str);       	
         		str+="&isbnNo="+isbnNo;
-        	}else if(price!=null && price !=""){
+        		console.log(str);        	
         		str+="&price="+price;
-        	}else if(publishYear1 !=null && publishYear1 !=""){
-        		str+="&publishYear1="+publishYear1;     		
-        	}else if(publishYear2 !=null && publishYear2 != ""){
+        		console.log(str);        	
+        		str+="&publishYear="+publishYear1;
+        		console.log(str);        	
         		str+="&publishYear2="+publishYear2;
-        	}else if(searchNumber !=null && pageNo != null && totalData2 != null){
+        		console.log(str);        	
         	
-        	str+="&searchNumber="+searchNumber+"&cPage="+pageNo+"&totalData="+totalData2
-        	
-        	}
-        	location.href=str; */
-        	       	
-        	
-        }
-       
-  
-        
-        function fn_searchBook(){
-        	let category=$("#searchKey").val();
-        	let keyword=document.getElementById('inputtext').value;
-        	
-        	console.log(keyword);
-        	console.log(category);
-        	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category;
-        	
-        	
-        }
-
-        function fn_searchBook2(){
-        	let keyword=$("#inputtext").val();
-        	let category=$("#searchType").val();
-        	let searchNumber=$("#searchNumber").val();
-        	
-        	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category+"&searchNumber="+searchNumber;
+        	str+="&searchNumber="+searchNumber+"&cPage="+1;
+        	      
+        	location.href=str;
         	
         	
         } 
@@ -528,28 +454,67 @@ String pageId = request.getParameter("pageId");
         	
         }
 
+       
+        
         function fn_paging2(pageNo,totalData,numPerpage){
-        	console.log(totalData);
+        	
         	let totalData2=parseInt(totalData);
         	let searchNumber=$("#searchNumber").val();
         	
-        	const formElement = $("#bookDetailSearchForm");
-        	const table = $("#bookDetailSearchTbl");
-        	
-        	let tr=$("<tr>");
-        	let cPage=$("<td>").html(pageNo);
-        	cPage.attr("name","cPage");
-        	let searchNumberTd=$("<td>").html(searchNumber);
-        	searchNumberTd.attr("name","searchNumber");
-        	
-        	tr.append(cPage).append(searchNumberTd);
-        	table.append(tr);
-        	
-        	formElement.attr("action","${path}/searchpage/detailSearch")
-        	formElement.submit();
+        	/* const formElement = $("#bookDetailSearchForm");
+        	const table = $("#bookDetailSearchTbl");*/
         	
         	
+        	let bookCategory=$("select[name=book_Category]").val();
+        	let init=$('input[name="init"]:checked').val();
+        	let bookName=$('input[name=bookName]').val();
+        	let author=$('input[name=author]').val();
+        	let publisher=$('input[name=author]').val();
         	
+        	let isbnNo=$('input[name=isbnNo]').val();
+        	let price=$('input[name=price]').val();
+        	let publishYear1=$('input[name=publishYear]').val();
+        	let publishYear2=$('input[name=publishYear2]').val();
+        	console.log("test2")
+        	console.log("bookcategory="+bookCategory+"init="+init+"bookNane="+bookName+"author="+author+"publisher="+publisher+"isbnNo="+isbnNo+"price="+price+"publishYear1"+publishYear1+"publishYear2="+publishYear2)
+        	
+        	let str="${path}/searchpage/detailSearch?";        	
+        		str+="bookCategory="+bookCategory;
+        	console.log(str);        
+        		str+="&init="+init;
+        		console.log(str);        	
+        		str+="&bookName="+bookName;
+        		console.log(str);       	
+        		str+="&author="+author;
+        		console.log(str);       	
+        		str+="&publisher="+publisher;
+        		console.log(str);       	
+        		str+="&isbnNo="+isbnNo;
+        		console.log(str);        	
+        		str+="&price="+price;
+        		console.log(str);        	
+        		str+="&publishYear="+publishYear1;
+        		console.log(str);        	
+        		str+="&publishYear2="+publishYear2;
+        		console.log(str);        	
+        	
+        	str+="&searchNumber="+searchNumber+"&cPage="+pageNo+"&totalData="+totalData2
+        	      
+        	location.href=str;
+        	
+        	
+        }
+        
+        function fn_searchReset(){
+        	$("#book_Category option:eq(0)").prop("selected", true);
+        	$("#book_Category option:eq(0)").prop("selected", true);
+        	$('input[name="init"]').removeAttr('checked');
+        	
+        	$('input[name="init"]')[0].checked = true;
+   
+   		    document.getElementById('inputtext2').value="";
+   		    document.getElementById('publishYear1').value="";
+   		    document.getElementById('publishYear2').value="";  		
         	
         }
 
@@ -585,7 +550,7 @@ String pageId = request.getParameter("pageId");
 		  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'||(window.location.href).includes('http://localhost:9090/klibrary/searchpage/bookTotalSearch')){
 			  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
 			 
-		  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'){
+		  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'||(window.location.href).includes('detailSearch') ){
 			
 			  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
 			

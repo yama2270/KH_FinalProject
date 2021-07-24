@@ -74,7 +74,7 @@
 				AND BOOK_KDC LIKE '%'||#{book_Category}||'%' 
 			</if>	
 									
-				<if test="init != null and init != ''">
+				<if test="init != null and init != '' and init !='선택안함'">
 				   AND  BOOK_NAME 
 					<foreach collection="init" item="i" open="BETWEEN" close="" separator="AND" >
 							NCHR(#{i}) 
@@ -134,8 +134,9 @@
 			<if test="publisher != null and publisher != ''">
 				AND BOOK_COMPANY LIKE '%'||#{publisher}||'%' 
 			</if>	
-			<if test="ISBN != null and ISBN != '' ">
-				AND ISBN_NO LIKE '%'||#{ISBN}||'%'
+			
+			<if test="isbnNo != null and isbnNo != '' ">
+				AND ISBN_NO LIKE '%'||#{isbnNo}||'%'
 			</if>
 
 			<if test="price != null and price != '' ">
