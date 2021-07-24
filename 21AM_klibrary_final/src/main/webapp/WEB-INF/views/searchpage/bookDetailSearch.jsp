@@ -30,7 +30,10 @@ String pageId = request.getParameter("pageId");
   </ul>
 </div>
 <br><br><br>
-<form id="bookDetailSearchForm" action="${path}/searchpage/detailSearch">
+<form method="post" id="bookDetailSearchForm" action="${path}/searchpage/detailSearch">
+
+<c:choose> 
+   <c:when test="${empty list }">
    <table id="bookDetailSearchTbl">
         <tr>
           <td>
@@ -179,7 +182,7 @@ String pageId = request.getParameter("pageId");
             <br><br><br>
             <div id="buttonContainer">
             <button id="button21" type="button" onclick="">입력초기화</button>
-            <button id="button21" type="submit">검색</button>
+            <button id="button21" type="submit" onclick="fn_searchDetail()">검색</button>
             </div>
             <br><br><br>
 
@@ -190,7 +193,211 @@ String pageId = request.getParameter("pageId");
 
 
    </table>
+   
+   </c:when>
+  </c:choose>
 </form>
+
+<c:choose> 
+   	<c:when test="${not empty list }">
+		<div class="book-search-container">
+		  <div class="populor-words">
+		  
+		    <span>인기검색어<i class="fa fa-search"></i></span>&nbsp;&nbsp;
+		    <span>책1</span>&nbsp;
+		    <span>책2</span>&nbsp;
+		    <span>책3</span>
+		    
+		  </div>
+
+		  <form id="bookSearchForm" action="${path}/searchpage/bookTotalSearch">
+		
+		    <div class="searchSelectDiv">
+		      <label for="searchKey" class="blind"></label>
+		      <select id="searchKey" name="category" title="검색 선택">
+		        <option value="all" selected>전체</option>
+		        <option value="book_name" >도서명</option>
+		        <option value="book_writer">저자</option>
+		        <option value="book_company">발행자</option>
+		        <option value="isbnNo">ISBN</option>
+		        
+		
+		      </select>
+		
+		    </div>
+		      
+		    <input type="text" placeholder="  검색" name="keyword" id="inputtext" onkeypress="if(event.keyCode == 13){fn_searchBook(); return false;}"    
+		    value="">
+		    <button id="searchButton" type="submit" ><i class="fa fa-search"></i>검색</button>
+		  </form>
+		
+		 </div>
+	</c:when>
+</c:choose>
+<br><br><br><br>
+
+<form id="searchResultForm" method="get" action="interestingbook">
+<table id=searchResultTable2>
+
+ <c:choose> 
+   	<c:when test="${not empty list }">
+   	
+  
+  <tr>
+    <th colspan="5" id="searchCaptionTh2">
+      <div style="text-align:center">
+        <div id="searchCaption22">
+            <p>            
+             ${totalData }건  이 검색되었습니다.             
+             </p>
+        </div>
+  
+        <div class="selectForm3">
+        <select id="searchType" title="검색선택" name="category">
+            <option value="all" selected="selected">전체</option>
+            <option value="book_name" >도서명</option>
+          <option value="book_writer">저자</option>
+          <option value="book_company">발행자</option>
+          <option value="isbnNo">ISBN</option>
+  
+        </select>
+        <select id="searchNumber" title="검색건수" name="searchNumber">
+          <option value=10 ${searchNumber == 10? "selected":""}>10건</option>
+          <option value=20 ${searchNumber == 20? "selected":""}>20건</option>
+          <option value=30 ${searchNumber == 30? "selected":""}>30건</option>
+          <option value=40 ${searchNumber == 40? "selected":""}>40건</option>
+          <option value=50 ${searchNumber == 50? "selected":""}>50건</option>
+  
+        </select>
+        <button id="button44" type="button" onclick="fn_searchBook2();" style="border:none">확인</button>
+      </div>
+     </div>
+   </th>
+   </tr>
+   
+   <tr>
+    <td colspan="5">
+      <hr>
+      
+      <input type="checkbox" name="bookSelect" id="allCheck" onclick="selectAll(this)" value="all">
+      <button id="button22" type="submit" name="bookCheck" value="" >관심도서담기</button>
+      <hr>
+   </td>
+  </tr>
+ 		  
+     </c:when>
+     </c:choose>
+   
+    <c:choose> 
+   	<c:when test="${not empty list }">
+   		<c:forEach var="b" items="${list }">
+   
+ 
+ 
+  
+  <tr>
+      <td id="bookCheckTd" rowspan="2" >
+          <input type="checkbox" name="bookCheck" id="bookCheck" value="${b.isbnNo }"> 
+    
+      </td>
+    <td id="imgContainerDiv"  rowspan="2" >
+
+          
+            
+            <img id="totalSearchbookImg"  src="${b.bookImg }" alt="${b.bookName} " onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'"
+             style="cursor:pointer;">
+            
+    </td>
+    <td colspan="2">
+          <div id="bookInfoDiv3">
+            <dl class="authorData" id="bookTitleDl" >
+               <dd>
+                    
+                    <a href="#link"  onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'"
+                    style="cursor:pointer;"><c:out value="${b.bookName }"/></a>
+            
+                    </dd>
+            </dl>
+          </div>
+         
+
+      </td>
+      <td id="buttonWrapTd" rowspan="2">
+        <div class="buttonWrap">
+          <button id="button22" type="button" onclick="bookReservation(${b.isbnNo })" >도서예약신청</button>
+          <button id="button22" type="submit" name="bookCheck" value="${b.isbnNo }" >관심도서담기</button>
+          </div>
+      </td>
+    </tr>
+    <tr>
+     <td>
+
+     </td>
+     <td>
+      <div id="bookInfoDiv4">
+        <dl class="authorData2">
+           <dd>
+                
+                  
+                <span>저자 </span><br>
+                <span>발행자</span><br>                    
+                <span>발행연도</span> <br>                  
+                <span>ISBN</span><br>
+                 <span>분류번호</span><br>
+                 <span>위치번호</span>
+                                                       
+            
+                  </dd>
+        </dl>
+      </div>
+
+     </td>
+     <td>
+      <div id="bookInfoDiv3">
+        <dl class="authorData3">
+           <dd>
+                
+                  
+                <span><c:out value="${b.bookWriter }"/></span><br>
+                <span><c:out value="${b.bookCompany }"/></span><br>                    
+                <span><c:out value="${b.bookDate }"/></span><br>                            
+                <span><c:out value="${b.isbnNo }"/></span><br>
+                 <span><c:out value="${b.bookKdc }"/></span><br>
+                 <span><c:out value="${b.bookLocation }"/></span>
+                                                                    
+                  </dd>
+        </dl>
+      </div>
+     </td>
+     
+     <td>
+
+     </td>
+    </tr>
+    
+		    <tr>
+		      <td colspan="5">
+		         <hr>
+		      </td>
+		    </tr>
+    </c:forEach>
+    </c:when>
+    
+    <c:otherwise>
+   					<tr>
+   					<td colspan="5"></td>
+   					</tr>
+   				</c:otherwise>  
+    </c:choose>
+  </table>
+  </form>
+  <c:choose> 
+   	<c:when test="${not empty list }">
+       <div id="pagebar-container">
+        	${pageBar }
+        </div>
+     </c:when>
+   </c:choose>
 
 
 </body>
@@ -242,7 +449,131 @@ String pageId = request.getParameter("pageId");
                 }
             });
         }); */
+       function fn_searchDetail(){
+        	 $("#bookDetailSearchTbl").hide(); 
+        	
+        	/* console.log("test1")
+        	let bookCategory=$("#book_Category option:selected").val();
+        	let init=$('input[name="init"]:checked').val();
+        	let bookName=$('input[name=bookName]').val();
+        	let author=$('input[name=author]').val();
+        	let publisher=$('input[name=author]').val();
+        	let isbnNo=$('input[name=isbnNo]').val();
+        	let price=$('input[name=price]').val();
+        	let publishYear1=$('input[name=publishYear1]').val();
+        	let publishYear2=$('input[name=publishYear2]').val();
+        	console.log("test2")
+        	console.log("bookcategory="+bookCategory+"init="+init+"bookNane="+bookName+"author="+author+"publisher="+publisher+"isbnNo="+isbnNo+"price="+price+"publishYear1"+publishYear1+"publishYear2="+publishYear2)
+        	
+        	let str="${path}/searchpage/detailSearch?";
+        	if (bookCategory!=null && bookCategory!=""){
+        		str+="bookCategory="+bookCategory;
+        	}else if (init!=null && init!=""){
+        		str+="&init="+init;
+        	}else if(bookName!=null && bookName!=""){
+        		str+="&bookName="+bookName;
+        	}else if(author!=null && author!=""){
+        		str+="&author="+author;
+        	}else if(publisher!=null && publisher!=""){
+        		str+="&publisher="+publisher;
+        	}else if(isbnNo!=null && isbnNo!=""){
+        		str+="&isbnNo="+isbnNo;
+        	}else if(price!=null && price !=""){
+        		str+="&price="+price;
+        	}else if(publishYear1 !=null && publishYear1 !=""){
+        		str+="&publishYear1="+publishYear1;     		
+        	}else if(publishYear2 !=null && publishYear2 != ""){
+        		str+="&publishYear2="+publishYear2;
+        	}else if(searchNumber !=null && pageNo != null && totalData2 != null){
+        	
+        	str+="&searchNumber="+searchNumber+"&cPage="+pageNo+"&totalData="+totalData2
+        	
+        	}
+        	location.href=str; */
+        	       	
+        	
+        }
+       
   
+        
+        function fn_searchBook(){
+        	let category=$("#searchKey").val();
+        	let keyword=document.getElementById('inputtext').value;
+        	
+        	console.log(keyword);
+        	console.log(category);
+        	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category;
+        	
+        	
+        }
+
+        function fn_searchBook2(){
+        	let keyword=$("#inputtext").val();
+        	let category=$("#searchType").val();
+        	let searchNumber=$("#searchNumber").val();
+        	
+        	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category+"&searchNumber="+searchNumber;
+        	
+        	
+        } 
+
+        function fn_paging(pageNo,totalData){
+        	console.log(totalData);
+        	let totalData2=parseInt(totalData);
+        	let keyword=$("#inputtext").val();
+        	let category=$("#searchType").val();
+        	let searchNumber=$("#searchNumber").val();
+        	
+        	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category+"&searchNumber="+searchNumber+"&cPage="+pageNo+"&totalData="+totalData2;
+        	
+        }
+
+        function fn_paging2(pageNo,totalData,numPerpage){
+        	console.log(totalData);
+        	let totalData2=parseInt(totalData);
+        	let searchNumber=$("#searchNumber").val();
+        	
+        	const formElement = $("#bookDetailSearchForm");
+        	const table = $("#bookDetailSearchTbl");
+        	
+        	let tr=$("<tr>");
+        	let cPage=$("<td>").html(pageNo);
+        	cPage.attr("name","cPage");
+        	let searchNumberTd=$("<td>").html(searchNumber);
+        	searchNumberTd.attr("name","searchNumber");
+        	
+        	tr.append(cPage).append(searchNumberTd);
+        	table.append(tr);
+        	
+        	formElement.attr("action","${path}/searchpage/detailSearch")
+        	formElement.submit();
+        	
+        	
+        	
+        	
+        }
+
+        function bookReservation(isbnNo){
+        	console.log(isbnNo);
+        	
+        	
+        }
+
+        function selectAll(selectAll)  {
+        	  const checkboxes 
+        	       = document.getElementsByName('bookCheck');
+        	 
+        	  checkboxes.forEach((checkbox) => {
+        		  
+        		  checkbox.checked = selectAll.checked;
+            	    
+        	  })
+        	}
+        	
+        
+        
+        
+        
   
   $(function(){
 		console.log(window.location.href );
