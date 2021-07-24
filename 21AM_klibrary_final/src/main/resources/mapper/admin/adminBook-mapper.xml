@@ -158,6 +158,12 @@
 		UPDATE LENDING SET BOOK_EXTEND=#{bookExtend}, RETURN_DATE=#{returnDate} WHERE USER_ID=#{userId} AND LENDING_NO=#{lendingNo}
 	</update>
 	
+	<!-- 카테고리별 도서수 -->
+	<select id="countCatBook" resultType="Map">
+		SELECT COUNT(*) AS BOOKS FROM BOOK_INFO JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO)
+		GROUP BY KDC_NO.KDC_NAME 
+	</select>
+	
 	<!-- resultMap -->
 	
 	<!-- book -->

@@ -66,4 +66,7 @@ public interface AdminBookDao {
 	
 	//대출도서 연장
 	int addBookExtend(SqlSessionTemplate session, Map param);
+	
+	//카테고리별 도서수 
+	List<Map<String,Integer>> countCatBook(SqlSessionTemplate session);
 }

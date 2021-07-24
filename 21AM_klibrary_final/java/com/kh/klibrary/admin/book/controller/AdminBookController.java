@@ -249,4 +249,20 @@ public class AdminBookController {
 		}
 		return date;
 	}
+	
+	// 카테고리별 도서수 
+	@RequestMapping("/admin/book/countCatBook.do")
+	@ResponseBody
+	public Map countCatBook() {
+		List<Map<String,Integer>> m = service.countCatBook();
+		/* System.out.println(String.valueOf(m.get(0).get("BOOKS"))); */
+		// 파싱처리해주기 
+		Map hm = new HashMap();
+		int key = 0;
+		for(Map<String,Integer> ma : m) {
+			hm.put(key++, ma.get("BOOKS"));
+		}
+		return hm;
+	}
+	
 }
