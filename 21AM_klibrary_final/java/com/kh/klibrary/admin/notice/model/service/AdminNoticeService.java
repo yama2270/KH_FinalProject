@@ -6,11 +6,21 @@ import com.kh.klibrary.admin.notice.model.vo.Notice;
 
 public interface AdminNoticeService {
 	List<Notice> selectNoticeList(int cPage, int numPerpage);
-	int selectNoticeCount();
+	
+	
+	//게시글 추가
 	int insertNotice(Notice notice);
+	
+	//게시글 보기
 	Notice selectNoticeView(int noticeNo);
-	int deleteNotice(int noticeNo);
+	
+	//게시글삭제
+	int deleteNotice(String noticeNo);
+	
+	//게시글 수정
 	int noticeUpdate(Notice notice);
+	
+	
 	int noticeCount(int noticeNo);
 
 }
