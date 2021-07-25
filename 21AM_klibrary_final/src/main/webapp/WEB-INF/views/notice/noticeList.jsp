@@ -56,7 +56,7 @@
 	                    				<a href="${path }/notice/noticeEnd.do?no=${n.noticeNo }"/>
 	                    				<c:out value="${n.noticeTitle }"/>
                     				</td>
-                    				<td class="head2"><c:out value="${n.originalFile }"/></td>
+                    				<td class="head2"><c:out value="${n.originalFileName }"/></td>
                     				<td class="head3"><c:out value="${n.noticeDate }"/></td>
                     				<td class="head2"><c:out value="${n.noticeCount }"/></td>
                     				

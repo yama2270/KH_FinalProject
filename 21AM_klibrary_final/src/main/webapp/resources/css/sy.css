@@ -560,7 +560,7 @@ background-color:blue;
         height:100px;
         border-radius:30px;
     }
-    #kdcDepth2List_0 tr{
+    .kdcDepth2List tr{
         
         vertical-align:top;
         
@@ -590,7 +590,7 @@ background-color:blue;
     
     
     
-    #kdcDepth2List_0{
+    .kdcDepth2List{
         padding:3% 0 0 0;
         border-collapse:separate;
     }
@@ -602,24 +602,24 @@ background-color:blue;
        
     }   */
 
-    #kdcDepth2List_0 tr>td, #kdcDepth2List_0 tr>th{
+    .kdcDepth2List tr>td, .kdcDepth2List tr>th{
         padding:3% 0 0 3%;
         width:13%;
         line-height:150%;
         
     }
-    #kdcDepth2List_0 tr>td>dl>dt{
+    .kdcDepth2List tr>td>dl>dt{
        margin-bottom:7%;
        border-top:2px gray solid;
        border-bottom:1px gray solid;
    }
    
 
-   #kdcDepth2List_0 tr>td>dl>dt>a{
+   .kdcDepth2List tr>td>dl>dt>a{
         color:black;
         
     }
-    #kdcDepth2List_0 tr>td>dl>dd>a{
+    .kdcDepth2List tr>td>dl>dd>a{
         color:black;
     }
 

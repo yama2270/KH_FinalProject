@@ -304,7 +304,7 @@ public ModelAndView interestingbook (
 		
 			  mv.addObject("totalData", bookListCount);
 			  mv.addObject("list",bookList1);
-			  mv.addObject("pageBar",PageFactory3.getPageBar(bookListCount, cPage, searchNumber)); 			  
+			  mv.addObject("pageBar",PageFactory2.getPageBar(bookListCount, cPage, searchNumber)); 			  
 			  mv.addObject("init",init);
 			  mv.addObject("book_Category",(String)param.get("book_Category"));
 			  mv.addObject("bookName",(String)param.get("bookName"));
@@ -322,8 +322,29 @@ public ModelAndView interestingbook (
 }
 
 
-
-
+@RequestMapping("/searchpage/kdcNoSearch")
+  public ModelAndView kdcNoSearch(
+		            @RequestParam Map param,
+				    @RequestParam(value="searchNumber", required=false, defaultValue="10") int searchNumber,
+					@RequestParam(value="cPage", required=false, defaultValue="1") int cPage,
+				     ModelAndView mv
+		                          ) {
+	          String kdcNo=(String)param.get("kdcNo");
+	          String category=(String)param.get("category");
+	 
+	          List<BookInfo> bookList=service.kdcNoSearch(param,cPage,searchNumber);
+	          int kdcBookListCount=service.kdcBookListCount(param);
+	         
+	          mv.addObject("list",bookList);
+	          mv.addObject("totalData",kdcBookListCount);
+	          mv.addObject("kdcNo",kdcNo);
+	          mv.addObject("category",category);
+	          mv.addObject("pageBar",PageFactory3.getPageBar(kdcBookListCount, cPage, searchNumber, kdcNo));
+	          
+	          mv.setViewName("/searchpage/categorySearch");
+	
+	return mv;
+ }
 
 
 

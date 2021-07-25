@@ -19,6 +19,10 @@
       width:95%
   }
   
+  #logo-container{
+  	margin-left:100px;
+  }
+  
   #logo{
       padding:50px;
       padding-left:100px;

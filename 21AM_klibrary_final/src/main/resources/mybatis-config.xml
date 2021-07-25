@@ -19,6 +19,8 @@
 			<typeAlias type="com.kh.klibrary.member.model.vo.Member" alias="member"/> 
 			<typeAlias type="com.kh.klibrary.member.model.vo.Booking" alias="booking"/> 
 			<typeAlias type="com.kh.klibrary.member.model.vo.Lending" alias="lending"/>
+			<typeAlias type="com.kh.klibrary.admin.member.vo.AdminMember" alias="admin"/>
+			
 			
 			
 			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo" alias="faq"/> -->
@@ -34,6 +36,6 @@
 			<typeAlias type="com.kh.klibrary.book.model.vo.BookInfo" alias="bookInfo"/>
 			<typeAlias type="com.kh.klibrary.book.model.vo.KdcDetail" alias="kdcDetail"/>         	
          	<typeAlias type="com.kh.klibrary.book.model.vo.KdcType" alias="kdcType"/>
-
+			<typeAlias type="com.kh.klibrary.calender.vo.Calender" alias="calender"/>
 	</typeAliases> 
 </configuration>

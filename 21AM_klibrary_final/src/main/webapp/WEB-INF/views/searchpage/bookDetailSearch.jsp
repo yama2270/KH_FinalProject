@@ -443,7 +443,7 @@ String pageId = request.getParameter("pageId");
         	
         } 
 
-        function fn_paging(pageNo,totalData){
+    /*     function fn_paging(pageNo,totalData){
         	console.log(totalData);
         	let totalData2=parseInt(totalData);
         	let keyword=$("#inputtext").val();
@@ -453,10 +453,10 @@ String pageId = request.getParameter("pageId");
         	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category+"&searchNumber="+searchNumber+"&cPage="+pageNo+"&totalData="+totalData2;
         	
         }
-
+ */
        
         
-        function fn_paging2(pageNo,totalData,numPerpage){
+        function fn_paging(pageNo,totalData,numPerpage){
         	
         	let totalData2=parseInt(totalData);
         	let searchNumber=$("#searchNumber").val();

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="admin">
+
+	<resultMap type="admin" id="Member">
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PASSWORD" property="userPassword"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="EMAIL" property="email"/>
+		<result column="BIRTH_DATE" property="birthDate"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="PHONE" property="phone"/>
+		<result column="SIGNUP_DATE" property="signupDate"/>
+	</resultMap>
+	
+	<select id="selectMemberList" resultMap="Member">
+		SELECT *
+		FROM MEMBER
+	</select>
+	
+	<select id="selectMemberCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+	
+	<select id="searchMember" parameterType="Map" resultMap="Member">
+		SELECT * 
+		FROM MEMBER
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+	</select>
+	
+	<select id="totalsearchMember" parameterType="Map" resultType="_int">
+		SELECT COUNT(*) 
+		FROM MEMBER 
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+	</select>
+
+</mapper>

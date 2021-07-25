@@ -152,6 +152,24 @@
 		</trim>
 		</select>
 		
+		<select id="kdcNoSearch" resultMap="bookInfoMap">		
+		SELECT * FROM BOOK_INFO		
+	       <trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			  <if test= 'kdcNo !=null and kdcNo != ""'>
+			   AND BOOK_KDC = #{kdcNo}
+			  </if>		 
+		  </trim>
+		</select>
+		
+		<select id="kdcNoSearchCount" resultType="_int">		
+		SELECT COUNT(*) FROM BOOK_INFO		
+	       <trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			  <if test= 'kdcNo !=null and kdcNo != ""'>
+			   AND BOOK_KDC = #{kdcNo}
+			  </if>		 
+		  </trim>
+		</select>
+		
 		
 		
 		

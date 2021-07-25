@@ -77,6 +77,14 @@ public class SearchDaoImpl implements SearchDao{
 		return session.selectList("search.selectBookInfoList", param);
 	}
 	
+	public List<BookInfo> kdcNoSearch(SqlSessionTemplate session,Map param,int cPage,int searchNumber){
+		return session.selectList("search.kdcNoSearch", param, new RowBounds((cPage-1)*searchNumber,searchNumber));
+	}
+	
+	public int kdcBookListCount(SqlSessionTemplate session,Map param) {
+		return session.selectOne("search.kdcNoSearchCount",param);
+	}
+	
 	@Override
 	public int insertWishBook(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub

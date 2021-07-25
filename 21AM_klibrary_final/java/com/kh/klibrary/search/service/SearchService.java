@@ -23,6 +23,9 @@ public interface SearchService {
 	List<BookInfo> selectDetailSearch(Map param,int cPage, int searchNumber);//상세검색
 	int selectDetailSearchCount(Map param);
 	
+	List<BookInfo> kdcNoSearch(Map param,int cPage, int searchNumber);//주제별검색
+	int kdcBookListCount(Map param);
+	
 	List<BookInfo> selectBookInfoList(Map param);//wishbook,cg
 
 	

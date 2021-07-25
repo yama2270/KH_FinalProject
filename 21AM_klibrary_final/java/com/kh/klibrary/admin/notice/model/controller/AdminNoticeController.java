@@ -1,12 +1,11 @@
 package com.kh.klibrary.admin.notice.model.controller;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class AdminNoticeController {
+	@Inject
 	@Autowired
 	private AdminNoticeService service;
 
@@ -59,11 +59,15 @@ public class AdminNoticeController {
 		return mv;
 	}
 	
+	//게시글 삭제
 	@RequestMapping("/admin/notice/noticeDelete.do")
-	public ModelAndView noticeDelete(int noticeNo, ModelAndView mv) {
-		mv.addObject("notice",service.deleteNotice(noticeNo));
-		mv.setViewName("/admin/notice/noticeDelete");
-		return mv;
+	public String ajaxTest(HttpServletRequest request) throws Exception{
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0;i<size; i++) {
+			service.deleteNotice(ajaxMsg[i]);
+		}
+		return "redirect:/admin/notice/noticeList.do";
 	}
 
 	@RequestMapping("/admin/notice/noticeUpdate.do")
@@ -80,7 +84,7 @@ public class AdminNoticeController {
 		}
 	
 	//조회수 증가
-
+	
 	
 	
 }
