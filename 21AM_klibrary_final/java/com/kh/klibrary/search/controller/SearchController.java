@@ -29,6 +29,7 @@ import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.common.PageFactory2;
 import com.kh.klibrary.common.PageFactory3;
 import com.kh.klibrary.member.model.vo.Lending;
+import com.kh.klibrary.member.model.vo.Likes;
 import com.kh.klibrary.search.service.SearchServiceImp;
 
 import com.kh.klibrary.book.model.vo.BookInfo;
@@ -248,23 +249,48 @@ public ModelAndView bookTotalSearch(
 }
 
 @RequestMapping("/searchpage/interestingbook")
-public ModelAndView interestingbook ( 
+public String interestingbook ( 
+		@RequestParam Map param,
+		@ModelAttribute("loginMember") Member m,
 		HttpServletRequest request,
-		ModelAndView mv
+		Model model
 		        ) {
 	String[] bookCheckArray = request.getParameterValues("bookCheck");
-		List<String> bookCheckArray2=new ArrayList();
-	for(int i=0;i<bookCheckArray.length;i++) {
-		
-		if( bookCheckArray[i]!="") {			
+	System.out.println("bookCheckArray테스트"+bookCheckArray);
+	int result=0;
+	param.put("userId", m.getUserId());
 	
-		bookCheckArray2.add(bookCheckArray[i]);
+	/* List<String> bookCheckArray2=new ArrayList(); */
+	for(int i=0;i<bookCheckArray.length;i++) {	
+		System.out.println("isbnNo테스트"+bookCheckArray[i]);
+		param.put("isbnNo",bookCheckArray[i]);
+		 Likes likes=service.selectInterestingBook(param);
+		System.out.println("likes테스트"+likes);
+		if( likes==null) {			
+	    System.out.println(bookCheckArray[i]);
+	     //param.put("isbnNo",bookCheckArray[i]);
+	     result+=service.insertInterestingBook(param);
+		
 		}
 	  
 	}
+	String msg="";
+	String loc="";
+	String referer = request.getHeader("Referer");
 	
-	System.out.println("배열결과"+bookCheckArray2+"배열사이즈"+bookCheckArray2.size());
-	return mv;
+	//referer.replaceAll("http://localhost:9090/klibrary", "");
+	//referer.substring(30);
+	System.out.println("referer테스트"+referer);
+	if(result==0) {
+		msg="이미 관심도서로 등록되었습니다.";
+		loc=referer;
+	}else if(result>0) {
+		msg="관심도서로 등록되었습니다.";
+		loc=referer;
+	}
+	model.addAttribute("msg", msg);
+	model.addAttribute("loc", loc);
+	return "common/msg2";
 }
 
 @RequestMapping("/searchpage/detailSearch")

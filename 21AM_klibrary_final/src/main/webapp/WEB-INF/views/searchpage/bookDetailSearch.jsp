@@ -271,7 +271,7 @@ String pageId = request.getParameter("pageId");
       <hr>
       
       <input type="checkbox" name="bookSelect" id="allCheck" onclick="selectAll(this)" value="all">
-      <button id="button22" type="submit" name="bookCheck" value="" >관심도서담기</button>
+      <button id="button22" type="submit"  >관심도서담기</button>
       <hr>
    </td>
   </tr>

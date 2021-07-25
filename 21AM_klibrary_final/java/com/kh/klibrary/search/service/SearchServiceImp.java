@@ -20,7 +20,7 @@ import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 
 import com.kh.klibrary.member.model.vo.Lending;
-
+import com.kh.klibrary.member.model.vo.Likes;
 import com.kh.klibrary.search.dao.SearchDao;
 
 import com.kh.klibrary.search.dao.SearchDaoImpl;
@@ -170,6 +170,14 @@ public Lending selectLending(String bookNo) {
 		 
 	 }
 	 
+	 @Override
+	 public int insertInterestingBook(Map param) {
+		 return dao.insertInterestingBook(session,param);
+	 }
 	 
+	 @Override
+	 public Likes selectInterestingBook(Map param) {
+		 return dao.selectInterestingBook(session,param);
+	 }
 	 
 }
