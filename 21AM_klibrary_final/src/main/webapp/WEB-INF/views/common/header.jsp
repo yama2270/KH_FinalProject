@@ -48,6 +48,7 @@
 </head>
 <body>
 <header>
+	
 	<div id="header_top">
                 <ul id="header_ul">
                 <c:if test="${loginMember==null }">
@@ -58,7 +59,15 @@
                         <a href="${path }/member/memberEnroll.do"  class="header_a">회원가입</a>
                     </li>
                 </c:if>
-                <c:if test="${loginMember!=null }">
+                <c:if test="${loginMember!=null && (loginMember.userId).equals(admin) }">
+                	<li>
+                		<a href="" class="hader_a">관리자페이지</a>
+                	</li>
+                	<li>
+                		<button class="btn btn-outline-light text-dark" type="button" onclick="location.replace('${path}/member/memberLogout.do');">로그아웃</button>
+                	</li>
+                </c:if>
+                <c:if test="${loginMember!=null && !admin.equals(loginMember.userId) }">
                 	<li>
                 		<a href="" class="hader_a">마이페이지</a>
                 	</li>
@@ -69,8 +78,12 @@
                 </ul>
             </div>
         </div>
-	<div id="nav">
-		<ul id="main-menu">
+		
+		<div id="nav">	
+			<div id="logo-container">
+				<a href="${path }/main/mainPage.do"><img src="${path }/resources/images/logo.png" width="400" height="200"></a>
+			</div>
+			<ul id="main-menu">			
 			<li><a href="">자료검색</a>
 				<ul id="sub-menu">
 					<li><a href="${path}/searchpage/bookSearch.do" aria-label="subemnu">통합검색</a></li>
