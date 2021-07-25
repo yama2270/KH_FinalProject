@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="path" value="${pageContext.request.contextPath }" />
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="대출도서목록" />
@@ -13,7 +13,7 @@
 	<div id="contBody">
 		<div id="contentTitle">대출도서목록</div>
 		<div id="searchWrap">
-			<div class="container-fluid" style="padding-right: 0px;">
+			<div class="container-fluid" style="padding-right:0px;">
 				<form class="d-flex" action="${path }/admin/book/SearchRentalList.do" method="post">
 					<select id="searchOption" name="searchOption" class="form-select"
 						aria-label="Default select example" required>

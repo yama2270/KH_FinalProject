@@ -67,6 +67,94 @@
 		  </trim>
 		</select>
 		
+<select id="selectDetail" resultMap="bookInfoMap">
+		  SELECT * FROM BOOK_INFO 
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		    <if test="book_Category != null and book_Category != '' and book_Category !='도서 대분류'">
+				AND BOOK_KDC LIKE '%'||#{book_Category}||'%' 
+			</if>	
+									
+				<if test="init != null and init != '' and init !='선택안함'">
+				   AND  BOOK_NAME 
+					<foreach collection="init" item="i" open="BETWEEN" close="" separator="AND" >
+							NCHR(#{i}) 
+					</foreach> 				      
+				</if>
+					
+			<if test="bookName != null and bookName != ''">
+				AND BOOK_NAME LIKE '%'||#{bookName}||'%' 
+			</if>
+	
+			<if test="author != null and author != ''">
+				AND BOOK_WRITER LIKE '%'||#{author}||'%' 
+			</if>
+		
+			<if test="publisher != null and publisher != ''">
+				AND BOOK_COMPANY LIKE '%'||#{publisher}||'%' 
+			</if>	
+			<if test="isbnNo != null and isbnNo != '' ">
+				AND ISBN_NO LIKE '%'||#{isbnNo}||'%'
+			</if>
+
+			<if test="price != null and price != '' ">
+				AND BOOK_PRICE LIKE '%'||#{price}||'%' 
+			</if>
+
+			<if test="publishYear != null and publishYear != '' and publishYear2 != null and publishYear2 != ''">
+				AND BOOK_DATE BETWEEN #{publishYear} AND #{publishYear2}
+			</if>
+			<if test="publishYear != null and publishYear != '' and (publishYear2 == null or publishYear2 == '')">
+				AND BOOK_DATE BETWEEN #{publishYear} AND SYSDATE
+			</if>		
+		</trim>
+		</select>
+		
+		<select id="selectDetailCount" resultType="_int">
+		  SELECT COUNT(*) FROM BOOK_INFO 
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		    <if test="book_Category != null and book_Category != '' and book_Category !='도서 대분류'">
+				AND BOOK_KDC LIKE '%'||#{book_Category}||'%' 
+			</if>	
+									
+				<if test="init != null and init != ''">
+				   AND  BOOK_NAME 
+					<foreach collection="init" item="i" open="BETWEEN" close="" separator="AND" >
+							NCHR(#{i}) 
+					</foreach> 				      
+				</if>
+					
+			<if test="bookName != null and bookName != ''">
+				AND BOOK_NAME LIKE '%'||#{bookName}||'%' 
+			</if>
+	
+			<if test="author != null and author != ''">
+				AND BOOK_WRITER LIKE '%'||#{author}||'%' 
+			</if>
+		
+			<if test="publisher != null and publisher != ''">
+				AND BOOK_COMPANY LIKE '%'||#{publisher}||'%' 
+			</if>	
+			
+			<if test="isbnNo != null and isbnNo != '' ">
+				AND ISBN_NO LIKE '%'||#{isbnNo}||'%'
+			</if>
+
+			<if test="price != null and price != '' ">
+				AND BOOK_PRICE LIKE '%'||#{price}||'%' 
+			</if>
+
+			<if test="publishYear != null and publishYear != '' and publishYear2 != null and publishYear2 != ''">
+				AND BOOK_DATE BETWEEN #{publishYear} AND #{publishYear2}
+			</if>
+			<if test="publishYear != null and publishYear != '' and (publishYear2 == null or publishYear2 == '')">
+				AND BOOK_DATE BETWEEN #{publishYear} AND SYSDATE
+			</if>		
+		</trim>
+		</select>
+		
+		
+		
+		
 		<resultMap type="com.kh.klibrary.book.model.vo.Book" id="book">		
 			<id column="BOOK_NO" property="bookNo"/>
 			<result column="ISBN_NO" property="bookingState"/>

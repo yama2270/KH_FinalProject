@@ -26,13 +26,6 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 		return dao.selectNoticeList(session, cPage, numPerpage);
 	}
 	
-	@Override
-	public int selectNoticeCount() {
-		// TODO Auto-generated method stub
-		return dao.selectNoticeCount(session);
-	}
-
-	
 
 	@Override
 	public int insertNotice(Notice notice) throws RuntimeException{
@@ -48,10 +41,6 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 		return dao.selectNoticeView(session, noticeNo);
 	}
 
-	@Override
-	public int deleteNotice(int noticeNo) {	
-		return dao.deleteNotice(session,noticeNo);
-	}
 
 	@Override
 	public int noticeUpdate(Notice notice) {
@@ -62,6 +51,13 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	@Override
 	public int noticeCount(int noticeNo) {
 		return dao.noticeCount(session, noticeNo);
+	}
+
+
+	@Override
+	public int deleteNotice(String noticeNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteNotice(session, noticeNo);
 	}
 
 

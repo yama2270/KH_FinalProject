@@ -29,7 +29,7 @@
 		</selectKey>
 	</insert>
   
-  <delete id="deleteNotice" parameterType="int">
+  <delete id="deleteNotice" parameterType="String">
   	DELETE FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
   </delete>
   

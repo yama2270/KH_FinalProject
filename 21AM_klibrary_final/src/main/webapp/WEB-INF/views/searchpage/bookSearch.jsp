@@ -53,7 +53,7 @@ String totalData=request.getParameter("totalData");
     <div class="searchSelectDiv">
       <label for="searchKey" class="blind"></label>
       <select id="searchKey" name="category" title="검색 선택">
-        <option value="all" selected="selected">전체</option>
+        <option value="all" selected>전체</option>
         <option value="book_name" >도서명</option>
         <option value="book_writer">저자</option>
         <option value="book_company">발행자</option>
@@ -65,8 +65,9 @@ String totalData=request.getParameter("totalData");
     </div>
       
     <input type="text" placeholder="  검색" name="keyword" id="inputtext" onkeypress="if(event.keyCode == 13){fn_searchBook(); return false;}"
-    <%if(keyword!= null) {%>
-    value="<%=keyword %>" <%} %>>
+    <%if(keyword!=null) {%>
+    value="<%=keyword %>" <%}else{ %>
+    value="" <%} %>>
     <button id="searchButton" type="submit" ><i class="fa fa-search"></i>검색</button>
   </form>
 
@@ -84,24 +85,29 @@ String totalData=request.getParameter("totalData");
     <th colspan="5" id="searchCaptionTh2">
       <div style="text-align:center">
         <div id="searchCaption22">
-            <p><%=keyword %> 검색결과 ${totalData }건  이 검색되었습니다.</p>
+            <p><%if(keyword!=null) {%>
+            <%=keyword %> 
+            검색결과 ${totalData }건  이 검색되었습니다.
+             <%}else{ %>
+             <%} %>
+             </p>
         </div>
   
         <div class="selectForm3">
         <select id="searchType" title="검색선택" name="category">
-            <option value="all">전체</option>
-            <option value="book_name" selected="selected">도서명</option>
+            <option value="all" selected="selected">전체</option>
+            <option value="book_name" >도서명</option>
           <option value="book_writer">저자</option>
           <option value="book_company">발행자</option>
           <option value="isbnNo">ISBN</option>
   
         </select>
         <select id="searchNumber" title="검색건수" name="searchNumber">
-          <option value=10>10건</option>
-          <option value=20>20건</option>
-          <option value=30>30건</option>
-          <option value=40>40건</option>
-          <option value=50>50건</option>
+          <option value=10 ${searchNumber == 10? "selected":""}>10건</option>
+          <option value=20 ${searchNumber == 20? "selected":""}>20건</option>
+          <option value=30 ${searchNumber == 30? "selected":""}>30건</option>
+          <option value=40 ${searchNumber == 40? "selected":""}>40건</option>
+          <option value=50 ${searchNumber == 50? "selected":""}>50건</option>
   
         </select>
         <button id="button44" type="button" onclick="fn_searchBook2();" style="border:none">확인</button>
@@ -226,9 +232,13 @@ String totalData=request.getParameter("totalData");
     </c:choose>
   </table>
   </form>
-  <div id="pagebar-container">
+  <c:choose> 
+   	<c:when test="${not empty list }">
+         <div id="pagebar-container">
         	${pageBar }
         </div>
+       </c:when>
+   </c:choose>
 
 
 </body>
@@ -268,6 +278,15 @@ function fn_paging(pageNo,totalData){
 	
 }
 
+/* function fn_paging2(pageNo,totalData,numPerpage,init,bookCategory,bookName,author,publisher,isbnNo,price,publishYear1,publishYear2){
+	console.log(totalData);
+	let totalData2=parseInt(totalData);
+	let searchNumber=$("#searchNumber").val();
+	
+	location.href="${path}/searchpage/detailSearch?searchNumber="+numPerpage+"&cPage="+pageNo+"&totalData="+totalData2+"&init="+init+"&bookCategory="+bookCategory+"&bookName="+bookName+"&author="+author+"&publisher="+publisher+"&isbnNo="+isbnNo+"&price="+price+"&publishYear1="+publishYear1+"&publishYear2="+publishYear2;
+	
+} */
+
 function bookReservation(isbnNo){
 	console.log(isbnNo);
 	
@@ -285,6 +304,7 @@ function selectAll(selectAll)  {
 	  })
 	}
 	
+
 	 /* function interestingBook(){
 		 const checkboxes 
 	       = document.getElementsByName('bookCheck').value;

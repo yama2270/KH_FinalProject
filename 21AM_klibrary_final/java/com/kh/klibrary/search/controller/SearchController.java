@@ -1,7 +1,10 @@
 package com.kh.klibrary.search.controller;
 
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +27,7 @@ import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.common.PageFactory2;
-
+import com.kh.klibrary.common.PageFactory3;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.search.service.SearchServiceImp;
 
@@ -56,8 +59,8 @@ public String totalSearch() {
 
 public ModelAndView bookDetail(
 		@RequestParam(value="isbnNo", required=true) String isbnNo,
-		@RequestParam(value="keyword", required=true) String keyword,
-		@RequestParam(value="category", required=true) String category,
+		@RequestParam(value="keyword", required=false) String keyword,
+		@RequestParam(value="category", required=false) String category,
 		ModelAndView mv){
 	mv.addObject("book",service.selectBook(isbnNo));	
 	System.out.println("selectbook테스트"+service.selectBook(isbnNo));
@@ -226,18 +229,21 @@ public ModelAndView bookTotalSearch(
 		System.out.println(totalData);
 		
 		System.out.println("totalData사이즈테스트"+totalData);
-		System.out.println("페이지별 데이터"+(service.selectBookList(hashMap)).size());
+		//System.out.println("페이지별 데이터"+(service.selectBookList(hashMap)).size());
 		
 		
-		if(keyword!="") {
+		if(keyword!=""&&keyword!=null) {
 			mv.addObject("list", service.selectBookList(hashMap));			
-			mv.addObject("pageBar",PageFactory2.getPageBar(totalData, cPage, searchNumber, "bookTotalSearch"));
-		}
+			mv.addObject("pageBar",PageFactory2.getPageBar(totalData, cPage, searchNumber));
 		mv.addObject("keyword",keyword);
 		mv.addObject("category",category);
-	mv.addObject("totalData",totalData);
+		mv.addObject("totalData",totalData);
+		mv.addObject("searchNumber",searchNumber);
+		}
+	
 	
 	mv.setViewName("/searchpage/bookSearch");
+	
 	return mv;
 }
 
@@ -261,16 +267,62 @@ public ModelAndView interestingbook (
 	return mv;
 }
 
+@RequestMapping("/searchpage/detailSearch")
+    public ModelAndView detailSearch(
+    		        @RequestParam Map param,		
+					@RequestParam(value="searchNumber", required=false, defaultValue="10") int searchNumber,
+					@RequestParam(value="cPage", required=false, defaultValue="1") int cPage,
+					ModelAndView mv
+					    ) {
+				Iterator iterator = param.keySet().iterator();
+				while(iterator.hasNext()) {
+					String key = (String)iterator.next();
+					System.out.println(key +":"+param.get(key));
+				}
+				
+				String init=(String)param.get("init");
+			 
+			
+			// 초성 배열로 변경 
+			
+			if(init=="44700,55203") {
+				System.out.println("init테스트"+init);			
+				
+			}else {
+				param.put("init",init.split(","));
+				System.out.println("init테스트2"+init);
+			}
+						
+			 
+			 //다음 페이징처리를 위한 변수받기, 페이지바 함수에서의 ""에러처리
+		   	
+	
+			    List<BookInfo> bookList1 =service.selectDetailSearch(param,cPage,searchNumber);
+			    System.out.println("bookList1테스트"+bookList1);
+			    int bookListCount=service.selectDetailSearchCount(param);
+			    System.out.println("bookListCount테스트"+bookListCount);
+		
+			  mv.addObject("totalData", bookListCount);
+			  mv.addObject("list",bookList1);
+			  mv.addObject("pageBar",PageFactory3.getPageBar(bookListCount, cPage, searchNumber)); 			  
+			  mv.addObject("init",init);
+			  mv.addObject("book_Category",(String)param.get("book_Category"));
+			  mv.addObject("bookName",(String)param.get("bookName"));
+			  mv.addObject("author",(String)param.get("author"));
+			  mv.addObject("publisher",(String)param.get("publisher"));
+			  mv.addObject("isbnNo",(String)param.get("isbnNo"));
+			  mv.addObject("publishYear",(String)param.get("publishYear"));
+			  mv.addObject("publishYear2",(String)param.get("publishYear2"));
+			  mv.addObject("searchNumber",(String)param.get("searchNumber"));
+			  
+			  
+			  mv.setViewName("/searchpage/bookDetailSearch");
+			     
+	return mv;
+}
 
 
 
-//@RequestMapping(value="/searchpage/searchapiBook",produces = "application/text;charset=UTF-8")
-//@ResponseBody
-//public ModelAndView searchApiBook(ModelAndView mv, @RequestParam Map param) {
-//	mv.addObject("data",service.searchNaverApi(param).getBody());
-//	mv.setViewName("searchpage/wishbookPopup");
-//	return mv;
-//}
 
 
 

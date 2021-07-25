@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Lending;
+import com.kh.klibrary.member.model.vo.LendingHistory;
 
 
 public interface AdminBookDao {
@@ -26,6 +27,12 @@ public interface AdminBookDao {
 	
 	// 도서목록
 	List<Book> selectBookList(int cPage,int numPerPage,SqlSessionTemplate session);
+	
+	// 도서 상세 
+	Book selectBook(String bookNo,SqlSessionTemplate session);
+	
+	// 도서 대출내역 
+	List<LendingHistory> selectLenHis(String bookNo,SqlSessionTemplate session);
 	
 	// 총 도서 
 	int totalBook(SqlSessionTemplate session);
@@ -59,4 +66,7 @@ public interface AdminBookDao {
 	
 	//대출도서 연장
 	int addBookExtend(SqlSessionTemplate session, Map param);
+	
+	//카테고리별 도서수 
+	List<Map<String,Integer>> countCatBook(SqlSessionTemplate session);
 }

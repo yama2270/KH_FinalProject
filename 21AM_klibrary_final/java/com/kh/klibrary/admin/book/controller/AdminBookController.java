@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +22,7 @@ import com.kh.klibrary.admin.common.AdminPagingTemplate;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Lending;
+import com.kh.klibrary.member.model.vo.LendingHistory;
 
 @Controller
 public class AdminBookController {
@@ -186,8 +186,13 @@ public class AdminBookController {
 	
 	// 도서상세 
 	@RequestMapping("/admin/book/bookDetail.do")
-	public String bookDetail() {
-		return "admin/book/bookDetail";
+	public ModelAndView bookDetail(@RequestParam String bookNo,ModelAndView mv) {
+		Book b = service.selectBook(bookNo);
+		List<LendingHistory> h = service.selectLenHis(bookNo);
+		mv.addObject("b",b);
+		mv.addObject("h",h);
+		mv.setViewName("admin/book/bookDetail");
+		return mv;
 	}
 	
 	// 도서 ISBN 검색 
@@ -244,4 +249,20 @@ public class AdminBookController {
 		}
 		return date;
 	}
+	
+	// 카테고리별 도서수 
+	@RequestMapping("/admin/book/countCatBook.do")
+	@ResponseBody
+	public Map countCatBook() {
+		List<Map<String,Integer>> m = service.countCatBook();
+		/* System.out.println(String.valueOf(m.get(0).get("BOOKS"))); */
+		// 파싱처리해주기 
+		Map hm = new HashMap();
+		int key = 0;
+		for(Map<String,Integer> ma : m) {
+			hm.put(key++, ma.get("BOOKS"));
+		}
+		return hm;
+	}
+	
 }

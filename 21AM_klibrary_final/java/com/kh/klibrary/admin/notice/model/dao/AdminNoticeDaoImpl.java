@@ -35,7 +35,7 @@ public Notice selectNoticeView(SqlSessionTemplate session, int noticeNo) {
 }
 
 @Override
-public int deleteNotice(SqlSessionTemplate session, int noticeNo) {
+public int deleteNotice(SqlSessionTemplate session, String noticeNo) {
 	// TODO Auto-generated method stub
 	return session.delete("notice.deleteNotice", noticeNo);
 }
@@ -49,8 +49,9 @@ public int noticeUpdate(SqlSessionTemplate session, Notice notice) {
 @Override
 public int noticeCount(SqlSessionTemplate session, int noticeNo) {
 	// TODO Auto-generated method stub
-	return session.update("notice.noticeCount", noticeNo);
+	return session.update("notice.noticeCount, noticeNo");
 }
+
 
 
 

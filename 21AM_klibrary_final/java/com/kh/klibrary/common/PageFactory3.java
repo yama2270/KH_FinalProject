@@ -1,6 +1,10 @@
 package com.kh.klibrary.common;
 
-public class PageFactory2 {
+
+import java.util.Date;
+import java.util.Map;
+
+public class PageFactory3 {
 
 	public static String getPageBar(int totalData, int cPage, int numPerpage) {
 		String pageBar="";
@@ -16,7 +20,7 @@ public class PageFactory2 {
 			pageBar+="</li>";
 		}else {
 			pageBar+="<li class='page-item'>";
-			pageBar+="<a class='page-link' href='javascript:fn_paging("+(pageNo-1)+","+totalData+")'>이전</a>";
+			pageBar+="<a class='page-link' href='javascript:fn_paging2("+(pageNo-1)+","+totalData+","+numPerpage+")'>이전</a>";
 			pageBar+="</li>";
 		}
 		
@@ -27,7 +31,7 @@ public class PageFactory2 {
 				pageBar+="</li>";
 			}else {
 				pageBar+="<li class='page-item'>";
-				pageBar+="<a class='page-link' href='javascript:fn_paging("+(pageNo)+","+totalData+")'>"+pageNo+"</a>";
+				pageBar+="<a class='page-link' href='javascript:fn_paging2("+(pageNo)+","+totalData+","+numPerpage+")'>"+pageNo+"</a>";
 				pageBar+="</li>";
 			}
 			pageNo++;
@@ -38,7 +42,7 @@ public class PageFactory2 {
 			pageBar+="</li>";
 		}else {
 			pageBar+="<li class='page-item'>";
-			pageBar+="<a class='page-link' href='javascript:fn_paging("+(pageNo)+","+totalData+")'>다음</a>";
+			pageBar+="<a class='page-link' href='javascript:fn_paging2("+(pageNo)+","+totalData+","+numPerpage+")'>다음</a>";
 			pageBar+="</li>";
 		}
 		pageBar+="</ul>";
@@ -50,6 +54,5 @@ public class PageFactory2 {
 		
 		return pageBar;
 	}
-	
 	
 }

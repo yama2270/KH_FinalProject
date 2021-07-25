@@ -20,6 +20,9 @@ public interface SearchService {
 	Book selectBook(String isbnNo);
 	Lending selectLending(String bookNo);
 	
+	List<BookInfo> selectDetailSearch(Map param,int cPage, int searchNumber);//상세검색
+	int selectDetailSearchCount(Map param);
+	
 	List<BookInfo> selectBookInfoList(Map param);//wishbook,cg
 
 	
