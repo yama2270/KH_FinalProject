@@ -251,6 +251,7 @@ public ModelAndView bookTotalSearch(
 @RequestMapping("/searchpage/interestingbook")
 public String interestingbook ( 
 		@RequestParam Map param,
+		@RequestParam("isbnNo") String isbnNo,
 		@ModelAttribute("loginMember") Member m,
 		HttpServletRequest request,
 		Model model
@@ -260,20 +261,32 @@ public String interestingbook (
 	int result=0;
 	param.put("userId", m.getUserId());
 	
-	/* List<String> bookCheckArray2=new ArrayList(); */
-	for(int i=0;i<bookCheckArray.length;i++) {	
-		System.out.println("isbnNo테스트"+bookCheckArray[i]);
-		param.put("isbnNo",bookCheckArray[i]);
-		 Likes likes=service.selectInterestingBook(param);
-		System.out.println("likes테스트"+likes);
+	if(isbnNo!=null) { //북상세페이지 버튼선택시
+		param.put("isbnNo",isbnNo);
+		Likes likes=service.selectInterestingBook(param);
 		if( likes==null) {			
-	    System.out.println(bookCheckArray[i]);
-	     //param.put("isbnNo",bookCheckArray[i]);
-	     result+=service.insertInterestingBook(param);
-		
-		}
-	  
+		    
+		     result+=service.insertInterestingBook(param);
+			
+			}
 	}
+	
+	 if(bookCheckArray!=null) {	 //체크박스선택시
+			for(int i=0;i<bookCheckArray.length;i++) {	
+				System.out.println("isbnNo테스트"+bookCheckArray[i]);
+				param.put("isbnNo",bookCheckArray[i]);
+				 Likes likes=service.selectInterestingBook(param);
+				System.out.println("likes테스트"+likes);
+				if( likes==null) {			
+			    System.out.println(bookCheckArray[i]);
+			     //param.put("isbnNo",bookCheckArray[i]);
+			     result+=service.insertInterestingBook(param);
+				
+				}
+			  
+			}	
+	 }
+	
 	String msg="";
 	String loc="";
 	String referer = request.getHeader("Referer");
