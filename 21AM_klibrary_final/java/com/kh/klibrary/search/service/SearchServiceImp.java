@@ -157,6 +157,19 @@ public Lending selectLending(String bookNo) {
 		 return dao.selectDetailSearchCount(session,param);
 	 }
 	
+	 
+	 @Override
+	 public List<BookInfo> kdcNoSearch(Map param,int cPage, int searchNumber){
+		 
+		 return dao.kdcNoSearch(session,param,cPage,searchNumber);
+	 }
 	
-	
+	 @Override
+	 public int kdcBookListCount(Map param) {
+		 return dao.kdcBookListCount(session,param);
+		 
+	 }
+	 
+	 
+	 
 }
