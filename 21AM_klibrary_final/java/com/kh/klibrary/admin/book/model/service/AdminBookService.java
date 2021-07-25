@@ -57,5 +57,8 @@ public interface AdminBookService {
 	
 	// 카테고리별 도서수 
 	List<Map<String,Integer>> countCatBook();
+	
+	// 관심도서 랭킹수 
+	List<Map> countLikBook();
 }
 

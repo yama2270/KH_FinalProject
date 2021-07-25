@@ -164,6 +164,18 @@
 		GROUP BY KDC_NO.KDC_NAME 
 	</select>
 	
+	<!-- 관심도서 랭킹 -->
+	<select id="countLikBook" resultType="Map">
+		SELECT LIKE_COUNT,BOOK_NAME
+		FROM 
+			(SELECT COUNT(*) AS LIKE_COUNT,BOOK_INFO.BOOK_NAME
+			FROM LIKES JOIN BOOK_INFO USING(ISBN_NO)
+			GROUP BY BOOK_INFO.BOOK_NAME
+			ORDER BY LIKE_COUNT DESC) 
+		WHERE ROWNUM BETWEEN 1 AND 5
+	</select>
+	
+	
 	<!-- resultMap -->
 	
 	<!-- book -->

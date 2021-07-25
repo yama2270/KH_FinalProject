@@ -69,4 +69,7 @@ public interface AdminBookDao {
 	
 	//카테고리별 도서수 
 	List<Map<String,Integer>> countCatBook(SqlSessionTemplate session);
+	
+	// 관심도서 랭킹 
+	List<Map> countLikBook(SqlSessionTemplate session);
 }

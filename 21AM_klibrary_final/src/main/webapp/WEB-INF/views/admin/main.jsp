@@ -20,16 +20,16 @@
 				<div class="canQua">
 					<div class="canQuaHea">홈페이지 방문자 수</div>
 					<div id="quaVis">
-						<div style="text-align: right; padding-right: 80px">
+						<div class="quaInpWrap" style="text-align: right; padding-right: 80px">
 							<input type="date" style="margin-right: 3px;"><input
 								type="date">
 						</div>
-						<canvas id="visChart" width="450px" height="250px"></canvas>
+						<canvas id="visChart" width="450px" height="250px" style="margin-top:10px;"></canvas>
 					</div>
 				</div>
 				<div class="canQua">
 					<div class="canQuaHea" style="margin-left: 10px;">종류별 도서</div>
-					<div id="quaCat" style="margin-top: 27px;">
+					<div class="quaCat">
 						<canvas id="catBook" width="450px" height="250px"></canvas>
 					</div>
 				</div>
@@ -37,15 +37,18 @@
 			<div id="canBot" style="margin-top:50px;">
 				<div class="canQua">
 					<div class="canQuaHea">기간별 대출도서</div>
+					<div class="quaInpWrap">
+							<input type="date" style="margin-right: 3px;"><input
+								type="date">
+						</div>
 					<div>
-						<canvas id="myChart" width="450px" height="250px"></canvas>
+						<canvas id="renBook" width="450px" height="250px"></canvas>
 					</div>
 				</div>
 				<div class="canQua">
 					<div class="canQuaHea" style="margin-left: 10px;">관심도서 랭킹</div>
-					<div>
-						<div></div>
-						<canvas id="myChart" width="450px" height="250px"></canvas>
+					<div class="quaCat">
+						<canvas id="likeBook" width="450px" height="250px"></canvas>
 					</div>
 				</div>
 			</div>
@@ -70,13 +73,17 @@
 	  data: {
 		  labels : ["월요일","화요일","수요일","목요일","금요일","토요일","일요일"],
 		  datasets : [{
-			  data:[10,20],
-			  label : "방문자 수"
+			  data:[10,20]
 		  }]
 	  }, // data END
 	  options : {
-		  responsive : false
-	  }
+		  responsive : false,
+		  plugins : {
+			  legend : {
+				  display:false
+			  }
+		  }
+	  	}
 	  })
 	
 	// 베스트 대출 도서 canvas 
@@ -109,9 +116,87 @@
 		}
 	})
 	
+	// 기간별 대출도서
+	
+	/* $.ajax({
+		url : "${path}/admin/book/countRenBook.do",
+		success : function(data){
+			// chart 객체 
+			const renCan = document.getElementById("renBook").getContext("2d");
+			const renChart = new Chart(renCan,{
+				type : "bar",
+				datasets : {
+					labels : [1,2,3,4,5],
+					data : [1,2,3,4,5],
+					label : "대출 도서 수"
+				}
+			})
+		}
+	})  */
+	
+	// chart 생성하기 
+	const renCan = document.getElementById("renBook").getContext("2d");
+	const renCha = new Chart(renCan,{
+		type : "bar",
+		data : {
+			labels : ["월요일","화요일","수요일","목요일","금요일","토요일","일요일"],
+			datasets : [{
+				data : [1,2,3,4,5,6,7],
+				barThickness : 20,
+				backgroundColor : "red"
+			}]
+		} ,
+		options : {
+			plugins : {
+				legend : {
+					display : false
+				}
+			},
+			y : {
+				min : 0,
+				max : 20,
+			}
+		}
+	})
 	
 	
-	
+	// 관심도서 랭킹 
+	$.ajax({
+		url : "${path}/admin/book/countLikBook.do",
+		success:function(data){
+			const likCan = document.getElementById("likeBook").getContext("2d");
+			const likChart = new Chart(likCan,{
+				type:"bar",
+				data : {
+					labels : Object.keys(data),
+					datasets : [{
+						data : Object.values(data),
+						backgroundColor : ["#FFCB9C"],
+						barThickness : 30
+					}]
+				},
+				options : {
+					responsive : false,
+					scales : {
+						y :{
+							grid : {
+								borderDash : [2,5]
+							},
+							//suggestedMin : 0,
+							//suggestedMax : 10
+							min : 0,
+							max : 12
+						}
+					},
+					plugins : {								// legend 설정 
+						legend : {
+							display : false 
+						}
+					},
+				}
+			})
+		}
+	})
 	
 	
 	}); //Jquery END

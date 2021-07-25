@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -265,4 +266,35 @@ public class AdminBookController {
 		return hm;
 	}
 	
+	// 기간별 대출도서 수 
+	@RequestMapping("/admin/book/countRenBook.do")
+	@ResponseBody
+	public void countRenBook() {
+		
+	}
+	
+	// 관심도서 랭킹 
+	@RequestMapping("/admin/book/countLikBook.do")
+	@ResponseBody
+	public Map countLikBook() {
+		
+		List<Map> list = service.countLikBook();
+		
+		// Map 결과값 생성 
+		Map result = new HashMap();
+		for(Map m : list) {
+			String bookName = ((String)m.get("BOOK_NAME")).substring(0,5);
+			String count = String.valueOf(m.get("LIKE_COUNT"));
+			result.put(bookName, count);
+		}
+		
+		// 결과값 확인 
+		Iterator i = result.keySet().iterator();
+		while(i.hasNext()) {
+			String key = (String)i.next();
+			System.out.println(key +":"+result.get(key));
+		}
+		
+		return result;
+	}
 }
