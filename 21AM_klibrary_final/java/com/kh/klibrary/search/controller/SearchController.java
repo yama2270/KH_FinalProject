@@ -330,6 +330,7 @@ public ModelAndView interestingbook (
 				     ModelAndView mv
 		                          ) {
 	          String kdcNo=(String)param.get("kdcNo");
+	          String category=(String)param.get("category");
 	 
 	          List<BookInfo> bookList=service.kdcNoSearch(param,cPage,searchNumber);
 	          int kdcBookListCount=service.kdcBookListCount(param);
@@ -337,6 +338,7 @@ public ModelAndView interestingbook (
 	          mv.addObject("list",bookList);
 	          mv.addObject("totalData",kdcBookListCount);
 	          mv.addObject("kdcNo",kdcNo);
+	          mv.addObject("category",category);
 	          mv.addObject("pageBar",PageFactory3.getPageBar(kdcBookListCount, cPage, searchNumber, kdcNo));
 	          
 	          mv.setViewName("/searchpage/categorySearch");

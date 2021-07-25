@@ -2710,6 +2710,7 @@ String pageId = request.getParameter("pageId");
 <br><br>
 
 <form id="searchResultForm" method="get" action="interestingbook">
+<input type="hidden" name=category value=${category }/>
 <table id=searchResultTable2 >
 
  <c:choose> 
@@ -2840,6 +2841,7 @@ String pageId = request.getParameter("pageId");
 		    <tr>
 		      <td colspan="5">
 		         <hr>
+		         
 		      </td>
 		    </tr>
       </c:forEach>
@@ -2889,27 +2891,49 @@ String pageId = request.getParameter("pageId");
 	 }
  })	
  
+ 
   $(function(){
-	  $("a[href='#btn']").attr("class","asearch");
-	  $("a[class='#btn']").attr("class","asearch");
-	 $("a[href='#btn']").removeAttr('href');
+	     $("a[href='#btn']").attr("class","asearch");
+	     $("a[class='#btn']").attr("class","asearch");
+		 $("a[href='#btn']").removeAttr('href');
+		 
+		 $("a").attr("style","cursor:pointer");
+		 $(".ico").attr("style","cursor:pointer");
+		 		
 	 
-	 $("a").attr("style","cursor:pointer");
-	 $(".ico").attr("style","cursor:pointer");
-	 
-  })
+			 let images=document.getElementsByClassName("ico");
+			 for(let i=0; i<images.length; i++){			
+				 
+				 if( ($("input[name='category']").attr('value')).substring(0,1)== i ){
+					 console.log( $("#kdcDepth2List_"+i));
+					 $("#kdcDepth2List_"+i).show();	//category범위맞으면 해당메뉴보여주기
+					 
+					 if($("button[name='bookCheck']").attr('value')!=null ){
+						 for(let i=0; i<images.length;i++){		 		 
+								 $("#kdcDepth2List_"+i).hide();	//검색된북리스트가있어면 메뉴 숨기기
+					     }
+					 }
+					 
+				 }else{
+					 $("#kdcDepth2List_"+i).hide();
+				 }
+			 }	 
+			 			 			
+		 
+        })
  
  $(function(){
    $(".asearch").click(function(){
 	  let kdcNo=$(this).attr('id');	 
 	   console.log(kdcNo);
+	  let category=kdcNo.substring(0,1);
 	/*    let images=document.getElementsByClassName("ico");
 	 for(let i=0; i<images.length;i++){		 		 
 			 $("#kdcDepth2List_"+i).hide();		  
 	 } */ 
+	
 	 
-	 
-	  location.href="http://localhost:9090/klibrary/searchpage/kdcNoSearch?kdcNo="+kdcNo;
+	  location.href="${path}/searchpage/kdcNoSearch?kdcNo="+kdcNo+"&category="+category;
    }) 
  
  })
@@ -2920,7 +2944,7 @@ String pageId = request.getParameter("pageId");
         let searchNumber=$("#searchNumber").val();
         	        	
         	      
-        location.href="{path}/searchpage/kdcNoSearch?cPage="+pageNo+"&searchNumber="+numPerpage+"&kdcNo="+kdcNo;
+        location.href="${path}/searchpage/kdcNoSearch?cPage="+pageNo+"&searchNumber="+numPerpage+"&kdcNo="+kdcNo;
         	
         	
        }
@@ -2931,7 +2955,7 @@ String pageId = request.getParameter("pageId");
  	
  	
  	      
- 	location.href="{path}/searchpage/kdcNoSearch?kdcNo="+kdcNo+"&searchNumber="+searchNumber;
+ 	location.href="${path}/searchpage/kdcNoSearch?kdcNo="+kdcNo+"&searchNumber="+searchNumber;
  	
  	
  } 
