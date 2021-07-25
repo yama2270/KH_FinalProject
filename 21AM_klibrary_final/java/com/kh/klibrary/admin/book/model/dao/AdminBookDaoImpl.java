@@ -120,10 +120,15 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	}
 	
 	//대출도서 연장
-@Override
+	@Override
 	public int addBookExtend(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
 		return session.update("adminBook.addBookExtend",param);
+	}
+	
+	// 카테고리별 도서 수 
+	public List<Map<String,Integer>> countCatBook(SqlSessionTemplate session) {
+		return session.selectList("adminBook.countCatBook");
 	}
 	
 }

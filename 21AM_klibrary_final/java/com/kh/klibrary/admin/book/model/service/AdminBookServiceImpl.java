@@ -147,4 +147,9 @@ public class AdminBookServiceImpl implements AdminBookService {
 		// TODO Auto-generated method stub
 		return dao.addBookExtend(session, param);
 	}
+	
+	@Override
+	public List<Map<String,Integer>> countCatBook() {
+		return dao.countCatBook(session);
+	}
 }

@@ -54,5 +54,8 @@ public interface AdminBookService {
 	int SearchRentalCount(Map param);
 	//대출도서 연장
 	int addBookExtend(Map param);
+	
+	// 카테고리별 도서수 
+	List<Map<String,Integer>> countCatBook();
 }
 

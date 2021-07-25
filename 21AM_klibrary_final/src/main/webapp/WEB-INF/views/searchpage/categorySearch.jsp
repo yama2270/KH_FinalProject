@@ -42,53 +42,53 @@ String pageId = request.getParameter("pageId");
         <table id="kdcDepth1List" class="kdcDepth1List clearfix">
             <tr>
                 <td class="kdc0">
-                    <a href="#btn" id="0" class="choiced"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a href="#btn" id="0" class="choiced"><img src="${path }/resources/images/general.png" class="ico"></a><br><br>
                     <span class="txt">총류</span>
                 </td>
             
                 <td class="kdc1">
-                    <a href="#btn" id="1" class=""><img src="flower.jpg" class="ico"></a><br><br>
+                    <a href="#btn" id="1" class=""><img src="${path }/resources/images/philosophy.png" class="ico"></a><br><br>
                     <span class="txt">철학</span>
                 </td>
             
                 <td class="kdc2">
-                    <a href="#btn" id="2" class=""><img src="flower.jpg" class="ico"></a><br><br>
+                    <a href="#btn" id="2" class=""><img src="${path }/resources/images/religion.png" class="ico"></a><br><br>
                     <span class="txt">종교</span>
                 </td>
             
                 <td class="kdc3">
-                    <a href="#btn" id="3"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a href="#btn" id="3"><img src="${path }/resources/images/socialScience.png" class="ico"></a><br><br>
                     <span class="txt">사회과학</span>
                 </td>
             
                 <td class="kdc4">
-                    <a href="#btn" id="4"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a href="#btn" id="4"><img src="${path }/resources/images/naturalScience.png" class="ico"></a><br><br>
                     <span class="txt">자연과학</span>
                 </td>
             </tr>
             <tr>
                 <td class="kdc5">
-                    <a href="#btn" id="5"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a href="#btn" id="5"><img src="${path }/resources/images/technologyScience.png" class="ico"></a><br><br>
                     <span class="txt">기술과학</span>
                 </td>
             
                 <td class="kdc6">
-                    <a href="#btn" id="6"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a href="#btn" id="6"><img src="${path }/resources/images/art.png" class="ico"></a><br><br>
                     <span class="txt">예술</span>
                 </td>
             
                 <td class="kdc7">
-                    <a href="#btn" id="7"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a href="#btn" id="7"><img src="${path }/resources/images/language.png" class="ico"></a><br><br>
                     <span class="txt">언어</span>
                 </td>
             
                 <td class="kdc8">
-                    <a href="#btn" id="8"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a href="#btn" id="8"><img src="${path }/resources/images/art.png" class="ico"></a><br><br>
                     <span class="txt">문학</span>
                 </td>
             
                 <td class="kdc9">
-                    <a href="#btn" id="9"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a href="#btn" id="9"><img src="${path }/resources/images/history.png" class="ico"></a><br><br>
                     <span class="txt">역사</span>
                 </td>
             </tr>
@@ -2707,7 +2707,7 @@ $(function(){
 		
 		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
 		
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'){
+	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'||(window.location.href).includes('categorySearch')){
 		 
 		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
 		 

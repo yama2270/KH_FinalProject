@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class PageFactory3 {
 
-	public static String getPageBar(int totalData, int cPage, int numPerpage,String init,String bookCategory,String bookName,String author,String publisher,String isbnNo,String price,String publishYear1,String publishYear2) {
+	public static String getPageBar(int totalData, int cPage, int numPerpage) {
 		String pageBar="";
 		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
 		int pageBarSize=5;
@@ -20,7 +20,7 @@ public class PageFactory3 {
 			pageBar+="</li>";
 		}else {
 			pageBar+="<li class='page-item'>";
-			pageBar+="<a class='page-link' href='javascript:fn_paging2("+(pageNo-1)+","+totalData+","+numPerpage+","+init+","+bookCategory+","+bookName+","+author+","+publisher+","+isbnNo+","+price+","+publishYear1+","+publishYear2+")'>이전</a>";
+			pageBar+="<a class='page-link' href='javascript:fn_paging2("+(pageNo-1)+","+totalData+","+numPerpage+")'>이전</a>";
 			pageBar+="</li>";
 		}
 		
@@ -31,7 +31,7 @@ public class PageFactory3 {
 				pageBar+="</li>";
 			}else {
 				pageBar+="<li class='page-item'>";
-				pageBar+="<a class='page-link' href='javascript:fn_paging2("+(pageNo)+","+totalData+","+numPerpage+","+init+","+bookCategory+","+bookName+","+author+","+publisher+","+isbnNo+","+price+","+publishYear1+","+publishYear2+")'>"+pageNo+"</a>";
+				pageBar+="<a class='page-link' href='javascript:fn_paging2("+(pageNo)+","+totalData+","+numPerpage+")'>"+pageNo+"</a>";
 				pageBar+="</li>";
 			}
 			pageNo++;
@@ -42,7 +42,7 @@ public class PageFactory3 {
 			pageBar+="</li>";
 		}else {
 			pageBar+="<li class='page-item'>";
-			pageBar+="<a class='page-link' href='javascript:fn_paging2("+(pageNo)+","+totalData+","+numPerpage+","+init+","+bookCategory+","+bookName+","+author+","+publisher+","+isbnNo+","+price+","+publishYear1+","+publishYear2+")'>다음</a>";
+			pageBar+="<a class='page-link' href='javascript:fn_paging2("+(pageNo)+","+totalData+","+numPerpage+")'>다음</a>";
 			pageBar+="</li>";
 		}
 		pageBar+="</ul>";

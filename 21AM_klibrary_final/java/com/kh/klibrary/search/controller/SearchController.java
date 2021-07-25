@@ -59,8 +59,8 @@ public String totalSearch() {
 
 public ModelAndView bookDetail(
 		@RequestParam(value="isbnNo", required=true) String isbnNo,
-		@RequestParam(value="keyword", required=true) String keyword,
-		@RequestParam(value="category", required=true) String category,
+		@RequestParam(value="keyword", required=false) String keyword,
+		@RequestParam(value="category", required=false) String category,
 		ModelAndView mv){
 	mv.addObject("book",service.selectBook(isbnNo));	
 	System.out.println("selectbook테스트"+service.selectBook(isbnNo));
@@ -229,19 +229,21 @@ public ModelAndView bookTotalSearch(
 		System.out.println(totalData);
 		
 		System.out.println("totalData사이즈테스트"+totalData);
-		System.out.println("페이지별 데이터"+(service.selectBookList(hashMap)).size());
+		//System.out.println("페이지별 데이터"+(service.selectBookList(hashMap)).size());
 		
 		
-		if(keyword!="") {
+		if(keyword!=""&&keyword!=null) {
 			mv.addObject("list", service.selectBookList(hashMap));			
 			mv.addObject("pageBar",PageFactory2.getPageBar(totalData, cPage, searchNumber));
-		}
 		mv.addObject("keyword",keyword);
 		mv.addObject("category",category);
-	mv.addObject("totalData",totalData);
-	mv.addObject("searchNumber",searchNumber);
+		mv.addObject("totalData",totalData);
+		mv.addObject("searchNumber",searchNumber);
+		}
+	
 	
 	mv.setViewName("/searchpage/bookSearch");
+	
 	return mv;
 }
 
@@ -267,16 +269,7 @@ public ModelAndView interestingbook (
 
 @RequestMapping("/searchpage/detailSearch")
     public ModelAndView detailSearch(
-    		        @RequestParam Map param,
-    		        @RequestParam(value="book_Category", required=false) String bookCategory,
-    		        @RequestParam(value="init", required=false) String init,
-    		        @RequestParam(value="bookName",required=false) String bookName,
-    		        @RequestParam(value="author",required=false) String author,
-    		        @RequestParam(value="publisher",required=false) String publisher,
-    		        @RequestParam(value="isbnNo",required=false) String isbnNo,
-    		        @RequestParam(value="price",required=false) String price,
-    		        @RequestParam(value="publishYear1",required=false) String publishYear1,
-    		        @RequestParam(value="publishYear2",required=false) String publishYear2,
+    		        @RequestParam Map param,		
 					@RequestParam(value="searchNumber", required=false, defaultValue="10") int searchNumber,
 					@RequestParam(value="cPage", required=false, defaultValue="1") int cPage,
 					ModelAndView mv
@@ -287,91 +280,43 @@ public ModelAndView interestingbook (
 					System.out.println(key +":"+param.get(key));
 				}
 				
-				 System.out.println(init);
+				String init=(String)param.get("init");
 			 
 			
 			// 초성 배열로 변경 
 			
-			if(init==null||init=="undifined") {
-				param.put("init", null);
-				init="undefined";
+			if(init=="44700,55203") {
+				System.out.println("init테스트"+init);			
+				
 			}else {
 				param.put("init",init.split(","));
+				System.out.println("init테스트2"+init);
 			}
 						
-			System.out.println(publishYear1);
-			if(bookCategory==""||bookCategory=="undefined") {
-				param.put("book_Category",null);
-				bookCategory="undefined";
-			}else {
-			 param.put("book_Category",bookCategory);
-			}
-			if(bookName==""||bookName=="undefined") {
-			 param.put("bookName", null);
-			 bookName= "undefined";
-			}else {
-				param.put("bookName", bookName);
-			}
-			if(author==""||author=="undefined") {
-				param.put("author", null);
-				author="undefined";
-			}else {
-				param.put("author", author);
-			}
-			if(publisher==""||publisher=="undefined") {
-				param.put("publisher", null);
-				publisher="undefined";
-			}else {
-				param.put("publisher", publisher);
-			}
-			if(isbnNo==""||isbnNo=="undefined") {
-				param.put("isbnNo",null);
-				isbnNo="undefined";
-			}else {
-				param.put("isbnNo", isbnNo);
-			}
-			 if(price==""||price=="undefined") {
-				 param.put("price", null);
-				 price="undefined";
-			 }else {
-				 param.put("price", price);
-			 }
-			 if(publishYear1==""||publishYear1=="undefined") {
-				 param.put("publishYear1", null);
-				 publishYear1="undefined";
-			 }else {
-				 param.put("publishYear1",publishYear1);
-			 }
-			 if(publishYear2==""||publishYear2=="undefined") {
-				 param.put("publishYear2", null);
-				 publishYear2="undefined";
-			 }else {
-				 param.put("publishYear2", publishYear2);
-			 }
-			 if(searchNumber==0) {
-				 param.put("searchNumber", 0);
-				 searchNumber=0;
-			 }else {
-				 param.put("searchNumber", searchNumber); 
-			 }
-			 if(cPage==0) {
-				 param.put("cPage", 1);
-				 cPage=1;
-			 }else {
-				 param.put("cPage", cPage); 
-			 }
 			 
 			 //다음 페이징처리를 위한 변수받기, 페이지바 함수에서의 ""에러처리
 		   	
 	
 			    List<BookInfo> bookList1 =service.selectDetailSearch(param,cPage,searchNumber);
+			    System.out.println("bookList1테스트"+bookList1);
 			    int bookListCount=service.selectDetailSearchCount(param);
-		
+			    System.out.println("bookListCount테스트"+bookListCount);
 		
 			  mv.addObject("totalData", bookListCount);
 			  mv.addObject("list",bookList1);
-			  mv.addObject("pageBar",PageFactory3.getPageBar(bookListCount, cPage, searchNumber,init,bookCategory,bookName,author,publisher,isbnNo,price,publishYear1,publishYear2)); 
-			  mv.setViewName("/searchpage/bookSearch");
+			  mv.addObject("pageBar",PageFactory3.getPageBar(bookListCount, cPage, searchNumber)); 			  
+			  mv.addObject("init",init);
+			  mv.addObject("book_Category",(String)param.get("book_Category"));
+			  mv.addObject("bookName",(String)param.get("bookName"));
+			  mv.addObject("author",(String)param.get("author"));
+			  mv.addObject("publisher",(String)param.get("publisher"));
+			  mv.addObject("isbnNo",(String)param.get("isbnNo"));
+			  mv.addObject("publishYear",(String)param.get("publishYear"));
+			  mv.addObject("publishYear2",(String)param.get("publishYear2"));
+			  mv.addObject("searchNumber",(String)param.get("searchNumber"));
+			  
+			  
+			  mv.setViewName("/searchpage/bookDetailSearch");
 			     
 	return mv;
 }
