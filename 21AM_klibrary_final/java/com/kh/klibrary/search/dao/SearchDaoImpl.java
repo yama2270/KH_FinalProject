@@ -104,5 +104,17 @@ public class SearchDaoImpl implements SearchDao{
 		return session.insert("search.insertWishBook", param);
 	}
 
+	@Override
+	public  int bookingBook(SqlSessionTemplate session, Map param) {
+		return session.update("search.bookingBook",param);
+	}
+	
+	@Override
+	public int booking(SqlSessionTemplate session,Map param) {
+		return session.insert("search.booking",param);
+	}
 
+	 
+	 
+	 
 }

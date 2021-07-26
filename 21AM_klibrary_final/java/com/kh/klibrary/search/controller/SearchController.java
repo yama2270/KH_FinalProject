@@ -306,6 +306,52 @@ public String interestingbook (
 	return "common/msg2";
 }
 
+@RequestMapping("/searchpage/bookReservation")
+   public String bookReservation(
+					          @RequestParam("isbnNo") String isbnNo,
+						      @ModelAttribute("loginMember") Member m,
+						      @RequestParam Map param,
+						      HttpServletRequest request,
+						      Model model           
+		                       ) {
+			Book book=service.selectBook(isbnNo);
+			param.put("userId", m.getUserId());
+			param.put("bookNo",book.getBookNo());
+			
+			String msg="";
+			String loc="";
+			String referer = request.getHeader("Referer");
+			int result=0;
+	
+				System.out.println("bookingState테스트 "+book.getBookingState());
+				String bookingState=book.getBookingState();
+				System.out.println(book.getBookingState()=="가능");
+				if(bookingState.equals("가능")) {
+					System.out.println("if문 안 bookingState테스트 "+book.getBookingState());
+					param.put("bookingState", "불가능");
+					result=service.bookingBook(param);
+					result+=service.booking(param);
+					
+					
+					if(result!=0) {
+						msg="예약되었습니다.";
+					}else {
+						msg="예약 실패하였습니다.";
+					}
+				}else {
+					msg="에약이 불가능한 도서입니다.";
+				}
+	     
+	
+	loc=request.getHeader("Referer");
+	
+	model.addAttribute("msg", msg);
+	model.addAttribute("loc", loc);
+	return "common/msg2";
+}
+
+
+
 @RequestMapping("/searchpage/detailSearch")
     public ModelAndView detailSearch(
     		        @RequestParam Map param,		
