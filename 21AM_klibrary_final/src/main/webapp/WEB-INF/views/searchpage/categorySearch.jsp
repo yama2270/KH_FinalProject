@@ -2962,7 +2962,7 @@ String pageId = request.getParameter("pageId");
 	
  function bookReservation(isbnNo){
 		console.log(isbnNo);
-		
+		location.href="${path}/searchpage/bookReservation?isbnNo="+isbnNo;
 		
 	}
 
