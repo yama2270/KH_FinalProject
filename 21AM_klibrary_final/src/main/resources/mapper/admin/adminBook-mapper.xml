@@ -158,10 +158,76 @@
 		UPDATE LENDING SET BOOK_EXTEND=#{bookExtend}, RETURN_DATE=#{returnDate} WHERE USER_ID=#{userId} AND LENDING_NO=#{lendingNo}
 	</update>
 	
-	<!-- 카테고리별 도서수 -->
+	<!-- 대출도서 내역선택 -->
+	<select id="selectLending" resultMap="lending">
+		SELECT * FROM LENDING WHERE USER_ID=#{userId} AND LENDING_NO=#{lendingNo}
+	</select>
+	
+	<!-- 대출내역 삽입 -->
+	<insert id="insertLendingHistory">
+		INSERT INTO LENDING_HISTORY VALUES(SEQ_LENDING_HISTORY.NEXTVAL,#{lendingNo},#{userId},#{bookNo},#{lendingDate},#{returnDate},#{bookExtend})
+	</insert>
+	
+	<!-- 대출도서 반납 -->
+	<delete id="returnBook">
+		DELETE FROM LENDING WHERE USER_ID=#{userId} AND LENDING_NO=#{lendingNo}
+	</delete>
+	
+	<!-- 예약도서 리스트 -->
+	<select id="reservedList" resultMap="booking">
+		SELECT * FROM
+		BOOKING LEFT JOIN MEMBER USING(USER_ID) LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
+	</select>
+
+	<!-- 예약도서 카운트 -->
+	<select id="reservedCount" resultType="_int">
+		SELECT COUNT(*) FROM
+		BOOKING LEFT JOIN MEMBER USING(USER_ID) LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
+	</select>	
+	
+	<!-- 예약도서 검색 리스트 -->
+	<select id="searchReservedList" parameterType="Map" resultMap="booking">
+		SELECT * FROM
+		BOOKING LEFT JOIN MEMBER USING(USER_ID) LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+	</select>
+	
+	<!-- 예약도서 검색 카운트 -->
+	<select id="searchReservedCount" parameterType="Map" resultType="_int">
+		SELECT COUNT(*) FROM
+		BOOKING LEFT JOIN MEMBER USING(USER_ID) LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+	</select>
+	<!-- 예약도서 선택 -->
+	<select id="selectBooking" resultMap="booking">
+		SELECT * FROM BOOKING WHERE BOOKING_NO=#{bookingNo} AND USER_ID=#{userId}
+	</select>
+	
+	<!-- 예약도서내역 삽입 -->
+	<insert id="insertBookingHistory">
+		INSERT INTO BOOKING_HISTORY VALUES(SEQ_BOOKING_HISTORY_NO.NEXTVAL,#{bookingNo},#{userId},#{bookNo},#{bookingDate},#{bookingPickUpDate})
+	</insert>
+	
+	<!-- 예약도서 삭제 -->
+	<delete id="cancelReserved">
+		DELETE FROM BOOKING WHERE USER_ID=#{userId} AND BOOKING_NO=#{bookingNo}
+	</delete>
+	
+		<!-- 카테고리별 도서수 -->
 	<select id="countCatBook" resultType="Map">
 		SELECT COUNT(*) AS BOOKS FROM BOOK_INFO JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO)
 		GROUP BY KDC_NO.KDC_NAME 
+	</select>
+	
+	<!-- 관심도서 랭킹 -->
+	<select id="countLikBook" resultType="Map">
+		SELECT LIKE_COUNT,BOOK_NAME
+		FROM 
+			(SELECT COUNT(*) AS LIKE_COUNT,BOOK_INFO.BOOK_NAME
+			FROM LIKES JOIN BOOK_INFO USING(ISBN_NO)
+			GROUP BY BOOK_INFO.BOOK_NAME
+			ORDER BY LIKE_COUNT DESC) 
+		WHERE ROWNUM BETWEEN 1 AND 5
 	</select>
 	
 	<!-- resultMap -->
@@ -242,6 +308,43 @@
 		<result column="book_extend" property="bookExtend"/>
 		<result column="book_no" property="bookNo"/>
 		<result column="user_id" property="userId"/>
+	</resultMap>
+	
+	<!-- Booking -->
+	<resultMap type="com.kh.klibrary.member.model.vo.Booking" id="booking">
+		<id column="BOOKING_NO" property="bookingNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="BOOK_NO" property="bookNo"/>
+		<result column="BOOKING_DATE" property="bookingDate"/>
+		<result column="BOOKING_PICKUP_DATE" property="bookingPickUpDate"/>
+		<collection property="member" ofType="member">
+			<id column="USER_ID" property="userId"/>
+			<result column="USER_PASSWORD" property="userPassword"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="EMAIL" property="email"/>
+			<result column="BIRTH_DATE" property="birthDate"/>
+			<result column="ADDRESS" property="address"/>
+			<result column="PHONE" property="phone"/>
+			<result column="SIGNUP_DATE" property="signupDate"/>
+		</collection>
+		<collection property="book" ofType="book">
+			<id column="BOOK_NO" property="bookNo"/>
+			<result column="ISBN_NO" property="bookingState"/>
+			<result column="BOOKING_STATE" property="bookingState"/>
+			<result column="LENDING_STATE" property="lendingState"/>
+			<collection property="bookInfo" ofType="bookInfo">
+				<id column="ISBN_NO" property="isbnNo"/>
+				<result column="BOOK_NAME" property="bookName"/>
+				<result column="BOOK_WRITER" property="bookWriter"/>
+				<result column="BOOK_COMPANY" property="bookCompany"/>
+				<result column="BOOK_DATE" property="bookDate"/>
+				<result column="BOOK_PRICE" property="bookPrice"/>
+				<result column="BOOK_LOCATION" property="bookLocation"/>
+				<result column="BOOK_CONTENT" property="bookContent"/>
+				<result column="BOOK_IMG" property="bookImg"/>
+				<result column="BOOK_KDC" property="bookKdc"/>
+			</collection>
+		</collection>
 	</resultMap>
 	
 </mapper>

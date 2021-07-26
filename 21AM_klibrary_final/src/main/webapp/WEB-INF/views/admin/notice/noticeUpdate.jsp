@@ -13,7 +13,7 @@
         </div>
         	<form name="noticeForm" action="${path}/admin/notice/noticeUpdateEnd.do" method="post" enctype="multipart/form-data" >
         		<input type="hidden" name="noticeNo" value="${notice.noticeNo }"/>
-        		${notice.noticeNo }
+        		
 	            <div class="form-group" style="margin-left:95px;margin-top:30px;">
 	                <label for="userId">작성자</label>
 	                <input class="userId" type="text" value="관리자" placeholder="작성자명" readonly required>

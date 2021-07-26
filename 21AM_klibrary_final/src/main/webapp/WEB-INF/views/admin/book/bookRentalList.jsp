@@ -23,8 +23,8 @@
 						<option value="book_name" ${param.searchOption =="book_name"? "selected":""}>도서명</option>
 						<option value="user_id" ${param.searchOption =="user_id"? "selected":""}>아이디</option>
 						<option value="user_name" ${param.searchOption =="user_name"? "selected":""}>이름</option>
-						<option value="return_date" ${param.searchOption =="return_date"? "selected":""}>대출일</option>
-						<option value="book_extend" ${param.searchOption =="book_extend"? "selected" :"" }>반납일</option>
+						<option value="lending_date" ${param.searchOption =="return_date"? "selected":""}>대출일</option>
+						<option value="return_date" ${param.searchOption =="book_extend"? "selected" :"" }>반납일</option>
 					</select>
 					<input id="searchWord" class="form-control me-2" type="search" name="searchWord"
 						placeholder="Search" aria-label="Search" value='${param.searchWord!=null?param.searchWord:"" }' required>
@@ -64,7 +64,7 @@
 								<td><c:out value="${l.returnDate}"/></td>
 								<td><c:out value="${l.bookExtend}"/></td>
 								<td><button type="button" class="btn btn-outline-secondary" onClick="location.assign('${path}/admin/book/addBookExtend.do?lendingNo=${l.lendingNo }&bookExtend=${l.bookExtend }&returnDate=${l.returnDate }&userId=${l.member.userId }')">연장</button></td>
-								<td><button type="button" class="btn btn-outline-secondary" onClick="location.assign('${path}/admin/book/returnBook?lendingNo=${l.lendingNo }&userId=${l.member.userId }')">반납</button></td>
+								<td><button type="button" class="btn btn-outline-secondary" onClick="location.assign('${path}/admin/book/returnBook.do?lendingNo=${l.lendingNo }&userId=${l.member.userId }')">반납</button></td>
 							</tr>
 						</c:forEach>
 					</c:when>

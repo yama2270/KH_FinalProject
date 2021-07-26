@@ -59,7 +59,7 @@
                         <a href="${path }/member/memberEnroll.do"  class="header_a">회원가입</a>
                     </li>
                 </c:if>
-                <c:if test="${loginMember!=null && (loginMember.userId).equals(admin) }">
+                <c:if test='${loginMember!=null && (loginMember.userId).equals("admin") }'>
                 	<li>
                 		<a href="" class="hader_a">관리자페이지</a>
                 	</li>
@@ -67,7 +67,7 @@
                 		<button class="btn btn-outline-light text-dark" type="button" onclick="location.replace('${path}/member/memberLogout.do');">로그아웃</button>
                 	</li>
                 </c:if>
-                <c:if test="${loginMember!=null && !admin.equals(loginMember.userId) }">
+                <c:if test='${loginMember!=null && !"admin".equals(loginMember.userId) }'>
                 	<li>
                 		<a href="" class="hader_a">마이페이지</a>
                 	</li>
