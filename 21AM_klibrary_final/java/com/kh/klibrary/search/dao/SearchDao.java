@@ -26,6 +26,10 @@ public interface SearchDao {
      
      int insertInterestingBook(SqlSessionTemplate session,Map param);//관심도서등록
      Likes selectInterestingBook(SqlSessionTemplate session,Map param);//관심도서불러오기
+     
+     int bookingBook(SqlSessionTemplate session,Map param);//예약도서"불가능"업데이트
+     int booking(SqlSessionTemplate session,Map param);//예약도서 인서트;
+     
 	
 	List<BookInfo> selectBookInfoList(SqlSessionTemplate session, Map param);
 	int insertWishBook(SqlSessionTemplate session, Map param);

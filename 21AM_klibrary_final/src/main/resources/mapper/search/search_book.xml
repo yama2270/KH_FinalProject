@@ -251,5 +251,19 @@
 	<select id="selectInterestingBook" resultMap="likes">
 	 SELECT * FROM LIKES WHERE USER_ID=#{userId} AND ISBN_NO=#{isbnNo}
 	</select>
+	
+	<update id="bookingBook" >
+	 UPDATE BOOK SET BOOKING_STATE=#{bookingState} WHERE BOOK_NO=#{bookNo}
+	</update>
+	<insert id="booking">
+	INSERT ALL
+    INTO BOOKING (BOOKING_NO, USER_ID, BOOK_NO, BOOKING_DATE, BOOKING_PICKUP_DATE)
+    VALUES (SEQ_BOOKING_NO.NEXTVAL, USER_ID, BOOK_NO, SYSDATE, SYSDATE+3)
+    INTO BOOKING_HISTORY (BOOKING_HISTORY_NO, BOOKING_NO, USER_ID, BOOK_NO,  BOOKING_DATE, BOOKING_PICKUP_DATE)
+    VALUES ( SEQ_BOOKING_HISTORY_NO.NEXTVAL,SEQ_BOOKING_NO.NEXTVAL, USER_ID, BOOK_NO, SYSDATE, SYSDATE+3)
+    SELECT #{userId} as USER_ID, #{bookNo} as BOOK_NO
+    FROM DUAL
+	</insert>
+	
         
 </mapper>

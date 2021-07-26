@@ -72,7 +72,7 @@
                         </table>
                         <textarea name="qnaContent" id="" cols="110" rows="10" class="textarea"></textarea>
                         <input type="submit" value="등록" class="newtext" style= "margin-left: 35%;">                        	                        		
-                        <button class="qf-cancel" onclick="fn_moveQnaList();" style="margin-left:40%;">취소</button>
+                        <button class="qf-cancel" onclick="fn_moveQnaList();">취소</button>
                     </form>
                 </div>
             </div>

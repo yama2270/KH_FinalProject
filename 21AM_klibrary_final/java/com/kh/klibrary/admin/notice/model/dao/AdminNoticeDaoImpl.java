@@ -18,11 +18,6 @@ public class AdminNoticeDaoImpl implements AdminNoticeDao{
 	}
 
 @Override
-public int selectNoticeCount(SqlSessionTemplate session) {
-	// TODO Auto-generated method stub
-	return session.selectOne("board.selectBoardCount");
-}
-@Override
 public int insertNotice(SqlSessionTemplate session, Notice notice) {
 	// TODO Auto-generated method stub
 	return session.insert("notice.insertNotice",notice);
@@ -46,10 +41,12 @@ public int noticeUpdate(SqlSessionTemplate session, Notice notice) {
 	return session.update("notice.noticeUpdate", notice);
 }
 
+
+
 @Override
-public int noticeCount(SqlSessionTemplate session, int noticeNo) {
+public int selectNoticeCount(SqlSessionTemplate session) {
 	// TODO Auto-generated method stub
-	return session.update("notice.noticeCount, noticeNo");
+	return session.selectOne("notice.selectNoticeCount");
 }
 
 

@@ -19,8 +19,10 @@ public interface AdminNoticeService {
 	
 	//게시글 수정
 	int noticeUpdate(Notice notice);
+
+	int selectNoticeCount();
+
+
 	
-	
-	int noticeCount(int noticeNo);
 
 }
