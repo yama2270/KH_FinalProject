@@ -91,7 +91,7 @@
 					<c:when test="${not empty list }">
 						<c:forEach var="l" items="${list }">
 							<tr>
-								<td><c:out value="${l.lendingHistroyNo}"/></td>
+								<td><c:out value="${l.lendingHistoryNo}"/></td>
 								<td><c:out value="${l.lendingNo}"/></td>
 								<td><c:out value="${l.bookNo}"/></td>
 								<td><c:out value="${l.lendingDate}"/>~<c:out value="${l.returnDate}"/></td>

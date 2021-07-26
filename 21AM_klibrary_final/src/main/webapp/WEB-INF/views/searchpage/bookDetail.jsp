@@ -128,9 +128,9 @@ String category = request.getParameter("category"); */
 				<th >청구기호</th>
 				<th >도서번호</th>
 					<c:choose>
-					<c:when test="${not empty lending }">	
-					<th >반납예정일</th>
-					</c:when>
+					 <c:when test="${not empty lending }">	
+					  <th >반납예정일</th>
+					 </c:when>
 					</c:choose>
 				<th >예약가능여부</th>
 				
@@ -140,7 +140,7 @@ String category = request.getParameter("category"); */
 			
 				<tr>
 					
-					<td><input type="checkbox" name="bookCheck" id="check1" value="${book.isbnNo }"></td>
+					<td><input type="checkbox" name="bookCheck" id="check1" ></td>
 					
 					<td>
 						<c:out value="${book.lendingState }"/>
@@ -165,7 +165,7 @@ String category = request.getParameter("category"); */
 						<c:choose>
 						<c:when test="${book.lendingState eq '가능'}">
 						<span>예약가능</span><br>
-						<a href="#btn" onclick="" name="booking" value="${book.isbnNo }" class="tblBtn tB01">예약하기</a>
+						<a href="#btn" onclick="" name="booking" value="${book.bookInfo.isbnNo }" class="tblBtn tB01">예약하기</a>
    					    </c:when>
    					    <c:otherwise>
    					       <span>예약불가</span>
@@ -180,7 +180,7 @@ String category = request.getParameter("category"); */
 
        <div class="btnGroup">
 							
-        <a href="" id="addBasketBatchBtn" class="btn down themeBtn">관심도서담기</a>
+        <a href="${path}/searchpage/interestingbook?isbnNo=${book.bookInfo.isbnNo  }" id="addBasketBatchBtn" class="btn down themeBtn">관심도서담기</a>
         <a href="" id="btnView" class="btn down themeBtn">관심도서보기</a>
     
         

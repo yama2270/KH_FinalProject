@@ -29,6 +29,7 @@ import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.common.PageFactory2;
 import com.kh.klibrary.common.PageFactory3;
 import com.kh.klibrary.member.model.vo.Lending;
+import com.kh.klibrary.member.model.vo.Likes;
 import com.kh.klibrary.search.service.SearchServiceImp;
 
 import com.kh.klibrary.book.model.vo.BookInfo;
@@ -248,23 +249,61 @@ public ModelAndView bookTotalSearch(
 }
 
 @RequestMapping("/searchpage/interestingbook")
-public ModelAndView interestingbook ( 
+public String interestingbook ( 
+		@RequestParam Map param,
+		@RequestParam("isbnNo") String isbnNo,
+		@ModelAttribute("loginMember") Member m,
 		HttpServletRequest request,
-		ModelAndView mv
+		Model model
 		        ) {
 	String[] bookCheckArray = request.getParameterValues("bookCheck");
-		List<String> bookCheckArray2=new ArrayList();
-	for(int i=0;i<bookCheckArray.length;i++) {
-		
-		if( bookCheckArray[i]!="") {			
+	System.out.println("bookCheckArray테스트"+bookCheckArray);
+	int result=0;
+	param.put("userId", m.getUserId());
 	
-		bookCheckArray2.add(bookCheckArray[i]);
-		}
-	  
+	if(isbnNo!=null) { //북상세페이지 버튼선택시
+		param.put("isbnNo",isbnNo);
+		Likes likes=service.selectInterestingBook(param);
+		if( likes==null) {			
+		    
+		     result+=service.insertInterestingBook(param);
+			
+			}
 	}
 	
-	System.out.println("배열결과"+bookCheckArray2+"배열사이즈"+bookCheckArray2.size());
-	return mv;
+	 if(bookCheckArray!=null) {	 //체크박스선택시
+			for(int i=0;i<bookCheckArray.length;i++) {	
+				System.out.println("isbnNo테스트"+bookCheckArray[i]);
+				param.put("isbnNo",bookCheckArray[i]);
+				 Likes likes=service.selectInterestingBook(param);
+				System.out.println("likes테스트"+likes);
+				if( likes==null) {			
+			    System.out.println(bookCheckArray[i]);
+			     //param.put("isbnNo",bookCheckArray[i]);
+			     result+=service.insertInterestingBook(param);
+				
+				}
+			  
+			}	
+	 }
+	
+	String msg="";
+	String loc="";
+	String referer = request.getHeader("Referer");
+	
+	//referer.replaceAll("http://localhost:9090/klibrary", "");
+	//referer.substring(30);
+	System.out.println("referer테스트"+referer);
+	if(result==0) {
+		msg="이미 관심도서로 등록되었습니다.";
+		loc=referer;
+	}else if(result>0) {
+		msg="관심도서로 등록되었습니다.";
+		loc=referer;
+	}
+	model.addAttribute("msg", msg);
+	model.addAttribute("loc", loc);
+	return "common/msg2";
 }
 
 @RequestMapping("/searchpage/detailSearch")
@@ -304,7 +343,7 @@ public ModelAndView interestingbook (
 		
 			  mv.addObject("totalData", bookListCount);
 			  mv.addObject("list",bookList1);
-			  mv.addObject("pageBar",PageFactory3.getPageBar(bookListCount, cPage, searchNumber)); 			  
+			  mv.addObject("pageBar",PageFactory2.getPageBar(bookListCount, cPage, searchNumber)); 			  
 			  mv.addObject("init",init);
 			  mv.addObject("book_Category",(String)param.get("book_Category"));
 			  mv.addObject("bookName",(String)param.get("bookName"));
@@ -322,8 +361,29 @@ public ModelAndView interestingbook (
 }
 
 
-
-
+@RequestMapping("/searchpage/kdcNoSearch")
+  public ModelAndView kdcNoSearch(
+		            @RequestParam Map param,
+				    @RequestParam(value="searchNumber", required=false, defaultValue="10") int searchNumber,
+					@RequestParam(value="cPage", required=false, defaultValue="1") int cPage,
+				     ModelAndView mv
+		                          ) {
+	          String kdcNo=(String)param.get("kdcNo");
+	          String category=(String)param.get("category");
+	 
+	          List<BookInfo> bookList=service.kdcNoSearch(param,cPage,searchNumber);
+	          int kdcBookListCount=service.kdcBookListCount(param);
+	         
+	          mv.addObject("list",bookList);
+	          mv.addObject("totalData",kdcBookListCount);
+	          mv.addObject("kdcNo",kdcNo);
+	          mv.addObject("category",category);
+	          mv.addObject("pageBar",PageFactory3.getPageBar(kdcBookListCount, cPage, searchNumber, kdcNo));
+	          
+	          mv.setViewName("/searchpage/categorySearch");
+	
+	return mv;
+ }
 
 
 

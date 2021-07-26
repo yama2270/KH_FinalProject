@@ -1,5 +1,7 @@
 package com.kh.klibrary.admin.notice.model.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.admin.notice.model.service.AdminNoticeService;
 import com.kh.klibrary.admin.notice.model.vo.Notice;
+import com.kh.klibrary.common.PageFactory;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +30,8 @@ public class AdminNoticeController {
 	public ModelAndView noticeList(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
 			@RequestParam(value = "numPerpage", defaultValue = "10") int numPerpage, ModelAndView mv) {
 		mv.addObject("list", service.selectNoticeList(cPage, numPerpage));
+		int totalData=service.selectNoticeCount();
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage, "noticeList.do"));
 		mv.setViewName("admin/notice/noticeList");
 		return mv;
 	}
@@ -83,8 +88,7 @@ public class AdminNoticeController {
 			
 		}
 	
-	//조회수 증가
-	
+
 	
 	
 }
