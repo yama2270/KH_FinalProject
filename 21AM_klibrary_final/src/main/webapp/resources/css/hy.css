@@ -153,9 +153,18 @@
 	height : 300px;
 }
 
-#quaVis input {
-	width:80px;
-	font-size:10px;
+.quaInpWrap {
+	text-align:right;
+	padding-right : 80px;
+}
+
+.quaInpWrap input {
+	width : 115px;
+	font-size : 10px;
+}
+
+.quaCat {
+	margin-top:27px;
 }
 
 canvas {

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Lending;
+import com.kh.klibrary.member.model.vo.Likes;
 
 public interface SearchService {
 
@@ -22,6 +23,12 @@ public interface SearchService {
 	
 	List<BookInfo> selectDetailSearch(Map param,int cPage, int searchNumber);//상세검색
 	int selectDetailSearchCount(Map param);
+	
+	List<BookInfo> kdcNoSearch(Map param,int cPage, int searchNumber);//주제별검색
+	int kdcBookListCount(Map param);
+	
+	int insertInterestingBook(Map param);//관심도서등록
+	Likes selectInterestingBook(Map param);//관심도서등록선택
 	
 	List<BookInfo> selectBookInfoList(Map param);//wishbook,cg
 

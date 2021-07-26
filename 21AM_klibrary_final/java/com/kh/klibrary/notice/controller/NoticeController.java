@@ -1,22 +1,19 @@
 package com.kh.klibrary.notice.controller;
 
+import java.util.HashMap;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.notice.model.service.NoticeService;
 
-@Controller
+@Controller	
 public class NoticeController {
 	
 	@Autowired
@@ -121,10 +118,14 @@ public class NoticeController {
 		return "/facilities/parkinglot";
 	}
 	
-	@RequestMapping("/notice/calendar.do")
-	public String calendar() {
-		
-		return "/facilities/calendar";
-	}
+	/*
+	 * @RequestMapping("/notice/calendar.do") public String calendar() {
+	 * 
+	 * return "/facilities/calendar"; }
+	 */
+	
+	
+	
+	
 
 }

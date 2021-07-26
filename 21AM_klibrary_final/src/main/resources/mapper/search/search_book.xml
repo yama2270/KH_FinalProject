@@ -152,6 +152,24 @@
 		</trim>
 		</select>
 		
+		<select id="kdcNoSearch" resultMap="bookInfoMap">		
+		SELECT * FROM BOOK_INFO		
+	       <trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			  <if test= 'kdcNo !=null and kdcNo != ""'>
+			   AND BOOK_KDC = #{kdcNo}
+			  </if>		 
+		  </trim>
+		</select>
+		
+		<select id="kdcNoSearchCount" resultType="_int">		
+		SELECT COUNT(*) FROM BOOK_INFO		
+	       <trim prefix="WHERE" prefixOverrides="AND|OR">		 
+			  <if test= 'kdcNo !=null and kdcNo != ""'>
+			   AND BOOK_KDC = #{kdcNo}
+			  </if>		 
+		  </trim>
+		</select>
+		
 		
 		
 		
@@ -198,5 +216,40 @@
 	 <select id="selectLending" resultMap="lending">
 	SELECT * FROM LENDING JOIN BOOK USING(BOOK_NO) WHERE BOOK_NO=#{isbnNo}
 	</select> 
+	
+	<insert id="insertInterestingBook">
+	 INSERT INTO LIKES VALUES (#{userId},#{isbnNo})
+	</insert>
+	
+	<resultMap type="com.kh.klibrary.member.model.vo.Likes" id="likes">
+		<result column="USER_ID" property="userId"/>
+		<result column="ISBN_NO" property="isbnNo"/>
+		<collection property="member" ofType="member">
+			<id column="USER_ID" property="userId"/>
+			<result column="USER_PASSWORD" property="userPassword"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="EMAIL" property="email"/>
+			<result column="BIRTH_DATE" property="birthDate"/>
+			<result column="ADDRESS" property="address"/>
+			<result column="PHONE" property="phone"/>
+			<result column="SIGNUP_DATE" property="signupDate"/>
+		</collection>
+		<collection property="bookInfo" ofType="bookInfo">
+			<id column="ISBN_NO" property="isbnNo"/>
+			<result column="BOOK_NAME" property="bookName"/>
+			<result column="BOOK_WRITER" property="bookWriter"/>
+			<result column="BOOK_COMPANY" property="bookCompany"/>
+			<result column="BOOK_DATE" property="bookDate"/>
+			<result column="BOOK_PRICE" property="bookPrice"/>
+			<result column="BOOK_LOCATION" property="bookLocation"/>
+			<result column="BOOK_CONTENT" property="bookContent"/>
+			<result column="BOOK_IMG" property="bookImg"/>
+			<result column="BOOK_KDC" property="bookKdc"/>
+		</collection>
+	</resultMap>
+	
+	<select id="selectInterestingBook" resultMap="likes">
+	 SELECT * FROM LIKES WHERE USER_ID=#{userId} AND ISBN_NO=#{isbnNo}
+	</select>
         
 </mapper>

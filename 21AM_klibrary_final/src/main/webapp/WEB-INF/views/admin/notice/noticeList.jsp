@@ -15,11 +15,11 @@
             <div id="notice_table_box">
                 <div id="total_notice" style="margin-left:-3%;">
                     <ul class="pagination" style="margin-top:23px;">
-                       	<li style="margin-left:20px;"><a href="admin/notice/noticeList.do?page=1&category=1">전체</a></li>
-                        <li style="margin-left:20px;"><a href="admin/notice/noticeList.do?page=1&category=2">일정</a></li>
-						<li style="margin-left:20px;"><a href="admin/notice/noticeList.do?page=1&category=3">행사</a></li>
-						<li style="margin-left:20px;"><a href="admin/notice/noticeList.do?page=1&category=1">신간</a></li>
-						<li style="margin-left:20px;"><a href="admin/notice/noticeList.do?page=1&category=1">모집</a></li>
+                       	<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=1">전체</a></li>
+                        <li style="margin-left:20px;"><a href="noticeList.do?page=1&category=2">일정</a></li>
+						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=3">행사</a></li>
+						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=1">신간</a></li>
+						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=1">모집</a></li>
                         <div class="dropdown">
                           <div id="dropdown_category">
                               <select class="odfselect" style="height:30px;margin-left:400px;">

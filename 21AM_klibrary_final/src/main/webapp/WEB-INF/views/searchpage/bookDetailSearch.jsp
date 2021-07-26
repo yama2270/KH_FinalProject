@@ -271,7 +271,7 @@ String pageId = request.getParameter("pageId");
       <hr>
       
       <input type="checkbox" name="bookSelect" id="allCheck" onclick="selectAll(this)" value="all">
-      <button id="button22" type="submit" name="bookCheck" value="" >관심도서담기</button>
+      <button id="button22" type="submit"  >관심도서담기</button>
       <hr>
    </td>
   </tr>
@@ -443,7 +443,7 @@ String pageId = request.getParameter("pageId");
         	
         } 
 
-        function fn_paging(pageNo,totalData){
+    /*     function fn_paging(pageNo,totalData){
         	console.log(totalData);
         	let totalData2=parseInt(totalData);
         	let keyword=$("#inputtext").val();
@@ -453,10 +453,10 @@ String pageId = request.getParameter("pageId");
         	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category+"&searchNumber="+searchNumber+"&cPage="+pageNo+"&totalData="+totalData2;
         	
         }
-
+ */
        
         
-        function fn_paging2(pageNo,totalData,numPerpage){
+        function fn_paging(pageNo,totalData,numPerpage){
         	
         	let totalData2=parseInt(totalData);
         	let searchNumber=$("#searchNumber").val();

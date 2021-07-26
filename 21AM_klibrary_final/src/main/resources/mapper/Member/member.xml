@@ -57,7 +57,7 @@
 	</select>
 	
 	<resultMap type="com.kh.klibrary.member.model.vo.LendingHistory" id="LH">
-		<result column="LENDING_HISTORY_NO" property="lendingHistroyNo"/>
+		<result column="LENDING_HISTORY_NO" property="lendingHistoryNo"/>
 		<result column="LENDING_NO" property="lendingNo"/>
 		<result column="USER_ID" property="userId"/>
 		<result column="BOOK_NO" property="bookNo"/>
@@ -246,6 +246,9 @@
 			<result column="SIGNUP_DATE" property="signupDate"/>
 		</collection>
 	</resultMap>
+	
+	
+	
 	
 	
 </mapper>

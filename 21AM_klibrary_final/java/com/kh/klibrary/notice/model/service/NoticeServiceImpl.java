@@ -1,6 +1,7 @@
 package com.kh.klibrary.notice.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,9 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return dao.searchnoticecontent(session,text);
 	}
+
+	
+	
 	
 	
 	

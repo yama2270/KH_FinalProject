@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 
@@ -121,14 +122,90 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	
 	//대출도서 연장
 	@Override
-	public int addBookExtend(SqlSessionTemplate session, Map param) {
+		public int addBookExtend(SqlSessionTemplate session, Map param) {
+			// TODO Auto-generated method stub
+			return session.update("adminBook.addBookExtend",param);
+		}
+	
+	//대출도서 내역선택
+	@Override
+	public Lending selectLending(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
-		return session.update("adminBook.addBookExtend",param);
+		return session.selectOne("adminBook.selectLending", param);
+	}
+	
+	//대출도서 반납
+	@Override
+	public int returnBook(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("adminBook.returnBook",param);
+	}
+	
+	//대출내역 삽입
+	@Override
+	public int insertLendingHistory(SqlSessionTemplate session, Lending ld) {
+		// TODO Auto-generated method stub
+		return session.insert("adminBook.insertLendingHistory", ld);
+	}
+	
+	//예약도서 리스트
+	@Override
+	public List<Booking> reservedList(SqlSessionTemplate session, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.reservedList", null, new RowBounds((cPage-1)*numPerPage,numPerPage));
+	}
+	
+	//예약도서 카운트
+	@Override
+	public int reservedCount(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("adminBook.reservedCount");
+	}
+	
+	//예약도서 검색 리스트
+	@Override
+	public List<Booking> searchReservedList(SqlSessionTemplate session, Map param, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.searchReservedList", param, new RowBounds((cPage-1)*numPerPage,numPerPage));
+	}
+	
+	//예약도서 검색 카운트
+	@Override
+	public int searchReservedCount(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("adminBook.searchReservedCount", param);
+	}
+	
+	//예약도서 선택
+	@Override
+	public Booking selectBooking(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("adminBook.selectBooking", param);
+	}
+	
+	//예약도서내역 삽입
+	@Override
+	public int insertBookingHistory(SqlSessionTemplate session, Booking booking) {
+		// TODO Auto-generated method stub
+		return session.insert("adminBook.insertBookingHistory", booking);
+	}
+	
+	//예약도서 삭제
+	@Override
+	public int cancelReserved(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("adminBook.cancelReserved", param);
 	}
 	
 	// 카테고리별 도서 수 
 	public List<Map<String,Integer>> countCatBook(SqlSessionTemplate session) {
 		return session.selectList("adminBook.countCatBook");
 	}
+	
+	// 관심도서 랭킹 
+	public List<Map> countLikBook(SqlSessionTemplate session){
+		return session.selectList("adminBook.countLikBook");
+	}
+	
 	
 }
