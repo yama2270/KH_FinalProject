@@ -22,6 +22,7 @@ import com.kh.klibrary.admin.book.model.service.AdminBookService;
 import com.kh.klibrary.admin.common.AdminPagingTemplate;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 
@@ -122,7 +123,6 @@ public class AdminBookController {
 							@RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
 							@RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage ) {
 		List<Lending> list=service.selectRentalList(cPage, numPerPage);
-		m.addAttribute("list",list);
 		int totalBook = service.selectRentalCount();
 		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
 		
@@ -146,6 +146,7 @@ public class AdminBookController {
 		return "admin/book/bookRentalList";
 	}
 	
+	//도서 연장
 	@RequestMapping("/admin/book/addBookExtend.do")
 	public String addBookExtend(@RequestParam Map param, Model model) {
 		int bookExtend=Integer.parseInt(param.get("bookExtend").toString());
@@ -167,11 +168,79 @@ public class AdminBookController {
 		}
 		return "common/msg";
 	}
+	
+	//도서 반납
+	@RequestMapping("/admin/book/returnBook.do")
+	public String returnBook(@RequestParam Map param, Model model) {
+		String msg="도서반납을 실패햐였습니다.";
+		String loc="/admin/book/bookRentalList.do";
+		Lending ld = service.selectLending(param);
+		int lhResult=service.insertLendingHistory(ld);
+		int rbResult=service.returnBook(param);
+		if(lhResult+rbResult==2) {
+			msg="도서를 반납하였습니다.";
+		}else if(lhResult+rbResult<2) {
+			if(lhResult==1) {
+				msg="대출이력내역 삽입 실패";
+			}else if(rbResult==1) {
+				msg="대출내역 삭제 실패";
+			}
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		return "common/msg";
+	}
 	// 예약도서목록
 	@RequestMapping("/admin/book/bookReservedList.do")
-	public String reservedList() {
+	public String reservedList(Model m,
+			@RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
+			@RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage) {
+		
+		List<Booking> list=service.reservedList(cPage, numPerPage);		
+		int totalBook = service.reservedCount();
+		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
+		m.addAttribute("list",list);
+		m.addAttribute("pageBar",pageBar);
+		
 		return "admin/book/bookReservedList";
 	}
+	// 예약도서 목록 검색
+	@RequestMapping("/admin/book/searchReservedList.do")
+	public String searchReservedList(Model m, @RequestParam Map param,
+								   @RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
+								   @RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage) {
+		List<Booking> list=service.searchReservedList(param, cPage, numPerPage);
+		int totalBook = service.searchReservedCount(param);
+		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
+		m.addAttribute("list",list);
+		m.addAttribute("param",param);
+		m.addAttribute("pageBar",pageBar);
+		
+		return "admin/book/bookReservedList";
+	}
+	
+	//예약취소
+	@RequestMapping("/admin/book/cancelReserved.do")
+	public String cancelReserved(Model m, @RequestParam Map param) {
+		String msg="도서예약 취소를 실패햐였습니다.";
+		String loc="/admin/book/bookReservedList.do";
+		Booking booking = service.selectBooking(param);
+		int bhResult=service.insertBookingHistory(booking);
+		int ccResult=service.cancelReserved(param);
+		if(bhResult+ccResult==2) {
+			msg="도서예약을 취소하였습니다.";
+		}else if(bhResult+ccResult<2) {
+			if(bhResult==1) {
+				msg="도서예약내역 삽입 실패";
+			}else if(ccResult==1) {
+				msg="도서예약 삭제 실패";
+			}
+		}
+		m.addAttribute("msg",msg);
+		m.addAttribute("loc",loc);
+		return "common/msg";
+	}
+	
 
 	// 희망도서목록
 	@RequestMapping("/admin/book/bookWishList.do")

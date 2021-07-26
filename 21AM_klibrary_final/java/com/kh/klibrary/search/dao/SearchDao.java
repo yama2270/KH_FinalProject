@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Lending;
+import com.kh.klibrary.member.model.vo.Likes;
 
 public interface SearchDao {
 
@@ -22,6 +23,9 @@ public interface SearchDao {
      int selectDetailSearchCount(SqlSessionTemplate session, Map param);
      List<BookInfo> kdcNoSearch(SqlSessionTemplate session,Map param,int cPage,int searchNumber);//주제별검색
      int kdcBookListCount(SqlSessionTemplate session,Map param);
+     
+     int insertInterestingBook(SqlSessionTemplate session,Map param);//관심도서등록
+     Likes selectInterestingBook(SqlSessionTemplate session,Map param);//관심도서불러오기
 	
 	List<BookInfo> selectBookInfoList(SqlSessionTemplate session, Map param);
 	int insertWishBook(SqlSessionTemplate session, Map param);
