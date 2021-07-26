@@ -289,7 +289,7 @@ function fn_paging(pageNo,totalData){
 
 function bookReservation(isbnNo){
 	console.log(isbnNo);
-	
+	location.href="${path}/searchpage/bookReservation?isbnNo="+isbnNo;
 	
 }
 

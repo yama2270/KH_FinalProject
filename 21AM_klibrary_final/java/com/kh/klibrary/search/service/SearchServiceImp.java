@@ -180,4 +180,17 @@ public Lending selectLending(String bookNo) {
 		 return dao.selectInterestingBook(session,param);
 	 }
 	 
+	 @Override
+	 public int bookingBook(Map param) {
+		 return dao.bookingBook(session,param);
+	 }
+	 
+	 @Override
+	 public int booking(Map param) {
+		 return dao.booking(session,param);
+	 }
+	 
+	
+	 
+	 
 }
