@@ -207,5 +207,10 @@ public class AdminBookDaoImpl implements AdminBookDao {
 		return session.selectList("adminBook.countLikBook");
 	}
 	
+	// admin - main 
+	
+	public List<Map> countRenBook(SqlSessionTemplate session,Map param){
+		return session.selectList("adminBook.countRenBook",param);
+	}
 	
 }

@@ -61,7 +61,7 @@
                 </c:if>
                 <c:if test='${loginMember!=null && (loginMember.userId).equals("admin") }'>
                 	<li>
-                		<a href="" class="hader_a">관리자페이지</a>
+                		<a href="${path }/admin/main.do" class="hader_a">관리자페이지</a>
                 	</li>
                 	<li>
                 		<button class="btn btn-outline-light text-dark" type="button" onclick="location.replace('${path}/member/memberLogout.do');">로그아웃</button>

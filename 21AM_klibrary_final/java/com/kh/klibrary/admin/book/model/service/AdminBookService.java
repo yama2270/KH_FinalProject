@@ -51,6 +51,7 @@ public interface AdminBookService {
 	
 	//대출도서 목록 검색
 	List<Lending> SearchRentalList(Map param, int cPage, int numPerPage);
+	
 	//대출도서 목록 검색 카운트
 	int SearchRentalCount(Map param);
 	//대출도서 연장
@@ -67,6 +68,7 @@ public interface AdminBookService {
 	
 	//예약도서 리스트
 	List<Booking> reservedList(int cPage, int numPerPage);
+	
 	//예약도서 카운트
 	int reservedCount();
 	
@@ -90,5 +92,10 @@ public interface AdminBookService {
 	
 	// 관심도서 랭킹수 
 	List<Map> countLikBook();
+	
+	// admin main 
+	
+	List<Map> countRenBook(Map param);
+	
 }
 
