@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<c:url var="NoticeListURL" value="/admin/notice/noticeList"></c:url>
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="공지사항관리"/>
 </jsp:include>
@@ -15,24 +17,24 @@
             <div id="notice_table_box">
                 <div id="total_notice" style="margin-left:-3%;">
                     <ul class="pagination" style="margin-top:23px;">
-                       	<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=1">전체</a></li>
+                       	<li style="margin-left:20px;"><a href="noticeList.do">전체</a></li>
                         <li style="margin-left:20px;"><a href="noticeList.do?page=1&category=2">일정</a></li>
 						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=3">행사</a></li>
-						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=1">신간</a></li>
-						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=1">모집</a></li>
+						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=4">신간</a></li>
+						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=5">모집</a></li>
                         <div class="dropdown">
                           <div id="dropdown_category">
-                              <select class="odfselect" style="height:30px;margin-left:400px;">
-                                  <option selected>제목</option>
-                                  <option>내용</option>
-                                  <option>글쓴이</option>
+                              <select class="odfselect" name="searchType" id="searchType" style="height:30px;margin-left:400px;">
+                                  <option value="title" selected>제목</option>
+                                  <option value="content">내용</option>
+                                 
                               </select>
                           </div>
                       </div>
                       <span class="searchBar" style="margin-left:20px;">
                           <form id="search" action="" method="get">
-                              <input type="search" name="searchheader">
-                              <input type="submit" value="검색">
+                              <input type="text" name="searchheader">
+                              <input type="button" name="btnSearch" id="btnSearch" value="검색">
                           </form>
                       </span>
                   </ul>
@@ -81,13 +83,10 @@
             </div>
             <a href='<c:url value='/admin/notice/noticeForm.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:84%;margin-top:2%;">작성</a>
         	<input type="button" value="삭제" class="btn btn-outline-dark" style="margin-top:2%;" onclick="deleteValue();">
-            <div id="c_pagebar" class="pagebar">
-                <span><a href="">1</a></span>
-                <span><a href="">2</a></span>
-                <span><a href="">3</a></span>
-                <span><a href=""></a></span>
-                <!--출력할 데이터 개수에 따라 페이지가 추가되도록 함-->
-            </div>
+
+	        <div id="pagebar-container">
+	        	${pageBar }
+	        </div>
         </div>
 
     </section>
@@ -95,6 +94,25 @@
 
 
     <script>
+    
+
+	$(document).on('click', '#btnSearch', function(e){
+
+		e.preventDefault();
+
+		var url = "${pageContext.request.contextPath}/admin/notice/noticeList.do";
+
+
+		url = url + "?searchType=" + $('#searchType').val();
+
+		url = url + "&keyword=" + $('#keyword').val();
+
+		location.href = url;
+
+		console.log(url);
+
+	});
+    
     
     $(function(){
 		var chkObj = document.getElementsByName("RowCheck");

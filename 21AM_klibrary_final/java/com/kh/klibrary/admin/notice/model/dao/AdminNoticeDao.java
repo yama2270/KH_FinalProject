@@ -14,6 +14,7 @@ public interface AdminNoticeDao {
 	Notice selectNoticeView(SqlSessionTemplate session,int noticeNo);
 	int deleteNotice(SqlSessionTemplate session, String noticeNo);
 	int noticeUpdate(SqlSessionTemplate session, Notice notice);
-	int noticeCount(SqlSessionTemplate session, int noticeNo);
+
+	int selectNoticeCount(SqlSessionTemplate session);
 	
 }

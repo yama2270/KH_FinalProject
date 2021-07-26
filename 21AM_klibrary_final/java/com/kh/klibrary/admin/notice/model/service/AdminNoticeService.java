@@ -20,8 +20,7 @@ public interface AdminNoticeService {
 	//게시글 수정
 	int noticeUpdate(Notice notice);
 
-	//조회수 올리기
-	int noticeCount(int noticeNo);
+	int selectNoticeCount();
 
 
 	

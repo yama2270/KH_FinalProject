@@ -42,9 +42,11 @@ public int noticeUpdate(SqlSessionTemplate session, Notice notice) {
 }
 
 
+
 @Override
-public int noticeCount(SqlSessionTemplate session, int noticeNo) {
-	return session.update("notice.noticeCount, noticeNo");
+public int selectNoticeCount(SqlSessionTemplate session) {
+	// TODO Auto-generated method stub
+	return session.selectOne("notice.selectNoticeCount");
 }
 
 
