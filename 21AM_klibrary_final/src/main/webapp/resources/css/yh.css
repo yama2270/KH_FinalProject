@@ -59,7 +59,7 @@
 #titleheadname{
   width : 1150px;
   /* margin : auto; */
-  margin-top : 40px;
+  margin-top : 20px;
   border-bottom : 2px gray solid;
   /* padding-left : 10px; */
   font-size : 30px;
@@ -107,6 +107,7 @@
 }
 
 /* 도서관이용시간 */
+
 .seatback2{
 	margin-top:2%;
 	margin-left:35%;

@@ -58,7 +58,6 @@ public class AdminMemberController {
 		mv.addObject("param",param);
 		mv.setViewName("admin/member/memberList");
 		return mv;
-		
 	}
 	
 	
