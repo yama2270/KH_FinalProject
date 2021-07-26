@@ -198,6 +198,7 @@
 		}
 	})
 	
+	console.log(new Date())
 	
 	}); //Jquery END
 	
