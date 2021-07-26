@@ -17,10 +17,6 @@
   	ORDER BY NOTICE_NO DESC
   </select>
   
-  <select id="selectNoticeCount" resultType="_int">
-  	SELECT COUNT(*) FROM NOTICE
-  </select>
-  
 	<insert id="insertNotice">
 		INSERT INTO NOTICE 
 		VALUES(NOTICE_SEQ.NEXTVAL,#{noticeTitle},#{noticeContent},#{originalFileName},SYSDATE,0,#{noticeCate})
@@ -28,7 +24,8 @@
 			SELECT NOTICE_SEQ.CURRVAL FROM DUAL
 		</selectKey>
 	</insert>
-  
+	
+  <!-- 게시글 삭제 (체크박스로 다중 삭제) -->
   <delete id="deleteNotice" parameterType="String">
   	DELETE FROM NOTICE WHERE NOTICE_NO = #{noticeNo}
   </delete>
@@ -59,9 +56,10 @@
   	WHERE NOTICE_CONTENT LIKE '%'||#{text}||'%'
   </select>
   
-  <update id="updateNoticeCount" parameterType="int">
+  <!-- 게시글 조회수 증가 -->
+  <update id="noticeCount" parameterType="int">
    UPDATE NOTICE SET NOTICE_COUNT = NOTICE_COUNT + 1 WHERE NOTICE_NO = #{NOTICE_NO}
-	</update>
+  </update>
   	
 
   

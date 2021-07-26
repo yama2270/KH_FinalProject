@@ -48,16 +48,20 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 		return dao.noticeUpdate(session, notice);
 	}
 
-	@Override
-	public int noticeCount(int noticeNo) {
-		return dao.noticeCount(session, noticeNo);
-	}
 
 
+	//게시글 삭제
 	@Override
 	public int deleteNotice(String noticeNo) {
 		// TODO Auto-generated method stub
 		return dao.deleteNotice(session, noticeNo);
+	}
+
+
+	@Override
+	public int noticeCount(int noticeNo) {
+		// TODO Auto-generated method stub
+		return dao.noticeCount(session, noticeNo);
 	}
 
 

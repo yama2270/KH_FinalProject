@@ -83,8 +83,7 @@ public class AdminNoticeController {
 			
 		}
 	
-	//조회수 증가
-	
+
 	
 	
 }

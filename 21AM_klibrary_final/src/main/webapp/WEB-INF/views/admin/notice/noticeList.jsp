@@ -14,28 +14,28 @@
         <div id="notice_box">
             <div id="notice_table_box">
                 <div id="total_notice" style="margin-left:-3%;">
-                    <div>
-                        <input type="button" id="button" name="button" value="전체" class="btn btn btn-secondary btn-bg" style="margin-bottom:3%;margin-right:2%;"/>
-                        <input type="button" id="button" name="button" value="일정" class="btn btn btn-secondary btn-bg" style="margin-bottom:3%;margin-right:2%;"/>
-						<input type="button" id="button" name="button" value="행사" class="btn btn btn-secondary btn-bg" style="margin-bottom:3%;margin-right:2%;"/>
-						<input type="button" id="button" name="button" value="신간" class="btn btn btn-secondary btn-bg" style="margin-bottom:3%;margin-right:2%;"/>
-						<input type="button" id="button" name="button" value="모집" class="btn btn btn-secondary btn-bg" style="margin-bottom:3%;margin-right:2%;"/>
+                    <ul class="pagination" style="margin-top:23px;">
+                       	<li style="margin-left:20px;"><a href="admin/notice/noticeList.do?page=1&category=1">전체</a></li>
+                        <li style="margin-left:20px;"><a href="admin/notice/noticeList.do?page=1&category=2">일정</a></li>
+						<li style="margin-left:20px;"><a href="admin/notice/noticeList.do?page=1&category=3">행사</a></li>
+						<li style="margin-left:20px;"><a href="admin/notice/noticeList.do?page=1&category=1">신간</a></li>
+						<li style="margin-left:20px;"><a href="admin/notice/noticeList.do?page=1&category=1">모집</a></li>
                         <div class="dropdown">
                           <div id="dropdown_category">
-                              <select class="odfselect" style="height:30px;margin-left:10%;margin-top:1%">
+                              <select class="odfselect" style="height:30px;margin-left:400px;">
                                   <option selected>제목</option>
                                   <option>내용</option>
                                   <option>글쓴이</option>
                               </select>
                           </div>
                       </div>
-                      <span>
+                      <span class="searchBar" style="margin-left:20px;">
                           <form id="search" action="" method="get">
                               <input type="search" name="searchheader">
                               <input type="submit" value="검색">
                           </form>
                       </span>
-                  </div>
+                  </ul>
               </div>
                 <table id="notice_table" class="pa" border style="margin-left:-3%;">
                     <thead>
