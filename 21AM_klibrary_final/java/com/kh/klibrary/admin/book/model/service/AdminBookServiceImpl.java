@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kh.klibrary.admin.book.model.dao.AdminBookDao;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 
@@ -146,6 +147,74 @@ public class AdminBookServiceImpl implements AdminBookService {
 	public int addBookExtend(Map param) {
 		// TODO Auto-generated method stub
 		return dao.addBookExtend(session, param);
+	}
+	
+	//대출도서 내역선택
+	@Override
+	public Lending selectLending(Map param) {
+		// TODO Auto-generated method stub
+		return dao.selectLending(session, param);
+	}
+	
+	//대출도서 반납
+	@Override
+	public int returnBook(Map param) {
+		// TODO Auto-generated method stub
+		return dao.returnBook(session, param);
+	}
+	
+	//대출내역 삽입
+	@Override
+	public int insertLendingHistory(Lending ld) {
+		// TODO Auto-generated method stub
+		return dao.insertLendingHistory(session, ld);
+	}
+	
+	//예약도서 리스트
+	@Override
+	public List<Booking> reservedList(int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.reservedList(session, cPage, numPerPage);
+	}
+	
+	//예약도서 카운트
+	@Override
+	public int reservedCount() {
+		// TODO Auto-generated method stub
+		return dao.reservedCount(session);
+	}
+	
+	//예약도서 검색리스트
+	@Override
+	public List<Booking> searchReservedList(Map param, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.searchReservedList(session,param, cPage, numPerPage);
+	}
+	
+	//예약도서 검색카운트
+	@Override
+	public int searchReservedCount(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchReservedCount(session, param);
+	}
+	
+	//예약도서 선택
+	@Override
+	public Booking selectBooking(Map param) {
+		// TODO Auto-generated method stub
+		return dao.selectBooking(session, param);
+	}
+	//예약도서내역 삽입
+	@Override
+	public int insertBookingHistory(Booking booking) {
+		// TODO Auto-generated method stub
+		return dao.insertBookingHistory(session, booking);
+	}
+	//예약취소
+	@Override
+	public int cancelReserved(Map param) {
+		// TODO Auto-generated method stub
+		return dao.cancelReserved(session, param);
 	}
 	
 	// 카테고리별 도서수 

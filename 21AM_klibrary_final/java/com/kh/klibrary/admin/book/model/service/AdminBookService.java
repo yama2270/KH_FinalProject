@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 
@@ -54,6 +55,35 @@ public interface AdminBookService {
 	int SearchRentalCount(Map param);
 	//대출도서 연장
 	int addBookExtend(Map param);
+	
+	//대출도서 내역선택
+	Lending selectLending(Map param);
+	
+	//대출도서 반납 
+	int returnBook(Map param);
+	
+	//대출내역 삽입
+	int insertLendingHistory(Lending ld);
+	
+	//예약도서 리스트
+	List<Booking> reservedList(int cPage, int numPerPage);
+	//예약도서 카운트
+	int reservedCount();
+	
+	//예약도서 검색
+	List<Booking> searchReservedList(Map param, int cPage, int numPerPage);
+	
+	//예약도서 카운트
+	int searchReservedCount(Map param);
+	
+	//예약도서 선택
+	Booking selectBooking(Map param);
+	
+	//예약도서내역 삽입
+	int insertBookingHistory(Booking booking);
+	
+	//예약 취소
+	int cancelReserved(Map param);
 	
 	// 카테고리별 도서수 
 	List<Map<String,Integer>> countCatBook();
