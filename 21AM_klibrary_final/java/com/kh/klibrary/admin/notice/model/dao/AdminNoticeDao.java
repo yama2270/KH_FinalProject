@@ -13,7 +13,8 @@ public interface AdminNoticeDao {
 	int selectNoticeCount(SqlSessionTemplate session);
 	int insertNotice(SqlSessionTemplate session, Notice notice);
 	Notice selectNoticeView(SqlSessionTemplate session,int noticeNo);
-	int deleteNotice(SqlSessionTemplate session, int noticeNo);
+	int deleteNotice(SqlSessionTemplate session, String noticeNo);
 	int noticeUpdate(SqlSessionTemplate session, Notice notice);
-	int noticeCount(SqlSessionTemplate session, int noticeNo);
+	int noticeCount(SqlSessionTemplate session, int noticeNo); 
+	
 }

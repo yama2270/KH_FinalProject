@@ -84,5 +84,11 @@ public interface AdminBookService {
 	
 	//예약 취소
 	int cancelReserved(Map param);
+	
+	// 카테고리별 도서수 
+	List<Map<String,Integer>> countCatBook();
+	
+	// 관심도서 랭킹수 
+	List<Map> countLikBook();
 }
 

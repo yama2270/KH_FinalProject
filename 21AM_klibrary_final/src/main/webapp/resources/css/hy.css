@@ -140,8 +140,35 @@
   width : 1150px;
   height : 700px;
   margin : auto;
-  text-align : center;
-  line-height : 700px;
+}
+
+#canTop , #canBot {
+	margin-top : 10px;
+	display : table;
+}
+
+.canQua {
+	display : table-cell;
+	width : 570px;
+	height : 300px;
+}
+
+.quaInpWrap {
+	text-align:right;
+	padding-right : 80px;
+}
+
+.quaInpWrap input {
+	width : 115px;
+	font-size : 10px;
+}
+
+.quaCat {
+	margin-top:27px;
+}
+
+canvas {
+	margin: 0 auto;
 }
 
 /* 관리자 - cotents - 헤더 */

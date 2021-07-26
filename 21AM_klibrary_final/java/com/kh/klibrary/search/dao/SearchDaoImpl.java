@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Lending;
+import com.kh.klibrary.member.model.vo.Likes;
 
 @Repository
 public class SearchDaoImpl implements SearchDao{
@@ -71,12 +72,32 @@ public class SearchDaoImpl implements SearchDao{
 		return session.selectOne("search.selectDetailCount",param);
 	}
 	
-
+    @Override
 	public List<BookInfo> selectBookInfoList(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
 		return session.selectList("search.selectBookInfoList", param);
 	}
+    
+    @Override
+	public List<BookInfo> kdcNoSearch(SqlSessionTemplate session,Map param,int cPage,int searchNumber){
+		return session.selectList("search.kdcNoSearch", param, new RowBounds((cPage-1)*searchNumber,searchNumber));
+	}
+    
+    @Override
+	public int kdcBookListCount(SqlSessionTemplate session,Map param) {
+		return session.selectOne("search.kdcNoSearchCount",param);
+	}
+    
+    @Override
+	public int insertInterestingBook(SqlSessionTemplate session,Map param) {
+		return session.insert("search.insertInterestingBook", param);
+	}
 	
+    @Override
+    public Likes selectInterestingBook(SqlSessionTemplate session,Map param) {
+    	return session.selectOne("search.selectInterestingBook", param);
+    }
+    
 	@Override
 	public int insertWishBook(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub

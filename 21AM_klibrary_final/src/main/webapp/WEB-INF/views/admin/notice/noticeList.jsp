@@ -40,7 +40,7 @@
                 <table id="notice_table" class="pa" border style="margin-left:-3%;">
                     <thead>
                         <tr style="background-color: #eaeaea;">
-                            <th><input type="checkbox" id="allCheck" name="allCheck" checked/></th>
+                            <th><input type="checkbox" id="allCheck" name="allCheck" /></th>
                             <th width=100>번호</th>
                             <th width=100>분류</th>
                             <th width=450>제목</th>
@@ -52,7 +52,7 @@
    					<c:when test="${not empty list }">
    					<c:forEach var="notice" items="${list }">
    						<tr>
-   							<td class="cols"><input type="checkbox" name="noList" value="${notice.noticeNo }"/>
+   							<td class="cols"><input type="checkbox" name="RowCheck" value="${notice.noticeNo }"/>
    							<td class="cols"><c:out value="${notice.noticeNo }"/></td>
    							<td class="cols"><c:out value="${notice.noticeCate }"/></td>
    							<td class="cols">
@@ -80,7 +80,7 @@
                 </table>
             </div>
             <a href='<c:url value='/admin/notice/noticeForm.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:84%;margin-top:2%;">작성</a>
-        	<a href="${path }/admin/notice/noticeDelete.do?noticeNo=${notice.noticeNo}" class="btn btn-outline-dark" style="margin-top:2%;" onclick="deleteNotice();">삭제</a>
+        	<input type="button" value="삭제" class="btn btn-outline-dark" style="margin-top:2%;" onclick="deleteValue();">
             <div id="c_pagebar" class="pagebar">
                 <span><a href="">1</a></span>
                 <span><a href="">2</a></span>
@@ -96,7 +96,59 @@
 
     <script>
     
- 
+    $(function(){
+		var chkObj = document.getElementsByName("RowCheck");
+		var rowCnt = chkObj.length;
+		
+		$("input[name='allCheck']").click(function(){
+			var chk_listArr = $("input[name='RowCheck']");
+			for (var i=0; i<chk_listArr.length; i++){
+				chk_listArr[i].checked = this.checked;
+			}
+		});
+		$("input[name='RowCheck']").click(function(){
+			if($("input[name='RowCheck']:checked").length == rowCnt){
+				$("input[name='allCheck']")[0].checked = true;
+			}
+			else{
+				$("input[name='allCheck']")[0].checked = false;
+			}
+		});
+	});
+    
+	function deleteValue(){
+		var url = "${path}/admin/notice/noticeDelete.do"    // Controller로 보내고자 하는 URL (.dh부분은 자신이 설정한 값으로 변경해야됨)
+		var valueArr = new Array();
+	    var list = $("input[name='RowCheck']");
+	    for(var i = 0; i < list.length; i++){
+	        if(list[i].checked){ //선택되어 있으면 배열에 값을 저장함
+	            valueArr.push(list[i].value);
+	        }
+	    }
+	    if (valueArr.length == 0){
+	    	alert("선택된 글이 없습니다.");
+	    }
+	    else{
+			var chk = confirm("정말 삭제하시겠습니까?");				 
+			$.ajax({
+			    url : "${path}/admin/notice/noticeDelete.do", // 전송 URL
+			    type : 'POST',                // GET or POST 방식
+			    traditional : true,
+			    data : {
+			    	valueArr : valueArr        // 보내고자 하는 data 변수 설정
+			    },
+                success: function(jdata){
+                    if(jdata = 1) {
+                        alert("삭제 성공");
+                        location.replace("${path}/admin/notice/noticeList.do")
+                    }
+                    else{
+                        alert("삭제 실패");
+                    }
+                }
+			});
+		}
+	}
 
 
 

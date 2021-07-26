@@ -65,8 +65,9 @@ String totalData=request.getParameter("totalData");
     </div>
       
     <input type="text" placeholder="  검색" name="keyword" id="inputtext" onkeypress="if(event.keyCode == 13){fn_searchBook(); return false;}"
-    <%if(keyword!= null) {%>
-    value="<%=keyword %>" <%} %>>
+    <%if(keyword!=null) {%>
+    value="<%=keyword %>" <%}else{ %>
+    value="" <%} %>>
     <button id="searchButton" type="submit" ><i class="fa fa-search"></i>검색</button>
   </form>
 
@@ -84,10 +85,12 @@ String totalData=request.getParameter("totalData");
     <th colspan="5" id="searchCaptionTh2">
       <div style="text-align:center">
         <div id="searchCaption22">
-            <p><%if(keyword!= null) {%>
+            <p><%if(keyword!=null) {%>
             <%=keyword %> 
+            검색결과 ${totalData }건  이 검색되었습니다.
+             <%}else{ %>
              <%} %>
-            검색결과 ${totalData }건  이 검색되었습니다.</p>
+             </p>
         </div>
   
         <div class="selectForm3">
@@ -118,7 +121,7 @@ String totalData=request.getParameter("totalData");
       <hr>
       
       <input type="checkbox" name="bookSelect" id="allCheck" onclick="selectAll(this)" value="all">
-      <button id="button22" type="submit" name="bookCheck" value="" >관심도서담기</button>
+      <button id="button22" type="submit"  >관심도서담기</button>
       <hr>
    </td>
   </tr>
@@ -229,9 +232,13 @@ String totalData=request.getParameter("totalData");
     </c:choose>
   </table>
   </form>
-  <div id="pagebar-container">
+  <c:choose> 
+   	<c:when test="${not empty list }">
+         <div id="pagebar-container">
         	${pageBar }
         </div>
+       </c:when>
+   </c:choose>
 
 
 </body>
@@ -271,14 +278,14 @@ function fn_paging(pageNo,totalData){
 	
 }
 
-function fn_paging2(pageNo,totalData,numPerpage,init,bookCategory,bookName,author,publisher,isbnNo,price,publishYear1,publishYear2){
+/* function fn_paging2(pageNo,totalData,numPerpage,init,bookCategory,bookName,author,publisher,isbnNo,price,publishYear1,publishYear2){
 	console.log(totalData);
 	let totalData2=parseInt(totalData);
 	let searchNumber=$("#searchNumber").val();
 	
 	location.href="${path}/searchpage/detailSearch?searchNumber="+numPerpage+"&cPage="+pageNo+"&totalData="+totalData2+"&init="+init+"&bookCategory="+bookCategory+"&bookName="+bookName+"&author="+author+"&publisher="+publisher+"&isbnNo="+isbnNo+"&price="+price+"&publishYear1="+publishYear1+"&publishYear2="+publishYear2;
 	
-}
+} */
 
 function bookReservation(isbnNo){
 	console.log(isbnNo);
@@ -297,6 +304,7 @@ function selectAll(selectAll)  {
 	  })
 	}
 	
+
 	 /* function interestingBook(){
 		 const checkboxes 
 	       = document.getElementsByName('bookCheck').value;

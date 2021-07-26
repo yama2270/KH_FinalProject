@@ -213,6 +213,23 @@
 		DELETE FROM BOOKING WHERE USER_ID=#{userId} AND BOOKING_NO=#{bookingNo}
 	</delete>
 	
+		<!-- 카테고리별 도서수 -->
+	<select id="countCatBook" resultType="Map">
+		SELECT COUNT(*) AS BOOKS FROM BOOK_INFO JOIN KDC_DETAIL ON(BOOK_KDC=KDC_DETAIL_NO) JOIN KDC_NO USING(KDC_NO)
+		GROUP BY KDC_NO.KDC_NAME 
+	</select>
+	
+	<!-- 관심도서 랭킹 -->
+	<select id="countLikBook" resultType="Map">
+		SELECT LIKE_COUNT,BOOK_NAME
+		FROM 
+			(SELECT COUNT(*) AS LIKE_COUNT,BOOK_INFO.BOOK_NAME
+			FROM LIKES JOIN BOOK_INFO USING(ISBN_NO)
+			GROUP BY BOOK_INFO.BOOK_NAME
+			ORDER BY LIKE_COUNT DESC) 
+		WHERE ROWNUM BETWEEN 1 AND 5
+	</select>
+	
 	<!-- resultMap -->
 	
 	<!-- book -->

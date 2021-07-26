@@ -7,6 +7,7 @@ String pageId = request.getParameter("pageId");
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/> 
+ 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="종류별검색"/>
 </jsp:include>
@@ -42,59 +43,61 @@ String pageId = request.getParameter("pageId");
         <table id="kdcDepth1List" class="kdcDepth1List clearfix">
             <tr>
                 <td class="kdc0">
-                    <a href="#btn" id="0" class="choiced"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a id="0" class="choiced"><img src="${path }/resources/images/general.png" id="0" class="ico"></a><br><br>
                     <span class="txt">총류</span>
                 </td>
             
                 <td class="kdc1">
-                    <a href="#btn" id="1" class=""><img src="flower.jpg" class="ico"></a><br><br>
+                    <a id="1" class=""><img src="${path }/resources/images/philosophy.png" id="1" class="ico"></a><br><br>
                     <span class="txt">철학</span>
                 </td>
             
                 <td class="kdc2">
-                    <a href="#btn" id="2" class=""><img src="flower.jpg" class="ico"></a><br><br>
+                    <a id="2" class=""><img src="${path }/resources/images/religion.png" id="2" class="ico"></a><br><br>
                     <span class="txt">종교</span>
                 </td>
             
                 <td class="kdc3">
-                    <a href="#btn" id="3"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a id="3"><img src="${path }/resources/images/socialScience.png" id="3" class="ico"></a><br><br>
                     <span class="txt">사회과학</span>
                 </td>
             
                 <td class="kdc4">
-                    <a href="#btn" id="4"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a id="4"><img src="${path }/resources/images/naturalScience.png" id="4" class="ico"></a><br><br>
                     <span class="txt">자연과학</span>
                 </td>
             </tr>
             <tr>
                 <td class="kdc5">
-                    <a href="#btn" id="5"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a id="5"><img src="${path }/resources/images/technologyScience.png" id="5" class="ico"></a><br><br>
                     <span class="txt">기술과학</span>
                 </td>
             
                 <td class="kdc6">
-                    <a href="#btn" id="6"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a id="6"><img src="${path }/resources/images/art.png" id="6" class="ico"></a><br><br>
                     <span class="txt">예술</span>
                 </td>
             
                 <td class="kdc7">
-                    <a href="#btn" id="7"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a id="7"><img src="${path }/resources/images/language.png" id="7" class="ico"></a><br><br>
                     <span class="txt">언어</span>
                 </td>
             
                 <td class="kdc8">
-                    <a href="#btn" id="8"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a id="8"><img src="${path }/resources/images/art.png" id="8" class="ico"></a><br><br>
                     <span class="txt">문학</span>
                 </td>
             
                 <td class="kdc9">
-                    <a href="#btn" id="9"><img src="flower.jpg" class="ico"></a><br><br>
+                    <a id="9"><img src="${path }/resources/images/history.png" id="9" class="ico"></a><br><br>
                     <span class="txt">역사</span>
                 </td>
             </tr>
             </table>
             <br><br>
-            <table id="kdcDepth2List_0" class="kdcDepth2List clearfix" style="display: block;">
+            
+           
+            <table id="kdcDepth2List_0" class="kdcDepth2List" style="display: block;">
                 <tr>
                     
                     <td>
@@ -325,10 +328,11 @@ String pageId = request.getParameter("pageId");
                 
             </table>
            
-            <!-- <ol id="kdcDepth2List_1" class="kdcDepth2List clearfix" style="display: none;">
+            <table id="kdcDepth2List_1" class="kdcDepth2List" style="display: none;">
                 
-                    <li>
-                        <dl>
+                    <tr>
+                        <td>
+                           <dl>
                             <dt><a href="#btn" id="10" title="10 철학">10 철학</a></dt>
                             
                                 <dd><a href="#btn" id="100" title="100 철학">100 철학</a></dd>
@@ -352,9 +356,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="109" title="109 철학사">109 철학사</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="11" title="11 형이상학">11 형이상학</a></dt>
                             
@@ -379,9 +383,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="119" title="119 물량과 질량">119 물량과 질량</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="12" title="12 인식론, 인과론, 인간학">12 인식론, 인과론, 인간학</a></dt>
                             
@@ -400,9 +404,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="126" title="126 철학적 인간학">126 철학적 인간학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="13" title="13 철학의 체계">13 철학의 체계</a></dt>
                             
@@ -427,9 +431,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="139" title="139 기타">139 기타</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="14" title="14 경학">14 경학</a></dt>
                             
@@ -452,9 +456,10 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="148" title="148 사서">148 사서</a></dd>
                             
                         </dl>
-                    </li>
-                
-                    <li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="15" title="15 동양철학 , 사상">15 동양철학 , 사상</a></dt>
                             
@@ -479,9 +484,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="159" title="159 아랍제국 철학, 사상">159 아랍제국 철학, 사상</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="16" title="16 서양철학">16 서양철학</a></dt>
                             
@@ -504,9 +509,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="169" title="169 러시아 철학">169 러시아 철학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="17" title="17 논리학">17 논리학</a></dt>
                             
@@ -531,9 +536,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="179" title="179 논증, 설득">179 논증, 설득</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="18" title="18 심리학">18 심리학</a></dt>
                             
@@ -558,9 +563,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="189" title="189 응용심리학 일반">189 응용심리학 일반</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="19" title="19 윤리학, 도덕철학">19 윤리학, 도덕철학</a></dt>
                             
@@ -585,14 +590,15 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="199" title="199 도덕훈, 교훈">199 도덕훈, 교훈</a></dd>
                             
                         </dl>
-                    </li>
-                
-            </ol>
+                    </td>
+                </tr>
+            </table>
         
-            <ol id="kdcDepth2List_2" class="kdcDepth2List clearfix" style="display: none;">
+            <table id="kdcDepth2List_2" class="kdcDepth2List" style="display: none;">
                 
-                    <li>
-                        <dl>
+                    <tr>
+                        <td>
+                           <dl>
                             <dt><a href="#btn" id="20" title="20 종교">20 종교</a></dt>
                             
                                 <dd><a href="#btn" id="200" title="200 종교">200 종교</a></dd>
@@ -616,9 +622,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="209" title="209 종교사">209 종교사</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="21" title="21 비교종교학">21 비교종교학</a></dt>
                             
@@ -643,9 +649,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="219" title="219 신화, 신화학">219 신화, 신화학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="22" title="22 불교">22 불교</a></dt>
                             
@@ -670,9 +676,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="229" title="229 라마교">229 라마교</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="23" title="23 기독교">23 기독교</a></dt>
                             
@@ -697,9 +703,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="239" title="239 유태교">239 유태교</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="24" title="24 도교">24 도교</a></dt>
                             
@@ -722,9 +728,10 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="248" title="248 교파">248 교파</a></dd>
                             
                         </dl>
-                    </li>
-                
-                    <li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="25" title="25 천도교">25 천도교</a></dt>
                             
@@ -749,9 +756,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="259" title="259 단군교, 대종교">259 단군교, 대종교</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="27" title="27 힌두교, 브라만교">27 힌두교, 브라만교</a></dt>
                             
@@ -774,9 +781,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="279" title="279 자이나교">279 자이나교</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="28" title="28 이슬람교(회교)">28 이슬람교(회교)</a></dt>
                             
@@ -801,9 +808,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="289" title="289 조로아스터교 (요교, 배화교)">289 조로아스터교 (요교, 배화교)</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="29" title="29 기타 제종교">29 기타 제종교</a></dt>
                             
@@ -826,14 +833,15 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="299" title="299 기타 다른 기원의 종교">299 기타 다른 기원의 종교</a></dd>
                             
                         </dl>
-                    </li>
-                
-            </ol>
+                    </td>
+                 </tr>
+            </table>
         
-            <ol id="kdcDepth2List_3" class="kdcDepth2List clearfix" style="display: none;">
+            <table id="kdcDepth2List_3" class="kdcDepth2List" style="display: none;">
                 
-                    <li>
-                        <dl>
+                    <tr>
+                        <td>
+                          <dl>
                             <dt><a href="#btn" id="30" title="30 사회과학">30 사회과학</a></dt>
                             
                                 <dd><a href="#btn" id="300" title="300 사회과학">300 사회과학</a></dd>
@@ -857,9 +865,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="309" title="309 정치, 경제, 사회, 문화사정 및 역사">309 정치, 경제, 사회, 문화사정 및 역사</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="31" title="31 통계학">31 통계학</a></dt>
                             
@@ -882,9 +890,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="319" title="319 인구통계">319 인구통계</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="32" title="32 경제학">32 경제학</a></dt>
                             
@@ -909,9 +917,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="329" title="329 재정">329 재정</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="33" title="33 사회학, 사회문제">33 사회학, 사회문제</a></dt>
                             
@@ -932,9 +940,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="339" title="339 사회단체">339 사회단체</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="34" title="34 정치학">34 정치학</a></dt>
                             
@@ -953,9 +961,10 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="349" title="349 외교, 국제관계">349 외교, 국제관계</a></dd>
                             
                         </dl>
-                    </li>
-                
-                    <li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="35" title="35 행정학">35 행정학</a></dt>
                             
@@ -978,9 +987,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="359" title="359 지방자치 및 행정">359 지방자치 및 행정</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="36" title="36 법학">36 법학</a></dt>
                             
@@ -1005,9 +1014,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="369" title="369 각국 법 및 예규">369 각국 법 및 예규</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="37" title="37 교육학">37 교육학</a></dt>
                             
@@ -1032,9 +1041,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="379" title="379 특수교육">379 특수교육</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="38" title="38 풍속, 예절, 민속학">38 풍속, 예절, 민속학</a></dt>
                             
@@ -1059,9 +1068,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="389" title="389 문화인류학">389 문화인류학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="39" title="39 국방, 군사학">39 국방, 군사학</a></dt>
                             
@@ -1086,13 +1095,14 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="399" title="399 고대병법">399 고대병법</a></dd>
                             
                         </dl>
-                    </li>
-                
-            </ol>
+                    </td>
+                </tr>
+            </table>
         
-            <ol id="kdcDepth2List_4" class="kdcDepth2List clearfix" style="display: none;">
+            <table id="kdcDepth2List_4" class="kdcDepth2List" style="display: none;">
                 
-                    <li>
+                    <tr>
+                      <td>
                         <dl>
                             <dt><a href="#btn" id="40" title="40 자연과학">40 자연과학</a></dt>
                             
@@ -1117,9 +1127,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="409" title="409 과학사 및 지역구분">409 과학사 및 지역구분</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="41" title="41 수학">41 수학</a></dt>
                             
@@ -1144,9 +1154,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="419" title="419 기타 산법">419 기타 산법</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="42" title="42 물리학">42 물리학</a></dt>
                             
@@ -1171,9 +1181,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="429" title="429 현대물리학">429 현대물리학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="43" title="43 화학">43 화학</a></dt>
                             
@@ -1198,9 +1208,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="439" title="439 고분자화합물과 기타 유기물">439 고분자화합물과 기타 유기물</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="44" title="44 천문학">44 천문학</a></dt>
                             
@@ -1223,9 +1233,10 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="449" title="449 각국력">449 각국력</a></dd>
                             
                         </dl>
-                    </li>
-                
-                    <li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="45" title="45 지학">45 지학</a></dt>
                             
@@ -1250,9 +1261,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="459" title="459 암석학">459 암석학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="46" title="46 광물학">46 광물학</a></dt>
                             
@@ -1275,9 +1286,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="469" title="469 결정학">469 결정학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="47" title="47 생명과학">47 생명과학</a></dt>
                             
@@ -1302,9 +1313,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="479" title="479 생물채집 및 보존">479 생물채집 및 보존</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="48" title="48 식물학">48 식물학</a></dt>
                             
@@ -1329,9 +1340,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="489" title="489 쌍자엽식물">489 쌍자엽식물</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="49" title="49 동물학">49 동물학</a></dt>
                             
@@ -1356,13 +1367,14 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="499" title="499 포유류">499 포유류</a></dd>
                             
                         </dl>
-                    </li>
-                
-            </ol>
+                    </td>
+                </tr>
+            </table>
         
-            <ol id="kdcDepth2List_5" class="kdcDepth2List clearfix" style="display: none;">
+            <table id="kdcDepth2List_5" class="kdcDepth2List" style="display: none;">
                 
-                    <li>
+                    <tr>
+                       <td>
                         <dl>
                             <dt><a href="#btn" id="50" title="50 기술과학">50 기술과학</a></dt>
                             
@@ -1387,9 +1399,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="509" title="509 기술사">509 기술사</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="51" title="51 의학">51 의학</a></dt>
                             
@@ -1414,9 +1426,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="519" title="519 한의학">519 한의학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="52" title="52 농업, 농학">52 농업, 농학</a></dt>
                             
@@ -1441,9 +1453,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="529" title="529 수산업, 생물자원의 보호, 수렵업">529 수산업, 생물자원의 보호, 수렵업</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="53" title="53 공학, 공업일반, 토목공학, 환경공학">53 공학, 공업일반, 토목공학, 환경공학</a></dt>
                             
@@ -1468,9 +1480,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="539" title="539 위생, 도시, 환경공학">539 위생, 도시, 환경공학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="54" title="54 건축공학">54 건축공학</a></dt>
                             
@@ -1495,9 +1507,10 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="549" title="549 각종 건물">549 각종 건물</a></dd>
                             
                         </dl>
-                    </li>
-                
-                    <li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="55" title="55 기계공학">55 기계공학</a></dt>
                             
@@ -1522,9 +1535,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="559" title="559 기타 공학">559 기타 공학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="56" title="56 전기공학, 전자공학">56 전기공학, 전자공학</a></dt>
                             
@@ -1547,9 +1560,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="569" title="569 전자공학">569 전자공학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="57" title="57 화학공학">57 화학공학</a></dt>
                             
@@ -1574,9 +1587,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="579" title="579 기타 유기화학공업">579 기타 유기화학공업</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="58" title="58 제조업">58 제조업</a></dt>
                             
@@ -1601,9 +1614,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="589" title="589 소형상품제조">589 소형상품제조</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="59" title="59 생활과학">59 생활과학</a></dt>
                             
@@ -1626,13 +1639,14 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="598" title="598 육아">598 육아</a></dd>
                             
                         </dl>
-                    </li>
-                
-            </ol>
+                    </td>
+                </tr>
+            </table>
         
-            <ol id="kdcDepth2List_6" class="kdcDepth2List clearfix" style="display: none;">
+            <table id="kdcDepth2List_6" class="kdcDepth2List" style="display: none;">
                 
-                    <li>
+                    <tr>
+                      <td>
                         <dl>
                             <dt><a href="#btn" id="60" title="60 예술">60 예술</a></dt>
                             
@@ -1657,9 +1671,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="609" title="609 미술사">609 미술사</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="61" title="61 건축술">61 건축술</a></dt>
                             
@@ -1684,9 +1698,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="619" title="619 장식 및 의장">619 장식 및 의장</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="62" title="62 조각 및 조형미술">62 조각 및 조형미술</a></dt>
                             
@@ -1709,9 +1723,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="629" title="629 제상">629 제상</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="63" title="63 공예, 장식미술">63 공예, 장식미술</a></dt>
                             
@@ -1736,9 +1750,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="639" title="639 장식예술">639 장식예술</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="64" title="64 서예">64 서예</a></dt>
                             
@@ -1761,9 +1775,10 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="649" title="649 문방구">649 문방구</a></dd>
                             
                         </dl>
-                    </li>
-                
-                    <li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="65" title="65 회화, 도화">65 회화, 도화</a></dt>
                             
@@ -1786,9 +1801,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="659" title="659 판화">659 판화</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="66" title="66 사진예술">66 사진예술</a></dt>
                             
@@ -1809,9 +1824,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="668" title="668 사진집">668 사진집</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="67" title="67 음악">67 음악</a></dt>
                             
@@ -1836,9 +1851,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="679" title="679 한국음악 및 동양전통음악">679 한국음악 및 동양전통음악</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="68" title="68 공연예술 및 매체예술">68 공연예술 및 매체예술</a></dt>
                             
@@ -1861,9 +1876,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="689" title="689 대중연예">689 대중연예</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="69" title="69 오락, 스포츠">69 오락, 스포츠</a></dt>
                             
@@ -1888,13 +1903,14 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="699" title="699 기타 오락 및 레저스포츠">699 기타 오락 및 레저스포츠</a></dd>
                             
                         </dl>
-                    </li>
-                
-            </ol>
+                    </td>
+                </tr>
+            </table>
         
-            <ol id="kdcDepth2List_7" class="kdcDepth2List clearfix" style="display: none;">
+            <table id="kdcDepth2List_7" class="kdcDepth2List" style="display: none;">
                 
-                    <li>
+                    <tr>
+                      <td>
                         <dl>
                             <dt><a href="#btn" id="70" title="70 언어">70 언어</a></dt>
                             
@@ -1919,9 +1935,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="709" title="709 언어사">709 언어사</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="71" title="71 한국어">71 한국어</a></dt>
                             
@@ -1944,9 +1960,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="718" title="718 방언">718 방언</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="72" title="72 중국어">72 중국어</a></dt>
                             
@@ -1969,9 +1985,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="728" title="728 방언">728 방언</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="73" title="73 일본어">73 일본어</a></dt>
                             
@@ -1996,9 +2012,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="739" title="739 기타 아시아 제어">739 기타 아시아 제어</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="74" title="74 영어">74 영어</a></dt>
                             
@@ -2023,9 +2039,10 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="749" title="749 앵글로색슨어">749 앵글로색슨어</a></dd>
                             
                         </dl>
-                    </li>
-                
-                    <li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="75" title="75 독일어">75 독일어</a></dt>
                             
@@ -2050,9 +2067,9 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="759" title="759 기타 게르만어">759 기타 게르만어</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
                             <dt><a href="#btn" id="76" title="76 프랑스어">76 프랑스어</a></dt>
                             
@@ -2077,622 +2094,890 @@ String pageId = request.getParameter("pageId");
                                 <dd><a href="#btn" id="769" title="769 프로방스어">769 프로방스어</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="77" title="77 스페인어">77 스페인어</a></dt>
+                            <dt><a class="#btn" id="77" title="77 스페인어">77 스페인어</a></dt>
                             
-                                <dd><a href="#btn" id="770" title="770 스페인어">770 스페인어</a></dd>
+                                <dd><a class="#btn" id="770" title="770 스페인어">770 스페인어</a></dd>
                             
-                                <dd><a href="#btn" id="771" title="771 음운, 음성, 문자">771 음운, 음성, 문자</a></dd>
+                                <dd><a class="#btn" id="771" title="771 음운, 음성, 문자">771 음운, 음성, 문자</a></dd>
                             
-                                <dd><a href="#btn" id="772" title="772 어원, 어의">772 어원, 어의</a></dd>
+                                <dd><a class="#btn" id="772" title="772 어원, 어의">772 어원, 어의</a></dd>
                             
-                                <dd><a href="#btn" id="773" title="773 사전">773 사전</a></dd>
+                                <dd><a class="#btn" id="773" title="773 사전">773 사전</a></dd>
                             
-                                <dd><a href="#btn" id="774" title="774 어휘">774 어휘</a></dd>
+                                <dd><a class="#btn" id="774" title="774 어휘">774 어휘</a></dd>
                             
-                                <dd><a href="#btn" id="775" title="775 문법">775 문법</a></dd>
+                                <dd><a class="#btn" id="775" title="775 문법">775 문법</a></dd>
                             
-                                <dd><a href="#btn" id="776" title="776 작문">776 작문</a></dd>
+                                <dd><a class="#btn" id="776" title="776 작문">776 작문</a></dd>
                             
-                                <dd><a href="#btn" id="777" title="777 독본, 해석, 회화">777 독본, 해석, 회화</a></dd>
+                                <dd><a class="#btn" id="777" title="777 독본, 해석, 회화">777 독본, 해석, 회화</a></dd>
                             
-                                <dd><a href="#btn" id="778" title="778 방언">778 방언</a></dd>
+                                <dd><a class="#btn" id="778" title="778 방언">778 방언</a></dd>
                             
-                                <dd><a href="#btn" id="779" title="779 포르투갈어">779 포르투갈어</a></dd>
+                                <dd><a class="#btn" id="779" title="779 포르투갈어">779 포르투갈어</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="78" title="78 이탈리아어">78 이탈리아어</a></dt>
+                            <dt><a class="#btn" id="78" title="78 이탈리아어">78 이탈리아어</a></dt>
                             
-                                <dd><a href="#btn" id="780" title="780 이탈리아어">780 이탈리아어</a></dd>
+                                <dd><a class="#btn" id="780" title="780 이탈리아어">780 이탈리아어</a></dd>
                             
-                                <dd><a href="#btn" id="781" title="781 음운, 음성, 문자">781 음운, 음성, 문자</a></dd>
+                                <dd><a class="#btn" id="781" title="781 음운, 음성, 문자">781 음운, 음성, 문자</a></dd>
                             
-                                <dd><a href="#btn" id="782" title="782 어원, 어의">782 어원, 어의</a></dd>
+                                <dd><a class="#btn" id="782" title="782 어원, 어의">782 어원, 어의</a></dd>
                             
-                                <dd><a href="#btn" id="783" title="783 사전">783 사전</a></dd>
+                                <dd><a class="#btn" id="783" title="783 사전">783 사전</a></dd>
                             
-                                <dd><a href="#btn" id="784" title="784 어휘">784 어휘</a></dd>
+                                <dd><a class="#btn" id="784" title="784 어휘">784 어휘</a></dd>
                             
-                                <dd><a href="#btn" id="785" title="785 문법">785 문법</a></dd>
+                                <dd><a class="#btn" id="785" title="785 문법">785 문법</a></dd>
                             
-                                <dd><a href="#btn" id="786" title="786 작문">786 작문</a></dd>
+                                <dd><a class="#btn" id="786" title="786 작문">786 작문</a></dd>
                             
-                                <dd><a href="#btn" id="787" title="787 독본, 해석, 회화">787 독본, 해석, 회화</a></dd>
+                                <dd><a class="#btn" id="787" title="787 독본, 해석, 회화">787 독본, 해석, 회화</a></dd>
                             
-                                <dd><a href="#btn" id="788" title="788 방언">788 방언</a></dd>
+                                <dd><a class="#btn" id="788" title="788 방언">788 방언</a></dd>
                             
-                                <dd><a href="#btn" id="789" title="789 루마니아어">789 루마니아어</a></dd>
+                                <dd><a class="#btn" id="789" title="789 루마니아어">789 루마니아어</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="79" title="79 기타 제어">79 기타 제어</a></dt>
+                            <dt><a class="#btn" id="79" title="79 기타 제어">79 기타 제어</a></dt>
                             
-                                <dd><a href="#btn" id="790" title="790 기타 제어">790 기타 제어</a></dd>
+                                <dd><a class="#btn" id="790" title="790 기타 제어">790 기타 제어</a></dd>
                             
-                                <dd><a href="#btn" id="792" title="792 인도-유럽계어">792 인도-유럽계어</a></dd>
+                                <dd><a class="#btn" id="792" title="792 인도-유럽계어">792 인도-유럽계어</a></dd>
                             
-                                <dd><a href="#btn" id="793" title="793 아프리카제어">793 아프리카제어</a></dd>
+                                <dd><a class="#btn" id="793" title="793 아프리카제어">793 아프리카제어</a></dd>
                             
-                                <dd><a href="#btn" id="794" title="794 북아메리카인디언어">794 북아메리카인디언어</a></dd>
+                                <dd><a class="#btn" id="794" title="794 북아메리카인디언어">794 북아메리카인디언어</a></dd>
                             
-                                <dd><a href="#btn" id="795" title="795 남아메리카인디언어">795 남아메리카인디언어</a></dd>
+                                <dd><a class="#btn" id="795" title="795 남아메리카인디언어">795 남아메리카인디언어</a></dd>
                             
-                                <dd><a href="#btn" id="796" title="796 오스트로네시아어">796 오스트로네시아어</a></dd>
+                                <dd><a class="#btn" id="796" title="796 오스트로네시아어">796 오스트로네시아어</a></dd>
                             
-                                <dd><a href="#btn" id="797" title="797 셈족어">797 셈족어</a></dd>
+                                <dd><a class="#btn" id="797" title="797 셈족어">797 셈족어</a></dd>
                             
-                                <dd><a href="#btn" id="798" title="798 함족어">798 함족어</a></dd>
+                                <dd><a class="#btn" id="798" title="798 함족어">798 함족어</a></dd>
                             
-                                <dd><a href="#btn" id="799" title="799 국제어(인공어) 및 기타 언어">799 국제어(인공어) 및 기타 언어</a></dd>
+                                <dd><a class="#btn" id="799" title="799 국제어(인공어) 및 기타 언어">799 국제어(인공어) 및 기타 언어</a></dd>
                             
                         </dl>
-                    </li>
-                
-            </ol>
+                    </td>
+                </tr>
+            </table>
         
-            <ol id="kdcDepth2List_8" class="kdcDepth2List clearfix" style="display: none;">
+            <table id="kdcDepth2List_8" class="kdcDepth2List" style="display: none;">
                 
-                    <li>
+                    <tr>
+                       <td>
                         <dl>
-                            <dt><a href="#btn" id="80" title="80 문학">80 문학</a></dt>
+                            <dt><a class="#btn" id="80" title="80 문학">80 문학</a></dt>
                             
-                                <dd><a href="#btn" id="800" title="800 문학">800 문학</a></dd>
+                                <dd><a class="#btn" id="800" title="800 문학">800 문학</a></dd>
                             
-                                <dd><a href="#btn" id="801" title="801 문학이론">801 문학이론</a></dd>
+                                <dd><a class="#btn" id="801" title="801 문학이론">801 문학이론</a></dd>
                             
-                                <dd><a href="#btn" id="802" title="802 문장작법, 수사학">802 문장작법, 수사학</a></dd>
+                                <dd><a class="#btn" id="802" title="802 문장작법, 수사학">802 문장작법, 수사학</a></dd>
                             
-                                <dd><a href="#btn" id="803" title="803 사전, 사전">803 사전, 사전</a></dd>
+                                <dd><a class="#btn" id="803" title="803 사전, 사전">803 사전, 사전</a></dd>
                             
-                                <dd><a href="#btn" id="804" title="804 강연집, 수필">804 강연집, 수필</a></dd>
+                                <dd><a class="#btn" id="804" title="804 강연집, 수필">804 강연집, 수필</a></dd>
                             
-                                <dd><a href="#btn" id="805" title="805 연속간행물">805 연속간행물</a></dd>
+                                <dd><a class="#btn" id="805" title="805 연속간행물">805 연속간행물</a></dd>
                             
-                                <dd><a href="#btn" id="806" title="806 학회, 단체, 기관, 회의">806 학회, 단체, 기관, 회의</a></dd>
+                                <dd><a class="#btn" id="806" title="806 학회, 단체, 기관, 회의">806 학회, 단체, 기관, 회의</a></dd>
                             
-                                <dd><a href="#btn" id="807" title="807 지도법 및 연구법, 교육, 교육자료">807 지도법 및 연구법, 교육, 교육자료</a></dd>
+                                <dd><a class="#btn" id="807" title="807 지도법 및 연구법, 교육, 교육자료">807 지도법 및 연구법, 교육, 교육자료</a></dd>
                             
-                                <dd><a href="#btn" id="808" title="808 전집, 총서">808 전집, 총서</a></dd>
+                                <dd><a class="#btn" id="808" title="808 전집, 총서">808 전집, 총서</a></dd>
                             
-                                <dd><a href="#btn" id="809" title="809 문학사, 평론">809 문학사, 평론</a></dd>
+                                <dd><a class="#btn" id="809" title="809 문학사, 평론">809 문학사, 평론</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="81" title="81 한국문학">81 한국문학</a></dt>
+                            <dt><a class="#btn" id="81" title="81 한국문학">81 한국문학</a></dt>
                             
-                                <dd><a href="#btn" id="810" title="810 한국문학">810 한국문학</a></dd>
+                                <dd><a class="#btn" id="810" title="810 한국문학">810 한국문학</a></dd>
                             
-                                <dd><a href="#btn" id="811" title="811 시">811 시</a></dd>
+                                <dd><a class="#btn" id="811" title="811 시">811 시</a></dd>
                             
-                                <dd><a href="#btn" id="812" title="812 희곡">812 희곡</a></dd>
+                                <dd><a class="#btn" id="812" title="812 희곡">812 희곡</a></dd>
                             
-                                <dd><a href="#btn" id="813" title="813 소설">813 소설</a></dd>
+                                <dd><a class="#btn" id="813" title="813 소설">813 소설</a></dd>
                             
-                                <dd><a href="#btn" id="814" title="814 수필">814 수필</a></dd>
+                                <dd><a class="#btn" id="814" title="814 수필">814 수필</a></dd>
                             
-                                <dd><a href="#btn" id="815" title="815 연설, 웅변">815 연설, 웅변</a></dd>
+                                <dd><a class="#btn" id="815" title="815 연설, 웅변">815 연설, 웅변</a></dd>
                             
-                                <dd><a href="#btn" id="816" title="816 일기, 서간, 기행">816 일기, 서간, 기행</a></dd>
+                                <dd><a class="#btn" id="816" title="816 일기, 서간, 기행">816 일기, 서간, 기행</a></dd>
                             
-                                <dd><a href="#btn" id="817" title="817 풍자">817 풍자</a></dd>
+                                <dd><a class="#btn" id="817" title="817 풍자">817 풍자</a></dd>
                             
-                                <dd><a href="#btn" id="818" title="818 르포르타주 및 기타">818 르포르타주 및 기타</a></dd>
+                                <dd><a class="#btn" id="818" title="818 르포르타주 및 기타">818 르포르타주 및 기타</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="82" title="82 중국문학">82 중국문학</a></dt>
+                            <dt><a class="#btn" id="82" title="82 중국문학">82 중국문학</a></dt>
                             
-                                <dd><a href="#btn" id="820" title="820 중국문학">820 중국문학</a></dd>
+                                <dd><a class="#btn" id="820" title="820 중국문학">820 중국문학</a></dd>
                             
-                                <dd><a href="#btn" id="821" title="821 시">821 시</a></dd>
+                                <dd><a class="#btn" id="821" title="821 시">821 시</a></dd>
                             
-                                <dd><a href="#btn" id="822" title="822 희곡">822 희곡</a></dd>
+                                <dd><a class="#btn" id="822" title="822 희곡">822 희곡</a></dd>
                             
-                                <dd><a href="#btn" id="823" title="823 소설">823 소설</a></dd>
+                                <dd><a class="#btn" id="823" title="823 소설">823 소설</a></dd>
                             
-                                <dd><a href="#btn" id="824" title="824 수필">824 수필</a></dd>
+                                <dd><a class="#btn" id="824" title="824 수필">824 수필</a></dd>
                             
-                                <dd><a href="#btn" id="825" title="825 연설, 웅변">825 연설, 웅변</a></dd>
+                                <dd><a class="#btn" id="825" title="825 연설, 웅변">825 연설, 웅변</a></dd>
                             
-                                <dd><a href="#btn" id="826" title="826 일기, 서간, 기행">826 일기, 서간, 기행</a></dd>
+                                <dd><a class="#btn" id="826" title="826 일기, 서간, 기행">826 일기, 서간, 기행</a></dd>
                             
-                                <dd><a href="#btn" id="827" title="827 풍자">827 풍자</a></dd>
+                                <dd><a class="#btn" id="827" title="827 풍자">827 풍자</a></dd>
                             
-                                <dd><a href="#btn" id="828" title="828 르포르타주 및 기타">828 르포르타주 및 기타</a></dd>
+                                <dd><a class="#btn" id="828" title="828 르포르타주 및 기타">828 르포르타주 및 기타</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="83" title="83 일본문학">83 일본문학</a></dt>
+                            <dt><a class="#btn" id="83" title="83 일본문학">83 일본문학</a></dt>
                             
-                                <dd><a href="#btn" id="830" title="830 일본문학">830 일본문학</a></dd>
+                                <dd><a class="#btn" id="830" title="830 일본문학">830 일본문학</a></dd>
                             
-                                <dd><a href="#btn" id="831" title="831 시">831 시</a></dd>
+                                <dd><a class="#btn" id="831" title="831 시">831 시</a></dd>
                             
-                                <dd><a href="#btn" id="832" title="832 희곡">832 희곡</a></dd>
+                                <dd><a class="#btn" id="832" title="832 희곡">832 희곡</a></dd>
                             
-                                <dd><a href="#btn" id="833" title="833 소설">833 소설</a></dd>
+                                <dd><a class="#btn" id="833" title="833 소설">833 소설</a></dd>
                             
-                                <dd><a href="#btn" id="834" title="834 수필">834 수필</a></dd>
+                                <dd><a class="#btn" id="834" title="834 수필">834 수필</a></dd>
                             
-                                <dd><a href="#btn" id="835" title="835 연설, 웅변">835 연설, 웅변</a></dd>
+                                <dd><a class="#btn" id="835" title="835 연설, 웅변">835 연설, 웅변</a></dd>
                             
-                                <dd><a href="#btn" id="836" title="836 일기, 서간, 기행">836 일기, 서간, 기행</a></dd>
+                                <dd><a class="#btn" id="836" title="836 일기, 서간, 기행">836 일기, 서간, 기행</a></dd>
                             
-                                <dd><a href="#btn" id="837" title="837 풍자">837 풍자</a></dd>
+                                <dd><a class="#btn" id="837" title="837 풍자">837 풍자</a></dd>
                             
-                                <dd><a href="#btn" id="838" title="838 르포르타주 및 기타">838 르포르타주 및 기타</a></dd>
+                                <dd><a class="#btn" id="838" title="838 르포르타주 및 기타">838 르포르타주 및 기타</a></dd>
                             
-                                <dd><a href="#btn" id="839" title="839 기타 아시아 제문학">839 기타 아시아 제문학</a></dd>
+                                <dd><a class="#btn" id="839" title="839 기타 아시아 제문학">839 기타 아시아 제문학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="84" title="84 영미문학">84 영미문학</a></dt>
+                            <dt><a class="#btn" id="84" title="84 영미문학">84 영미문학</a></dt>
                             
-                                <dd><a href="#btn" id="840" title="840 영미문학">840 영미문학</a></dd>
+                                <dd><a class="#btn" id="840" title="840 영미문학">840 영미문학</a></dd>
                             
-                                <dd><a href="#btn" id="841" title="841 시">841 시</a></dd>
+                                <dd><a class="#btn" id="841" title="841 시">841 시</a></dd>
                             
-                                <dd><a href="#btn" id="842" title="842 희곡">842 희곡</a></dd>
+                                <dd><a class="#btn" id="842" title="842 희곡">842 희곡</a></dd>
                             
-                                <dd><a href="#btn" id="843" title="843 소설">843 소설</a></dd>
+                                <dd><a class="#btn" id="843" title="843 소설">843 소설</a></dd>
                             
-                                <dd><a href="#btn" id="844" title="844 수필">844 수필</a></dd>
+                                <dd><a class="#btn" id="844" title="844 수필">844 수필</a></dd>
                             
-                                <dd><a href="#btn" id="845" title="845 연설, 웅변">845 연설, 웅변</a></dd>
+                                <dd><a class="#btn" id="845" title="845 연설, 웅변">845 연설, 웅변</a></dd>
                             
-                                <dd><a href="#btn" id="846" title="846 일기, 서간, 기행">846 일기, 서간, 기행</a></dd>
+                                <dd><a class="#btn" id="846" title="846 일기, 서간, 기행">846 일기, 서간, 기행</a></dd>
                             
-                                <dd><a href="#btn" id="847" title="847 풍자">847 풍자</a></dd>
+                                <dd><a class="#btn" id="847" title="847 풍자">847 풍자</a></dd>
                             
-                                <dd><a href="#btn" id="848" title="848 르포르타주 및 기타">848 르포르타주 및 기타</a></dd>
+                                <dd><a class="#btn" id="848" title="848 르포르타주 및 기타">848 르포르타주 및 기타</a></dd>
                             
-                                <dd><a href="#btn" id="849" title="849 미국문학">849 미국문학</a></dd>
+                                <dd><a class="#btn" id="849" title="849 미국문학">849 미국문학</a></dd>
                             
                         </dl>
-                    </li>
-                
-                    <li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="85" title="85 독일문학">85 독일문학</a></dt>
+                            <dt><a class="#btn" id="85" title="85 독일문학">85 독일문학</a></dt>
                             
-                                <dd><a href="#btn" id="850" title="850 독일문학">850 독일문학</a></dd>
+                                <dd><a class="#btn" id="850" title="850 독일문학">850 독일문학</a></dd>
                             
-                                <dd><a href="#btn" id="851" title="851 시">851 시</a></dd>
+                                <dd><a class="#btn" id="851" title="851 시">851 시</a></dd>
                             
-                                <dd><a href="#btn" id="852" title="852 희곡">852 희곡</a></dd>
+                                <dd><a class="#btn" id="852" title="852 희곡">852 희곡</a></dd>
                             
-                                <dd><a href="#btn" id="853" title="853 소설">853 소설</a></dd>
+                                <dd><a class="#btn" id="853" title="853 소설">853 소설</a></dd>
                             
-                                <dd><a href="#btn" id="854" title="854 수필">854 수필</a></dd>
+                                <dd><a class="#btn" id="854" title="854 수필">854 수필</a></dd>
                             
-                                <dd><a href="#btn" id="855" title="855 연설, 웅변">855 연설, 웅변</a></dd>
+                                <dd><a class="#btn" id="855" title="855 연설, 웅변">855 연설, 웅변</a></dd>
                             
-                                <dd><a href="#btn" id="856" title="856 일기, 서간, 기행">856 일기, 서간, 기행</a></dd>
+                                <dd><a class="#btn" id="856" title="856 일기, 서간, 기행">856 일기, 서간, 기행</a></dd>
                             
-                                <dd><a href="#btn" id="857" title="857 풍자">857 풍자</a></dd>
+                                <dd><a class="#btn" id="857" title="857 풍자">857 풍자</a></dd>
                             
-                                <dd><a href="#btn" id="858" title="858 르포르타주 및 기타">858 르포르타주 및 기타</a></dd>
+                                <dd><a class="#btn" id="858" title="858 르포르타주 및 기타">858 르포르타주 및 기타</a></dd>
                             
-                                <dd><a href="#btn" id="859" title="859 기타 게르만 문학">859 기타 게르만 문학</a></dd>
+                                <dd><a class="#btn" id="859" title="859 기타 게르만 문학">859 기타 게르만 문학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="86" title="86 프랑스문학">86 프랑스문학</a></dt>
+                            <dt><a class="#btn" id="86" title="86 프랑스문학">86 프랑스문학</a></dt>
                             
-                                <dd><a href="#btn" id="860" title="860 프랑스문학">860 프랑스문학</a></dd>
+                                <dd><a class="#btn" id="860" title="860 프랑스문학">860 프랑스문학</a></dd>
                             
-                                <dd><a href="#btn" id="861" title="861 시">861 시</a></dd>
+                                <dd><a class="#btn" id="861" title="861 시">861 시</a></dd>
                             
-                                <dd><a href="#btn" id="862" title="862 희곡">862 희곡</a></dd>
+                                <dd><a class="#btn" id="862" title="862 희곡">862 희곡</a></dd>
                             
-                                <dd><a href="#btn" id="863" title="863 소설">863 소설</a></dd>
+                                <dd><a class="#btn" id="863" title="863 소설">863 소설</a></dd>
                             
-                                <dd><a href="#btn" id="864" title="864 수필">864 수필</a></dd>
+                                <dd><a class="#btn" id="864" title="864 수필">864 수필</a></dd>
                             
-                                <dd><a href="#btn" id="865" title="865 연설, 웅변">865 연설, 웅변</a></dd>
+                                <dd><a class="#btn" id="865" title="865 연설, 웅변">865 연설, 웅변</a></dd>
                             
-                                <dd><a href="#btn" id="866" title="866 일기, 서간, 기행">866 일기, 서간, 기행</a></dd>
+                                <dd><a class="#btn" id="866" title="866 일기, 서간, 기행">866 일기, 서간, 기행</a></dd>
                             
-                                <dd><a href="#btn" id="867" title="867 풍자">867 풍자</a></dd>
+                                <dd><a class="#btn" id="867" title="867 풍자">867 풍자</a></dd>
                             
-                                <dd><a href="#btn" id="868" title="868 르포르타주 및 기타">868 르포르타주 및 기타</a></dd>
+                                <dd><a class="#btn" id="868" title="868 르포르타주 및 기타">868 르포르타주 및 기타</a></dd>
                             
-                                <dd><a href="#btn" id="869" title="869 프로방스문학">869 프로방스문학</a></dd>
+                                <dd><a class="#btn" id="869" title="869 프로방스문학">869 프로방스문학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="87" title="87 스페인 및 포르투갈문학">87 스페인 및 포르투갈문학</a></dt>
+                            <dt><a class="#btn" id="87" title="87 스페인 및 포르투갈문학">87 스페인 및 포르투갈문학</a></dt>
                             
-                                <dd><a href="#btn" id="870" title="870 스페인 및 포르투갈문학">870 스페인 및 포르투갈문학</a></dd>
+                                <dd><a class="#btn" id="870" title="870 스페인 및 포르투갈문학">870 스페인 및 포르투갈문학</a></dd>
                             
-                                <dd><a href="#btn" id="871" title="871 시">871 시</a></dd>
+                                <dd><a class="#btn" id="871" title="871 시">871 시</a></dd>
                             
-                                <dd><a href="#btn" id="872" title="872 희곡">872 희곡</a></dd>
+                                <dd><a class="#btn" id="872" title="872 희곡">872 희곡</a></dd>
                             
-                                <dd><a href="#btn" id="873" title="873 소설">873 소설</a></dd>
+                                <dd><a class="#btn" id="873" title="873 소설">873 소설</a></dd>
                             
-                                <dd><a href="#btn" id="874" title="874 수필">874 수필</a></dd>
+                                <dd><a class="#btn" id="874" title="874 수필">874 수필</a></dd>
                             
-                                <dd><a href="#btn" id="875" title="875 연설, 웅변">875 연설, 웅변</a></dd>
+                                <dd><a class="#btn" id="875" title="875 연설, 웅변">875 연설, 웅변</a></dd>
                             
-                                <dd><a href="#btn" id="876" title="876 일기, 서간, 기행">876 일기, 서간, 기행</a></dd>
+                                <dd><a class="#btn" id="876" title="876 일기, 서간, 기행">876 일기, 서간, 기행</a></dd>
                             
-                                <dd><a href="#btn" id="877" title="877 풍자">877 풍자</a></dd>
+                                <dd><a class="#btn" id="877" title="877 풍자">877 풍자</a></dd>
                             
-                                <dd><a href="#btn" id="878" title="878 르포르타주 및 기타">878 르포르타주 및 기타</a></dd>
+                                <dd><a class="#btn" id="878" title="878 르포르타주 및 기타">878 르포르타주 및 기타</a></dd>
                             
-                                <dd><a href="#btn" id="879" title="879 포르투갈문학">879 포르투갈문학</a></dd>
+                                <dd><a class="#btn" id="879" title="879 포르투갈문학">879 포르투갈문학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="88" title="88 이탈리아문학">88 이탈리아문학</a></dt>
+                            <dt><a class="#btn" id="88" title="88 이탈리아문학">88 이탈리아문학</a></dt>
                             
-                                <dd><a href="#btn" id="880" title="880 이탈리아문학">880 이탈리아문학</a></dd>
+                                <dd><a class="#btn" id="880" title="880 이탈리아문학">880 이탈리아문학</a></dd>
                             
-                                <dd><a href="#btn" id="881" title="881 시">881 시</a></dd>
+                                <dd><a class="#btn" id="881" title="881 시">881 시</a></dd>
                             
-                                <dd><a href="#btn" id="882" title="882 희곡">882 희곡</a></dd>
+                                <dd><a class="#btn" id="882" title="882 희곡">882 희곡</a></dd>
                             
-                                <dd><a href="#btn" id="883" title="883 소설">883 소설</a></dd>
+                                <dd><a class="#btn" id="883" title="883 소설">883 소설</a></dd>
                             
-                                <dd><a href="#btn" id="884" title="884 수필">884 수필</a></dd>
+                                <dd><a class="#btn" id="884" title="884 수필">884 수필</a></dd>
                             
-                                <dd><a href="#btn" id="885" title="885 연설, 웅변">885 연설, 웅변</a></dd>
+                                <dd><a class="#btn" id="885" title="885 연설, 웅변">885 연설, 웅변</a></dd>
                             
-                                <dd><a href="#btn" id="886" title="886 일기, 서간, 기행">886 일기, 서간, 기행</a></dd>
+                                <dd><a class="#btn" id="886" title="886 일기, 서간, 기행">886 일기, 서간, 기행</a></dd>
                             
-                                <dd><a href="#btn" id="887" title="887 풍자">887 풍자</a></dd>
+                                <dd><a class="#btn" id="887" title="887 풍자">887 풍자</a></dd>
                             
-                                <dd><a href="#btn" id="888" title="888 르포르타주 및 기타">888 르포르타주 및 기타</a></dd>
+                                <dd><a class="#btn" id="888" title="888 르포르타주 및 기타">888 르포르타주 및 기타</a></dd>
                             
-                                <dd><a href="#btn" id="889" title="889 루마니아문학">889 루마니아문학</a></dd>
+                                <dd><a class="#btn" id="889" title="889 루마니아문학">889 루마니아문학</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="89" title="89 기타 제문학">89 기타 제문학</a></dt>
+                            <dt><a class="#btn" id="89" title="89 기타 제문학">89 기타 제문학</a></dt>
                             
-                                <dd><a href="#btn" id="890" title="890 기타 제문학">890 기타 제문학</a></dd>
+                                <dd><a class="#btn" id="890" title="890 기타 제문학">890 기타 제문학</a></dd>
                             
-                                <dd><a href="#btn" id="892" title="892 인도-유럽계문학">892 인도-유럽계문학</a></dd>
+                                <dd><a class="#btn" id="892" title="892 인도-유럽계문학">892 인도-유럽계문학</a></dd>
                             
-                                <dd><a href="#btn" id="893" title="893 아프리카제문학">893 아프리카제문학</a></dd>
+                                <dd><a class="#btn" id="893" title="893 아프리카제문학">893 아프리카제문학</a></dd>
                             
-                                <dd><a href="#btn" id="894" title="894 북아메리카 인디언문학">894 북아메리카 인디언문학</a></dd>
+                                <dd><a class="#btn" id="894" title="894 북아메리카 인디언문학">894 북아메리카 인디언문학</a></dd>
                             
-                                <dd><a href="#btn" id="895" title="895 남아메리카 인디언문학">895 남아메리카 인디언문학</a></dd>
+                                <dd><a class="#btn" id="895" title="895 남아메리카 인디언문학">895 남아메리카 인디언문학</a></dd>
                             
-                                <dd><a href="#btn" id="896" title="896 오스트로네시아문학">896 오스트로네시아문학</a></dd>
+                                <dd><a class="#btn" id="896" title="896 오스트로네시아문학">896 오스트로네시아문학</a></dd>
                             
-                                <dd><a href="#btn" id="897" title="897 셈족문학">897 셈족문학</a></dd>
+                                <dd><a class="#btn" id="897" title="897 셈족문학">897 셈족문학</a></dd>
                             
-                                <dd><a href="#btn" id="898" title="898 함족문학">898 함족문학</a></dd>
+                                <dd><a class="#btn" id="898" title="898 함족문학">898 함족문학</a></dd>
                             
-                                <dd><a href="#btn" id="899" title="899 기타 문학">899 기타 문학</a></dd>
+                                <dd><a class="#btn" id="899" title="899 기타 문학">899 기타 문학</a></dd>
                             
                         </dl>
-                    </li>
-                
-            </ol>
+                    </td>
+                </tr>
+            </table>
         
-            <ol id="kdcDepth2List_9" class="kdcDepth2List clearfix" style="display: none;">
+            <table id="kdcDepth2List_9" class="kdcDepth2List" style="display: none;">
                 
-                    <li>
+                    <tr>
+                     <td>
                         <dl>
-                            <dt><a href="#btn" id="90" title="90 역사">90 역사</a></dt>
+                            <dt><a class="#btn" id="90" title="90 역사">90 역사</a></dt>
                             
-                                <dd><a href="#btn" id="900" title="900 역사">900 역사</a></dd>
+                                <dd><a class="#btn" id="900" title="900 역사">900 역사</a></dd>
                             
-                                <dd><a href="#btn" id="901" title="901 역사철학 및 이론">901 역사철학 및 이론</a></dd>
+                                <dd><a class="#btn" id="901" title="901 역사철학 및 이론">901 역사철학 및 이론</a></dd>
                             
-                                <dd><a href="#btn" id="902" title="902 역사보조학">902 역사보조학</a></dd>
+                                <dd><a class="#btn" id="902" title="902 역사보조학">902 역사보조학</a></dd>
                             
-                                <dd><a href="#btn" id="903" title="903 사전, 사전">903 사전, 사전</a></dd>
+                                <dd><a class="#btn" id="903" title="903 사전, 사전">903 사전, 사전</a></dd>
                             
-                                <dd><a href="#btn" id="904" title="904 강연집, 사평">904 강연집, 사평</a></dd>
+                                <dd><a class="#btn" id="904" title="904 강연집, 사평">904 강연집, 사평</a></dd>
                             
-                                <dd><a href="#btn" id="905" title="905 연속간행물">905 연속간행물</a></dd>
+                                <dd><a class="#btn" id="905" title="905 연속간행물">905 연속간행물</a></dd>
                             
-                                <dd><a href="#btn" id="906" title="906 학회, 단체, 기관, 회의">906 학회, 단체, 기관, 회의</a></dd>
+                                <dd><a class="#btn" id="906" title="906 학회, 단체, 기관, 회의">906 학회, 단체, 기관, 회의</a></dd>
                             
-                                <dd><a href="#btn" id="907" title="907 지도법, 연구법 및 교육, 교육자료">907 지도법, 연구법 및 교육, 교육자료</a></dd>
+                                <dd><a class="#btn" id="907" title="907 지도법, 연구법 및 교육, 교육자료">907 지도법, 연구법 및 교육, 교육자료</a></dd>
                             
-                                <dd><a href="#btn" id="908" title="908 전집, 총서">908 전집, 총서</a></dd>
+                                <dd><a class="#btn" id="908" title="908 전집, 총서">908 전집, 총서</a></dd>
                             
-                                <dd><a href="#btn" id="909" title="909 세계사, 세계문화사">909 세계사, 세계문화사</a></dd>
+                                <dd><a class="#btn" id="909" title="909 세계사, 세계문화사">909 세계사, 세계문화사</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="91" title="91 아시아">91 아시아</a></dt>
+                            <dt><a class="#btn" id="91" title="91 아시아">91 아시아</a></dt>
                             
-                                <dd><a href="#btn" id="910" title="910 아시아">910 아시아</a></dd>
+                                <dd><a class="#btn" id="910" title="910 아시아">910 아시아</a></dd>
                             
-                                <dd><a href="#btn" id="911" title="911 한국">911 한국</a></dd>
+                                <dd><a class="#btn" id="911" title="911 한국">911 한국</a></dd>
                             
-                                <dd><a href="#btn" id="912" title="912 중국">912 중국</a></dd>
+                                <dd><a class="#btn" id="912" title="912 중국">912 중국</a></dd>
                             
-                                <dd><a href="#btn" id="913" title="913 일본">913 일본</a></dd>
+                                <dd><a class="#btn" id="913" title="913 일본">913 일본</a></dd>
                             
-                                <dd><a href="#btn" id="914" title="914 동남아시아">914 동남아시아</a></dd>
+                                <dd><a class="#btn" id="914" title="914 동남아시아">914 동남아시아</a></dd>
                             
-                                <dd><a href="#btn" id="915" title="915 인디아와 남부아시아">915 인디아와 남부아시아</a></dd>
+                                <dd><a class="#btn" id="915" title="915 인디아와 남부아시아">915 인디아와 남부아시아</a></dd>
                             
-                                <dd><a href="#btn" id="916" title="916 중앙아시아">916 중앙아시아</a></dd>
+                                <dd><a class="#btn" id="916" title="916 중앙아시아">916 중앙아시아</a></dd>
                             
-                                <dd><a href="#btn" id="917" title="917 시베리아(서백리아)">917 시베리아(서백리아)</a></dd>
+                                <dd><a class="#btn" id="917" title="917 시베리아(서백리아)">917 시베리아(서백리아)</a></dd>
                             
-                                <dd><a href="#btn" id="918" title="918 서남아시아, 중동">918 서남아시아, 중동</a></dd>
+                                <dd><a class="#btn" id="918" title="918 서남아시아, 중동">918 서남아시아, 중동</a></dd>
                             
-                                <dd><a href="#btn" id="919" title="919 아라비아반도">919 아라비아반도</a></dd>
+                                <dd><a class="#btn" id="919" title="919 아라비아반도">919 아라비아반도</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="92" title="92 유럽">92 유럽</a></dt>
+                            <dt><a class="#btn" id="92" title="92 유럽">92 유럽</a></dt>
                             
-                                <dd><a href="#btn" id="920" title="920 유럽">920 유럽</a></dd>
+                                <dd><a class="#btn" id="920" title="920 유럽">920 유럽</a></dd>
                             
-                                <dd><a href="#btn" id="921" title="921 고대그리스(희랍고대사)">921 고대그리스(희랍고대사)</a></dd>
+                                <dd><a class="#btn" id="921" title="921 고대그리스(희랍고대사)">921 고대그리스(희랍고대사)</a></dd>
                             
-                                <dd><a href="#btn" id="922" title="922 고대로마(로마고대사)">922 고대로마(로마고대사)</a></dd>
+                                <dd><a class="#btn" id="922" title="922 고대로마(로마고대사)">922 고대로마(로마고대사)</a></dd>
                             
-                                <dd><a href="#btn" id="923" title="923 스칸디나비아">923 스칸디나비아</a></dd>
+                                <dd><a class="#btn" id="923" title="923 스칸디나비아">923 스칸디나비아</a></dd>
                             
-                                <dd><a href="#btn" id="924" title="924 영국, 아일랜드">924 영국, 아일랜드</a></dd>
+                                <dd><a class="#btn" id="924" title="924 영국, 아일랜드">924 영국, 아일랜드</a></dd>
                             
-                                <dd><a href="#btn" id="925" title="925 독일과 중앙유럽">925 독일과 중앙유럽</a></dd>
+                                <dd><a class="#btn" id="925" title="925 독일과 중앙유럽">925 독일과 중앙유럽</a></dd>
                             
-                                <dd><a href="#btn" id="926" title="926 프랑스와 인접국가">926 프랑스와 인접국가</a></dd>
+                                <dd><a class="#btn" id="926" title="926 프랑스와 인접국가">926 프랑스와 인접국가</a></dd>
                             
-                                <dd><a href="#btn" id="927" title="927 스페인 및 인접국가">927 스페인 및 인접국가</a></dd>
+                                <dd><a class="#btn" id="927" title="927 스페인 및 인접국가">927 스페인 및 인접국가</a></dd>
                             
-                                <dd><a href="#btn" id="928" title="928 이탈리아 및 인접국가">928 이탈리아 및 인접국가</a></dd>
+                                <dd><a class="#btn" id="928" title="928 이탈리아 및 인접국가">928 이탈리아 및 인접국가</a></dd>
                             
-                                <dd><a href="#btn" id="929" title="929 러시아와 동부유럽">929 러시아와 동부유럽</a></dd>
+                                <dd><a class="#btn" id="929" title="929 러시아와 동부유럽">929 러시아와 동부유럽</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="93" title="93 아프리카">93 아프리카</a></dt>
+                            <dt><a class="#btn" id="93" title="93 아프리카">93 아프리카</a></dt>
                             
-                                <dd><a href="#btn" id="930" title="930 아프리카">930 아프리카</a></dd>
+                                <dd><a class="#btn" id="930" title="930 아프리카">930 아프리카</a></dd>
                             
-                                <dd><a href="#btn" id="931" title="931 북아프리카">931 북아프리카</a></dd>
+                                <dd><a class="#btn" id="931" title="931 북아프리카">931 북아프리카</a></dd>
                             
-                                <dd><a href="#btn" id="934" title="934 서아프리카">934 서아프리카</a></dd>
+                                <dd><a class="#btn" id="934" title="934 서아프리카">934 서아프리카</a></dd>
                             
-                                <dd><a href="#btn" id="936" title="936 중아프리카">936 중아프리카</a></dd>
+                                <dd><a class="#btn" id="936" title="936 중아프리카">936 중아프리카</a></dd>
                             
-                                <dd><a href="#btn" id="937" title="937 동아프리카">937 동아프리카</a></dd>
+                                <dd><a class="#btn" id="937" title="937 동아프리카">937 동아프리카</a></dd>
                             
-                                <dd><a href="#btn" id="938" title="938 남아프리카">938 남아프리카</a></dd>
+                                <dd><a class="#btn" id="938" title="938 남아프리카">938 남아프리카</a></dd>
                             
-                                <dd><a href="#btn" id="939" title="939 남인도양제도">939 남인도양제도</a></dd>
+                                <dd><a class="#btn" id="939" title="939 남인도양제도">939 남인도양제도</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="94" title="94 북아메리카(북미)">94 북아메리카(북미)</a></dt>
+                            <dt><a class="#btn" id="94" title="94 북아메리카(북미)">94 북아메리카(북미)</a></dt>
                             
-                                <dd><a href="#btn" id="940" title="940 북아메리카(북미)">940 북아메리카(북미)</a></dd>
+                                <dd><a class="#btn" id="940" title="940 북아메리카(북미)">940 북아메리카(북미)</a></dd>
                             
-                                <dd><a href="#btn" id="941" title="941 캐나다">941 캐나다</a></dd>
+                                <dd><a class="#btn" id="941" title="941 캐나다">941 캐나다</a></dd>
                             
-                                <dd><a href="#btn" id="942" title="942 미국(미합중국)">942 미국(미합중국)</a></dd>
+                                <dd><a class="#btn" id="942" title="942 미국(미합중국)">942 미국(미합중국)</a></dd>
                             
-                                <dd><a href="#btn" id="943" title="943 멕시코">943 멕시코</a></dd>
+                                <dd><a class="#btn" id="943" title="943 멕시코">943 멕시코</a></dd>
                             
-                                <dd><a href="#btn" id="944" title="944 중앙아메리카(중미)">944 중앙아메리카(중미)</a></dd>
+                                <dd><a class="#btn" id="944" title="944 중앙아메리카(중미)">944 중앙아메리카(중미)</a></dd>
                             
-                                <dd><a href="#btn" id="945" title="945 과테말라, 벨리즈, 엘살바도르">945 과테말라, 벨리즈, 엘살바도르</a></dd>
+                                <dd><a class="#btn" id="945" title="945 과테말라, 벨리즈, 엘살바도르">945 과테말라, 벨리즈, 엘살바도르</a></dd>
                             
-                                <dd><a href="#btn" id="946" title="946 온두라스">946 온두라스</a></dd>
+                                <dd><a class="#btn" id="946" title="946 온두라스">946 온두라스</a></dd>
                             
-                                <dd><a href="#btn" id="947" title="947 니카라과">947 니카라과</a></dd>
+                                <dd><a class="#btn" id="947" title="947 니카라과">947 니카라과</a></dd>
                             
-                                <dd><a href="#btn" id="948" title="948 코스타리카, 파나마">948 코스타리카, 파나마</a></dd>
+                                <dd><a class="#btn" id="948" title="948 코스타리카, 파나마">948 코스타리카, 파나마</a></dd>
                             
-                                <dd><a href="#btn" id="949" title="949 서인도제도">949 서인도제도</a></dd>
+                                <dd><a class="#btn" id="949" title="949 서인도제도">949 서인도제도</a></dd>
                             
                         </dl>
-                    </li>
-                
-                    <li>
+                    </td>
+                </tr>
+                <tr>
+                  <td>                   
                         <dl>
-                            <dt><a href="#btn" id="95" title="95 남아메리카(남미)">95 남아메리카(남미)</a></dt>
+                            <dt><a class="#btn" id="95" title="95 남아메리카(남미)">95 남아메리카(남미)</a></dt>
                             
-                                <dd><a href="#btn" id="950" title="950 남아메리카(남미)">950 남아메리카(남미)</a></dd>
+                                <dd><a class="#btn" id="950" title="950 남아메리카(남미)">950 남아메리카(남미)</a></dd>
                             
-                                <dd><a href="#btn" id="951" title="951 콜럼비아">951 콜럼비아</a></dd>
+                                <dd><a class="#btn" id="951" title="951 콜럼비아">951 콜럼비아</a></dd>
                             
-                                <dd><a href="#btn" id="952" title="952 베네수엘라, 기아나">952 베네수엘라, 기아나</a></dd>
+                                <dd><a class="#btn" id="952" title="952 베네수엘라, 기아나">952 베네수엘라, 기아나</a></dd>
                             
-                                <dd><a href="#btn" id="953" title="953 브라질">953 브라질</a></dd>
+                                <dd><a class="#btn" id="953" title="953 브라질">953 브라질</a></dd>
                             
-                                <dd><a href="#btn" id="954" title="954 에콰도르">954 에콰도르</a></dd>
+                                <dd><a class="#btn" id="954" title="954 에콰도르">954 에콰도르</a></dd>
                             
-                                <dd><a href="#btn" id="955" title="955 페루">955 페루</a></dd>
+                                <dd><a class="#btn" id="955" title="955 페루">955 페루</a></dd>
                             
-                                <dd><a href="#btn" id="956" title="956 볼리비아">956 볼리비아</a></dd>
+                                <dd><a class="#btn" id="956" title="956 볼리비아">956 볼리비아</a></dd>
                             
-                                <dd><a href="#btn" id="957" title="957 파라과이, 우루과이">957 파라과이, 우루과이</a></dd>
+                                <dd><a class="#btn" id="957" title="957 파라과이, 우루과이">957 파라과이, 우루과이</a></dd>
                             
-                                <dd><a href="#btn" id="958" title="958 아르헨티나">958 아르헨티나</a></dd>
+                                <dd><a class="#btn" id="958" title="958 아르헨티나">958 아르헨티나</a></dd>
                             
-                                <dd><a href="#btn" id="959" title="959 칠레">959 칠레</a></dd>
+                                <dd><a class="#btn" id="959" title="959 칠레">959 칠레</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="96" title="96 오세아니아">96 오세아니아</a></dt>
+                            <dt><a class="#btn" id="96" title="96 오세아니아">96 오세아니아</a></dt>
                             
-                                <dd><a href="#btn" id="960" title="960 오세아니아">960 오세아니아</a></dd>
+                                <dd><a class="#btn" id="960" title="960 오세아니아">960 오세아니아</a></dd>
                             
-                                <dd><a href="#btn" id="962" title="962 오스트레일리아(호주)">962 오스트레일리아(호주)</a></dd>
+                                <dd><a class="#btn" id="962" title="962 오스트레일리아(호주)">962 오스트레일리아(호주)</a></dd>
                             
-                                <dd><a href="#btn" id="963" title="963 뉴질랜드">963 뉴질랜드</a></dd>
+                                <dd><a class="#btn" id="963" title="963 뉴질랜드">963 뉴질랜드</a></dd>
                             
-                                <dd><a href="#btn" id="964" title="964 파푸아뉴기니">964 파푸아뉴기니</a></dd>
+                                <dd><a class="#btn" id="964" title="964 파푸아뉴기니">964 파푸아뉴기니</a></dd>
                             
-                                <dd><a href="#btn" id="965" title="965 멜라네시아">965 멜라네시아</a></dd>
+                                <dd><a class="#btn" id="965" title="965 멜라네시아">965 멜라네시아</a></dd>
                             
-                                <dd><a href="#btn" id="966" title="966 미크로네시아와 인접 국가">966 미크로네시아와 인접 국가</a></dd>
+                                <dd><a class="#btn" id="966" title="966 미크로네시아와 인접 국가">966 미크로네시아와 인접 국가</a></dd>
                             
-                                <dd><a href="#btn" id="967" title="967 폴리네시아">967 폴리네시아</a></dd>
+                                <dd><a class="#btn" id="967" title="967 폴리네시아">967 폴리네시아</a></dd>
                             
-                                <dd><a href="#btn" id="968" title="968 하와이">968 하와이</a></dd>
+                                <dd><a class="#btn" id="968" title="968 하와이">968 하와이</a></dd>
                             
-                                <dd><a href="#btn" id="969" title="969 태평양제도">969 태평양제도</a></dd>
+                                <dd><a class="#btn" id="969" title="969 태평양제도">969 태평양제도</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="97" title="97 양극지방">97 양극지방</a></dt>
+                            <dt><a class="#btn" id="97" title="97 양극지방">97 양극지방</a></dt>
                             
-                                <dd><a href="#btn" id="970" title="970 양극지방">970 양극지방</a></dd>
+                                <dd><a class="#btn" id="970" title="970 양극지방">970 양극지방</a></dd>
                             
-                                <dd><a href="#btn" id="971" title="971 북극지방">971 북극지방</a></dd>
+                                <dd><a class="#btn" id="971" title="971 북극지방">971 북극지방</a></dd>
                             
-                                <dd><a href="#btn" id="973" title="973 그린란드">973 그린란드</a></dd>
+                                <dd><a class="#btn" id="973" title="973 그린란드">973 그린란드</a></dd>
                             
-                                <dd><a href="#btn" id="978" title="978 남극지방">978 남극지방</a></dd>
+                                <dd><a class="#btn" id="978" title="978 남극지방">978 남극지방</a></dd>
                             
-                                <dd><a href="#btn" id="979" title="979 외계지역">979 외계지역</a></dd>
+                                <dd><a class="#btn" id="979" title="979 외계지역">979 외계지역</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="98" title="98 지리">98 지리</a></dt>
+                            <dt><a class="#btn" id="98" title="98 지리">98 지리</a></dt>
                             
-                                <dd><a href="#btn" id="980" title="980 지리">980 지리</a></dd>
+                                <dd><a class="#btn" id="980" title="980 지리">980 지리</a></dd>
                             
-                                <dd><a href="#btn" id="981" title="981 아시아지리">981 아시아지리</a></dd>
+                                <dd><a class="#btn" id="981" title="981 아시아지리">981 아시아지리</a></dd>
                             
-                                <dd><a href="#btn" id="982" title="982 유럽지리">982 유럽지리</a></dd>
+                                <dd><a class="#btn" id="982" title="982 유럽지리">982 유럽지리</a></dd>
                             
-                                <dd><a href="#btn" id="983" title="983 아프리카지리">983 아프리카지리</a></dd>
+                                <dd><a class="#btn" id="983" title="983 아프리카지리">983 아프리카지리</a></dd>
                             
-                                <dd><a href="#btn" id="984" title="984 북아메리카지리">984 북아메리카지리</a></dd>
+                                <dd><a class="#btn" id="984" title="984 북아메리카지리">984 북아메리카지리</a></dd>
                             
-                                <dd><a href="#btn" id="985" title="985 남아메리카지리">985 남아메리카지리</a></dd>
+                                <dd><a class="#btn" id="985" title="985 남아메리카지리">985 남아메리카지리</a></dd>
                             
-                                <dd><a href="#btn" id="986" title="986 오세아니아지리">986 오세아니아지리</a></dd>
+                                <dd><a class="#btn" id="986" title="986 오세아니아지리">986 오세아니아지리</a></dd>
                             
-                                <dd><a href="#btn" id="987" title="987 양극지리">987 양극지리</a></dd>
+                                <dd><a class="#btn" id="987" title="987 양극지리">987 양극지리</a></dd>
                             
-                                <dd><a href="#btn" id="988" title="988 해양">988 해양</a></dd>
+                                <dd><a class="#btn" id="988" title="988 해양">988 해양</a></dd>
                             
-                                <dd><a href="#btn" id="989" title="989 지도 및 지도책">989 지도 및 지도책</a></dd>
+                                <dd><a class="#btn" id="989" title="989 지도 및 지도책">989 지도 및 지도책</a></dd>
                             
                         </dl>
-                    </li>
+                    </td>
                 
-                    <li>
+                    <td>
                         <dl>
-                            <dt><a href="#btn" id="99" title="99 전기">99 전기</a></dt>
+                            <dt><a class="#btn" id="99" title="99 전기">99 전기</a></dt>
                             
-                                <dd><a href="#btn" id="990" title="990 전기">990 전기</a></dd>
+                                <dd><a class="#btn" id="990" title="990 전기">990 전기</a></dd>
                             
-                                <dd><a href="#btn" id="991" title="991 아시아">991 아시아</a></dd>
+                                <dd><a class="#btn" id="991" title="991 아시아">991 아시아</a></dd>
                             
-                                <dd><a href="#btn" id="992" title="992 유럽">992 유럽</a></dd>
+                                <dd><a class="#btn" id="992" title="992 유럽">992 유럽</a></dd>
                             
-                                <dd><a href="#btn" id="993" title="993 아프리카">993 아프리카</a></dd>
+                                <dd><a class="#btn" id="993" title="993 아프리카">993 아프리카</a></dd>
                             
-                                <dd><a href="#btn" id="994" title="994 북아메리카">994 북아메리카</a></dd>
+                                <dd><a class="#btn" id="994" title="994 북아메리카">994 북아메리카</a></dd>
                             
-                                <dd><a href="#btn" id="995" title="995 남아메리카">995 남아메리카</a></dd>
+                                <dd><a class="#btn" id="995" title="995 남아메리카">995 남아메리카</a></dd>
                             
-                                <dd><a href="#btn" id="996" title="996 오세아니아">996 오세아니아</a></dd>
+                                <dd><a class="#btn" id="996" title="996 오세아니아">996 오세아니아</a></dd>
                             
-                                <dd><a href="#btn" id="997" title="997 양극">997 양극</a></dd>
+                                <dd><a class="#btn" id="997" title="997 양극">997 양극</a></dd>
                             
-                                <dd><a href="#btn" id="998" title="998 주제별전기">998 주제별전기</a></dd>
+                                <dd><a class="#btn" id="998" title="998 주제별전기">998 주제별전기</a></dd>
                             
-                                <dd><a href="#btn" id="999" title="999 계보, 족보">999 계보, 족보</a></dd>
+                                <dd><a class="#btn" id="999" title="999 계보, 족보">999 계보, 족보</a></dd>
                             
                         </dl>
-                    </li>
-                
-            </ol> -->
-        
+                    </td>
+                </tr>
+            </table> 
+     
     </div>
 </form>
-<br><br><br><br>
+<br><br>
+
+<form id="searchResultForm" method="get" action="interestingbook">
+<input type="hidden" name=category value=${category }/>
+<table id=searchResultTable2 >
+
+ <c:choose> 
+   	<c:when test="${not empty list }">
+   	
+  
+		  <tr>
+		    <th colspan="5" id="searchCaptionTh2">
+		      <div style="text-align:center">
+		        <div id="searchCaption22">
+		            <p>            
+		             ${totalData }건  이 검색되었습니다.             
+		             </p>
+		        </div>
+		  
+		        <div class="selectForm3">
+		       
+		        <select id="searchNumber" title="검색건수" name="searchNumber">
+		          <option value=10 ${searchNumber == 10? "selected":""}>10건</option>
+		          <option value=20 ${searchNumber == 20? "selected":""}>20건</option>
+		          <option value=30 ${searchNumber == 30? "selected":""}>30건</option>
+		          <option value=40 ${searchNumber == 40? "selected":""}>40건</option>
+		          <option value=50 ${searchNumber == 50? "selected":""}>50건</option>
+		  
+		        </select>
+		        <button id="button44" type="button" onclick="fn_searchBook2(${kdcNo});" style="border:none">확인</button>
+		      </div>
+		     </div>
+		   </th>
+		   </tr>
+   
+		   <tr>
+		    <td colspan="5">
+		      <hr>
+		      
+		      <input type="checkbox" name="bookSelect" id="allCheck" onclick="selectAll(this)" value="all">
+		      <button id="button22" type="submit" >관심도서담기</button>
+		      <hr>
+		   </td>
+		   </tr>
+  </c:when>
+ </c:choose>	     
+   
+    <c:choose> 
+   	<c:when test="${not empty list }">
+   		<c:forEach var="b" items="${list }">
+  
+		   <tr>
+		      <td id="bookCheckTd" rowspan="2" >
+		          <input type="checkbox" name="bookCheck" id="bookCheck" value="${b.isbnNo }"> 
+		    
+		      </td>
+			    <td id="imgContainerDiv"  rowspan="2" >
+			
+			          
+			            
+			            <img id="totalSearchbookImg"  src="${b.bookImg }" alt="${b.bookName} " onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'"
+			             style="cursor:pointer;">
+			            
+			    </td>
+			    <td colspan="2">
+			          <div id="bookInfoDiv3">
+			            <dl class="authorData" id="bookTitleDl" >
+			               <dd>
+			                    
+			                    <a href="#link"  onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'"
+			                    style="cursor:pointer;"><c:out value="${b.bookName }"/></a>
+			            
+			                    </dd>
+			            </dl>
+			          </div>
+			         
+			
+			      </td>
+			      <td id="buttonWrapTd" rowspan="2">
+			        <div class="buttonWrap">
+			          <button id="button22" type="button" onclick="bookReservation(${b.isbnNo })" >도서예약신청</button>
+			          <button id="button22" type="submit" name="bookCheck" value="${b.isbnNo }" >관심도서담기</button>
+			          </div>
+			      </td>
+		    </tr>
+		    <tr>
+			     <td>
+			
+			     </td>
+			     <td>
+			      <div id="bookInfoDiv4">
+			        <dl class="authorData2">
+			           <dd>
+			                
+			                  
+			                <span>저자 </span><br>
+			                <span>발행자</span><br>                    
+			                <span>발행연도</span> <br>                  
+			                <span>ISBN</span><br>
+			                 <span>분류번호</span><br>
+			                 <span>위치번호</span>
+			                                                       
+			            
+			                  </dd>
+			        </dl>
+			      </div>
+			
+			     </td>
+			     <td>
+			      <div id="bookInfoDiv3">
+			        <dl class="authorData3">
+			           <dd>
+			                
+			                  
+			                <span><c:out value="${b.bookWriter }"/></span><br>
+			                <span><c:out value="${b.bookCompany }"/></span><br>                    
+			                <span><c:out value="${b.bookDate }"/></span><br>                            
+			                <span><c:out value="${b.isbnNo }"/></span><br>
+			                 <span><c:out value="${b.bookKdc }"/></span><br>
+			                 <span><c:out value="${b.bookLocation }"/></span>
+			                                                                    
+			                  </dd>
+			        </dl>
+			      </div>
+			     </td>
+		     
+			     <td>
+			
+			     </td>
+		    </tr>
+    
+		    <tr>
+		      <td colspan="5">
+		         <hr>
+		         
+		      </td>
+		    </tr>
+      </c:forEach>
+     </c:when>
+   
+  
+   <c:otherwise>
+   					<tr>
+   					<td colspan="5"></td>
+   					</tr>
+   	</c:otherwise>  
+   </c:choose>
+    
+   </table>
+  </form>
+  <c:choose> 
+   	<c:when test="${not empty list }">
+       <div id="pagebar-container">
+        	${pageBar }
+        </div>
+     </c:when>
+   </c:choose>
+
+
+
 
 </body>
 
 
 </html>
 <script>
+
+
+
+
+ $(".ico").click(function(){
+	 let images=document.getElementsByClassName("ico");
+	 let id=$(this).attr("id");
+	 
+	 for(let i=0; i<images.length;i++){		 
+		 if($(this).attr('id')== i ){			 
+			 
+			 $("#kdcDepth2List_"+i).show();			 
+		 }else{
+			 $("#kdcDepth2List_"+i).hide();
+		 }	 
+	 }
+ })	
+ 
+ 
+  $(function(){
+	     $("a[href='#btn']").attr("class","asearch");
+	     $("a[class='#btn']").attr("class","asearch");
+		 $("a[href='#btn']").removeAttr('href');
+		 
+		 $("a").attr("style","cursor:pointer");
+		 $(".ico").attr("style","cursor:pointer");
+		 		
+	 
+			 let images=document.getElementsByClassName("ico");
+			 for(let i=0; i<images.length; i++){			
+				 
+				 if( ($("input[name='category']").attr('value')).substring(0,1)== i ){
+					 console.log( $("#kdcDepth2List_"+i));
+					 $("#kdcDepth2List_"+i).show();	//category범위맞으면 해당메뉴보여주기
+					 
+					 if($("button[name='bookCheck']").attr('value')!=null ){
+						 for(let i=0; i<images.length;i++){		 		 
+								 $("#kdcDepth2List_"+i).hide();	//검색된북리스트가있어면 메뉴 숨기기
+					     }
+					 }
+					 
+				 }else{
+					 $("#kdcDepth2List_"+i).hide();
+				 }
+			 }	 
+			 			 			
+		 
+        })
+ 
+ $(function(){
+   $(".asearch").click(function(){
+	  let kdcNo=$(this).attr('id');	 
+	   console.log(kdcNo);
+	  let category=kdcNo.substring(0,1);
+	/*    let images=document.getElementsByClassName("ico");
+	 for(let i=0; i<images.length;i++){		 		 
+			 $("#kdcDepth2List_"+i).hide();		  
+	 } */ 
+	
+	 
+	  location.href="${path}/searchpage/kdcNoSearch?kdcNo="+kdcNo+"&category="+category;
+   }) 
+ 
+ })
+ 
+ function fn_paging2(pageNo,totalData,numPerpage,kdcNo){
+        	
+        let totalData2=parseInt(totalData);
+        let searchNumber=$("#searchNumber").val();
+        	        	
+        	      
+        location.href="${path}/searchpage/kdcNoSearch?cPage="+pageNo+"&searchNumber="+numPerpage+"&kdcNo="+kdcNo;
+        	
+        	
+       }
+ 
+ function fn_searchBook2(kdcNo){
+ 	
+     let searchNumber=$("#searchNumber").val();
+ 	
+ 	
+ 	      
+ 	location.href="${path}/searchpage/kdcNoSearch?kdcNo="+kdcNo+"&searchNumber="+searchNumber;
+ 	
+ 	
+ } 
+	
+ function bookReservation(isbnNo){
+		console.log(isbnNo);
+		
+		
+	}
+
+ function selectAll(selectAll)  {
+		  const checkboxes 
+		       = document.getElementsByName('bookCheck');
+		 
+		  checkboxes.forEach((checkbox) => {
+			  
+			  checkbox.checked = selectAll.checked;
+	    	    
+		  })
+	}
+
+
 $(function(){
 	console.log(window.location.href );
 	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'){
@@ -2707,7 +2992,7 @@ $(function(){
 		
 		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
 		
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'){
+	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'||(window.location.href).includes('categorySearch')||(window.location.href).includes('kdcNoSearch')){
 		 
 		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
 		 

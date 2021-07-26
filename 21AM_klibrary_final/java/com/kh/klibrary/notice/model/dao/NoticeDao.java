@@ -1,6 +1,7 @@
 package com.kh.klibrary.notice.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -13,6 +14,7 @@ public interface NoticeDao {
 	Notice selectNoticeView(SqlSessionTemplate session,int no);
 	List<Notice> searchnotice(SqlSessionTemplate session, String text);
 	List<Notice> searchnoticecontent(SqlSessionTemplate session, String text);
+	
 	
 
 }

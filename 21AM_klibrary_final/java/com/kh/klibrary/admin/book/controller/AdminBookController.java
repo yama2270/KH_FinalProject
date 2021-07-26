@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -317,5 +318,52 @@ public class AdminBookController {
 			
 		}
 		return date;
+	}
+	
+	// 카테고리별 도서수 
+	@RequestMapping("/admin/book/countCatBook.do")
+	@ResponseBody
+	public Map countCatBook() {
+		List<Map<String,Integer>> m = service.countCatBook();
+		/* System.out.println(String.valueOf(m.get(0).get("BOOKS"))); */
+		// 파싱처리해주기 
+		Map hm = new HashMap();
+		int key = 0;
+		for(Map<String,Integer> ma : m) {
+			hm.put(key++, ma.get("BOOKS"));
+		}
+		return hm;
+	}
+	
+	// 기간별 대출도서 수 
+	@RequestMapping("/admin/book/countRenBook.do")
+	@ResponseBody
+	public void countRenBook() {
+		
+	}
+	
+	// 관심도서 랭킹 
+	@RequestMapping("/admin/book/countLikBook.do")
+	@ResponseBody
+	public Map countLikBook() {
+		
+		List<Map> list = service.countLikBook();
+		
+		// Map 결과값 생성 
+		Map result = new HashMap();
+		for(Map m : list) {
+			String bookName = ((String)m.get("BOOK_NAME")).substring(0,5);
+			String count = String.valueOf(m.get("LIKE_COUNT"));
+			result.put(bookName, count);
+		}
+		
+		// 결과값 확인 
+		Iterator i = result.keySet().iterator();
+		while(i.hasNext()) {
+			String key = (String)i.next();
+			System.out.println(key +":"+result.get(key));
+		}
+		
+		return result;
 	}
 }

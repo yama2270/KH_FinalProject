@@ -216,4 +216,17 @@ public class AdminBookServiceImpl implements AdminBookService {
 		// TODO Auto-generated method stub
 		return dao.cancelReserved(session, param);
 	}
+	
+	// 카테고리별 도서수 
+	@Override
+	public List<Map<String,Integer>> countCatBook() {
+		return dao.countCatBook(session);
+	}
+	
+	// 관심도서 랭킹 
+	@Override 
+	public List<Map> countLikBook(){
+		return dao.countLikBook(session);
+	}
+	
 }

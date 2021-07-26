@@ -197,5 +197,15 @@ public class AdminBookDaoImpl implements AdminBookDao {
 		return session.delete("adminBook.cancelReserved", param);
 	}
 	
+	// 카테고리별 도서 수 
+	public List<Map<String,Integer>> countCatBook(SqlSessionTemplate session) {
+		return session.selectList("adminBook.countCatBook");
+	}
+	
+	// 관심도서 랭킹 
+	public List<Map> countLikBook(SqlSessionTemplate session){
+		return session.selectList("adminBook.countLikBook");
+	}
+	
 	
 }
