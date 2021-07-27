@@ -34,6 +34,14 @@ public class AdminMemberDaoImpl implements AdminMemberDao{
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.totalsearchMember",param);
 	}
+
+	@Override
+	public int deletemember(SqlSessionTemplate session, String userId) {
+		// TODO Auto-generated method stub
+		return session.delete("admin.deletemember",userId);
+	}
+	
+	
 	
 	
 	

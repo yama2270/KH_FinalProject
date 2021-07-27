@@ -33,5 +33,9 @@
 		FROM MEMBER 
 		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
 	</select>
+	
+	<delete id="deletemember">
+		DELETE FROM MEMBER WHERE USER_ID = #{userId}
+	</delete>
 
 </mapper>

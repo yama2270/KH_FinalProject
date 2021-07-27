@@ -57,7 +57,7 @@
                             <td><c:out value="${n.phone }"/></td>
                             <td><c:out value="${n.signupDate }"/></td>
                             <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary" onclick="if(confirm('삭제 하시겠습니까?')){location.assign('${path}/admin/member/deletemember.do?userId=${n.userId}')}">삭제</button></td>
                         </tr>
                         </c:forEach>
                     	</c:when>
@@ -77,12 +77,10 @@
                 </div>
             </div>
         </div>
-    </section>
+   
 
 	<script>
-	function test(){
-		console.log(test);
-	}
+	
 	
 	//체크박스 전체 선택
 	function selectAll(selectAll)  {
