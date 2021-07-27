@@ -55,6 +55,18 @@ public int updateNoticeCount(SqlSessionTemplate session, int noticeNo) {
 	return session.update("notice.updateNoticeCount",noticeNo);
 }
 
+@Override
+public List<Notice> searchNoticeTitle(SqlSessionTemplate session, String keyWord) {
+	// TODO Auto-generated method stub
+	return session.selectList("notice.searchNoticeTitle", keyWord);
+}
+
+@Override
+public List<Notice> searchNoticeContent(SqlSessionTemplate session, String keyWord) {
+	// TODO Auto-generated method stub
+	return session.selectList("notice.searchNoticeContent", keyWord);
+}
+
 
 
 

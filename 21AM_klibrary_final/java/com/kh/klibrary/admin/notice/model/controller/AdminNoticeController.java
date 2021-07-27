@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -90,7 +92,20 @@ public class AdminNoticeController {
 			
 		}
 	
-
+	@PostMapping("/admin/notice/noticeSearch.do")
+	public String noticeSearch(@RequestParam("category") String title, @RequestParam(required=false)String keyWord, Model model) {
+		//공백이면
+		if(!StringUtils.hasText(keyWord)) {
+			return "redirect:/admin/notice/noticeList";
+		}
+		if("제목".equals(title)) {
+			model.addAttribute("list",service.searchNoticeTitle(keyWord));
+		}else {
+			model.addAttribute("list", service.searchNoticeContent(keyWord));
+		}
+		
+		return "/admin/notice/noticeSearch";
+	}
 	
 	
 }

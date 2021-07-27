@@ -82,5 +82,14 @@
 
 	</select>
   
+  <!-- 공지 제목으로 검색 -->
+  	<select id="searchNoticeTitle" resultMap="noticeMap">
+		SELECT * FROM NOTICE WHERE NOTICE_TITLE LIKE '%'||#{keyWord}||'%'
+	</select>
+  
+    <!-- 공지 내용으로 검색 -->
+  	<select id="searchNoticeContent" resultMap="noticeMap">
+		SELECT * FROM NOTICE WHERE NOTICE_CONTENT LIKE '%'||#{keyWord}||'%'
+	</select>
   
 </mapper>
