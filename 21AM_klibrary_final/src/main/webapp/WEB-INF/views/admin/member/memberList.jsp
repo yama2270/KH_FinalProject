@@ -33,9 +33,8 @@
                 <div id="contentTabWrap">
                     <table id="memListTab" class="table table-hover">
                         <tr>
-                            <th style="width:50px;line-height:18px;"><input type="checkbox"/></th>
-                            
-                            <th style="width:110px;">아이디 <i class="fas fa-arrows-alt-v"></i></th>
+                            <th style="width:50px;line-height:18px;"><input type="checkbox" name="member" value="selectall" onclick="selectAll(this)"/></th>
+                            <th style="width:110px;" onclick="test();">아이디 <i class="fas fa-arrows-alt-v"></i></th>
                             <th style="width:90px;">이름 <i class="fas fa-arrows-alt-v"></i></th>
                             <th style="width:150px;">이메일</th>
                             <th style="width:100px;">생년월일 <i class="fas fa-arrows-alt-v"></i></th>
@@ -49,16 +48,16 @@
                     	<c:when test="${not empty list }">
                     	<c:forEach var="n" items="${list }">
                         <tr>
-                            <td><input type="checkbox"/></td>
+                            <td><input type="checkbox" name="member" value="${n.userId }"/></td>
                             <td><c:out value="${n.userId }"/></td>
                             <td><c:out value="${n.userName }"/></td>
                             <td><c:out value="${n.email }"/></td>
-                            <td><c:out value="${n.birthDate }"/></td>
+                            <td><c:out value="${n.birthDate }" /></td>
                             <td><c:out value="${n.address }"/></td>
                             <td><c:out value="${n.phone }"/></td>
                             <td><c:out value="${n.signupDate }"/></td>
                             <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary" onclick="if(confirm('삭제 하시겠습니까?')){location.assign('${path}/admin/member/deletemember.do?userId=${n.userId}')}">삭제</button></td>
                         </tr>
                         </c:forEach>
                     	</c:when>
@@ -72,15 +71,26 @@
                     <div id="memListBtn">
                         <button type="button" class="btn btn-outline-secondary">선택삭제</button>
                     </div>
-                    <div id="pagebar-container">
+                    <div id="pagebar-container" style="margin-top:8px">
 	               	${pageBar }
 	               </div>
                 </div>
             </div>
         </div>
-    </section>
+   
 
 	<script>
+	
+	
+	//체크박스 전체 선택
+	function selectAll(selectAll)  {
+		  const checkboxes 
+		       = document.getElementsByName('member');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked;
+		  })
+		}
 		
 	 $(function(){
          // ul show()

@@ -45,7 +45,23 @@
 	      <beans:ref bean="jacksonConverter"/>
 	    </beans:list>
 	   </beans:property>
-	</beans:bean>
+	</beans:bean>	
+	
+	  <interceptors>
+	   	<interceptor>
+	   		<mapping path="/searchpage/wishBookCheckInsert.do"/>
+	   		<beans:bean class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>
+	   	</interceptor>	   			
+		 <interceptor>
+		   <mapping path="/searchpage/interestingbook*"/>
+		   <beans:bean id="interestingbook" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+		   <mapping path="/searchpage/bookReservation*"/>
+		   <beans:bean id="bookReservation" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>		 
+	</interceptors>
+	
 	
 	<!-- hj 파일 업로드 사용 bean등록 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

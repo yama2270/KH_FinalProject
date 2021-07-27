@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>    
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<script src="${path }/resources/js/main.js"></script> 
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>   
+<link rel="stylesheet" href="${path }/resources/css/main.css">   
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
@@ -40,7 +43,7 @@
             <div id="he_right">
                 <div id="titleheadname">이용시간</div>
                 
-                <div id="calendarForm"></div>
+                <div id='calendar'></div>
                 <div class="table3">
                     <div class="timehead">이용시간</div>
                     <table class="table4">
@@ -108,103 +111,103 @@
                 </div>
             </div>
     </section>
+    
 </body>
-        
+ 
     <script>
-        (function () {
-            calendarMaker($("#calendarForm"), new Date());
-        })();
+    var calendar;
+    //DB에서 가져온값 일정에 넣어주기
+    $(function(){
+   	 $.get("${path}/notice/eventCalendar.do",data=>{
+   		console.log(data); 
+   		$.each(data,function(i,s){
+   			let event={};
+   			event.title=s.calendartitle;
+   			let date=new Date(s.calendardate);
+   			console.log(date);
+   			console.log(date.getFullYear());
+   			event.start=date.getFullYear()+"-"+((date.getMonth()+1<10)?"0":"")+(date.getMonth()+1)+"-"+date.getDate();
+   			
+   			console.log(event);
+   			calendar.addEvent(event);
+   		})
+   		calendar.render();
+   	 });
+    })
+    
+    
+    document.addEventListener('DOMContentLoaded', function() {
+    	  var calendarEl = document.getElementById('calendar');
 
-    var nowDate = new Date();
-    function calendarMaker(target, date) {
-        if (date == null || date == undefined) {
-            date = new Date();
-        }
-        nowDate = date;
-        if ($(target).length > 0) {
-            var year = nowDate.getFullYear();
-            var month = nowDate.getMonth() + 1;
-            $(target).empty().append(assembly(year, month));
-        } else {
-            console.error("custom_calendar Target is empty!!!");
-            return;
-        }
+    	  calendar = new FullCalendar.Calendar(calendarEl, {
+    	    initialView: 'dayGridMonth',
+    	    headerToolbar: {
+	    	    left: 'addEventButton',
+	    	    center: 'title',
+	    	  	right: 'prev,next today'
+    	    },
+    	    
+    	    navLinks: true, // can click day/week names to navigate views selectable: true,
+        	selectable: true,
+        	selectMirror: true,
+        	
+        	
+    	    customButtons: {
+    	      addEventButton: {
+    	        text: '일정추가',
+    	        click: function() {
+    	          var dateStr = prompt('시작일 0000-00-00');
+    	          /* var dateEnd = prompt('종료일 0000-00-00'); */
+    	          var content = prompt('등록할일정');
+    	          var date = new Date(dateStr + 'T00:00:00'); // will be in local time
 
-        var thisMonth = new Date(nowDate.getFullYear(), nowDate.getMonth(), 1);
-        var thisLastDay = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 0);
-
-
-        var tag = "<tr>";
-        var cnt = 0;
-        //빈 공백 만들어주기
-        for (i = 0; i < thisMonth.getDay(); i++) {
-            tag += "<td></td>";
-            cnt++;
-        }
-
-        //날짜 채우기
-        for (i = 1; i <= thisLastDay.getDate(); i++) {
-            if (cnt % 7 == 0) { tag += "<tr>"; }
-
-            tag += "<td style='font-size:1rem'>" + i + "</td>";
-            cnt++;
-            if (cnt % 7 == 0) {
-                tag += "</tr>";
-            }
-        }
-        $(target).find("#custom_set_date").append(tag);
-        calMoveEvtFn();
-
-        function assembly(year, month) {
-            var calendar_html_code =
-                "<table class='custom_calendar_table'>" +
-                "<colgroup>" +
-                "<col style='width:150px'/>" +
-                "<col style='width:150px'/>" +
-                "<col style='width:150px'/>" +
-                "<col style='width:150px'/>" +
-                "<col style='width:150px'/>" +
-                "<col style='width:150px'/>" +
-                "<col style='width:150px'/>" +
-                "</colgroup>" +
-                "<thead class='cal_date'>" +
-                "<th><button type='button' class='prev'><</button></th>" +
-                "<th colspan='5'><p><span>" + year + "</span>년 <span>" + month + "</span>월</p></th>" +
-                "<th><button type='button' class='next'>></button></th>" +
-                "</thead>" +
-                "<thead  class='cal_week'>" +
-                "<th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>" +
-                "</thead>" +
-                "<tbody id='custom_set_date'>" +
-                "</tbody>" +
-                "</table>";
-            return calendar_html_code;
-        }
-
-        function calMoveEvtFn() {
-            //전달 클릭
-            $(".custom_calendar_table").on("click", ".prev", function () {
-                nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth() - 1, nowDate.getDate());
-                calendarMaker($(target), nowDate);
-            });
-            //다음날 클릭
-            $(".custom_calendar_table").on("click", ".next", function () {
-                nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, nowDate.getDate());
-                calendarMaker($(target), nowDate);
-            });
-            //일자 선택 클릭
-            $(".custom_calendar_table").on("click", "td", function () {
-                $(".custom_calendar_table .select_day").removeClass("select_day");
-                $(this).removeClass("select_day").addClass("select_day");
-               	console.log($(this).removeClass("select_day").addClass("select_day")[0].innerText);
-               	const searchday=$(this).removeClass("select_day").addClass("select_day")[0].innerText;
-               	//open("${path}/notice/calendar.do?no="+searchday,"_blank","height=300,width=600");
-               	open("${path}/notice/calendar.do","_blank","height=300,width=600");
-            });
-        }
-    }
-
-    // navigation 이벤트
+    	          if (!isNaN(date.valueOf())) { // valid?
+    	            calendar.addEvent({
+    	              title: content,
+    	              start: dateStr,
+    	              end: dateEnd,
+    	              allDay: false
+    	            });
+    	            $.ajax({
+    	            	url:"${path}/insertcalendar.do",
+    	            	data: {"title":content,"str":dateStr,"end":dateEnd},
+    	            	//async:false,
+    	            	success:data=>{
+    	            		console.log(data);
+		    	            alert('등록성공');
+    	            	}
+    	            });
+    	          } else {
+    	            alert('등록실패.');
+    	          }
+    	        }
+    	      }
+    	    },
+    	    locale: 'ko',
+    	    events: [
+    	
+    	    	 {
+    	             title : 'evt1',
+    	             start : '2021-07-21'
+    	         },
+    	         {
+    	             title    :    'evt2',
+    	             start    :    '2021-07-10',
+    	             end    :    '2021-07-20'
+    	         },
+    	         {
+    	             title    :    'evt3',
+    	             start    :    '2019-09-25T12:30:00',
+    	             allDay    :    false
+    	         }
+    	      ]   
+    	  });
+    	  calendar.render();
+    	  
+    	  
+    	});
+    
+// navigation 이벤트
     
     $(function(){
 
@@ -237,6 +240,8 @@
         })
 
     })
+    
+    
     
     </script>
 

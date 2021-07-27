@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -58,9 +59,18 @@ public class AdminMemberController {
 		mv.addObject("param",param);
 		mv.setViewName("admin/member/memberList");
 		return mv;
-		
 	}
 	
+	//회원삭제
+	@RequestMapping("/admin/member/deletemember.do")
+	public String deletemember(@RequestParam String userId, Model model) {
+		System.out.println(userId);
+		int result=service.deletemember(userId);
+		model.addAttribute("msg",result>0?"삭제성공":"삭제실패");
+		model.addAttribute("loc","/admin/member/memberList.do");
+		return "common/msg";
+		
+	}
 	
 	// 회원탈퇴리스트 
 	@RequestMapping("/admin/member/memberWithdraw.do")

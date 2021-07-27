@@ -1,6 +1,7 @@
 package com.kh.klibrary.calender.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.calender.service.CalenderService;
+import com.kh.klibrary.calender.vo.Calender;
 @Controller
 public class CalenderController {
 	@Autowired(required = false)
@@ -27,13 +29,17 @@ public class CalenderController {
 	}
 	
 	@RequestMapping("/notice/calendar.do")
-	@ResponseBody
 	public ModelAndView calenderlist(ModelAndView mv) {
-		mv.addObject("list",service.calenderlist());
+		//mv.addObject("list",service.calenderlist());
 		mv.setViewName("/facilities/calendar");
+		
 		return mv;
 	}
-	
+	@RequestMapping("/notice/eventCalendar.do")
+	@ResponseBody
+	public List<Calender> addCalender(){
+		return service.calenderlist(); 
+	}
 	
 	
 

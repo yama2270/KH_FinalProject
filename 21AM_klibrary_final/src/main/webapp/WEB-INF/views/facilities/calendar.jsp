@@ -7,10 +7,29 @@
 <script src="${path }/resources/js/main.js"></script> 
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
  <script>
+ var calendar;
+ //DB에서 가져온값 일정에 넣어주기
+ $(function(){
+	 $.get("${path}/notice/eventCalendar.do",data=>{
+		console.log(data); 
+		$.each(data,function(i,s){
+			let event={};
+			event.title=s.calendartitle;
+			let date=new Date(s.calendardate);
+			console.log(date);
+			console.log(date.getFullYear());
+			event.start=date.getFullYear()+"-"+((date.getMonth()+1<10)?"0":"")+(date.getMonth()+1)+"-"+date.getDate();
+			
+			console.log(event);
+			calendar.addEvent(event);
+		})
+		calendar.render();
+	 });
+ })
     document.addEventListener('DOMContentLoaded', function() {
     	  var calendarEl = document.getElementById('calendar');
 
-    	  var calendar = new FullCalendar.Calendar(calendarEl, {
+    	  calendar = new FullCalendar.Calendar(calendarEl, {
     	    initialView: 'dayGridMonth',
     	    headerToolbar: {
 	    	    left: 'addEventButton',
@@ -54,14 +73,26 @@
     	    },
     	    locale: 'ko',
     	    events: [
-    	        {
-    	          title  : '',
-    	          start  : '2021-07-21',
-    	          allDay : true // will make the time show
-    	        }
+    	
+    	    	 {
+    	             title : 'evt1',
+    	             start : '2021-07-21'
+    	         },
+    	         {
+    	             title    :    'evt2',
+    	             start    :    '2021-07-10',
+    	             end    :    '2021-07-20'
+    	         },
+    	         {
+    	             title    :    'evt3',
+    	             start    :    '2019-09-25T12:30:00',
+    	             allDay    :    false
+    	         }
     	      ]   
     	  });
     	  calendar.render();
+    	  
+    	  
     	});
     
     
