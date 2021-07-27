@@ -21,8 +21,8 @@
 					<div class="canQuaHea">홈페이지 방문자 수</div>
 					<div id="quaVis">
 						<div class="quaInpWrap" style="text-align: right; padding-right: 80px">
-							<input type="date" style="margin-right: 3px;"><input
-								type="date">
+							<input type="date" id="visInpRow" class="inpRow" style="margin-right: 3px;" min="2021-07-19"><input
+								type="date" id="visInpHig" class="inpHig" min="2021-07-20"><input type="button" style="height:20px;width:35px;margin-left:3px;" value="조회" onclick="visSession()">
 						</div>
 						<canvas id="visChart" width="450px" height="250px" style="margin-top:10px;"></canvas>
 					</div>
@@ -38,8 +38,8 @@
 				<div class="canQua">
 					<div class="canQuaHea">기간별 대출도서</div>
 					<div class="quaInpWrap">
-							<input type="date" id="renInpRow" name="renIntRow" style="margin-right: 3px;" min="2021-07-19"><input
-							 type="date" id="renInpHig" name="renIntHig" min="2021-07-20"><input type="button" style="height:20px;width:35px;margin-left:3px;" value="조회" onclick="renSession()">
+							<input type="date" id="renInpRow" class="inpRow" name="renIntRow" style="margin-right: 3px;" min="2021-07-19"><input
+							 type="date" id="renInpHig" class="inpHig" name="renIntHig" min="2021-07-20"><input type="button" style="height:20px;width:35px;margin-left:3px;" value="조회" onclick="renSession()">
 						</div>
 					<div id="renCanWr">
 						<canvas id="renBook" width="450px" height="250px"></canvas>
@@ -60,35 +60,101 @@
 <script>
 	
 	// chart.js
+	
 	let renCha;
+	let visCha;
  
 	$(document).ready(function(){
 	
-	// 방문자수 canvas 
+	// 방문자수 
 		
-	const visCan = document.getElementById("visChart").getContext("2d");
+		let visRowInp;
+		let visHighInp;
+		
+		if($("#visInpRow").val()==''){
+				visRowInp = dateForm('2021-07-19');
+		} else {
+				visRowInp = dateForm($("#visInpRow").val());
+		}
+		
+		if($("#visInpHig").val()==''){
+				visHighInp = new Date().toISOString().substring(0,10).replace(/-/g,'/');
+		} else {
+				visHighInp = dateForm($("#visInpHig").val());
+		}
+		
+		$.ajax({
+			url:"${path}/admin/countVis.do?rowDate="+visRowInp+"&highDate="+visHighInp,
+			success:function(data){
+				
+				const rowDate = new Date(visRowInp);
+				const highDate = new Date(visHighInp);
+				
+				// 기간 
+				const labArr = new Array();
+				const gap = highDate.getDate()-rowDate.getDate()
+				rowDate.setDate(rowDate.getDate()+1);
+				
+				for(i=0;i<gap+1;i++){
+					labArr.push(rowDate.toISOString().substring(0,10));
+					rowDate.setDate(rowDate.getDate()+1);
+				}
+				
+				// 검색 데이터 
+				const resDate = Object.keys(data);
+				const resCount = Object.values(data);
+				
+				console.log("--------");
+				console.log(resDate);
+				console.log(resCount);
+				console.log("--------");
+				
+				// 결과 배열만들기
+				const datArr = new Array();
+				
+				for(i=0;i<labArr.length;i++){
+					datArr.push(0);
+				}
+				
+				for(i=0;i<labArr.length;i++){
+					for(j=0;j<resDate.length;j++){
+						if(labArr[i]==resDate[j]){
+							datArr[i]=resCount[j];
+						} 
+					}
+				}
+				
+				// chart 삭제
+				let newCan = document.getElementById("visChart");
+				let newCon = newCan.getContext("2d");
+				
+				visCha = new Chart(newCon,{
+					type : "line",
+					data : {
+						labels : labArr,
+						datasets : [{
+							data : datArr,
+							tension : 0.1,
+							backgroundColor:"red"
+						}]
+					} ,
+					options : {
+						plugins : {
+							legend : {
+								display : false
+							}
+						},
+						y : {
+							suggestedmin : 0,
+							max : 10
+						}
+					}
+				})
+			}
+		})
 	
-	const data = {월요일:10,화요일:20}
+	// 카테고리별 도서  
 	
-	const barChar = new Chart(visCan, {
-	  type: "line", // pie, line, donut, polarArea ...
-	  data: {
-		  labels : ["월요일","화요일","수요일","목요일","금요일","토요일","일요일"],
-		  datasets : [{
-			  data:[10,20]
-		  }]
-	  }, // data END
-	  options : {
-		  responsive : false,
-		  plugins : {
-			  legend : {
-				  display:false
-			  }
-		  }
-	  	}
-	  })
-	
-	// 베스트 대출 도서 canvas 
 	$.ajax({
 		url:"${path}/admin/book/countCatBook.do",
 		success:function(data){
@@ -119,9 +185,7 @@
 	})
 	
 	
-	// 기간별 도서검색 
-			
-		// ajax date 파마미터 생성 
+	// 기간별 대출도서 
 			
 		let rowInp;
 		let highInp;
@@ -206,6 +270,7 @@
 	
 	
 	// 관심도서 랭킹 
+	
 	$.ajax({
 		url : "${path}/admin/book/countLikBook.do",
 		success:function(data){
@@ -244,11 +309,11 @@
 	})
 	
 	
-	// 대출도서 기간설정
-	$("#renInpRow,#renInpHig").click((e)=>{
+	// 방문자수, 대출도서 input 설정
+	$(".inpRow,.inpHig").click((e)=>{
 		
-		const inpRow = $("#renInpRow");
-		const inpHig = $("#renInpHig");
+		const inpRow = $(".inpRow");
+		const inpHig = $(".inpHig");
 		
 		// date input max,min 설정 
 		const date = new Date();
@@ -275,26 +340,8 @@
 }); //Jquery END
 	
 	
-	// 기간별 대출도서 조회 
-	
-	/* const da = new Date();
-	da.setDate(da.getDate()+1);
-	const date = da.toISOString().substring(2,10).replace(/-/g,'/');		// 정규표현식 이용하여 변환 
-	
-	// 받아오는 날짜 format 이 21/07/26 
-	if(date == '21/07/26'){
-		console.log("같습니다");
-	} else {
-		console.log("다릅니다");
-	}
-	
-	const test1 = new Date('2021-07-26');
-	const test2 = new Date('2021-07-20');
-	console.log(test2.getDate() - test1.getDate()); */
-	
-	
-	
 	// 대출도서 기간 날짜별 조회 
+	
 	const renSession = function(){
 		
 		// ajax date 파마미터 생성 
@@ -394,6 +441,104 @@
 		})
 	}
 	
+	const visSession = function(){
+		
+	// ajax date 파마미터 생성 
+			
+		let visRowInp;
+		let visHighInp;
+		
+		if($("#visInpRow").val()==''){
+				visRowInp = dateForm('2021-07-19');
+		} else {
+				visRowInp = dateForm($("#visInpRow").val());
+		}
+		
+		if($("#visInpHig").val()==''){
+				visHighInp = new Date().toISOString().substring(0,10).replace(/-/g,'/');
+		} else {
+				visHighInp = dateForm($("#visInpHig").val());
+		}
+		
+		$.ajax({
+			url:"${path}/admin/countVis.do?rowDate="+visRowInp+"&highDate="+visHighInp,
+			success:function(data){
+				
+				const rowDate = new Date(visRowInp);
+				const highDate = new Date(visHighInp);
+				
+				// 기간 
+				const labArr = new Array();
+				const gap = highDate.getDate()-rowDate.getDate()
+				rowDate.setDate(rowDate.getDate()+1);
+				
+				for(i=0;i<gap+1;i++){
+					labArr.push(rowDate.toISOString().substring(0,10));
+					rowDate.setDate(rowDate.getDate()+1);
+				}
+				
+				// 검색 데이터 
+				const resDate = Object.keys(data);
+				const resCount = Object.values(data);
+				
+				
+				// 결과 배열만들기
+				const datArr = new Array();
+				
+				for(i=0;i<labArr.length;i++){
+					datArr.push(0);
+				}
+				
+				for(i=0;i<labArr.length;i++){
+					for(j=0;j<resDate.length;j++){
+						if(labArr[i]==resDate[j]){
+							datArr[i]=resCount[j];
+						} 
+					}
+				}
+				
+				/* const renCan = document.getElementById("renBook");
+				const renCon = renCan.getContext("2d");
+				renCon.clearRect(0,0,renCan.width,renCan.height);
+				renCon.beginPath(); */
+				
+				// canvas 변경해주기 
+				/* let canNo = 0;
+				console.log($("#renCanWr").find("canvas"));
+				$("#renCanWr").find("canvas").attr("id","renBook"+(++canNo));
+				let newCan = document.getElementById("renBook"+canNo);
+				let newCon = newCan.getContext("2d"); */
+								
+				// chart 삭제
+				visCha.destroy();
+				let newCan = document.getElementById("visChart");
+				let newCon = newCan.getContext("2d");
+				
+				visCha = new Chart(newCon,{
+					type : "line",
+					data : {
+						labels : labArr,
+						datasets : [{
+							data : datArr,
+							tension : 0.1,
+							backgroundColor:"red"
+						}]
+					} ,
+					options : {
+						plugins : {
+							legend : {
+								display : false
+							}
+						},
+						y : {
+							suggestedmin : 0,
+							max : 10
+						}
+					}
+				})
+			}// ajax end
+		})
+	}
 	
 	
 	// Date 형식

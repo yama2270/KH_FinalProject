@@ -35,4 +35,6 @@ public interface MemberService {
 	int cancelMark(Map m1);
 	int selectHopeRecordCount(String userId);
 	int insertMemberDropRequest(Map m1);
+	// 홈페이지 방문자 count
+	int countUser(String today);
 }

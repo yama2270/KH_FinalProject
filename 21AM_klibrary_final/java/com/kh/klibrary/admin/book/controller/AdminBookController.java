@@ -373,13 +373,6 @@ public class AdminBookController {
 			result.put(bookName, count);
 		}
 		
-		// 결과값 확인 
-		Iterator i = result.keySet().iterator();
-		while(i.hasNext()) {
-			String key = (String)i.next();
-			System.out.println(key +":"+result.get(key));
-		}
-		
 		return result;
 	}
 }

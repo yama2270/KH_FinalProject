@@ -45,4 +45,11 @@
 		</foreach>
 	</delete>
 
+	<select id="countVis" parameterType="Map" resultType="Map">
+		SELECT COUNT(*) AS VISITOR_COUNT, VISITOR_DATE 
+		FROM VISITOR
+		WHERE VISITOR_DATE BETWEEN #{rowDate} AND #{highDate}
+		GROUP BY VISITOR_DATE
+	</select>
+
 </mapper>

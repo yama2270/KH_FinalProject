@@ -157,4 +157,9 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.insertMemberDropRequest(session, m1);
 	}
+	
+	@Override
+	public int countUser(String today) {
+		return dao.countUser(session,today);
+	}
 }

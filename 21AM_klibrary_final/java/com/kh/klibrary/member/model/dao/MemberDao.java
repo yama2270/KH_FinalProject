@@ -38,4 +38,7 @@ public interface MemberDao {
 	int cancelMark(SqlSessionTemplate session, Map m1);
 	int selectHopeRecordCount(SqlSessionTemplate session, String userId);
 	int insertMemberDropRequest(SqlSessionTemplate session, Map m1);
+	
+	// 홈페이지 방문자 count
+	int countUser(SqlSessionTemplate session,String today);
 }
