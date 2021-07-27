@@ -100,7 +100,7 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<h2>예약중인 도서가 없습니다.</h2>
+						<h2 id=Nodata>대출이력이 없습니다.</h2>
 					</c:otherwise>
 				</c:choose>
 				</tbody>

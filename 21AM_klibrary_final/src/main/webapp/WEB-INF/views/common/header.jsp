@@ -106,17 +106,22 @@
 					<li><a href="" aria-label="subemnu">QNA</a></li>
 				</ul>
 			</li>
-			<li><a href="${path }/member/memberInfo.do">마이페이지</a>
-				<ul id="sub-menu">
-					<li><a href="" aria-label="subemnu">개인정보확인</a></li>
-					<li><a href="" aria-label="subemnu">도서이용내역</a></li>    
-					<li><a href="" aria-label="subemnu">희망도서</a></li>
-					<li><a href="" aria-label="subemnu">관심도서</a></li>
-					<li><a href="" aria-label="subemnu">열람실 이용내역</a></li>
-					<li><a href="" aria-label="subemnu">모바일 회원증</a></li>  
-					<li><a href="" aria-label="subemnu">회원탈퇴</a></li>              
-				</ul>
-			</li>
+			<c:if test="${loginMember!=null }">
+				<li><a href="${path }/member/memberInfo.do">마이페이지</a>
+					<ul id="sub-menu">
+						<li><a href="${path }/member/memberInfo.do" aria-label="subemnu">개인정보확인</a></li>
+						<li><a href="${path }/member/memberBorrowing.do" aria-label="subemnu">도서이용내역</a></li>    
+						<li><a href="${path }/member/memberHopeBookRecord.do" aria-label="subemnu">희망도서</a></li>
+						<li><a href="${path }/member/memberBookMark.do" aria-label="subemnu">관심도서</a></li>
+						<li><a href="${path }/member/memberReadingRoom.do" aria-label="subemnu">열람실 이용내역</a></li>
+						<li><a href="${path }/member/membershipCard.do" aria-label="subemnu">모바일 회원증</a></li>  
+						<li><a href="${path }/member/memberDelete.do" aria-label="subemnu">회원탈퇴</a></li>              
+					</ul>
+				</li>
+			</c:if>
+			<c:if test="${loginMember==null }">
+				<li><a href="${path }/member/memberLogin.do">마이페이지</a></li>
+			</c:if>
 		</ul>
 	</div>
 </header> 
