@@ -153,4 +153,10 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return session.insert("member.insertMemberDropRequest", m1);
 	}
+	
+	@Override
+	public int countUser(SqlSessionTemplate session,String today) {
+		return session.insert("member.countUser",today);
+	}
+	
 }
