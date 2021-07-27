@@ -383,16 +383,19 @@ public String interestingbook (
 				param.put("init",init.split(","));
 				System.out.println("init테스트2"+init);
 			}
-						
-			 
-			 //다음 페이징처리를 위한 변수받기, 페이지바 함수에서의 ""에러처리
-		   	
-	
-			    List<BookInfo> bookList1 =service.selectDetailSearch(param,cPage,searchNumber);
+			List<BookInfo> bookList1=null;	
+			int bookListCount=0; 
+		   	if(!init.equals("44700,55203")||!((String)param.get("book_Category")).equals("도서 대분류")||!((String)param.get("bookName")).equals("")
+		   		||!((String)param.get("author")).equals("")||!((String)param.get("publisher")).equals("")||!((String)param.get("isbnNo")).equals("")
+		   		||!((String)param.get("price")).equals("")||!((String)param.get("publishYear")).equals("")) {
+		   			
+	         
+			    bookList1 =service.selectDetailSearch(param,cPage,searchNumber);
 			    System.out.println("bookList1테스트"+bookList1);
-			    int bookListCount=service.selectDetailSearchCount(param);
+			    bookListCount=service.selectDetailSearchCount(param);
 			    System.out.println("bookListCount테스트"+bookListCount);
-		
+		   	}
+		   	
 			  mv.addObject("totalData", bookListCount);
 			  mv.addObject("list",bookList1);
 			  mv.addObject("pageBar",PageFactory2.getPageBar(bookListCount, cPage, searchNumber)); 			  
