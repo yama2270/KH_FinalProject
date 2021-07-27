@@ -37,5 +37,12 @@
 	<delete id="deletemember">
 		DELETE FROM MEMBER WHERE USER_ID = #{userId}
 	</delete>
+	
+	<delete id="deletememberList" parameterType="Map">
+		DELETE FROM MEMBER WHERE USER_ID IN
+		<foreach collection="userId" item="m" open="(" separator="," close=")">
+		 #{m}
+		</foreach>
+	</delete>
 
 </mapper>

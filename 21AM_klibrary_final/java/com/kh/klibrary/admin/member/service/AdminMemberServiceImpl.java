@@ -47,6 +47,14 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		// TODO Auto-generated method stub
 		return dao.deletemember(session,userId);
 	}
+
+	@Override
+	public int deletememberList(Map m) {
+		// TODO Auto-generated method stub
+		return dao.deletememberList(session,m);
+	}
+	
+	
 	
 	
 	
