@@ -3,6 +3,7 @@ package com.kh.klibrary.admin.notice.model.service;
 import java.util.List;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
+import com.kh.klibrary.qna.model.vo.Qna;
 
 public interface AdminNoticeService {
 	List<Notice> selectNoticeList(int cPage, int numPerpage);
@@ -22,7 +23,8 @@ public interface AdminNoticeService {
 
 	int selectNoticeCount();
 
-
-	
+	//공지사항 검색
+	List<Notice> searchNoticeTitle(String keyWord);
+	List<Notice> searchNoticeContent(String keyWord);
 
 }
