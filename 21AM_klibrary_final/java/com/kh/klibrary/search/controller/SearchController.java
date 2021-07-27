@@ -250,61 +250,113 @@ public ModelAndView bookTotalSearch(
 
 @RequestMapping("/searchpage/interestingbook")
 public String interestingbook ( 
-		@RequestParam Map param,
-		@RequestParam("isbnNo") String isbnNo,
-		@ModelAttribute("loginMember") Member m,
-		HttpServletRequest request,
-		Model model
-		        ) {
-	String[] bookCheckArray = request.getParameterValues("bookCheck");
-	System.out.println("bookCheckArray테스트"+bookCheckArray);
-	int result=0;
-	param.put("userId", m.getUserId());
+								@RequestParam Map param,
+								@RequestParam("isbnNo") String isbnNo,
+								@ModelAttribute("loginMember") Member m,
+								HttpServletRequest request,
+								Model model
+		                       ) {
 	
-	if(isbnNo!=null) { //북상세페이지 버튼선택시
-		param.put("isbnNo",isbnNo);
-		Likes likes=service.selectInterestingBook(param);
-		if( likes==null) {			
-		    
-		     result+=service.insertInterestingBook(param);
+
+			String[] bookCheckArray = request.getParameterValues("bookCheck");
+			System.out.println("bookCheckArray테스트"+bookCheckArray);
+			int result=0;
+			param.put("userId", m.getUserId());
 			
-			}
-	}
-	
-	 if(bookCheckArray!=null) {	 //체크박스선택시
-			for(int i=0;i<bookCheckArray.length;i++) {	
-				System.out.println("isbnNo테스트"+bookCheckArray[i]);
-				param.put("isbnNo",bookCheckArray[i]);
-				 Likes likes=service.selectInterestingBook(param);
-				System.out.println("likes테스트"+likes);
+			if(isbnNo!=null) { //북상세페이지 버튼선택시
+				param.put("isbnNo",isbnNo);
+				Likes likes=service.selectInterestingBook(param);
 				if( likes==null) {			
-			    System.out.println(bookCheckArray[i]);
-			     //param.put("isbnNo",bookCheckArray[i]);
-			     result+=service.insertInterestingBook(param);
-				
-				}
-			  
-			}	
-	 }
+				    
+				     result+=service.insertInterestingBook(param);
+					
+					}
+			}
+			
+			 if(bookCheckArray!=null) {	 //체크박스선택시
+					for(int i=0;i<bookCheckArray.length;i++) {	
+						System.out.println("isbnNo테스트"+bookCheckArray[i]);
+						param.put("isbnNo",bookCheckArray[i]);
+						 Likes likes=service.selectInterestingBook(param);
+						 System.out.println("likes테스트"+likes);
+								if( likes==null) {			
+							    System.out.println(bookCheckArray[i]);
+							     //param.put("isbnNo",bookCheckArray[i]);
+							     result+=service.insertInterestingBook(param);
+						
+						}
+					  
+					}	
+			 }
+			 
+		String msg="";
+	    String loc="";
+		String referer = request.getHeader("Referer");
+		
+			//referer.replaceAll("http://localhost:9090/klibrary", "");
+			//referer.substring(30);
+			System.out.println("referer테스트"+referer);
+			if(result==0) {
+				msg="이미 관심도서로 등록되었습니다.";
+				loc=referer;
+			}else if(result>0) {
+				msg="관심도서로 등록되었습니다.";
+				loc=referer;
+			}
+			
+			
+			
 	
-	String msg="";
-	String loc="";
-	String referer = request.getHeader("Referer");
-	
-	//referer.replaceAll("http://localhost:9090/klibrary", "");
-	//referer.substring(30);
-	System.out.println("referer테스트"+referer);
-	if(result==0) {
-		msg="이미 관심도서로 등록되었습니다.";
-		loc=referer;
-	}else if(result>0) {
-		msg="관심도서로 등록되었습니다.";
-		loc=referer;
-	}
 	model.addAttribute("msg", msg);
 	model.addAttribute("loc", loc);
 	return "common/msg2";
 }
+
+@RequestMapping("/searchpage/bookReservation")
+   public String bookReservation(
+					          @RequestParam("isbnNo") String isbnNo,
+						      @ModelAttribute("loginMember") Member m,
+						      @RequestParam Map param,
+						      HttpServletRequest request,
+						      Model model           
+		                       ) {
+			Book book=service.selectBook(isbnNo);
+			param.put("userId", m.getUserId());
+			param.put("bookNo",book.getBookNo());
+			
+			String msg="";
+			String loc="";
+			String referer = request.getHeader("Referer");
+			int result=0;
+	
+				System.out.println("bookingState테스트 "+book.getBookingState());
+				String bookingState=book.getBookingState();
+				System.out.println(book.getBookingState()=="가능");
+				if(bookingState.equals("가능")) {
+					System.out.println("if문 안 bookingState테스트 "+book.getBookingState());
+					param.put("bookingState", "불가능");
+					result=service.bookingBook(param);
+					result+=service.booking(param);
+					
+					
+					if(result!=0) {
+						msg="예약되었습니다.";
+					}else {
+						msg="예약 실패하였습니다.";
+					}
+				}else {
+					msg="에약이 불가능한 도서입니다.";
+				}
+	     
+	
+	loc=request.getHeader("Referer");
+	
+	model.addAttribute("msg", msg);
+	model.addAttribute("loc", loc);
+	return "common/msg2";
+}
+
+
 
 @RequestMapping("/searchpage/detailSearch")
     public ModelAndView detailSearch(
@@ -331,16 +383,19 @@ public String interestingbook (
 				param.put("init",init.split(","));
 				System.out.println("init테스트2"+init);
 			}
-						
-			 
-			 //다음 페이징처리를 위한 변수받기, 페이지바 함수에서의 ""에러처리
-		   	
-	
-			    List<BookInfo> bookList1 =service.selectDetailSearch(param,cPage,searchNumber);
+			List<BookInfo> bookList1=null;	
+			int bookListCount=0; 
+		   	if(!init.equals("44700,55203")||!((String)param.get("book_Category")).equals("도서 대분류")||!((String)param.get("bookName")).equals("")
+		   		||!((String)param.get("author")).equals("")||!((String)param.get("publisher")).equals("")||!((String)param.get("isbnNo")).equals("")
+		   		||!((String)param.get("price")).equals("")||!((String)param.get("publishYear")).equals("")) {
+		   			
+	         
+			    bookList1 =service.selectDetailSearch(param,cPage,searchNumber);
 			    System.out.println("bookList1테스트"+bookList1);
-			    int bookListCount=service.selectDetailSearchCount(param);
+			    bookListCount=service.selectDetailSearchCount(param);
 			    System.out.println("bookListCount테스트"+bookListCount);
-		
+		   	}
+		   	
 			  mv.addObject("totalData", bookListCount);
 			  mv.addObject("list",bookList1);
 			  mv.addObject("pageBar",PageFactory2.getPageBar(bookListCount, cPage, searchNumber)); 			  

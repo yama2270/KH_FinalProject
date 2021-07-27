@@ -393,6 +393,15 @@ String pageId = request.getParameter("pageId");
 
 </body>
 	<script>
+	 $(function(){			 
+			if( ($("input[name='bookCheck']").attr('value'))!=null ){
+					 console.log( $("#bookDetailSearchTbl"));
+					 $("#bookDetailSearchTbl").hide();	//category범위맞으면 해당메뉴보여주기					 										 
+			}else{
+					 $("#bookDetailSearchTbl").show();
+			}		 
+			 			 					 
+        })
 
    
         function fn_searchBook2(){
@@ -520,7 +529,7 @@ String pageId = request.getParameter("pageId");
 
         function bookReservation(isbnNo){
         	console.log(isbnNo);
-        	
+        	location.href="${path}/searchpage/bookReservation?isbnNo="+isbnNo;
         	
         }
 

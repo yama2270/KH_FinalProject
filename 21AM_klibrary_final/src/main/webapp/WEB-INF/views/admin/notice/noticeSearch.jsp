@@ -7,20 +7,20 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <c:url var="NoticeListURL" value="/admin/notice/noticeList"></c:url>
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
-	<jsp:param name="title" value="공지사항관리"/>
+	<jsp:param name="title" value="공지사항검색"/>
 </jsp:include>
 	        <div id="ad_right">
-            <div id="contHeader">공지사항 관리</div>
+            <div id="contHeader">공지사항 검색</div>
             <div id="contbody">
             
         <div id="notice_box">
             <div id="notice_table_box">
                 <div id="total_notice" style="margin-left:-3%;">
-                    <ul class="pagination" style="margin-top:23px; height:30px;">
+                    <ul class="pagination" style="margin-top:23px;">
 
 						<form id="noticeSearch" action="${path }/admin/notice/noticeSearch.do" method="post">
-                        <div class="dropdown" style="height:30px;">
-                          <div id="dropdown_category" style="height:30px;">
+                        <div class="dropdown">
+                            <div id="dropdown_category">
                               <select class="odfselect" name="category" style="height:30px;margin-left:670px;margin-bottom:200px;">
                                   <option value="제목" selected>제목</option>
                                   <option value="내용">내용</option>

@@ -165,7 +165,7 @@ String category = request.getParameter("category"); */
 						<c:choose>
 						<c:when test="${book.lendingState eq '가능'}">
 						<span>예약가능</span><br>
-						<a href="#btn" onclick="" name="booking" value="${book.bookInfo.isbnNo }" class="tblBtn tB01">예약하기</a>
+						<a href="#btn" onclick="${path}/searchpage/bookReservation?isbnNo="+${book.bookInfo.isbnNo }" name="booking" value="${book.bookInfo.isbnNo }" class="tblBtn tB01">예약하기</a>
    					    </c:when>
    					    <c:otherwise>
    					       <span>예약불가</span>

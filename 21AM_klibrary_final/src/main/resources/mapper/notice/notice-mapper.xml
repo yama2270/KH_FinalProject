@@ -15,6 +15,14 @@
   	SELECT * 
   	FROM NOTICE
   	ORDER BY NOTICE_NO DESC
+  	<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='title' and keyword != null and keyword != '' ">
+				AND TITLE like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='content' and keyword != null and keyword != '' ">
+				AND CONTENT like CONCAT('%', #{keyword}, '%')
+			</if>
+	</trim>
   </select>
   
   <select id="selectNoticeCount" resultType="_int">
@@ -53,17 +61,35 @@
   	WHERE NOTICE_TITLE LIKE '%'||#{text}||'%'
   </select>
   
-  <select id="searchnoticecontent" resultMap="noticeMap">
-  	SELECT *
-  	FROM NOTICE
-  	WHERE NOTICE_CONTENT LIKE '%'||#{text}||'%'
-  </select>
   
   <update id="updateNoticeCount" parameterType="int">
    UPDATE NOTICE SET NOTICE_COUNT = NOTICE_COUNT + 1 WHERE NOTICE_NO = #{NOTICE_NO}
 	</update>
   
+  <!-- 게시글 총 갯수 -->
+	<select id="noticeListCnt" resultType="int">
+		SELECT count(*) as listCnt FROM NOTICE
+			<trim prefix="WHERE" prefixOverrides="AND|OR">
+				<if test="keyword != null and keyword != '' ">
+						<if test="searchType=='title'">
+							AND TITLE like CONCAT('%', #{keyword}, '%')
+						</if>
+						<if test="searchType=='content'">
+							AND CONTENT like CONCAT('%', #{keyword}, '%')
+						</if>
+				</if>
+			</trim>
 
+	</select>
   
+  <!-- 공지 제목으로 검색 -->
+  	<select id="searchNoticeTitle" resultMap="noticeMap">
+		SELECT * FROM NOTICE WHERE NOTICE_TITLE LIKE '%'||#{keyWord}||'%'
+	</select>
+  
+    <!-- 공지 내용으로 검색 -->
+  	<select id="searchNoticeContent" resultMap="noticeMap">
+		SELECT * FROM NOTICE WHERE NOTICE_CONTENT LIKE '%'||#{keyWord}||'%'
+	</select>
   
 </mapper>

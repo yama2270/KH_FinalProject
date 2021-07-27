@@ -108,7 +108,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberPwCheck.do")
-	public String memberPwFind(@RequestParam Member m, HttpSession session, Model model) {
+	public String memberPwFind(Member m, HttpSession session, Model model) {
 		
 		String pw = "";
 		String pwView = "";

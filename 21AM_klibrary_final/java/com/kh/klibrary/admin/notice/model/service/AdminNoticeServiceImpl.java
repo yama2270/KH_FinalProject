@@ -38,6 +38,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	@Override
 	public Notice selectNoticeView(int noticeNo) {
 		// TODO Auto-generated method stub
+		dao.updateNoticeCount(session, noticeNo);
 		return dao.selectNoticeView(session, noticeNo);
 	}
 
@@ -48,17 +49,44 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 		return dao.noticeUpdate(session, notice);
 	}
 
-	@Override
-	public int noticeCount(int noticeNo) {
-		return dao.noticeCount(session, noticeNo);
-	}
 
 
+	//게시글 삭제
 	@Override
 	public int deleteNotice(String noticeNo) {
 		// TODO Auto-generated method stub
 		return dao.deleteNotice(session, noticeNo);
 	}
+
+
+
+	@Override
+	public int selectNoticeCount() {
+		// TODO Auto-generated method stub
+		return dao.selectNoticeCount(session);
+	}
+
+
+	@Override
+	public List<Notice> searchNoticeTitle(String keyWord) {
+		// TODO Auto-generated method stub
+		return dao.searchNoticeTitle(session, keyWord);
+	}
+
+
+	@Override
+	public List<Notice> searchNoticeContent(String keyWord) {
+		// TODO Auto-generated method stub
+		return dao.searchNoticeContent(session, keyWord);
+	}
+
+
+
+
+
+
+
+
 
 
 	

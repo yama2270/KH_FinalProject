@@ -60,7 +60,7 @@
 	                            </div>
 	                            	<div class="qna_update">
 	                            	 <a href="${path }/qna/updateQna.do?no=${qna.qnaNo}">	
-	                            		<button class="qna_update_bt">수정</button>
+	                            		<button class="qna_update_bt" style="margin-top:3%; margin-left:45%;">수정</button>
 									 </a>	
 	                            	</div>
 	                        </div>

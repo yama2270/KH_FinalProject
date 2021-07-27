@@ -43,9 +43,9 @@
 			                    <input type="submit" value="검색" class="fontsize">
 			                </form>
 			            </div>
-		            <button class="writing" onclick="fn_moveQnaForm();"<%-- "Location.assign('${path}/qna/qnaForm.do')" --%>>글쓰기</button>
+		            <button class="writing" onclick="fn_moveQnaForm();"style="margin-left: 90%">글쓰기</button>
 		            <div class="tableMapqa">
-		                <table class="table">
+		                <table class="table" style="margin-top: 1%">
 		                    <tr>
 		                        <th class="head2">번호</th>
 		                        <th class="head">제목</th>

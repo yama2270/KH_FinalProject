@@ -30,6 +30,11 @@ public interface SearchService {
 	int insertInterestingBook(Map param);//관심도서등록
 	Likes selectInterestingBook(Map param);//관심도서등록선택
 	
+	int bookingBook(Map param);//예약도서"불가능"update
+	int booking(Map param);//예약테이블
+	
+	
+	
 	List<BookInfo> selectBookInfoList(Map param);//wishbook,cg
 
 	

@@ -38,10 +38,10 @@
 				<div class="canQua">
 					<div class="canQuaHea">기간별 대출도서</div>
 					<div class="quaInpWrap">
-							<input type="date" style="margin-right: 3px;"><input
-								type="date">
+							<input type="date" id="renInpRow" name="renIntRow" style="margin-right: 3px;" min="2021-07-19"><input
+							 type="date" id="renInpHig" name="renIntHig" min="2021-07-20"><input type="button" style="height:20px;width:35px;margin-left:3px;" value="조회" onclick="renSession()">
 						</div>
-					<div>
+					<div id="renCanWr">
 						<canvas id="renBook" width="450px" height="250px"></canvas>
 					</div>
 				</div>
@@ -58,7 +58,9 @@
 </section>
 
 <script>
-
+	
+	// chart.js
+	let renCha;
  
 	$(document).ready(function(){
 	
@@ -116,48 +118,91 @@
 		}
 	})
 	
-	// 기간별 대출도서
 	
-	/* $.ajax({
-		url : "${path}/admin/book/countRenBook.do",
-		success : function(data){
-			// chart 객체 
-			const renCan = document.getElementById("renBook").getContext("2d");
-			const renChart = new Chart(renCan,{
-				type : "bar",
-				datasets : {
-					labels : [1,2,3,4,5],
-					data : [1,2,3,4,5],
-					label : "대출 도서 수"
-				}
-			})
+	// 기간별 도서검색 
+			
+		// ajax date 파마미터 생성 
+			
+		let rowInp;
+		let highInp;
+		
+		if($("#renInpRow").val()==''){
+				rowInp = dateForm('2021-07-19');
+		} else {
+				rowInp = dateForm($("#renInpRow").val());
 		}
-	})  */
-	
-	// chart 생성하기 
-	const renCan = document.getElementById("renBook").getContext("2d");
-	const renCha = new Chart(renCan,{
-		type : "bar",
-		data : {
-			labels : ["월요일","화요일","수요일","목요일","금요일","토요일","일요일"],
-			datasets : [{
-				data : [1,2,3,4,5,6,7],
-				barThickness : 20,
-				backgroundColor : "red"
-			}]
-		} ,
-		options : {
-			plugins : {
-				legend : {
-					display : false
+		
+		if($("#renInpHig").val()==''){
+				highInp = new Date().toISOString().substring(0,10).replace(/-/g,'/');
+		} else {
+				highInp = dateForm($("#renInpHig").val());
+		}
+		
+		$.ajax({
+			url:"${path}/admin/book/countRenBook.do?rowDate="+rowInp+"&highDate="+highInp,
+			success:function(data){
+				
+				const rowDate = new Date(rowInp);
+				const highDate = new Date(highInp);
+				
+				// 기간 
+				const labArr = new Array();
+				const gap = highDate.getDate()-rowDate.getDate()
+				rowDate.setDate(rowDate.getDate()+1);
+				
+				for(i=0;i<gap+1;i++){
+					labArr.push(rowDate.toISOString().substring(0,10));
+					rowDate.setDate(rowDate.getDate()+1);
 				}
-			},
-			y : {
-				min : 0,
-				max : 20,
+				
+				// 검색 데이터 
+				const resDate = Object.keys(data);
+				const resCount = Object.values(data);
+				
+				
+				// 결과 배열만들기
+				const datArr = new Array();
+				
+				for(i=0;i<labArr.length;i++){
+					datArr.push(0);
+				}
+				
+				for(i=0;i<labArr.length;i++){
+					for(j=0;j<resDate.length;j++){
+						if(labArr[i]==resDate[j]){
+							datArr[i]=resCount[j];
+						} 
+					}
+				}
+				
+				// chart 삭제
+				let newCan = document.getElementById("renBook");
+				let newCon = newCan.getContext("2d");
+				
+				renCha = new Chart(newCon,{
+					type : "line",
+					data : {
+						labels : labArr,
+						datasets : [{
+							data : datArr,
+							tension : 0.1,
+							backgroundColor:"red"
+						}]
+					} ,
+					options : {
+						plugins : {
+							legend : {
+								display : false
+							}
+						},
+						y : {
+							suggestedmin : 0,
+							max : 10
+						}
+					}
+				})
 			}
-		}
-	})
+		})
 	
 	
 	// 관심도서 랭킹 
@@ -199,11 +244,162 @@
 	})
 	
 	
-	}); //Jquery END
+	// 대출도서 기간설정
+	$("#renInpRow,#renInpHig").click((e)=>{
+		
+		const inpRow = $("#renInpRow");
+		const inpHig = $("#renInpHig");
+		
+		// date input max,min 설정 
+		const date = new Date();
+		inpHig.attr("max",date.toISOString().substring(0,10));
+		date.setDate(date.getDate()-1);
+		inpRow.attr("max",date.toISOString().substring(0,10));
+		
+		// date hig default 설정 
+		if(inpRow.val()!=''){
+			inpHig.val(new Date().toISOString().substring(0,10));
+			const rowDate = new Date(inpRow.val());
+			rowDate.setDate(rowDate.getDate()+1);
+			inpHig.attr("min",rowDate.toISOString().substring(0,10));
+		}
+		
+		// date row 설정 
+		if(inpHig.val()!='' && inpRow.val()==''){
+			const rowMin = new Date(inpHig.val());
+			rowMin.setDate(rowMin.getDate()-1);
+			inpRow.attr("max",rowMin.toISOString().substring(0,10));
+		}
+	 }) 
+	
+}); //Jquery END
+	
+	
+	// 기간별 대출도서 조회 
+	
+	/* const da = new Date();
+	da.setDate(da.getDate()+1);
+	const date = da.toISOString().substring(2,10).replace(/-/g,'/');		// 정규표현식 이용하여 변환 
+	
+	// 받아오는 날짜 format 이 21/07/26 
+	if(date == '21/07/26'){
+		console.log("같습니다");
+	} else {
+		console.log("다릅니다");
+	}
+	
+	const test1 = new Date('2021-07-26');
+	const test2 = new Date('2021-07-20');
+	console.log(test2.getDate() - test1.getDate()); */
 	
 	
 	
+	// 대출도서 기간 날짜별 조회 
+	const renSession = function(){
+		
+		// ajax date 파마미터 생성 
+		
+		let rowInp;
+		let highInp;
+		
+		if($("#renInpRow").val()==''){
+				rowInp = dateForm('2021-07-19');
+		} else {
+				rowInp = dateForm($("#renInpRow").val());
+		}
+		
+		if($("#renInpHig").val()==''){
+				highInp = new Date().toISOString().substring(0,10).replace(/-/g,'/');
+		} else {
+				highInp = dateForm($("#renInpHig").val());
+		}
+		
+		$.ajax({
+			url:"${path}/admin/book/countRenBook.do?rowDate="+rowInp+"&highDate="+highInp,
+			success:function(data){
+				
+				const rowDate = new Date(rowInp);
+				const highDate = new Date(highInp);
+				
+				// 기간 
+				const labArr = new Array();
+				const gap = highDate.getDate()-rowDate.getDate()
+				rowDate.setDate(rowDate.getDate()+1);
+				
+				for(i=0;i<gap+1;i++){
+					labArr.push(rowDate.toISOString().substring(0,10));
+					rowDate.setDate(rowDate.getDate()+1);
+				}
+				
+				// 검색 데이터 
+				const resDate = Object.keys(data);
+				const resCount = Object.values(data);
+				
+				
+				// 결과 배열만들기
+				const datArr = new Array();
+				
+				for(i=0;i<labArr.length;i++){
+					datArr.push(0);
+				}
+				
+				for(i=0;i<labArr.length;i++){
+					for(j=0;j<resDate.length;j++){
+						if(labArr[i]==resDate[j]){
+							datArr[i]=resCount[j];
+						} 
+					}
+				}
+				
+				/* const renCan = document.getElementById("renBook");
+				const renCon = renCan.getContext("2d");
+				renCon.clearRect(0,0,renCan.width,renCan.height);
+				renCon.beginPath(); */
+				
+				// canvas 변경해주기 
+				/* let canNo = 0;
+				console.log($("#renCanWr").find("canvas"));
+				$("#renCanWr").find("canvas").attr("id","renBook"+(++canNo));
+				let newCan = document.getElementById("renBook"+canNo);
+				let newCon = newCan.getContext("2d"); */
+								
+				// chart 삭제
+				renCha.destroy();
+				let newCan = document.getElementById("renBook");
+				let newCon = newCan.getContext("2d");
+				
+				renCha = new Chart(newCon,{
+					type : "line",
+					data : {
+						labels : labArr,
+						datasets : [{
+							data : datArr,
+							tension : 0.1,
+							backgroundColor:"red"
+						}]
+					} ,
+					options : {
+						plugins : {
+							legend : {
+								display : false
+							}
+						},
+						y : {
+							suggestedmin : 0,
+							max : 10
+						}
+					}
+				})
+			}// ajax end
+		})
+	}
 	
+	
+	
+	// Date 형식
+	const dateForm = function(date){
+		return new Date(date).toISOString().substring(0,10).replace(/-/g,'/');
+	}
 	
 	
 </script>

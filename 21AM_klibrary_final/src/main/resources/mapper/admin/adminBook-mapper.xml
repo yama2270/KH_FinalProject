@@ -230,6 +230,14 @@
 		WHERE ROWNUM BETWEEN 1 AND 5
 	</select>
 	
+	<!-- 도서 대출목록 -->
+	<select id="countRenBook" parameterType="Map" resultType="Map">
+		SELECT LENDING_DATE,COUNT(*) AS LENDING_COUNT FROM LENDING_HISTORY
+		WHERE LENDING_DATE BETWEEN #{rowDate} AND #{highDate}
+		GROUP BY LENDING_DATE
+		ORDER BY LENDING_DATE
+	</select>
+	
 	<!-- resultMap -->
 	
 	<!-- book -->
