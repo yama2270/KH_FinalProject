@@ -38,6 +38,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	@Override
 	public Notice selectNoticeView(int noticeNo) {
 		// TODO Auto-generated method stub
+		dao.updateNoticeCount(session, noticeNo);
 		return dao.selectNoticeView(session, noticeNo);
 	}
 
@@ -64,6 +65,10 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 		// TODO Auto-generated method stub
 		return dao.selectNoticeCount(session);
 	}
+
+
+
+
 
 
 	

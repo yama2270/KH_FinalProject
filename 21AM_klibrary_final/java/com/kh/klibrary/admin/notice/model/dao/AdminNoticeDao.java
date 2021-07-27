@@ -17,4 +17,6 @@ public interface AdminNoticeDao {
 
 	int selectNoticeCount(SqlSessionTemplate session);
 	
+	//조회수증가
+	int updateNoticeCount(SqlSessionTemplate session, int noticeNo);
 }

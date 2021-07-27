@@ -22,7 +22,6 @@ public interface AdminNoticeService {
 
 	int selectNoticeCount();
 
-
 	
 
 }

@@ -27,8 +27,10 @@ public class AdminNoticeController {
 	private AdminNoticeService service;
 
 	@RequestMapping("/admin/notice/noticeList.do")
-	public ModelAndView noticeList(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
-			@RequestParam(value = "numPerpage", defaultValue = "10") int numPerpage, ModelAndView mv) {
+	public ModelAndView noticeList(
+			@RequestParam(value = "cPage", defaultValue = "1") int cPage,
+			@RequestParam(value = "numPerpage", defaultValue = "10") int numPerpage, 
+			ModelAndView mv) {
 		mv.addObject("list", service.selectNoticeList(cPage, numPerpage));
 		int totalData=service.selectNoticeCount();
 		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage, "noticeList.do"));
