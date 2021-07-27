@@ -24,5 +24,6 @@ public interface AdminNoticeDao {
 	//공지사항 검색
 	List<Notice> searchNoticeTitle(SqlSessionTemplate session, String keyWord);
 	List<Notice> searchNoticeContent(SqlSessionTemplate session, String keyWord);
+
 	
 }
