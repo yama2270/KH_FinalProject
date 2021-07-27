@@ -27,4 +27,6 @@ public interface AdminNoticeService {
 	List<Notice> searchNoticeTitle(String keyWord);
 	List<Notice> searchNoticeContent(String keyWord);
 
+	
+	
 }

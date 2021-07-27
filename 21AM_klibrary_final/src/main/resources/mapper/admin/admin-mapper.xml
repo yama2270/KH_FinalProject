@@ -33,6 +33,10 @@
 		FROM MEMBER 
 		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
 	</select>
+	
+	<delete id="deletemember">
+		DELETE FROM MEMBER WHERE USER_ID = #{userId}
+	</delete>
 
 	<select id="countVis" parameterType="Map" resultType="Map">
 		SELECT COUNT(*) AS VISITOR_COUNT, VISITOR_DATE 

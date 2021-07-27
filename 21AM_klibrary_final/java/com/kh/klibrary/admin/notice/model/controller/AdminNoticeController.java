@@ -92,6 +92,7 @@ public class AdminNoticeController {
 			
 		}
 	
+	//게시글 검색
 	@PostMapping("/admin/notice/noticeSearch.do")
 	public String noticeSearch(@RequestParam("category") String title, @RequestParam(required=false)String keyWord, Model model) {
 		//공백이면
@@ -107,5 +108,6 @@ public class AdminNoticeController {
 		return "/admin/notice/noticeSearch";
 	}
 	
+
 	
 }

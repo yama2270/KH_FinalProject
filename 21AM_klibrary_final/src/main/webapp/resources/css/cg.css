@@ -12,7 +12,7 @@ section#content		{min-height:600px;}
 	float: left;
 }
 #UserInfo_Container{ /*마이페이지 컨텐츠 전체 div*/
-	width:1500px;
+	width:1480px;
 	margin-left:400px;
 	margin-top:100px; 
 }
@@ -22,9 +22,18 @@ section#content		{min-height:600px;}
 }
 #Ok_Cancel_btn{ /*마이페이지 확인/취소 버튼*/
 	text-align:center;
-	margin-top:100px;
-	margin-left:-150px;
+	margin-top:50px;
+	margin-left:-160px;
 }
+.OKCCbtn{
+	width:100px;
+	height:50px;
+	border:none;
+	border-radius:5px;
+	background-color:silver;
+	font-size:20px;
+}
+
 #h2_line2{ /*h2 설정*/
 	border:gray 2px solid;
 }
@@ -68,19 +77,23 @@ section#content		{min-height:600px;}
 	cursor:pointer;
 }
 
+#Nodata{
+	text-align:center;
+	margin-top: 50px;
+}
 
 /* memberInfo */
 #Pw_Check_table{
-	border:black 1px solid;
+	/* border:black 1px solid; */
 	width:700px;
 	weight:300px;
 	margin-left:350px;
 	margin-top:200px;
 	text-align:center;
-	background-color: lightgray;
+	/* background-color: lightgray; */
 }
 #Pw_Check_table th{
-	border-right: black 1px solid;
+	/* border-right: black 1px solid; */
 }
 #Pw_Check_table td{
 	text-align:left;
@@ -89,11 +102,11 @@ section#content		{min-height:600px;}
 	margin-top:10px;
 }
 #Pw_Check_table input{
-	width:350px;
+	width:450px;
 	height:50px;
 	margin-left:20px;
-	border:none;
 	background-color: transparent;
+	border-radius: 7.5px;
 }
 
 
@@ -139,7 +152,7 @@ section#content		{min-height:600px;}
 
 /* memberBorrowing */
 #Borrowing_Info_Container{
-	width:1490px;
+	width:1460px;
 	margin-left:10px;
 	margin-top:30px;
 	height:100px;
@@ -147,7 +160,7 @@ section#content		{min-height:600px;}
 	text-align:center;
 }
 #Borrowing_Info_Container #p1{
-	width:1490px;
+	width:1480px;
 	margin-left:10px;
 	margin-top:10px;
 	height:100px;
@@ -163,7 +176,7 @@ section#content		{min-height:600px;}
 	padding-top:40px; 
 }
 #BIC_hr_line{
-	width:1500px;
+	width:1480px;
 	margin-left:0px;
 	margin-top:30px;
 	border:gray 1px solid;
@@ -184,14 +197,14 @@ section#content		{min-height:600px;}
 	width:200px;
 }
 #Borrwing_List_table hr{
-	width:1490px;
+	width:1480px;
 	border:gray 1px dashed;
 	margin-top:50px;
 }
 
 /*memberBorrowed*/
 #Borrowed_Info_Container{
-	width:1500px;
+	width:1480px;
 	margin-top:30px;
 	height:100px;
 	background-color:lightgray;
@@ -207,7 +220,7 @@ section#content		{min-height:600px;}
 #Borrwed_List_table table{
 	margin-top:20px;
 	font-size:20px;
-	width:1490px; 
+	width:1480px; 
 }
 #Borrwed_List_table td{
 	font-size:20px;
@@ -218,7 +231,7 @@ section#content		{min-height:600px;}
 	width:200px;
 }
 #Borrwed_List_table hr{
-	width:1490px;
+	width:1480px;
 	border:gray 1px dashed;
 	margin-top:50px;
 }
@@ -227,7 +240,7 @@ section#content		{min-height:600px;}
 	margin-top:30px;
 }
 #BIK_hr_line2{
-	width:1500px;
+	width:1480px;
 	border:gray 1px solid;
 	margin-top:30px;
 }
@@ -235,7 +248,7 @@ section#content		{min-height:600px;}
 	margin-top:30px;
 	text-align:center;
 	font-size:20px;
-	width:1490px; 
+	width:1480px; 
 }
 #Booking_List_table td{
 	font-size:20px;
@@ -246,7 +259,7 @@ section#content		{min-height:600px;}
 	width:200px;
 }
 #Booking_List_table hr{
-	width:1490px;
+	width:1480px;
 	border:gray 1px dashed;
 	margin-top:50px;
 }
@@ -257,12 +270,12 @@ section#content		{min-height:600px;}
 	margin-top:30px;
 }
 #HR_hr_line2{
-	width:1500px;
+	width:1480px;
 	border:gray 1px solid;
 	margin-top:30px;
 }
 #HopeRecord_List_table table{
-	width:1490px; 
+	width:1480px; 
 	weight:500px;
 	text-align:center
 }
@@ -275,7 +288,7 @@ section#content		{min-height:600px;}
 	width:200px;
 }
 #HopeRecord_List_table hr{
-	width:1490px;
+	width:1480px;
 	border:gray 1px dashed;
 	margin-top:50px;
 }
@@ -285,12 +298,12 @@ section#content		{min-height:600px;}
 	margin-top:30px;
 }
 #BMK_hr_line2{
-	width:1500px;
+	width:1480px;
 	border:gray 1px solid;
 	margin-top:30px;
 }
 #BookMark_List_table table{
-	width:1490px; 
+	width:1480px; 
 	weight:500px;
 }
 #BookMark_List_table td{
@@ -302,7 +315,7 @@ section#content		{min-height:600px;}
 	width:200px;
 }
 #BookMark_List_table hr{
-	width:1490px;
+	width:1480px;
 	border:gray 1px dashed;
 	margin-top:50px;
 }
@@ -320,12 +333,12 @@ section#content		{min-height:600px;}
 	margin-top:30px;
 }
 #RR_hr_line2{
-	width:1530px;
+	width:1480px;
 	border:gray 1px solid;
 	margin-top:30px;
 }
 #Room_Record_Container{
-	width:1490px;
+	width:1470px;
 	margin-left:10px;
 	margin-top:30px;
 	height:140px;
@@ -345,7 +358,7 @@ section#content		{min-height:600px;}
 }
 #ReadingRoom_List_table table{
 	font-size:20px;
-	width:1490px; 
+	width:1480px; 
 	weight:500px;
 }
 #ReadingRoom_List_table td{
@@ -357,7 +370,7 @@ section#content		{min-height:600px;}
 	width:200px;
 }
 #ReadingRoom_List_table hr{
-	width:1490px;
+	width:1480px;
 	border:gray 1px dashed;
 	margin-top:50px;
 }
@@ -377,16 +390,16 @@ section#content		{min-height:600px;}
 
 /* memberDelete */
 #Dt_Check_table{
-	border:black 1px solid;
+	/* border:black 1px solid; */
 	width:700px;
 	weight:300px;
 	margin-left:350px;
 	margin-top:200px;
 	text-align:center;
-	background-color: lightgray;
+	/* background-color: lightgray; */
 }
 #Dt_Check_table th{
-	border-right: black 1px solid;
+	/* border-right: black 1px solid; */
 }
 #Dt_Check_table td{
 	text-align:left;
@@ -395,9 +408,9 @@ section#content		{min-height:600px;}
 	margin-top:10px;
 }
 #Dt_Check_table input{
-	width:350px;
+	width:450px;
 	height:50px;
 	margin-left:20px;
-	border:none;
-	background-color:transparent;
+	background-color: transparent;
+	border-radius: 7.5px;
 }

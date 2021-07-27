@@ -23,8 +23,8 @@
 						<option value="book_name" ${param.searchOption =="book_name"? "selected":""}>도서명</option>
 						<option value="user_id" ${param.searchOption =="user_id"? "selected":""}>아이디</option>
 						<option value="user_name" ${param.searchOption =="user_name"? "selected":""}>이름</option>
-						<option value="lending_date" ${param.searchOption =="return_date"? "selected":""}>대출일</option>
-						<option value="return_date" ${param.searchOption =="book_extend"? "selected" :"" }>반납일</option>
+						<option value="lending_date" ${param.searchOption =="lending_date"? "selected":""}>대출일</option>
+						<option value="return_date" ${param.searchOption =="return_date"? "selected" :"" }>반납일</option>
 					</select>
 					<input id="searchWord" class="form-control me-2" type="search" name="searchWord"
 						placeholder="Search" aria-label="Search" value='${param.searchWord!=null?param.searchWord:"" }' required>
@@ -85,6 +85,9 @@
 					</c:otherwise>
 				</c:choose>
 			</table>
+			<div id="pageBar">
+            	<c:out value="${pageBar }" escapeXml="false"/>
+            </div>
 			<div id="bookRentalListBtn">
 				<button type="button" class="btn btn-outline-secondary">반납</button>
 			</div>

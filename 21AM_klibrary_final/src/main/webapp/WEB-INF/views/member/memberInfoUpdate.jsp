@@ -81,13 +81,6 @@
 						<input type="text" id="phone" name="phone" value="${loginMember.phone}">
 					</td>
 				</tr>
-				<tr>
-					<th><p style="margin-top:10px;">성 별</p></th>
-					<td>
-						<label><input type="radio" id="gender" value="남">남자</label>
-						<label><input type="radio" id="gender" value="남">여자</label>
-					</td>
-				</tr>
 				<tr >
 					<th><p style="margin-top:10px;">생년월일</p></th>
 					<td><input type="date" id="date" name="birthDate" class="InfoInput" value="${loginMember.birthDate }"></td>
@@ -99,10 +92,10 @@
 						<button type="button" class="btn btn-outline-success" style="height:30px;" onclick="findAddr();">우편번호 검색</button>
 					</td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<th></th>
 					<td><input type="text" id="address2" placeholder="상세주소를 입력하세요." class="InfoInput" value="${loginMember.address }"></td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<th><p style="margin-top:10px;">이메일</p></th>
 					<td><input type="email" id="email" name="email" placeholder="이메일 입력하세요." class="InfoInput" value="${loginMember.email }"></td>
@@ -127,7 +120,7 @@
 	        	}else{ //지번선택
 	        		addr=data.jibunAddress;
 	        	}
-	       		document.getElementById('address1').value = addr;
+	       		document.getElementById('address1').value = addr+",";
 	       		document.getElementById('address2').focus();
 	        }
 	    }).open();

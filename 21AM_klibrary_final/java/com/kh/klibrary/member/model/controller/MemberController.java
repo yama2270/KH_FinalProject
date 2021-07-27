@@ -143,7 +143,6 @@ public class MemberController {
 		Map m1 = new HashMap();
 		m1.put("userId", "test");
 		m1.put("userPassword", "test");
-		
 		String msg="로그인 실패";
 		Member m = service.selectMember(m1);
 		if(m!=null) {
@@ -166,10 +165,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberPwck.do")
-	public String memberPwck(@RequestParam String password,@ModelAttribute("loginMember") Member m, Model model) {
+	public String memberPwck(@RequestParam Map param ,@ModelAttribute("loginMember") Member m, Model model) {
 		String msg="비밀번호가 확인되었습니다.";
 		String loc="/member/memberInfoUpdate.do";
-		if(!password.equals(m.getUserPassword())) {
+		if(!pwEncoder.matches((String)param.get("password"), m.getUserPassword())) {
 			msg="비밀번호가 일치하지 않습니다.";
 			loc="/member/memberInfo.do";
 			model.addAttribute("msg",msg);
@@ -349,14 +348,14 @@ public class MemberController {
 		return "member/memberDelete";
 	}
 	@RequestMapping("/member/memberDropRequest.do")
-	public String memberDropRequest(@RequestParam String password,@ModelAttribute("loginMember") Member m, Model model) {
+	public String memberDropRequest(@RequestParam Map param,@ModelAttribute("loginMember") Member m, Model model) {
 		String msg="비밀번호가 확인되었습니다. 회원님의 계정을 탈퇴를 요청합니다.";
 		String loc="/member/memberDelete.do";
 		Map map = new HashMap();
 		map.put("userId", m.getUserId());
 		map.put("request", "Y");
 		int result=0;
-		if(!password.equals(m.getUserPassword())) {
+		if(!pwEncoder.matches((String)param.get("password"), m.getUserPassword())) {
 			msg="비밀번호가 일치하지 않습니다.";
 			loc="/member/memberDelete.do";
 			model.addAttribute("msg",msg);

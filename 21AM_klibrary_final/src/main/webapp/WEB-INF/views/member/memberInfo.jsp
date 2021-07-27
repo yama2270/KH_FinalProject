@@ -62,8 +62,8 @@
 			</table>
 		</div>
 		<div id="Ok_Cancel_btn">
-			<button type="submit" class="btn btn-outline-primary">확인</button>
-			<button type="button" class="btn btn-outline-danger" onclick="location.assign('${path }/')">취소</button>
+			<button type="submit" class="OKCCbtn">확인</button>
+			<button type="button" class="OKCCbtn" onclick="location.assign('${path }/')">취소</button>
 		</div>
 	</form>
 	<div id="Ok_Cancel_btn">

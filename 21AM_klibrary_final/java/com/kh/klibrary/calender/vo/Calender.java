@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Calender {
 	private Date calendardate;
+	private Date calendarEnddate;
 	private String calendartitle;
 
 }
