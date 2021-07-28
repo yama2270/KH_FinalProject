@@ -1,5 +1,43 @@
 @charset "UTF-8";
 /* 공지사항 */
+#Info_Update_tablenew{
+	border:gray 2px solid;
+	width:1000px;
+	weight:300px;
+	margin-top:50px;
+	margin-left:60px;
+	text-align:center;
+}
+#Info_Update_tablenew tr{
+	border-bottom: gray 1px solid;
+}
+#Info_Update_tablenew th{
+	border-right:black 1px solid;
+	background-color:lightgray;
+}
+#Info_Update_tablenew td{
+	text-align:left;
+}
+#Info_Update_tablenew .InfoInput{
+	width:350px;
+	height:50px;
+	margin-left:20px;
+	border:none;
+	background-color:transparent;
+}
+#Info_Update_tablenew #phone{
+	width:200px;
+	height:30px;
+	margin-left:20px;
+	border:none;
+	background-color: transparent;
+}
+#Info_Update_tablenew #gender{
+	margin-left:20px;
+}
+#Info_Update_tablenew #date{
+	margin-left:20px;
+}
 
 .leftmenu {
     margin-top: 50px;

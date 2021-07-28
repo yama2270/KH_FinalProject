@@ -71,7 +71,7 @@ public class AdminMemberController {
 		model.addAttribute("loc","/admin/member/memberList.do");
 		return "common/msg";
 	}
-	
+	//선택회원삭제
 	@RequestMapping("/admin/member/deleteList.do")
 	public String deleteList(@RequestParam String member, Model model) {
 		System.out.println(member);
@@ -83,6 +83,28 @@ public class AdminMemberController {
 		model.addAttribute("loc","/admin/member/memberList.do");
 		return "common/msg";
 	}
+	
+	
+	
+	//회원수정
+	@RequestMapping("/admin/member/memberUpdate.do")
+	public ModelAndView Updatemember(@RequestParam String userId, ModelAndView mv) {
+		mv.addObject("list",service.selectMember(userId));
+		mv.setViewName("/admin/member/memberUpdate");
+		return mv;
+	}
+	
+	@RequestMapping("/admin/member/memberUpdateEnd.do")
+	public String UpdatememberEnd(AdminMember m,Model model) {
+		int result=service.updateMember(m);
+		model.addAttribute("msg",result>0?"수정성공":"수정실패");
+		model.addAttribute("loc","/admin/member/memberList.do");
+		return "common/msg";
+		
+	}
+	
+	
+	
 	
 	// 회원탈퇴리스트 
 	@RequestMapping("/admin/member/memberWithdraw.do")
