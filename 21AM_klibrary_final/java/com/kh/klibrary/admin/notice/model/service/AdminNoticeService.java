@@ -3,7 +3,7 @@ package com.kh.klibrary.admin.notice.model.service;
 import java.util.List;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
-import com.kh.klibrary.qna.model.vo.Qna;
+
 
 public interface AdminNoticeService {
 	List<Notice> selectNoticeList(int cPage, int numPerpage);

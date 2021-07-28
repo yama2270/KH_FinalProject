@@ -1,70 +1,67 @@
-e<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<c:url var="QnaListURL" value="/admin/qna/adminqnaList"></c:url>
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="문의사항 관리"/>
 </jsp:include>
-<head>
-
-</head>	        
-        <div id="ad_right">
+	        <div id="ad_right">
             <div id="contHeader">문의사항 관리</div>
             <div id="contbody">
-         
+            
+        <div id="qna_box">
+            <div id="qna_table_box">
+                <div id="total_qna" style="margin-left:-3%;">
+                    <ul class="pagination" style="margin-top:23px; height:30px;">
 
-        <div id="QnA_box">
-            <div id="QnA_table_box">
-                <div id="total_QnA" style="margin-left:-3%;">
-                    <div>
-                        <span class="category"><a href="">전체</a></span>
-                        <span class="category"><a href="">대출</a></span>
-                        <span class="category"><a href="">건의사항</a></span>
-                        <span class="category"><a href="">열람실</a></span>
-                        <span class="category"><a href="">희망도서</a></span>
-                        <div class="dropdown">
-                            <div id="dropdown_category">
-                                <select class="odfselect" style="height:30px;margin-left:10%;margin-top:-5%">
-                                    <option selected>제목</option>
-                                    <option>내용</option>
-                                    <option>글쓴이</option>
-                                </select>
-                            </div>
-                        </div>
-                        <span>
-                            <form id="search" action="" method="get">
-                                <input type="search" name="searchheader">
-                                <input type="submit" value="검색">
-                            </form>
-                        </span>
-                    </div>
-                </div>
-                <table id="QnA_table" class="pa" border style="margin-left:-3%;">
+						<form id="qnaSearch" action="${path }/admin/qna/qnaSearch.do" method="post">
+                        <div class="dropdown" style="height:30px;">
+                          <div id="dropdown_category" style="height:30px;">
+                              <select class="odfselect" name="category" style="height:30px;margin-left:670px;margin-bottom:200px;">
+                                  <option value="제목" selected>제목</option>
+                                  <option value="내용">내용</option>
+                              </select>
+                      <span class="searchBar" style="margin-left:20px;">
+                              <input type="text" name="keyWord">
+                              <input type="submit" value="검색">
+                      </span>
+                          </div>
+                      </div>
+                        </form>
+                  </ul>
+              </div>
+                <table id="qna_table" class="pa" border style="margin-left:-3%;">
                     <thead>
                         <tr style="background-color: #eaeaea;">
-                            <th width=50><input type="checkbox" id="allCheck" value="yyy" checked></td>
+                            <th><input type="checkbox" id="allCheck" name="allCheck" /></th>
                             <th width=100>번호</th>
+                            <th width=100>분류</th>
                             <th width=450>제목</th>
-                            <th width=150>글쓴이</th>
+                            <th width=150>작성자</th>
                             <th width=150>작성일</th>
                             <th width=150>답변상태</th>
-                            <th width=75>조회수</th>
+                            <th width=100>조회수</th>
                         </tr>
-                         <c:choose> 
+                        <c:choose> 
    					<c:when test="${not empty list }">
-   					<c:forEach var="q" items="${list }">
+   					<c:forEach var="qna" items="${list }">
    						<tr>
-   							<td class="cols"><c:out value="${q.qnaNo }"/></td>
+   							<td class="cols"><input type="checkbox" name="RowCheck" value="${qna.qnaNo }"/>
+   							<td class="cols"><c:out value="${qna.qnaNo }"/></td>
+   							<td class="cols"><c:out value="${qna.qnaCate }"/></td>
    							<td class="cols">
-   								<a href="${path }/admin/notice/qnaView.do?no=${q.qnaNo}">
-   									<c:out value="${q.qnaTitle }"/>
+   								<a href="${path }/admin/notice/qnaView.do?qnaNo=${qna.qnaNo}">
+   									<c:out value="${qna.qnaTitle }"/>
    								</a>
    							</td>
-   							<td class="cols"><c:out value="${q.qnaTitle }"/></td>
-   							<td class="cols"><c:out value="${q.userId }"/></td>
-   							<td class="cols"><c:out value="${q.qnaDate }"/></td>
-   							<td class="cols"><c:out value="${q.qnaState }"/></td>   	  							
-   							<td class="cols"><c:out value="${q.qnaCount }"/></td>
+   							<td class="cols"><c:out value="${qna.userId }"/></td>
+   							<td class="cols"><c:out value="${qna.qnaDate }"/></td>
+   							<td class="cols"><c:out value="${qna.qnaState }"/></td>				
+   							<td class="cols"><c:out value="${qna.qnaCount }"/></td>
    						</tr>
    					</c:forEach>
    				</c:when>
@@ -74,37 +71,92 @@ e<%@ page language="java" contentType="text/html; charset=UTF-8"
    					</tr>
    				</c:otherwise>       		
           	</c:choose>
-                       
-
+                      
                     </thead>
                     <tbody>
 
                     </tbody>
                 </table>
             </div>
-            <td>
-                    <button style="margin-left: 92%; margin-top:1%;">삭제</button>
-            </td>
-            <div id="c_pagebar" class="pagebar">
-                <span><a href="">1</a></span>
-                <span><a href="">2</a></span>
-                <span><a href="">3</a></span>
-             
-            </div>
-                <!--출력할 데이터 개수에 따라 페이지가 추가되도록 함-->
-            </div>
+            <a href='<c:url value='/admin/qna/qnaForm.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:84%;margin-top:2%;">작성</a>
+        	<input type="button" value="삭제" class="btn btn-outline-dark" style="margin-top:2%;" onclick="deleteValue();">
+
+	        <div id="pagebar-container">
+	        	${pageBar }
+	        </div>
         </div>
 
     </section>
-    
+    <!--section에 적용될 style, script 내용 넣어주세요-->
+
+
     <script>
+    
+    
+    $(function(){
+		var chkObj = document.getElementsByName("RowCheck");
+		var rowCnt = chkObj.length;
+		
+		$("input[name='allCheck']").click(function(){
+			var chk_listArr = $("input[name='RowCheck']");
+			for (var i=0; i<chk_listArr.length; i++){
+				chk_listArr[i].checked = this.checked;
+			}
+		});
+		$("input[name='RowCheck']").click(function(){
+			if($("input[name='RowCheck']:checked").length == rowCnt){
+				$("input[name='allCheck']")[0].checked = true;
+			}
+			else{
+				$("input[name='allCheck']")[0].checked = false;
+			}
+		});
+	});
+    
+	function deleteValue(){
+		var url = "${path}/admin/qna/qnaDelete.do"    // Controller로 보내고자 하는 URL (.dh부분은 자신이 설정한 값으로 변경해야됨)
+		var valueArr = new Array();
+	    var list = $("input[name='RowCheck']");
+	    for(var i = 0; i < list.length; i++){
+	        if(list[i].checked){ //선택되어 있으면 배열에 값을 저장함
+	            valueArr.push(list[i].value);
+	        }
+	    }
+	    if (valueArr.length == 0){
+	    	alert("선택된 글이 없습니다.");
+	    }
+	    else{
+			var chk = confirm("정말 삭제하시겠습니까?");				 
+			$.ajax({
+			    url : "${path}/admin/qna/qnaDelete.do", // 전송 URL
+			    type : 'POST',                // GET or POST 방식
+			    traditional : true,
+			    data : {
+			    	valueArr : valueArr        // 보내고자 하는 data 변수 설정
+			    },
+                success: function(jdata){
+                    if(jdata = 1) {
+                        alert("삭제 성공");
+                        location.replace("${path}/admin/qna/adminqnaList.do")
+                    }
+                    else{
+                        alert("삭제 실패");
+                    }
+                }
+			});
+		}
+	}
+
+
 
     $(function(){
         // ul show()
         $(".navOptions").eq(2).show();
         // ul li 배경화면 
-        $(".navOptions").eq(2).children().eq(1).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+        $(".navOptions").eq(2).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
     })
+    
+   
     
 /*     $(function(){
 
@@ -147,8 +199,7 @@ $(function(){ //전체선택 체크박스 클릭
       $("input[type=checkbox]").prop("checked",false); } 
     })
    })
-    
 
     </script>
     
-        <jsp:include page="/WEB-INF/views/admin/common/footer.jsp"/>
+ <jsp:include page="/WEB-INF/views/admin/common/footer.jsp"/>
