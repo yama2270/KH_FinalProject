@@ -22,6 +22,9 @@ public interface QnaService {
 	//QNA 수정
 	int updateQna(Qna q);
 	
+	//조회수
+	int selectQnaCount();
+	
 	//QNA 검색
 	List<Qna> searchQnaTitle(String keyWord);
 	List<Qna> searchQnaContent(String keyWord);

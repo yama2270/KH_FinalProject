@@ -60,7 +60,7 @@
  	<!-- qna읽기  -->
  	<select id="selectQnaView" resultMap="qnaMap">
  		SELECT * FROM QNA LEFT JOIN ATTACHMENT USING(QNA_NO)
- 		WHERE QNA_NO = #{qnaNo}
+ 		WHERE QNA_NO = #{no}
  	</select>
  	
  	<!-- qna 수정  -->
@@ -69,18 +69,14 @@
  		WHERE QNA_NO=#{qnaNo}
  	</update>
  	
- 	<select id="selectQnaCount" resultType="int">
+ 	<!-- qna 조회수 -->
+ 	<select id="selectQnaCount" resultMap="qnaMap">
  		SELECT COUNT(*) FROM QNA
  	</select>
  	
- 	<!--  조회수증가 -->
+ 	<!-- QNA 조회수 증가  -->
  	<update id="updateQnaCount" parameterType="int">
-   UPDATE QNA SET QNA_COUNT = QNA_COUNT + 1 WHERE QNA_NO = #{QNA_NO}
-	</update>
- 	
- 	<delete id="deleteQna" parameterType="String">
- 		DELETE FROM QNA WHERE QNA_NO = #{qnaNo}
- 	</delete>
- 	
+ 		UPDATE QNA SET QNA_COUNT = QNA_COUNT + 1 WHERE QNA_NO=#{qnaNo}
+ 	</update>
 </mapper>
  
