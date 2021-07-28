@@ -68,5 +68,15 @@
  		UPDATE QNA SET QNA_CONTENT=#{qnaContent}
  		WHERE QNA_NO=#{qnaNo}
  	</update>
+ 	
+ 	<!-- qna 조회수 -->
+ 	<select id="selectQnaCount" resultMap="qnaMap">
+ 		SELECT COUNT(*) FROM QNA
+ 	</select>
+ 	
+ 	<!-- QNA 조회수 증가  -->
+ 	<update id="updateQnaCount" parameterType="int">
+ 		UPDATE QNA SET QNA_COUNT = QNA_COUNT + 1 WHERE QNA_NO=#{qnaNo}
+ 	</update>
 </mapper>
  

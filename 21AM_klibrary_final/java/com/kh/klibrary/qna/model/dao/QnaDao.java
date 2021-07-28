@@ -23,6 +23,12 @@ public interface QnaDao {
 	
 	int insertAttachment(SqlSessionTemplate session, Attachment a);
 	
+	//QNA 조회수
+	int selectQnaCount(SqlSessionTemplate session);
+	
+	//QNA 조회수 증가
+	int updateQnaCount(SqlSessionTemplate session, int no);
+	
 	//QNA 읽기
 	
 	Qna selectQnaView(SqlSessionTemplate session, int no );
