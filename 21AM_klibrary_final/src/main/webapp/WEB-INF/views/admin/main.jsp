@@ -146,7 +146,7 @@
 						},
 						y : {
 							suggestedmin : 0,
-							max : 10
+							max : 25
 						}
 					}
 				})
@@ -532,7 +532,7 @@
 						},
 						y : {
 							suggestedmin : 0,
-							max : 10
+							max : 25
 						}
 					}
 				})
