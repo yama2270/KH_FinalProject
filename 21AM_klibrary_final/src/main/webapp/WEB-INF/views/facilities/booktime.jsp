@@ -41,7 +41,9 @@
 	            </ul>
         	</div>
             <div id="he_right">
-                <div id="titleheadname">이용시간</div>
+                <div id="titleheadname">이용시간
+                <button class="btn btn-outline-dark" onclick="location.assign('${path }/notice/calendar.do')">일정추가</button>
+                </div>
                 
                 <div id='calendar'></div>
                 <div class="table3">
@@ -115,7 +117,6 @@
 </body>
  
     <script>
-    var calendar;
     //DB에서 가져온값 일정에 넣어주기
     $(function(){
    	 $.get("${path}/notice/eventCalendar.do",data=>{
@@ -142,7 +143,7 @@
     	  calendar = new FullCalendar.Calendar(calendarEl, {
     	    initialView: 'dayGridMonth',
     	    headerToolbar: {
-	    	    left: 'addEventButton',
+	    	    left: 'dayGridMonth',
 	    	    center: 'title',
 	    	  	right: 'prev,next today'
     	    },
@@ -152,37 +153,6 @@
         	selectMirror: true,
         	
         	
-    	    customButtons: {
-    	      addEventButton: {
-    	        text: '일정추가',
-    	        click: function() {
-    	          var dateStr = prompt('시작일 0000-00-00');
-    	          /* var dateEnd = prompt('종료일 0000-00-00'); */
-    	          var content = prompt('등록할일정');
-    	          var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-
-    	          if (!isNaN(date.valueOf())) { // valid?
-    	            calendar.addEvent({
-    	              title: content,
-    	              start: dateStr,
-    	              end: dateEnd,
-    	              allDay: false
-    	            });
-    	            $.ajax({
-    	            	url:"${path}/insertcalendar.do",
-    	            	data: {"title":content,"str":dateStr,"end":dateEnd},
-    	            	//async:false,
-    	            	success:data=>{
-    	            		console.log(data);
-		    	            alert('등록성공');
-    	            	}
-    	            });
-    	          } else {
-    	            alert('등록실패.');
-    	          }
-    	        }
-    	      }
-    	    },
     	    locale: 'ko',
     	    events: [
     	
@@ -193,7 +163,7 @@
     	         {
     	             title    :    'evt2',
     	             start    :    '2021-07-10',
-    	             end    :    '2021-07-20'
+    	             
     	         },
     	         {
     	             title    :    'evt3',

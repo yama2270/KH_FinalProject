@@ -64,7 +64,6 @@
 		<div>
 			<img src="${path }/resources/images/book-logo.png" width=50px height=50px style="margin-bottom:10px; float:left;">
 			<h2 style="margin-top:30px;">현재 대출 중인 도서</h2>
-			<hr id="BIC_hr_line2">
 		</div>
 		<div id="Borrwing_List_table">
 		<c:choose>
@@ -105,7 +104,7 @@
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
-				<h2>대여중인 도서가 없습니다.</h2>
+				<h2 id="Nodata">대여중인 도서가 없습니다.</h2>
 			</c:otherwise>
 		</c:choose>
 		</div>
