@@ -15,7 +15,7 @@
 		<div id="searchWrap">
 			<div class="container-fluid" style="padding-right:0px;">
 				<form class="d-flex" action="${path }/admin/book/SearchRentalList.do" method="post">
-					<select id="searchOption" name="searchOption" class="form-select"
+					<select id="searchOption" name="searchOption" class="form-select" onchange="changeSelect()"
 						aria-label="Default select example" required>
 						<option value="" ${param.searchOption !=null? "":"selected"}>검색옵션</option>
 						<option value="lending_no" ${param.searchOption =="lending_no"? "selected":""}>대출번호</option>
@@ -26,8 +26,16 @@
 						<option value="lending_date" ${param.searchOption =="lending_date"? "selected":""}>대출일</option>
 						<option value="return_date" ${param.searchOption =="return_date"? "selected" :"" }>반납일</option>
 					</select>
-					<input id="searchWord" class="form-control me-2" type="search" name="searchWord"
-						placeholder="Search" aria-label="Search" value='${param.searchWord!=null?param.searchWord:"" }' required>
+					<c:choose>
+						<c:when test="${param.searchOption eq'lending_date' or param.searchOption eq 'return_date'}">
+							<input id="searchWord" class="form-control me-2" type="date" name="searchWord"
+							placeholder="Search" aria-label="Search" value='${param.searchWord!=null?param.searchWord:"" }' required>
+						</c:when>
+						<c:otherwise>
+							<input id="searchWord" class="form-control me-2" type="search" name="searchWord"
+							placeholder="Search" aria-label="Search" value='${param.searchWord!=null?param.searchWord:"" }' required>
+						</c:otherwise>
+					</c:choose>
 					<button id="searchBtn" class="btn btn-outline-success"
 						type="submit">Search</button>
 				</form>
@@ -105,6 +113,13 @@
         $(".navOptions").eq(1).children().eq(1).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
     })
     
+    function changeSelect(){
+    	if($("#searchOption option:selected").val()=='lending_date'||$("#searchOption option:selected").val()=='return_date'){
+    		document.getElementById('searchWord').setAttribute('type','date');
+    	}else{
+    		document.getElementById('searchWord').setAttribute('type','search');
+    	}
+    }
 	</script>
 
 <jsp:include page="/WEB-INF/views/admin/common/footer.jsp" />

@@ -144,14 +144,28 @@
 	<select id="SearchRentalList" parameterType="Map" resultMap="lending">
 		SELECT * FROM
 		LENDING LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO) LEFT JOIN MEMBER USING(USER_ID)
-		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+		<choose>
+			<when test="searchOption eq 'lending_date' || searchOption eq 'return_date'">
+				WHERE ${searchOption}=#{searchWord}
+			</when>
+			<otherwise>
+				WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+			</otherwise>
+		</choose>
 	</select>
 	
 	<!-- 대출도서 검색 카운트 -->
 	<select id="SearchRentalCount" parameterType="Map" resultType="_int">
 		SELECT COUNT(*) FROM
 		LENDING LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO) LEFT JOIN MEMBER USING(USER_ID)
-		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+		<choose>
+			<when test="searchOption eq 'lending_date' || searchOption eq 'return_date'">
+				WHERE ${searchOption}=#{searchWord}
+			</when>
+			<otherwise>
+				WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+			</otherwise>
+		</choose>
 	</select>
 	<!-- 대출도서 연장 -->
 	<update id="addBookExtend" parameterType="Map">

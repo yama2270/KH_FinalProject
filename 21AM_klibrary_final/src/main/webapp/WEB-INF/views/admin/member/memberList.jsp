@@ -57,7 +57,7 @@
                             <td><c:out value="${n.address }"/></td>
                             <td><c:out value="${n.phone }"/></td>
                             <td><c:out value="${n.signupDate }"/></td>
-                            <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary" onclick="location.assign('${path}/admin/member/memberUpdate.do?userId=${n.userId}')">수정</button></td>
                             <td><button type="button" class="btn btn-outline-secondary" onclick="if(confirm('${n.userId }님을 삭제 하시겠습니까?')){location.assign('${path}/admin/member/deletemember.do?userId=${n.userId}')}">삭제</button></td>
                         </tr>
                         </c:forEach>

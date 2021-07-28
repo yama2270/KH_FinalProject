@@ -15,5 +15,7 @@ public interface AdminMemberDao {
 	int totalsearchMember(SqlSessionTemplate session,Map param);
 	int deletemember(SqlSessionTemplate session,String userId);
 	int deletememberList(SqlSessionTemplate session,Map m);
+	AdminMember selectMember(SqlSessionTemplate session,String userId);
+	int updateMember(SqlSessionTemplate session,AdminMember m);
 
 }
