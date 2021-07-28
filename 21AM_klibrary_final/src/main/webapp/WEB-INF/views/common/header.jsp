@@ -99,11 +99,11 @@
 			</li>
 			<li><a href="">이용안내</a>
 				<ul id="sub-menu">
-					<li><a href="" aria-label="subemnu">이용시간</a></li>
-					<li><a href="" aria-label="subemnu">편의시설</a></li>
-					<li><a href="" aria-label="subemnu">공지사항</a></li>
-					<li><a href="" aria-label="subemnu">자주묻는질문</a></li>
-					<li><a href="" aria-label="subemnu">QNA</a></li>
+					<li><a href="${path}/notice/booktime.do" aria-label="subemnu">이용시간</a></li>
+					<li><a href="${path}/notice/copymachine.do" aria-label="subemnu">편의시설</a></li>
+					<li><a href="${path}/notice/noticeList.do" aria-label="subemnu">공지사항</a></li>
+					<li><a href="${path}/faq/faqList.do" aria-label="subemnu">자주묻는질문</a></li>
+					<li><a href="${path}/qna/qnaList.do" aria-label="subemnu">QNA</a></li>
 				</ul>
 			</li>
 			<c:if test="${loginMember!=null }">
