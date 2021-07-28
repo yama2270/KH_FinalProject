@@ -54,7 +54,7 @@
    							<td class="cols"><c:out value="${qna.qnaNo }"/></td>
    							<td class="cols"><c:out value="${qna.qnaCate }"/></td>
    							<td class="cols">
-   								<a href="${path }/admin/notice/qnaView.do?qnaNo=${qna.qnaNo}">
+   								<a href="${path }/admin/qna/qnaView.do?qnaNo=${qna.qnaNo}">
    									<c:out value="${qna.qnaTitle }"/>
    								</a>
    							</td>
@@ -78,8 +78,8 @@
                     </tbody>
                 </table>
             </div>
-            <a href='<c:url value='/admin/qna/qnaForm.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:84%;margin-top:2%;">작성</a>
-        	<input type="button" value="삭제" class="btn btn-outline-dark" style="margin-top:2%;" onclick="deleteValue();">
+            
+        	<input type="button" value="삭제" class="btn btn-outline-dark" style="margin-top:2%;margin-left:90%;" onclick="deleteValue();">
 
 	        <div id="pagebar-container">
 	        	${pageBar }

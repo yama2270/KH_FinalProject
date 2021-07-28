@@ -8,8 +8,10 @@ public interface AdminQnaService {
 	
 	List<Qna> selectQnaList(int cPage, int numPerpage);
 	
+	//게시글 보기
 	Qna selectQnaView(int qnaNo);
 	
 	int selectQnaCount();
 	
+	int deleteQna(String qnaNo);
 }

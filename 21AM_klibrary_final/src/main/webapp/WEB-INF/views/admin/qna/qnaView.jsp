@@ -18,20 +18,19 @@
                             <th width=150>작성자</th>
                             <th width=150>작성일</th>
                         </tr>
-                        <tr>
-                           
-                            <td>대출</td>
-                            <td>대출문의입니다</td>
-                            <td>박유현</td>
-                            <td>21.07.01</td>
-
+                        <tr>        
+                           <td class="line2"><c:out value="${qna.qnaCate}"/></td>
+                           <td class="line2"><c:out value="${qna.qnaTitle}"/></td>
+                           <td class="line2"><c:out value="${qna.userId}"/></td>
+                           <td class="line2"><c:out value="${qna.qnaDate}"/></td>
+                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
 
                 <div class="rv_write">
-                    <textarea class="rv_write_txt" maxlength="5000" placeholder="문의사항 내용이 보여질 공간입니다" style="width:1000px;height:200px;margin-top:3%"></textarea>
+                    <div class="contentbox" style="width:1000px;height:250px;"><c:out value="${qna.qnaContent }" /></div>
                 </div>
 
                 <div class="rv_write">

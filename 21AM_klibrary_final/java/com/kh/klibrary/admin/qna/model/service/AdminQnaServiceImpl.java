@@ -22,19 +22,26 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 	@Override
 	public List<Qna> selectQnaList(int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.selectQnaList(session, cPage, numPerpage);
 	}
 
 	@Override
 	public Qna selectQnaView(int qnaNo) {
 		// TODO Auto-generated method stub
-		return null;
+		dao.updateQnaCount(session, qnaNo);
+		return dao.selectQnaView(session, qnaNo);
 	}
 
 	@Override
 	public int selectQnaCount() {
 		// TODO Auto-generated method stub
 		return dao.selectQnaCount(session);
+	}
+
+	@Override
+	public int deleteQna(String qnaNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteQna(session, qnaNo);
 	}
 
 }
