@@ -31,10 +31,11 @@
                     </div>
                 </div>
                 <div id="contentTabWrap">
+                <form id="memberlist" method="post">
                     <table id="memListTab" class="table table-hover">
                         <tr>
-                            <th style="width:50px;line-height:18px;"><input type="checkbox" name="member" value="selectall" onclick="selectAll(this)"/></th>
-                            <th style="width:110px;" onclick="test();">아이디 <i class="fas fa-arrows-alt-v"></i></th>
+                            <th style="width:50px;line-height:18px;"><input type="checkbox" name="selectall" onclick="selectAll(this)"/></th>
+                            <th style="width:110px;">아이디 <i class="fas fa-arrows-alt-v"></i></th>
                             <th style="width:90px;">이름 <i class="fas fa-arrows-alt-v"></i></th>
                             <th style="width:150px;">이메일</th>
                             <th style="width:100px;">생년월일 <i class="fas fa-arrows-alt-v"></i></th>
@@ -48,7 +49,7 @@
                     	<c:when test="${not empty list }">
                     	<c:forEach var="n" items="${list }">
                         <tr>
-                            <td><input type="checkbox" name="member" value="${n.userId }"/></td>
+                            <td><input type="checkbox" name="member" value="${n.userId }" onclick="checkSelectAll()"/></td>
                             <td><c:out value="${n.userId }"/></td>
                             <td><c:out value="${n.userName }"/></td>
                             <td><c:out value="${n.email }"/></td>
@@ -57,7 +58,7 @@
                             <td><c:out value="${n.phone }"/></td>
                             <td><c:out value="${n.signupDate }"/></td>
                             <td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-                            <td><button type="button" class="btn btn-outline-secondary" onclick="if(confirm('삭제 하시겠습니까?')){location.assign('${path}/admin/member/deletemember.do?userId=${n.userId}')}">삭제</button></td>
+                            <td><button type="button" class="btn btn-outline-secondary" onclick="if(confirm('${n.userId }님을 삭제 하시겠습니까?')){location.assign('${path}/admin/member/deletemember.do?userId=${n.userId}')}">삭제</button></td>
                         </tr>
                         </c:forEach>
                     	</c:when>
@@ -68,8 +69,9 @@
 		                </c:otherwise>
                     </c:choose>
                     </table>
+                    </form>
                     <div id="memListBtn">
-                        <button type="button" class="btn btn-outline-secondary">선택삭제</button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="deletelist();">선택삭제</button>
                     </div>
                     <div id="pagebar-container" style="margin-top:8px">
 	               	${pageBar }
@@ -82,15 +84,46 @@
 	<script>
 	
 	
-	//체크박스 전체 선택
-	function selectAll(selectAll)  {
+	function checkSelectAll()  {
+		  // 전체 체크박스
 		  const checkboxes 
-		       = document.getElementsByName('member');
+		    = document.querySelectorAll('input[name="member"]');
 		  
+		  // 선택된 체크박스
+		  const checked 
+		    = document.querySelectorAll('input[name="member"]:checked');
+		  
+		  // select all 체크박스
+		  const selectAll 
+		    = document.querySelector('input[name="selectall"]'); 
+		  if(checkboxes.length === checked.length)  {
+		    selectAll.checked = true;
+		    
+		  }else {
+		    selectAll.checked = false;
+		  }
+
+		}
+
+		function selectAll(selectAll)  {
+		  const checkboxes 
+		     = document.getElementsByName('member');
 		  checkboxes.forEach((checkbox) => {
-		    checkbox.checked = selectAll.checked;
+		    checkbox.checked = selectAll.checked
 		  })
 		}
+		
+		function deletelist(){
+			if(confirm("선택한 유저를 삭제하시겠습니까?")){
+			$("#memberlist").attr("action","${path}/admin/member/deleteList.do");
+			$("#memberlist").submit();
+			}else{
+				alert("취소되었습니다.");
+			}
+		}
+		
+		
+		
 		
 	 $(function(){
          // ul show()

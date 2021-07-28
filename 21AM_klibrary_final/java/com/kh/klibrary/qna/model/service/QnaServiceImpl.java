@@ -17,14 +17,14 @@ public class QnaServiceImpl implements QnaService {
 	
 	@Autowired SqlSessionTemplate session;
 	
-	//QNA검색
+	//QNA검색 타이틀
 	
 	@Override
 	public List<Qna> searchQnaTitle(String keyWord) {
 		// TODO Auto-generated method stub
 		return dao.searchQnaTitle(session,keyWord);
 	}
-
+	//QNA검색 내용
 	@Override
 	public List<Qna> searchQnaContent(String keyWord) {
 		// TODO Auto-generated method stub
@@ -72,6 +72,7 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public Qna selectQnaView(int no) {
 		// TODO Auto-generated method stub
+		dao.updateQnaCount(session, no);
 		return dao.selectQnaView(session, no);
 	}
 
@@ -81,6 +82,12 @@ public class QnaServiceImpl implements QnaService {
 		// TODO Auto-generated method stub
 		return dao.updateQna(session, q);
 	}
+	@Override
+	public int selectQnaCount() {
+		// TODO Auto-generated method stub
+		return dao.selectQnaCount(session);
+	}
+	
 	
 }
 

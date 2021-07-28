@@ -75,6 +75,20 @@ public class QnaDaoImpl implements QnaDao {
 		// TODO Auto-generated method stub
 		return session.selectList("qna.searchQnaContent", keyWord);
 	}
+
+	@Override
+	public int selectQnaCount(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("qna.selectQnaCount");
+	}
+	
+	//조회수 증가
+	@Override
+	public int updateQnaCount(SqlSessionTemplate session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("qna.updateQnaCount",no);
+	}
+	
 	
 	
 	

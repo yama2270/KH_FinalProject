@@ -1,5 +1,6 @@
 package com.kh.klibrary.admin.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,7 +70,18 @@ public class AdminMemberController {
 		model.addAttribute("msg",result>0?"삭제성공":"삭제실패");
 		model.addAttribute("loc","/admin/member/memberList.do");
 		return "common/msg";
+	}
+	
+	@RequestMapping("/admin/member/deleteList.do")
+	public String deleteList(@RequestParam String member, Model model) {
+		System.out.println(member);
+		Map m = new HashMap();
+		m.put("userId",member.split(","));
 		
+		
+		model.addAttribute("msg",service.deletememberList(m)>0?"삭제성공":"삭제실패");
+		model.addAttribute("loc","/admin/member/memberList.do");
+		return "common/msg";
 	}
 	
 	// 회원탈퇴리스트 

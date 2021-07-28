@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
-import com.kh.klibrary.faq.model.vo.Attachment;
+
 @Repository
 public class AdminNoticeDaoImpl implements AdminNoticeDao{
 	

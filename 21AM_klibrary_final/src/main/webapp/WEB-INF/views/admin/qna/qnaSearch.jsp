@@ -7,10 +7,10 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <c:url var="QnaListURL" value="/admin/qna/adminqnaList"></c:url>
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
-	<jsp:param name="title" value="문의사항 관리"/>
+	<jsp:param name="title" value="문의사항 검색"/>
 </jsp:include>
 	        <div id="ad_right">
-            <div id="contHeader">문의사항 관리</div>
+            <div id="contHeader">문의사항 검색</div>
             <div id="contbody">
             
         <div id="qna_box">

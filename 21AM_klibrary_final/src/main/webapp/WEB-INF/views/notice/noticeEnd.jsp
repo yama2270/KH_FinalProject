@@ -40,7 +40,7 @@
 	                    <tr class="line">
 	                        <td class="line3">첨부파일</td>
 	                        <td class="line2">
-					        	
+					        	<c:out value="${list.originalFileName }"/>
 	                
 	                        </td>
 	                    </tr>

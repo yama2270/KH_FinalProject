@@ -26,6 +26,8 @@
 		calendar.render();
 	 });
  })
+ 
+ 
     document.addEventListener('DOMContentLoaded', function() {
     	  var calendarEl = document.getElementById('calendar');
 
@@ -54,11 +56,12 @@
     	            calendar.addEvent({
     	              title: content,
     	              start: dateStr,
+    	              end:dateEnd,
     	              allDay: true
     	            });
     	            $.ajax({
     	            	url:"${path}/insertcalendar.do",
-    	            	data: {"title":content,"str":dateStr},
+    	            	data: {"title":content,"str":dateStr,"end":dateEnd},
     	            	//async:false,
     	            	success:data=>{
     	            		console.log(data);
@@ -81,7 +84,7 @@
     	         {
     	             title    :    'evt2',
     	             start    :    '2021-07-10',
-    	             end    :    '2021-07-20'
+    	             
     	         },
     	         {
     	             title    :    'evt3',
@@ -91,8 +94,6 @@
     	      ]   
     	  });
     	  calendar.render();
-    	  
-    	  
     	});
     
     
