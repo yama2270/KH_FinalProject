@@ -33,5 +33,41 @@
 		FROM MEMBER 
 		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
 	</select>
+	
+	<delete id="deletemember">
+		DELETE FROM MEMBER WHERE USER_ID = #{userId}
+	</delete>
+	
+	<delete id="deletememberList" parameterType="Map">
+		DELETE FROM MEMBER WHERE USER_ID IN
+		<foreach collection="userId" item="m" open="(" separator="," close=")">
+		 #{m}
+		</foreach>
+	</delete>
+
+	<select id="countVis" parameterType="Map" resultType="Map">
+		SELECT COUNT(*) AS VISITOR_COUNT, VISITOR_DATE 
+		FROM VISITOR
+		WHERE VISITOR_DATE BETWEEN #{rowDate} AND #{highDate}
+		GROUP BY VISITOR_DATE
+	</select>
+	
+	<select id="selectMember" resultMap="Member">
+		SELECT * 
+		FROM MEMBER 
+		WHERE USER_ID=#{userId}
+	</select>
+	
+	<update id="updateMember">
+		UPDATE MEMBER SET USER_ID=#{userId},
+							USER_PASSWORD=#{userPassword},
+							USER_NAME=#{userName},
+							EMAIL=#{email},
+							BIRTH_DATE=#{birthDate},
+							ADDRESS=#{address},
+							PHONE=#{phone},
+							SIGNUP_DATE=#{signupDate}
+		WHERE USER_ID=#{userId}
+	</update>
 
 </mapper>

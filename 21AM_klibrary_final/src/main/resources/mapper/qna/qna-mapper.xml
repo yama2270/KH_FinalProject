@@ -68,5 +68,37 @@
  		UPDATE QNA SET QNA_CONTENT=#{qnaContent}
  		WHERE QNA_NO=#{qnaNo}
  	</update>
+ 	
+ 
+ 	<select id="selectQnaCount" resultType="int">
+ 		SELECT COUNT(*) FROM QNA
+ 	</select>
+ 	
+ 	<!-- QNA 조회수 증가  -->
+ 	<update id="updateQnaCount" parameterType="int">
+ 		UPDATE QNA SET QNA_COUNT = QNA_COUNT + 1 WHERE QNA_NO=#{qnaNo}
+ 	</update>
+ 	
+ 	<!-- 관리자 문의사항 삭제 -->
+ 	<delete id="deleteQna" parameterType="String">
+ 		DELETE FROM QNA WHERE QNA_NO = #{qnaNo}
+ 	</delete>
+ 	
+ 	  <!-- 게시글 총 갯수 -->
+	<select id="qnaListCnt" resultType="int">
+		SELECT count(*) as listCnt FROM QNA
+			<trim prefix="WHERE" prefixOverrides="AND|OR">
+				<if test="keyword != null and keyword != '' ">
+						<if test="searchType=='title'">
+							AND TITLE like CONCAT('%', #{keyword}, '%')
+						</if>
+						<if test="searchType=='content'">
+							AND CONTENT like CONCAT('%', #{keyword}, '%')
+						</if>
+				</if>
+			</trim>
+
+	</select>
+ 	
 </mapper>
  

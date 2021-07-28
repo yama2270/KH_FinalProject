@@ -252,7 +252,10 @@
 	</resultMap>
 	
 	
-	
+	<!-- 홈페이지 방문자수 count -->
+	<insert id="countUser" parameterType="String">
+		INSERT INTO VISITOR VALUES(SEQ_VIS_NO.NEXTVAL,#{today})
+	</insert>
 	
 	
 </mapper>

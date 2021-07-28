@@ -101,4 +101,9 @@ public interface AdminBookDao {
 	
 	// 관심도서 랭킹 
 	List<Map> countLikBook(SqlSessionTemplate session);
+	
+	// admin - main 
+	
+	List<Map> countRenBook(SqlSessionTemplate session,Map param);
+	
 }

@@ -6,6 +6,13 @@
   cursor: not-allowed;
 }
 
+#calendar{
+	height:580px;
+	width:1150px;
+}
+
+
+
 .fc-unselectable {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -286,6 +293,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     align-items: center;
   }
 .fc .fc-toolbar.fc-header-toolbar {
+	margin-top:1%;
     margin-bottom: 1.5em;
   }
 .fc .fc-toolbar.fc-footer-toolbar {

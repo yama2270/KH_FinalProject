@@ -144,14 +144,28 @@
 	<select id="SearchRentalList" parameterType="Map" resultMap="lending">
 		SELECT * FROM
 		LENDING LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO) LEFT JOIN MEMBER USING(USER_ID)
-		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+		<choose>
+			<when test="searchOption eq 'lending_date' || searchOption eq 'return_date'">
+				WHERE ${searchOption}=#{searchWord}
+			</when>
+			<otherwise>
+				WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+			</otherwise>
+		</choose>
 	</select>
 	
 	<!-- 대출도서 검색 카운트 -->
 	<select id="SearchRentalCount" parameterType="Map" resultType="_int">
 		SELECT COUNT(*) FROM
 		LENDING LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO) LEFT JOIN MEMBER USING(USER_ID)
-		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+		<choose>
+			<when test="searchOption eq 'lending_date' || searchOption eq 'return_date'">
+				WHERE ${searchOption}=#{searchWord}
+			</when>
+			<otherwise>
+				WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+			</otherwise>
+		</choose>
 	</select>
 	<!-- 대출도서 연장 -->
 	<update id="addBookExtend" parameterType="Map">
@@ -228,6 +242,14 @@
 			GROUP BY BOOK_INFO.BOOK_NAME
 			ORDER BY LIKE_COUNT DESC) 
 		WHERE ROWNUM BETWEEN 1 AND 5
+	</select>
+	
+	<!-- 도서 대출목록 -->
+	<select id="countRenBook" parameterType="Map" resultType="Map">
+		SELECT LENDING_DATE,COUNT(*) AS LENDING_COUNT FROM LENDING_HISTORY
+		WHERE LENDING_DATE BETWEEN #{rowDate} AND #{highDate}
+		GROUP BY LENDING_DATE
+		ORDER BY LENDING_DATE
 	</select>
 	
 	<!-- resultMap -->

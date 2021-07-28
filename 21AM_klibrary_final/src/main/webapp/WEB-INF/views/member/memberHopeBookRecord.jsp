@@ -82,7 +82,7 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<h2>관심 도서가 없습니다.</h2>
+						<h2 id=Nodata>희망 도서가 없습니다.</h2>
 					</c:otherwise>
 				</c:choose>
 				</tbody>

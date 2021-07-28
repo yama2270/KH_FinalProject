@@ -338,8 +338,23 @@ public class AdminBookController {
 	// 기간별 대출도서 수 
 	@RequestMapping("/admin/book/countRenBook.do")
 	@ResponseBody
-	public void countRenBook() {
+	public Map countRenBook(@RequestParam Map param) {
 		
+		// 파마미터 값 확인 
+		Iterator i = param.keySet().iterator();
+		while(i.hasNext()) {
+			String key = (String)i.next();
+			System.out.println(key + ":"+param.get(key));
+		}
+		
+		List<Map> list = service.countRenBook(param);
+		Map result = new HashMap();
+		
+		for(Map m : list) {
+			result.put(String.valueOf(m.get("LENDING_DATE")).substring(0,10) , m.get("LENDING_COUNT"));
+		}
+		
+		return result;
 	}
 	
 	// 관심도서 랭킹 
@@ -351,17 +366,11 @@ public class AdminBookController {
 		
 		// Map 결과값 생성 
 		Map result = new HashMap();
+		int no = 1;
 		for(Map m : list) {
-			String bookName = ((String)m.get("BOOK_NAME")).substring(0,5);
+			String bookName = no+++"." +((String)m.get("BOOK_NAME")).substring(0,5);
 			String count = String.valueOf(m.get("LIKE_COUNT"));
 			result.put(bookName, count);
-		}
-		
-		// 결과값 확인 
-		Iterator i = result.keySet().iterator();
-		while(i.hasNext()) {
-			String key = (String)i.next();
-			System.out.println(key +":"+result.get(key));
 		}
 		
 		return result;

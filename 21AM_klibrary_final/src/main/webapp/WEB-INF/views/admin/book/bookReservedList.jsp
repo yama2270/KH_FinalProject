@@ -17,7 +17,7 @@
 				<form class="d-flex" action="${path }/admin/book/searchReservedList.do" method="post">
 					<select id="searchOption" name="searchOption" class="form-select"
 						aria-label="Default select example" required>
-						<option ${param.searchOption !=null? "":"selected"}>검색옵션</option>
+						<option value="" ${param.searchOption !=null? "":"selected"}>검색옵션</option>
 						<option value="booking_no">예약번호</option>
 						<option value="book_no">도서번호</option>
 						<option value="book_name">도서명</option>
@@ -76,6 +76,9 @@
 					</c:otherwise>
 				</c:choose>
 			</table>
+			 <div id="pageBar">
+             	<c:out value="${pageBar }" escapeXml="false"/>
+             </div>
 			<div id="bookReservedListBtn">
 				<button type="button" class="btn btn-outline-secondary">예약취소</button>
 			</div>

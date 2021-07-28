@@ -4,6 +4,7 @@
 
 	<resultMap type="calender" id="calenderMap">
 	  	<result column="CALENDAR_DATE" property="calendardate"/>
+	  	<result column="CALENDAR_ENDDATE" property="calendarEnddate"/>
 	  	<result column="CALENDAR_TITLE" property="calendartitle"/>
 	</resultMap>
   

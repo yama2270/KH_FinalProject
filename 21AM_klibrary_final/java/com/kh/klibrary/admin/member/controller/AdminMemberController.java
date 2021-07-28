@@ -1,10 +1,12 @@
 package com.kh.klibrary.admin.member.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -58,8 +60,50 @@ public class AdminMemberController {
 		mv.addObject("param",param);
 		mv.setViewName("admin/member/memberList");
 		return mv;
+	}
+	
+	//회원삭제
+	@RequestMapping("/admin/member/deletemember.do")
+	public String deletemember(@RequestParam String userId, Model model) {
+		System.out.println(userId);
+		int result=service.deletemember(userId);
+		model.addAttribute("msg",result>0?"삭제성공":"삭제실패");
+		model.addAttribute("loc","/admin/member/memberList.do");
+		return "common/msg";
+	}
+	//선택회원삭제
+	@RequestMapping("/admin/member/deleteList.do")
+	public String deleteList(@RequestParam String member, Model model) {
+		System.out.println(member);
+		Map m = new HashMap();
+		m.put("userId",member.split(","));
+		
+		
+		model.addAttribute("msg",service.deletememberList(m)>0?"삭제성공":"삭제실패");
+		model.addAttribute("loc","/admin/member/memberList.do");
+		return "common/msg";
+	}
+	
+	
+	
+	//회원수정
+	@RequestMapping("/admin/member/memberUpdate.do")
+	public ModelAndView Updatemember(@RequestParam String userId, ModelAndView mv) {
+		mv.addObject("list",service.selectMember(userId));
+		mv.setViewName("/admin/member/memberUpdate");
+		return mv;
+	}
+	
+	@RequestMapping("/admin/member/memberUpdateEnd.do")
+	public String UpdatememberEnd(AdminMember m,Model model) {
+		int result=service.updateMember(m);
+		model.addAttribute("msg",result>0?"수정성공":"수정실패");
+		model.addAttribute("loc","/admin/member/memberList.do");
+		return "common/msg";
 		
 	}
+	
+	
 	
 	
 	// 회원탈퇴리스트 

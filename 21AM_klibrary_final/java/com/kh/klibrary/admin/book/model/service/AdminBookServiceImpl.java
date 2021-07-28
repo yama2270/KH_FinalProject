@@ -229,4 +229,11 @@ public class AdminBookServiceImpl implements AdminBookService {
 		return dao.countLikBook(session);
 	}
 	
+	// admin - main 
+	
+	@Override 
+	public List<Map> countRenBook(Map param){
+		return dao.countRenBook(session,param);
+	}
+	
 }

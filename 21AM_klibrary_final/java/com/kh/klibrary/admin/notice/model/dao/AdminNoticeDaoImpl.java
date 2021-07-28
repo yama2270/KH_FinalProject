@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
-import com.kh.klibrary.faq.model.vo.Attachment;
+
 @Repository
 public class AdminNoticeDaoImpl implements AdminNoticeDao{
 	
@@ -48,6 +48,25 @@ public int selectNoticeCount(SqlSessionTemplate session) {
 	// TODO Auto-generated method stub
 	return session.selectOne("notice.selectNoticeCount");
 }
+
+@Override
+public int updateNoticeCount(SqlSessionTemplate session, int noticeNo) {
+	// TODO Auto-generated method stub
+	return session.update("notice.updateNoticeCount",noticeNo);
+}
+
+@Override
+public List<Notice> searchNoticeTitle(SqlSessionTemplate session, String keyWord) {
+	// TODO Auto-generated method stub
+	return session.selectList("notice.searchNoticeTitle", keyWord);
+}
+
+@Override
+public List<Notice> searchNoticeContent(SqlSessionTemplate session, String keyWord) {
+	// TODO Auto-generated method stub
+	return session.selectList("notice.searchNoticeContent", keyWord);
+}
+
 
 
 

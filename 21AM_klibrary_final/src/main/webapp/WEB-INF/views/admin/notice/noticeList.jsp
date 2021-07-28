@@ -16,27 +16,22 @@
         <div id="notice_box">
             <div id="notice_table_box">
                 <div id="total_notice" style="margin-left:-3%;">
-                    <ul class="pagination" style="margin-top:23px;">
-                       	<li style="margin-left:20px;"><a href="noticeList.do">전체</a></li>
-                        <li style="margin-left:20px;"><a href="noticeList.do?page=1&category=2">일정</a></li>
-						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=3">행사</a></li>
-						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=4">신간</a></li>
-						<li style="margin-left:20px;"><a href="noticeList.do?page=1&category=5">모집</a></li>
-                        <div class="dropdown">
-                          <div id="dropdown_category">
-                              <select class="odfselect" name="searchType" id="searchType" style="height:30px;margin-left:400px;">
-                                  <option value="title" selected>제목</option>
-                                  <option value="content">내용</option>
-                                 
+                    <ul class="pagination" style="margin-top:23px; height:30px;">
+
+						<form id="noticeSearch" action="${path }/admin/notice/noticeSearch.do" method="post">
+                        <div class="dropdown" style="height:30px;">
+                          <div id="dropdown_category" style="height:30px;">
+                              <select class="odfselect" name="category" style="height:30px;margin-left:670px;margin-bottom:200px;">
+                                  <option value="제목" selected>제목</option>
+                                  <option value="내용">내용</option>
                               </select>
+                      <span class="searchBar" style="margin-left:20px;">
+                              <input type="text" name="keyWord">
+                              <input type="submit" value="검색">
+                      </span>
                           </div>
                       </div>
-                      <span class="searchBar" style="margin-left:20px;">
-                          <form id="search" action="" method="get">
-                              <input type="text" name="searchheader">
-                              <input type="button" name="btnSearch" id="btnSearch" value="검색">
-                          </form>
-                      </span>
+                        </form>
                   </ul>
               </div>
                 <table id="notice_table" class="pa" border style="margin-left:-3%;">
@@ -94,24 +89,6 @@
 
 
     <script>
-    
-
-	$(document).on('click', '#btnSearch', function(e){
-
-		e.preventDefault();
-
-		var url = "${pageContext.request.contextPath}/admin/notice/noticeList.do";
-
-
-		url = url + "?searchType=" + $('#searchType').val();
-
-		url = url + "&keyword=" + $('#keyword').val();
-
-		location.href = url;
-
-		console.log(url);
-
-	});
     
     
     $(function(){

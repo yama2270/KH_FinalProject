@@ -11,5 +11,9 @@ public interface AdminMemberService {
 	int selectMemberCount();
 	List<AdminMember> searchMember(Map param, int cPage, int numPerpage);
 	int totalsearchMember(Map param);
+	int deletemember(String userId);
+	int deletememberList(Map m);
+	AdminMember selectMember(String userId);
+	int updateMember(AdminMember m);
 
 }
