@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,6 +51,22 @@ public class AdminQnaController {
 			service.deleteQna(ajaxMsg[i]);
 		}
 		return "redirect:/admin/qna/adminqnaList.do";
+	}
+	
+	//게시글 검색
+	@PostMapping("/admin/qna/qnaSearch.do")
+	public String qnaSearch(@RequestParam("category") String title, @RequestParam(required=false)String keyWord, Model model) {
+		//공백이면
+		if(!StringUtils.hasText(keyWord)) {
+			return "redirect:/admin/qna/adminqnaList";
+		}
+		if("제목".equals(title)) {
+			model.addAttribute("list",service.searchQnaTitle(keyWord));
+		}else {
+			model.addAttribute("list", service.searchQnaContent(keyWord));
+		}
+		
+		return "/admin/qna/qnaSearch";
 	}
 	
 }

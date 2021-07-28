@@ -41,4 +41,16 @@ public class AdminQnaDaoImpl implements AdminQnaDao {
 		return session.delete("qna.deleteQna", qnaNo);
 	}
 
+	@Override
+	public List<Qna> searchQnaTitle(SqlSessionTemplate session, String keyWord) {
+		// TODO Auto-generated method stub
+		return session.selectList("qna.searchQnaTitle", keyWord);
+	}
+
+	@Override
+	public List<Qna> searchQnaContent(SqlSessionTemplate session, String keyWord) {
+		// TODO Auto-generated method stub
+		return session.selectList("qna.searchQnaContent", keyWord);
+	}
+
 }

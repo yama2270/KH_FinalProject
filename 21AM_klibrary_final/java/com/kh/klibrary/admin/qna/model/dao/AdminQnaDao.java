@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.qna.model.vo.Qna;
 
 public interface AdminQnaDao {
@@ -12,4 +13,7 @@ public interface AdminQnaDao {
 	Qna selectQnaView(SqlSessionTemplate session, int qnaNo);
 	int updateQnaCount(SqlSessionTemplate session, int qnaNo);
 	int deleteQna(SqlSessionTemplate session, String qnaNo);
+	List<Qna> searchQnaTitle(SqlSessionTemplate session, String keyWord);
+	List<Qna> searchQnaContent(SqlSessionTemplate session, String keyWord);
+
 }
