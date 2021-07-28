@@ -69,8 +69,8 @@
  		WHERE QNA_NO=#{qnaNo}
  	</update>
  	
- 	<!-- qna 조회수 -->
- 	<select id="selectQnaCount" resultMap="qnaMap">
+ 
+ 	<select id="selectQnaCount" resultType="int">
  		SELECT COUNT(*) FROM QNA
  	</select>
  	
@@ -83,5 +83,22 @@
  	<delete id="deleteQna" parameterType="String">
  		DELETE FROM QNA WHERE QNA_NO = #{qnaNo}
  	</delete>
+ 	
+ 	  <!-- 게시글 총 갯수 -->
+	<select id="qnaListCnt" resultType="int">
+		SELECT count(*) as listCnt FROM QNA
+			<trim prefix="WHERE" prefixOverrides="AND|OR">
+				<if test="keyword != null and keyword != '' ">
+						<if test="searchType=='title'">
+							AND TITLE like CONCAT('%', #{keyword}, '%')
+						</if>
+						<if test="searchType=='content'">
+							AND CONTENT like CONCAT('%', #{keyword}, '%')
+						</if>
+				</if>
+			</trim>
+
+	</select>
+ 	
 </mapper>
  
