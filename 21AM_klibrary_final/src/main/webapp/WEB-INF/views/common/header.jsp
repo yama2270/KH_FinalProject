@@ -80,9 +80,10 @@
         </div>
 		
 		<div id="nav">	
-			<div id="logo-container">
+			<div>
 				<a href="${path }/main/mainPage.do"><img src="${path }/resources/images/logo.png" width="400" height="200"></a>
 			</div>
+			<div>
 			<ul id="main-menu">			
 			<li><a href="">자료검색</a>
 				<ul id="sub-menu">
@@ -118,6 +119,7 @@
 				</ul>
 			</li>
 		</ul>
+		</div>
 	</div>
 </header> 
 <hr>

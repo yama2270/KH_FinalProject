@@ -10,6 +10,10 @@
 		SELECT * FROM MEMBER WHERE USER_ID=#{userId}
 	</select>
 	
+	<select id="idCheck" resultMap="Member">
+		SELECT USER_ID FROM MEMBER WHERE USER_ID=#{userId}
+	</select>
+	
 	<select id="findId" resultMap="Member">
 		SELECT * FROM MEMBER WHERE USER_NAME=#{userName} AND EMAIL=#{email}
 	</select>
