@@ -253,7 +253,7 @@
 	</select>
 	
 	<update id="bookingBook" >
-	 UPDATE BOOK SET BOOKING_STATE=#{bookingState} WHERE BOOK_NO=#{bookNo}
+	 UPDATE BOOK SET BOOKING_STATE=#{bookingState}, LENDING_STATE=#{bookingState} WHERE BOOK_NO=#{bookNo}
 	</update>
 	<insert id="booking">
 	INSERT ALL
@@ -277,6 +277,6 @@
 	</delete>
 	
      <update id="updateBookNo" >
-	 UPDATE BOOK SET BOOKING_STATE='가능' WHERE BOOK_NO=#{bookNo}
+	 UPDATE BOOK SET BOOKING_STATE='가능', LENDING_STATE='가능' WHERE BOOK_NO=#{bookNo}
 	</update>   
 </mapper>

@@ -15,8 +15,8 @@
 </head>
 
 <body id="ad_body1">
-    <header id="ad_header">
-        <div id="header_title">K-도서관</div>
+    <header id="ad_header"style="background-color:lightblue;">
+        <div id="header_title"style="color:blue;margin-bottom: 19px;margin-left: 70px;">QNA</div>
     </header>
     <section id="ad_container">
     	<!-- totalContents 선언 -->
