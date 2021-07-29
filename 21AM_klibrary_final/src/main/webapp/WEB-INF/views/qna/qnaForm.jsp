@@ -29,7 +29,7 @@
             <div id="contHeader">QNA 묻고답하기 -> 글작성</div>
             <div id="contbody" class="sech"></div>
                 <div class="borderbody">
-                    <form name="qnaForm" action="${path }/qna/insertQna.do" method="post" enctype="multipart/form-data">
+                    <form name="qnaForm" action="${path}/qna/insertQna.do" method="post" enctype="multipart/form-data">
                         <table class="table2">
                             <tr>
                                 <td class="title">제목</td>
@@ -46,7 +46,7 @@
                             </tr>
                             <tr>
                                 <td class="title">작성자</td>
-                                <td><input type="text" name="userId"></td>
+                                <td><input type="text" name="userId" value="${loginMember.userId}" readonly required></td>
                             </tr>
 				<!-- 			<tr>
                                 <td class="title">작성일</td>
@@ -81,6 +81,22 @@
 <script>
 	const fn_moveQnaList =()=>{
 		location.assign("${path}/qna/qnaList.do")}
+	
+	$(function(){
+		if(window.location.href=='http://localhost:9090/klibrary/qna/qnaForm.do'){
+			
+			document.getElementsByClassName('list-group-item')[3].style.background="lightgrey";
+		
+		}else if(window.location.href=='http://localhost:9090/klibrary/notice/noticeList.do'||pageId=="공지사항"){
+		
+			document.getElementsByClassName('list-group-item')[1].style.background="lightgrey";
+			
+		}else if(window.location.href=='http://localhost:9090/klibrary/faq/faqList.do'||pageId=="자주묻는질문"){
+			
+			document.getElementsByClassName('list-group-item')[2].style.background="lightgrey";
+		}
+		
+	})
 </script>  
 </body>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

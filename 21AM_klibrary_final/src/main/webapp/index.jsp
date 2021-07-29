@@ -14,7 +14,8 @@
             </div>
         </div>
     </div>
-
+    
+	<div id="main-mid">
     <div id="carouselExampleSlidesOnly" class="carousel slide readingroom" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -40,7 +41,7 @@
       </div>
     </div>
   </nav>
-
+	
   <div id="use_inform">
     <div class="use_inform">
         <ul>
@@ -59,7 +60,10 @@
         </div>
     </div>
     </div>
-    
+    </div>
+    <div>
+    </div>
+    <div>
     <div id="library_tab">
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
@@ -83,6 +87,7 @@
             <button type="button" class="btn btn-outline-secondary">시</button>
             <button type="button" class="btn btn-outline-secondary">과학</button>
             <button type="button" class="btn btn-outline-secondary">수학</button>
+        </div>
         </div>  
         
       <!-- </div>

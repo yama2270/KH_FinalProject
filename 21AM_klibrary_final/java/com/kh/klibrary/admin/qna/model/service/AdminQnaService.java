@@ -2,7 +2,6 @@ package com.kh.klibrary.admin.qna.model.service;
 
 import java.util.List;
 
-import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.qna.model.vo.Qna;
 
 public interface AdminQnaService {
@@ -18,4 +17,8 @@ public interface AdminQnaService {
 	
 	List<Qna> searchQnaTitle(String keyWord);
 	List<Qna> searchQnaContent(String keyWord);
+	
+	int qnaAnswerUpdate(Qna qna);
+	
+	int insertQnaAnswer(Qna qna);
 }

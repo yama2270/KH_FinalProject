@@ -31,6 +31,8 @@
   }
   #nav{
     clear:left;
+    display:flex;
+    flex-direction:row;
   }
 
   #main-menu{
@@ -138,7 +140,15 @@
           clear:left;
       }
       
-      
+.carousel-inner{
+	width:98.5%;
+}
+
+#carouselExampleSlidesOnly{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
       
       /* 회원가입 */
      

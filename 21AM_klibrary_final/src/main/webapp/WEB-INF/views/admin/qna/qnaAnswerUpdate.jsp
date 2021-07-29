@@ -10,9 +10,9 @@
             <div id="contHeader">문의사항 답변</div>
             <div id="contbody">
         </div>
-         	<form name="qnaForm" action="${path}/admin/qna/qnaAnswerUpdateEnd.do" method="post" enctype="multipart/form-data" >
+         	<form name="qnaForm" action="${path}/admin/qna/updateQnaAnswerEnd.do" method="post" enctype="multipart/form-data" >
          	<input type="hidden" name="qnaNo" value="${qna.qnaNo }"/>
-         	<input type="hidden" name="userId" value="${qna.userId }"/>
+         	<input type="hidden" name="userId" value="${qna.userId}"/>
         <div id="QnA_box">
                 <table id="QnA_table" class="pa" border>
                     <thead>
@@ -41,8 +41,8 @@
                     <textarea id="wr_content" name="noticeContent"  maxlength="1000" style="width:1000px; height: 250px;margin-top:5px;
 	                placeholder="내용을 입력해주세요" ><c:out value="${qna.qnaAnswerContent }"/></textarea>
                 </div>
-                <a href='<c:url value='/admin/qna/adminqnaList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:87%;margin-top:1%;">이전</a>
-                <input type="submit" class="btn btn-outline-dark" style="margin-left:1%;margin-top:1%;" value="완료">
+                <button class="backbutton btn btn-outline-dark" style=margin-top:2%;margin-left:870px;" onclick="backbutton();">이전</button>
+                <input type="submit" class="btn btn-outline-dark" style="margin-left:1%;margin-top:2%" value="완료">
             </div>
             </form>
   	</div>
