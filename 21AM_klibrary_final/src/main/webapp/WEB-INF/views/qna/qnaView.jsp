@@ -22,8 +22,8 @@
     <title>묻고답하기확인</title>
 </head>
 <body id="ad_body1">
-    <header id="ad_header">
-            <div id="header_title">K-도서관</div>
+    <header id="ad_header"style="background-color:lightblue;">
+            <div id="header_title" style="color:blue;margin-bottom: 19px;margin-left: 70px;">QNA</div>
     </header>
 
     <section id="ad_container">
@@ -50,17 +50,17 @@
 	                                <td class="tabletitle">조회수 : <c:out value ="${qna.qnaCount }"/></td>
 	                            </tr>
 	                        </table>
-	                        <div class="border">내용: <c:out value="${qna.qnaContent }"/></div>
-	                        <div class="coment">답글</div>
+	                        <div class="border" style="background-color:#e6f2fb;">내용: <c:out value="${qna.qnaContent }"/></div>
+	                        <div class="coment" style="background-color:#b6cde8; height:200px;">답글: <c:out value="${qna.qnaAnswerContent }"/></div>
 	                        <div class="newcoment">
-	                            <div>
+<!-- 	                            <div>
 	                                작성자
 	                                <input type="text" class="comenttext">
 	                                <input type="submit" value="등록" class="submitbutton">
-	                            </div>
+	                            </div> -->
 	                            	<div class="qna_update">
 	                            	 <a href="${path }/qna/updateQna.do?no=${qna.qnaNo}">	
-	                            		<button class="qna_update_bt" style="margin-top:3%; margin-left:45%;">수정</button>
+	                            		<button class="qna_update_bt" style="margin-left:45%;">수정</button>
 									 </a>	
 	                            	</div>
 	                        </div>
