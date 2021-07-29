@@ -27,6 +27,12 @@
                            <td class="line2"><c:out value="${qna.qnaTitle}"/></td>
                            <td class="line2"><c:out value="${qna.userId}"/></td>
                            <td class="line2"><c:out value="${qna.qnaDate}"/></td>
+                           <td>
+                           <select class="form-control form-control-sm w-auto" name="qnaState"><c:out value="${qna.qnaState}"/>
+			                    <option value="미답변">미답변</option>
+			                    <option value="답변완료">답변완료</option>
+	                       </select>
+	                    	</td>
                          </tr>
                     </thead>
                     <tbody>

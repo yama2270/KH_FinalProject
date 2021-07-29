@@ -21,12 +21,19 @@
                             <th width=450>제목</th>
                             <th width=150>작성자</th>
                             <th width=150>작성일</th>
+                            <th width=150>답변상태</th>
                         </tr>
                         <tr>        
                            <td class="line2"><c:out value="${qna.qnaCate}"/></td>
                            <td class="line2"><c:out value="${qna.qnaTitle}"/></td>
                            <td class="line2"><c:out value="${qna.userId}"/></td>
                            <td class="line2"><c:out value="${qna.qnaDate}"/></td>
+                           <td>
+                           <select class="form-control form-control-sm w-auto" name="qnaState" required><c:out value="${qna.qnaState}"/>
+			                    <option value="미답변">미답변</option>
+			                    <option value="답변완료">답변완료</option>
+	                       </select>
+	                    	</td>
                          </tr>
                     </thead>
                     <tbody>
