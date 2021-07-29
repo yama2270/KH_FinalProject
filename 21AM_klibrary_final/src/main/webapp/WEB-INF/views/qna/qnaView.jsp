@@ -21,7 +21,7 @@
     <script src="../js/jquery-3.6.0.min.js"></script>
     <title>묻고답하기확인</title>
 </head>
-<body id="ad_body">
+<body id="ad_body1">
     <header id="ad_header">
             <div id="header_title">K-도서관</div>
     </header>
