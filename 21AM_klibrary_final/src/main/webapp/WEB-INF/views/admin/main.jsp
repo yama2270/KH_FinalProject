@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
-	<jsp:param name="title" value="관리자 메인페이지" />
+	<jsp:param name="title" value="관리자 메인페이지"/>
 </jsp:include>
 
 <!-- Chart.js CDN -->
