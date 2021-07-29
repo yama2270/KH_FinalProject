@@ -14,7 +14,7 @@
     <title>QnA검색</title>
 </head>
 
-<body id="ad_body">
+<body id="ad_body1">
     <header id="ad_header">
         <div id="header_title">K-도서관</div>
     </header>
