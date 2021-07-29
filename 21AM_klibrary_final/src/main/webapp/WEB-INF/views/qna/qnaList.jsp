@@ -14,7 +14,7 @@
     <title>QnA묻고답하기</title>
 </head>
 
-<body id="ad_body">
+<body id="ad_body1">
     <header id="ad_header">
         <div id="header_title">K-도서관</div>
     </header>
@@ -100,15 +100,15 @@
         	}
         	
         	$(function(){
-        		if(window.location.href=='${path}/qna/qnaList.do'||(window.location.href).includes('qnaView.do'))||pageId=="QNA"){
+        		if(window.location.href=='http://localhost:9090/klibrary/qna/qnaList.do'||(window.location.href).includes('qnaView.do')||pageId=="QNA"){
         			
         			document.getElementsByClassName('list-group-item')[3].style.background="lightgrey";
         		
-        		}else if(window.location.href=='${path}/notice/noticeList.do'||pageId=="공지사항"){
+        		}else if(window.location.href=='http://localhost:9090/klibrary/notice/noticeList.do'||pageId=="공지사항"){
         		
         			document.getElementsByClassName('list-group-item')[1].style.background="lightgrey";
         			
-        		}else if(window.location.href=='${path}/faq/faqList.do'||pageId=="자주묻는질문"){
+        		}else if(window.location.href=='http://localhost:9090/klibrary/faq/faqList.do'||pageId=="자주묻는질문"){
         			
         			document.getElementsByClassName('list-group-item')[2].style.background="lightgrey";
         		}
