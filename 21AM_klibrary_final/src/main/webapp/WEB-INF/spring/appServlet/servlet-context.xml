@@ -73,6 +73,7 @@
 	</beans:bean>
 	<aop:aspectj-autoproxy/>
 	
+	<!--스케줄러  -->
 	<task:scheduler id="gsScheduler" pool-size="10" />
 	 <task:executor id="gsTaskExecutor" pool-size="10" />
 	 <task:annotation-driven executor="gsTaskExecutor"

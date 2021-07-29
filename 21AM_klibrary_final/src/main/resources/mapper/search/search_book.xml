@@ -266,7 +266,7 @@
 	</insert>
 	
 	
-	<select id="selectPassedDate" resultType="_int">
+	<select id="selectPassedDate" resultType="string">
 	 SELECT BOOK_NO FROM BOOKING JOIN BOOKING_HISTORY USING (BOOK_NO) 
 	 WHERE TO_CHAR(BOOKING.BOOKING_PICKUP_DATE,'YYYY/MM/DD') <![CDATA[ < ]]> TO_CHAR(SYSDATE,'YYYY/MM/DD')
 	 

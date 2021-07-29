@@ -25,7 +25,7 @@ public class SchedulerService {
 @Scheduled(cron="*/100 * * * * *") 
 public void scheduleRun() {
 	if(dao!=null) {
-		List<Integer> bookNoList = dao.selectPassedDate(session);
+		List<String> bookNoList = dao.selectPassedDate(session);
 		if(bookNoList!= null) {
 			 for(int i=0; i<bookNoList.size();i++) { 
 			   int deleteResult=dao.deleteBookNo(session, bookNoList.get(i));
