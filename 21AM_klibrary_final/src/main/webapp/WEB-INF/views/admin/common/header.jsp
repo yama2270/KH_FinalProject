@@ -41,7 +41,7 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     
     
-    <title>${title }</title>
+    <title>${param.title }</title>
 </head>
 
 <body id="ad_body">
@@ -52,7 +52,6 @@
                 <div id="header_logout" style="cursor:pointer;" onclick="javascript:location.replace('${path}/member/memberLogout.do')">로그아웃</div>
         </div>
     </header>
-
    	<section id="ad_container">
         <div id="ad_left">
             <div id="leftNav">

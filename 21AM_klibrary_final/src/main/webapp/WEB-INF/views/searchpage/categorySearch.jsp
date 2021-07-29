@@ -2978,29 +2978,14 @@ String pageId = request.getParameter("pageId");
 	}
 
 
-$(function(){
-	console.log(window.location.href );
-	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'){
-		  console.log(document.getElementsByClassName('list-group-item')[1]);
+ $(function(){
+		console.log(window.location.href );
 		
-		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
 		  
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do' ||(window.location.href).includes('http://localhost:9090/klibrary/searchpage/bookTotalSearch')){
-		  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
-		
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'){
-		
-		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
-		
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'||(window.location.href).includes('categorySearch')||(window.location.href).includes('kdcNoSearch')){
-		 
-		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
-		 
-	  }
-	
-	 
-	   
-	})
+		  $(".list-group").children().eq(3).css({"backgroundColor" : "lightgrey"})
+		  
+			 	   
+		})
 
 </script>
 	

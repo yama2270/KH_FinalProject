@@ -106,26 +106,11 @@ String pageId = request.getParameter("pageId");
 
 $(function(){
 	console.log(window.location.href );
-	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'||pageId=="희망도서신청"){
-		  console.log(document.getElementsByClassName('list-group-item')[1]);
-		 
-		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
-		  
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do' ||(window.location.href).includes('http://localhost:9090/klibrary/searchpage/bookTotalSearch')){
-		  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
-		  
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'||pageId=="상세검색"){
-		 
-		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
-		 
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'||pageId=="주제별검색"){
-		  
-		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
-		 
-	  }
 	
-	 
-	   
+	  
+	  $(".list-group").children().eq(4).css({"backgroundColor" : "lightgrey"})
+	  
+		 	   
 	})
 
 </script>
