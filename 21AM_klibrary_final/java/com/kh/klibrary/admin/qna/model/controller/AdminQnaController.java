@@ -10,10 +10,13 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.admin.qna.model.service.AdminQnaService;
 import com.kh.klibrary.common.PageFactory;
+import com.kh.klibrary.qna.model.vo.Qna;
 
 
 @Controller
@@ -68,6 +71,37 @@ public class AdminQnaController {
 		
 		return "/admin/qna/qnaSearch";
 	}
+	
+	// 문의사항 답변 작성
+	@RequestMapping("/admin/qna/updateQnaAnswer.do")
+	public ModelAndView qnaAnswerUpdate(Qna qna,ModelAndView mv) {
+		int result=service.qnaAnswerUpdate(qna);
+		String msg="";
+		if(result>0) {
+			msg="문의사항 답변완료";
+		}else{
+			msg="문의사항 입력실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/admin/qna/adminqnaList.do");
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	
+	//문의사항 답변 수정
+	@RequestMapping("/admin/qna/qnaAnswerUpdate.do")
+	public String qnaAnswerUpdate(int qnaNo,Model m) {
+		m.addAttribute("qna",service.selectQnaView(qnaNo));
+		return "admin/qna/qnaAnswerUpdate";
+	}
+
+	@RequestMapping("/admin/qna/qnaAnswerUpdateEnd.do")
+	public String qnaAnswerUpdate(Qna qna) {
+			service.qnaAnswerUpdate(qna);
+		return "redirect:/admin/qna/qnaView.do?qnaNo="+qna.getQnaNo();
+			
+		}
 	
 }
 	

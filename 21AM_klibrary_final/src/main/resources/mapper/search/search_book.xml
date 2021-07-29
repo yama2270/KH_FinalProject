@@ -265,5 +265,20 @@
     FROM DUAL
 	</insert>
 	
-        
+	
+	<select id="selectPassedDate" resultType="string">
+	 SELECT BOOK_NO FROM BOOKING JOIN BOOKING_HISTORY USING (BOOK_NO) 
+	 WHERE TO_CHAR(BOOKING.BOOKING_PICKUP_DATE,'YYYY/MM/DD') <![CDATA[ < ]]> TO_CHAR(SYSDATE,'YYYY/MM/DD')
+	 
+	</select>
+	
+	<delete id="deleteBookNo">
+	 DELETE FROM BOOKING WHERE BOOK_NO=#{bookNo}
+	</delete>
+	<delete id="deleteBookNo2">
+	 DELETE FROM BOOKING_HISTORY WHERE BOOK_NO=#{bookNo}
+	</delete>
+     <update id="updateBookNo" >
+	 UPDATE BOOK SET BOOKING_STATE='가능' WHERE BOOK_NO=#{bookNo}
+	</update>   
 </mapper>

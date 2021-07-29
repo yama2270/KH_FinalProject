@@ -56,4 +56,18 @@ public class AdminQnaServiceImpl implements AdminQnaService{
 		return dao.searchQnaContent(session, keyWord);
 	}
 
+
+	@Override
+	public int insertQnaAnswer(Qna qna) {
+		// TODO Auto-generated method stub
+		int result=dao.insertQnaAnswer(session, qna);
+		return result;
+	}
+
+	@Override
+	public int qnaAnswerUpdate(Qna qna) {
+		// TODO Auto-generated method stub
+		return dao.qnaAnswerUpdate(session, qna);
+	}
+
 }

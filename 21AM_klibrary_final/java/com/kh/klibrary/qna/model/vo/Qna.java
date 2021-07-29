@@ -16,6 +16,7 @@ public class Qna {
 	private int qnaCount;
 	private String qnaState;
 	private String qnaCate;
+	private String qnaAnswerContent;
 	
 	//attachements 객체 생성
 	private List<Attachment> attachments = new ArrayList<>();

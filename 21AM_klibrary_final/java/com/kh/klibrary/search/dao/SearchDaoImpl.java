@@ -115,6 +115,25 @@ public class SearchDaoImpl implements SearchDao{
 	}
 
 	 
+	@Override
+	public List<String> selectPassedDate(SqlSessionTemplate session) {
+		return session.selectList("search.selectPassedDate");
+	}
+	
+	@Override
+	public  int deleteBookNo(SqlSessionTemplate session, String bookNo) {
+		return session.delete("search.deleteBookNo",bookNo);
+	}
+	
+	@Override
+	public  int deleteBookNo2(SqlSessionTemplate session, String bookNo) {
+		return session.delete("search.deleteBookNo2",bookNo);
+	}
+	
+	@Override
+	public int updateBookNo(SqlSessionTemplate session,String bookNo) {
+		return session.update("search.updateBookNo", bookNo);
+	}
 	 
 	 
 }
