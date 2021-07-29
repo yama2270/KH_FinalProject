@@ -41,7 +41,7 @@
                       </div>
                       <input type="text" class="regiester-form" maxlength="20" id="userId" name="userId">
                       <input type="hidden" id="memberPwYn" name="memberPwYn">
-                      <input type="button" class="regiester-btn-frame basic" value="중복확인" onclick="${path }/member/memberIdCheck.do">
+                      <input type="button" class="regiester-btn-frame basic" value="중복확인" onclick="${path }/member/enrollIdCheck.do">
                     </div>
                     <div class="regiester-container">
                       <div class="container-label">

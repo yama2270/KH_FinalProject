@@ -49,7 +49,7 @@ public class MemberController {
 		return "common/msg";
 	}
 	
-	@RequestMapping("/member/memberIdCheck.do")
+	@RequestMapping("/member/enrollIdCheck.do")
 	public int enrollIdCheck(Member m, Model model) {
 		
 		return 0;
