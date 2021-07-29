@@ -277,6 +277,6 @@
 	</delete>
 	
      <update id="updateBookNo" >
-	 UPDATE BOOK SET BOOKING_STATE='가능' WHERE BOOK_NO=#{bookNo}
+	 UPDATE BOOK SET BOOKING_STATE='가능', LENDING_STATE='가능' WHERE BOOK_NO=#{bookNo}
 	</update>   
 </mapper>
