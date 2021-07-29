@@ -29,9 +29,9 @@ public void scheduleRun() {
 		if(bookNoList!= null) {
 			 for(int i=0; i<bookNoList.size();i++) { 
 			   int deleteResult=dao.deleteBookNo(session, bookNoList.get(i));
-			   int deleteResult2=dao.deleteBookNo2(session, bookNoList.get(i));
+				/* int deleteResult2=dao.deleteBookNo2(session, bookNoList.get(i)); */
 			   int updateResult=dao.updateBookNo(session, bookNoList.get(i));
-			   System.out.println("result1="+deleteResult+"result2="+deleteResult2+"updateResult="+updateResult);
+			   System.out.println("result1="+deleteResult+"updateResult="+updateResult);
 			   
 			 }
 		}

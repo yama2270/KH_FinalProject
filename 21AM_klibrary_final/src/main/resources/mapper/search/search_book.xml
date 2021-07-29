@@ -275,9 +275,7 @@
 	<delete id="deleteBookNo">
 	 DELETE FROM BOOKING WHERE BOOK_NO=#{bookNo}
 	</delete>
-	<delete id="deleteBookNo2">
-	 DELETE FROM BOOKING_HISTORY WHERE BOOK_NO=#{bookNo}
-	</delete>
+	
      <update id="updateBookNo" >
 	 UPDATE BOOK SET BOOKING_STATE='가능' WHERE BOOK_NO=#{bookNo}
 	</update>   
