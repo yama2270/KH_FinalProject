@@ -13,5 +13,7 @@ public interface AdminMemberService {
 	int totalsearchMember(Map param);
 	int deletemember(String userId);
 	int deletememberList(Map m);
+	AdminMember selectMember(String userId);
+	int updateMember(AdminMember m);
 
 }

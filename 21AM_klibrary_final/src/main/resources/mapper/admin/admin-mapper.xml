@@ -51,5 +51,23 @@
 		WHERE VISITOR_DATE BETWEEN #{rowDate} AND #{highDate}
 		GROUP BY VISITOR_DATE
 	</select>
+	
+	<select id="selectMember" resultMap="Member">
+		SELECT * 
+		FROM MEMBER 
+		WHERE USER_ID=#{userId}
+	</select>
+	
+	<update id="updateMember">
+		UPDATE MEMBER SET USER_ID=#{userId},
+							USER_PASSWORD=#{userPassword},
+							USER_NAME=#{userName},
+							EMAIL=#{email},
+							BIRTH_DATE=#{birthDate},
+							ADDRESS=#{address},
+							PHONE=#{phone},
+							SIGNUP_DATE=#{signupDate}
+		WHERE USER_ID=#{userId}
+	</update>
 
 </mapper>

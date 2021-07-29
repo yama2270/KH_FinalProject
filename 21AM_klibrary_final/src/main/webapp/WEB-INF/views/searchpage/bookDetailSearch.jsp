@@ -194,6 +194,124 @@ String pageId = request.getParameter("pageId");
 
    </table>
    
+   <table id="bookDetailSearchTbl2" style="display:none" >
+        <tr>
+          <td>
+            종류
+          </td>
+          <td id="bookCategorySelectTd" colspan="2">
+            <span>
+             <select id="book_Category" name="book_Category" style="height:30px;">
+              <option ${book_Category == "도서 대분류"?"selected" : "" }>도서 대분류</option>
+              <option value="000" ${book_Category == "000"?"selected" : "" }>총류</option>
+              <option value="100" ${book_Category == "100"?"selected" : "" }>철학</option>
+              <option value="200" ${book_Category == "200"?"selected" : "" }>종교</option>
+              <option value="600" ${book_Category == "600"?"selected" : "" }>예술</option>
+              <option value="700" ${book_Category == "700"?"selected" : "" }>언어</option>
+              <option value="800" ${book_Category == "800"?"selected" : "" }>문학</option>
+              <option value="900" ${book_Category == "900"?"selected" : "" }>역사</option>
+              <option value="843" ${book_Category == "843"?"selected" : "" }>소설</option>
+              <option value="101" ${book_Category == "101"?"selected" : "" }>이론 및 철학의 효용</option>
+              <option value="004" ${book_Category == "004"?"selected" : "" }>컴퓨터과학</option>
+              <option value="005" ${book_Category == "005"?"selected" : "" }>프로그래밍</option>              
+              <option value="209" ${book_Category == "209"?"selected" : "" }">종교사</option>
+              <option value="603" ${book_Category == "603"?"selected" : "" }>미술사전</option>
+              <option value="609" ${book_Category == "609"?"selected" : "" }>미술사</option>
+              <option value="704" ${book_Category == "704"?"selected" : "" }>강연집</option>
+              <option value="803" ${book_Category == "803"?"selected" : "" }>사전</option>
+              <option value="902" ${book_Category == "902"?"selected" : "" }>역사보조학</option>
+           
+            </select>
+            </span>
+ 
+          </td>
+          <td>
+          </td> 
+        </tr>
+        <tr>
+          <td>
+            초성검색
+          </td>
+          <td id="alphabetCheckTd" colspan="2">
+            <label><input type="radio" name="init" value="44700,55203"   ${empty init || init == "44700,55203" ? "checked" : ""}>선택안함</label>&nbsp;&nbsp;&nbsp;
+            <label><input type="radio" name="init" value="44700,45207" ${init == "44700,45207" ?"checked" : "" }>ㄱ</label>
+            <label><input type="radio" name="init" value="45208,45795" ${init == "45208,45795" ?"checked" : "" }>ㄴ</label>
+            <label><input type="radio" name="init" value="45796,46971" ${init == "45796,46971" ?"checked" : "" }>ㄷ</label>
+            <label><input type="radio" name="init" value="46972,47559" ${init == "46972,47559" ?"checked" : "" }>ㄹ</label>
+            <label><input type="radio" name="init" value="47560,48147" ${init == "47560,48147" ?"checked" : "" }>ㅁ</label>
+            <label><input type="radio" name="init" value="48148,49323" ${init == "48148,49323" ?"checked" : "" }>ㅂ</label>
+            <label><input type="radio" name="init" value="49324,50499" ${init == "49324,50499" ?"checked" : "" }>ㅅ</label>
+            <label><input type="radio" name="init" value="50450,51087" ${init == "50450,51087" ?"checked" : "" }>ㅇ</label>
+            <label><input type="radio" name="init" value="51088,52263" ${init == "51088,52263" ?"checked" : "" }>ㅈ</label>
+            <label><input type="radio" name="init" value="52264,52851" ${init == "52264,52851" ?"checked" : "" }>ㅊ</label>
+            <label><input type="radio" name="init" value="52852,53439" ${init == "52852,53439" ?"checked" : "" }>ㅋ</label>
+            <label><input type="radio" name="init" value="53440,54027" ${init == "53440,54027" ?"checked" : "" }>ㅌ</label>
+            <label><input type="radio" name="init" value="54028,54615" ${init == "54028,54615" ?"checked" : "" }>ㅍ</label>
+            <label><input type="radio" name="init" value="54616,55203" ${init == "54616,55203" ?"checked" : "" }>ㅎ</label>
+          </td>
+        </tr>
+        <tr>
+            <td>
+               도서명
+            </td>
+            <td colspan="2">
+           <input type="text" name="bookName" placeholder="내용을 입력해주세요" id="inputtext2" value="${bookName }">
+            </td>           
+        </tr>
+        <tr>
+            <td>
+              저자명
+            </td>
+            <td colspan="2">
+               <input type="text" name="author" placeholder="내용을 입력해주세요" id="inputtext2" value="${author }">                
+            </td>  
+        </tr>
+        <tr>
+            <td>
+                출판사
+            </td>
+            <td colspan="2">
+                <input type="text" name="publisher" placeholder="내용을 입력해주세요" id="inputtext2" value="${publisher }">               
+            </td>
+        </tr>
+        <tr>
+            <td>
+              ISBN
+            </td>
+            <td colspan="2">
+                <input type="text" name="isbnNo" placeholder="내용을 입력해주세요" id="inputtext2" value="${isbnNo }">               
+            </td>
+        </tr>
+        <tr>
+          <td>
+            가격
+          </td>
+          <td colspan="2">
+              <input type="text" name="price" placeholder="내용을 입력해주세요" id="inputtext2" value="${price }">             
+          </td>
+      </tr>
+        <tr>
+            <td >
+               발행연도
+            </td>
+            <td >          
+            <input id="publishYear1" type="date" name="publishYear" placeholder="발행년(시작)" value="${publishYear }">-               
+            </td>           
+             <td >              
+                <input id="publishYear2" type="date" name="publishYear2" placeholder="발행년(끝)" value="${publishYear2}">                
+            </td>           
+        </tr>
+        <tr>
+          <td colspan="4">
+            <br><br><br>
+            <div id="buttonContainer">
+            <button id="button21" type="button" onclick="fn_searchReset()">입력초기화</button>
+            <button id="button21" type="submit" >검색</button>
+            </div>
+            <br><br><br>
+          </td>
+        </tr>
+   </table>  
 </form>
 
 <%-- <c:choose> 

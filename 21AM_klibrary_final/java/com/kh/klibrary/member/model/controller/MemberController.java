@@ -49,6 +49,12 @@ public class MemberController {
 		return "common/msg";
 	}
 	
+	@RequestMapping("/member/enrollIdCheck.do")
+	public int enrollIdCheck(Member m, Model model) {
+		
+		return 0;
+	}
+	
 	@RequestMapping("/member/memberLogin.do")
 	public String memberLogin() {
 		

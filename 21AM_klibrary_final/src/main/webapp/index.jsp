@@ -14,7 +14,8 @@
             </div>
         </div>
     </div>
-
+    
+	<div id="main-mid">
     <div id="carouselExampleSlidesOnly" class="carousel slide readingroom" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -40,7 +41,7 @@
       </div>
     </div>
   </nav>
-
+	
   <div id="use_inform">
     <div class="use_inform">
         <ul>
@@ -59,7 +60,10 @@
         </div>
     </div>
     </div>
-    
+    </div>
+    <div>
+    </div>
+    <div>
     <div id="library_tab">
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
@@ -83,6 +87,7 @@
             <button type="button" class="btn btn-outline-secondary">시</button>
             <button type="button" class="btn btn-outline-secondary">과학</button>
             <button type="button" class="btn btn-outline-secondary">수학</button>
+        </div>
         </div>  
         
       <!-- </div>
@@ -107,7 +112,20 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	
+	<script>
 
+	
+
+
+
+
+
+
+
+
+
+</script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

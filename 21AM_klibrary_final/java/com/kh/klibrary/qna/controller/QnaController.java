@@ -106,7 +106,7 @@ public class QnaController {
 	
 	// qna등록
 	@RequestMapping("/qna/insertQna.do")
-	public ModelAndView qnaInsert(Qna qna, ModelAndView mv,
+	public ModelAndView qnaInsert(Qna q, ModelAndView mv,
 	@RequestParam(value="upFile", required=false) MultipartFile[] upFile,
 	HttpServletRequest req){
 	//파일 저장경로
@@ -135,7 +135,7 @@ public class QnaController {
 				//rename 된 파일로 업로드
 				try {
 					f.transferTo(new File(path+reName));
-					qna.getAttachments().add(Attachment.builder().originalFileName(originalFileName).renameFileName(reName).build());
+					q.getAttachments().add(Attachment.builder().originalFileName(originalFileName).renameFileName(reName).build());
 				}catch(IOException e) {
 					e.printStackTrace();
 				}
@@ -145,7 +145,7 @@ public class QnaController {
 		
 		String msg="등록성공";
 		try {
-			service.insertQna(qna);
+			service.insertQna(q);
 		}catch(RuntimeException e) {
 			msg="등록실패";
 		}

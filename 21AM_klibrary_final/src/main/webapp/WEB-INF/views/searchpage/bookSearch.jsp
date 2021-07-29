@@ -334,9 +334,7 @@ $(function(){
 		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
 		 
 	  }
-	
-	 
-	   
+		 	   
 	})
 
 </script>

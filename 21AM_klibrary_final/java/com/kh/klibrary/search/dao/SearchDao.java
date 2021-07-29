@@ -30,6 +30,10 @@ public interface SearchDao {
      int bookingBook(SqlSessionTemplate session,Map param);//예약도서"불가능"업데이트
      int booking(SqlSessionTemplate session,Map param);//예약도서 인서트;
      
+     List<String> selectPassedDate(SqlSessionTemplate session);//대출예정날짜중 오늘날짜 지난거 갖고오기
+     int deleteBookNo(SqlSessionTemplate session, String no);//대출예정날짜 지난 책 지우기
+     int deleteBookNo2(SqlSessionTemplate session, String no);
+     int updateBookNo(SqlSessionTemplate session, String no);//도서예약여부 가능으로 바꾸기
 	
 	List<BookInfo> selectBookInfoList(SqlSessionTemplate session, Map param);
 	int insertWishBook(SqlSessionTemplate session, Map param);
