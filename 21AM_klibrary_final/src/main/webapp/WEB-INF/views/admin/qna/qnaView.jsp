@@ -29,9 +29,11 @@
                            <td class="line2"><c:out value="${qna.userId}"/></td>
                            <td class="line2"><c:out value="${qna.qnaDate}"/></td>
                            <td>
-                           <select class="form-control form-control-sm w-auto" name="qnaState" required><c:out value="${qna.qnaState}"/>
-			                    <option value="미답변">미답변</option>
-			                    <option value="답변완료">답변완료</option>
+                           <select class="form-control form-control-sm w-auto" id="qnaState" name="qnaState" required>
+			                    <option value="미답변"
+			                    	<c:if test="${qna.qnaState == '미답변'}">selected</c:if>>미답변</option>
+			                    <option value="답변완료"
+			                    	<c:if test="${qna.qnaState == '답변완료'}">selected</c:if>>답변완료</option>
 	                       </select>
 	                    	</td>
                          </tr>
