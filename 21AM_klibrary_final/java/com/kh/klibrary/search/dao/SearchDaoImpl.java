@@ -125,10 +125,10 @@ public class SearchDaoImpl implements SearchDao{
 		return session.delete("search.deleteBookNo",bookNo);
 	}
 	
-	@Override
-	public  int deleteBookNo2(SqlSessionTemplate session, String bookNo) {
-		return session.delete("search.deleteBookNo2",bookNo);
-	}
+	/*
+	 * @Override public int deleteBookNo2(SqlSessionTemplate session, String bookNo)
+	 * { return session.delete("search.deleteBookNo2",bookNo); }
+	 */
 	
 	@Override
 	public int updateBookNo(SqlSessionTemplate session,String bookNo) {

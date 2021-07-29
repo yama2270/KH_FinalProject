@@ -10,7 +10,7 @@
             <div id="contHeader">문의사항 답변</div>
             <div id="contbody">
         </div>
-         	<form name="qnaForm" action="${path}/admin/qna/updateQnaAnswerEnd.do" method="post" enctype="multipart/form-data" >
+         	<form name="qnaForm" action="${path}/admin/qna/qnaAnswerUpdateEnd.do" method="post" enctype="multipart/form-data" >
          	<input type="hidden" name="qnaNo" value="${qna.qnaNo }"/>
          	<input type="hidden" name="userId" value="${qna.userId}"/>
         <div id="QnA_box">

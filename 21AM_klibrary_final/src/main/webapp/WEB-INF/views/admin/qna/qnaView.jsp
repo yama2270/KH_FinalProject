@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="rv_write">
-                    <textarea id="wr_content" name="noticeContent"  maxlength="1000" style="width:1000px; height: 250px;margin-top:5px;
+                    <textarea id="wr_content" name="qnaAnswerContent"  maxlength="1000" style="width:1000px; height: 250px;margin-top:5px;
 	                placeholder="내용을 입력해주세요" ><c:out value="${qna.qnaAnswerContent }"/></textarea>
                 </div>
                 <a href='<c:url value='/admin/qna/adminqnaList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:87%;margin-top:1%;">이전</a>

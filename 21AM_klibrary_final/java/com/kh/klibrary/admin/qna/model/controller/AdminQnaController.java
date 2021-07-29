@@ -73,7 +73,7 @@ public class AdminQnaController {
 	}
 	
 	// 문의사항 답변 작성
-	@RequestMapping("/admin/qna/updateQnaAnswer.do")
+	@RequestMapping("/admin/qna/qnaAnswerUpdate.do")
 	public ModelAndView qnaAnswerUpdate(Qna qna,ModelAndView mv) {
 		int result=service.qnaAnswerUpdate(qna);
 		String msg="";
@@ -89,12 +89,6 @@ public class AdminQnaController {
 	}
 	
 	
-	//문의사항 답변 수정
-	@RequestMapping("/admin/qna/qnaAnswerUpdate.do")
-	public String qnaAnswerUpdate(int qnaNo,Model m) {
-		m.addAttribute("qna",service.selectQnaView(qnaNo));
-		return "admin/qna/qnaAnswerUpdate";
-	}
 
 	@RequestMapping("/admin/qna/qnaAnswerUpdateEnd.do")
 	public String qnaAnswerUpdate(Qna qna) {
