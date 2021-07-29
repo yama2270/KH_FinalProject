@@ -29,7 +29,7 @@
             <div id="contHeader">QNA 묻고답하기 -> 글작성</div>
             <div id="contbody" class="sech"></div>
                 <div class="borderbody">
-                    <form name="qnaForm" action="${path }/qna/insertQna.do" method="post" enctype="multipart/form-data">
+                    <form name="qnaForm" action="${path}/qna/insertQna.do" method="post" enctype="multipart/form-data">
                         <table class="table2">
                             <tr>
                                 <td class="title">제목</td>
@@ -46,7 +46,7 @@
                             </tr>
                             <tr>
                                 <td class="title">작성자</td>
-                                <td><input type="text" name="userId"></td>
+                                <td><input type="text" name="userId" value="${loginMember.userId}" readonly required></td>
                             </tr>
 				<!-- 			<tr>
                                 <td class="title">작성일</td>
