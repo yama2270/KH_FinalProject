@@ -19,13 +19,16 @@
 			console.log(date);
 			console.log(date.getFullYear());
 			event.start=date.getFullYear()+"-"+((date.getMonth()+1<10)?"0":"")+(date.getMonth()+1)+"-"+date.getDate();
-			
 			console.log(event);
 			calendar.addEvent(event);
-		})
+		}),
+		
 		calendar.render();
 	 });
  })
+ 
+ 
+ 
  
  
     document.addEventListener('DOMContentLoaded', function() {
@@ -42,6 +45,7 @@
     	    navLinks: true, // can click day/week names to navigate views selectable: true,
         	selectable: true,
         	selectMirror: true,
+        	
         	
         	
     	    customButtons: {
@@ -74,7 +78,9 @@
     	        }
     	      }
     	    },
+    	    
     	    locale: 'ko',
+    	    
     	    events: [
     	
     	    	 {
@@ -91,10 +97,15 @@
     	             start    :    '2019-09-25T12:30:00',
     	             allDay    :    false
     	         }
-    	      ]   
+    	      ],
     	  });
+    	  
+    	  
+    	  
     	  calendar.render();
     	});
+ 
+ 
     
     
     
