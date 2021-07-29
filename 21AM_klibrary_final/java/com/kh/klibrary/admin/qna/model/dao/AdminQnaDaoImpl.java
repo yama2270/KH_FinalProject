@@ -53,4 +53,16 @@ public class AdminQnaDaoImpl implements AdminQnaDao {
 		return session.selectList("qna.searchQnaContent", keyWord);
 	}
 
+	@Override
+	public int insertQnaAnswer(SqlSessionTemplate session, Qna qna) {
+		// TODO Auto-generated method stub
+		return session.insert("qna.insertQnaAnswer", qna);
+	}
+
+	@Override
+	public int qnaAnswerUpdate(SqlSessionTemplate session, Qna qna) {
+		// TODO Auto-generated method stub
+		return session.update("qna.updateQnaAnswer",qna);
+	}
+
 }
