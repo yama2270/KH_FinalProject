@@ -62,7 +62,7 @@ public class AdminQnaDaoImpl implements AdminQnaDao {
 	@Override
 	public int qnaAnswerUpdate(SqlSessionTemplate session, Qna qna) {
 		// TODO Auto-generated method stub
-		return session.update("qna.updateQnaAnswer",qna);
+		return session.update("qna.qnaAnswerUpdate",qna);
 	}
 
 }

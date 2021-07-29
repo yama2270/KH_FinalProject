@@ -76,7 +76,9 @@
  	
  	<!-- qna 답변 작성 -->
  	 <update id="qnaAnswerUpdate">
- 		UPDATE QNA SET QNA_ANSWER_CONTENT=#{qnaAnswerContent} WHERE QNA_NO=#{qnaNo}
+ 		UPDATE QNA SET 
+ 		QNA_ANSWER_CONTENT=#{qnaAnswerContent} 
+ 		WHERE QNA_NO=#{qnaNo}
  	</update>
  	
  
