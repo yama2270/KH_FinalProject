@@ -61,6 +61,21 @@
         $(".contents").not($(e.target).next()).css("display","none");
     });
     
+	$(function(){
+		if(window.location.href=='http://localhost:9090/klibrary/faq/faqList.do'){
+			
+			document.getElementsByClassName('list-group-item')[2].style.background="lightgrey";
+		
+		}else if(window.location.href=='http://localhost:9090/klibrary/notice/noticeList.do'||pageId=="공지사항"){
+		
+			document.getElementsByClassName('list-group-item')[1].style.background="lightgrey";
+			
+		}else if(window.location.href=='http://localhost:9090/klibrary/qna/qnaList.do'||pageId=="자주묻는질문"){
+			
+			document.getElementsByClassName('list-group-item')[3].style.background="lightgrey";
+		}
+		
+	})
     
 
 </script>

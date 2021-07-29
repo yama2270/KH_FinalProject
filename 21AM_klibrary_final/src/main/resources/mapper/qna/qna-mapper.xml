@@ -50,7 +50,7 @@
  	<!-- qna쓰기 -->
  	
  	<insert id="insertQna">
- 		INSERT INTO QNA VALUES(SEQ_QNA_NO.NEXTVAL, #{userId}, #{qnaTitle}, #{qnaContent}, SYSDATE, #{qnaCount}, default, default)
+ 		INSERT INTO QNA VALUES(SEQ_QNA_NO.NEXTVAL, #{userId}, #{qnaTitle}, #{qnaContent}, SYSDATE, #{qnaCount}, default, default, default)
  	</insert>
  	
  	<insert id="insertAttachment">
