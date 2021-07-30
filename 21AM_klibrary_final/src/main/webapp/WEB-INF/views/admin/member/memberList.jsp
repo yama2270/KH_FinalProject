@@ -64,7 +64,7 @@
                     	</c:when>
                     	<c:otherwise>
 		                   <tr>
-		                   	<td clospan="11">조회된 공지사항이 없습니다</td>
+		                   	<td colspan="11">조회된 공지사항이 없습니다</td>
 		                   </tr>
 		                </c:otherwise>
                     </c:choose>

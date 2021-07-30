@@ -2,8 +2,6 @@ package com.kh.klibrary.admin.member.vo;
 
 import java.sql.Date;
 
-import com.kh.klibrary.admin.notice.model.vo.Notice;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,4 +20,5 @@ public class AdminMember {
 	private String address;
 	private String phone;
 	private Date signupDate;
+	private AdminMemberDrop AdminmemberDrop;
 }

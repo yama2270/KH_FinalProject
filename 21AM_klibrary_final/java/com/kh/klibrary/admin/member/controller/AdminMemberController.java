@@ -108,17 +108,81 @@ public class AdminMemberController {
 	
 	// 회원탈퇴리스트 
 	@RequestMapping("/admin/member/memberWithdraw.do")
-	public ModelAndView memberWithdraw(@RequestParam Map param,
-			@RequestParam(required=false,defaultValue="1") int cPage,
-			@RequestParam(required=false,defaultValue="10") int numPerpage,
+	public ModelAndView memberWithdraw(@RequestParam(value="cPage", defaultValue="1") int cPage, 
+			@RequestParam(value="numPerpage", defaultValue="5") int numPerpage,
 			ModelAndView mv) {
 		mv.addObject("list",service.selectDropList(cPage,numPerpage));
 		int totalData=service.selectDropCount();
 		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "memberWithdraw.do"));
 		mv.addObject("totalData",totalData);
-		mv.setViewName("/admin/member/memberWithdraw.do");
-		
+		mv.setViewName("admin/member/memberWithdraw");
 		return mv;
+	}
+	
+	// 회원탈퇴요청 검색
+	@RequestMapping("/admin/member/memberWithdrawSearch.do")
+	public ModelAndView memberWithdrawSearch(@RequestParam Map param,
+			@RequestParam(required=false,defaultValue="1") int cPage,
+			@RequestParam(required=false,defaultValue="5") int numPerpage,
+			ModelAndView mv) {
+		System.out.println(param);
+		
+		List<AdminMember> list=service.memberWithdrawSearch(param,cPage,numPerpage);
+		
+		int totalData=service.totalmemberWithdrawSearch(param);
+		
+		String pageBar=new AdminPagingTemplate().searchKeyPagingTemplate(cPage, numPerpage, totalData);
+		
+		mv.addObject("list",list);
+		mv.addObject("pageBar",pageBar);
+		mv.addObject("param",param);
+		mv.setViewName("admin/member/memberWithdraw");
+		return mv;
+	}
+	
+	// 회원탈퇴요청 수락
+	@RequestMapping("/admin/member/memberWithdrawDelete.do")
+	public String memberWithdrawDelete(@RequestParam String userId,Model model) {
+		int result=service.memberWithdrawDelete(userId);
+		model.addAttribute("msg",result>0?"삭제되었습니다":"삭제실패 다시 요청해주세요");
+		model.addAttribute("loc","/admin/member/memberWithdraw.do");
+		return "common/msg";
+	}
+	
+	// 회원탈퇴요청 취소
+	@RequestMapping("/admin/member/memberWirthdrawNo.do")
+	public String memberWirthdrawNo(@RequestParam String userId, Model model) {
+		System.out.println(userId);
+		int result=service.memberWirthdrawNo(userId);
+		model.addAttribute("msg",result>0?"요청취소되었습니다":"요청실패 다시 요청해주세요");
+		model.addAttribute("loc","/admin/member/memberWithdraw.do");
+		return "common/msg";
+	}
+	
+	// 체크된회원탈퇴요청 수락
+	@RequestMapping("/admin/member/memberWithdrawDeleteList.do")
+	public String memberWithdrawDeleteList(@RequestParam String member, Model model) {
+		System.out.println(member);
+		Map m = new HashMap();
+		m.put("userId",member.split(","));
+		
+		
+		model.addAttribute("msg",service.memberWithdrawDeleteList(m)>0?"삭제성공":"삭제실패");
+		model.addAttribute("loc","/admin/member/memberWithdraw.do");
+		return "common/msg";
+	}
+	
+	// 체크된회원탈퇴요청 취소
+	@RequestMapping("/admin/member/memberWirthdrawNoList.do")
+	public String memberWirthdrawNoList(@RequestParam String member, Model model) {
+		System.out.println(member);
+		Map m = new HashMap();
+		m.put("userId",member.split(","));
+		
+		
+		model.addAttribute("msg",service.memberWirthdrawNoList(m)>0?"요청이 취소되었습니다":"실패하였습니다 다시 시도해주세요");
+		model.addAttribute("loc","/admin/member/memberWithdraw.do");
+		return "common/msg";
 	}
 	
 }

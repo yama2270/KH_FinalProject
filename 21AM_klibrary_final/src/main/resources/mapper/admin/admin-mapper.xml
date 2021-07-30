@@ -3,7 +3,7 @@
 <mapper namespace="admin">
 
 	<resultMap type="admin" id="Member">
-		<result column="USER_ID" property="userId"/>
+		<id column="USER_ID" property="userId"/>
 		<result column="USER_PASSWORD" property="userPassword"/>
 		<result column="USER_NAME" property="userName"/>
 		<result column="EMAIL" property="email"/>
@@ -11,6 +11,7 @@
 		<result column="ADDRESS" property="address"/>
 		<result column="PHONE" property="phone"/>
 		<result column="SIGNUP_DATE" property="signupDate"/>
+		
 	</resultMap>
 	
 	<select id="selectMemberList" resultMap="Member">
@@ -71,10 +72,10 @@
 	</update>
 	
 	<!-- 삭제요청리스트 -->
-	<resultMap type="com.kh.klibrary.admin.member.vo.MemberDrop" id="memberDrop">
+	<!-- <resultMap type="com.kh.klibrary.admin.member.vo.AdminMemberDrop" id="memberDrop">
 		<result column="USER_ID" property="userId"/>
 		<result column="DROP_REQUEST" property="dropRequest"/>
-		<collection property="Adminmember" ofType="member">
+		<collection property="Adminmember" ofType="admin">
 			<id column="USER_ID" property="userId"/>
 			<result column="USER_PASSWORD" property="userPassword"/>
 			<result column="USER_NAME" property="userName"/>
@@ -84,14 +85,72 @@
 			<result column="PHONE" property="phone"/>
 			<result column="SIGNUP_DATE" property="signupDate"/>
 		</collection>
+	</resultMap> -->
+	
+	<resultMap type="com.kh.klibrary.admin.member.vo.AdminMember" id="memberDrops">
+			<id column="USER_ID" property="userId"/>
+			<result column="USER_PASSWORD" property="userPassword"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="EMAIL" property="email"/>
+			<result column="BIRTH_DATE" property="birthDate"/>
+			<result column="ADDRESS" property="address"/>
+			<result column="PHONE" property="phone"/>
+			<result column="SIGNUP_DATE" property="signupDate"/>
+		<collection property="AdminmemberDrop" ofType="admindrop"><!-- property:vo oftype:config -->
+			<result column="USER_ID" property="userId"/>
+			<result column="DROP_REQUEST" property="dropRequest"/>
+		</collection>
 	</resultMap>
 	
-	<select id="selectDropList" resultMap="memberDrop">
-		SELECT * FROM MEMBERDROP
+	<select id="selectDropList" resultMap="memberDrops">
+		SELECT * 
+		FROM MEMBERDROP JOIN MEMBER USING(USER_ID)
 	</select>
 	
 	<select id="selectDropCount" resultType="_int">
-		SELECT COUNT(*) FROM MEMBERDROP
+		SELECT COUNT(*) 
+		FROM MEMBERDROP JOIN MEMBER USING(USER_ID)
 	</select>
+	
+	<select id="memberWithdrawSearch" parameterType="Map" resultMap="memberDrops">
+		SELECT * 
+		FROM MEMBERDROP JOIN MEMBER USING(USER_ID)
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+	</select>
+	
+	<select id="totalmemberWithdrawSearch" parameterType="Map" resultType="_int">
+		SELECT COUNT(*) 
+		FROM MEMBERDROP JOIN MEMBER USING(USER_ID)
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%' 
+	</select>
+	
+	<delete id="memberWithdrawDelete">
+		DELETE FROM MEMBER WHERE USER_ID = #{userId}
+	</delete>
+	
+	<resultMap type="admindrop" id="memberDrop">
+		<id column="USER_ID" property="userId"/>
+		<result column="DROP_REQUEST" property="dropRequest"/>
+	</resultMap>
+	
+	<delete id="memberWirthdrawNo">
+		DELETE FROM MEMBERDROP WHERE USER_ID = #{userId}
+	</delete>
+	
+	
+	
+	<delete id="memberWithdrawDeleteList" parameterType="Map">
+		DELETE FROM MEMBER WHERE USER_ID IN
+		<foreach collection="userId" item="m" open="(" separator="," close=")">
+		 #{m}
+		</foreach>
+	</delete>
+	
+	<delete id="memberWirthdrawNoList" parameterType="Map">
+		DELETE FROM MEMBERDROP WHERE USER_ID IN
+		<foreach collection="userId" item="m" open="(" separator="," close=")">
+		 #{m}
+		</foreach>
+	</delete>
 
 </mapper>

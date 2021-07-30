@@ -6,7 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.klibrary.admin.member.vo.AdminMember;
-import com.kh.klibrary.admin.member.vo.MemberDrop;
+import com.kh.klibrary.admin.member.vo.AdminMemberDrop;
 
 public interface AdminMemberDao {
 	
@@ -18,7 +18,13 @@ public interface AdminMemberDao {
 	int deletememberList(SqlSessionTemplate session,Map m);
 	AdminMember selectMember(SqlSessionTemplate session,String userId);
 	int updateMember(SqlSessionTemplate session,AdminMember m);
-	List<MemberDrop> selectDropList(SqlSessionTemplate session,int cPage,int numPerpage);
+	List<AdminMemberDrop> selectDropList(SqlSessionTemplate session,int cPage,int numPerpage);
 	int selectDropCount(SqlSessionTemplate session);
+	List<AdminMember> memberWithdrawSearch(SqlSessionTemplate session,Map param, int cPage, int numPerpage);
+	int totalmemberWithdrawSearch(SqlSessionTemplate session,Map param);
+	int memberWithdrawDelete(SqlSessionTemplate session,String userId);
+	int memberWirthdrawNo(SqlSessionTemplate session,String userId);
+	int memberWithdrawDeleteList(SqlSessionTemplate session, Map m);
+	int memberWirthdrawNoList(SqlSessionTemplate session, Map m);
 
 }
