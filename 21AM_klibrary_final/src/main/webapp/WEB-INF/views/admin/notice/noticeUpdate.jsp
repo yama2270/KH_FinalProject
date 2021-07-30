@@ -22,7 +22,7 @@
 	       	 <div id="contents" class="container" style="margin-left:85px;">
 	            <div class="form-group">
 	            <label for="ca_name">분류</label>
-	             <select class="form-control form-control-sm w-auto" name="noticeCate" required  ><c:out value="${notice.noticeCate}"/>
+	             <select class="form-control form-control-sm w-auto" name="noticeCate" required  >
 	                    <option value="선택">선택하세요</option>
 	                    <option value="일정">일정</option>
 	                    <option value="행사">행사</option>

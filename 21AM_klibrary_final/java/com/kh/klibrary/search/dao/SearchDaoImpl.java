@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.Likes;
 
@@ -116,8 +117,13 @@ public class SearchDaoImpl implements SearchDao{
 
 	 
 	@Override
-	public List<String> selectPassedDate(SqlSessionTemplate session) {
+	public List<Booking> selectPassedDate(SqlSessionTemplate session) {
 		return session.selectList("search.selectPassedDate");
+	}
+	
+	@Override
+	public int insertBookingHistory(SqlSessionTemplate session, Booking b) {
+		return session.insert("search.insertBookingHistory", b);
 	}
 	
 	@Override

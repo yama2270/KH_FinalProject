@@ -253,30 +253,32 @@
 	</select>
 	
 	<update id="bookingBook" >
-	 UPDATE BOOK SET BOOKING_STATE=#{bookingState} WHERE BOOK_NO=#{bookNo}
+	 UPDATE BOOK SET BOOKING_STATE=#{bookingState}, LENDING_STATE=#{bookingState} WHERE BOOK_NO=#{bookNo}
 	</update>
 	<insert id="booking">
-	INSERT ALL
+	INSERT 
     INTO BOOKING (BOOKING_NO, USER_ID, BOOK_NO, BOOKING_DATE, BOOKING_PICKUP_DATE)
-    VALUES (SEQ_BOOKING_NO.NEXTVAL, USER_ID, BOOK_NO, SYSDATE, SYSDATE+3)
-    INTO BOOKING_HISTORY (BOOKING_HISTORY_NO, BOOKING_NO, USER_ID, BOOK_NO,  BOOKING_DATE, BOOKING_PICKUP_DATE)
-    VALUES ( SEQ_BOOKING_HISTORY_NO.NEXTVAL,SEQ_BOOKING_NO.NEXTVAL, USER_ID, BOOK_NO, SYSDATE, SYSDATE+3)
-    SELECT #{userId} as USER_ID, #{bookNo} as BOOK_NO
-    FROM DUAL
+    VALUES (SEQ_BOOKING_NO.NEXTVAL, #{userId}, #{bookNo}, SYSDATE, SYSDATE+3)        
 	</insert>
 	
 	
-	<select id="selectPassedDate" resultType="string">
-	 SELECT BOOK_NO FROM BOOKING JOIN BOOKING_HISTORY USING (BOOK_NO) 
-	 WHERE TO_CHAR(BOOKING.BOOKING_PICKUP_DATE,'YYYY/MM/DD') <![CDATA[ < ]]> TO_CHAR(SYSDATE,'YYYY/MM/DD')
+	<select id="selectPassedDate" resultType="booking">
+	 SELECT * FROM BOOKING  
+	 WHERE TO_CHAR(BOOKING_PICKUP_DATE,'YYYY/MM/DD') <![CDATA[ < ]]> TO_CHAR(SYSDATE,'YYYY/MM/DD')
 	 
 	</select>
+	
+	<insert id="insertBookingHistory">
+	INSERT
+	INTO BOOKING_HISTORY(BOOKING_HISTORY_NO, BOOKING_NO, USER_ID, BOOK_NO, BOOKING_DATE, BOOKING_PICKUP_DATE)
+	VALUES (SEQ_BOOKING_HISTORY_NO.NEXTVAL,#{bookingNo}, #{userId}, #{bookNo}, #{bookingDate}, #{bookingPickUpDate})
+	</insert>
 	
 	<delete id="deleteBookNo">
 	 DELETE FROM BOOKING WHERE BOOK_NO=#{bookNo}
 	</delete>
 	
      <update id="updateBookNo" >
-	 UPDATE BOOK SET BOOKING_STATE='가능' WHERE BOOK_NO=#{bookNo}
+	 UPDATE BOOK SET BOOKING_STATE='가능', LENDING_STATE='가능' WHERE BOOK_NO=#{bookNo}
 	</update>   
 </mapper>

@@ -318,22 +318,10 @@ function selectAll(selectAll)  {
 	   
 $(function(){
 	console.log(window.location.href );
-	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'){
-		  console.log(document.getElementsByClassName('list-group-item')[1]);		  
-		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
-		  
-	  } if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'||(window.location.href).includes('http://localhost:9090/klibrary/searchpage/bookTotalSearch') ){
-		  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
-		 
-	  } if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'){
-		  
-		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
-		  
-	  } if(window.location.href=='http://localhost:9090/klibrary/klibrary/searchpage/categorySearch.do'){
-		
-		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
-		 
-	  }
+	
+	  
+	  $(".list-group").children().eq(1).css({"backgroundColor" : "lightgrey"})
+	  
 		 	   
 	})
 

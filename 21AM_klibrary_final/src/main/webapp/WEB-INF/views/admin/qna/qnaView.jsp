@@ -21,12 +21,21 @@
                             <th width=450>제목</th>
                             <th width=150>작성자</th>
                             <th width=150>작성일</th>
+                            <th width=150>답변상태</th>
                         </tr>
                         <tr>        
                            <td class="line2"><c:out value="${qna.qnaCate}"/></td>
                            <td class="line2"><c:out value="${qna.qnaTitle}"/></td>
                            <td class="line2"><c:out value="${qna.userId}"/></td>
                            <td class="line2"><c:out value="${qna.qnaDate}"/></td>
+                           <td>
+                           <select class="form-control form-control-sm w-auto" id="qnaState" name="qnaState" required>
+			                    <option value="미답변"
+			                    	<c:if test="${qna.qnaState == '미답변'}">selected</c:if>>미답변</option>
+			                    <option value="답변완료"
+			                    	<c:if test="${qna.qnaState == '답변완료'}">selected</c:if>>답변완료</option>
+	                       </select>
+	                    	</td>
                          </tr>
                     </thead>
                     <tbody>
@@ -38,7 +47,7 @@
                 </div>
 
                 <div class="rv_write">
-                    <textarea id="wr_content" name="noticeContent"  maxlength="1000" style="width:1000px; height: 250px;margin-top:5px;
+                    <textarea id="wr_content" name="qnaAnswerContent"  maxlength="1000" style="width:1000px; height: 250px;margin-top:5px;
 	                placeholder="내용을 입력해주세요" ><c:out value="${qna.qnaAnswerContent }"/></textarea>
                 </div>
                 <a href='<c:url value='/admin/qna/adminqnaList.do'/>' role="button" class="btn btn-outline-dark" style="margin-left:87%;margin-top:1%;">이전</a>
