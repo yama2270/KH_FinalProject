@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.klibrary.admin.member.vo.AdminMember;
+import com.kh.klibrary.admin.member.vo.MemberDrop;
 
 public interface AdminMemberService {
 	
@@ -15,5 +16,7 @@ public interface AdminMemberService {
 	int deletememberList(Map m);
 	AdminMember selectMember(String userId);
 	int updateMember(AdminMember m);
+	List<MemberDrop> selectDropList(int cPage,int numPerpage);
+	int selectDropCount();
 
 }

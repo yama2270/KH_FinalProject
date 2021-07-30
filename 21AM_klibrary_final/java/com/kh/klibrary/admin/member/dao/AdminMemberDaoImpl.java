@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.admin.member.vo.AdminMember;
+import com.kh.klibrary.admin.member.vo.MemberDrop;
 @Repository
 public class AdminMemberDaoImpl implements AdminMemberDao{
 
@@ -58,6 +59,19 @@ public class AdminMemberDaoImpl implements AdminMemberDao{
 		// TODO Auto-generated method stub
 		return session.update("admin.updateMember",m);
 	}
+
+	@Override
+	public List<MemberDrop> selectDropList(SqlSessionTemplate session, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.selectDropList",null,new RowBounds(((cPage-1)*numPerpage),numPerpage));
+	}
+
+	@Override
+	public int selectDropCount(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.selectDropCount");
+	}
+	
 	
 	
 	

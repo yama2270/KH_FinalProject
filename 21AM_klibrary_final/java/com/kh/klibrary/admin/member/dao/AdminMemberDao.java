@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.klibrary.admin.member.vo.AdminMember;
+import com.kh.klibrary.admin.member.vo.MemberDrop;
 
 public interface AdminMemberDao {
 	
@@ -17,5 +18,7 @@ public interface AdminMemberDao {
 	int deletememberList(SqlSessionTemplate session,Map m);
 	AdminMember selectMember(SqlSessionTemplate session,String userId);
 	int updateMember(SqlSessionTemplate session,AdminMember m);
+	List<MemberDrop> selectDropList(SqlSessionTemplate session,int cPage,int numPerpage);
+	int selectDropCount(SqlSessionTemplate session);
 
 }

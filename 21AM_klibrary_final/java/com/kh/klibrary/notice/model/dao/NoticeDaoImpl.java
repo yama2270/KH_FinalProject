@@ -30,16 +30,22 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public List<Notice> searchnotice(SqlSessionTemplate session, String text) {
+	public List<Notice> searchnotice(SqlSessionTemplate session, Map param, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
-		return session.selectList("notice.searchnotice",text);
+		int first=(cPage-1)*numPerpage;
+		return session.selectList("notice.searchnotice",param,new RowBounds(first,numPerpage));
+		//return session.selectList("notice.searchnotice",param);
 	}
 
 	@Override
-	public List<Notice> searchnoticecontent(SqlSessionTemplate session, String text) {
+	public int totalsearchnotice(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("notice.searchnoticecontent",text);
+		return session.selectOne("notice.totalsearchnotice",param);
 	}
+
+	
+
+	
 
 	
 	

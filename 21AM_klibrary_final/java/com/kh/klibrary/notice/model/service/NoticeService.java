@@ -10,8 +10,8 @@ public interface NoticeService {
 	List<Notice> selectNoticeList(int cPage,int numPerpage);
 	int selectNoticeCount();
 	Notice selectNoticeView(int no);
-	List<Notice> searchnotice(String text);
-	List<Notice> searchnoticecontent(String text);
+	List<Notice> searchnotice(Map param,int cPage,int numPerpage);
+	int totalsearchnotice(Map param);
 	
 
 }
