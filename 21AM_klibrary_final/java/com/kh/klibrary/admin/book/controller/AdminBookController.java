@@ -370,6 +370,7 @@ public class AdminBookController {
 		for(Map m : list) {
 			String bookName = no+++"." +((String)m.get("BOOK_NAME")).substring(0,5);
 			String count = String.valueOf(m.get("LIKE_COUNT"));
+			System.out.println(bookName + ":" +count);
 			result.put(bookName, count);
 		}
 		
