@@ -37,16 +37,18 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<Notice> searchnotice(String text) {
+	public List<Notice> searchnotice(Map param, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
-		return dao.searchnotice(session,text);
+		return dao.searchnotice(session, param,cPage,numPerpage);
 	}
 
 	@Override
-	public List<Notice> searchnoticecontent(String text) {
+	public int totalsearchnotice(Map param) {
 		// TODO Auto-generated method stub
-		return dao.searchnoticecontent(session,text);
+		return dao.totalsearchnotice(session,param);
 	}
+
+	
 
 	
 	

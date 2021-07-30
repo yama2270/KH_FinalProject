@@ -12,8 +12,8 @@ public interface NoticeDao {
 	List<Notice> selectNoticeList(SqlSessionTemplate session,int cPage,int numPerpage);
 	int selectNoticeCount(SqlSessionTemplate session);
 	Notice selectNoticeView(SqlSessionTemplate session,int no);
-	List<Notice> searchnotice(SqlSessionTemplate session, String text);
-	List<Notice> searchnoticecontent(SqlSessionTemplate session, String text);
+	List<Notice> searchnotice(SqlSessionTemplate session, Map param, int cPage, int numPerpage);
+	int totalsearchnotice(SqlSessionTemplate session,Map param);
 	
 	
 

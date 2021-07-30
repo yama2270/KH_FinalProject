@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.klibrary.admin.member.dao.AdminMemberDao;
 import com.kh.klibrary.admin.member.vo.AdminMember;
+import com.kh.klibrary.admin.member.vo.MemberDrop;
 @Service
 public class AdminMemberServiceImpl implements AdminMemberService{
 	
@@ -65,6 +66,20 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		// TODO Auto-generated method stub
 		return dao.updateMember(session,m);
 	}
+
+	@Override
+	public List<MemberDrop> selectDropList(int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.selectDropList(session,cPage,numPerpage);
+	}
+
+	@Override
+	public int selectDropCount() {
+		// TODO Auto-generated method stub
+		return dao.selectDropCount(session);
+	}
+
+	
 	
 	
 	

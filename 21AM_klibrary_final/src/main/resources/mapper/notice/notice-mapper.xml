@@ -56,11 +56,7 @@
   	WHERE NOTICE_NO=#{noticeNo}
   </update>
   
-  <select id="searchNotice" resultMap="noticeMap">
-  	SELECT * 
-  	FROM NOTICE
-  	WHERE NOTICE_TITLE LIKE '%'||#{text}||'%'
-  </select>
+ 
   
   
   <update id="updateNoticeCount" parameterType="int">
@@ -80,17 +76,22 @@
 						</if>
 				</if>
 			</trim>
-
 	</select>
   
-  <!-- 공지 제목으로 검색 -->
-  	<select id="searchNoticeTitle" resultMap="noticeMap">
-		SELECT * FROM NOTICE WHERE NOTICE_TITLE LIKE '%'||#{keyWord}||'%'
+  
+  	<select id="searchnotice" parameterType="map" resultMap="noticeMap">
+		SELECT * 
+		FROM NOTICE 
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
 	</select>
   
-    <!-- 공지 내용으로 검색 -->
-  	<select id="searchNoticeContent" resultMap="noticeMap">
-		SELECT * FROM NOTICE WHERE NOTICE_CONTENT LIKE '%'||#{keyWord}||'%'
+    
+  	<select id="totalsearchnotice" parameterType="Map" resultType="_int">
+		SELECT COUNT(*) 
+		FROM NOTICE 
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
 	</select>
+	
+	
   
 </mapper>

@@ -1,15 +1,16 @@
 package com.kh.klibrary.notice.controller;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.klibrary.admin.common.AdminPagingTemplate;
+import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.notice.model.service.NoticeService;
 
@@ -39,13 +40,23 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/notice/noticesearch.do")
-	public ModelAndView noticesearch(ModelAndView mv,String searchType,String text) {
-		if(searchType.equals("제목")) {
-		mv.addObject("list",service.searchnotice(text));
-		}else {
-			mv.addObject("list", service.searchnoticecontent(text));
-		}
+	public ModelAndView noticesearch(@RequestParam Map param,
+			@RequestParam(required=false,defaultValue="1") int cPage,
+			@RequestParam(required=false,defaultValue="5") int numPerpage,
+			ModelAndView mv) {
+		System.out.println(param);
+		List<Notice> list=service.searchnotice(param,cPage,numPerpage);
+		
+		int totalData=service.totalsearchnotice(param);
+
+		String pageBar = new AdminPagingTemplate().searchKeyPagingTemplate(cPage,numPerpage,totalData);
+		
+		mv.addObject("list",list);
+		mv.addObject("pageBar",pageBar);
+		mv.addObject("param",param);
+		System.out.println(param);
 		mv.setViewName("notice/noticeList");
+		
 		return mv;
 	}
 	

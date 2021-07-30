@@ -46,7 +46,7 @@ public class AdminMemberController {
 	@RequestMapping("/admin/member/SearchMember.do")
 	public ModelAndView searchMember(@RequestParam Map param,
 			@RequestParam(required=false,defaultValue="1") int cPage,
-			@RequestParam(required=false,defaultValue="10") int numPerpage,
+			@RequestParam(required=false,defaultValue="5") int numPerpage,
 			ModelAndView mv) {
 		
 		List<AdminMember> list=service.searchMember(param,cPage,numPerpage);
@@ -108,8 +108,17 @@ public class AdminMemberController {
 	
 	// 회원탈퇴리스트 
 	@RequestMapping("/admin/member/memberWithdraw.do")
-	public String memberWithdraw() {
-		return "admin/member/memberWithdraw";
+	public ModelAndView memberWithdraw(@RequestParam Map param,
+			@RequestParam(required=false,defaultValue="1") int cPage,
+			@RequestParam(required=false,defaultValue="10") int numPerpage,
+			ModelAndView mv) {
+		mv.addObject("list",service.selectDropList(cPage,numPerpage));
+		int totalData=service.selectDropCount();
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "memberWithdraw.do"));
+		mv.addObject("totalData",totalData);
+		mv.setViewName("/admin/member/memberWithdraw.do");
+		
+		return mv;
 	}
 	
 }
