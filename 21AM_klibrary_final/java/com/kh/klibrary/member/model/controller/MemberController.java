@@ -274,6 +274,9 @@ public class MemberController {
 	}
 	@RequestMapping("/member/memberInfoUpdateEnd.do")
 	public String memberInfoUpdateEnd(Member m, HttpSession session, SessionStatus ss, Model model) {
+		
+		m.setUserPassword(pwEncoder.encode(m.getUserPassword()));
+		
 		int result=service.updateMember(m); //회원정보 수정
 		
 		String msg="회원정보 수정에 실패하였습니다.";

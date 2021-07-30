@@ -113,6 +113,11 @@
         $(".navOptions").eq(1).children().eq(1).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
     })
     
+    // 페이지 이동 
+    const fn_paging = function(cPage){
+    	location.assign('${path}/admin/book/bookAllList.do?cPage='+cPage);
+    }
+    
     function changeSelect(){
     	if($("#searchOption option:selected").val()=='lending_date'||$("#searchOption option:selected").val()=='return_date'){
     		document.getElementById('searchWord').setAttribute('type','date');

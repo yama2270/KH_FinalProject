@@ -23,6 +23,7 @@ import com.kh.klibrary.admin.common.AdminPagingTemplate;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Booking;
+import com.kh.klibrary.member.model.vo.BookingHistory;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 
@@ -192,32 +193,59 @@ public class AdminBookController {
 	}
 	// 예약도서목록
 	@RequestMapping("/admin/book/bookReservedList.do")
-	public String reservedList(Model m,
+	public String reservedList(Model m, @RequestParam Map param,
 			@RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
 			@RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage) {
 		
-		List<Booking> list=service.reservedList(cPage, numPerPage);		
-		int totalBook = service.reservedCount();
-		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
-		m.addAttribute("list",list);
-		m.addAttribute("pageBar",pageBar);
+		List<Booking> list=null;
+		List<BookingHistory> hlist=null;
+		int totalBook=0;
+		if(param.get("searchWord")!=null) {
+			list=service.searchReservedList(param);
+		}else if(param.get("searchWord")==null) {
+			list=service.reservedList();
+		}
 		
-		return "admin/book/bookReservedList";
-	}
-	// 예약도서 목록 검색
-	@RequestMapping("/admin/book/searchReservedList.do")
-	public String searchReservedList(Model m, @RequestParam Map param,
-								   @RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
-								   @RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage) {
-		List<Booking> list=service.searchReservedList(param, cPage, numPerPage);
-		int totalBook = service.searchReservedCount(param);
-		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
+		if(param.get("searchWordH")!=null) {
+			hlist=service.searchReservedHistoryList(param, cPage, numPerPage);
+			totalBook = service.searchReservedHistoryCount(param);
+			
+		}else if(param.get("searchWordH")==null) {
+			hlist=service.reservedHistoryList(cPage, numPerPage);
+			totalBook = service.reservedHCount();
+		}
+		String pageBar=new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
 		m.addAttribute("list",list);
+		m.addAttribute("hlist",hlist);
 		m.addAttribute("param",param);
 		m.addAttribute("pageBar",pageBar);
-		
 		return "admin/book/bookReservedList";
 	}
+	
+	// 예약도서 목록 검색
+//	@RequestMapping("/admin/book/searchReservedList.do")
+//	public String searchReservedList(Model m, @RequestParam Map param) {
+//		List<Booking> list=service.searchReservedList(param);
+//		m.addAttribute("list",list);
+//		m.addAttribute("param",param);
+//		
+//		return "admin/book/bookReservedList";
+//	}
+//	
+//	// 예약도서내역 목록 검색
+//	@RequestMapping("/admin/book/searchReservedHistoryList.do")
+//	public String searchReservedHistoryList(Model m, @RequestParam Map param,
+//											@RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
+//											@RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage) {
+//		List<BookingHistory> hlist=service.searchReservedHistoryList(param, cPage, numPerPage);
+//		int totalBook = service.searchReservedHistoryCount(param);
+//		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
+//		m.addAttribute("hlist",hlist);
+//		m.addAttribute("param",param);
+//		m.addAttribute("pageBar",pageBar);
+//		
+//		return "admin/book/bookReservedList";
+//	}
 	
 	//예약취소
 	@RequestMapping("/admin/book/cancelReserved.do")

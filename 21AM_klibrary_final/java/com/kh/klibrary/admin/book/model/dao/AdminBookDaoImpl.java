@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Booking;
+import com.kh.klibrary.member.model.vo.BookingHistory;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 
@@ -150,30 +151,44 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	
 	//예약도서 리스트
 	@Override
-	public List<Booking> reservedList(SqlSessionTemplate session, int cPage, int numPerPage) {
+	public List<Booking> reservedList(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
-		return session.selectList("adminBook.reservedList", null, new RowBounds((cPage-1)*numPerPage,numPerPage));
+		return session.selectList("adminBook.reservedList", null);
+	}
+	
+	//예약도서내역 리스트
+	@Override
+	public List<BookingHistory> reservedHistoryList(SqlSessionTemplate session, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.reservedHistoryList", null, new RowBounds((cPage-1)*numPerPage,numPerPage));
 	}
 	
 	//예약도서 카운트
 	@Override
-	public int reservedCount(SqlSessionTemplate session) {
+	public int reservedHCount(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
-		return session.selectOne("adminBook.reservedCount");
+		return session.selectOne("adminBook.reservedHCount");
 	}
 	
 	//예약도서 검색 리스트
 	@Override
-	public List<Booking> searchReservedList(SqlSessionTemplate session, Map param, int cPage, int numPerPage) {
+	public List<Booking> searchReservedList(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("adminBook.searchReservedList", param, new RowBounds((cPage-1)*numPerPage,numPerPage));
+		return session.selectList("adminBook.searchReservedList", param);
+	}
+	
+	//예약도서내역 검색 리스트
+	@Override
+	public List<BookingHistory> searchReservedHistoryList(SqlSessionTemplate session, Map param, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.searchReservedHistoryList", param, new RowBounds((cPage-1)*numPerPage,numPerPage));
 	}
 	
 	//예약도서 검색 카운트
 	@Override
-	public int searchReservedCount(SqlSessionTemplate session, Map param) {
+	public int searchReservedHistoryCount(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectOne("adminBook.searchReservedCount", param);
+		return session.selectOne("adminBook.searchReservedHistoryCount", param);
 	}
 	
 	//예약도서 선택

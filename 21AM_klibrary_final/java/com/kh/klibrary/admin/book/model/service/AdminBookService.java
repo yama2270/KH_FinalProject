@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.member.model.vo.Booking;
+import com.kh.klibrary.member.model.vo.BookingHistory;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 
@@ -67,16 +68,22 @@ public interface AdminBookService {
 	int insertLendingHistory(Lending ld);
 	
 	//예약도서 리스트
-	List<Booking> reservedList(int cPage, int numPerPage);
+	List<Booking> reservedList();
 	
-	//예약도서 카운트
-	int reservedCount();
+	//예약도서내역 리스트
+	List<BookingHistory> reservedHistoryList(int cPage, int numPerPage);
 	
-	//예약도서 검색
-	List<Booking> searchReservedList(Map param, int cPage, int numPerPage);
+	//예약도서내역 카운트
+	int reservedHCount();
 	
-	//예약도서 카운트
-	int searchReservedCount(Map param);
+	//예약도서 목록 검색
+	List<Booking> searchReservedList(Map param);
+	
+	//예약도서내역 목록 검색
+	List<BookingHistory> searchReservedHistoryList(Map param, int cPage, int numPerPage);
+	
+	//예약도서내역 카운트
+	int searchReservedHistoryCount(Map param);
 	
 	//예약도서 선택
 	Booking selectBooking(Map param);

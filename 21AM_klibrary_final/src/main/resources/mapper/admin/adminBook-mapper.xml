@@ -192,11 +192,17 @@
 		SELECT * FROM
 		BOOKING LEFT JOIN MEMBER USING(USER_ID) LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
 	</select>
+	
+	<!-- 예약도서내역 리스트 -->
+	<select id="reservedHistoryList" resultMap="bookingHistory">
+		SELECT * FROM
+		BOOKING_HISTORY LEFT JOIN MEMBER USING(USER_ID)
+	</select>
 
 	<!-- 예약도서 카운트 -->
-	<select id="reservedCount" resultType="_int">
+	<select id="reservedHCount" resultType="_int">
 		SELECT COUNT(*) FROM
-		BOOKING LEFT JOIN MEMBER USING(USER_ID) LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
+		BOOKING_HISTORY LEFT JOIN MEMBER USING(USER_ID)
 	</select>	
 	
 	<!-- 예약도서 검색 리스트 -->
@@ -206,12 +212,20 @@
 		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
 	</select>
 	
-	<!-- 예약도서 검색 카운트 -->
-	<select id="searchReservedCount" parameterType="Map" resultType="_int">
-		SELECT COUNT(*) FROM
-		BOOKING LEFT JOIN MEMBER USING(USER_ID) LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
-		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+	<!-- 예약도서내역 검색 리스트 -->
+	<select id="searchReservedHistoryList" parameterType="Map" resultMap="bookingHistory">
+		SELECT * FROM
+		BOOKING_HISTORY LEFT JOIN MEMBER USING(USER_ID)
+		WHERE ${searchOptionH} LIKE '%'||#{searchWordH}||'%'
 	</select>
+	
+	<!-- 예약도서 검색 카운트 -->
+	<select id="searchReservedHistoryCount" parameterType="Map" resultType="_int">
+		SELECT COUNT(*) FROM
+		BOOKING_HISTORY LEFT JOIN MEMBER USING(USER_ID)
+		WHERE ${searchOptionH} LIKE '%'||#{searchWordH}||'%'
+	</select>
+	
 	<!-- 예약도서 선택 -->
 	<select id="selectBooking" resultMap="booking">
 		SELECT * FROM BOOKING WHERE BOOKING_NO=#{bookingNo} AND USER_ID=#{userId}
@@ -368,5 +382,23 @@
 			</collection>
 		</collection>
 	</resultMap>
-	
+	<!-- BOOKING HISTORY -->
+	<resultMap type="com.kh.klibrary.member.model.vo.BookingHistory" id="bookingHistory">
+		<id column="BOOKING_HISTORY_NO" property="bookingHistoryNo"></id>
+		<result column="USER_ID" property="userId"/>
+		<result column="BOOKING_NO" property="bookingNo"/>
+		<result column="BOOK_NO" property="bookNo"/>
+		<result column="BOOKING_DATE" property="bookingDate"/>
+		<result column="BOOKING_PICKUP_DATE" property="bookingPickUpDate"/>
+		<collection property="member" ofType="member">
+			<id column="USER_ID" property="userId"/>
+			<result column="USER_PASSWORD" property="userPassword"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="EMAIL" property="email"/>
+			<result column="BIRTH_DATE" property="birthDate"/>
+			<result column="ADDRESS" property="address"/>
+			<result column="PHONE" property="phone"/>
+			<result column="SIGNUP_DATE" property="signupDate"/>
+		</collection>
+	</resultMap>
 </mapper>

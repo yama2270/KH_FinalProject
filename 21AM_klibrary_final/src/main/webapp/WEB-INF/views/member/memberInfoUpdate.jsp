@@ -69,11 +69,11 @@
 				</tr>
 				<tr>
 					<th><p style="margin-top:10px;">비밀번호 변경</p></th>
-					<td><input type="password" id="password" name="userPassword" placeholder="비밀번호를 입력하세요." class="InfoInput"></td>
+					<td><input type="password" id="password" name="userPassword" placeholder="비밀번호를 입력하세요." class="InfoInput" required></td>
 				</tr>
 				<tr>
 					<th><p style="margin-top:10px;">비밀번호 변경확인</p></th>
-					<td><input type="password" id="passwordCheck" placeholder="비밀번호를 재입력하세요." class="InfoInput"></td>
+					<td><input type="password" id="passwordCheck" placeholder="비밀번호를 재입력하세요." class="InfoInput" required></td>
 				</tr>
 				<tr>
 					<th><p style="margin-top:10px;">휴대폰 전화</p></th>
