@@ -28,12 +28,14 @@
             <div id="titleheadname">공지사항</div>
             <div id="contbody" class="sech">
                 <form action="${path }/notice/noticesearch.do" method="post">
-                    <select required class="fontsize" name="searchType">
-                        <option value="제목">제목</option>
-                        <option value="내용">내용</option>
+                    <select class="fontsize" name="searchOption" aria-label="Default select example">
+                        <option selected>검색옵션</option>
+                        <option value="notice_title" ${param.searchOption =="notice_title"? "selected":""}>제목</option>
+                        <option value="notice_content" ${param.searchOption =="notice_content"? "selected":""}>내용</option>
                    	</select>
-                    <input type="text" class="textbox" name="text">
-                    <input type="submit" value="검색" class="fontsize">
+                    <input type="search" class="textbox" name="searchWord"
+                    placeholder="입력" aria-label="Search" value='${param.searchWord!=null?param.searchWord:"" }' required>
+                    <button id="search" class="fontsize" type="submit">검색</button>
                 </form>
             </div>
             <div class="tableMap">
@@ -71,13 +73,23 @@
                     </c:choose>
                 </table>
                 <!-- 페이징처리 -->
-               <div id="pagebar-container">
-               	${pageBar }
-               </div>
+               <div id="pageBar" style="margin-top:8px">
+	               	<c:out value="${pageBar }" escapeXml="false"/>
+	           </div>
             </div>
         </div>
     </section>
     <script>
+    const fn_searchKey = function(cPage){
+    	const searchKey = $("#searchOption").val();
+     	const searchWord = $("#searchWord").val();
+		location.assign('${path}/admin/member/SearchMember.do?cPage='+cPage+"&searchOption="+searchKey+"&searchWord="+searchWord);
+	}
+	// 페이지 이동 
+    const fn_paging = function(cPage){
+    	location.assign('${path}/admin/member/memberList.do?cPage='+cPage);
+    }
+    
     $(function(){
 	   $('.list-group-item').click(function(){
 	      $('.list-group-item').removeClass('on')

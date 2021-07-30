@@ -18,9 +18,9 @@
 
 
 
-<body id="ad_body">
-    <header id="ad_header">
-        <div id="header_title">K-도서관</div>
+<body id="ad_body1">
+    <header id="ad_header"style="background-color:lightblue;">
+        <div id="header_title"style="color:blue;margin-bottom: 19px;margin-left: 70px;">자주묻는질문</div>
     </header>
     <section id="ad_container">
         <div class="leftmenu" >

@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
-	<jsp:param name="title" value="관리자 메인페이지" />
+	<jsp:param name="title" value="관리자 메인페이지"/>
 </jsp:include>
 
 <!-- Chart.js CDN -->
@@ -20,7 +20,7 @@
 				<div class="canQua">
 					<div class="canQuaHea">홈페이지 방문자 수</div>
 					<div id="quaVis">
-						<div class="quaInpWrap" style="text-align: right; padding-right: 80px">
+						<div class="quaInpWrap" style="text-align: right;">
 							<input type="date" id="visInpRow" class="inpRow" style="margin-right: 3px;" min="2021-07-19"><input
 								type="date" id="visInpHig" class="inpHig" min="2021-07-20"><input type="button" style="height:20px;width:35px;margin-left:3px;" value="조회" onclick="visSession()">
 						</div>
@@ -135,7 +135,10 @@
 						datasets : [{
 							data : datArr,
 							tension : 0.1,
-							backgroundColor:"red"
+							fill : true,
+							backgroundColor:"#d8edfb",	// fill styling
+							borderColor : "#36a2eb", 	// line styling 
+							pointBackgroundColor : "#36a2eb" // point styling
 						}]
 					} ,
 					options : {
@@ -146,7 +149,7 @@
 						},
 						y : {
 							suggestedmin : 0,
-							max : 10
+							suggestedmax : 50
 						}
 					}
 				})
@@ -274,13 +277,32 @@
 	$.ajax({
 		url : "${path}/admin/book/countLikBook.do",
 		success:function(data){
+			
+			// 결과 정렬하기 
+			const keyArr = Object.keys(data);
+			const valArr = Object.values(data);
+			
+			// key 정렬 
+			keyArr.sort(function(a,b){
+				if(a[0]>b[0]){
+					return 1;
+				} else {
+				return -1;
+				}
+			})
+			
+			// data 정렬
+			valArr.sort(function(a,b){
+				return b-a;
+			})
+			
 			const likCan = document.getElementById("likeBook").getContext("2d");
 			const likChart = new Chart(likCan,{
 				type:"bar",
 				data : {
-					labels : Object.keys(data),
+					labels : keyArr,
 					datasets : [{
-						data : Object.values(data),
+						data : valArr,
 						backgroundColor : ["#FFCB9C"],
 						barThickness : 30
 					}]
@@ -521,7 +543,10 @@
 						datasets : [{
 							data : datArr,
 							tension : 0.1,
-							backgroundColor:"red"
+							fill : true,
+							backgroundColor:"#d8edfb",	// fill styling
+							borderColor : "#36a2eb", 	// line styling 
+							pointBackgroundColor : "#36a2eb" // point styling
 						}]
 					} ,
 					options : {
@@ -532,7 +557,7 @@
 						},
 						y : {
 							suggestedmin : 0,
-							max : 10
+							suggestedmax : 50 
 						}
 					}
 				})

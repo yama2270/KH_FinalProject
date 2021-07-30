@@ -11,9 +11,9 @@
 <head>
     <title>QnA 작성 폼</title>
 </head>
-<body id="ad_body">
-    <header id="ad_header">
-        <div id="header_title">K-도서관</div>
+<body id="ad_body1">
+    <header id="ad_header"style="background-color:lightblue;">
+        <div id="header_title"style="color:blue;margin-bottom: 19px;margin-left: 70px;">QNA</div>
     </header>
     <section id="ad_container">
         <div class="leftmenu" >
@@ -82,6 +82,22 @@
 <script>
 	const fn_moveQnaList =()=>{
 		location.assign("${path}/qna/qnaList.do")}
+	
+	$(function(){
+		if(window.location.href=='http://localhost:9090/klibrary/qna/qnaUpdate.do'){
+			
+			document.getElementsByClassName('list-group-item')[3].style.background="lightgrey";
+		
+		}else if(window.location.href=='http://localhost:9090/klibrary/notice/noticeList.do'||pageId=="공지사항"){
+		
+			document.getElementsByClassName('list-group-item')[1].style.background="lightgrey";
+			
+		}else if(window.location.href=='http://localhost:9090/klibrary/faq/faqList.do'||pageId=="자주묻는질문"){
+			
+			document.getElementsByClassName('list-group-item')[2].style.background="lightgrey";
+		}
+		
+	})
 </script>  
 </body>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

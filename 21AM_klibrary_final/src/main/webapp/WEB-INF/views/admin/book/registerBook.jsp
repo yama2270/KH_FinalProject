@@ -130,7 +130,7 @@
 	    
         // 팝업창 
 	    const regPopup = function(){
-	    	window.open("${path}/admin/book/searchIsbn.do","regPopup","width=550,height=600,scrollbars=yes");
+	    	window.open("${path}/admin/book/searchIsbn.do","regPopup","width=700,height=600,scrollbars=yes");
 	    }
         
         // 책 등록 

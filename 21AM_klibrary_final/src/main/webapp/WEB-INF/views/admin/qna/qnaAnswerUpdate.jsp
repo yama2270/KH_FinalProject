@@ -10,7 +10,7 @@
             <div id="contHeader">문의사항 답변</div>
             <div id="contbody">
         </div>
-         	<form name="qnaForm" action="${path}/admin/qna/updateQnaAnswerEnd.do" method="post" enctype="multipart/form-data" >
+         	<form name="qnaForm" action="${path}/admin/qna/qnaAnswerUpdateEnd.do" method="post" enctype="multipart/form-data" >
          	<input type="hidden" name="qnaNo" value="${qna.qnaNo }"/>
          	<input type="hidden" name="userId" value="${qna.userId}"/>
         <div id="QnA_box">
@@ -27,6 +27,12 @@
                            <td class="line2"><c:out value="${qna.qnaTitle}"/></td>
                            <td class="line2"><c:out value="${qna.userId}"/></td>
                            <td class="line2"><c:out value="${qna.qnaDate}"/></td>
+                           <td>
+                           <select class="form-control form-control-sm w-auto" name="qnaState"><c:out value="${qna.qnaState}"/>
+			                    <option value="미답변">미답변</option>
+			                    <option value="답변완료">답변완료</option>
+	                       </select>
+	                    	</td>
                          </tr>
                     </thead>
                     <tbody>

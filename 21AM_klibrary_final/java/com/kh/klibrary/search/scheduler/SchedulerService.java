@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.search.dao.SearchDao;
 
 
@@ -25,13 +26,14 @@ public class SchedulerService {
 @Scheduled(cron="*/100 * * * * *") 
 public void scheduleRun() {
 	if(dao!=null) {
-		List<String> bookNoList = dao.selectPassedDate(session);
-		if(bookNoList!= null) {
-			 for(int i=0; i<bookNoList.size();i++) { 
-			   int deleteResult=dao.deleteBookNo(session, bookNoList.get(i));
-			   int deleteResult2=dao.deleteBookNo2(session, bookNoList.get(i));
-			   int updateResult=dao.updateBookNo(session, bookNoList.get(i));
-			   System.out.println("result1="+deleteResult+"result2="+deleteResult2+"updateResult="+updateResult);
+		List<Booking> bookList = dao.selectPassedDate(session);
+		if(bookList!= null) {
+			 for(int i=0; i<bookList.size();i++) { 
+			   int insertResult=dao.insertBookingHistory(session, bookList.get(i));
+			   int deleteResult=dao.deleteBookNo(session, bookList.get(i).getBookNo());
+				/* int deleteResult2=dao.deleteBookNo2(session, bookNoList.get(i)); */
+			   int updateResult=dao.updateBookNo(session, bookList.get(i).getBookNo());
+			   System.out.println("insertResult="+insertResult+"deleteResult"+deleteResult+"updateResult="+updateResult);
 			   
 			 }
 		}

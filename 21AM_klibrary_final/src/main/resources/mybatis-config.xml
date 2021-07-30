@@ -21,7 +21,7 @@
 			<typeAlias type="com.kh.klibrary.member.model.vo.Lending" alias="lending"/>
 			<typeAlias type="com.kh.klibrary.member.model.vo.Likes" alias="likes"/>
 			<typeAlias type="com.kh.klibrary.admin.member.vo.AdminMember" alias="admin"/>
-			
+			<typeAlias type="com.kh.klibrary.admin.member.vo.AdminMemberDrop" alias="admindrop"/>
 			
 			
 			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo" alias="faq"/> -->

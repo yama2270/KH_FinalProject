@@ -18,10 +18,9 @@
   		<result column="qna_content" property="qnaContent"/>
   		<result column="qna_date" property="qnaDate"/>
   		<result column="qna_count" property="qnaCount"/>
-  		<result column="qna_state" property="qnaState"/>
-  		<result column="qna_cate" property="qnaCate"/>
   		<result column="qna_cate" property="qnaCate"/>
   		<result column="qna_answer_content" property="qnaAnswerContent"/>
+  		<result column="qna_state" property="qnaState"/>
   		
  		<collection property="attachments" ofType="attachment">
 		 <id column="attachment_no" property="attachmentNo"/>
@@ -55,7 +54,7 @@
  	<!-- qna쓰기 -->
  	
  	<insert id="insertQna">
- 		INSERT INTO QNA VALUES(SEQ_QNA_NO.NEXTVAL, #{userId}, #{qnaTitle}, #{qnaContent}, SYSDATE, #{qnaCount}, default, default)
+ 		INSERT INTO QNA VALUES(SEQ_QNA_NO.NEXTVAL, #{userId}, #{qnaTitle}, #{qnaContent}, SYSDATE, #{qnaCount}, default, default, default)
  	</insert>
  	
  	<insert id="insertAttachment">
@@ -76,7 +75,10 @@
  	
  	<!-- qna 답변 작성 -->
  	 <update id="qnaAnswerUpdate">
- 		UPDATE QNA SET QNA_ANSWER_CONTENT=#{qnaAnswerContent} WHERE QNA_NO=#{qnaNo}
+ 		UPDATE QNA SET 
+ 		QNA_ANSWER_CONTENT=#{qnaAnswerContent},
+ 		QNA_STATE=#{qnaState}
+ 		WHERE QNA_NO=#{qnaNo}
  	</update>
  	
  

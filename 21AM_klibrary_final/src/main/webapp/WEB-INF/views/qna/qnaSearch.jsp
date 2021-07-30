@@ -14,9 +14,9 @@
     <title>QnA검색</title>
 </head>
 
-<body id="ad_body">
-    <header id="ad_header">
-        <div id="header_title">K-도서관</div>
+<body id="ad_body1">
+    <header id="ad_header"style="background-color:lightblue;">
+        <div id="header_title"style="color:blue;margin-bottom: 19px;margin-left: 70px;">QNA</div>
     </header>
     <section id="ad_container">
     	<!-- totalContents 선언 -->
@@ -98,6 +98,21 @@
         		let qnaNo =$(e.target).parent().find("td.boardNo").text();
         		location.assign("${path}/qna/qnaView.do?no=" + qnaNo);
         	}
+        	$(function(){
+        		if(window.location.href=='http://localhost:9090/klibrary/qna/qnaList.do'||(window.location.href).includes('qnaSearch.do')||pageId=="QNA"){
+        			
+        			document.getElementsByClassName('list-group-item')[3].style.background="lightgrey";
+        		
+        		}else if(window.location.href=='http://localhost:9090/klibrary/notice/noticeList.do'||pageId=="공지사항"){
+        		
+        			document.getElementsByClassName('list-group-item')[1].style.background="lightgrey";
+        			
+        		}else if(window.location.href=='http://localhost:9090/klibrary/faq/faqList.do'||pageId=="자주묻는질문"){
+        			
+        			document.getElementsByClassName('list-group-item')[2].style.background="lightgrey";
+        		}
+        		
+        	})
         </script>
 </section>        
 </body>

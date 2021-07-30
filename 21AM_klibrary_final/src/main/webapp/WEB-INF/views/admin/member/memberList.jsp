@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
-	<jsp:param name="title" value="회원관리"/>
+	<jsp:param name="title" value="회원조회"/>
 </jsp:include>
 
 	<div id="ad_right">
@@ -64,7 +64,7 @@
                     	</c:when>
                     	<c:otherwise>
 		                   <tr>
-		                   	<td clospan="11">조회된 공지사항이 없습니다</td>
+		                   	<td colspan="11">조회된 공지사항이 없습니다</td>
 		                   </tr>
 		                </c:otherwise>
                     </c:choose>
@@ -73,8 +73,8 @@
                     <div id="memListBtn">
                         <button type="button" class="btn btn-outline-secondary" onclick="deletelist();">선택삭제</button>
                     </div>
-                    <div id="pagebar-container" style="margin-top:8px">
-	               	${pageBar }
+                    <div id="pageBar" style="margin-top:8px">
+	               		<c:out value="${pageBar }" escapeXml="false"/>
 	               </div>
                 </div>
             </div>
@@ -82,7 +82,16 @@
    
 
 	<script>
-	
+	// 페이지 도서 key 검색 
+	const fn_searchKey = function(cPage){
+    	const searchKey = $("#searchOption").val();
+     	const searchWord = $("#searchWord").val();
+		location.assign('${path}/admin/member/SearchMember.do?cPage='+cPage+"&searchOption="+searchKey+"&searchWord="+searchWord);
+	}
+	// 페이지 이동 
+    const fn_paging = function(cPage){
+    	location.assign('${path}/admin/member/memberList.do?cPage='+cPage);
+    }
 	
 	function checkSelectAll()  {
 		  // 전체 체크박스
