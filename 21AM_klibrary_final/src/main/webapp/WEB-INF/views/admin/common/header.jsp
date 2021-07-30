@@ -46,7 +46,7 @@
 
 <body id="ad_body">
     <header id="ad_header">
-            <div id="header_title"><img src='${path}/resources/images/logo.png' width="200px" height="100px" style="border-radius:70%" onclick="javascript:location.assign('${path}')"></div>
+            <div id="header_title"><img src='${path}/resources/images/logo.png' width="200px" height="100px" style="border-radius:70%" onclick="javascript:location.assign('${path}/admin/main.do')"></div>
             <div id="header_options">
                 <div id="header_moveMain"><a href="${path }" style="color:black;text-decoration:none;">메인페이지</a></div>
                 <div id="header_logout" style="cursor:pointer;" onclick="javascript:location.replace('${path}/member/memberLogout.do')">로그아웃</div>
