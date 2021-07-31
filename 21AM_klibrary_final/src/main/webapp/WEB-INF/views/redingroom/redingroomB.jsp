@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>    
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="title" value="열람실이용안내"/>
+	<jsp:param name="title" value=""/>
 </jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
@@ -40,71 +40,94 @@
 	              </li>
 	            </ul>
         	</div>
-        <div id="he_right">
-            <div id="titleheadname">열람실안내 -> 이용안내</div>
-            <div id="contbody">
-                <div class="readingroombody">
-                    <h2>열람실 좌석 이용 안내</h2>
-                    <div>
-                        <h3>로그인</h3>
-                        <ul>
-                            <li>회원가입을 하지 않은 경우 먼저 홈페이지에서 회원가입을 하시기 바랍니다</li>
-                        </ul>
-                        <h3>열람실 선택</h3>
-                        <ul>
-                            <li>원하는 열람실을 선택합니다.</li>
-                        </ul>
-                        <h3>좌석 선택</h3>
-                        <ul>
-                            <li>선택가능한 좌석 중에서 원하는 좌석을 선택합니다.</li>
-                            <li>자리가 다 차서 선택이 불가능할 수 있습니다.</li>
-                        </ul>
-                    </div>
-                    <table class="table">
-                        <tr>
-                            <th class="readingroomtablehead" rowspan="5";>열람실 이용제한</th>
-                            <th class="readingroomtablehead2">구분</th>
-                            <th class="readingroomtablehead2">
-                                30분이상 장기이석<br>
-                                퇴실 미처리,<br>
-                                외출 미복귀
-                            </th>
-                            <th class="readingroomtablehead2">
-                                대리발권<br>
-                                (다수발권)
-                            </th>
-                        </tr>
-                        <tr>
-                            <td class="readingroomred">1회</td>
-                            <td class="readingroomtablehead2">당일퇴실</td>
-                            <td class="readingroomtablehead2">당일퇴실</td>
-                        </tr>
-                        <tr>
-                            <td class="readingroomred">2회</td>
-                            <td class="readingroomtablehead2">당일포함 3일</td>
-                            <td class="readingroomtablehead2">당일포함 3일</td>
-                        </tr>
-                        <tr>
-                            <td class="readingroomred">3회</td>
-                            <td class="readingroomtablehead2">당일포함 7일</td>
-                            <td class="readingroomtablehead2">당일포함 7일</td>
-                        </tr>
-                        <tr>
-                            <td class="readingroomred">4회</td>
-                            <td class="readingroomtablehead2">당일포함 15일</td>
-                            <td class="readingroomtablehead2">당일포함 15일</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div id="he_right">
+            <div id="titleheadname">열람실안내 -> 좌석예약</div>
+	<div style="overflow: overlay; margin: auto;">
+		<div id="contBodyroom">
+			<div id="roomHeaWrap">
+				<div class="rooTabTit">열람실 B</div>
+				<table id="roomHeaTab">
+					<tr>
+						<td>총좌석 : X</td>
+						<td>이용좌석 : X</td>
+						<td>잔여좌석 : X</td>
+						<td>사용불가 : X</td>
+					</tr>
+				</table>
+			</div>
+			<div id="roomWrap">
+				<div id="room-door">출입문</div>
+				<table id="roomTab" style="border-spacing: 1em 0.5em;">
+					<tr>
+						<td onclick="seat();">A1</td>
+						<td onclick="seat();">A2</td>
+						<td onclick="seat();">A3</td>
+						<td onclick="seat();">A4</td>
+						<td onclick="seat();">A5</td>
+						<td onclick="seat();">A6</td>
+						<td onclick="seat();">A7</td>
+						<td onclick="seat();">A8</td>
+						<td onclick="seat();">A9</td>
+						<td onclick="seat();">A10</td>
+					</tr>
+					<tr>
+						<td onclick="seat();">A11</td>
+						<td onclick="seat();">A12</td>
+						<td onclick="seat();">A13</td>
+						<td onclick="seat();">A14</td>
+						<td onclick="seat();">A15</td>
+						<td onclick="seat();">A16</td>
+						<td onclick="seat();">A17</td>
+						<td onclick="seat();">A18</td>
+						<td onclick="seat();">A19</td>
+						<td onclick="seat();">A20</td>
+					</tr>
+					<tr>
+						<td onclick="seat();">A21</td>
+						<td onclick="seat();">A22</td>
+						<td onclick="seat();">A23</td>
+						<td onclick="seat();">A24</td>
+						<td onclick="seat();">A25</td>
+						<td onclick="seat();">A26</td>
+						<td onclick="seat();">A27</td>
+						<td onclick="seat();">A28</td>
+						<td onclick="seat();">A29</td>
+						<td onclick="seat();">A30</td>
+					</tr>
+					<tr>
+						<td onclick="seat();">A31</td>
+						<td onclick="seat();">A32</td>
+						<td onclick="seat();">A33</td>
+						<td onclick="seat();">A34</td>
+						<td onclick="seat();">A35</td>
+						<td onclick="seat();">A36</td>
+						<td onclick="seat();">A37</td>
+						<td onclick="seat();">A38</td>
+						<td onclick="seat();">A39</td>
+						<td onclick="seat();">A40</td>
+					</tr>
+				</table>
+			</div>
+			<div id="seatSta">
+				<button type="button" class="btn btn-primary">사용중</button>
+				<button type="button" class="btn btn-secondary">사용가능</button>
+				<button type="button" class="btn btn-danger">이용불가</button>
+			</div>
+		</div>
+	</div>
+</div>
     </section>
+    
 
 <script>
     
+const seat=()=>{
+    open("${path}/notice/redingroom.do","_blank","height=440,width=660");
+ }
+    
     // navigation 이벤트
     
-    $(function(){
+   $(function(){
 
         const naviList = $(".list-group").children();
         const options = $(".submenu")
@@ -134,9 +157,7 @@
         })
 
     })
-
 </script>
-
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

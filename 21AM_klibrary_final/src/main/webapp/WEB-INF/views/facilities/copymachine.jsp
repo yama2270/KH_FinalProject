@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>    
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="title" value=""/>
+	<jsp:param name="title" value="자료복사"/>
 </jsp:include>
 <body id="ad_body">
     <header id="ad_header">
@@ -28,11 +28,11 @@
 	              </li>
 	              <li class="list-group-item">열람실 안내<i class="fas fa-plus"></i>
 	              	<ul class="submenu">
-	                    <li onclick="location.assign('${path})">열람실 A</li>
-	                    <li onclick="location.assign('${path})">열람실 B</li>
-	                    <li onclick="location.assign('${path})">열람실 C</li>
-	                    <li onclick="location.assign('${path})">열람실 D</li>
-	                    <li onclick="location.assign('${path})">열람실 E</li>
+	                    <li onclick="location.assign('${path}/notice/redingroomA.do')">열람실 A</li>
+	                    <li onclick="location.assign('${path}/notice/redingroomB.do')">열람실 B</li>
+	                    <li onclick="location.assign('${path}/notice/redingroomC.do')">열람실 C</li>
+	                    <li onclick="location.assign('${path}/notice/redingroomD.do')">열람실 D</li>
+	                    <li onclick="location.assign('${path}/notice/redingroomE.do')">열람실 E</li>
 	                    <li onclick="location.assign('${path}/notice/redingroomnotice.do')">열람실이용안내</li>
                     </ul>
 	              </li>

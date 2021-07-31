@@ -112,10 +112,36 @@ public class NoticeController {
 	}
 	
 	
+	@RequestMapping("/notice/redingroomA.do")
+	public String redingroomA() {
+		return "/redingroom/redingroomA";
+	}
+	
+	@RequestMapping("/notice/redingroomB.do")
+	public String redingroomB() {
+		return "/redingroom/redingroomB";
+	}
+	
+	@RequestMapping("/notice/redingroomC.do")
+	public String redingroomC() {
+		return "/redingroom/redingroomC";
+	}
+	
+	@RequestMapping("/notice/redingroomD.do")
+	public String redingroomD() {
+		return "/redingroom/redingroomD";
+	}
+	
+	@RequestMapping("/notice/redingroomE.do")
+	public String redingroomE() {
+		return "/redingroom/redingroomE";
+	}
+	
 	@RequestMapping("/notice/redingroom.do")
 	public String redingroom() {
-		return "/redingroom/redingroom";
+		return "/redingroom/redingroomseat";
 	}
+	
 	@RequestMapping("/notice/redingroomnotice.do")
 	public String redingroomnotice() {
 		return "/redingroom/redingroomnotice";

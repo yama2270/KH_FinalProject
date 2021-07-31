@@ -1,5 +1,14 @@
 @charset "UTF-8";
 /* 공지사항 */
+#contBodyroom{
+	width: 1150px;
+    height: 670px;
+    /* margin: auto; */
+    margin-top: 20px;
+}
+#ad_righttitle{
+	margin-left: 18%;
+}
 #Info_Update_tablenew{
 	border:gray 2px solid;
 	width:1000px;
@@ -382,11 +391,11 @@
 
 /* 좌석정보 */
 .seathead {
-    width : 670px;
-    height : 670px;
-    margin : auto;
-    justify-content : space-between;
-    align-items:flex-end;
+    width: 600px;
+    height: 395px;
+    margin: auto;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 .seattable{
     font-size: 1rem;
