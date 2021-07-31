@@ -95,7 +95,13 @@
 			</li>
 			<li><a href="">열람실</a>
 				<ul id="sub-menu">
-					<li><a href="" aria-label="subemnu">열람실안내</a></li>
+						
+						<li><a href="${path}/notice/redingroomA.do" aria-label="subemnu">열람실 A</a></li>
+	                    <li><a href="${path}/notice/redingroomB.do" aria-label="subemnu">열람실 B</a></li>
+	                    <li><a href="${path}/notice/redingroomC.do" aria-label="subemnu">열람실 C</a></li>
+	                    <li><a href="${path}/notice/redingroomD.do" aria-label="subemnu">열람실 D</a></li>
+	                    <li><a href="${path}/notice/redingroomE.do" aria-label="subemnu">열람실 E</a></li>
+	                    <li><a href="${path}/notice/redingroomnotice.do" aria-label="subemnu">열람실 이용안내</a></li>
 				</ul>
 			</li>
 			<li><a href="">이용안내</a>
