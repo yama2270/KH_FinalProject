@@ -384,7 +384,7 @@
 	</resultMap>
 	<!-- BOOKING HISTORY -->
 	<resultMap type="com.kh.klibrary.member.model.vo.BookingHistory" id="bookingHistory">
-		<id column="BOOKING_HISTORY_NO" property="bookingHistoryNo"></id>
+		<id column="BOOKING_HISTORY_NO" property="bookingHistoryNo"/>
 		<result column="USER_ID" property="userId"/>
 		<result column="BOOKING_NO" property="bookingNo"/>
 		<result column="BOOK_NO" property="bookNo"/>
