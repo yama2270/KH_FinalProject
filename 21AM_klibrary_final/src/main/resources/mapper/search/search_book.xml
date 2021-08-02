@@ -22,6 +22,7 @@
 	       <trim prefix="WHERE" prefixOverrides="AND|OR">
 		 <if test= 'category == "all" and keyword != ""' >
 		   OR BOOK_NAME like '%'||#{keyword}||'%' OR
+		      BOOK_NAME LIKE '%'||REPLACE(#{keyword},' ','')||'%' OR
 		    BOOK_WRITER like '%'||#{keyword}||'%' OR
 		    BOOK_COMPANY like '%'||#{keyword}||'%' OR
 		    ISBN_NO like '%'||#{keyword}||'%'
@@ -48,6 +49,7 @@
 	       <trim prefix="WHERE" prefixOverrides="AND|OR">
 		 <if test= 'category == "all" and keyword != ""' >
 		   OR BOOK_NAME like '%'||#{keyword}||'%' OR
+		   BOOK_NAME LIKE '%'||REPLACE(#{keyword},' ','')||'%' OR
 		    BOOK_WRITER like '%'||#{keyword}||'%' OR
 		    BOOK_COMPANY like '%'||#{keyword}||'%' OR
 		    ISBN_NO like '%'||#{keyword}||'%'
@@ -82,7 +84,8 @@
 				</if>
 					
 			<if test="bookName != null and bookName != ''">
-				AND BOOK_NAME LIKE '%'||#{bookName}||'%' 
+				AND BOOK_NAME LIKE '%'||#{bookName}||'%' OR
+				BOOK_NAME LIKE '%'||REPLACE(#{bookName},' ','')||'%' 
 			</if>
 	
 			<if test="author != null and author != ''">
@@ -124,7 +127,8 @@
 				</if>
 					
 			<if test="bookName != null and bookName != ''">
-				AND BOOK_NAME LIKE '%'||#{bookName}||'%' 
+				AND BOOK_NAME LIKE '%'||#{bookName}||'%' OR
+				BOOK_NAME LIKE '%'||REPLACE(#{bookName},' ','')||'%'
 			</if>
 	
 			<if test="author != null and author != ''">
