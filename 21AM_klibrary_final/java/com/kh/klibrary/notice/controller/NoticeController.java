@@ -113,8 +113,19 @@ public class NoticeController {
 	
 	
 	@RequestMapping("/notice/redingroomA.do")
-	public String redingroomA() {
-		return "/redingroom/redingroomA";
+	public ModelAndView redingroomA(ModelAndView mv) {
+		mv.addObject("list",service.redingroomA());
+		int total=service.totalData();//총좌석갯수
+		int usetotal=service.usetotal();//이용중인좌석갯수
+		int Available=service.Available();//잔여좌석갯수
+		int cannotused=service.cannotused();//사용불가좌석갯수
+		System.out.println(total);
+		mv.addObject("total",total);
+		mv.addObject("usetotal",usetotal);
+		mv.addObject("Available",Available);
+		mv.addObject("cannotused",cannotused);
+		mv.setViewName("redingroom/redingroomA");
+		return mv;
 	}
 	
 	@RequestMapping("/notice/redingroomB.do")
@@ -138,10 +149,19 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/notice/redingroom.do")
-	public String redingroom() {
-		return "/redingroom/redingroomseat";
+	public ModelAndView redingroom(String seatno,ModelAndView mv) {
+		System.out.println(seatno);
+		mv.addObject("list",service.redingroom(seatno));
+		mv.setViewName("redingroom/redingroomAseat");
+		return mv;
 	}
 	
+	@RequestMapping("/notice/redingroombooking")
+	public String redingroombooking(@RequestParam Map param) {
+		String userId="test";
+		System.out.println(param);
+		return "";
+	}
 	@RequestMapping("/notice/redingroomnotice.do")
 	public String redingroomnotice() {
 		return "/redingroom/redingroomnotice";

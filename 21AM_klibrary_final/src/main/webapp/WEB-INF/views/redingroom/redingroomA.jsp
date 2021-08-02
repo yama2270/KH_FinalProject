@@ -48,64 +48,40 @@
 				<div class="rooTabTit">열람실 A</div>
 				<table id="roomHeaTab">
 					<tr>
-						<td>총좌석 : X</td>
-						<td>이용좌석 : X</td>
-						<td>잔여좌석 : X</td>
-						<td>사용불가 : X</td>
+						<td>총좌석 : <c:out value="${total }"/></td>
+						<td>이용좌석 : <c:out value="${usetotal }"/></td>
+						<td>잔여좌석 : <c:out value="${Available }"/></td>
+						<td>사용불가 : <c:out value="${cannotused }"/></td>
 					</tr>
 				</table>
 			</div>
 			<div id="roomWrap">
 				<div id="room-door">출입문</div>
 				<table id="roomTab" style="border-spacing: 1em 0.5em;">
+				<c:choose>
+                    	<c:when test="${not empty list }">
 					<tr>
-						<td onclick="seat();">A1</td>
-						<td onclick="seat();">A2</td>
-						<td onclick="seat();">A3</td>
-						<td onclick="seat();">A4</td>
-						<td onclick="seat();">A5</td>
-						<td onclick="seat();">A6</td>
-						<td onclick="seat();">A7</td>
-						<td onclick="seat();">A8</td>
-						<td onclick="seat();">A9</td>
-						<td onclick="seat();">A10</td>
+                    	<c:forEach var="n" items="${list }" begin="0" end="9"><!-- begin : 시작번호 end : 끝번호 -->
+							<td><c:out value="${n.seatNo }"/></td>
+						</c:forEach>
 					</tr>
 					<tr>
-						<td onclick="seat();">A11</td>
-						<td onclick="seat();">A12</td>
-						<td onclick="seat();">A13</td>
-						<td onclick="seat();">A14</td>
-						<td onclick="seat();">A15</td>
-						<td onclick="seat();">A16</td>
-						<td onclick="seat();">A17</td>
-						<td onclick="seat();">A18</td>
-						<td onclick="seat();">A19</td>
-						<td onclick="seat();">A20</td>
+						<c:forEach var="n" items="${list }" begin="10" end="19">
+							<td><c:out value="${n.seatNo }"/></td>
+						</c:forEach>
 					</tr>
 					<tr>
-						<td onclick="seat();">A21</td>
-						<td onclick="seat();">A22</td>
-						<td onclick="seat();">A23</td>
-						<td onclick="seat();">A24</td>
-						<td onclick="seat();">A25</td>
-						<td onclick="seat();">A26</td>
-						<td onclick="seat();">A27</td>
-						<td onclick="seat();">A28</td>
-						<td onclick="seat();">A29</td>
-						<td onclick="seat();">A30</td>
+						<c:forEach var="n" items="${list }" begin="20" end="29">
+							<td><c:out value="${n.seatNo }"/></td>
+						</c:forEach>
 					</tr>
 					<tr>
-						<td onclick="seat();">A31</td>
-						<td onclick="seat();">A32</td>
-						<td onclick="seat();">A33</td>
-						<td onclick="seat();">A34</td>
-						<td onclick="seat();">A35</td>
-						<td onclick="seat();">A36</td>
-						<td onclick="seat();">A37</td>
-						<td onclick="seat();">A38</td>
-						<td onclick="seat();">A39</td>
-						<td onclick="seat();">A40</td>
+						<c:forEach var="n" items="${list }" begin="30" end="39">
+							<td><c:out value="${n.seatNo }"/></td>
+						</c:forEach>
 					</tr>
+                    	</c:when>
+		        </c:choose>
 				</table>
 			</div>
 			<div id="seatSta">
@@ -120,10 +96,23 @@
     
 
 <script>
-    
-    const seat=()=>{
+	
+	var cells = document.getElementsByTagName('td');
+	for(var i = 0; i < cells.length; i++){
+		
+	    cells[i].addEventListener('click', clickHandler);
+	}
+	
+	function clickHandler()
+	{
+	    open("${path}/notice/redingroom.do?seatno="+this.textContent,"_blank","height=440,width=660");
+	}
+	
+    /* const seat=()=>{
+    	var y = document.getElementById("seatno").innerText;
+    	console.log(y);
        open("${path}/notice/redingroom.do","_blank","height=440,width=660");
-    }
+    } */
     
     // navigation 이벤트
     
