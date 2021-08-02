@@ -35,16 +35,66 @@ String totalData=request.getParameter("totalData");
     <li class="list-group-item" onclick="location.replace('${path}/searchpage/categorySearch.do')">주제별검색</li>
     <li class="list-group-item" onclick="location.replace('${path}/searchpage/wishbook.do')">희망도서신청</li>
   </ul>
+  <br><br>
+   <table class="bestKeywordList">
+     <tr>
+       <td id="keywordTd">
+		<h5 class="tit">기관추천도서</h3>
+		</td>
+	 </tr>
+	 <tr>
+	   <td id="keywordTd2">
+		 <ol class="kwdPop" id="popword" > 		
+			<li>
+				<em class="num themeColor themeBD">1</em>
+				<span class="kwd"></span>				
+				
+			</li>		
+			<li>
+				<em class="num themeColor themeBD">2</em>
+				<span class="kwd"></span>
+				
+			</li>		
+			<li>
+				<em class="num themeColor themeBD">3</em>
+				<span class="kwd"></span>				
+				
+			</li>
+		
+			<li>
+				<em class="num ">4</em>
+				<span class="kwd"></span>				
+				
+			</li>
+		
+			<li>
+				<em class="num ">5</em>
+				<span class="kwd"></span>				
+				
+			</li>		
+			<li>
+				<em class="num ">6</em>
+				<span class="kwd"></span>				
+				
+			</li>		
+			<li>
+				<em class="num ">7</em>
+				<span class="kwd"></span>
+				
+			</li>		
+	    </ol>
+	  </td>
+	</tr>
+  </table>
+
 </div>
+
 
 
 <div class="book-search-container">
   <div class="populor-words">
   
-    <span>인기검색어<i class="fa fa-search"></i></span>&nbsp;&nbsp;
-    <span>책1</span>&nbsp;
-    <span>책2</span>&nbsp;
-    <span>책3</span>
+    <span>추천도서<i class="fa fa-search"></i></span>&nbsp;&nbsp;   
     
   </div>
 
@@ -73,6 +123,7 @@ String totalData=request.getParameter("totalData");
 
 </div>
 <br><br><br><br>
+
 
 <form id="searchResultForm" method="get" action="interestingbook">
 <table id=searchResultTable2>
@@ -314,6 +365,57 @@ function selectAll(selectAll)  {
 		
 	}  */
 
+$(function(){
+	
+	$.ajax({
+		url: 'http://api.kcisa.kr/openapi/service/rest/meta/KPEagen?serviceKey=7768636f-81cf-4cd9-8da9-f46a57b56e89&numOfRows=20&pageNo=1',
+		type: 'GET',
+		dataType: 'xml',
+		timeout: 1000,
+		error: function(){
+			alert('Error loading XML document');
+		},
+		success: function(xml){
+			let arr = [];
+			$(xml).find('item').each(function(){ // xml 문서 item 기준으로 분리후 반복
+				 let creator = $(this).find("creator").text(); 
+				 let title = $(this).find("title").text(); 
+				 let description = $(this).find("description").text(); 
+				 let rights = $(this).find("rights").text(); 
+				 /*var view_text = link + title + description + tag ;
+				 $("#id").append(view_text);   */
+				 let obj= new Object();
+				 obj["creator"] = creator;
+				 obj["title"] = title.replace(/\(.*\)/g, '');
+				 obj["description"] = description;
+				 obj["rights"] = rights;
+				 arr.push(obj);
+				 console.log("creator="+creator+"title="+title+"description="+description+"rights="+rights);
+				 
+			});
+						
+			console.log("테스트"+arr[0]["creator"]);
+			    
+			let str="<a href='${path}/searchpage/bookTotalSearch?keyword="+arr[0]["title"]+"&category=all' id=span0>"+arr[0]["title"]+"</a>&nbsp;&nbsp;&nbsp;"
+			    str+="<a href='${path}/searchpage/bookTotalSearch?keyword="+arr[1]["title"]+"&category=all' id=span1>"+arr[1]["title"]+"</a>&nbsp;&nbsp;&nbsp;"
+			    str+="<a href='${path}/searchpage/bookTotalSearch?keyword="+arr[2]["title"]+"&category=all' id=span2>"+arr[2]["title"]+"</a>&nbsp;&nbsp;&nbsp;"
+			    str+="<a href='${path}/searchpage/bookTotalSearch?keyword="+arr[3]["title"]+"&category=all' id=span3>"+arr[3]["title"]+"</a>&nbsp;&nbsp;&nbsp;"
+			 
+			    
+			$(".populor-words").append(str);
+			    
+			    for(let i=0; i<$(".kwd").length;i++){
+			    	$(".kwd").eq(i).append("<a href='${path}/searchpage/bookTotalSearch?keyword="+arr[i]["title"]+"&category=all'>"+arr[i]["title"]+"</a>");
+			    }
+			
+		
+		}
+		
+	})
+	
+	
+})
+	
 
 	   
 $(function(){
