@@ -19,4 +19,7 @@ public interface AdminStudyroomDao {
 	// 예약현황 조회
 	List<AdminStudyroomBooking> selectBookingList(SqlSessionTemplate session);
 	
+	// 예약삭제
+	int delBooking(SqlSessionTemplate session,int bookingNo);
+	
 }

@@ -18,6 +18,11 @@
 		SELECT * FROM STUDYROOM_BOOKING JOIN MEMBER USING(USER_ID) 
 	</select>
 	
+	<!-- 열람실 예약 삭제  -->
+	<delete id="delBooking" parameterType="_int">
+		DELETE FROM STUDYROOM_BOOKING WHERE BOOKING_NO = #{bookingNo}
+	</delete>
+	
 	<resultMap id="studyroomManageMap" type="adminStudyroomManage">
 		<id column="studyroom_manage_no" property="studyManageNo"/>
 		<result column="study_room_name" property="roomName"/>
