@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Member {
 	private String userId;
 	private String userPassword;

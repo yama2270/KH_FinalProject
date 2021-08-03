@@ -92,7 +92,8 @@
 				
 				// 기간 
 				const labArr = new Array();
-				const gap = highDate.getDate()-rowDate.getDate()
+				const timeGap = highDate.getTime()-rowDate.getTime();
+				const gap = timeGap / (1000*60*60*24);
 				rowDate.setDate(rowDate.getDate()+1);
 				
 				for(i=0;i<gap+1;i++){
@@ -104,10 +105,6 @@
 				const resDate = Object.keys(data);
 				const resCount = Object.values(data);
 				
-				console.log("--------");
-				console.log(resDate);
-				console.log(resCount);
-				console.log("--------");
 				
 				// 결과 배열만들기
 				const datArr = new Array();
@@ -162,9 +159,6 @@
 		url:"${path}/admin/book/countCatBook.do",
 		success:function(data){
 		
-		console.log(Object.keys(data));
-		console.log(Object.values(data));
-			
 		const catBookCan = document.getElementById("catBook").getContext("2d");
 		const catBookCha = new Chart(catBookCan,{
 			type: "doughnut",
@@ -214,7 +208,8 @@
 				
 				// 기간 
 				const labArr = new Array();
-				const gap = highDate.getDate()-rowDate.getDate()
+				const timeGap = highDate.getTime()-rowDate.getTime();
+				const gap = timeGap / (1000*60*60*24);
 				rowDate.setDate(rowDate.getDate()+1);
 				
 				for(i=0;i<gap+1;i++){
@@ -392,7 +387,8 @@
 				
 				// 기간 
 				const labArr = new Array();
-				const gap = highDate.getDate()-rowDate.getDate()
+				const timeGap = highDate.getTime()-rowDate.getTime();
+				const gap = timeGap/(1000*60*60*24);
 				rowDate.setDate(rowDate.getDate()+1);
 				
 				for(i=0;i<gap+1;i++){
@@ -491,7 +487,10 @@
 				
 				// 기간 
 				const labArr = new Array();
-				const gap = highDate.getDate()-rowDate.getDate()
+				
+				// 날짜의 차이를 구하자 
+				const timeGap = highDate.getTime()-rowDate.getTime();
+				const gap = timeGap/(1000*60*60*24);
 				rowDate.setDate(rowDate.getDate()+1);
 				
 				for(i=0;i<gap+1;i++){
@@ -530,7 +529,7 @@
 				$("#renCanWr").find("canvas").attr("id","renBook"+(++canNo));
 				let newCan = document.getElementById("renBook"+canNo);
 				let newCon = newCan.getContext("2d"); */
-								
+				
 				// chart 삭제
 				visCha.destroy();
 				let newCan = document.getElementById("visChart");
