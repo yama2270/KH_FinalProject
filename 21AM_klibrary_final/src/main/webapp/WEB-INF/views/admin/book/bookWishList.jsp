@@ -62,14 +62,11 @@
 					<td><c:out value="${ w.bookCompany}"/></td>
 					<td><c:out value="${ w.bookDate}"/></td>
 					<td><c:out value="${ w.bookPrice}"/></td>
-					
-					
-		
 					<td><button type="button" class="btn btn-outline-secondary">구입</button></td>
 					<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
 				</tr>
-				</c:forEach>
-				</c:when>
+							</c:forEach>
+						</c:when>
 				</c:choose>
 			</table>
 			<div id="bookWishListBtn">
