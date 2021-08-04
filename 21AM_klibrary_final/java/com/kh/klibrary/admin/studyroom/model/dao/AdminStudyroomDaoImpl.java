@@ -31,4 +31,10 @@ public class AdminStudyroomDaoImpl implements AdminStudyroomDao{
 		return session.selectList("adminStudyroom.selectBookingList");
 	}
 	
+	// 예약 삭제
+	@Override
+	public int delBooking(SqlSessionTemplate session,int bookingNo) {
+		return session.delete("adminStudyroom.delBooking",bookingNo);
+	}
+	
 }

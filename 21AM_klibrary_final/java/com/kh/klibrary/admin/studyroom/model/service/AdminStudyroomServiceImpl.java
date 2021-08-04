@@ -39,5 +39,10 @@ public class AdminStudyroomServiceImpl implements AdminStudyroomService {
 		return dao.selectBookingList(session);
 	}
 	
+	// 예약삭제
+	@Override
+	public int delBooking(int bookingNo) {
+		return dao.delBooking(session,bookingNo);
+	}
 	
 }

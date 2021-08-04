@@ -17,5 +17,7 @@ public interface AdminStudyroomService {
 	//열람실 예약리스트
 	List<AdminStudyroomBooking> selectBookingList();
 	
+	// 예약 삭제
+	int delBooking(int bookingNo);
 	
 }

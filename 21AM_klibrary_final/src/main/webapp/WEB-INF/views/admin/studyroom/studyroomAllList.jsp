@@ -38,7 +38,7 @@
 						<td>${s.toUsSeat }</td>
 						<td>${s.toReSeat }</td>
 						<td>${s.toNaSeat }</td>
-						<td>09:00~23:00</td>
+						<td>09:00 ~ 23:00</td>
 					</tr>
 					</c:forEach>
 				</table>
@@ -67,7 +67,7 @@
 						<td>${b.startTime }</td>
 						<td>${b.endTime }</td>
 						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+						<td><button type="button" class="btn btn-outline-secondary" onclick="delBooking(this);" value="${b.bookingNo }">삭제</button></td>
 					</tr>
 					</c:forEach>
 				</table>
@@ -85,6 +85,16 @@
         // ul li 배경화면 
         $(".navOptions").eq(3).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
     })
+    
+    
+    // 열람실 예약 삭제하기 
+    const delBooking = function(e){
+    	
+    	if(confirm('예약을 삭제하시겠습니까?')){
+    		location.href = '${path}/admin/studyroom/delBooking.do?bookingNo='+$(e).val();
+    	}
+    	
+    }
     
 	</script>
 

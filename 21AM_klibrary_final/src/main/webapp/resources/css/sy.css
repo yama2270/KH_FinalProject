@@ -311,6 +311,14 @@ background-color:blue;
   margin-left:0;
   
   }
+  #recentpopword{
+  
+  }
+  .btnClear {
+      border: none;
+      outline: none;  
+
+}
   #keywordTd{
   background-color:white;
   border : 1px solid grey;
@@ -335,7 +343,7 @@ background-color:blue;
  
   height:90%;
   }
-  #popword li{
+  #popword li,#recentpopword li{
   list-style:none;
   text-align:left;
   }
