@@ -16,60 +16,37 @@
 				<div id="usageHeader">열람실 조회</div>
 				<table id="useHeaTab">
 					<tr>
-						<td>총좌석 : X</td>
-						<td>이용좌석 : X</td>
-						<td>잔여좌석 : X</td>
-						<td>사용불가 : X</td>
+						<td>총좌석 : 160</td>
+						<td>이용좌석 : ${toManage.TOUSESEAT }</td>
+						<td>잔여좌석 : ${toManage.TORESEAT }</td>
+						<td>사용불가 : ${toManage.TONASEAT }</td>
 					</tr>
 				</table>
 				<table id="useTab">
 					<tr>
 						<th>열람실</th>
 						<th>총좌석</th>
-						<th>사용좌석</th>
+						<th>이용좌석</th>
 						<th>잔여좌석</th>
 						<th>사용불가</th>
 						<th>이용시간</th>
 					</tr>
+					<c:forEach items="${manageList }" var="s">
 					<tr>
-						<td>열람실</td>
-						<td>총좌석</td>
-						<td>사용좌석</td>
-						<td>잔여좌석</td>
-						<td>사용불가</td>
-						<td>이용시간</td>
+						<td>${s.roomName }</td>
+						<td>${s.toSeat }</td>
+						<td>${s.toUsSeat }</td>
+						<td>${s.toReSeat }</td>
+						<td>${s.toNaSeat }</td>
+						<td>09:00 ~ 23:00</td>
 					</tr>
-					<tr>
-						<td>열람실</td>
-						<td>총좌석</td>
-						<td>사용좌석</td>
-						<td>잔여좌석</td>
-						<td>사용불가</td>
-						<td>이용시간</td>
-					</tr>
-					<tr>
-						<td>열람실</td>
-						<td>총좌석</td>
-						<td>사용좌석</td>
-						<td>잔여좌석</td>
-						<td>사용불가</td>
-						<td>이용시간</td>
-					</tr>
-					<tr>
-						<td>열람실</td>
-						<td>총좌석</td>
-						<td>사용좌석</td>
-						<td>잔여좌석</td>
-						<td>사용불가</td>
-						<td>이용시간</td>
-					</tr>
+					</c:forEach>
 				</table>
 			</div>
 			<div id="resWrap">
 				<div id="resHeader">예약현황</div>
 				<table id="resTab">
 					<tr>
-						<th style="width: 60px;"><input type="checkbox"></th>
 						<th>아이디</th>
 						<th>이름</th>
 						<th>예약번호</th>
@@ -80,79 +57,19 @@
 						<th style="width: 80px;">수정</th>
 						<th style="width: 80px;">삭제</th>
 					</tr>
+					<c:forEach var="b" items="${bookingList }">
 					<tr>
-						<td><input type="checkbox"></td>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>예약번호</td>
-						<td>열람실</td>
-						<td>좌석번호</td>
-						<td>시작시간</td>
-						<td>종료시간</td>
+						<td>${b.member.userId }</td>
+						<td>${b.member.userName }</td>
+						<td>${b.bookingNo }</td>
+						<td>${b.roomName }</td>
+						<td>${b.seatNo }</td>
+						<td>${b.startTime }</td>
+						<td>${b.endTime }</td>
 						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
+						<td><button type="button" class="btn btn-outline-secondary" onclick="delBooking(this);" value="${b.bookingNo }">삭제</button></td>
 					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>예약번호</td>
-						<td>열람실</td>
-						<td>좌석번호</td>
-						<td>시작시간</td>
-						<td>종료시간</td>
-						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>예약번호</td>
-						<td>열람실</td>
-						<td>좌석번호</td>
-						<td>시작시간</td>
-						<td>종료시간</td>
-						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>예약번호</td>
-						<td>열람실</td>
-						<td>좌석번호</td>
-						<td>시작시간</td>
-						<td>종료시간</td>
-						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>예약번호</td>
-						<td>열람실</td>
-						<td>좌석번호</td>
-						<td>시작시간</td>
-						<td>종료시간</td>
-						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>예약번호</td>
-						<td>열람실</td>
-						<td>좌석번호</td>
-						<td>시작시간</td>
-						<td>종료시간</td>
-						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
-						<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
-					</tr>
-					
+					</c:forEach>
 				</table>
 			</div>
 		</div>
@@ -168,6 +85,16 @@
         // ul li 배경화면 
         $(".navOptions").eq(3).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
     })
+    
+    
+    // 열람실 예약 삭제하기 
+    const delBooking = function(e){
+    	
+    	if(confirm('예약을 삭제하시겠습니까?')){
+    		location.href = '${path}/admin/studyroom/delBooking.do?bookingNo='+$(e).val();
+    	}
+    	
+    }
     
 	</script>
 

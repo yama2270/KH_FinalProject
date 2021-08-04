@@ -305,6 +305,57 @@ background-color:blue;
   #bookSearchForm{
      text-align:center;
    }
+  .bestKeywordList{
+  height:43%;
+  width:80%;
+  margin-left:0;
+  
+  }
+  #recentpopword{
+  
+  }
+  .btnClear {
+      border: none;
+      outline: none;  
+
+}
+  #keywordTd{
+  background-color:white;
+  border : 1px solid grey;
+  border-top: 0.5px solid grey;
+  border-bottom: 0.1px solid grey;
+  border-collapse : collapse;
+  text-align:left;
+  padding:4px 0 0 20px;
+  
+  }
+  #keywordTd2{
+  background-color:#F6F6F6;
+  border : 1px solid grey;
+  border-top:0 ;
+  border-collapse : collapse;
+  padding-top:13px;
+  padding-left:0px;
+  margin-left:0;
+  height:75%;
+  }
+  #popword{
+ 
+  height:90%;
+  }
+  #popword li,#recentpopword li{
+  list-style:none;
+  text-align:left;
+  }
+  .num themeColor themeBD,.num{
+  float:left;
+  margin-right:15px;
+ 
+  }
+  .kwd>span>a{
+  width:100%;
+  text-align:left;
+  }
   
   
   .populor-words{
