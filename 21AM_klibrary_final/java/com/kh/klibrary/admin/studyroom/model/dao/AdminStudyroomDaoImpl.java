@@ -3,10 +3,10 @@ package com.kh.klibrary.admin.studyroom.model.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroom;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomManage;
 
@@ -36,5 +36,17 @@ public class AdminStudyroomDaoImpl implements AdminStudyroomDao{
 	public int delBooking(SqlSessionTemplate session,int bookingNo) {
 		return session.delete("adminStudyroom.delBooking",bookingNo);
 	}
+	
+	// 열람실A 현황조회
+	public List<Map> selectInfoA(SqlSessionTemplate session) {
+		return session.selectList("adminStudyroom.selectInfoA");
+	}
+	
+	// 열람실A 좌석조회
+	public List<AdminStudyroom> selectListA(SqlSessionTemplate session){
+		return session.selectList("adminStudyroom.selectListA");
+	}
+	
+	
 	
 }

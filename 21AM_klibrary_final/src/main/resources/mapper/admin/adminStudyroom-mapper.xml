@@ -23,6 +23,19 @@
 		DELETE FROM STUDYROOM_BOOKING WHERE BOOKING_NO = #{bookingNo}
 	</delete>
 	
+	<!-- 열람실A 현황조회 -->
+	<select id="selectInfoA" resultType="Map">
+		SELECT USAGE_STATUS AS STATUS,COUNT(*) AS COUNT 
+		FROM STUDYROOM_A
+		GROUP BY USAGE_STATUS
+	</select>
+	
+	<!-- 열람실A  -->
+	<select id="selectListA" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_A LEFT OUTER JOIN MEMBER USING(USER_ID)		
+	</select>
+	
 	<resultMap id="studyroomManageMap" type="adminStudyroomManage">
 		<id column="studyroom_manage_no" property="studyManageNo"/>
 		<result column="study_room_name" property="roomName"/>
@@ -36,6 +49,25 @@
 		<id column="booking_no" property="bookingNo"/>
 		<result column="studyroom_type" property="roomName"/>
 		<result column="seat_no" property="seatNo"/>
+		<result column="start_time" property="startTime"/>
+		<result column="end_time" property="endTime"/>
+		<result column="usage_date" property="usageDate"/>
+		<collection property="member" ofType="member">
+			<id column="user_id" property="userId"/>
+			<result column="user_password" property="userPassword"/>
+			<result column="user_name" property="userName"/>
+			<result column="email" property="email"/>
+			<result column="birth_date" property="birthDate"/>
+			<result column="address" property="address"/>
+			<result column="phone" property="phone"/>
+			<result column="signup_date" property="signupDate"/>
+		</collection>
+	</resultMap>
+	
+	<resultMap id="adminStudyroomMap" type="adminStudyroom">
+		<id column="seat_no" property="seatNo"/>
+		<result column="usage_status" property="usageStatus"/>
+		<result column="booking_no" property="bookingNo"/>
 		<result column="start_time" property="startTime"/>
 		<result column="end_time" property="endTime"/>
 		<result column="usage_date" property="usageDate"/>

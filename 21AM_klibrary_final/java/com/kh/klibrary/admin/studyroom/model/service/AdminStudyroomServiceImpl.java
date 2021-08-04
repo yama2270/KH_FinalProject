@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.klibrary.admin.studyroom.model.dao.AdminStudyroomDao;
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroom;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomManage;
 
@@ -44,5 +45,17 @@ public class AdminStudyroomServiceImpl implements AdminStudyroomService {
 	public int delBooking(int bookingNo) {
 		return dao.delBooking(session,bookingNo);
 	}
+	
+	
+	// A열람실 현황조회
+	public List<Map> selectInfoA() {
+		return dao.selectInfoA(session);
+	}
+	
+	// A열람실 좌석조회
+	public List<AdminStudyroom> selectListA(){
+		return dao.selectListA(session);
+	}
+	
 	
 }
