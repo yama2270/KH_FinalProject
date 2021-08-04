@@ -345,8 +345,9 @@ String totalData=request.getParameter("totalData");
   $(function(){	
 	     let keywordArray=[];
 	     
-	     if(getCookie("searchKeyword")!=null){
-		    keywordArray= getCookie("searchKeyword").split(',');
+	     if(getCookie("searchKeyword")!=null&&getCookie("searchKeyword")!=''){
+		    keywordArray= getCookie("searchKeyword").split(',');		    
+		    
 	     }else{
 	    	 console.log($("#recentKeywordList"));
 			 $("#recentKeywordList").hide(); 
@@ -375,7 +376,7 @@ String totalData=request.getParameter("totalData");
 		 
 		 setCookie("searchKeyword",keywordArray,3);
 		 
-		 console.log(keywordArray[num]);
+		 
 	
 	  
   }
