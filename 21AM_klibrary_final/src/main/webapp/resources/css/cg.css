@@ -341,7 +341,7 @@ section#content		{min-height:600px;}
 	width:1470px;
 	margin-left:10px;
 	margin-top:30px;
-	height:140px;
+	height:160px;
 	background-color:lightgray;
 }
 #Room_Record_Container ul{
@@ -351,7 +351,7 @@ section#content		{min-height:600px;}
 #Room_Record_Container button{
 	float:right;
 	margin-right:20px;
-	margin-top:80px;
+	margin-top:100px;
 }
 #Room_Record_Container2{
 	margin-top:50px;

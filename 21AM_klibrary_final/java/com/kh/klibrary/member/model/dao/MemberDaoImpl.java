@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
 import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.Lending;
@@ -159,4 +160,15 @@ public class MemberDaoImpl implements MemberDao {
 		return session.insert("member.countUser",today);
 	}
 	
+	@Override
+	public AdminStudyroomBooking selectSRBooing(SqlSessionTemplate session, String userId) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectSRBooking", userId);
+	}
+	
+	@Override
+	public int cancelSRBooking(SqlSessionTemplate session, String bookingNo) {
+		// TODO Auto-generated method stub
+		return session.delete("member.cancelSRBooking", bookingNo);
+	}
 }

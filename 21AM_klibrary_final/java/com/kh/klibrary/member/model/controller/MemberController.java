@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.member.model.service.MemberService;
 import com.kh.klibrary.member.model.vo.Member;
@@ -343,8 +344,27 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberReadingRoom.do")
-	public String memberReadingRoom() {
+	public String memberReadingRoom(@ModelAttribute("loginMember") Member m , Model model,
+									@RequestParam(value="cPage", defaultValue="1") int cPage,
+									@RequestParam(value="numPerPage", defaultValue="5") int numPerPage) {
+		AdminStudyroomBooking srb = service.selectSRBooing(m.getUserId());
+		
+		model.addAttribute("srb", srb);
 		return "member/memberReadingRoom";
+	}
+	
+	@RequestMapping("/member/cancelSRBooking.do")
+	public String cancelSRBooking(@RequestParam String bookingNo, Model model) {
+		String msg="예약 취소에 실패하였습니다.";
+		String loc="/member/memberReadingRoom.do";
+		int result=service.cancelSRBooking(bookingNo);
+		if(result>0) {
+			msg="예약을 취소하였습니다.";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "common/msg";
 	}
 	
 	@RequestMapping("/member/membershipCard.do")

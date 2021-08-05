@@ -66,11 +66,11 @@
 			<button type="button" class="OKCCbtn" onclick="location.assign('${path }/')">취소</button>
 		</div>
 	</form>
-	<div id="Ok_Cancel_btn">
+	<%-- <div id="Ok_Cancel_btn">
 		<button type="button" class="btn btn-outline-primary" onclick="location.assign('${path }/member/memberTestLogin.do')">TEST로그인</button>
 		<button type="button" class="btn btn-outline-danger" onclick="location.replace('${path }/member/memberTestlogout.do')">로그아웃</button>
 		<P>현재 TEST 로그인 : ${loginMember.userName}</P>
-	</div>
+	</div> --%>
 </div>
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
