@@ -84,6 +84,12 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return dao.redingroom(session,seatno);
 	}
+
+	@Override
+	public int redingroombooking(Map param) {
+		// TODO Auto-generated method stub
+		return dao.redingroombooking(session,param);
+	}
 	
 	
 	

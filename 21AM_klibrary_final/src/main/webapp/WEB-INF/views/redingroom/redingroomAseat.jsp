@@ -9,7 +9,8 @@
 <body id="ad_body">
     <div class="seathead">
         <h2>좌석정보</h2>
-        <form class="d-flex" action="${path }/notice/redingroombooking" method="post">
+        <form class="d-flex" action="${path }/notice/redingroombooking.do" method="post">
+        
         <table class="seattable">
             <tr>
                 <th class="seattablehead" colspan="2">열람실A
@@ -18,7 +19,7 @@
             </tr>
             <tr>
                 <td class="seattablehead">좌석번호</td>
-                <td class="seattablehead" name="seatno">
+                <td class="seattablehead">
                 	<input type="hidden" name="seatno" value="${list.seatNo }">
                 	<c:out value="${list.seatNo }"/>
                 </td>
@@ -69,6 +70,7 @@
                 <td class="seattablehead">이용상태</td>
                 <td class="seattablehead">
                 	<input type="hidden" name="usagestatus" value="${list.usageStatus }">
+                	<input type="hidden" name="userid" value="${loginMember.userId }">
                 	<c:out value="${list.usageStatus }"/>
                 </td>
             </tr>
@@ -86,6 +88,9 @@
     function test(){
         close();
     }
+    
+  
+    
 </script>
 
 </body>

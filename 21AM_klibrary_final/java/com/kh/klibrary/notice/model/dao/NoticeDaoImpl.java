@@ -80,6 +80,12 @@ public class NoticeDaoImpl implements NoticeDao {
 		return session.selectOne("redingroomA.redingroom",seatno);
 	}
 
+	@Override
+	public int redingroombooking(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("redingroomA.redingroombooking",param);
+	}
+
 	
 
 	

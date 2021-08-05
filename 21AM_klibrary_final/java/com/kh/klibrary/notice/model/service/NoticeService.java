@@ -19,6 +19,7 @@ public interface NoticeService {
 	int Available();
 	int cannotused();
 	StudyRoomA redingroom(String seatno);
+	int redingroombooking(Map param);
 	
 
 }

@@ -32,5 +32,20 @@
   	<select id="redingroom" resultMap="studyroomaMap">
   		SELECT * FROM STUDYROOM_A WHERE SEAT_NO LIKE #{seatno}
   	</select>
+  	
+  	<resultMap type="studyroombooking" id="studyroombookingMap">
+	  	<id column="BOOKING_NO" property="bookingNo"/>
+	  	<result column="USER_ID" property="userId"/>
+	  	<result column="STUDYROOM_TYPE" property="studyroomType"/>
+	  	<result column="SEAT_NO" property="seatNo"/>
+	  	<result column="START_TIME" property="startTime"/>
+	  	<result column="END_TIME" property="endTime"/>
+	  	<result column="USAGE_DATE" property="usageDate"/>
+  	</resultMap>
+  	
+  	<insert id="redingroombooking" parameterType="Map">
+  		INSERT INTO STUDYROOM_BOOKING
+  		VALUES(SEQ_BOOKING_NO.NEXTVAL,#{userid},#{studyroomtype},#{seatno},#{searchOption},#{searchOption2},SYSDATE)
+  	</insert>
 	
 </mapper>

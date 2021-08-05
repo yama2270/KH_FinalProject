@@ -23,7 +23,7 @@
 			<typeAlias type="com.kh.klibrary.admin.member.vo.AdminMember" alias="admin"/>
 			<typeAlias type="com.kh.klibrary.admin.member.vo.AdminMemberDrop" alias="admindrop"/>
 			<typeAlias type="com.kh.klibrary.studyroom.model.vo.StudyRoomA" alias="redingroomA"/>
-			
+			<typeAlias type="com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing" alias="studyroombooking"/>
 			
 			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo" alias="faq"/> -->
 			<typeAlias type="com.kh.klibrary.faq.model.vo.Faq" alias="faq"/>

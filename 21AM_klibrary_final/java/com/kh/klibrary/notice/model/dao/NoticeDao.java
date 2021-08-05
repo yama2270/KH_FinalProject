@@ -21,6 +21,7 @@ public interface NoticeDao {
 	int cannotused(SqlSessionTemplate session);
 	List<StudyRoomA> redingroomA(SqlSessionTemplate session);
 	StudyRoomA redingroom(SqlSessionTemplate session,String seatno);
+	int redingroombooking(SqlSessionTemplate session,Map param);
 	
 
 }

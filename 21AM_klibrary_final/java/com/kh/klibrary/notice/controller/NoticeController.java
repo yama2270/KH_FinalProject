@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -151,16 +152,20 @@ public class NoticeController {
 	@RequestMapping("/notice/redingroom.do")
 	public ModelAndView redingroom(String seatno,ModelAndView mv) {
 		System.out.println(seatno);
+		
 		mv.addObject("list",service.redingroom(seatno));
 		mv.setViewName("redingroom/redingroomAseat");
 		return mv;
 	}
 	
-	@RequestMapping("/notice/redingroombooking")
-	public String redingroombooking(@RequestParam Map param) {
-		String userId="test";
+	@RequestMapping("/notice/redingroombooking.do")
+	public String redingroombooking(@RequestParam Map param, Model model) {
 		System.out.println(param);
-		return "";
+		int result=service.redingroombooking(param);
+		model.addAttribute("msg",result>0?"예약되었습니다":"예약 실패 다시시도해주세요");
+		model.addAttribute("script","window.close();");
+		//model.addAttribute("loc","/notice/redingroomA.do");
+		return "common/msg";
 	}
 	@RequestMapping("/notice/redingroomnotice.do")
 	public String redingroomnotice() {

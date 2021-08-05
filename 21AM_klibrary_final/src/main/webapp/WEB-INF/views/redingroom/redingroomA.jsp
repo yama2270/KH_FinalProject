@@ -62,7 +62,10 @@
                     	<c:when test="${not empty list }">
 					<tr>
                     	<c:forEach var="n" items="${list }" begin="0" end="9"><!-- begin : 시작번호 end : 끝번호 -->
-							<td><c:out value="${n.seatNo }"/></td>
+							<td class="test">
+								<c:out value="${n.seatNo }"/>
+								<input type="hidden" id="test" value="${n.usageStatus }">
+							</td>
 						</c:forEach>
 					</tr>
 					<tr>
@@ -88,6 +91,7 @@
 				<button type="button" class="btn btn-primary">사용중</button>
 				<button type="button" class="btn btn-secondary">사용가능</button>
 				<button type="button" class="btn btn-danger">이용불가</button>
+				
 			</div>
 		</div>
 	</div>
@@ -99,13 +103,14 @@
 	
 	var cells = document.getElementsByTagName('td');
 	for(var i = 0; i < cells.length; i++){
-		
 	    cells[i].addEventListener('click', clickHandler);
 	}
 	
 	function clickHandler()
 	{
-	    open("${path}/notice/redingroom.do?seatno="+this.textContent,"_blank","height=440,width=660");
+		var userid="${loginMember.userId}";
+		console.log(userid);
+	    open("${path}/notice/redingroom.do?seatno="+this.textContent+'&userid='+userid,"_blank","height=440,width=660");
 	}
 	
     /* const seat=()=>{
@@ -144,8 +149,14 @@
             $(e.target).css({"font-size":"20px","fontWeight":"bold"})
             return false;
         })
-
     })
+    var cells = $("#test").val();
+	for(var i = 0; i < cells.length; i++){
+	   console.log(cells);
+	   
+	   
+	}
+    
 </script>
 
 
