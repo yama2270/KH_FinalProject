@@ -49,7 +49,7 @@
                         <p class="mark-required">*</p>
                       </div>
                       <div>
-                        <input type="password" name="userPassword" id="userPassword" class="regiester-form" maxlength="20">
+                        <input type="password" name="userPassword" id="userPassword" class="regiester-form" maxlength="20" required>
                         <p class="regiester-guide">(영문자/숫자 중 2가지 이상 조합, 8자~20자)</p>
                       </div>
                     </div>
@@ -58,7 +58,7 @@
                         <label>비밀번호 확인</label>
                         <p class="mark-required">*</p>
                       </div>
-                      <input type="password" name="userPasswordCheck" id="userPasswordCheck" class="regiester-form" maxlength="20">
+                      <input type="password" name="userPasswordCheck" id="userPasswordCheck" class="regiester-form" maxlength="20" required>
                     </div>
                     <div class="regiester-container">
                       <div class="container-label">
@@ -126,7 +126,7 @@
     <!-- As a heading -->
     
     <script>
-    
+  
     function findAddr(){
 	    new daum.Postcode({
 	        oncomplete: function(data) {

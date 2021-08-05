@@ -26,12 +26,13 @@
 			<div id="roomWrap">
 				<div id="room-door">출입문</div>
 				<table id="roomTab" style="border-spacing: 1em 0.5em;">
-				<c:forEach var="ㅣ" items="${listStudy }">
-					<h1>되니?</h1>
-					<c:forEach var="s" items="${listStudy }">
-						<h5>안되</h5>
-					</c:forEach>	
-				</c:forEach> 
+				<c:forEach begin="0" end="3" varStatus="status">
+				<tr>
+					<c:forEach begin="${status.index*10 }" end="${status.index==0?'':status.index }9" var="l" items="${listStudy }">
+						<td><a href="${path }/">${l.seatNo }</a></td>
+					</c:forEach>
+				</tr>
+				</c:forEach>
 					<tr>
 						<td>A1</td>
 						<td>A2</td>
