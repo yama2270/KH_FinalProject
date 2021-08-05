@@ -43,6 +43,6 @@
 			<!-- studyroom 객체 -->
 			<typeAlias type="com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomManage" alias="adminStudyroomManage"/>
 			<typeAlias type="com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking" alias="adminStudyroomBooking"/>
-			
+			<typeAlias type="com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroom" alias="adminStudyroom"/>
 	</typeAliases> 
 </configuration>

@@ -50,7 +50,7 @@
 						<c:when test="${not empty list }">
 							<c:forEach var="l" items="${list }">
 								<tr>
-									<td><input type="checkbox" /></td>
+									<td><input type="checkbox" name="checkFl" class="checkFl" value="${l.bookingNo}"/></td>
 									<td><c:out value="${l.bookingNo}"/></td>
 									<td><c:out value="${l.bookNo}"/></td>
 									<td><c:out value="${l.book.bookInfo.bookName}"/></td>
@@ -78,7 +78,7 @@
 					</c:choose>
 				</table>
 				<div id="bookReservedListBtn">
-					<button type="button" class="btn btn-outline-secondary">예약취소</button>
+					<button id="delReservedBtn" type="button" class="btn btn-outline-secondary">예약취소</button>
 				</div>
 			</div>
 			
@@ -105,8 +105,6 @@
 			<div id="contentTabWrap"> <!-- 예약중 리스트-->
 				<table id="bookReservedListTab" class="table table-hover">
 					<tr>
-						<th style="width: 50px; line-height: 18px;"><input
-							type="checkbox" /></th>
 						<th style="width: 120px;">예약내역번호</th>
 						<th style="width: 100px;">&nbsp;예약번호 <i
 							class="fas fa-arrows-alt-v"></i></th>
@@ -120,7 +118,6 @@
 						<c:when test="${not empty hlist }">
 							<c:forEach var="l" items="${hlist }">
 								<tr>
-									<td><input type="checkbox" /></td>
 									<td><c:out value="${l.bookingHistoryNo }"/></td>
 									<td><c:out value="${l.bookingNo }"/></td>
 									<td><c:out value="${l.bookNo }"/></td>
@@ -133,7 +130,6 @@
 						</c:when>
 						<c:otherwise>
 							<tr>
-								<td><input type="checkbox" /></td>
 								<td>예약내역번호</td>
 								<td>예약번호</td>
 								<td>도서번호</td>
@@ -168,6 +164,23 @@
     const fn_paging = function(cPage){
     	location.assign('${path}/admin/book/bookReservedList.do?cPage='+cPage);
     }
+    
+    //예약취소버튼
+    $("button[id=delReservedBtn]").click(e=>{
+    	const checkItem=$("input:checkbox[name=checkFl]:checked")
+    	
+    	if(checkItem.length!=0){
+    		if(confirm("취소하시겠습니까?")){
+    			let checkArr = new Array();
+    			$.each($(checkItem),function(i,v){
+    				checkArr.push($(v).val());
+    			})
+    			location.href="${path}/admin/book/deleteReservedCheck.do?bookingNo="+checkArr;
+    		}
+    	} else{
+    		alert("예약도서를 선택해주세요");
+    	}
+    })
 	</script>
 
 <jsp:include page="/WEB-INF/views/admin/common/footer.jsp" />

@@ -17,7 +17,7 @@
                         <div class="container-fluid" style="padding-right:0px;">
                             <form class="d-flex" action="${path }/admin/book/searchKeyBook.do" method="post">
                                 <select id="searchOption" name="searchOption" class="form-select" aria-label="Default select example" required>
-                                    <option value="" ${param.searchOption != null? "":"selected"}selected>검색옵션</option>
+                                    <option value="" ${param.searchOption != null? "":"selected"}>검색옵션</option>
                                     <option value="book_no" ${param.searchOption == "book_no"? "selected":""}>도서번호</option>
                                     <option value="isbn_no" ${param.searchOption == "isbn_no"? "selected":""}>ISBN</option>
                                     <option value="book_name" ${param.searchOption == "book_name"? "selected":""}>도서명</option>

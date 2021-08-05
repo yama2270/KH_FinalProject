@@ -3,6 +3,8 @@ package com.kh.klibrary.admin.book.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.websocket.Session;
+
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -107,18 +109,46 @@ public class AdminBookDaoImpl implements AdminBookDao {
 		return session.selectOne("adminBook.selectRentalCount");
 	}
 	
+	//대출도서 내역 리스트
+	@Override
+	public List<LendingHistory> selectRentalHList(SqlSessionTemplate session, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.selectRentalHList", null, new RowBounds((cPage-1)*numPerPage,numPerPage));
+	}
+	
+	//대출도서 내역 카운트
+	@Override
+	public int selectRentalHCount(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("adminBook.selectRentalHCount");
+	}
+	
 	//대출도서 검색 리스트
 	@Override
-	public List<Lending> SearchRentalList(SqlSessionTemplate session, Map param, int cPage, int numPerPage) {
+	public List<Lending> searchRentalList(SqlSessionTemplate session, Map param, int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
-		return session.selectList("adminBook.SearchRentalList",param);
+		return session.selectList("adminBook.searchRentalList",param, new RowBounds((cPage-1)*numPerPage,numPerPage));
 	}
 	
 	//대출도서 검색 카운트
 	@Override
-	public int SearchRentalCount(SqlSessionTemplate session, Map param) {
+	public int searchRentalCount(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectOne("adminBook.SearchRentalCount",param);
+		return session.selectOne("adminBook.searchRentalCount",param);
+	}
+	
+	//대출도서내역 검색 리스트
+	@Override
+	public List<LendingHistory> searchRentalHList(SqlSessionTemplate session, Map param, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.searchRentalHList",param, new RowBounds((cPage-1)*numPerPage,numPerPage));
+	}
+	
+	//대출도서내역 검색 카운트
+	@Override
+	public int searchRentalHCount(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("adminBook.searchRentalHCount",param);
 	}
 	
 	//대출도서 연장
@@ -210,6 +240,25 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	public int cancelReserved(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
 		return session.delete("adminBook.cancelReserved", param);
+	}
+	//예약도서 체크 카운트
+	@Override
+	public List<Booking> selectDRCList(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.selectDRCList", map);
+	}
+	//예약도서 체크 삭제
+	@Override
+	public int deleteReservedCheck(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.delete("adminBook.deleteReservedCheck", map);
+	}
+	
+	//예약도서 체크 내역삽입
+	@Override
+	public int insertDRCList(SqlSessionTemplate session, List list) {
+		// TODO Auto-generated method stub
+		return session.insert("adminBook.insertDRCList", list);
 	}
 	
 	// 카테고리별 도서 수 

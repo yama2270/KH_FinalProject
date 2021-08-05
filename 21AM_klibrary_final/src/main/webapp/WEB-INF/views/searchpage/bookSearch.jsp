@@ -317,20 +317,20 @@ String totalData=request.getParameter("totalData");
 
 </html>
 <script>
-	 var setCookie= function(cookie_name, value, days) {
-		  var exdate = new Date();
+	 let setCookie= function(cookie_name, value, days) {
+		 let exdate = new Date();
 		  exdate.setDate(exdate.getDate() + days);
 		  // 설정 일수만큼 현재시간에 만료값으로 지정
 	
-		  var cookie_value = escape(value) + ((days == null) ? '' : '; expires=' + exdate.toUTCString());
+		 let cookie_value = escape(value) + ((days == null) ? '' : '; expires=' + exdate.toUTCString());
 		  document.cookie = cookie_name + '=' + cookie_value;
 		}
 	
-	 var getCookie=function(cookie_name) {
-			  var x, y;
-			  var val = document.cookie.split(';');
+	 let getCookie=function(cookie_name) {
+		 let x, y;
+		 let val = document.cookie.split(';');
 	
-			  for (var i = 0; i < val.length; i++) {
+			  for (let i = 0; i < val.length; i++) {
 			    x = val[i].substr(0, val[i].indexOf('='));
 			    y = val[i].substr(val[i].indexOf('=') + 1);
 			    x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
@@ -340,11 +340,14 @@ String totalData=request.getParameter("totalData");
 			  }
 			}
 	 
+	
+	 
   $(function(){	
 	     let keywordArray=[];
 	     
-	     if(getCookie("searchKeyword")!=null){
-		    keywordArray= getCookie("searchKeyword").split(',');
+	     if(getCookie("searchKeyword")!=null&&getCookie("searchKeyword")!=''){
+		    keywordArray= getCookie("searchKeyword").split(',');		    
+		    
 	     }else{
 	    	 console.log($("#recentKeywordList"));
 			 $("#recentKeywordList").hide(); 
@@ -362,6 +365,19 @@ String totalData=request.getParameter("totalData");
 	 
   function deleteKeyword(num){ 
 		  $(".skwd").eq(num).empty();
+		  
+		 let keywordArray=[];
+		     
+		 if(getCookie("searchKeyword")!=null){
+		   keywordArray= getCookie("searchKeyword").split(',');
+		 }
+		 
+		 keywordArray.splice(num,1);
+		 
+		 setCookie("searchKeyword",keywordArray,3);
+		 
+		 
+	
 	  
   }
 	 
@@ -489,11 +505,11 @@ $(function(){
 
 
 	function addCookie(id) {
-		  var items = getCookie('searchKeyword'); // 이미 저장된 값을 쿠키에서 가져오기
-		  var maxItemNum = 5; // 최대 저장 가능한 아이템개수
-		  var expire = 7; // 쿠키값을 저장할 기간
+		let items = getCookie('searchKeyword'); // 이미 저장된 값을 쿠키에서 가져오기
+		let maxItemNum = 5; // 최대 저장 가능한 아이템개수
+		let expire = 3; // 쿠키값을 저장할 기간
 		  if (items) {
-		    var itemArray = items.split(',');
+			  let itemArray = items.split(',');
 		    if (itemArray.indexOf(id) != -1) {
 		      // 이미 존재하는 경우 종료
 		      console.log('Already exists.');
