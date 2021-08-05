@@ -6,16 +6,14 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="공지사항목록"/>
 </jsp:include>
-<body id="ad_body">
-    <header id="ad_header">
-        <div id="header_title">K-도서관</div>
-        <div id="header_options">
-            <div id="header_moveMain">메인페이지</div>
-            <div id="header_logout">로그아웃</div>
-        </div>
-    </header>
-    <section id="ad_container">
-        <div class="leftmenu" >
+<body>
+    <div class="divcontainer1">
+    <br>
+    	<h2 id="title11">공지사항</h2>
+    <br>
+  </div>
+    <section id="ad_containerad">
+        <div class="list-group-containers" >
             <ul class="list-group">
               <li class="list-group-item" id="menutitle">이용안내</li>
               <li class="list-group-item" onclick="location.assign('${path}/notice/noticeList.do')">공지사항</li>
@@ -25,7 +23,7 @@
         </div>
         
         <div id="he_right">
-            <div id="titleheadname">공지사항</div>
+            <div id="titleheadnamec">공지사항</div>
             <div id="contbody" class="sech">
                 <form action="${path }/notice/noticesearch.do" method="post">
                     <select class="fontsize" name="searchOption" aria-label="Default select example">
@@ -35,7 +33,7 @@
                    	</select>
                     <input type="search" class="textbox" name="searchWord"
                     placeholder="입력" aria-label="Search" value='${param.searchWord!=null?param.searchWord:"" }' required>
-                    <button id="search" class="fontsize" type="submit">검색</button>
+                    <button id="search" class="btn btn-outline-secondary" type="submit" style="margin-bottom: 4px;">검색</button>
                 </form>
             </div>
             <div class="tableMap">

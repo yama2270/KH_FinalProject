@@ -257,5 +257,22 @@
 		INSERT INTO VISITOR VALUES(SEQ_VIS_NO.NEXTVAL,#{today})
 	</insert>
 	
+	<select id="selectSRBooking" parameterType="String" resultMap="srbooking">	
+		SELECT * FROM STUDYROOM_BOOKING WHERE USER_ID=#{userId} AND BOOKING_NO=(SELECT MAX(BOOKING_NO) FROM STUDYROOM_BOOKING WHERE USER_ID=#{userId})
+	</select>
+	
+	<delete id="cancelSRBooking" parameterType="String">
+		DELETE FROM STUDYROOM_BOOKING WHERE BOOKING_NO=#{bookingNo}
+	</delete>
+	
+	<resultMap type="com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking" id="srbooking">
+		<id column="BOOKING_NO" property="bookingNo"/>
+		<result column="STUDYROOM_TYPE" property="roomName"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="SEAT_NO" property="seatNo"/>
+		<result column="START_TIME" property="startTime"/>
+		<result column="END_TIME" property="endTime"/>
+		<result column="USAGE_DATE" property="usageDate"/>
+	</resultMap>
 	
 </mapper>

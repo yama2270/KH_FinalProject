@@ -16,6 +16,7 @@ public class AdminStudyroomBooking {
 	
 	private int bookingNo;
 	private String roomName;
+	private String userId;
 	private String seatNo;
 	private String startTime;
 	private String endTime;

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.BookingHistory;
 import com.kh.klibrary.member.model.vo.Lending;
@@ -275,6 +276,18 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	
 	public List<Map> countRenBook(SqlSessionTemplate session,Map param){
 		return session.selectList("adminBook.countRenBook",param);
+	}
+
+	@Override
+	public List<WishBook> selectBookWishList(SqlSessionTemplate session, int cPage, int numPerpage) {
+		return session.selectList("WishBook.selectBookWishList",null,
+				new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int selectWishBookCount(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("WishBook.selectWishBookCount");
 	}
 	
 }
