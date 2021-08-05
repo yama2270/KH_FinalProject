@@ -1,15 +1,18 @@
 package com.kh.klibrary.admin.studyroom.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.admin.studyroom.model.service.AdminStudyroomService;
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroom;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomManage;
 
@@ -55,7 +58,22 @@ public class AdminStudyroomController {
 	
 	// A열람실
 	@RequestMapping("/admin/studyroom/studyroomA.do")
-	public String studyroomA() {
+	public String studyroomA(Model mo) {
+		
+		// 현황조회 
+		List<Map> listMana = service.selectInfoA();
+		
+		Map manage = new HashMap(); 
+		for(Map m : listMana) {
+			manage.put(m.get("STATUS"), m.get("COUNT"));
+		}
+		
+		// 좌석조회
+		List<AdminStudyroom> listStudy = service.selectListA();
+		 
+		mo.addAttribute("manage",manage);
+		mo.addAttribute("listStudy",listStudy);
+		
 		return "admin/studyroom/studyroomA";
 	}
 	

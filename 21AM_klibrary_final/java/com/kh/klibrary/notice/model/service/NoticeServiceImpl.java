@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.notice.model.dao.NoticeDao;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
@@ -47,6 +48,51 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return dao.totalsearchnotice(session,param);
 	}
+
+	@Override
+	public int totalData() {
+		// TODO Auto-generated method stub
+		return dao.totalData(session);
+	}
+
+	@Override
+	public int usetotal() {
+		// TODO Auto-generated method stub
+		return dao.usetotal(session);
+	}
+
+	@Override
+	public int Available() {
+		// TODO Auto-generated method stub
+		return dao.Available(session);
+	}
+
+	@Override
+	public int cannotused() {
+		// TODO Auto-generated method stub
+		return dao.cannotused(session);
+	}
+
+	@Override
+	public List<StudyRoomA> redingroomA() {
+		// TODO Auto-generated method stub
+		return dao.redingroomA(session);
+	}
+
+	@Override
+	public StudyRoomA redingroom(String seatno) {
+		// TODO Auto-generated method stub
+		return dao.redingroom(session,seatno);
+	}
+
+	@Override
+	public int redingroombooking(Map param) {
+		// TODO Auto-generated method stub
+		return dao.redingroombooking(session,param);
+	}
+	
+	
+	
 
 	
 

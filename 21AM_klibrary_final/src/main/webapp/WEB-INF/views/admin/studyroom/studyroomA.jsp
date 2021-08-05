@@ -16,16 +16,23 @@
 				<div class="rooTabTit">열람실 A</div>
 				<table id="roomHeaTab">
 					<tr>
-						<td>총좌석 : X</td>
-						<td>이용좌석 : X</td>
-						<td>잔여좌석 : X</td>
-						<td>사용불가 : X</td>
+						<td>총좌석 : 40</td>
+						<td>이용좌석 : ${manage["이용중"]==null? "0": manage["이용중"] }</td>
+						<td>잔여좌석 : ${manage["이용가능"]==null? "0": manage["이용가능"] }</td>
+						<td>사용불가 : ${manage["사용불가"]==null? "0": manage["사용불가"] }</td>
 					</tr>
 				</table>
 			</div>
 			<div id="roomWrap">
 				<div id="room-door">출입문</div>
 				<table id="roomTab" style="border-spacing: 1em 0.5em;">
+				<c:forEach begin="0" end="3" varStatus="status">
+				<tr>
+					<c:forEach begin="${status.index*10 }" end="${status.index==0?'':status.index }9" var="l" items="${listStudy }">
+						<td><a href="${path }/">${l.seatNo }</a></td>
+					</c:forEach>
+				</tr>
+				</c:forEach>
 					<tr>
 						<td>A1</td>
 						<td>A2</td>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="redingroomA">
+	<resultMap type="redingroomA" id="studyroomaMap">
+	  	<id column="SEAT_NO" property="seatNo"/>
+	  	<result column="USER_ID" property="userId"/>
+	  	<result column="USAGE_STATUS" property="usageStatus"/>
+	  	<result column="BOOKING_NO" property="bookingNo"/>
+	  	<result column="START_TIME" property="startTime"/>
+	  	<result column="END_TIME" property="endTime"/>
+	  	<result column="USAGE_DATE" property="usageDate"/>
+  	</resultMap>
+  	
+  	<select id="totalData" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_A
+  	</select>
+  	
+  	<select id="usetotal" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_A WHERE USAGE_STATUS = '사용중'
+  	</select>
+  	<select id="Available" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_A WHERE USAGE_STATUS = '이용가능'
+  	</select>
+  	<select id="cannotused" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_A WHERE USAGE_STATUS = '이용불가'
+  	</select>
+  	
+  	<select id="redingroomA" resultMap="studyroomaMap">
+  		SELECT * FROM STUDYROOM_A
+  	</select>
+  	
+  	<select id="redingroom" resultMap="studyroomaMap">
+  		SELECT * FROM STUDYROOM_A WHERE SEAT_NO LIKE #{seatno}
+  	</select>
+  	
+  	<resultMap type="studyroombooking" id="studyroombookingMap">
+	  	<id column="BOOKING_NO" property="bookingNo"/>
+	  	<result column="USER_ID" property="userId"/>
+	  	<result column="STUDYROOM_TYPE" property="studyroomType"/>
+	  	<result column="SEAT_NO" property="seatNo"/>
+	  	<result column="START_TIME" property="startTime"/>
+	  	<result column="END_TIME" property="endTime"/>
+	  	<result column="USAGE_DATE" property="usageDate"/>
+  	</resultMap>
+  	
+  	<insert id="redingroombooking" parameterType="Map">
+  		INSERT INTO STUDYROOM_BOOKING
+  		VALUES(SEQ_BOOKING_NO.NEXTVAL,#{userid},#{studyroomtype},#{seatno},#{searchOption},#{searchOption2},SYSDATE)
+  	</insert>
+	
+</mapper>
