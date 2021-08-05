@@ -19,4 +19,6 @@ public class LendingHistory {
 	private Date lendingDate;
 	private Date returnDate;
 	private int bookExtend;
+	
+	private Member member;
 }

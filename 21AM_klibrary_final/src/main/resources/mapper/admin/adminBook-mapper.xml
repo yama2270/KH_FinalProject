@@ -130,6 +130,16 @@
 		   
 	</delete>
 	
+	<!-- 대출도서 내역리스트 -->
+	<select id="selectRentalHList" resultMap="lenHisMap">
+		SELECT * FROM LENDING_HISTORY LEFT JOIN MEMBER USING(USER_ID)
+	</select>
+	
+	<!-- 대출도서 내역카운트 -->	
+	<select id="selectRentalHCount" resultType="_int">
+		SELECT COUNT(*) FROM LENDING_HISTORY LEFT JOIN MEMBER USING(USER_ID)
+	</select>
+	
 	<!-- 대출도서 리스트 -->
 	<select id="selectRentalList" resultMap="lending">
 		SELECT * FROM
@@ -140,8 +150,9 @@
 	<select id="selectRentalCount" resultType="_int">
 		SELECT COUNT(*) FROM LENDING
 	</select>
+	
 	<!-- 대출도서 검색 리스트 -->
-	<select id="SearchRentalList" parameterType="Map" resultMap="lending">
+	<select id="searchRentalList" parameterType="Map" resultMap="lending">
 		SELECT * FROM
 		LENDING LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO) LEFT JOIN MEMBER USING(USER_ID)
 		<choose>
@@ -155,7 +166,7 @@
 	</select>
 	
 	<!-- 대출도서 검색 카운트 -->
-	<select id="SearchRentalCount" parameterType="Map" resultType="_int">
+	<select id="searchRentalCount" parameterType="Map" resultType="_int">
 		SELECT COUNT(*) FROM
 		LENDING LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO) LEFT JOIN MEMBER USING(USER_ID)
 		<choose>
@@ -167,6 +178,35 @@
 			</otherwise>
 		</choose>
 	</select>
+	
+	<!-- 대출도서내역 검색 리스트 -->
+	<select id="searchRentalHList" parameterType="Map" resultMap="lenHisMap">
+		SELECT * FROM
+		LENDING_HISTORY LEFT JOIN MEMBER USING(USER_ID)
+		<choose>
+			<when test="searchOption2 eq 'lending_date' || searchOption2 eq 'return_date'">
+				WHERE ${searchOption2}=#{searchWord2}
+			</when>
+			<otherwise>
+				WHERE ${searchOption2} LIKE '%'||#{searchWord2}||'%'
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 대출도서내역 검색 카운트 -->
+	<select id="searchRentalHCount" parameterType="Map" resultType="_int">
+		SELECT COUNT(*) FROM
+		LENDING_HISTORY LEFT JOIN MEMBER USING(USER_ID)
+		<choose>
+			<when test="searchOption2 eq 'lending_date' || searchOption2 eq 'return_date'">
+				WHERE ${searchOption2}=#{searchWord2}
+			</when>
+			<otherwise>
+				WHERE ${searchOption2} LIKE '%'||#{searchWord2}||'%'
+			</otherwise>
+		</choose>
+	</select>
+	
 	<!-- 대출도서 연장 -->
 	<update id="addBookExtend" parameterType="Map">
 		UPDATE LENDING SET BOOK_EXTEND=#{bookExtend}, RETURN_DATE=#{returnDate} WHERE USER_ID=#{userId} AND LENDING_NO=#{lendingNo}
@@ -240,6 +280,32 @@
 	<delete id="cancelReserved">
 		DELETE FROM BOOKING WHERE USER_ID=#{userId} AND BOOKING_NO=#{bookingNo}
 	</delete>
+	
+	<!-- 예약도서 체크 리스트 -->
+	<select id="selectDRCList" resultMap="booking">
+		SELECT * FROM BOOKING WHERE BOOKING_NO IN
+		<foreach collection="bookingNo" item="b" open="(" separator="," close=")">
+			#{b}
+		</foreach>
+	</select>
+	
+	<!-- 예약도서 체크 삭제 -->
+	<delete id="deleteReservedCheck" parameterType="Map">
+		DELETE FROM BOOKING WHERE BOOKING_NO IN 
+		<foreach collection="bookingNo" item="b" open="(" separator="," close=")">
+			#{b}
+		</foreach>
+		   
+	</delete>
+	
+	<!-- 예약도서 체크 내역삽입 -->
+	<insert id="insertDRCList" parameterType="java.util.List">
+		INSERT INTO BOOKING_HISTORY(BOOKING_HISTORY_NO,BOOKING_NO,USER_ID,BOOK_NO,BOOKING_DATE,BOOKING_PICKUP_DATE) 
+		SELECT SEQ_BOOKING_HISTORY_NO.NEXTVAL, A.* FROM(
+		<foreach collection="list" item="l" separator="UNION ALL">
+		SELECT #{l.bookingNo} AS BOOKING_NO,#{l.userId} AS USER_ID,#{l.bookNo} AS BOOK_NO,#{l.bookingDate} AS BOOKING_DATE,#{l.bookingPickUpDate} AS BOOKING_PICKUP_DATE FROM DUAL
+		</foreach>) A
+	</insert>
 	
 		<!-- 카테고리별 도서수 -->
 	<select id="countCatBook" resultType="Map">
@@ -344,6 +410,16 @@
 		<result column="book_extend" property="bookExtend"/>
 		<result column="book_no" property="bookNo"/>
 		<result column="user_id" property="userId"/>
+		<collection property="member" ofType="member">
+			<id column="USER_ID" property="userId"/>
+			<result column="USER_PASSWORD" property="userPassword"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="EMAIL" property="email"/>
+			<result column="BIRTH_DATE" property="birthDate"/>
+			<result column="ADDRESS" property="address"/>
+			<result column="PHONE" property="phone"/>
+			<result column="SIGNUP_DATE" property="signupDate"/>
+		</collection>
 	</resultMap>
 	
 	<!-- Booking -->

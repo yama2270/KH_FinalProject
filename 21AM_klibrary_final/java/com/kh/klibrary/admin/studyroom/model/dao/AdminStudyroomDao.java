@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroom;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomManage;
 
@@ -21,5 +22,11 @@ public interface AdminStudyroomDao {
 	
 	// 예약삭제
 	int delBooking(SqlSessionTemplate session,int bookingNo);
+	
+	// 열람실A 현황조회
+	List<Map> selectInfoA(SqlSessionTemplate session);
+	
+	// 열람실A 좌석조회
+	List<AdminStudyroom> selectListA(SqlSessionTemplate session);
 	
 }

@@ -61,7 +61,6 @@
                     				<td class="head2"><c:out value="${n.originalFileName }"/></td>
                     				<td class="head3"><c:out value="${n.noticeDate }"/></td>
                     				<td class="head2"><c:out value="${n.noticeCount }"/></td>
-                    				
                     			</tr>
                     		</c:forEach>
                     	</c:when>

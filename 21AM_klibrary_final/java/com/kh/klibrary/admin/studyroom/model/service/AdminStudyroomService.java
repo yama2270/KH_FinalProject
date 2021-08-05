@@ -3,6 +3,7 @@ package com.kh.klibrary.admin.studyroom.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroom;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomManage;
 
@@ -19,5 +20,11 @@ public interface AdminStudyroomService {
 	
 	// 예약 삭제
 	int delBooking(int bookingNo);
+	
+	// A열람실 현황조회 
+	List<Map> selectInfoA();
+	
+	// A열람실 좌석조회
+	List<AdminStudyroom> selectListA();
 	
 }

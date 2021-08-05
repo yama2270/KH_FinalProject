@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
 @Repository
 public class NoticeDaoImpl implements NoticeDao {
 
@@ -41,6 +42,48 @@ public class NoticeDaoImpl implements NoticeDao {
 	public int totalsearchnotice(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
 		return session.selectOne("notice.totalsearchnotice",param);
+	}
+
+	@Override
+	public int totalData(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.totalData");
+	}
+
+	@Override
+	public int usetotal(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.usetotal");
+	}
+
+	@Override
+	public int Available(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.Available");
+	}
+
+	@Override
+	public int cannotused(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.cannotused");
+	}
+
+	@Override
+	public List<StudyRoomA> redingroomA(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.redingroomA");
+	}
+
+	@Override
+	public StudyRoomA redingroom(SqlSessionTemplate session, String seatno) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.redingroom",seatno);
+	}
+
+	@Override
+	public int redingroombooking(SqlSessionTemplate session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("redingroomA.redingroombooking",param);
 	}
 
 	

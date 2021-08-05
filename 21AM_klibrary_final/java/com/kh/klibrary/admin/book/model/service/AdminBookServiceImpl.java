@@ -130,19 +130,49 @@ public class AdminBookServiceImpl implements AdminBookService {
 		return dao.selectRentalCount(session);
 	}
 	
+	//대출도서 내역 목록
+	@Override
+	public List<LendingHistory> selectRentalHList(int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.selectRentalHList(session, cPage, numPerPage);
+	}
+	
+	//대출도서 내역 카운트
+	@Override
+	public int selectRentalHCount() {
+		// TODO Auto-generated method stub
+		return dao.selectRentalHCount(session);
+	}
+	
 	//대출도서 검색
 	@Override
-	public List<Lending> SearchRentalList(Map param, int cPage, int numPerPage) {
+	public List<Lending> searchRentalList(Map param, int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
-		return dao.SearchRentalList(session, param, cPage, numPerPage);
+		return dao.searchRentalList(session, param, cPage, numPerPage);
 	}	
 	
 	//대출도서 검색 카운트
 	@Override
-	public int SearchRentalCount(Map param) {
+	public int searchRentalCount(Map param) {
 		// TODO Auto-generated method stub
-		return dao.SearchRentalCount(session, param);
+		return dao.searchRentalCount(session, param);
 	}
+	
+	//대출도서내역 검색
+	@Override
+	public List<LendingHistory> searchRentalHList(Map param, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.searchRentalHList(session, param, cPage, numPerPage);
+	}	
+	
+	//대출도서내역 검색 카운트
+	@Override
+	public int searchRentalHCount(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchRentalHCount(session, param);
+	}
+	
+	
 	
 	//대출도서 연장
 	@Override
@@ -231,6 +261,26 @@ public class AdminBookServiceImpl implements AdminBookService {
 	public int cancelReserved(Map param) {
 		// TODO Auto-generated method stub
 		return dao.cancelReserved(session, param);
+	}
+	//예약도서 체크 리스트
+	@Override
+	public List<Booking> selectDRCList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.selectDRCList(session, map);
+	}
+	
+	//예약도서 체크 삭제
+	@Override
+	public int deleteReservedCheck(Map map) {
+		// TODO Auto-generated method stub
+		return dao.deleteReservedCheck(session,map);
+	}
+	
+	//예약도서 체크 내역삽입
+	@Override
+	public int insertDRCList(List list) {
+		// TODO Auto-generated method stub
+		return dao.insertDRCList(session,list);
 	}
 	
 	// 카테고리별 도서수 

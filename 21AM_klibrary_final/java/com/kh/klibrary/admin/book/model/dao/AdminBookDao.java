@@ -60,12 +60,24 @@ public interface AdminBookDao {
 	
 	//대출도서 카운트
 	int selectRentalCount(SqlSessionTemplate session);
+
+	//대출도서 내역 리스트
+	List<LendingHistory> selectRentalHList(SqlSessionTemplate session, int cPage, int numPerPage);
+	
+	//대출도서 내역 카운트
+	int selectRentalHCount(SqlSessionTemplate session);
 	
 	//대출도서 검색 리스트
-	List<Lending> SearchRentalList(SqlSessionTemplate session, Map param, int cPage, int numPerPage);
+	List<Lending> searchRentalList(SqlSessionTemplate session, Map param, int cPage, int numPerPage);
 	
 	//대출도서 검색 카운트
-	int SearchRentalCount(SqlSessionTemplate session, Map param);
+	int searchRentalCount(SqlSessionTemplate session, Map param);
+	
+	//대출도서내역 검색 리스트
+	List<LendingHistory> searchRentalHList(SqlSessionTemplate session, Map param, int cPage, int numPerPage);
+	
+	//대출도서내역 검색 카운트
+	int searchRentalHCount(SqlSessionTemplate session, Map param);
 	
 	//대출도서 연장
 	int addBookExtend(SqlSessionTemplate session, Map param);
@@ -99,10 +111,21 @@ public interface AdminBookDao {
 	
 	//예약도서 선택
 	Booking selectBooking(SqlSessionTemplate session, Map param);
+	
 	//예약도서내역 삽입
 	int insertBookingHistory(SqlSessionTemplate session,Booking booking);
+	
 	//예약도서 취소
 	int cancelReserved(SqlSessionTemplate session, Map param);
+	
+	//예약도서 체크 리스트
+	List<Booking> selectDRCList(SqlSessionTemplate session, Map map);
+	
+	//예약도서 체크 삭제
+	int deleteReservedCheck(SqlSessionTemplate session, Map map);
+	
+	//예약도서 체크 내역삽입
+	int insertDRCList(SqlSessionTemplate session, List list);
 	
 	//카테고리별 도서수 
 	List<Map<String,Integer>> countCatBook(SqlSessionTemplate session);

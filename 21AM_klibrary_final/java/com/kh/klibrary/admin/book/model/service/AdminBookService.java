@@ -49,14 +49,28 @@ public interface AdminBookService {
 	
 	//대출도서 목록
 	List<Lending> selectRentalList(int cPage, int numPerPage);
+	
 	//대출도서 카운트
 	int selectRentalCount();
 	
+	//대출도서 내역 목록
+	List<LendingHistory> selectRentalHList(int cPage, int numPerPage);
+	
+	//대출도서 내역 카운트
+	int selectRentalHCount();
+	
 	//대출도서 목록 검색
-	List<Lending> SearchRentalList(Map param, int cPage, int numPerPage);
+	List<Lending> searchRentalList(Map param, int cPage, int numPerPage);
 	
 	//대출도서 목록 검색 카운트
-	int SearchRentalCount(Map param);
+	int searchRentalCount(Map param);
+	
+	//대출도서내역 목록 검색
+	List<LendingHistory> searchRentalHList(Map param, int cPage, int numPerPage);
+	
+	//대출도서내역 목록 검색 카운트
+	int searchRentalHCount(Map param);
+	
 	//대출도서 연장
 	int addBookExtend(Map param);
 	
@@ -95,6 +109,14 @@ public interface AdminBookService {
 	
 	//예약 취소
 	int cancelReserved(Map param);
+	
+	//예약도서 체크 리스트
+	List<Booking> selectDRCList(Map map);
+	//예약도서 체크 내역삽입
+	int insertDRCList(List list);
+	
+	//예약도서 체크 삭제
+	int deleteReservedCheck(Map map);
 	
 	// 카테고리별 도서수 
 	List<Map<String,Integer>> countCatBook();

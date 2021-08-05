@@ -121,30 +121,40 @@ public class AdminBookController {
 	
 	// 대출도서목록
 	@RequestMapping("/admin/book/bookRentalList.do")
-	public String rentalList(Model m,
+	public String rentalList(Model m, @RequestParam Map param,
 							@RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
-							@RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage ) {
-		List<Lending> list=service.selectRentalList(cPage, numPerPage);
-		int totalBook = service.selectRentalCount();
+							@RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage,
+							@RequestParam(value="cPage2",required=false,defaultValue="1") int cPage2,
+							@RequestParam(value="numPerPage2",required=false,defaultValue="10") int numPerPage2) {
+		List<Lending> list= null;
+		List<LendingHistory> hlist= null;
+		int totalBook=0;
+		int totalBook2=0;
+		System.out.println("searchOption : " + param.get("searchOption"));
+		System.out.println("searchOption2 : " + param.get("searchOption2"));
+		if(param.get("searchWord")!=null) {
+			list=service.searchRentalList(param, cPage, numPerPage);
+			totalBook = service.searchRentalCount(param);
+		}else {
+			list=service.selectRentalList(cPage, numPerPage);
+			totalBook = service.selectRentalCount();
+		}
+		
+		if(param.get("searchWord2")!=null) {
+			hlist=service.searchRentalHList(param,cPage,numPerPage);
+			totalBook2=service.searchRentalHCount(param);
+		}else {
+			hlist=service.selectRentalHList(cPage2, numPerPage2);
+			totalBook2= service.selectRentalHCount();
+		}
+		
 		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
+		String pageBar2 = new AdminPagingTemplate().adminPagingTemplate2(cPage2,numPerPage2,totalBook2);
 		
 		m.addAttribute("list",list);
 		m.addAttribute("pageBar",pageBar);
-		return "admin/book/bookRentalList";
-	}
-	
-	// 대출도서 목록 검색
-	@RequestMapping("/admin/book/SearchRentalList.do")
-	public String SearchRentalList(Model m, @RequestParam Map param,
-								   @RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
-								   @RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage) {
-		List<Lending> list=service.SearchRentalList(param, cPage, numPerPage);
-		int totalBook = service.SearchRentalCount(param);
-		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
-		m.addAttribute("list",list);
-		m.addAttribute("param",param);
-		m.addAttribute("pageBar",pageBar);
-		
+		m.addAttribute("hlist",hlist);
+		m.addAttribute("pageBar2",pageBar2);
 		return "admin/book/bookRentalList";
 	}
 	
@@ -192,6 +202,15 @@ public class AdminBookController {
 		model.addAttribute("loc",loc);
 		return "common/msg";
 	}
+	
+	//대출 도서 체크 반납
+	@RequestMapping("/admin/book/deleteRentalCheck.do")
+	public String deleteRentalCheck(@RequestParam String lendingNo, Model model) {
+		Map map=new HashMap();
+		map.put("lendingNo", lendingNo.split(","));
+		System.out.println(map.get(lendingNo));
+		return "common/msg";
+	}
 	// 예약도서목록
 	@RequestMapping("/admin/book/bookReservedList.do")
 	public String reservedList(Model m, @RequestParam Map param,
@@ -223,30 +242,18 @@ public class AdminBookController {
 		return "admin/book/bookReservedList";
 	}
 	
-	// 예약도서 목록 검색
-//	@RequestMapping("/admin/book/searchReservedList.do")
-//	public String searchReservedList(Model m, @RequestParam Map param) {
-//		List<Booking> list=service.searchReservedList(param);
-//		m.addAttribute("list",list);
-//		m.addAttribute("param",param);
-//		
-//		return "admin/book/bookReservedList";
-//	}
-//	
-//	// 예약도서내역 목록 검색
-//	@RequestMapping("/admin/book/searchReservedHistoryList.do")
-//	public String searchReservedHistoryList(Model m, @RequestParam Map param,
-//											@RequestParam(value="cPage",required=false,defaultValue="1") int cPage,
-//											@RequestParam(value="numPerPage",required=false,defaultValue="10") int numPerPage) {
-//		List<BookingHistory> hlist=service.searchReservedHistoryList(param, cPage, numPerPage);
-//		int totalBook = service.searchReservedHistoryCount(param);
-//		String pageBar = new AdminPagingTemplate().adminPagingTemplate(cPage,numPerPage,totalBook);
-//		m.addAttribute("hlist",hlist);
-//		m.addAttribute("param",param);
-//		m.addAttribute("pageBar",pageBar);
-//		
-//		return "admin/book/bookReservedList";
-//	}
+	//예약도서 체크 삭제
+	@RequestMapping("/admin/book/deleteReservedCheck.do")
+	public String deleteReservedCheck(@RequestParam String bookingNo, Model model) {
+		Map map = new HashMap();
+		map.put("bookingNo", bookingNo.split(","));
+		List<Booking> list=service.selectDRCList(map); //체크도서 선택(여러개)
+		int result=service.insertDRCList(list); //선택된 체크도서 내역도서에 삽입
+		result+=service.deleteReservedCheck(map);
+		model.addAttribute("msg",result>2?"체크된 예약의 취소를 성공하였습니다.":"체크된 예약의 취소를 실패하였습니다.");
+		model.addAttribute("loc","/admin/book/bookReservedList.do");
+		return "common/msg";
+	}
 	
 	//예약취소
 	@RequestMapping("/admin/book/cancelReserved.do")
