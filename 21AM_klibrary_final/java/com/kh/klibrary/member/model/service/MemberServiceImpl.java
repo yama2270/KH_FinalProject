@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
 import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.dao.MemberDao;
 import com.kh.klibrary.member.model.vo.Booking;
@@ -161,5 +162,17 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int countUser(String today) {
 		return dao.countUser(session,today);
+	}
+	
+	@Override
+	public AdminStudyroomBooking selectSRBooing(String userId) {
+		// TODO Auto-generated method stub
+		return dao.selectSRBooing(session, userId);
+	}
+	
+	@Override
+	public int cancelSRBooking(String bookingNo) {
+		// TODO Auto-generated method stub
+		return dao.cancelSRBooking(session, bookingNo);
 	}
 }

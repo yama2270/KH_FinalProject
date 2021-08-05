@@ -31,7 +31,7 @@ String pageId = request.getParameter("pageId");
   </ul>
 </div>
 <br><br><br>
-<form action="${page }/klibrary/searchpage/wishBookCheckInsert.do" id="BookSearchInfoForm" method="post">
+<form action="${path}/searchpage/wishBookCheckInsert.do" id="BookSearchInfoForm" method="post">
 <table id="wishbooktable">
         <tr>
             <td>
