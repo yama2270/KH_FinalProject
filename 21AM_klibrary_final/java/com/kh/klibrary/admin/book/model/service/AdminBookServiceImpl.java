@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kh.klibrary.admin.book.model.dao.AdminBookDao;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.BookingHistory;
 import com.kh.klibrary.member.model.vo.Lending;
@@ -249,6 +250,20 @@ public class AdminBookServiceImpl implements AdminBookService {
 	@Override 
 	public List<Map> countRenBook(Map param){
 		return dao.countRenBook(session,param);
+	}
+
+	
+	//희망도서 리스트
+	@Override
+	public List<WishBook> selectBookWishList(int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.selectBookWishList(session, cPage, numPerpage);
+	}
+
+	@Override
+	public int selectWishBookCount() {
+		// TODO Auto-generated method stub
+		return dao.selectWishBookCount(session);
 	}
 	
 }
