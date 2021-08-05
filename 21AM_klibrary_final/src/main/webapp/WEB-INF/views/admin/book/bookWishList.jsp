@@ -48,19 +48,26 @@
 					<th style="width: 60px;">구입</th>
 					<th style="width: 60px;">삭제</th>
 				</tr>
+				
+				<c:choose>
+						<c:when test="${not empty list }">
+							<c:forEach var="w" items="${list }">
 				<tr>
 					<td><input type="checkbox" /></td>
-					<td>희망도서번호</td>
-					<td>아이디</td>
-					<td>ISBN</td>
-					<td>도서명</td>
-					<td>저자</td>
-					<td>출판사</td>
-					<td>발행일</td>
-					<td>가격</td>
+					<td><c:out value="${ w.wishBookNo}"/></td>
+					<td><c:out value="${ w.userId}"/></td>
+					<td><c:out value="${ w.isbnNo}"/></td>
+					<td><c:out value="${ w.bookName}"/></td>
+					<td><c:out value="${ w.bookWriter}"/></td>
+					<td><c:out value="${ w.bookCompany}"/></td>
+					<td><c:out value="${ w.bookDate}"/></td>
+					<td><c:out value="${ w.bookPrice}"/></td>
 					<td><button type="button" class="btn btn-outline-secondary">구입</button></td>
 					<td><button type="button" class="btn btn-outline-secondary">삭제</button></td>
 				</tr>
+							</c:forEach>
+						</c:when>
+				</c:choose>
 			</table>
 			<div id="bookWishListBtn">
 				<button type="button" class="btn btn-outline-secondary">구입</button>

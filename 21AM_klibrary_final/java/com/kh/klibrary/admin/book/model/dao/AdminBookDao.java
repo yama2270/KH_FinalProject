@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.BookingHistory;
 import com.kh.klibrary.member.model.vo.Lending;
@@ -135,5 +136,10 @@ public interface AdminBookDao {
 	// admin - main 
 	
 	List<Map> countRenBook(SqlSessionTemplate session,Map param);
+	
+	
+	//희망도서 리스트
+	List<WishBook> selectBookWishList(SqlSessionTemplate session, int cPage, int numPerpage);
+	int selectWishBookCount(SqlSessionTemplate session);
 	
 }

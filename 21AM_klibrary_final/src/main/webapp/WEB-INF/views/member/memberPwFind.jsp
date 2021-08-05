@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="${path }/resources/css/dg.css" type="text/css"> 
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="title" value="아이디찾기"/>
+	<jsp:param name="title" value="비밀번호 찾기"/>
 </jsp:include>
 
 	<div id="login-nav">

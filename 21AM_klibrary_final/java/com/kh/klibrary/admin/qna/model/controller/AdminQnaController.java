@@ -93,7 +93,7 @@ public class AdminQnaController {
 	@RequestMapping("/admin/qna/qnaAnswerUpdateEnd.do")
 	public String qnaAnswerUpdate(Qna qna) {
 			service.qnaAnswerUpdate(qna);
-		return "redirect:/admin/qna/qnaView.do?qnaNo="+qna.getQnaNo();
+		return "redirect:/admin/qna/adminqnaList.do";
 			
 		}
 	
