@@ -71,7 +71,7 @@
 					                     		</c:otherwise>
 					                     		</c:choose>
 				                     		</td>
-			                     			<td><c:out value="${q.qnaDate}"/></td>
+			                     			<td><fmt:formatDate value="${q.qnaDate }" pattern="yy/MM/dd/(E)hh:mm"/></td>
 			                     			<td><c:out value="${q.qnaCount}"/></td>
 			                     			<td><c:out value="${q.qnaState}"/></td>
 			                     		
@@ -100,20 +100,8 @@
         	}
         	
         	$(function(){
-        		if(window.location.href=='http://localhost:9090/klibrary/qna/qnaList.do'||(window.location.href).includes('qnaView.do')||pageId=="QNA"){
-        			
-        			document.getElementsByClassName('list-group-item')[3].style.background="lightgrey";
-        		
-        		}else if(window.location.href=='http://localhost:9090/klibrary/notice/noticeList.do'||pageId=="공지사항"){
-        		
-        			document.getElementsByClassName('list-group-item')[1].style.background="lightgrey";
-        			
-        		}else if(window.location.href=='http://localhost:9090/klibrary/faq/faqList.do'||pageId=="자주묻는질문"){
-        			
-        			document.getElementsByClassName('list-group-item')[2].style.background="lightgrey";
-        		}
-        		
-        	})
+        		   $(".list-group").children().eq(3).css({"backgroundColor" : "lightgrey"})
+        		})
         	
         	
         </script>

@@ -1,0 +1,11 @@
+'%'||#{keyWord}||'%'
+
+모델 앤뷰를 사용하지 않고
+mvc 패턴에서 발전한게 frontControllerPattern 
+모델앤뷰로 반환하지않고 다양하게 이용할 수 있음
+
+required=false 필수 ->null값이면 터지기때문에
+
+@Autowired 비추 -> DI주입 
+생성자 주입, 필드 주입
+
