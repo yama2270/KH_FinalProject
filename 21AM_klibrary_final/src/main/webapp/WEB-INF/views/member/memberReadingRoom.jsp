@@ -62,13 +62,21 @@
 			<hr id="RR_hr_line2">
 		</div>
 		<div id="Room_Record_Container">
-			<ul>
-				<li>예 약 날 짜 : 2021-07-13</li>
-				<li>예 약 시 간 : 10시 00분</li>
-				<li>열 람 실 : A 열람실</li>
-				<li>좌 석 번 호 : A-30</li>
-			</ul>
-			<button type="button" class="btn btn-outline-danger">예약 취소</button>
+			<c:choose>
+				<c:when test="${not empty srb }">
+					<ul>
+						<li>예 약 날 짜 : &nbsp;&nbsp;${srb.usageDate}</li>
+						<li>입 실 시 간 : &nbsp;&nbsp;${srb.startTime}</li>
+						<li>퇴 실 시 간 : &nbsp;&nbsp;${srb.endTime}</li>
+						<li>열 람 실 : &nbsp;&nbsp;${srb.roomName}</li>
+						<li>좌 석 번 호 : &nbsp;&nbsp;${srb.seatNo}</li>
+					</ul>
+					<button type="button" class="btn btn-outline-danger" onclick="location.assign('${path}/member/cancelSRBooking.do?bookingNo=${srb.bookingNo }')">예약 취소</button>
+				</c:when>
+				<c:otherwise>
+					<p style="font-size:20px; padding-top: 60px;">등록된 예약이 없습니다.</p>					
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div id="Room_Record_Container2">
 			<img src="${path }/resources/images/book-logo.png" width=50px height=50px id="book_logo">
