@@ -24,7 +24,7 @@
             </ul>
         </div>
         <div id="he_right">
-            <div id="titleheadname">공지사항</div>
+            <div id="titleheadnamec">공지사항</div>
             <div class="tableMap2">
                 <table class="table2">
                     <tr class="line">

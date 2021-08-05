@@ -36,7 +36,7 @@
 	            </ul>
         	</div>
         <div id="he_right">
-            <div id="titleheadname">편의시설 -> 자료복사</div>
+            <div id="titleheadnamec">편의시설 -> 자료복사</div>
             <div id="contbody">
                 <div class="notice">
                     <div class="noticehead">이용안내</div>

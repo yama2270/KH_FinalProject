@@ -38,7 +38,7 @@
 	            </ul>
         	</div>
         <div id="he_right">
-            <div id="titleheadname">열람실안내 -> 이용안내</div>
+            <div id="titleheadnamec">열람실안내 -> 이용안내</div>
             <div id="contbody">
                 <div class="readingroombody">
                     <h2>열람실 좌석 이용 안내</h2>

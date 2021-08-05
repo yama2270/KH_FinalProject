@@ -39,7 +39,7 @@
 	            </ul>
         	</div>
             <div id="he_right">
-                <div id="titleheadname">이용시간
+                <div id="titleheadnamec">이용시간
                 <c:if test='${loginMember!=null && !"admin".equals(loginMember.userId) }'>
                 <button class="btn btn-outline-dark" onclick="location.assign('${path }/notice/calendar.do')">일정추가</button>
                 </c:if>

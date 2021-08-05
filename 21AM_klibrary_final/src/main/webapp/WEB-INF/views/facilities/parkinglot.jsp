@@ -36,7 +36,7 @@
 	            </ul>
         	</div>
         <div id="he_right">
-            <div id="titleheadname">편의시설 -> 주차안내</div>
+            <div id="titleheadnamec">편의시설 -> 주차안내</div>
             <div id="contbody">
                 <div class="pama">
                     <h2>주차장 이용 안내</h2>

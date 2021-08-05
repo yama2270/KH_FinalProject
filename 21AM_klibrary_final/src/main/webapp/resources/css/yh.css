@@ -1,5 +1,14 @@
 @charset "UTF-8";
 /* 공지사항 */ 
+#titleheadnamec{
+	width: 1495px;
+    /* margin: auto; */
+    margin-top: 20px;
+    margin-left: 0%;
+    border-bottom: 2px gray solid;
+    /* padding-left: 10px; */
+    font-size: 30px;
+}
 .list-group-containers {
     margin-top: 25px;
     margin-left: 20px;
@@ -65,6 +74,7 @@
     height: 670px;
     /* margin: auto; */
     margin-top: 20px;
+    margin-left: 2%;
 }
 #ad_righttitle{
 	margin-left: 18%;
@@ -175,6 +185,7 @@
   width : 1495px;
   /* margin : auto; */
   margin-top : 20px;
+  margin-left: 21%;
   border-bottom : 2px gray solid;
   /* padding-left : 10px; */
   font-size : 30px;

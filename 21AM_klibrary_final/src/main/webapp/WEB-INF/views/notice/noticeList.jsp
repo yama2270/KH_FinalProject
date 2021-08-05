@@ -23,7 +23,7 @@
         </div>
         
         <div id="he_right">
-            <div id="titleheadname">공지사항</div>
+            <div id="titleheadnamec">공지사항</div>
             <div id="contbody" class="sech">
                 <form action="${path }/notice/noticesearch.do" method="post">
                     <select class="fontsize" name="searchOption" aria-label="Default select example">
