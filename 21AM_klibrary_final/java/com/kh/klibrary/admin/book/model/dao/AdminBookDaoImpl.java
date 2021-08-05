@@ -280,7 +280,7 @@ public class AdminBookDaoImpl implements AdminBookDao {
 
 	@Override
 	public List<WishBook> selectBookWishList(SqlSessionTemplate session, int cPage, int numPerpage) {
-		return session.selectList("WishBook.selectBookWishList",null,
+		return session.selectList("WishBook.selectWishBookList",null,
 				new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
 
