@@ -6,47 +6,43 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
-<body id="ad_body">
-    <header id="ad_header">
-            <div id="header_title">K-도서관</div>
-            <div id="header_options">
-                <div id="header_moveMain">메인페이지</div>
-                <div id="header_logout">로그아웃</div>
-        </div>
-    </header>
 
-    <section id="ad_container">
-        <div class="leftmenu" >
+<body>
+<div class="divcontainer1">
+    <br>
+    <h2 id="title11">열람실 A</h2>
+    <br>
+  </div>
+    <section id="ad_containerad">
+        <div class="list-group-containers" >
 	            <ul class="list-group">
-	              <li class="list-group-item" id="menutitle">이용안내</li>
-	              <li class="list-group-item" onclick="location.assign('${path}/notice/booktime.do')">이용시간</li>
-	              <li class="list-group-item">편의시설 <i class="fas fa-plus"></i>
+	              <li class="list-group-items" id="menutitle">이용안내</li>
+	              <li class="list-group-items" onclick="location.assign('${path}/notice/booktime.do')">이용시간</li>
+	              <li class="list-group-items">편의시설 <i class="fas fa-plus"></i>
 	              	<ul class="submenu">
-	                    <li onclick="location.assign('${path}/notice/copymachine.do')">자료복사</li>
-	                    <li onclick="location.assign('${path}/notice/parkinglot.do')">주차안내</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/copymachine.do')">자료복사</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/parkinglot.do')">주차안내</li>
                     </ul>
 	              </li>
-	              <li class="list-group-item">열람실 안내<i class="fas fa-plus"></i>
+	              <li class="list-group-items">열람실 안내<i class="fas fa-plus"></i>
 	              	<ul class="submenu">
-	                    <li onclick="location.assign('${path}/notice/redingroomA.do')">열람실 A</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomB.do')">열람실 B</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomC.do')">열람실 C</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomD.do')">열람실 D</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomE.do')">열람실 E</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomnotice.do')">열람실이용안내</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomA.do')">열람실 A</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomB.do')">열람실 B</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomC.do')">열람실 C</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomD.do')">열람실 D</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomE.do')">열람실 E</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomnotice.do')">열람실이용안내</li>
                     </ul>
 	              </li>
 	            </ul>
         	</div>
-    <div id="he_right">
+    <div id="he_rights">
             <div id="titleheadname">열람실안내 -> 좌석예약</div>
 	<div style="overflow: overlay; margin: auto;">
 		<div id="contBodyroom">
 			<div id="roomHeaWrap">
 				<div class="rooTabTit">열람실 A</div>
-				<table id="roomHeaTab">
+				<table id="roomHeaTabs">
 					<tr>
 						<td>총좌석 : <c:out value="${total }"/></td>
 						<td>이용좌석 : <c:out value="${usetotal }"/></td>
@@ -55,16 +51,16 @@
 					</tr>
 				</table>
 			</div>
-			<div id="roomWrap">
-				<div id="room-door">출입문</div>
-				<table id="roomTab" style="border-spacing: 1em 0.5em;">
+			<div id="roomWraps">
+				<div id="room-doors">출입문</div>
+				<table id="roomTabs" style="border-spacing: 1em 0.5em;">
 				<c:choose>
                     	<c:when test="${not empty list }">
 					<tr>
                     	<c:forEach var="n" items="${list }" begin="0" end="9"><!-- begin : 시작번호 end : 끝번호 -->
-							<td class="test">
+							<td>
 								<c:out value="${n.seatNo }"/>
-								<input type="hidden" id="test" value="${n.usageStatus }">
+								<input type="hidden" class="test" value="${n.usageStatus }">
 							</td>
 						</c:forEach>
 					</tr>
@@ -87,7 +83,7 @@
 		        </c:choose>
 				</table>
 			</div>
-			<div id="seatSta">
+			<div id="seatStas">
 				<button type="button" class="btn btn-primary">사용중</button>
 				<button type="button" class="btn btn-secondary">사용가능</button>
 				<button type="button" class="btn btn-danger">이용불가</button>
@@ -150,12 +146,6 @@
             return false;
         })
     })
-    var cells = $("#test").val();
-	for(var i = 0; i < cells.length; i++){
-	   console.log(cells);
-	   
-	   
-	}
     
 </script>
 
