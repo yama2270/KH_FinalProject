@@ -32,7 +32,7 @@
 		     </div>  
 		   <div id=he_right>
 		        <div id="ad_right_fq">
-		            <div id="titleheadname">Q&A 묻고답하기</div>
+		            <div id="titleheadnamed">Q&A 묻고답하기</div>
 			            <div id="contbody" class="sech">
 			                <form class="qnasech" action="${path}/qna/qnaSearch.do" method="post">
 			                    <select required class="fontsize" name="category" name="searchType">
