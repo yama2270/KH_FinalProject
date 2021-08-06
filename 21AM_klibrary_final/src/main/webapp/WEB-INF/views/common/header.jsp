@@ -100,7 +100,6 @@
 	                    <li><a href="${path}/notice/redingroomB.do" aria-label="subemnu">열람실 B</a></li>
 	                    <li><a href="${path}/notice/redingroomC.do" aria-label="subemnu">열람실 C</a></li>
 	                    <li><a href="${path}/notice/redingroomD.do" aria-label="subemnu">열람실 D</a></li>
-	                    <li><a href="${path}/notice/redingroomE.do" aria-label="subemnu">열람실 E</a></li>
 	                    <li><a href="${path}/notice/redingroomnotice.do" aria-label="subemnu">열람실 이용안내</a></li>
 				</ul>
 			</li>

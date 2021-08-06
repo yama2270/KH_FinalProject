@@ -14,6 +14,8 @@ import com.kh.klibrary.admin.common.AdminPagingTemplate;
 import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.notice.model.service.NoticeService;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing;
 
 @Controller	
 public class NoticeController {
@@ -144,18 +146,29 @@ public class NoticeController {
 		return "/redingroom/redingroomD";
 	}
 	
-	@RequestMapping("/notice/redingroomE.do")
-	public String redingroomE() {
-		return "/redingroom/redingroomE";
-	}
 	
 	@RequestMapping("/notice/redingroom.do")
-	public ModelAndView redingroom(String seatno,ModelAndView mv) {
+	public ModelAndView redingroom(String seatno,String userid,ModelAndView mv) {
 		System.out.println(seatno);
-		
-		mv.addObject("list",service.redingroom(seatno));
-		mv.setViewName("redingroom/redingroomAseat");
-		return mv;
+		List<StudyRoomBooKing> sr=service.selectreding(userid);
+		if(sr.size()<1) {
+			List<StudyRoomA> sa=service.selectareding(userid);
+			if(sa.size()<1) {
+				mv.addObject("list",service.redingroom(seatno));
+				mv.setViewName("redingroom/redingroomAseat");
+				return mv;
+			}else {
+				mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+				mv.addObject("script","window.close();");
+				mv.setViewName("common/msg");
+				return mv;
+			}
+		}else {
+			mv.addObject("msg","이미 예약한 회원입니다.");
+			mv.addObject("script","window.close();");
+			mv.setViewName("common/msg");
+			return mv;
+		}
 	}
 	
 	@RequestMapping("/notice/redingroombooking.do")
