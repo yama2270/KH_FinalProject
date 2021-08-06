@@ -201,7 +201,15 @@ public class QnaController {
 				}
 			}
 	}
-			
+	
+	//QNA 삭제
+	@RequestMapping("/qna/qnaDelete.do")
+		public String deleteQna1 (int no) throws Exception {
+		 service.deleteQna1(no);
+		return "redirect:/qna/qnaList.do";
+		 
+	}
 		
 	}
 
+;

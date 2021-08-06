@@ -72,6 +72,9 @@
 	                            		<button class="qna_update_bt" style="margin-left:45%;">수정</button>
 									 </a>	
 	                            	</div>
+	                            	<div class="qna_delete">
+	                            		<a href="${path }/qna/qnaDelete.do?no=${qna.qnaNo}" role="button" class="btn btn-outline-info">삭제</a>
+	                            	</div> 
 	                        </div>
 	                    </div>
 	                </div>

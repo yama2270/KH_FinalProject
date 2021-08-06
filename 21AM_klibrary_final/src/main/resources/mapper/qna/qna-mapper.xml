@@ -112,5 +112,10 @@
 
 	</select>
  	
+ 	<!-- qna 삭제 yhj -->
+ 	<delete id="deleteQna1">
+ 		DELETE FROM QNA WHERE QNA_NO=#{qnaNo}
+ 	</delete>
+ 	
 </mapper>
  
