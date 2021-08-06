@@ -251,7 +251,7 @@ public ModelAndView bookTotalSearch(
 @RequestMapping("/searchpage/interestingbook")
 public String interestingbook ( 
 								@RequestParam Map param,
-								@RequestParam("isbnNo") String isbnNo,
+								@RequestParam(value="isbnNo", required=false) String isbnNo,
 								@ModelAttribute("loginMember") Member m,
 								HttpServletRequest request,
 								Model model

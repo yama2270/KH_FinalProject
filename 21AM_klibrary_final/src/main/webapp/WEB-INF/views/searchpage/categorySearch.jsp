@@ -95,8 +95,8 @@ String pageId = request.getParameter("pageId");
             </tr>
             </table>
             <br><br>
-            
-           
+            <div style="text-align:center;"><span id="nonsearch" style="display:none;"><h4>검색된 내용이 없습니다</h3></span></div>
+          
             <table id="kdcDepth2List_0" class="kdcDepth2List" style="display: block;">
                 <tr>
                     
@@ -2912,6 +2912,8 @@ String pageId = request.getParameter("pageId");
 						 for(let i=0; i<images.length;i++){		 		 
 								 $("#kdcDepth2List_"+i).hide();	//검색된북리스트가있어면 메뉴 숨기기
 					     }
+					 }else{
+						 $("#nonsearch").show();
 					 }
 					 
 				 }else{
