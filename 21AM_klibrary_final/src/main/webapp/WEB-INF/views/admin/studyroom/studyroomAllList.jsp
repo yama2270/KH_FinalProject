@@ -66,7 +66,10 @@
 						<td>${b.seatNo }</td>
 						<td>${b.startTime }</td>
 						<td>${b.endTime }</td>
-						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
+						<td>
+							<button type="button" class="btn btn-outline-secondary" onclick="modiBooking(this);" value="${b.bookingNo }">수정</button>
+							<input name="seatNo" value="${b.seatNo }" style="display:none">
+						</td>
 						<td><button type="button" class="btn btn-outline-secondary" onclick="delBooking(this);" value="${b.bookingNo }">삭제</button></td>
 					</tr>
 					</c:forEach>
@@ -95,6 +98,16 @@
     	}
     	
     }
+    
+    // 열람실 예약 수정하기
+    const modiBooking = function(e){
+    	
+    	const bookingNo = $(e).val();
+    	const seatNo = $(e).next().val();
+    	
+    	window.open("${path}/admin/studyroom/modiBooking.do?bookingNo="+bookingNo+"&seatNo="+seatNo,"modiPop","width=500,height=430,scrollbars=yes");
+    }
+    
     
 	</script>
 

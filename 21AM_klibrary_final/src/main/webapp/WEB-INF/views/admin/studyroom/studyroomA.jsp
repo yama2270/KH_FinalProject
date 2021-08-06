@@ -48,7 +48,7 @@
 			<div id="seatSta">
 				<button type="button" class="btn btn-primary">사용중</button>
 				<button type="button" class="btn btn-success">사용가능</button>
-				<button type="button" class="btn btn-danger">이용불가</button>
+				<button type="button" class="btn btn-danger">사용불가</button>
 			</div>
 			<div style="margin-top: 20px;">
 				<div class="rooTabTit">이용 중 회원목록</div>
