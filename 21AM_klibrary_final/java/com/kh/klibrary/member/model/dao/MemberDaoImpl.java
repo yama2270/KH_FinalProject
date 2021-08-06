@@ -8,12 +8,14 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomHistory;
 import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 import com.kh.klibrary.member.model.vo.Likes;
 import com.kh.klibrary.member.model.vo.Member;
+import com.kh.klibrary.member.model.vo.MemberDrop;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -96,7 +98,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public Member selectMemberDropRequestList(SqlSessionTemplate session, Map m1) {
+	public MemberDrop selectMemberDropRequestList(SqlSessionTemplate session, Map m1) {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.selectMemberDropRequestList", m1);
 	}
@@ -170,5 +172,17 @@ public class MemberDaoImpl implements MemberDao {
 	public int cancelSRBooking(SqlSessionTemplate session, String bookingNo) {
 		// TODO Auto-generated method stub
 		return session.delete("member.cancelSRBooking", bookingNo);
+	}
+	
+	@Override
+	public List<AdminStudyroomHistory> selectSRHList(SqlSessionTemplate session, String userId, int cPage,int numPerPage) {
+		// TODO Auto-generated method stub
+		return session.selectList("member.selectSRHList", userId, new RowBounds((cPage-1)*numPerPage, numPerPage));
+	}
+	
+	@Override
+	public int selectSRHCount(SqlSessionTemplate session, String userId) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectSRHCount", userId);
 	}
 }

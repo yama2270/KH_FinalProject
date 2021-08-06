@@ -10,7 +10,6 @@
     <div class="seathead">
         <h2>좌석정보</h2>
         <form class="d-flex" action="${path }/notice/redingroombooking.do" method="post">
-        
         <table class="seattable">
             <tr>
                 <th class="seattablehead" colspan="2">열람실A

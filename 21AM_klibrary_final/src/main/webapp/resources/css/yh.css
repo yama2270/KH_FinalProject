@@ -1,5 +1,17 @@
 @charset "UTF-8";
 /* 공지사항 */ 
+#roomHeaTabss {
+  width : 1492px;
+  margin-bottom : 20px;
+}
+#roomHeaTabss tr th {
+  text-align : center;
+  width : 140px;
+  height : 50px;
+  background-color : #DADADA;
+}
+
+
 #titleheadnamec{
 	width: 1495px;
     /* margin: auto; */
