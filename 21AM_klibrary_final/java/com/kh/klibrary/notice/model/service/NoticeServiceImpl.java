@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.notice.model.dao.NoticeDao;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing;
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
@@ -90,6 +91,24 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return dao.redingroombooking(session,param);
 	}
+
+	@Override
+	public List<StudyRoomBooKing> selectreding(String userid) {
+		// TODO Auto-generated method stub
+		return dao.selectreding(session,userid);
+	}
+
+	@Override
+	public List<StudyRoomA> selectareding(String userid) {
+		// TODO Auto-generated method stub
+		return dao.selectareding(session,userid);
+	}
+	
+	
+
+	
+
+	
 	
 	
 	

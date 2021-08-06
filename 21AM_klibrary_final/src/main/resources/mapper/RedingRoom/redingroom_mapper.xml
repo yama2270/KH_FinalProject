@@ -16,7 +16,7 @@
   	</select>
   	
   	<select id="usetotal" resultType="_int">
-  		SELECT COUNT(*) FROM STUDYROOM_A WHERE USAGE_STATUS = '사용중'
+  		SELECT COUNT(*) FROM STUDYROOM_A WHERE USAGE_STATUS = '이용중'
   	</select>
   	<select id="Available" resultType="_int">
   		SELECT COUNT(*) FROM STUDYROOM_A WHERE USAGE_STATUS = '이용가능'
@@ -47,5 +47,14 @@
   		INSERT INTO STUDYROOM_BOOKING
   		VALUES(SEQ_BOOKING_NO.NEXTVAL,#{userid},#{studyroomtype},#{seatno},#{searchOption},#{searchOption2},SYSDATE)
   	</insert>
+  	
+  	<select id="selectreding" resultMap="studyroombookingMap">
+  		SELECT * FROM STUDYROOM_BOOKING WHERE USER_ID = #{userid}
+  	</select>
+  	
+  	<select id="selectareding" resultMap="studyroomaMap">
+  		SELECT * FROM STUDYROOM_A WHERE USER_ID = #{userid}
+  	</select>
+  	
 	
 </mapper>

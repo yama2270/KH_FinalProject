@@ -410,7 +410,7 @@ public class AdminBookController {
 	
 	//희망도서 리스트
 	@RequestMapping("/admin/book/bookWishList.do")
-	public ModelAndView bookWishList(
+	public ModelAndView wishBookList(
 			@RequestParam(value = "cPage", defaultValue = "1") int cPage,
 			@RequestParam(value = "numPerpage", defaultValue = "10") int numPerpage, 
 			ModelAndView mv) {

@@ -251,7 +251,7 @@ public ModelAndView bookTotalSearch(
 @RequestMapping("/searchpage/interestingbook")
 public String interestingbook ( 
 								@RequestParam Map param,
-								@RequestParam("isbnNo") String isbnNo,
+								@RequestParam(value="isbnNo", required=false) String isbnNo,
 								@ModelAttribute("loginMember") Member m,
 								HttpServletRequest request,
 								Model model
@@ -262,6 +262,8 @@ public String interestingbook (
 			System.out.println("bookCheckArray테스트"+bookCheckArray);
 			int result=0;
 			param.put("userId", m.getUserId());
+			
+			
 			
 			if(isbnNo!=null) { //북상세페이지 버튼선택시
 				param.put("isbnNo",isbnNo);
@@ -320,6 +322,7 @@ public String interestingbook (
 						      HttpServletRequest request,
 						      Model model           
 		                       ) {
+	       System.out.println("isbnNo테스트"+isbnNo);
 			Book book=service.selectBook(isbnNo);
 			param.put("userId", m.getUserId());
 			param.put("bookNo",book.getBookNo());

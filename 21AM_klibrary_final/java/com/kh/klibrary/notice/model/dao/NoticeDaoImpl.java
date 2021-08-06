@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing;
 @Repository
 public class NoticeDaoImpl implements NoticeDao {
 
@@ -85,6 +86,22 @@ public class NoticeDaoImpl implements NoticeDao {
 		// TODO Auto-generated method stub
 		return session.insert("redingroomA.redingroombooking",param);
 	}
+
+	@Override
+	public List<StudyRoomBooKing> selectreding(SqlSessionTemplate session, String userid) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.selectreding",userid);
+	}
+
+	@Override
+	public List<StudyRoomA> selectareding(SqlSessionTemplate session, String userid) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.selectareding",userid);
+	}
+	
+
+	
+	
 
 	
 

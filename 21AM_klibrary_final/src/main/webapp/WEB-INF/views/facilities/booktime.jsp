@@ -32,7 +32,6 @@
 	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomB.do')">열람실 B</li>
 	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomC.do')">열람실 C</li>
 	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomD.do')">열람실 D</li>
-	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomE.do')">열람실 E</li>
 	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomnotice.do')">열람실이용안내</li>
                     </ul>
 	              </li>
@@ -40,8 +39,8 @@
         	</div>
             <div id="he_right">
                 <div id="titleheadnamec">이용시간
-                <c:if test='${loginMember!=null && !"admin".equals(loginMember.userId) }'>
-                <button class="btn btn-outline-dark" onclick="location.assign('${path }/notice/calendar.do')">일정추가</button>
+                <c:if test='${loginMember!=null && (loginMember.userId).equals("admin") }'>
+                	<button class="btn btn-outline-dark" onclick="location.assign('${path }/notice/calendar.do')">일정추가</button>
                 </c:if>
                 </div>
                 
@@ -91,16 +90,6 @@
                         </tr>
                         <tr>
                             <td class="tablehead" id="timebody">D열람실</td>
-                            <td class="tablehead" id="timebody">09:00~21:00</td>
-                            <td class="tablehead" id="timebody2">휴관</td>
-                            <td class="tablehead" id="timebody">09:00~21:00</td>
-                            <td class="tablehead" id="timebody">09:00~21:00</td>
-                            <td class="tablehead" id="timebody">09:00~21:00</td>
-                            <td class="tablehead" id="timebody2">휴관</td>
-                            <td class="tablehead" id="timebody2">휴관</td>
-                        </tr>
-                        <tr>
-                            <td class="tablehead" id="timebody">E열람실</td>
                             <td class="tablehead" id="timebody">09:00~21:00</td>
                             <td class="tablehead" id="timebody2">휴관</td>
                             <td class="tablehead" id="timebody">09:00~21:00</td>

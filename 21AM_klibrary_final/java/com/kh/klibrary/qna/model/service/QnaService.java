@@ -28,4 +28,7 @@ public interface QnaService {
 	//QNA 검색
 	List<Qna> searchQnaTitle(String keyWord);
 	List<Qna> searchQnaContent(String keyWord);
+	
+	//QNA 삭제
+	int deleteQna1(int no);
 }

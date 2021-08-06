@@ -72,9 +72,9 @@
                             </tr>		
                         </table>
                         <textarea name="qnaContent" id="" cols="110" rows="10" class="textarea"><c:out value="${qna.qnaContent }"/></textarea>
-                        <input type="submit" value="수정" class="newtext" style= "margin-left: 35%;">                        	                        		
+                        <input type="submit" value="수정" class="btn btn-outline-info" style= "margin-left: 35%;">                        	                        		
                     </form>
-                        <button class="qf-cancel" onclick="fn_moveQnaList();" >취소</button>
+                        <!-- <button class="qf-cancel" onclick="fn_moveQnaList();" >취소</button> -->
                 </div>
             </div>
 </section>        
