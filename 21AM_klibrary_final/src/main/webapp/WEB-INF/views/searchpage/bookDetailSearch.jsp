@@ -434,7 +434,7 @@ String pageId = request.getParameter("pageId");
       <td id="buttonWrapTd" rowspan="2">
         <div class="buttonWrap">
           <button id="button22" type="button" onclick="bookReservation('${b.isbnNo }')" >도서예약신청</button>
-          <button id="button22" type="submit" name="bookCheck" value="${b.isbnNo }" >관심도서담기</button>
+		  <button id="button22" type="button" onclick="location.href='${path}/searchpage/interestingbook?isbnNo=${b.isbnNo}'"  >관심도서담기</button>
           </div>
       </td>
     </tr>
