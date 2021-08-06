@@ -95,41 +95,35 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>2021-06-28</td>
-						<td>A열람실</td>
-						<td>A-16</td>
-						<td>12시 31분</td>
-						<td>16시 12분</td>
-					</tr>
-					<tr>
-						<td>2021-07-03</td>
-						<td>C열람실</td>
-						<td>C-02</td>
-						<td>14시 03분</td>
-						<td>19시 53분</td>
-					</tr>
-					<tr>
-						<td>2021-07-10</td>
-						<td>B열람실</td>
-						<td>B-23</td>
-						<td>09시 11분</td>
-						<td>13시 42분</td>
-					</tr>
+				<c:choose>
+					<c:when test="${not empty list }">
+						<c:forEach var="l" items="${list }">
+							<tr>
+								<td><c:out value="${l.usageDate }"/></td>
+								<td><c:out value="${l.studyroomType }"/></td>
+								<td><c:out value="${l.seatNo }"/></td>
+								<td><c:out value="${l.startTime }"/></td>
+								<td><c:out value="${l.endTime }"/></td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td></td>
+							<td>예약</td>
+							<td>내역이</td>
+							<td>없습니다.</td>
+							<td></td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 				</tbody>
 			</table>
 			<hr>
 		</div>
-		
-		<ul class="pagination" id="UserInfo_Paging_Container">
-		  <li class="page-item"><a class="page-link" href="#">이전</a></li>
-		  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-		  <li class="page-item"><a class="page-link" href="#">2</a></li>
-		  <li class="page-item"><a class="page-link" href="#">3</a></li>
-		  <li class="page-item"><a class="page-link" href="#">4</a></li>
-		  <li class="page-item"><a class="page-link" href="#">5</a></li>
-		  <li class="page-item"><a class="page-link" href="#">다음</a></li>
-		</ul>
+		<div id="pagebar-container">
+        	${pageBar }
+        </div>
 	</div>
 </div>
 </section>

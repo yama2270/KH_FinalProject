@@ -39,4 +39,7 @@ public interface QnaDao {
 	//QNA 검색
 	List<Qna> searchQnaTitle(SqlSessionTemplate session, String keyWord);
 	List<Qna> searchQnaContent(SqlSessionTemplate session, String keyWord);
+	
+	//QNA 삭제
+	int deleteQna1(SqlSessionTemplate session, int no);
 }

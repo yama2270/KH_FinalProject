@@ -6,12 +6,14 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomHistory;
 import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 import com.kh.klibrary.member.model.vo.Likes;
 import com.kh.klibrary.member.model.vo.Member;
+import com.kh.klibrary.member.model.vo.MemberDrop;
 
 public interface MemberDao {
 	//dg
@@ -37,7 +39,7 @@ public interface MemberDao {
 	//희망도서 신청 내역
 	List<WishBook> selectHopeRecordList(SqlSessionTemplate session, String userId, int cPage, int numPerpage);
 	//회원 탈퇴 요청
-	Member selectMemberDropRequestList(SqlSessionTemplate session, Map m1);
+	MemberDrop selectMemberDropRequestList(SqlSessionTemplate session, Map m1);
 	//대출리스트 카운트
 	int selectLendingCount(SqlSessionTemplate session, String userId);
 	//대출내역 리스트 카운트
@@ -62,4 +64,9 @@ public interface MemberDao {
 	AdminStudyroomBooking selectSRBooing(SqlSessionTemplate session, String userId);
 	//열람실 회원 예약 취소
 	int cancelSRBooking(SqlSessionTemplate session, String bookingNo);
+	//열람실 내역 리스트
+	List<AdminStudyroomHistory> selectSRHList(SqlSessionTemplate session, String userId, int cPage, int numPerPage);
+	//열람실 내역 리스트 카운트
+	int selectSRHCount(SqlSessionTemplate session, String userId);
+	
 }

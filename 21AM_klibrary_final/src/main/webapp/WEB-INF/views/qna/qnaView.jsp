@@ -43,7 +43,7 @@
 	                        <table>
 	                            <tr>
 	                                <td class="tabletitle">제목 : <c:out value="${qna.qnaTitle }"/></td>
-	                                <td class="tabletitle">작성일 : <c:out value="${qna.qnaDate }"/></td>
+	                                <td class="tabletitle">작성일 : <fmt:formatDate value="${qna.qnaDate }" pattern="yy/MM/dd/(E)hh:mm"/></td>
 	                            </tr>
 	                            <tr>
 	                                <td class="tabletitle">작성자 : <c:out value ="${qna.userId }"/></td>
@@ -51,6 +51,15 @@
 	                            </tr>
 	                        </table>
 	                        <div class="border" style="background-color:#e6f2fb;">내용: <c:out value="${qna.qnaContent }"/></div>
+	                        	<c:if test="${qna.attachments.size()>0 }">
+									<c:forEach var="a" items="${qna.attachments }" varStatus="vs">
+						                    <button type="button" 
+						                    class="btn btn-outline-success btn-block"
+						                    onclick="location.assign('${path}/qna/fileDownload.do?oriname=${a.originalFileName }&rename=${a.originalFileName }')">
+						                    <c:out value="첨부파일 ${vs.count }-${a.originalFileName }"/>
+						            </button>
+						        </c:forEach>
+						        </c:if>
 	                        <div class="coment" style="background-color:#b6cde8; height:200px;">답글: <c:out value="${qna.qnaAnswerContent }"/></div>
 	                        <div class="newcoment">
 <!-- 	                            <div>
@@ -63,6 +72,9 @@
 	                            		<button class="qna_update_bt" style="margin-left:45%;">수정</button>
 									 </a>	
 	                            	</div>
+	                            	<div class="qna_delete">
+	                            		<a href="${path }/qna/qnaDelete.do?no=${qna.qnaNo}" role="button" class="btn btn-outline-info">삭제</a>
+	                            	</div> 
 	                        </div>
 	                    </div>
 	                </div>

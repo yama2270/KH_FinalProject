@@ -6,5 +6,5 @@ import lombok.Data;
 public class MemberDrop {
 	private String userId;
 	private String dropRequest;
-	private Member member;
+	/* private Member member; */
 }
