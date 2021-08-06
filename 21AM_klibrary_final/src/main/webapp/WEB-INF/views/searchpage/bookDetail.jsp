@@ -181,7 +181,7 @@ String category = request.getParameter("category"); */
        <div class="btnGroup">
 							
         <a href="${path}/searchpage/interestingbook?isbnNo=${book.bookInfo.isbnNo  }" id="addBasketBatchBtn" class="btn down themeBtn">관심도서담기</a>
-        <a href="" id="btnView" class="btn down themeBtn">관심도서보기</a>
+        <a href="${path}/member/memberBookMark.do" id="btnView" class="btn down themeBtn">관심도서보기</a>
     
         
         <a href="javascript:history.back();" id="listBtn" class="btn down themeBtn">목록으로</a>
@@ -200,29 +200,7 @@ String category = request.getParameter("category"); */
 	
 </html>
 <script>
-$(function(){
-	console.log(window.location.href );
-	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'){
-		  console.log(document.getElementsByClassName('list-group-item')[1]);
-		  
-		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
-		  
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'||(window.location.href).includes('http://localhost:9090/klibrary/searchpage/bookTotalSearch')){
-		  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
-		
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'){
-		
-		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
-		 
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'){
-		
-		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
-		 
-	  }
-	
-	 
-	   
-	})
+
 
 
 </script>
