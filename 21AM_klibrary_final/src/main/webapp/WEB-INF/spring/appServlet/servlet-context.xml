@@ -53,7 +53,7 @@
 	
 	  <interceptors>
 	   	<interceptor>
-	   		<mapping path="/searchpage/wishBookCheckInsert.do"/>
+	   		<mapping path="/searchpage/wishBookCheckInsert.do*"/>
 	   		<beans:bean class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>
 	   	</interceptor>	   			
 		 <interceptor>
