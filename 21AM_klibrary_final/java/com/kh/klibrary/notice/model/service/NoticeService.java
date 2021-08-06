@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing;
 
 public interface NoticeService {
 	
@@ -20,6 +21,7 @@ public interface NoticeService {
 	int cannotused();
 	StudyRoomA redingroom(String seatno);
 	int redingroombooking(Map param);
-	
+	List<StudyRoomBooKing> selectreding(String userid);
+	List<StudyRoomA> selectareding(String userid);
 
 }

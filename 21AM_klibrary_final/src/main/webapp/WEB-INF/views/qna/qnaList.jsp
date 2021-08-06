@@ -92,6 +92,7 @@
 	        	</div>
 	      </div>  
         <script>
+                
         	var fn_moveQnaForm =()=>{
         		location.assign("${path}/qna/qnaForm.do")}
         	const fn_qnaView = (e) => {
@@ -102,6 +103,9 @@
         	$(function(){
         		   $(".list-group").children().eq(3).css({"backgroundColor" : "lightgrey"})
         		})
+        		
+        	
+   
         	
         	
         </script>
