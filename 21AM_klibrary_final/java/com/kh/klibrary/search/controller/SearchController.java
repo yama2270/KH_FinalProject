@@ -263,6 +263,8 @@ public String interestingbook (
 			int result=0;
 			param.put("userId", m.getUserId());
 			
+			
+			
 			if(isbnNo!=null) { //북상세페이지 버튼선택시
 				param.put("isbnNo",isbnNo);
 				Likes likes=service.selectInterestingBook(param);
@@ -320,6 +322,7 @@ public String interestingbook (
 						      HttpServletRequest request,
 						      Model model           
 		                       ) {
+	       System.out.println("isbnNo테스트"+isbnNo);
 			Book book=service.selectBook(isbnNo);
 			param.put("userId", m.getUserId());
 			param.put("bookNo",book.getBookNo());

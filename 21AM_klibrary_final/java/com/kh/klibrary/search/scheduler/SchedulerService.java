@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomHistory;
 import com.kh.klibrary.member.model.vo.Booking;
@@ -28,14 +29,18 @@ public void scheduleRun() {
 	if(dao!=null) {
 		List<Booking> bookList = dao.selectPassedDate(session);
 //		List<AdminStudyroomHistory> SRHList = dao.selectPSRHList(session);
-		if(bookList!= null) {
+		System.out.println(bookList);
+		if(bookList!= null&& bookList.size()!=0) {
 			 for(int i=0; i<bookList.size();i++) { 
-			   int insertResult=dao.insertBookingHistory(session, bookList.get(i));
-			   int deleteResult=dao.deleteBookNo(session, bookList.get(i).getBookNo());
-				/* int deleteResult2=dao.deleteBookNo2(session, bookNoList.get(i)); */
-			   int updateResult=dao.updateBookNo(session, bookList.get(i).getBookNo());
-			   System.out.println("insertResult="+insertResult+"deleteResult"+deleteResult+"updateResult="+updateResult);
-			   
+			
+				 if(bookList.get(i)!=null) {
+				   int insertResult=dao.insertBookingHistory(session, bookList.get(i));
+				   int deleteResult=dao.deleteBookNo(session, bookList.get(i).getBookNo());
+					/* int deleteResult2=dao.deleteBookNo2(session, bookNoList.get(i)); */
+				   int updateResult=dao.updateBookNo(session, bookList.get(i).getBookNo());
+				   System.out.println("insertResult="+insertResult+"deleteResult"+deleteResult+"updateResult="+updateResult);
+				 }
+				   
 			 }
 		}
 	}

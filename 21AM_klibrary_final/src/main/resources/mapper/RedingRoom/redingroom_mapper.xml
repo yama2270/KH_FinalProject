@@ -16,7 +16,7 @@
   	</select>
   	
   	<select id="usetotal" resultType="_int">
-  		SELECT COUNT(*) FROM STUDYROOM_A WHERE USAGE_STATUS = '사용중'
+  		SELECT COUNT(*) FROM STUDYROOM_A WHERE USAGE_STATUS = '이용중'
   	</select>
   	<select id="Available" resultType="_int">
   		SELECT COUNT(*) FROM STUDYROOM_A WHERE USAGE_STATUS = '이용가능'
