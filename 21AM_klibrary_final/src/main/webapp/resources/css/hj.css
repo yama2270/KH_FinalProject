@@ -111,7 +111,7 @@ background-color:blue;
 }
 .border{
     margin-top:1%;
-    height:400px;
+    height:150px;
     width:1150px;
     background-color:#e6f2fb;
 }
@@ -120,7 +120,7 @@ background-color:blue;
     border-top: gray 1px solid;
     border-bottom: gray 1px solid;
     width:1150px;
-    height:30px;
+    height:150px;
     /* background-color: red; */
 }
 .newcoment{

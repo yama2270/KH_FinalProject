@@ -71,8 +71,8 @@
                             </tr>		
                         </table>
                         <textarea name="qnaContent" id="" cols="110" rows="10" class="textarea"></textarea>
-                        <input type="submit" value="등록" class="newtext" style= "margin-left: 35%;">                        	                        		
-                        <button class="qf-cancel"><a href="${path}/qna/qnaList.do">취소</a></button>
+                        <input type="submit" value="등록" class="btn btn-outline-info" style= "margin-left: 35%;">                        	                        		
+                        <button class="btn btn-outline-info"><a href="${path}/qna/qnaList.do">취소</a></button>
                     </form>
                 </div>
             </div>
