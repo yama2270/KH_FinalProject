@@ -46,13 +46,24 @@ public class AdminStudyroomServiceImpl implements AdminStudyroomService {
 		return dao.delBooking(session,bookingNo);
 	}
 	
+	// 예약수정 - 예약테이블 좌석시간 
+	public List<Map> selBookingTime(AdminStudyroomBooking booking){
+		return dao.selBookingTime(session,booking);
+	}
+	
+	// 예약수정 - 열람실 현재 이용좌석
+	public Map selUsingTime(AdminStudyroomBooking booking) {
+		return dao.selUsingTime(session,booking);
+	}
 	
 	// A열람실 현황조회
+	@Override
 	public List<Map> selectInfoA() {
 		return dao.selectInfoA(session);
 	}
 	
 	// A열람실 좌석조회
+	@Override
 	public List<AdminStudyroom> selectListA(){
 		return dao.selectListA(session);
 	}

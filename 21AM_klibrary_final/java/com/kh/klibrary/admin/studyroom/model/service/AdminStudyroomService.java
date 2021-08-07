@@ -21,10 +21,17 @@ public interface AdminStudyroomService {
 	// 예약 삭제
 	int delBooking(int bookingNo);
 	
+	// 열람실 예약 수정 - 예약테이블 예약시간 
+	List<Map> selBookingTime(AdminStudyroomBooking booking);
+	
+	// 열람실 예약 수정 - 열람식 현재 사용여부
+	Map selUsingTime(AdminStudyroomBooking booking);
+	
 	// A열람실 현황조회 
 	List<Map> selectInfoA();
 	
 	// A열람실 좌석조회
 	List<AdminStudyroom> selectListA();
+
 	
 }
