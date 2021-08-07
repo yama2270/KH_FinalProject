@@ -142,4 +142,7 @@ public interface AdminBookDao {
 	List<WishBook> selectBookWishList(SqlSessionTemplate session, int cPage, int numPerpage);
 	int selectWishBookCount(SqlSessionTemplate session);
 	
+	//희망도서 삭제
+	int deleteWishBook(SqlSessionTemplate session, String wishBookNo);
+	
 }

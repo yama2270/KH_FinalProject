@@ -493,17 +493,7 @@
 		<result column="BOOK_COMPANY" property="bookCompany"/>
 		<result column="BOOK_DATE" property="bookCompany"/>
 		<result column="BOOK_PRICE" property="bookPrice"/>
-		<collection property="member" ofType="member">
-			<id column="USER_ID" property="userId"/>
-			<result column="USER_PASSWORD" property="userPassword"/>
-			<result column="USER_NAME" property="userName"/>
-			<result column="EMAIL" property="email"/>
-			<result column="BIRTH_DATE" property="birthDate"/>
-			<result column="ADDRESS" property="address"/>
-			<result column="PHONE" property="phone"/>
-			<result column="SIGNUP_DATE" property="signupDate"/>
-		</collection>
-	</resultMap>
+		</resultMap>
 	
 		<!-- 희망도서 리스트 -->
 	<select id="selectBookWishList" resultMap="bookWishList">
@@ -514,5 +504,8 @@
   	SELECT COUNT(*) FROM WISHBOOK
   </select>
 	
+	  <delete id="deleteWishBook" parameterType="String">
+  	DELETE FROM WISHBOOK WHERE WISH_BOOK_NO = #{wishBookNo}
+  	</delete>
 	
 </mapper>

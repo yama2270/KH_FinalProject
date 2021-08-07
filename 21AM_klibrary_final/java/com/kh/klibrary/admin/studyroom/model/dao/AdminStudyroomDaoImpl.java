@@ -57,6 +57,4 @@ public class AdminStudyroomDaoImpl implements AdminStudyroomDao{
 		return session.selectList("adminStudyroom.selectListA");
 	}
 	
-	
-	
 }

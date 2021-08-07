@@ -410,9 +410,9 @@ public class AdminBookController {
 	
 	//희망도서 리스트
 	@RequestMapping("/admin/book/bookWishList.do")
-	public ModelAndView wishBookList(
+	public ModelAndView bookWishList(
 			@RequestParam(value = "cPage", defaultValue = "1") int cPage,
-			@RequestParam(value = "numPerpage", defaultValue = "10") int numPerpage, 
+			@RequestParam(value = "numPerpage", defaultValue = "4") int numPerpage, 
 			ModelAndView mv) {
 		mv.addObject("list", service.selectBookWishList(cPage, numPerpage));
 		int totalData=service.selectWishBookCount();
@@ -420,5 +420,17 @@ public class AdminBookController {
 		mv.setViewName("admin/book/bookWishList");
 		return mv;
 	}
+	
+	//게시글 삭제
+	@RequestMapping("/admin/book/wishBookDelete.do")
+	public String ajaxTest(HttpServletRequest request) throws Exception{
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0;i<size; i++) {
+			service.deleteWishBook(ajaxMsg[i]);
+		}
+		return "redirect:/admin/book/bookWishList.do";
+	}
+	
 	
 }

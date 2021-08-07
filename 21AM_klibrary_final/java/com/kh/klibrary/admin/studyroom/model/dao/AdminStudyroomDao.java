@@ -34,5 +34,4 @@ public interface AdminStudyroomDao {
 	
 	// 열람실A 좌석조회
 	List<AdminStudyroom> selectListA(SqlSessionTemplate session);
-	
 }
