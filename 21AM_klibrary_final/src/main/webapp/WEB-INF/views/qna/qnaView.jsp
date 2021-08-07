@@ -50,7 +50,7 @@
 	                                <td class="tabletitle">조회수 : <c:out value ="${qna.qnaCount }"/></td>
 	                            </tr>
 	                        </table>
-	                        <div class="border" style="background-color:#e6f2fb;">내용: <c:out value="${qna.qnaContent }"/></div>
+	                        <div class="border" style="background-color:#e6f2fb; height:150px">내용: <c:out value="${qna.qnaContent }"/></div>
 	                        	<c:if test="${qna.attachments.size()>0 }">
 									<c:forEach var="a" items="${qna.attachments }" varStatus="vs">
 						                    <button type="button" 
@@ -67,14 +67,19 @@
 	                                <input type="text" class="comenttext">
 	                                <input type="submit" value="등록" class="submitbutton">
 	                            </div> -->
-	                            	<div class="qna_update">
+	                            	<%-- <div class="qna_update">
 	                            	 <a href="${path }/qna/updateQna.do?no=${qna.qnaNo}">	
 	                            		<button class="qna_update_bt" style="margin-left:45%;">수정</button>
 									 </a>	
-	                            	</div>
-	                            	<div class="qna_delete">
-	                            		<a href="${path }/qna/qnaDelete.do?no=${qna.qnaNo}" role="button" class="btn btn-outline-info">삭제</a>
-	                            	</div> 
+	                            	</div> --%>
+	                            	<div class="qna_btn_v" style="display:flex;">
+		                            	<div class="qna_update">
+		                            		<a href="${path }/qna/updateQna.do?no=${qna.qnaNo}" role="button" class="btn btn-outline-info" style="margin-right:5px">수정</a>
+		                            	</div>
+		                            	<div class="qna_delete">
+		                            		<a href="${path }/qna/qnaDelete.do?no=${qna.qnaNo}" role="button" class="btn btn-outline-info" style="margin-left:5px">삭제</a>
+		                            	</div>
+		                            </div>	 
 	                        </div>
 	                    </div>
 	                </div>

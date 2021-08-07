@@ -398,7 +398,7 @@ public class AdminBookController {
 		Map result = new HashMap();
 		int no = 1;
 		for(Map m : list) {
-			String bookName = no+++"." +((String)m.get("BOOK_NAME")).substring(0,5);
+			String bookName = no+++"." +((String)m.get("BOOK_NAME")).substring(0,4);
 			String count = String.valueOf(m.get("LIKE_COUNT"));
 			System.out.println(bookName + ":" +count);
 			result.put(bookName, count);

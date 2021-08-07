@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing;
 
 public interface NoticeDao {
 
@@ -22,6 +23,6 @@ public interface NoticeDao {
 	List<StudyRoomA> redingroomA(SqlSessionTemplate session);
 	StudyRoomA redingroom(SqlSessionTemplate session,String seatno);
 	int redingroombooking(SqlSessionTemplate session,Map param);
-	
-
+	List<StudyRoomBooKing> selectreding(SqlSessionTemplate session,String userid);
+	List<StudyRoomA> selectareding(SqlSessionTemplate session,String userid);
 }

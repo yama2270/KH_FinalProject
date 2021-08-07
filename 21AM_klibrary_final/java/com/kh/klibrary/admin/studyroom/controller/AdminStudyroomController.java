@@ -55,6 +55,13 @@ public class AdminStudyroomController {
 		return mv;
 	}
 	
+	// 열람실 예약목록 수정 
+	@RequestMapping("/admin/studyroom/modiBooking.do")
+	public String modiBooking(@RequestParam Map param,ModelAndView mv) {
+		System.out.println(param.get("bookingNo"));
+		System.out.println(param.get("seatNo"));
+		return "admin/studyroom/modiBooking"; 
+	}
 	
 	// A열람실
 	@RequestMapping("/admin/studyroom/studyroomA.do")
@@ -76,6 +83,7 @@ public class AdminStudyroomController {
 		
 		return "admin/studyroom/studyroomA";
 	}
+	
 	
 	// B열람실
 	@RequestMapping("/admin/studyroom/studyroomB.do")
