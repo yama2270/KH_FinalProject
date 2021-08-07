@@ -398,7 +398,7 @@ public class AdminBookController {
 		Map result = new HashMap();
 		int no = 1;
 		for(Map m : list) {
-			String bookName = no+++"." +((String)m.get("BOOK_NAME")).substring(0,5);
+			String bookName = no+++"." +((String)m.get("BOOK_NAME")).substring(0,4);
 			String count = String.valueOf(m.get("LIKE_COUNT"));
 			System.out.println(bookName + ":" +count);
 			result.put(bookName, count);
@@ -412,7 +412,7 @@ public class AdminBookController {
 	@RequestMapping("/admin/book/bookWishList.do")
 	public ModelAndView bookWishList(
 			@RequestParam(value = "cPage", defaultValue = "1") int cPage,
-			@RequestParam(value = "numPerpage", defaultValue = "10") int numPerpage, 
+			@RequestParam(value = "numPerpage", defaultValue = "4") int numPerpage, 
 			ModelAndView mv) {
 		mv.addObject("list", service.selectBookWishList(cPage, numPerpage));
 		int totalData=service.selectWishBookCount();
@@ -420,5 +420,17 @@ public class AdminBookController {
 		mv.setViewName("admin/book/bookWishList");
 		return mv;
 	}
+	
+	//게시글 삭제
+	@RequestMapping("/admin/book/wishBookDelete.do")
+	public String ajaxTest(HttpServletRequest request) throws Exception{
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0;i<size; i++) {
+			service.deleteWishBook(ajaxMsg[i]);
+		}
+		return "redirect:/admin/book/bookWishList.do";
+	}
+	
 	
 }

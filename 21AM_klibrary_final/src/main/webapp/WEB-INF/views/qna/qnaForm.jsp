@@ -71,31 +71,22 @@
                             </tr>		
                         </table>
                         <textarea name="qnaContent" id="" cols="110" rows="10" class="textarea"></textarea>
-                        <input type="submit" value="등록" class="newtext" style= "margin-left: 35%;">                        	                        		
-                        <button class="qf-cancel" onclick="fn_moveQnaList();">취소</button>
+                        <input type="submit" value="등록" class="btn btn-outline-info" style= "margin-left: 35%;">                        	                        		
+                        <button class="btn btn-outline-info"><a href="${path}/qna/qnaList.do">취소</a></button>
                     </form>
                 </div>
             </div>
 </section>        
 
 <script>
-	const fn_moveQnaList =()=>{
-		location.assign("${path}/qna/qnaList.do")}
+/* 	const fn_moveQnaList =()=>{
+		location.assign("${path}/qna/qnaList.do")} */
 	
 	$(function(){
-		if(window.location.href=='http://localhost:9090/klibrary/qna/qnaForm.do'){
-			
-			document.getElementsByClassName('list-group-item')[3].style.background="lightgrey";
-		
-		}else if(window.location.href=='http://localhost:9090/klibrary/notice/noticeList.do'||pageId=="공지사항"){
-		
-			document.getElementsByClassName('list-group-item')[1].style.background="lightgrey";
-			
-		}else if(window.location.href=='http://localhost:9090/klibrary/faq/faqList.do'||pageId=="자주묻는질문"){
-			
-			document.getElementsByClassName('list-group-item')[2].style.background="lightgrey";
-		}
-		
+		$("[name=upFile]").change(e=>{
+			const fileName=$(e.target).prop('files')[0].name;
+			$(e.target).next(".custom-file-label").html(fileName);
+		});		
 	})
 </script>  
 </body>

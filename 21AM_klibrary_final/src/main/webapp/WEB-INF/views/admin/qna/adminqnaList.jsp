@@ -59,7 +59,7 @@
    								</a>
    							</td>
    							<td class="cols"><c:out value="${qna.userId }"/></td>
-   							<td class="cols"><c:out value="${qna.qnaDate }"/></td>
+   							<td class="cols"><fmt:formatDate value="${qna.qnaDate }" pattern="yy/MM/dd/(E)hh:mm"/></td>
    							<td class="cols"><c:out value="${qna.qnaState }"/></td>				
    							<td class="cols"><c:out value="${qna.qnaCount }"/></td>
    						</tr>
@@ -153,7 +153,7 @@
         // ul show()
         $(".navOptions").eq(2).show();
         // ul li 배경화면 
-        $(".navOptions").eq(2).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+        $(".navOptions").eq(2).children().eq(1).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
     })
     
    
