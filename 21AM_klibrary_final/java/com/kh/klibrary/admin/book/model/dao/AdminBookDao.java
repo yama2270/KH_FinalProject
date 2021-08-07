@@ -91,6 +91,15 @@ public interface AdminBookDao {
 	//대출내역 삽입
 	int insertLendingHistory(SqlSessionTemplate session, Lending ld);
 	
+	//대츨도서 체크 리스트
+	List<Lending> selectDRTCList(SqlSessionTemplate session, Map map);
+	
+	//대출도서 체크 삭제
+	int deleteRentalCheck(SqlSessionTemplate session, Map map);
+	
+	//대출도서 체크 내역삽입
+	int insertDRTCList(SqlSessionTemplate session, List list);
+	
 	//예약도서 리스트
 	List<Booking> reservedList(SqlSessionTemplate session);
 	

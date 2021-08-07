@@ -34,8 +34,7 @@
 			<div id="contentTabWrap"> <!-- 예약중 리스트-->
 				<table id="bookReservedListTab" class="table table-hover">
 					<tr>
-						<th style="width: 50px; line-height: 18px;"><input
-							type="checkbox" /></th>
+						<th style="width: 50px; line-height: 18px;"><input id="selBox" type="checkbox" onclick="fn_selBox();" /></th>
 						<th style="width: 120px;">&nbsp;예약번호 <i
 							class="fas fa-arrows-alt-v"></i></th>
 						<th style="width: 120px;">도서번호 <i class="fas fa-arrows-alt-v"></i></th>
@@ -83,7 +82,7 @@
 			</div>
 			
 			 <!-- 예약내역 리스트-->
-			<div id="contentTitle">예약도서내역</div>
+			<div id="contentTitle" style="margin-top:800px;">예약도서내역</div>
 			<div id="searchWrap">
 				<div class="container-fluid" style="padding-right: 0px;">
 					<form class="d-flex" action="${path }/admin/book/bookReservedList.do" method="post">

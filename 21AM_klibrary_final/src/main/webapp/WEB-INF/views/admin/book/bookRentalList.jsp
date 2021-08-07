@@ -45,8 +45,7 @@
 			<div id="contentTabWrap">
 				<table id="bookRentalListTab" class="table table-hover">
 					<tr>
-						<th style="width: 50px; line-height: 18px;"><input
-							type="checkbox" /></th>
+						<th style="width: 50px; line-height: 18px;"><input id="selBox" type="checkbox" onclick="fn_selBox();" /></th>
 						<th style="width: 120px;">&nbsp;대출번호 <i
 							class="fas fa-arrows-alt-v"></i></th>
 						<th style="width: 120px;">도서번호 <i class="fas fa-arrows-alt-v"></i></th>
@@ -101,7 +100,7 @@
 					<button id="delRentalBtn" type="button" class="btn btn-outline-secondary">반납</button>
 				</div>
 			</div>
-			<div id="contentTitle">대출도서 내역목록</div>
+			<div id="contentTitle" style="margin-top:600px;">대출도서 내역목록</div>
 			<div id="searchWrap">
 				<div class="container-fluid" style="padding-right:0px;">
 					<form class="d-flex" action="${path }/admin/book/bookRentalList.do" method="post">
@@ -176,9 +175,6 @@
 				<div id="pageBar">
 	            	<c:out value="${pageBar2 }" escapeXml="false"/>
 	            </div>
-				<div id="bookRentalListBtn">
-					<button id="delRentalBtn" type="button" class="btn btn-outline-secondary">반납</button>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -232,7 +228,7 @@
     				checkArr.push($(v).val());
     			})
     			console.log(checkArr);
-    			/* location.href="${path}/admin/book/deleteRentalCheck.do?lendingNo="+checkArr; */
+    			location.href="${path}/admin/book/deleteRentalCheck.do?lendingNo="+checkArr;
     		}
     	}else{
     		alert("반납도서를 선택해주세요");
