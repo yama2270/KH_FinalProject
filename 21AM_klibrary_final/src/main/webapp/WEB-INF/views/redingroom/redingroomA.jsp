@@ -114,7 +114,7 @@
 	
 	function clickHandler()
 	{
-	    open("${path}/notice/redingroom.do?seatno="+this.textContent+'&userid='+userid,"_blank","height=440,width=660");
+	    open("${path}/notice/Aredingroom.do?seatno="+this.textContent+'&userid='+userid,"_blank","height=440,width=660");
 	}
 	
 	}else{

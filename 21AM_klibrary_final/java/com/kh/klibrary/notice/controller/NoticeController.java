@@ -15,7 +15,10 @@ import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.notice.model.service.NoticeService;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomB;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomC;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomD;
 
 @Controller	
 public class NoticeController {
@@ -114,7 +117,7 @@ public class NoticeController {
 		return "/facilities/copymachine";
 	}
 	
-	
+	//A열람실
 	@RequestMapping("/notice/redingroomA.do")
 	public ModelAndView redingroomA(ModelAndView mv) {
 		mv.addObject("list",service.redingroomA());
@@ -131,32 +134,41 @@ public class NoticeController {
 		return mv;
 	}
 	
-	@RequestMapping("/notice/redingroomB.do")
-	public String redingroomB() {
-		return "/redingroom/redingroomB";
-	}
-	
-	@RequestMapping("/notice/redingroomC.do")
-	public String redingroomC() {
-		return "/redingroom/redingroomC";
-	}
-	
-	@RequestMapping("/notice/redingroomD.do")
-	public String redingroomD() {
-		return "/redingroom/redingroomD";
-	}
-	
-	
-	@RequestMapping("/notice/redingroom.do")
+	@RequestMapping("/notice/Aredingroom.do")
 	public ModelAndView redingroom(String seatno,String userid,ModelAndView mv) {
 		System.out.println(seatno);
 		List<StudyRoomBooKing> sr=service.selectreding(userid);
 		if(sr.size()<1) {
 			List<StudyRoomA> sa=service.selectareding(userid);
 			if(sa.size()<1) {
-				mv.addObject("list",service.redingroom(seatno));
-				mv.setViewName("redingroom/redingroomAseat");
-				return mv;
+				List<StudyRoomB> sb=service.selectbreding(userid);
+				if(sb.size()<1) {
+					List<StudyRoomC> sc=service.selectcreding(userid);
+					if(sc.size()<1) {
+						List<StudyRoomD> sd=service.selectdreding(userid);
+						if(sd.size()<1) {
+							mv.addObject("list",service.redingroom(seatno));
+							mv.setViewName("redingroom/redingroomAseat");
+							return mv;
+						}else {
+							mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+							mv.addObject("script","window.close();");
+							mv.setViewName("common/msg");
+							return mv;
+						}
+					}else {
+						mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+						mv.addObject("script","window.close();");
+						mv.setViewName("common/msg");
+						return mv;
+					}
+				}else {
+					mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+					mv.addObject("script","window.close();");
+					mv.setViewName("common/msg");
+					return mv;
+				}
+				
 			}else {
 				mv.addObject("msg","좌석을 사용중이신 회원입니다.");
 				mv.addObject("script","window.close();");
@@ -180,6 +192,203 @@ public class NoticeController {
 		//model.addAttribute("loc","/notice/redingroomA.do");
 		return "common/msg";
 	}
+	
+	//B열람실
+	@RequestMapping("/notice/redingroomB.do")
+	public ModelAndView redingroomB(ModelAndView mv) {
+		mv.addObject("list",service.redingroomB());
+		int total=service.totalDataB();//총좌석갯수
+		int usetotal=service.usetotalB();//이용중인좌석갯수
+		int Available=service.AvailableB();//잔여좌석갯수
+		int cannotused=service.cannotusedB();//사용불가좌석갯수
+		System.out.println(total);
+		mv.addObject("total",total);
+		mv.addObject("usetotal",usetotal);
+		mv.addObject("Available",Available);
+		mv.addObject("cannotused",cannotused);
+		mv.setViewName("redingroom/redingroomB");
+		return mv;
+	}
+	@RequestMapping("/notice/Bredingroom.do")
+	public ModelAndView Bredingroom(String seatno,String userid,ModelAndView mv) {
+		System.out.println(seatno);
+		List<StudyRoomBooKing> sr=service.selectreding(userid);
+		if(sr.size()<1) {
+			List<StudyRoomA> sa=service.selectareding(userid);
+			if(sa.size()<1) {
+				List<StudyRoomB> sb=service.selectbreding(userid);
+				if(sb.size()<1) {
+					List<StudyRoomC> sc=service.selectcreding(userid);
+					if(sc.size()<1) {
+						List<StudyRoomD> sd=service.selectdreding(userid);
+						if(sd.size()<1) {
+							mv.addObject("list",service.redingBroom(seatno));
+							mv.setViewName("redingroom/redingroomBseat");
+							return mv;
+						}else {
+							mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+							mv.addObject("script","window.close();");
+							mv.setViewName("common/msg");
+							return mv;
+						}
+					}else {
+						mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+						mv.addObject("script","window.close();");
+						mv.setViewName("common/msg");
+						return mv;
+					}
+				}else {
+					mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+					mv.addObject("script","window.close();");
+					mv.setViewName("common/msg");
+					return mv;
+				}
+				
+			}else {
+				mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+				mv.addObject("script","window.close();");
+				mv.setViewName("common/msg");
+				return mv;
+			}
+		}else {
+			mv.addObject("msg","이미 예약한 회원입니다.");
+			mv.addObject("script","window.close();");
+			mv.setViewName("common/msg");
+			return mv;
+		}
+	}
+	
+	//C열람실
+	@RequestMapping("/notice/redingroomC.do")
+	public ModelAndView redingroomC(ModelAndView mv) {
+		mv.addObject("list",service.redingroomC());
+		int total=service.totalDataC();//총좌석갯수
+		int usetotal=service.usetotalC();//이용중인좌석갯수
+		int Available=service.AvailableC();//잔여좌석갯수
+		int cannotused=service.cannotusedC();//사용불가좌석갯수
+		System.out.println(total);
+		mv.addObject("total",total);
+		mv.addObject("usetotal",usetotal);
+		mv.addObject("Available",Available);
+		mv.addObject("cannotused",cannotused);
+		mv.setViewName("redingroom/redingroomC");
+		return mv;
+	}
+	
+	@RequestMapping("/notice/Credingroom.do")
+	public ModelAndView Credingroom(String seatno,String userid,ModelAndView mv) {
+		System.out.println(seatno);
+		List<StudyRoomBooKing> sr=service.selectreding(userid);
+		if(sr.size()<1) {
+			List<StudyRoomA> sa=service.selectareding(userid);
+			if(sa.size()<1) {
+				List<StudyRoomB> sb=service.selectbreding(userid);
+				if(sb.size()<1) {
+					List<StudyRoomC> sc=service.selectcreding(userid);
+					if(sc.size()<1) {
+						List<StudyRoomD> sd=service.selectdreding(userid);
+						if(sd.size()<1) {
+							mv.addObject("list",service.redingCroom(seatno));
+							mv.setViewName("redingroom/redingroomCseat");
+							return mv;
+						}else {
+							mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+							mv.addObject("script","window.close();");
+							mv.setViewName("common/msg");
+							return mv;
+						}
+					}else {
+						mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+						mv.addObject("script","window.close();");
+						mv.setViewName("common/msg");
+						return mv;
+					}
+				}else {
+					mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+					mv.addObject("script","window.close();");
+					mv.setViewName("common/msg");
+					return mv;
+				}
+				
+			}else {
+				mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+				mv.addObject("script","window.close();");
+				mv.setViewName("common/msg");
+				return mv;
+			}
+		}else {
+			mv.addObject("msg","이미 예약한 회원입니다.");
+			mv.addObject("script","window.close();");
+			mv.setViewName("common/msg");
+			return mv;
+		}
+	}
+	//D열람실
+	@RequestMapping("/notice/redingroomD.do")
+	public ModelAndView redingroomD(ModelAndView mv) {
+		mv.addObject("list",service.redingroomD());
+		int total=service.totalDataD();//총좌석갯수
+		int usetotal=service.usetotalD();//이용중인좌석갯수
+		int Available=service.AvailableD();//잔여좌석갯수
+		int cannotused=service.cannotusedD();//사용불가좌석갯수
+		System.out.println(total);
+		mv.addObject("total",total);
+		mv.addObject("usetotal",usetotal);
+		mv.addObject("Available",Available);
+		mv.addObject("cannotused",cannotused);
+		mv.setViewName("redingroom/redingroomD");
+		return mv;
+	}
+	
+	@RequestMapping("/notice/Dredingroom.do")
+	public ModelAndView Dredingroom(String seatno,String userid,ModelAndView mv) {
+		System.out.println(seatno);
+		List<StudyRoomBooKing> sr=service.selectreding(userid);
+		if(sr.size()<1) {
+			List<StudyRoomA> sa=service.selectareding(userid);
+			if(sa.size()<1) {
+				List<StudyRoomB> sb=service.selectbreding(userid);
+				if(sb.size()<1) {
+					List<StudyRoomC> sc=service.selectcreding(userid);
+					if(sc.size()<1) {
+						List<StudyRoomD> sd=service.selectdreding(userid);
+						if(sd.size()<1) {
+							mv.addObject("list",service.redingDroom(seatno));
+							mv.setViewName("redingroom/redingroomDseat");
+							return mv;
+						}else {
+							mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+							mv.addObject("script","window.close();");
+							mv.setViewName("common/msg");
+							return mv;
+						}
+					}else {
+						mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+						mv.addObject("script","window.close();");
+						mv.setViewName("common/msg");
+						return mv;
+					}
+				}else {
+					mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+					mv.addObject("script","window.close();");
+					mv.setViewName("common/msg");
+					return mv;
+				}
+				
+			}else {
+				mv.addObject("msg","좌석을 사용중이신 회원입니다.");
+				mv.addObject("script","window.close();");
+				mv.setViewName("common/msg");
+				return mv;
+			}
+		}else {
+			mv.addObject("msg","이미 예약한 회원입니다.");
+			mv.addObject("script","window.close();");
+			mv.setViewName("common/msg");
+			return mv;
+		}
+	}
+	
 	@RequestMapping("/notice/redingroomnotice.do")
 	public String redingroomnotice() {
 		return "/redingroom/redingroomnotice";

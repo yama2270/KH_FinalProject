@@ -56,5 +56,120 @@
   		SELECT * FROM STUDYROOM_A WHERE USER_ID = #{userid}
   	</select>
   	
+  	<select id="selectbreding" resultMap="studyroombMap">
+  		SELECT * FROM STUDYROOM_B WHERE USER_ID = #{userid}
+  	</select>
+  	
+  	<select id="selectcreding" resultMap="studyroomcMap">
+  		SELECT * FROM STUDYROOM_C WHERE USER_ID = #{userid}
+  	</select>
+  	
+  	<select id="selectdreding" resultMap="studyroomdMap">
+  		SELECT * FROM STUDYROOM_D WHERE USER_ID = #{userid}
+  	</select>
+  	
+  	<!-- 열람실 B -->
+  	<resultMap type="redingroomB" id="studyroombMap">
+	  	<id column="SEAT_NO" property="seatNo"/>
+	  	<result column="USER_ID" property="userId"/>
+	  	<result column="USAGE_STATUS" property="usageStatus"/>
+	  	<result column="BOOKING_NO" property="bookingNo"/>
+	  	<result column="START_TIME" property="startTime"/>
+	  	<result column="END_TIME" property="endTime"/>
+	  	<result column="USAGE_DATE" property="usageDate"/>
+  	</resultMap>
+  	
+  	<select id="redingroomB" resultMap="studyroombMap">
+  		SELECT * FROM STUDYROOM_B
+  	</select>
+  	<select id="totalDataB" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_B
+  	</select>
+  	
+  	<select id="usetotalB" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_B WHERE USAGE_STATUS = '이용중'
+  	</select>
+  	<select id="AvailableB" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_B WHERE USAGE_STATUS = '이용가능'
+  	</select>
+  	<select id="cannotusedB" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_B WHERE USAGE_STATUS = '이용불가'
+  	</select>
+  	
+  	<select id="redingBroom" resultMap="studyroombMap">
+  		SELECT * FROM STUDYROOM_B WHERE SEAT_NO LIKE #{seatno}
+  	</select>
+  	
+  	
+  	
+  	
+  	
+  	
+  	<!-- 열람실 C -->
+  	<resultMap type="redingroomC" id="studyroomcMap">
+	  	<id column="SEAT_NO" property="seatNo"/>
+	  	<result column="USER_ID" property="userId"/>
+	  	<result column="USAGE_STATUS" property="usageStatus"/>
+	  	<result column="BOOKING_NO" property="bookingNo"/>
+	  	<result column="START_TIME" property="startTime"/>
+	  	<result column="END_TIME" property="endTime"/>
+	  	<result column="USAGE_DATE" property="usageDate"/>
+  	</resultMap>
+  	<select id="redingroomC" resultMap="studyroomcMap">
+  		SELECT * FROM STUDYROOM_C
+  	</select>
+  	<select id="totalDataC" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_C
+  	</select>
+  	
+  	<select id="usetotalC" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_C WHERE USAGE_STATUS = '이용중'
+  	</select>
+  	<select id="AvailableC" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_C WHERE USAGE_STATUS = '이용가능'
+  	</select>
+  	<select id="cannotusedC" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_C WHERE USAGE_STATUS = '이용불가'
+  	</select>
+  	
+  	<select id="redingCroom" resultMap="studyroomcMap">
+  		SELECT * FROM STUDYROOM_C WHERE SEAT_NO LIKE #{seatno}
+  	</select>
+  	
+  	
+  	<!-- 열람실 D -->
+  	<resultMap type="redingroomD" id="studyroomdMap">
+	  	<id column="SEAT_NO" property="seatNo"/>
+	  	<result column="USER_ID" property="userId"/>
+	  	<result column="USAGE_STATUS" property="usageStatus"/>
+	  	<result column="BOOKING_NO" property="bookingNo"/>
+	  	<result column="START_TIME" property="startTime"/>
+	  	<result column="END_TIME" property="endTime"/>
+	  	<result column="USAGE_DATE" property="usageDate"/>
+  	</resultMap>
+  	<select id="redingroomD" resultMap="studyroomcMap">
+  		SELECT * FROM STUDYROOM_D
+  	</select>
+  	<select id="totalDataD" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_D
+  	</select>
+  	
+  	<select id="usetotalD" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_D WHERE USAGE_STATUS = '이용중'
+  	</select>
+  	<select id="AvailableD" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_D WHERE USAGE_STATUS = '이용가능'
+  	</select>
+  	<select id="cannotusedD" resultType="_int">
+  		SELECT COUNT(*) FROM STUDYROOM_D WHERE USAGE_STATUS = '이용불가'
+  	</select>
+  	
+  	<select id="redingDroom" resultMap="studyroomdMap">
+  		SELECT * FROM STUDYROOM_D WHERE SEAT_NO LIKE #{seatno}
+  	</select>
+  	
+  	
+  	
+  	
 	
 </mapper>
