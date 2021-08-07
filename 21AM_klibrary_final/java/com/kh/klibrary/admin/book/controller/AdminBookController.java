@@ -208,7 +208,11 @@ public class AdminBookController {
 	public String deleteRentalCheck(@RequestParam String lendingNo, Model model) {
 		Map map=new HashMap();
 		map.put("lendingNo", lendingNo.split(","));
-		System.out.println(map.get(lendingNo));
+		List<Lending> list=service.selectDRTCList(map); //체크도서 선택(여러개)
+		int result=service.insertDRTCList(list); //선택된 체크도서 내역도서에 삽입
+		result+=service.deleteRentalCheck(map);
+		model.addAttribute("msg",result>2?"체크된 도서의 반납를 성공하였습니다.":"체크된 도서의 반납를 실패하였습니다.");
+		model.addAttribute("loc","/admin/book/bookRentalList.do");
 		return "common/msg";
 	}
 	// 예약도서목록
