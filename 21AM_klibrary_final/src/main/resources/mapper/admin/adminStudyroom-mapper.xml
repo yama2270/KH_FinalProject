@@ -28,8 +28,31 @@
 		SELECT START_TIME AS STARTTIME,END_TIME AS ENDTIME FROM STUDYROOM_BOOKING WHERE SEAT_NO = #{seatNo} AND BOOKING_NO != #{bookingNo}
 	</select>
 	
+	<!-- 열람실 예약 수정 - 예약테이블 좌석 이용시간 -->
+	<select id="selBookingTimeMap" parameterType="Map" resultType="Map">
+		SELECT START_TIME AS STARTTIME,END_TIME AS ENDTIME FROM STUDYROOM_BOOKING WHERE SEAT_NO = #{seatNo} AND BOOKING_NO != #{bookingNo}
+	</select>
+	
 	<!-- 열람실 예약 수정 - 열람실 좌석 이용시간  -->
 	<select id="selUsingTime" parameterType="adminStudyroomBooking" resultType="Map">
+		<choose>
+			<when test="roomName=='열람실A'">
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_A WHERE SEAT_NO = #{seatNo}
+			</when>
+			<when test="roomName=='열람실B'">
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_B WHERE SEAT_NO = #{seatNo}
+			</when>
+			<when test="roomName=='열람실C'">
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_C WHERE SEAT_NO = #{seatNo}
+			</when>
+			<otherwise>
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_D WHERE SEAT_NO = #{seatNo}
+			</otherwise>
+		</choose>
+	</select>	
+	
+	<!-- 열람실 예약 수정 - 열람실 좌석 이용시간  -->
+	<select id="selUsingTimeMap" parameterType="Map" resultType="Map">
 		<choose>
 			<when test="roomName=='열람실A'">
 				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_A WHERE SEAT_NO = #{seatNo}

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.admin.studyroom.model.service.AdminStudyroomService;
@@ -70,6 +71,21 @@ public class AdminStudyroomController {
 		
 		
 		return "admin/studyroom/modiBooking"; 
+	}
+	
+	// 열람실 예약수정 - 열람실 변경 이벤트 
+	@RequestMapping("/admin/studyroom/selSeatTime")
+	@ResponseBody
+	public Map selSeatTime(@RequestParam Map param){
+		
+		List<Map> listMap = service.selBookingTime(param);
+		
+		Map usingTime = service.selUsingTime(param);
+		
+		Map result = new HashMap();
+		result.put("bookingTime", listMap);
+		result.put("usingTime", usingTime);
+		return result; 
 	}
 	
 	// A열람실
