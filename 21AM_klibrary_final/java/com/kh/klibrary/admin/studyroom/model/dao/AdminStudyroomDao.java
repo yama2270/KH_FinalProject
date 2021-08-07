@@ -23,6 +23,12 @@ public interface AdminStudyroomDao {
 	// 예약삭제
 	int delBooking(SqlSessionTemplate session,int bookingNo);
 	
+	// 열람실 수정 - 예약테이블 좌석 이용시간 
+	List<Map> selBookingTime(SqlSessionTemplate session,AdminStudyroomBooking booking);
+	
+	// 열람실 수정 - 열람실 좌석 이용시간 
+	Map selUsingTime(SqlSessionTemplate session,AdminStudyroomBooking booking);
+	
 	// 열람실A 현황조회
 	List<Map> selectInfoA(SqlSessionTemplate session);
 	

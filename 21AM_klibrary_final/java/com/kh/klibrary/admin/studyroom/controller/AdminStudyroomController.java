@@ -57,9 +57,18 @@ public class AdminStudyroomController {
 	
 	// 열람실 예약목록 수정 
 	@RequestMapping("/admin/studyroom/modiBooking.do")
-	public String modiBooking(@RequestParam Map param,ModelAndView mv) {
-		System.out.println(param.get("bookingNo"));
-		System.out.println(param.get("seatNo"));
+	public String modiBooking(AdminStudyroomBooking booking,Model mo) {
+		
+		// 1. 예약정보 - 열람실이름,좌석번호,시작시간,종료시간
+		mo.addAttribute("bookingInfo",booking);
+		
+		// 2. 예약가능 시간설정
+		// 		1. 예약테이블 - booking no 제외,해당 좌석 시간 => 시작시간 / 종료시간
+		mo.addAttribute("bookingTime",service.selBookingTime(booking));
+		// 		2. 열람실에서 해당 열람실 현재 이용중 여부 파악 - 열람실 변호,좌석번호 => 시작시간 / 종료시간
+		mo.addAttribute("usingTime",service.selUsingTime(booking));
+		
+		
 		return "admin/studyroom/modiBooking"; 
 	}
 	
