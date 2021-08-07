@@ -315,5 +315,11 @@ public class AdminBookServiceImpl implements AdminBookService {
 		// TODO Auto-generated method stub
 		return dao.selectWishBookCount(session);
 	}
+
+	@Override
+	public int deleteWishBook(String wishBookNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteWishBook(session, wishBookNo);
+	}
 	
 }

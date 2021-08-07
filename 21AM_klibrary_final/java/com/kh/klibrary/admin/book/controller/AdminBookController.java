@@ -421,4 +421,16 @@ public class AdminBookController {
 		return mv;
 	}
 	
+	//게시글 삭제
+	@RequestMapping("/admin/book/wishBookDelete.do")
+	public String ajaxTest(HttpServletRequest request) throws Exception{
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0;i<size; i++) {
+			service.deleteWishBook(ajaxMsg[i]);
+		}
+		return "redirect:/admin/book/bookWishList.do";
+	}
+	
+	
 }

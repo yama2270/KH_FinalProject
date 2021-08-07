@@ -131,5 +131,9 @@ public interface AdminBookService {
 	//희망도서 리스트
 	List<WishBook> selectBookWishList(int cPage, int numPerpage);
 	int selectWishBookCount();
+	
+	//희망도서 삭제
+	int deleteWishBook(String wishBookNo);
+	
 }
 
