@@ -2,8 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-
 <jsp:include page="/WEB-INF/views/admin/common/header.jsp">
 	<jsp:param name="title" value="희망도서목록" />
 </jsp:include>
@@ -67,13 +68,21 @@
 				</tr>
 							</c:forEach>
 						</c:when>
-				</c:choose>
+				<c:otherwise>
+   					<tr>
+   					<td colspan="6">조회된 자료가 없습니다</td>
+   					</tr>
+   				</c:otherwise>       		
+          	</c:choose>
 			</table>
 			<div id="bookWishListBtn">
 				<button type="button" class="btn btn-outline-secondary">구입</button>
 				<button type="button" class="btn btn-outline-secondary">삭제</button>
 			</div>
 		</div>
+		     <div id="pagebar-container" style="margin-top:60px; margin-left:180px;">
+	        	${pageBar }
+	        </div>
 	</div>
 </div>
 </section>
