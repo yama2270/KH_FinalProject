@@ -316,7 +316,7 @@ String totalData=request.getParameter("totalData");
    <c:when test="${empty list }">
      <div style="text-align:center;"><h5>도서를 검색하세요</h5></div>
      <br><br><br>
-      <table id=recommendTable2 style="left-margin:15%;">      
+      <table id=recommendTable2 style="margin:auto; text-align:left;">      
 				 
 				
 	  </table>	
@@ -324,7 +324,7 @@ String totalData=request.getParameter("totalData");
    </c:when>
   </c:choose> 
    
-
+<br><br><br><br><br><br><br><br>
 
 </body>
 
