@@ -195,5 +195,15 @@ public Lending selectLending(String bookNo) {
 		 return dao.selectAge(session,isbnNo);
 	 }
 	 
+	 @Override
+	 public List<Map> likeBest(){
+		 return dao.likeBest(session);
+	 }
+	 
+	 @Override
+	 public List<Map> lendingBest(){
+		 return dao.lendingBest(session);
+	 }
+	 
 	 
 }

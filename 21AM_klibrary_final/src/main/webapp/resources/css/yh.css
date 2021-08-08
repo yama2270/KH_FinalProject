@@ -284,6 +284,7 @@
     padding-bottom: 0.75rem;
     background-color: #fff;
     border: 1px solid rgba(0,0,0,.125);
+    
 }
 .list-group-items:not(#menutitle,#menutitle1):hover {
     background-color: lightgrey;

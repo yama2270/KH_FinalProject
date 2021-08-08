@@ -78,6 +78,12 @@
     </section>
 
 <script>
+	$(function(){
+	    // ul show()
+	    $(".submenu").eq(0).show();
+	    // ul li 배경화면 
+	    $(".submenu").eq(0).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+	})
     
     // navigation 이벤트
     
