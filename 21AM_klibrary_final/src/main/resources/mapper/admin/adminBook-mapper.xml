@@ -547,7 +547,7 @@
 		VALUES(SEQ_BOOK_NO.NEXTVAL,#{isbnNo},#{bookingState},#{lendingState})
 		<selectKey keyProperty="bookNo" resultType="_String" order="AFTER">
 			SELECT SEQ_BOOK_NO.CURRVAL FROM DUAL
-		</selectKey>
+		</selectKey>	
 	</insert>
 	
 </mapper>

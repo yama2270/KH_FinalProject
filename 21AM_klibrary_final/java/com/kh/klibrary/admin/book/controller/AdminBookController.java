@@ -446,8 +446,8 @@ public class AdminBookController {
 	
 	//희망도서 검색
 	@RequestMapping("/admin/notice/insertWishBook.do")
-	public ModelAndView wishBookInsert(WishBook wishBook,ModelAndView mv) {
-		int result=service.insertWishBook(wishBook);
+	public ModelAndView wishBookInsert(WishBook wishBook,String wishBookNo, ModelAndView mv) {
+		int result=service.insertWishBook(wishBook,wishBookNo);
 		String msg="";
 		if(result>0) {
 			msg="도서 등록완료";
