@@ -203,8 +203,86 @@ String isbnNo = request.getParameter("isbnNo");
 						<canvas id="likeBook" width="600px" height="300px"  ></canvas>
 					</div>
 		</div>
+<br><br><br>		
+		<c:choose>
+		<c:when test="${not empty publisherList }" >
+		
+				<table id=recommendTable2>
+				 
+				  <tr>
+				    <td colspan="5" >
+				      <hr>
+				      이 책과 발행자가 같은 도서      
+				      <hr>
+				   </td>
+				  </tr>
+				    <tr>
+				      
+				  <c:forEach var="b" items="${publisherList }">
+				        <td id="imgContainerDiv"  >
+				
+				            
+				                
+				                <img id="bookImg" src="${b.bookImg }" alt="${b.bookName}"
+				                onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'" style="cursor:pointer;"><br>
+				                <span><c:out value="${b.bookName }"/></span>
+				                
+				        </td>
+				        
+				 </c:forEach>
+				   
+				    
+				    </tr>
+				    
+				    <tr>
+				      <td colspan="5">
+				         <hr>
+				      </td>
+				    </tr>
+		       </table>
+		 </c:when>
+		 </c:choose>
+<br><br><br>	
+		<c:choose>
+		<c:when test="${not empty kdcNoList }" >
+		
+		      <table id=recommendTable2>      
+				 
+				  <tr>
+				    <td colspan="5" >
+				      <hr>
+				      이 책과 주제가 같은 도서      
+				      <hr>
+				   </td>
+				  </tr>
+				    <tr>
+				      
+				  <c:forEach var="b" items="${kdcNoList }">
+				        <td id="imgContainerDiv"  >
+				
+				            
+				                
+				                <img id="bookImg" src="${b.bookImg }" alt="${b.bookName}"
+				                onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'" style="cursor:pointer;"><br>
+				                <span><c:out value="${b.bookName }"/></span>
+				                
+				        </td>
+				 </c:forEach>
+				    
+				    </tr>
+				    <tr>
+				      <td colspan="5">
+				         <hr>
+				      </td>
+				    </tr>
+		     </table>	
+		
+		 </c:when>
+		</c:choose>   
 </div>
  <br><br><br>
+ 
+ 
        
 
 </body>
@@ -213,7 +291,7 @@ String isbnNo = request.getParameter("isbnNo");
 </html>
 <script>
 
-//관심도서 랭킹 
+//연령별 관심 현황
 
 $(function(){
 	let isbnNo = $("input[name='isbnNo']").attr('value');
