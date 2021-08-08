@@ -243,9 +243,9 @@ String totalData=request.getParameter("totalData");
       </td>
     </tr>
     <tr>
-     <td>
-
-     </td>
+	   <td>
+	
+	   </td>
      <td>
       <div id="bookInfoDiv4">
         <dl class="authorData2">

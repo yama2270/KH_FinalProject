@@ -2,6 +2,9 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="도서상세페이지"/>
 </jsp:include>
+<!-- Chart.js CDN -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/> 
@@ -9,7 +12,7 @@
 /* String pageId = request.getParameter("pageId");
 String keyword = request.getParameter("keyword");
 String category = request.getParameter("category"); */
-
+String isbnNo = request.getParameter("isbnNo");
 
 %>
 
@@ -41,6 +44,7 @@ String category = request.getParameter("category"); */
 <div id="searchResultDiv">
  <c:choose> 
    	<c:when test="${not empty book }">
+<input type=hidden name="isbnNo" value="${book.bookInfo.isbnNo }">
 <table  id=searchResultTable>
  <tr>
      <td id="bookTitleTd" colspan="3">
@@ -64,9 +68,9 @@ String category = request.getParameter("category"); */
     <th id="bookInfoTd">
          
            
-                    저자     <br>
-                    발행자     <br>              
-                    발행연도   <br>            
+                    저자   <br>
+                    발행자  <br>              
+                    발행연도 <br>            
                     ISBN  <br>
                     분류번호 <br>
                     위치번호      
@@ -189,11 +193,19 @@ String category = request.getParameter("category"); */
         <a href="${path}/searchpage/bookTotalSearch?keyword=<%=keyword %>&category=<%=category %>" id="listBtn" class="btn down themeBtn">목록으로</a>
         <%} %> --%>
         </div>
+       
+        
 </div>
-<br><br><br><br>
-
+<br><br>
+        <div class="canQua" >
+					<div class="canQuaHea" style="float:right;"><h4>연령별 관심 현황</h4></div><br><br>
+					<div class="quaCat" style="margin-left:30%;">
+						<canvas id="likeBook" width="600px" height="300px"  ></canvas>
+					</div>
+		</div>
 </div>
-
+ <br><br><br>
+       
 
 </body>
 	
@@ -201,7 +213,70 @@ String category = request.getParameter("category"); */
 </html>
 <script>
 
+//관심도서 랭킹 
 
-
+$(function(){
+	let isbnNo = $("input[name='isbnNo']").attr('value');
+	
+ $.ajax({	
+	url : "${path}/searchpage/selectAge.do?isbnNo="+isbnNo,
+	success:function(data){
+				
+		 const keyArr = Object.keys(data);
+		
+ 
+		 // key 정렬 
+		  keyArr.sort(function(a,b){
+			if(a[0]>b[0]){
+				return 1;
+			} else {
+			return -1;
+			}
+		})   
+		console.log("keyArr테스트"+keyArr);
+		const sortedList = {};
+				 
+		 keyArr.forEach(function(key){
+			 
+			sortedList[key] = data[key];
+			console.log(sortedList[key]);
+		}) 
+		
+	
+		
+		const likCan = document.getElementById("likeBook").getContext("2d");
+		const likChart = new Chart(likCan,{
+			type:"bar",
+			data : {
+				labels : keyArr,
+				datasets : [{
+					data : sortedList,
+					backgroundColor : ["skyblue"],
+					barThickness : 30
+				}]
+			},
+			options : {
+				responsive : false,
+				scales : {
+					y :{
+						grid : {
+							borderDash : [2,5]
+						},
+						//suggestedMin : 0,
+						//suggestedMax : 10
+						min : 0,
+						max : 6
+					}
+				},
+				plugins : {								// legend 설정 
+					legend : {
+						display : false 
+					}
+				},
+			}
+		})
+	  }
+   })
+})
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	

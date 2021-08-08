@@ -320,4 +320,8 @@
      <update id="updateBookNo" >
 	 UPDATE BOOK SET BOOKING_STATE='가능', LENDING_STATE='가능' WHERE BOOK_NO=#{bookNo}
 	</update>   
+	
+	<select id="selectAge" resultType="_int">
+	SELECT EXTRACT(YEAR FROM SYSDATE)- EXTRACT(YEAR FROM BIRTH_DATE)+1 FROM LIKES JOIN MEMBER USING(USER_ID) WHERE ISBN_NO=#{isbnNo}
+	</select>
 </mapper>
