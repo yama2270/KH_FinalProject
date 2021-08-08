@@ -29,7 +29,7 @@ public interface MemberService {
 	List<Booking> selectBookingList(String userId, int cPage, int numPerpage);
 	List<Likes> selectBookMarkList(String userId, int cPage, int numPerpage);
 	List<WishBook> selectHopeRecordList(String userId, int cPage, int numPerpage);
-	Member selectMemberDropRequestList(Map m1);
+	MemberDrop selectMemberDropRequestList(Map m1);
 	int selectLendingCount(String userId);
 	int selectLHCount(String userId);
 	int selectDateCount(Map m1);
