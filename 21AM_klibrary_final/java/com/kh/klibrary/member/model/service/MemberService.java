@@ -16,6 +16,7 @@ public interface MemberService {
 	Member selectMember1(Map param);
 	Member memberFindId(Map param);
 	int memberFindPw(Member m);
+	int enrollIdCheck(String userId);
 	//cg
 	Member selectMember(Map m1);
 	int updateMember(Member m);
@@ -37,4 +38,5 @@ public interface MemberService {
 	int insertMemberDropRequest(Map m1);
 	// 홈페이지 방문자 count
 	int countUser(String today);
+	
 }

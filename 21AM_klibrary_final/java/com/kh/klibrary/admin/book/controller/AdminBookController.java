@@ -411,4 +411,11 @@ public class AdminBookController {
 		
 		return result;
 	}
+	
+	//추천도서
+	@RequestMapping("/admin/book/bookRecommendList.do")
+	public String recommendList() {
+		
+		return "admin/book/bookRecommendList";
+	}
 }

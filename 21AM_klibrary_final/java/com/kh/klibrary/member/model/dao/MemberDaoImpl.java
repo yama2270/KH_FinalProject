@@ -24,6 +24,16 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 
+	
+	
+	@Override
+	public int enrollIdCheck(SqlSessionTemplate session, String userId) {
+		
+		return session.selectOne("member.enrollIdCheck", userId);
+	}
+
+
+
 	@Override
 	public Member memberFindId(SqlSessionTemplate session, Map param) {
 		// TODO Auto-generated method stub
