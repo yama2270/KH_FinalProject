@@ -71,6 +71,8 @@ public class AdminStudyroomServiceImpl implements AdminStudyroomService {
 		return dao.updateStuBooking(session,booking);
 	}
 	
+	// ---- A열람실 -----
+	
 	// A열람실 현황조회
 	@Override
 	public List<Map> selectInfoA() {
@@ -83,5 +85,94 @@ public class AdminStudyroomServiceImpl implements AdminStudyroomService {
 		return dao.selectListA(session);
 	}
 	
+	// A열람실 이용자 조회
+	@Override
+	public List<AdminStudyroom> selUsingListA(int cPage,int numPerPage){
+		return dao.selUsingListA(session,cPage,numPerPage);
+	}
+	
+	// A열람실 이용자 전체 회원수
+	@Override
+	public int selUsingCountA(){
+		return dao.selUsingCountA(session);
+	}
+	
+	// ---- B열람실 -----
+	
+	// B열람실 현황조회
+	@Override
+	public List<Map> selectInfoB() {
+		return dao.selectInfoB(session);
+	}
+	
+	// B열람실 좌석조회
+	@Override
+	public List<AdminStudyroom> selectListB(){
+		return dao.selectListB(session);
+	}
+	
+	// B열람실 이용자 조회
+	@Override
+	public List<AdminStudyroom> selUsingListB(int cPage,int numPerPage){
+		return dao.selUsingListB(session,cPage,numPerPage);
+	}
+	
+	// B열람실 이용자 전체 회원수
+	@Override
+	public int selUsingCountB(){
+		return dao.selUsingCountB(session);
+	}
+	
+	// ---- C열람실 -----
+	
+	// C열람실 현황조회
+	@Override
+	public List<Map> selectInfoC() {
+		return dao.selectInfoC(session);
+	}
+	
+	// C열람실 좌석조회
+	@Override
+	public List<AdminStudyroom> selectListC(){
+		return dao.selectListC(session);
+	}
+	
+	// C열람실 이용자 조회
+	@Override
+	public List<AdminStudyroom> selUsingListC(int cPage,int numPerPage){
+		return dao.selUsingListC(session,cPage,numPerPage);
+	}
+	
+	// C열람실 이용자 전체 회원수
+	@Override
+	public int selUsingCountC(){
+		return dao.selUsingCountC(session);
+	}
+	
+	// ---- D열람실 -----
+	
+	// D열람실 현황조회
+	@Override
+	public List<Map> selectInfoD() {
+		return dao.selectInfoD(session);
+	}
+	
+	// D열람실 좌석조회
+	@Override
+	public List<AdminStudyroom> selectListD(){
+		return dao.selectListD(session);
+	}
+	
+	// D열람실 이용자 조회
+	@Override
+	public List<AdminStudyroom> selUsingListD(int cPage,int numPerPage){
+		return dao.selUsingListD(session,cPage,numPerPage);
+	}
+	
+	// D열람실 이용자 전체 회원수
+	@Override
+	public int selUsingCountD(){
+		return dao.selUsingCountD(session);
+	}
 	
 }
