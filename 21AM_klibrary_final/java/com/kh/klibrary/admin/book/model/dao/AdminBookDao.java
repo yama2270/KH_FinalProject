@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.BookingHistory;
 import com.kh.klibrary.member.model.vo.Lending;
@@ -90,6 +91,15 @@ public interface AdminBookDao {
 	//대출내역 삽입
 	int insertLendingHistory(SqlSessionTemplate session, Lending ld);
 	
+	//대츨도서 체크 리스트
+	List<Lending> selectDRTCList(SqlSessionTemplate session, Map map);
+	
+	//대출도서 체크 삭제
+	int deleteRentalCheck(SqlSessionTemplate session, Map map);
+	
+	//대출도서 체크 내역삽입
+	int insertDRTCList(SqlSessionTemplate session, List list);
+	
 	//예약도서 리스트
 	List<Booking> reservedList(SqlSessionTemplate session);
 	
@@ -135,5 +145,13 @@ public interface AdminBookDao {
 	// admin - main 
 	
 	List<Map> countRenBook(SqlSessionTemplate session,Map param);
+	
+	
+	//희망도서 리스트
+	List<WishBook> selectBookWishList(SqlSessionTemplate session, int cPage, int numPerpage);
+	int selectWishBookCount(SqlSessionTemplate session);
+	
+	//희망도서 삭제
+	int deleteWishBook(SqlSessionTemplate session, String wishBookNo);
 	
 }

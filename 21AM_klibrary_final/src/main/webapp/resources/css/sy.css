@@ -940,13 +940,14 @@ background-color:blue;
         border:none;
         border-radius:5px;
         margin-left:10px;
-        font-size: 20px;
-        padding:10px;
-        background-color: silver;
+        font-size: 18px;
+        padding:5px;
+        
+        background-color: rgb(239, 239, 239);
         
     }
     #button22:hover{
-      background-color: slategray;
+      background-color: silver;
     }
     
     #publishYear1{

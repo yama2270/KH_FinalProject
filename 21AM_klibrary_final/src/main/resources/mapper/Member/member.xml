@@ -243,7 +243,7 @@
 	<resultMap type="com.kh.klibrary.member.model.vo.MemberDrop" id="memberDrop">
 		<result column="USER_ID" property="userId"/>
 		<result column="DROP_REQUEST" property="dropRequest"/>
-		<collection property="member" ofType="member">
+<!-- 		<collection property="member" ofType="member">
 			<id column="USER_ID" property="userId"/>
 			<result column="USER_PASSWORD" property="userPassword"/>
 			<result column="USER_NAME" property="userName"/>
@@ -252,7 +252,7 @@
 			<result column="ADDRESS" property="address"/>
 			<result column="PHONE" property="phone"/>
 			<result column="SIGNUP_DATE" property="signupDate"/>
-		</collection>
+		</collection> -->
 	</resultMap>
 	
 	
@@ -261,5 +261,41 @@
 		INSERT INTO VISITOR VALUES(SEQ_VIS_NO.NEXTVAL,#{today})
 	</insert>
 	
+	<select id="selectSRBooking" parameterType="String" resultMap="srbooking">	
+		SELECT * FROM STUDYROOM_BOOKING WHERE USER_ID=#{userId} AND BOOKING_NO=(SELECT MAX(BOOKING_NO) FROM STUDYROOM_BOOKING WHERE USER_ID=#{userId})
+	</select>
+	
+	<delete id="cancelSRBooking" parameterType="String">
+		DELETE FROM STUDYROOM_BOOKING WHERE BOOKING_NO=#{bookingNo}
+	</delete>
+	
+	<resultMap type="com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking" id="srbooking">
+		<id column="BOOKING_NO" property="bookingNo"/>
+		<result column="STUDYROOM_TYPE" property="roomName"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="SEAT_NO" property="seatNo"/>
+		<result column="START_TIME" property="startTime"/>
+		<result column="END_TIME" property="endTime"/>
+		<result column="USAGE_DATE" property="usageDate"/>
+	</resultMap>
+	
+	<select id="selectSRHList" parameterType="String" resultMap="srHistory">
+		SELECT * FROM STUDYROOM_HISTORY WHERE USER_ID=#{userId}
+	</select>
+	
+	<select id="selectSRHCount" parameterType="String" resultType="_int">
+		SELECT COUNT(*) FROM STUDYROOM_HISTORY WHERE USER_ID=#{userId}
+	</select>
+	
+	<resultMap type="com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomHistory" id="srHistory">
+		<id column="STUDYROOM_HISTORY_NO" property="studyroomHistoryNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="BOOKING_NO" property="bookingNo"/>
+		<result column="STUDYROOM_TYPE" property="studyroomType"/>
+		<result column="SEAT_NO" property="seatNo"/>
+		<result column="START_TIME" property="startTime"/>
+		<result column="END_TIME" property="endTime"/>
+		<result column="USAGE_DATE" property="usageDate"/>
+	</resultMap>
 	
 </mapper>

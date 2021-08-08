@@ -10,7 +10,6 @@
     <div class="seathead">
         <h2>좌석정보</h2>
         <form class="d-flex" action="${path }/notice/redingroombooking.do" method="post">
-        
         <table class="seattable">
             <tr>
                 <th class="seattablehead" colspan="2">열람실A
@@ -27,21 +26,48 @@
             <tr>
                 <td class="seattablehead">시작시간</td>
                 <td class="seattablehead">
+               
                 	<select class="fontsize" name="searchOption" aria-label="Default select example">
-                        <option selected>시간선택</option>
+                        <option selected>시간선택</option> 
+                        <c:if test="${list.endTime ne '22:00' }">
+                        <c:if test="${list.endTime ne '21:00' }">
+                        <c:if test="${list.endTime ne '20:00' }">
+                        <c:if test="${list.endTime ne '19:00' }">
+                        <c:if test="${list.endTime ne '18:00' }">
+                        <c:if test="${list.endTime ne '17:00' }">
+                        <c:if test="${list.endTime ne '16:00' }">
+                        <c:if test="${list.endTime ne '15:00' }">
+                        <c:if test="${list.endTime ne '14:00' }">
+                        <c:if test="${list.endTime ne '13:00' }">
+                        <c:if test="${list.endTime ne '12:00' }">
+                        <c:if test="${list.endTime ne '11:00' }">
+                        <c:if test="${list.startTime ne '09:00' }">
                         <option value="09:00">09:00</option>
+                        </c:if>
                         <option value="10:00">10:00</option>
+                        </c:if>
                         <option value="11:00">11:00</option>
+                        </c:if>
                         <option value="12:00">12:00</option>
+                        </c:if>
                         <option value="13:00">13:00</option>
+                        </c:if>
                         <option value="14:00">14:00</option>
+                        </c:if>
                         <option value="15:00">15:00</option>
+                        </c:if>
                         <option value="16:00">16:00</option>
+                        </c:if>
                         <option value="17:00">17:00</option>
+                        </c:if>
                         <option value="18:00">18:00</option>
+                        </c:if>
                         <option value="19:00">19:00</option>
+                        </c:if>
                         <option value="20:00">20:00</option>
+                        </c:if>
                         <option value="21:00">21:00</option>
+                        </c:if>
                    	</select>
                 </td>
             </tr>
@@ -50,19 +76,45 @@
                 <td class="seattablehead">
                 	<select class="fontsize" name="searchOption2" aria-label="Default select example">
                         <option selected>시간선택</option>
+                        <c:if test="${list.endTime ne '22:00' }">
+                        <c:if test="${list.endTime ne '21:00' }">
+                        <c:if test="${list.endTime ne '20:00' }">
+                        <c:if test="${list.endTime ne '19:00' }">
+                        <c:if test="${list.endTime ne '18:00' }">
+                        <c:if test="${list.endTime ne '17:00' }">
+                        <c:if test="${list.endTime ne '16:00' }">
+                        <c:if test="${list.endTime ne '15:00' }">
+                        <c:if test="${list.endTime ne '14:00' }">
+                        <c:if test="${list.endTime ne '13:00' }">
+                        <c:if test="${list.endTime ne '12:00' }">
+                        <c:if test="${list.endTime ne '11:00' }">
+                        <c:if test="${list.endTime ne '10:00' }">
                         <option value="10:00">10:00</option>
+                        </c:if>
                         <option value="11:00">11:00</option>
+                        </c:if>
                         <option value="12:00">12:00</option>
+                        </c:if>
                         <option value="13:00">13:00</option>
+                        </c:if>
                         <option value="14:00">14:00</option>
+                        </c:if>
                         <option value="15:00">15:00</option>
+                        </c:if>
                         <option value="16:00">16:00</option>
+                        </c:if>
                         <option value="17:00">17:00</option>
+                        </c:if>
                         <option value="18:00">18:00</option>
+                        </c:if>
                         <option value="19:00">19:00</option>
+                        </c:if>
                         <option value="20:00">20:00</option>
+                        </c:if>
                         <option value="21:00">21:00</option>
+                        </c:if>
                         <option value="22:00">22:00</option>
+                        </c:if>
                    	</select>
                 </td>
             </tr>

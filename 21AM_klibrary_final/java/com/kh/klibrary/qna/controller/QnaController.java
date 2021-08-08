@@ -2,15 +2,17 @@ package com.kh.klibrary.qna.controller;
 
 import static com.kh.klibrary.common.PagebarTemplate.getPagebar;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +20,9 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -152,10 +154,62 @@ public class QnaController {
 		mv.addObject("msg", msg);
 		mv.addObject("loc", "/qna/qnaList.do");
 		
-		mv.setViewName("redirect:/qna/qnaList.do");
+		mv.setViewName("common/msg");
 		return mv;
 	}
-
+	
+	//파일 다운로드
+	@RequestMapping("/qna/fileDownload.do")
+		public void fileDownload(@RequestParam(value="oriname") String oriname,
+				@RequestParam(value="rename") String rename,
+				HttpServletResponse resp,
+				HttpServletRequest req,
+				@RequestHeader(value="user-agent")String header) {
+		String path=req.getServletContext().getRealPath("/resources/upload/qna");
+		File saveFile= new File(path+rename);
+		
+		BufferedInputStream bis=null;
+		ServletOutputStream sos=null;
+		try {
+			bis=new BufferedInputStream(new FileInputStream (saveFile));
+			
+			sos=resp.getOutputStream();
+			
+			boolean isMS=header.indexOf("Trident")!=-1||header.indexOf("MSIE")!=-1;
+			String encodeStr="";
+			if(isMS) {
+				encodeStr=URLEncoder.encode(oriname,("UTF-8"));
+				encodeStr=encodeStr.replaceAll("\\", "%20");
+			}else {
+				encodeStr=new String(oriname.getBytes("UTF-8"),"ISO-8859-1");
+			}
+			resp.setContentType("application/octet-stream;charset=utf-8");
+			resp.setHeader("Content-Disposition", "attachment;filename=\""+encodeStr+"\"");
+			
+			int read=-1;
+			while((read=bis.read())!=-1) {
+				sos.write(read);
+			}
+		}catch(IOException e) {
+			e.printStackTrace();
+			}finally {
+				try {
+					bis.close();
+					sos.close();
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+	}
+	
+	//QNA 삭제
+	@RequestMapping("/qna/qnaDelete.do")
+		public String deleteQna1 (int no) throws Exception {
+		 service.deleteQna1(no);
+		return "redirect:/qna/qnaList.do";
+		 
+	}
 		
 	}
 
+;

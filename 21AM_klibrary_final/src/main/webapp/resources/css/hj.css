@@ -3,10 +3,11 @@
 	width: 1200px;
 	float: right;
 }
-#titleheadname{
+#titleheadnamed{
   width : 1150px;
   /* margin : auto; */
   margin-top : 40px;
+  margin-left:4%;
   border-bottom : 2px gray solid;
   /* padding-left : 10px; */
   font-size : 30px;
@@ -30,9 +31,6 @@
     width:1200px;
     float:right;
 }
-.tableMapqa{
-    margin: auto;
-}
 #ad_right_fq {
     width : 1200px;
     float : right;
@@ -48,7 +46,7 @@
     float:right;
 }
 .tableMapqa{
-    margin: auto;
+    margin-left: 4%;
 }
 #ad_right_fq {
     width : 1200px;
@@ -98,7 +96,7 @@ background-color:blue;
 
 /* 묻고답하기확인 */
 .titlebody{
-    margin-left: 6%;
+    /* margin-left: 6%; */
     /* margin-top: 1%; */
     height: 690px;
     width:1150px;
@@ -113,7 +111,7 @@ background-color:blue;
 }
 .border{
     margin-top:1%;
-    height:400px;
+    height:150px;
     width:1150px;
     background-color:#e6f2fb;
 }
@@ -122,7 +120,7 @@ background-color:blue;
     border-top: gray 1px solid;
     border-bottom: gray 1px solid;
     width:1150px;
-    height:30px;
+    height:150px;
     /* background-color: red; */
 }
 .newcoment{

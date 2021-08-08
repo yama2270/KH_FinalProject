@@ -8,16 +8,14 @@
 </jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
-<body id="ad_body">
-    <header id="ad_header">
-        <div id="header_title">K-도서관</div>
-        <div id="header_options">
-            <div id="header_moveMain">메인페이지</div>
-            <div id="header_logout">로그아웃</div>
-        </div>
-    </header>
-    <section id="ad_container">
-         <div class="leftmenu" >
+<body>
+    <div class="divcontainer1">
+    <br>
+    	<h2 id="title11">공지사항</h2>
+    <br>
+  </div>
+    <section id="ad_containerad">
+        <div class="list-group-containers" >
             <ul class="list-group">
               <li class="list-group-item" id="menutitle">이용안내</li>
               <li class="list-group-item" onclick="location.assign('${path}/notice/noticeList.do')">공지사항</li>
@@ -26,7 +24,7 @@
             </ul>
         </div>
         <div id="he_right">
-            <div id="titleheadname">공지사항</div>
+            <div id="titleheadnamec">공지사항</div>
             <div class="tableMap2">
                 <table class="table2">
                     <tr class="line">
@@ -50,7 +48,9 @@
                     </tr>
                 </table>
                 <div class="contentbox"><c:out value="${list.noticeContent }"/></div>
-                <button class="backbutton" onclick="backbutton();">목록으로</button>
+                <div class="button">
+                <button class="btn btn-outline-secondary" onclick="backbutton();">목록으로</button>
+            	</div>
             </div>
         </div>
     </section>

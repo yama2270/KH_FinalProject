@@ -23,6 +23,9 @@
 			<typeAlias type="com.kh.klibrary.admin.member.vo.AdminMember" alias="admin"/>
 			<typeAlias type="com.kh.klibrary.admin.member.vo.AdminMemberDrop" alias="admindrop"/>
 			<typeAlias type="com.kh.klibrary.studyroom.model.vo.StudyRoomA" alias="redingroomA"/>
+			<typeAlias type="com.kh.klibrary.studyroom.model.vo.StudyRoomB" alias="redingroomB"/>
+			<typeAlias type="com.kh.klibrary.studyroom.model.vo.StudyRoomC" alias="redingroomC"/>
+			<typeAlias type="com.kh.klibrary.studyroom.model.vo.StudyRoomD" alias="redingroomD"/>
 			<typeAlias type="com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing" alias="studyroombooking"/>
 			
 			<!-- <typeAlias type="com.kh.klibrary.faq.model.vo" alias="faq"/> -->
@@ -37,12 +40,15 @@
 			<typeAlias type="com.kh.klibrary.book.model.vo.Book" alias="book"/>
 			<typeAlias type="com.kh.klibrary.book.model.vo.BookInfo" alias="bookInfo"/>
 			<typeAlias type="com.kh.klibrary.book.model.vo.KdcDetail" alias="kdcDetail"/>         	
-         	<typeAlias type="com.kh.klibrary.book.model.vo.KdcType" alias="kdcType"/>         	
+         	<typeAlias type="com.kh.klibrary.book.model.vo.KdcType" alias="kdcType"/>
+         	<typeAlias type="com.kh.klibrary.book.model.vo.WishBook" alias="wishBook"/>      
 			<typeAlias type="com.kh.klibrary.calender.vo.Calender" alias="calender"/>
+			
 			
 			<!-- studyroom 객체 -->
 			<typeAlias type="com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomManage" alias="adminStudyroomManage"/>
 			<typeAlias type="com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking" alias="adminStudyroomBooking"/>
+			<typeAlias type="com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomHistory" alias="AdminStudyroomHistory"/>
 			<typeAlias type="com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroom" alias="adminStudyroom"/>
 	</typeAliases> 
 </configuration>

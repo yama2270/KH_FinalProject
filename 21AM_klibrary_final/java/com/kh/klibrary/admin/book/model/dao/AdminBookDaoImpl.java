@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.BookingHistory;
 import com.kh.klibrary.member.model.vo.Lending;
@@ -179,6 +180,26 @@ public class AdminBookDaoImpl implements AdminBookDao {
 		return session.insert("adminBook.insertLendingHistory", ld);
 	}
 	
+	//대출도서 체크 카운트
+	@Override
+	public List<Lending> selectDRTCList(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.selectDRTCList", map);
+	}
+	//대출도서 체크 삭제
+	@Override
+	public int deleteRentalCheck(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.delete("adminBook.deleteRentalCheck", map);
+	}
+	
+	//대출도서 체크 내역삽입
+	@Override
+	public int insertDRTCList(SqlSessionTemplate session, List list) {
+		// TODO Auto-generated method stub
+		return session.insert("adminBook.insertDRTCList", list);
+	}
+	
 	//예약도서 리스트
 	@Override
 	public List<Booking> reservedList(SqlSessionTemplate session) {
@@ -275,6 +296,24 @@ public class AdminBookDaoImpl implements AdminBookDao {
 	
 	public List<Map> countRenBook(SqlSessionTemplate session,Map param){
 		return session.selectList("adminBook.countRenBook",param);
+	}
+
+	@Override
+	public List<WishBook> selectBookWishList(SqlSessionTemplate session, int cPage, int numPerpage) {
+		return session.selectList("adminBook.selectBookWishList",null,
+				new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int selectWishBookCount(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("adminBook.selectWishBookCount");
+	}
+
+	@Override
+	public int deleteWishBook(SqlSessionTemplate session, String wishBookNo) {
+		// TODO Auto-generated method stub
+		return session.delete("adminBook.deleteWishBook", wishBookNo);
 	}
 	
 }

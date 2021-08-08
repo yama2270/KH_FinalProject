@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomHistory;
 import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.member.model.dao.MemberDao;
 import com.kh.klibrary.member.model.vo.Booking;
@@ -14,6 +16,7 @@ import com.kh.klibrary.member.model.vo.Lending;
 import com.kh.klibrary.member.model.vo.LendingHistory;
 import com.kh.klibrary.member.model.vo.Likes;
 import com.kh.klibrary.member.model.vo.Member;
+import com.kh.klibrary.member.model.vo.MemberDrop;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -105,7 +108,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public Member selectMemberDropRequestList(Map m1) {
+	public MemberDrop selectMemberDropRequestList(Map m1) {
 		// TODO Auto-generated method stub
 		return dao.selectMemberDropRequestList(session, m1);
 	}
@@ -168,4 +171,29 @@ public class MemberServiceImpl implements MemberService {
 	public int countUser(String today) {
 		return dao.countUser(session,today);
 	}
+	
+	@Override
+	public AdminStudyroomBooking selectSRBooing(String userId) {
+		// TODO Auto-generated method stub
+		return dao.selectSRBooing(session, userId);
+	}
+	
+	@Override
+	public int cancelSRBooking(String bookingNo) {
+		// TODO Auto-generated method stub
+		return dao.cancelSRBooking(session, bookingNo);
+	}
+	
+	@Override
+	public List<AdminStudyroomHistory> selectSRHList(String userId, int cPage, int numPerPage) {
+		// TODO Auto-generated method stub
+		return dao.selectSRHList(session, userId, cPage, numPerPage);
+	}
+	
+	@Override
+	public int selectSRHCount(String userId) {
+		// TODO Auto-generated method stub
+		return dao.selectSRHCount(session, userId);
+	}
+	
 }

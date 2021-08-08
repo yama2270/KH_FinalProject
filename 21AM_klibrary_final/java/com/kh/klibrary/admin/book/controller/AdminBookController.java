@@ -22,6 +22,7 @@ import com.kh.klibrary.admin.book.model.service.AdminBookService;
 import com.kh.klibrary.admin.common.AdminPagingTemplate;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.BookingHistory;
 import com.kh.klibrary.member.model.vo.Lending;
@@ -418,4 +419,31 @@ public class AdminBookController {
 		
 		return "admin/book/bookRecommendList";
 	}
+	
+	
+	//희망도서 리스트
+	@RequestMapping("/admin/book/bookWishList.do")
+	public ModelAndView bookWishList(
+			@RequestParam(value = "cPage", defaultValue = "1") int cPage,
+			@RequestParam(value = "numPerpage", defaultValue = "4") int numPerpage, 
+			ModelAndView mv) {
+		mv.addObject("list", service.selectBookWishList(cPage, numPerpage));
+		int totalData=service.selectWishBookCount();
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage, "bookWishList.do"));
+		mv.setViewName("admin/book/bookWishList");
+		return mv;
+	}
+	
+	//게시글 삭제
+	@RequestMapping("/admin/book/wishBookDelete.do")
+	public String ajaxTest(HttpServletRequest request) throws Exception{
+		String[] ajaxMsg = request.getParameterValues("valueArr");
+		int size = ajaxMsg.length;
+		for(int i=0;i<size; i++) {
+			service.deleteWishBook(ajaxMsg[i]);
+		}
+		return "redirect:/admin/book/bookWishList.do";
+	}
+	
+	
 }

@@ -227,6 +227,32 @@
 		DELETE FROM LENDING WHERE USER_ID=#{userId} AND LENDING_NO=#{lendingNo}
 	</delete>
 	
+	<!-- 대출도서 체크 리스트 -->
+	<select id="selectDRTCList" resultMap="lending">
+		SELECT * FROM LENDING WHERE LENDING_NO IN
+		<foreach collection="lendingNo" item="b" open="(" separator="," close=")">
+			#{b}
+		</foreach>
+	</select>
+	
+	<!-- 대출도서 체크 삭제 -->
+	<delete id="deleteRentalCheck" parameterType="Map">
+		DELETE FROM LENDING WHERE LENDING_NO IN 
+		<foreach collection="lendingNo" item="b" open="(" separator="," close=")">
+			#{b}
+		</foreach>
+		   
+	</delete>
+	
+	<!-- 대출도서 체크 내역삽입 -->
+	<insert id="insertDRTCList" parameterType="java.util.List">
+		INSERT INTO LENDING_HISTORY(LENDING_HISTORY_NO,LENDING_NO,USER_ID,BOOK_NO,LENDING_DATE,RETURN_DATE,BOOK_EXTEND) 
+		SELECT SEQ_LENDING_HISTORY.NEXTVAL, A.* FROM(
+		<foreach collection="list" item="l" separator="UNION ALL">
+		SELECT #{l.lendingNo} AS LENDING_NO,#{l.userId} AS USER_ID,#{l.bookNo} AS BOOK_NO,#{l.lendingDate} AS LENDING_DATE,#{l.returnDate} AS RETURN_DATE,#{l.bookExtend} AS BOOK_EXTEND FROM DUAL
+		</foreach>) A
+	</insert>
+	
 	<!-- 예약도서 리스트 -->
 	<select id="reservedList" resultMap="booking">
 		SELECT * FROM
@@ -477,4 +503,35 @@
 			<result column="SIGNUP_DATE" property="signupDate"/>
 		</collection>
 	</resultMap>
+	
+	
+	
+	
+	
+	<!--  희망도서  -->
+	
+		<resultMap type="com.kh.klibrary.book.model.vo.WishBook" id="bookWishList">
+		<id column="WISH_BOOK_NO" property="wishBookNo"></id>
+		<result column="USER_ID" property="userId"/>
+		<result column="ISBN_NO" property="isbnNo"/>
+		<result column="BOOK_NAME" property="bookName"/>
+		<result column="BOOK_WRITER" property="bookWriter"/>
+		<result column="BOOK_COMPANY" property="bookCompany"/>
+		<result column="BOOK_DATE" property="bookCompany"/>
+		<result column="BOOK_PRICE" property="bookPrice"/>
+		</resultMap>
+	
+		<!-- 희망도서 리스트 -->
+	<select id="selectBookWishList" resultMap="bookWishList">
+		SELECT * FROM WISHBOOK	
+	</select>
+	
+	  <select id="selectWishBookCount" resultType="_int">
+  	SELECT COUNT(*) FROM WISHBOOK
+  </select>
+	
+	  <delete id="deleteWishBook" parameterType="String">
+  	DELETE FROM WISHBOOK WHERE WISH_BOOK_NO = #{wishBookNo}
+  	</delete>
+	
 </mapper>

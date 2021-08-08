@@ -9,41 +9,38 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="도서관일정"/>
 </jsp:include>
-<body id="ad_body">
-        <header id="ad_header">
-            <div id="header_title">K-도서관</div>
-            <div id="header_options">
-                <div id="header_moveMain">메인페이지</div>
-                <div id="header_logout">로그아웃</div>
-            </div>
-        </header>
-        <section id="ad_container">
-           <div class="leftmenu" >
+<body>
+        <div class="divcontainer1">
+    <br>
+    	<h2 id="title11">이용시간</h2>
+    <br>
+  </div>
+    <section id="ad_containerad">
+        <div class="list-group-containers" >
 	            <ul class="list-group">
 	              <li class="list-group-item" id="menutitle">이용안내</li>
 	              <li class="list-group-item" onclick="location.assign('${path}/notice/booktime.do')">이용시간</li>
-	              <li class="list-group-item">편의시설 <i class="fas fa-plus"></i>
+	              <li class="list-group-items">편의시설 <i class="fas fa-plus"></i>
 	              	<ul class="submenu">
-	                    <li onclick="location.assign('${path}/notice/copymachine.do')">자료복사</li>
-	                    <li onclick="location.assign('${path}/notice/parkinglot.do')">주차안내</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/copymachine.do')">자료복사</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/parkinglot.do')">주차안내</li>
                     </ul>
 	              </li>
-	              <li class="list-group-item">열람실 안내<i class="fas fa-plus"></i>
+	              <li class="list-group-items">열람실 안내<i class="fas fa-plus"></i>
 	              	<ul class="submenu">
-	                    <li onclick="location.assign('${path}/notice/redingroomA.do')">열람실 A</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomB.do')">열람실 B</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomC.do')">열람실 C</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomD.do')">열람실 D</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomE.do')">열람실 E</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomnotice.do')">열람실이용안내</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomA.do')">열람실 A</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomB.do')">열람실 B</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomC.do')">열람실 C</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomD.do')">열람실 D</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomnotice.do')">열람실이용안내</li>
                     </ul>
 	              </li>
 	            </ul>
         	</div>
             <div id="he_right">
-                <div id="titleheadname">이용시간
-                <c:if test='${loginMember!=null && !"admin".equals(loginMember.userId) }'>
-                <button class="btn btn-outline-dark" onclick="location.assign('${path }/notice/calendar.do')">일정추가</button>
+                <div id="titleheadnamec">이용시간
+                <c:if test='${loginMember!=null && (loginMember.userId).equals("admin") }'>
+                	<button class="btn btn-outline-dark" onclick="location.assign('${path }/notice/calendar.do')">일정추가</button>
                 </c:if>
                 </div>
                 
@@ -93,16 +90,6 @@
                         </tr>
                         <tr>
                             <td class="tablehead" id="timebody">D열람실</td>
-                            <td class="tablehead" id="timebody">09:00~21:00</td>
-                            <td class="tablehead" id="timebody2">휴관</td>
-                            <td class="tablehead" id="timebody">09:00~21:00</td>
-                            <td class="tablehead" id="timebody">09:00~21:00</td>
-                            <td class="tablehead" id="timebody">09:00~21:00</td>
-                            <td class="tablehead" id="timebody2">휴관</td>
-                            <td class="tablehead" id="timebody2">휴관</td>
-                        </tr>
-                        <tr>
-                            <td class="tablehead" id="timebody">E열람실</td>
                             <td class="tablehead" id="timebody">09:00~21:00</td>
                             <td class="tablehead" id="timebody2">휴관</td>
                             <td class="tablehead" id="timebody">09:00~21:00</td>

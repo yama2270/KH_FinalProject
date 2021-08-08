@@ -2,6 +2,9 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="도서상세페이지"/>
 </jsp:include>
+<!-- Chart.js CDN -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/> 
@@ -9,7 +12,7 @@
 /* String pageId = request.getParameter("pageId");
 String keyword = request.getParameter("keyword");
 String category = request.getParameter("category"); */
-
+String isbnNo = request.getParameter("isbnNo");
 
 %>
 
@@ -41,6 +44,7 @@ String category = request.getParameter("category"); */
 <div id="searchResultDiv">
  <c:choose> 
    	<c:when test="${not empty book }">
+<input type=hidden name="isbnNo" value="${book.bookInfo.isbnNo }">
 <table  id=searchResultTable>
  <tr>
      <td id="bookTitleTd" colspan="3">
@@ -64,9 +68,9 @@ String category = request.getParameter("category"); */
     <th id="bookInfoTd">
          
            
-                    저자     <br>
-                    발행자     <br>              
-                    발행연도   <br>            
+                    저자   <br>
+                    발행자  <br>              
+                    발행연도 <br>            
                     ISBN  <br>
                     분류번호 <br>
                     위치번호      
@@ -181,7 +185,7 @@ String category = request.getParameter("category"); */
        <div class="btnGroup">
 							
         <a href="${path}/searchpage/interestingbook?isbnNo=${book.bookInfo.isbnNo  }" id="addBasketBatchBtn" class="btn down themeBtn">관심도서담기</a>
-        <a href="" id="btnView" class="btn down themeBtn">관심도서보기</a>
+        <a href="${path}/member/memberBookMark.do" id="btnView" class="btn down themeBtn">관심도서보기</a>
     
         
         <a href="javascript:history.back();" id="listBtn" class="btn down themeBtn">목록으로</a>
@@ -189,41 +193,168 @@ String category = request.getParameter("category"); */
         <a href="${path}/searchpage/bookTotalSearch?keyword=<%=keyword %>&category=<%=category %>" id="listBtn" class="btn down themeBtn">목록으로</a>
         <%} %> --%>
         </div>
+       
+        
 </div>
-<br><br><br><br>
-
+<br><br>
+        <div class="canQua" >
+					<div class="canQuaHea" style="float:right;"><h4>연령별 관심 현황</h4></div><br><br>
+					<div class="quaCat" style="margin-left:30%;">
+						<canvas id="likeBook" width="600px" height="300px"  ></canvas>
+					</div>
+		</div>
+<br><br><br>		
+		<c:choose>
+		<c:when test="${not empty publisherList }" >
+		
+				<table id=recommendTable2>
+				 
+				  <tr>
+				    <td colspan="5" >
+				      <hr>
+				      이 책과 발행자가 같은 도서      
+				      <hr>
+				   </td>
+				  </tr>
+				    <tr>
+				      
+				  <c:forEach var="b" items="${publisherList }">
+				        <td id="imgContainerDiv"  >
+				
+				            
+				                
+				                <img id="bookImg" src="${b.bookImg }" alt="${b.bookName}"
+				                onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'" style="cursor:pointer;"><br>
+				                <span><c:out value="${b.bookName }"/></span>
+				                
+				        </td>
+				        
+				 </c:forEach>
+				   
+				    
+				    </tr>
+				    
+				    <tr>
+				      <td colspan="5">
+				         <hr>
+				      </td>
+				    </tr>
+		       </table>
+		 </c:when>
+		 </c:choose>
+<br><br><br>	
+		<c:choose>
+		<c:when test="${not empty kdcNoList }" >
+		
+		      <table id=recommendTable2>      
+				 
+				  <tr>
+				    <td colspan="5" >
+				      <hr>
+				      이 책과 주제가 같은 도서      
+				      <hr>
+				   </td>
+				  </tr>
+				    <tr>
+				      
+				  <c:forEach var="b" items="${kdcNoList }">
+				        <td id="imgContainerDiv"  >
+				
+				            
+				                
+				                <img id="bookImg" src="${b.bookImg }" alt="${b.bookName}"
+				                onclick="location.href='${path}/searchpage/bookDetail.do?isbnNo=${b.isbnNo }'" style="cursor:pointer;"><br>
+				                <span><c:out value="${b.bookName }"/></span>
+				                
+				        </td>
+				 </c:forEach>
+				    
+				    </tr>
+				    <tr>
+				      <td colspan="5">
+				         <hr>
+				      </td>
+				    </tr>
+		     </table>	
+		
+		 </c:when>
+		</c:choose>   
 </div>
-
+ <br><br><br>
+ 
+ 
+       
 
 </body>
 	
 	
 </html>
 <script>
+
+//연령별 관심 현황
+
 $(function(){
-	console.log(window.location.href );
-	  if(window.location.href=='http://localhost:9090/klibrary/searchpage/wishbook.do'||window.location.href=='http://localhost:9090/klibrary/searchpage/wishbookRequest.do'){
-		  console.log(document.getElementsByClassName('list-group-item')[1]);
-		  
-		  document.getElementsByClassName('list-group-item')[4].style.background = "lightgrey";
-		  
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/bookSearch.do'||(window.location.href).includes('http://localhost:9090/klibrary/searchpage/bookTotalSearch')){
-		  document.getElementsByClassName('list-group-item')[1].style.background = "lightgrey";
-		
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/detailSearch.do'){
-		
-		  document.getElementsByClassName('list-group-item')[2].style.background = "lightgrey";
-		 
-	  }else if(window.location.href=='http://localhost:9090/klibrary/searchpage/categorySearch.do'){
-		
-		  document.getElementsByClassName('list-group-item')[3].style.background = "lightgrey";
-		 
-	  }
+	let isbnNo = $("input[name='isbnNo']").attr('value');
 	
-	 
-	   
-	})
-
-
+ $.ajax({	
+	url : "${path}/searchpage/selectAge.do?isbnNo="+isbnNo,
+	success:function(data){
+				
+		 const keyArr = Object.keys(data);
+		
+ 
+		 // key 정렬 
+		  keyArr.sort(function(a,b){
+			if(a[0]>b[0]){
+				return 1;
+			} else {
+			return -1;
+			}
+		})   
+		console.log("keyArr테스트"+keyArr);
+		const sortedList = {};
+				 
+		 keyArr.forEach(function(key){
+			 
+			sortedList[key] = data[key];
+			console.log(sortedList[key]);
+		}) 
+		
+	
+		
+		const likCan = document.getElementById("likeBook").getContext("2d");
+		const likChart = new Chart(likCan,{
+			type:"bar",
+			data : {
+				labels : keyArr,
+				datasets : [{
+					data : sortedList,
+					backgroundColor : ["skyblue"],
+					barThickness : 30
+				}]
+			},
+			options : {
+				responsive : false,
+				scales : {
+					y :{
+						grid : {
+							borderDash : [2,5]
+						},
+						//suggestedMin : 0,
+						//suggestedMax : 10
+						min : 0,
+						max : 6
+					}
+				},
+				plugins : {								// legend 설정 
+					legend : {
+						display : false 
+					}
+				},
+			}
+		})
+	  }
+   })
+})
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	

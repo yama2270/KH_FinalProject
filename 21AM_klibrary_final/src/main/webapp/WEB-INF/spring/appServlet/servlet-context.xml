@@ -53,7 +53,7 @@
 	
 	  <interceptors>
 	   	<interceptor>
-	   		<mapping path="/searchpage/wishBookCheckInsert.do"/>
+	   		<mapping path="/searchpage/wishBookCheckInsert.do*"/>
 	   		<beans:bean class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>
 	   	</interceptor>	   			
 		 <interceptor>
@@ -63,7 +63,15 @@
 		<interceptor>
 		   <mapping path="/searchpage/bookReservation*"/>
 		   <beans:bean id="bookReservation" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
-		</interceptor>		 
+		</interceptor>
+		<interceptor>
+		   <mapping path="/member/memberBookMark.do*"/>
+		   <beans:bean id="memberBookMark" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>	
+		<interceptor>
+		   <mapping path="/member/memberHopeBookRecord.do*"/>
+		   <beans:bean id="memberHopeBookRecord" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>			 
 	</interceptors>
 	
 	

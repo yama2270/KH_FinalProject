@@ -71,7 +71,7 @@
 				<c:forEach var="l" items="${list }">
 					<table> <!-- 데이터 입력시 테이블 구조&CSS 수정 해야됨 -->
 						<tr>
-							<th rowspan="7"><img width=185px height=185px src="${path }/resources/images/<c:out value="${l.book.bookInfo.bookImg }"/>" ></th>
+							<th rowspan="7"><img width=185px height=185px src="<c:out value="${l.book.bookInfo.bookImg }"/>" ></th>
 							<th>대출 번호 : </th>
 							<td><c:out value="${l.lendingNo }"/></td>
 						</tr>

@@ -66,7 +66,13 @@
 						<td>${b.seatNo }</td>
 						<td>${b.startTime }</td>
 						<td>${b.endTime }</td>
-						<td><button type="button" class="btn btn-outline-secondary">수정</button></td>
+						<td>
+							<button type="button" class="btn btn-outline-secondary" onclick="modiBooking(this);" value="${b.bookingNo }">수정</button>
+							<input type="text" name="seatNo" style="display:none" value="${b.seatNo }">
+							<input type="text" name="room" style="display:none" value="${b.roomName }">
+							<input type="text" name="startTime" style="display:none" value="${b.startTime }">
+							<input type="text" name="endTime" style="display:none" value="${b.endTime }">
+						</td>
 						<td><button type="button" class="btn btn-outline-secondary" onclick="delBooking(this);" value="${b.bookingNo }">삭제</button></td>
 					</tr>
 					</c:forEach>
@@ -95,6 +101,19 @@
     	}
     	
     }
+    
+    // 열람실 예약 수정하기
+    const modiBooking = function(e){
+    	
+    	const bookingNo = $(e).val();
+    	const seatNo = $(e).nextAll().filter('input[name="seatNo"]').val();
+    	const room = $(e).nextAll().filter('input[name="room"]').val();
+    	const start = $(e).nextAll().filter('input[name="startTime"]').val();
+    	const end = $(e).nextAll().filter('input[name="endTime"]').val();
+    	
+    	window.open("${path}/admin/studyroom/modiBooking.do?bookingNo="+bookingNo+"&seatNo="+seatNo+"&roomName="+room+"&startTime="+start+"&endTime="+end,"modiPop","width=550,height=480,scrollbars=yes");
+    }
+    
     
 	</script>
 

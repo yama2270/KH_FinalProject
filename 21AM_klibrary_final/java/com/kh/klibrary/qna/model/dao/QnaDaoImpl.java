@@ -89,6 +89,16 @@ public class QnaDaoImpl implements QnaDao {
 		return session.update("qna.updateQnaCount",no);
 	}
 	
+	//QNA 삭제
+	@Override
+	public int deleteQna1(SqlSessionTemplate session, int no) {
+		// TODO Auto-generated method stub
+		return session.delete("qna.deleteQna1",no);
+	}
+	
+	
+	
+	
 	
 	
 	

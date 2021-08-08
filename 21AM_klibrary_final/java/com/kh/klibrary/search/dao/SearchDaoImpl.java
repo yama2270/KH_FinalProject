@@ -140,6 +140,11 @@ public class SearchDaoImpl implements SearchDao{
 	public int updateBookNo(SqlSessionTemplate session,String bookNo) {
 		return session.update("search.updateBookNo", bookNo);
 	}
+	
+	@Override
+	public List<Integer> selectAge(SqlSessionTemplate session, String isbnNo){
+		return session.selectList("selectAge", isbnNo);
+	};
 	 
 	 
 }

@@ -67,6 +67,15 @@
           <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">공지사항</a>
+              <!--  테이블 형식으로 뿌림 -->
+			<table class="main-service">
+               <c:forEach items="${notices }" var="result">
+             	  <tr>
+	              	<td><c:out value="${result.title }"/></td>
+	              	<td><c:out value="${result.content }"/></td>
+	              </tr>
+               </c:forEach>
+          </table>
             </div>
           </nav>
         </div>

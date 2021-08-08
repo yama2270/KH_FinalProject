@@ -32,12 +32,7 @@ String pageId = request.getParameter("pageId");
 </div>
 
 <form id="searchForm" name="searchForm" method="post">
-    <input type="hidden" id="searchType" name="searchType" value="KDC">
-     
-    <input type="hidden" id="searchLibraryArr" name="searchLibraryArr" value="MD">
-   
-    <input type="hidden" id="searchCategory" name="searchCategory" value="ALL">
-    <input type="hidden" id="searchKdc" name="searchKdc">
+  
 
     <div class="kdcSearch">
         <table id="kdcDepth1List" class="kdcDepth1List clearfix">
@@ -95,8 +90,8 @@ String pageId = request.getParameter("pageId");
             </tr>
             </table>
             <br><br>
-            
-           
+            <div style="text-align:center;"><span id="nonsearch" style="display:none;"><h4>검색된 내용이 없습니다</h3></span></div>
+          
             <table id="kdcDepth2List_0" class="kdcDepth2List" style="display: block;">
                 <tr>
                     
@@ -2711,6 +2706,7 @@ String pageId = request.getParameter("pageId");
 
 <form id="searchResultForm" method="get" action="interestingbook">
 <input type="hidden" name=category value=${category }/>
+<input type="hidden" name=totaldata value=${totalData }/>
 <table id=searchResultTable2 >
 
  <c:choose> 
@@ -2721,7 +2717,7 @@ String pageId = request.getParameter("pageId");
 		    <th colspan="5" id="searchCaptionTh2">
 		      <div style="text-align:center">
 		        <div id="searchCaption22">
-		            <p>            
+		            <p id="totalData">            
 		             ${totalData }건  이 검색되었습니다.             
 		             </p>
 		        </div>
@@ -2787,8 +2783,8 @@ String pageId = request.getParameter("pageId");
 			      </td>
 			      <td id="buttonWrapTd" rowspan="2">
 			        <div class="buttonWrap">
-			          <button id="button22" type="button" onclick="bookReservation(${b.isbnNo })" >도서예약신청</button>
-			          <button id="button22" type="submit" name="bookCheck" value="${b.isbnNo }" >관심도서담기</button>
+			          <button id="button22" type="button" onclick="bookReservation('${b.isbnNo }')" >도서예약신청</button>
+			          <button id="button22" type="button" onclick="location.href='${path}/searchpage/interestingbook?isbnNo=${b.isbnNo}'"  >관심도서담기</button>
 			          </div>
 			      </td>
 		    </tr>
@@ -2887,6 +2883,7 @@ String pageId = request.getParameter("pageId");
 			 $("#kdcDepth2List_"+i).show();			 
 		 }else{
 			 $("#kdcDepth2List_"+i).hide();
+			 $("#nonsearch").hide();
 		 }	 
 	 }
  })	
@@ -2902,22 +2899,28 @@ String pageId = request.getParameter("pageId");
 		 		
 	 
 			 let images=document.getElementsByClassName("ico");
-			 for(let i=0; i<images.length; i++){			
-				 
-				 if( ($("input[name='category']").attr('value')).substring(0,1)== i ){
-					 console.log( $("#kdcDepth2List_"+i));
-					 $("#kdcDepth2List_"+i).show();	//category범위맞으면 해당메뉴보여주기
+			 console.log($("input[name='totaldata']").attr('value')=='0/');
+			 console.log("totaldata테스트"+$("input[name='totaldata']").attr('value') );
+			 
+			 
+			  for(let i=0; i<images.length; i++){ 			
+				   
+				  /* $("#kdcDepth2List_"+i).hide();
+					 $("#nonsearch").hide(); */
+				  if($("input[name='totaldata']").attr('value')=='0/' && $("input[name='category']").attr('value').substring(0,1)==i){
+		        	  console.log($("input[name='totaldata']").attr('value')=='0/');
+		        	  $("#kdcDepth2List_"+i).show();
+		        	 $("#nonsearch").show(); 
+		        	 			 	        	 
+				
+			       } else if( $("#totaldata").text()!=null|| $("#totaldata").text()!='' && $("input[name='totaldata']").attr('value')!='0/'){					 
+					  $("#kdcDepth2List_"+i).hide();
+					
+					 console.log("totaldata테스트"+$("input[name='totaldata']").attr('value') );					
 					 
-					 if($("button[name='bookCheck']").attr('value')!=null ){
-						 for(let i=0; i<images.length;i++){		 		 
-								 $("#kdcDepth2List_"+i).hide();	//검색된북리스트가있어면 메뉴 숨기기
-					     }
-					 }
-					 
-				 }else{
-					 $("#kdcDepth2List_"+i).hide();
-				 }
-			 }	 
+				   }
+			          
+			  } 	 
 			 			 			
 		 
         })
@@ -2925,7 +2928,7 @@ String pageId = request.getParameter("pageId");
  $(function(){
    $(".asearch").click(function(){
 	  let kdcNo=$(this).attr('id');	 
-	   console.log(kdcNo);
+	   console.log("kdcNo테스트"+"kdcNo "+kdcNo+"kdcNo의 substring"+kdcNo.substring(0,1));
 	  let category=kdcNo.substring(0,1);
 	/*    let images=document.getElementsByClassName("ico");
 	 for(let i=0; i<images.length;i++){		 		 

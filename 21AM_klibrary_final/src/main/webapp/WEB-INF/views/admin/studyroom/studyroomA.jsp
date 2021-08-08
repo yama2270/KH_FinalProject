@@ -26,67 +26,29 @@
 			<div id="roomWrap">
 				<div id="room-door">출입문</div>
 				<table id="roomTab" style="border-spacing: 1em 0.5em;">
-				<c:forEach begin="0" end="3" varStatus="status">
-				<tr>
-					<c:forEach begin="${status.index*10 }" end="${status.index==0?'':status.index }9" var="l" items="${listStudy }">
-						<td><a href="${path }/">${l.seatNo }</a></td>
+					<c:forEach begin="0" end="3" varStatus="status">
+					<tr>
+						<c:forEach begin="${status.index*10 }" end="${status.index==0?'':status.index }9" var="l" items="${listStudy }">
+							<c:choose>
+								<c:when test="${l.usageStatus=='이용중' }">
+									<td style="background-color:#0069d9;color:white">${l.seatNo }<input name="bookingNo" value="${l.bookingNo }" style="display:none;"></td>
+								</c:when>
+								<c:when test="${l.usageStatus=='사용불가' }">
+									<td style="background-color:#c82333;color:white">${l.seatNo }<input name="bookingNo" value="${l.bookingNo }" style="display:none;"></td>
+								</c:when>
+								<c:otherwise>
+									<td style="background-color:#218838;color:white">${l.seatNo }<input name="bookingNo" value="${l.bookingNo }" style="display:none;"></td>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</tr>
 					</c:forEach>
-				</tr>
-				</c:forEach>
-					<tr>
-						<td>A1</td>
-						<td>A2</td>
-						<td>A3</td>
-						<td>A4</td>
-						<td>A5</td>
-						<td>A6</td>
-						<td>A7</td>
-						<td>A8</td>
-						<td>A9</td>
-						<td>A10</td>
-					</tr>
-					<tr>
-						<td>A11</td>
-						<td>A12</td>
-						<td>A13</td>
-						<td>A14</td>
-						<td>A15</td>
-						<td>A16</td>
-						<td>A17</td>
-						<td>A18</td>
-						<td>A19</td>
-						<td>A20</td>
-					</tr>
-					<tr>
-						<td>A21</td>
-						<td>A22</td>
-						<td>A23</td>
-						<td>A24</td>
-						<td>A25</td>
-						<td>A26</td>
-						<td>A27</td>
-						<td>A28</td>
-						<td>A29</td>
-						<td>A30</td>
-					</tr>
-					<tr>
-						<td>A31</td>
-						<td>A32</td>
-						<td>A33</td>
-						<td>A34</td>
-						<td>A35</td>
-						<td>A36</td>
-						<td>A37</td>
-						<td>A38</td>
-						<td>A39</td>
-						<td>A40</td>
-					</tr>
 				</table>
 			</div>
 			<div id="seatSta">
 				<button type="button" class="btn btn-primary">사용중</button>
-				<button type="button" class="btn btn-secondary">사용가능</button>
-				<button type="button" class="btn btn-danger">이용불가</button>
+				<button type="button" class="btn btn-success">사용가능</button>
+				<button type="button" class="btn btn-danger">사용불가</button>
 			</div>
 			<div style="margin-top: 20px;">
 				<div class="rooTabTit">이용 중 회원목록</div>
@@ -146,6 +108,10 @@
         // ul li 배경화면 
         $(".navOptions").eq(3).children().eq(1).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
     })
+    
+    $("#roomTab").find("td").click((e)=>{
+    	console.log($(e.target));
+    }) 
     
 	</script>
 

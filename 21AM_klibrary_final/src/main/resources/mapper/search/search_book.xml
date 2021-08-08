@@ -265,8 +265,43 @@
     VALUES (SEQ_BOOKING_NO.NEXTVAL, #{userId}, #{bookNo}, SYSDATE, SYSDATE+3)        
 	</insert>
 	
+	<resultMap type="com.kh.klibrary.member.model.vo.Booking" id="booking">
+		<id column="BOOKING_NO" property="bookingNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="BOOK_NO" property="bookNo"/>
+		<result column="BOOKING_DATE" property="bookingDate"/>
+		<result column="BOOKING_PICKUP_DATE" property="bookingPickUpDate"/>
+		<collection property="member" ofType="member">
+			<id column="USER_ID" property="userId"/>
+			<result column="USER_PASSWORD" property="userPassword"/>
+			<result column="USER_NAME" property="userName"/>
+			<result column="EMAIL" property="email"/>
+			<result column="BIRTH_DATE" property="birthDate"/>
+			<result column="ADDRESS" property="address"/>
+			<result column="PHONE" property="phone"/>
+			<result column="SIGNUP_DATE" property="signupDate"/>
+		</collection>
+		<collection property="book" ofType="book">
+			<id column="BOOK_NO" property="bookNo"/>
+			<result column="ISBN_NO" property="bookingState"/>
+			<result column="BOOKING_STATE" property="bookingState"/>
+			<result column="LENDING_STATE" property="lendingState"/>
+			<collection property="bookInfo" ofType="bookInfo">
+				<id column="ISBN_NO" property="isbnNo"/>
+				<result column="BOOK_NAME" property="bookName"/>
+				<result column="BOOK_WRITER" property="bookWriter"/>
+				<result column="BOOK_COMPANY" property="bookCompany"/>
+				<result column="BOOK_DATE" property="bookDate"/>
+				<result column="BOOK_PRICE" property="bookPrice"/>
+				<result column="BOOK_LOCATION" property="bookLocation"/>
+				<result column="BOOK_CONTENT" property="bookContent"/>
+				<result column="BOOK_IMG" property="bookImg"/>
+				<result column="BOOK_KDC" property="bookKdc"/>
+			</collection>
+		</collection>
+	</resultMap>
 	
-	<select id="selectPassedDate" resultType="booking">
+	<select id="selectPassedDate" resultMap="booking">
 	 SELECT * FROM BOOKING  
 	 WHERE TO_CHAR(BOOKING_PICKUP_DATE,'YYYY/MM/DD') <![CDATA[ < ]]> TO_CHAR(SYSDATE,'YYYY/MM/DD')
 	 
@@ -285,4 +320,8 @@
      <update id="updateBookNo" >
 	 UPDATE BOOK SET BOOKING_STATE='가능', LENDING_STATE='가능' WHERE BOOK_NO=#{bookNo}
 	</update>   
+	
+	<select id="selectAge" resultType="_int">
+	SELECT EXTRACT(YEAR FROM SYSDATE)- EXTRACT(YEAR FROM BIRTH_DATE)+1 FROM LIKES JOIN MEMBER USING(USER_ID) WHERE ISBN_NO=#{isbnNo}
+	</select>
 </mapper>

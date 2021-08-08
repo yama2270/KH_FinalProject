@@ -166,14 +166,14 @@ String totalData=request.getParameter("totalData");
         </div>
   
         <div class="selectForm3">
-        <select id="searchType" title="검색선택" name="category">
+       <!--  <select id="searchType" title="검색선택" name="category">
             <option value="all" selected="selected">전체</option>
             <option value="book_name" >도서명</option>
           <option value="book_writer">저자</option>
           <option value="book_company">발행자</option>
           <option value="isbnNo">ISBN</option>
   
-        </select>
+        </select> -->
         <select id="searchNumber" title="검색건수" name="searchNumber">
           <option value=10 ${searchNumber == 10? "selected":""}>10건</option>
           <option value=20 ${searchNumber == 20? "selected":""}>20건</option>
@@ -237,15 +237,15 @@ String totalData=request.getParameter("totalData");
       </td>
       <td id="buttonWrapTd" rowspan="2">
         <div class="buttonWrap">
-          <button id="button22" type="button" onclick="bookReservation(${b.isbnNo })" >도서예약신청</button>
-          <button id="button22" type="submit" name="bookCheck" value="${b.isbnNo }" >관심도서담기</button>
+          <button id="button22" type="button" onclick="bookReservation('${b.isbnNo }')" >도서예약신청</button>
+          <button id="button22" type="button" onclick="location.href='${path}/searchpage/interestingbook?isbnNo=${b.isbnNo}'"  >관심도서담기</button>
           </div>
       </td>
     </tr>
     <tr>
-     <td>
-
-     </td>
+	   <td>
+	
+	   </td>
      <td>
       <div id="bookInfoDiv4">
         <dl class="authorData2">
@@ -296,11 +296,11 @@ String totalData=request.getParameter("totalData");
     </c:forEach>
     </c:when>
     
-    <c:otherwise>
-   					<tr>
-   					<td colspan="5"></td>
-   					</tr>
-   				</c:otherwise>  
+	    <c:otherwise>
+	   					<tr>
+	   					<td colspan="5"></td>
+	   					</tr>
+	   	</c:otherwise>  
     </c:choose>
   </table>
   </form>
@@ -397,7 +397,7 @@ String totalData=request.getParameter("totalData");
 
 function fn_searchBook2(){
 	let keyword=$("#inputtext").val();
-	let category=$("#searchType").val();
+	let category=$("#searchKey").val();
 	let searchNumber=$("#searchNumber").val();
 	  addCookie(keyword);
 	
@@ -427,7 +427,7 @@ function fn_paging(pageNo,totalData){
 } */
 
 function bookReservation(isbnNo){
-	console.log(isbnNo);
+	console.log("메인페이지에서테스트"+isbnNo);
 	location.href="${path}/searchpage/bookReservation?isbnNo="+isbnNo;
 	
 }

@@ -8,110 +8,94 @@
 </jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
-<body id="ad_body">
-    <header id="ad_header">
-            <div id="header_title">K-도서관</div>
-            <div id="header_options">
-                <div id="header_moveMain">메인페이지</div>
-                <div id="header_logout">로그아웃</div>
-        </div>
-    </header>
-
-    <section id="ad_container">
-        <div class="leftmenu" >
+<body>
+<div class="divcontainer1">
+    <br>
+    <h2 id="title11">열람실 D</h2>
+    <br>
+  </div>
+    <section id="ad_containerad">
+        <div class="list-group-containers" >
 	            <ul class="list-group">
-	              <li class="list-group-item" id="menutitle">이용안내</li>
-	              <li class="list-group-item" onclick="location.assign('${path}/notice/booktime.do')">이용시간</li>
-	              <li class="list-group-item">편의시설 <i class="fas fa-plus"></i>
+	              <li class="list-group-items" id="menutitle">이용안내</li>
+	              <li class="list-group-items" onclick="location.assign('${path}/notice/booktime.do')">이용시간</li>
+	              <li class="list-group-items">편의시설 <i class="fas fa-plus"></i>
 	              	<ul class="submenu">
-	                    <li onclick="location.assign('${path}/notice/copymachine.do')">자료복사</li>
-	                    <li onclick="location.assign('${path}/notice/parkinglot.do')">주차안내</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/copymachine.do')">자료복사</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/parkinglot.do')">주차안내</li>
                     </ul>
 	              </li>
-	              <li class="list-group-item">열람실 안내<i class="fas fa-plus"></i>
+	              <li class="list-group-items">열람실 안내<i class="fas fa-plus"></i>
 	              	<ul class="submenu">
-	                    <li onclick="location.assign('${path}/notice/redingroomA.do')">열람실 A</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomB.do')">열람실 B</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomC.do')">열람실 C</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomD.do')">열람실 D</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomE.do')">열람실 E</li>
-	                    <li onclick="location.assign('${path}/notice/redingroomnotice.do')">열람실이용안내</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomA.do')">열람실 A</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomB.do')">열람실 B</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomC.do')">열람실 C</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomD.do')">열람실 D</li>
+	                    <li class="list-group-itemss" onclick="location.assign('${path}/notice/redingroomnotice.do')">열람실이용안내</li>
                     </ul>
 	              </li>
 	            </ul>
         	</div>
-    <div id="he_right">
+    <div id="he_rights">
             <div id="titleheadname">열람실안내 -> 좌석예약</div>
 	<div style="overflow: overlay; margin: auto;">
 		<div id="contBodyroom">
 			<div id="roomHeaWrap">
 				<div class="rooTabTit">열람실 D</div>
-				<table id="roomHeaTab">
+				<table id="roomHeaTabss">
 					<tr>
-						<td>총좌석 : X</td>
-						<td>이용좌석 : X</td>
-						<td>잔여좌석 : X</td>
-						<td>사용불가 : X</td>
+						<th>총좌석 : <c:out value="${total }"/></th>
+						<th>이용좌석 : <c:out value="${usetotal }"/></th>
+						<th>잔여좌석 : <c:out value="${Available }"/></th>
+						<th>사용불가 : <c:out value="${cannotused }"/></th>
 					</tr>
 				</table>
 			</div>
-			<div id="roomWrap">
-				<div id="room-door">출입문</div>
-				<table id="roomTab" style="border-spacing: 1em 0.5em;">
+			<div id="roomWraps">
+				<div id="room-doors">출입문</div>
+				<table id="roomTabs" style="border-spacing: 1em 0.5em;">
+				<c:choose>
+                    	<c:when test="${not empty list }">
 					<tr>
-						<td onclick="seat();">A1</td>
-						<td onclick="seat();">A2</td>
-						<td onclick="seat();">A3</td>
-						<td onclick="seat();">A4</td>
-						<td onclick="seat();">A5</td>
-						<td onclick="seat();">A6</td>
-						<td onclick="seat();">A7</td>
-						<td onclick="seat();">A8</td>
-						<td onclick="seat();">A9</td>
-						<td onclick="seat();">A10</td>
+                    	<c:forEach var="n" items="${list }" begin="0" end="9"><!-- begin : 시작번호 end : 끝번호 -->
+							<td>
+								<c:out value="${n.seatNo }"/>
+								<input id="test" type="hidden" name="test" class="test" value="${n.usageStatus }">
+							</td>
+						</c:forEach>
 					</tr>
 					<tr>
-						<td onclick="seat();">A11</td>
-						<td onclick="seat();">A12</td>
-						<td onclick="seat();">A13</td>
-						<td onclick="seat();">A14</td>
-						<td onclick="seat();">A15</td>
-						<td onclick="seat();">A16</td>
-						<td onclick="seat();">A17</td>
-						<td onclick="seat();">A18</td>
-						<td onclick="seat();">A19</td>
-						<td onclick="seat();">A20</td>
+						<c:forEach var="n" items="${list }" begin="10" end="19">
+							<td>
+								<c:out value="${n.seatNo }"/>
+								<input id="test" type="hidden" name="test" class="test" value="${n.usageStatus }">
+							</td>
+						</c:forEach>
 					</tr>
 					<tr>
-						<td onclick="seat();">A21</td>
-						<td onclick="seat();">A22</td>
-						<td onclick="seat();">A23</td>
-						<td onclick="seat();">A24</td>
-						<td onclick="seat();">A25</td>
-						<td onclick="seat();">A26</td>
-						<td onclick="seat();">A27</td>
-						<td onclick="seat();">A28</td>
-						<td onclick="seat();">A29</td>
-						<td onclick="seat();">A30</td>
+						<c:forEach var="n" items="${list }" begin="20" end="29">
+							<td>
+								<c:out value="${n.seatNo }"/>
+								<input id="test" type="hidden" name="test" class="test" value="${n.usageStatus }">
+							</td>
+						</c:forEach>
 					</tr>
 					<tr>
-						<td onclick="seat();">A31</td>
-						<td onclick="seat();">A32</td>
-						<td onclick="seat();">A33</td>
-						<td onclick="seat();">A34</td>
-						<td onclick="seat();">A35</td>
-						<td onclick="seat();">A36</td>
-						<td onclick="seat();">A37</td>
-						<td onclick="seat();">A38</td>
-						<td onclick="seat();">A39</td>
-						<td onclick="seat();">A40</td>
+						<c:forEach var="n" items="${list }" begin="30" end="39">
+							<td>
+								<c:out value="${n.seatNo }"/>
+								<input id="test" type="hidden" name="test" class="test" value="${n.usageStatus }">
+							</td>
+						</c:forEach>
 					</tr>
+                    	</c:when>
+		        </c:choose>
 				</table>
 			</div>
-			<div id="seatSta">
+			<div id="seatStas">
 				<button type="button" class="btn btn-primary">사용중</button>
 				<button type="button" class="btn btn-secondary">사용가능</button>
-				<button type="button" class="btn btn-danger">이용불가</button>
+				<button type="button" class="btn btn-danger">이용불가</button>				
 			</div>
 		</div>
 	</div>
@@ -120,14 +104,33 @@
     
 
 <script>
+	
+	var cells = document.getElementsByTagName('td');
+	var userid="${loginMember.userId}";
+	
+	if(userid != ""){
+	for(var i = 0; i < cells.length; i++){
+	    cells[i].addEventListener('click', clickHandler);
+	}
+	
+	function clickHandler()
+	{
+	    open("${path}/notice/Dredingroom.do?seatno="+this.textContent+'&userid='+userid,"_blank","height=440,width=660");
+	}
+	
+	}else{
+		for(var i = 0; i < cells.length; i++){
+		    cells[i].addEventListener('click', clickHandler);
+		}
+		
+		function clickHandler()
+		{
+		    alert("로그인 후 이용해주세요");
+		}
+	}
     
-const seat=()=>{
-    open("${path}/notice/redingroom.do","_blank","height=440,width=660");
- }
-    // navigation 이벤트
     
    $(function(){
-
         const naviList = $(".list-group").children();
         const options = $(".submenu")
 
@@ -154,8 +157,22 @@ const seat=()=>{
             $(e.target).css({"font-size":"20px","fontWeight":"bold"})
             return false;
         })
-
     })
+    
+    //좌석 색깔변경
+     var cellss = document.getElementsByTagName('input')
+	 for(var i = 0; i < cellss.length; i++){
+	    	console.log($(cellss[i]).val());
+	    	if($(cellss[i]).val()=="이용중"){
+	    		$(cellss[i]).parent().css({"background": "#007bff"}); 
+	    	}else if($(cellss[i]).val()=="이용가능"){
+	    		$(cellss[i]).parent().css({"background": "#6c757d"});
+	    	}else{
+	    		$(cellss[i]).parent().css({"background": "#bd2130"});
+	    	}
+	}
+
+	
 </script>
 
 

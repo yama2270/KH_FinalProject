@@ -2,6 +2,7 @@ package com.kh.klibrary.member.model.controller;
 
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -19,9 +20,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
+import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomHistory;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.member.model.service.MemberService;
 import com.kh.klibrary.member.model.vo.Member;
+import com.kh.klibrary.member.model.vo.MemberDrop;
 
 @Controller
 @SessionAttributes({"loginMember"})
@@ -353,8 +357,30 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberReadingRoom.do")
-	public String memberReadingRoom() {
+	public String memberReadingRoom(@ModelAttribute("loginMember") Member m , Model model,
+									@RequestParam(value="cPage", defaultValue="1") int cPage,
+									@RequestParam(value="numPerPage", defaultValue="5") int numPerPage) {
+		AdminStudyroomBooking srb = service.selectSRBooing(m.getUserId());
+		List<AdminStudyroomHistory> list= service.selectSRHList(m.getUserId(),cPage, numPerPage);
+		int totalData=service.selectSRHCount(m.getUserId());
+		model.addAttribute("pageBar",PageFactory.getPageBar(totalData, cPage, numPerPage, "memberReadingRoom.do"));
+		model.addAttribute("list",list);
+		model.addAttribute("srb", srb);
 		return "member/memberReadingRoom";
+	}
+	
+	@RequestMapping("/member/cancelSRBooking.do")
+	public String cancelSRBooking(@RequestParam String bookingNo, Model model) {
+		String msg="예약 취소에 실패하였습니다.";
+		String loc="/member/memberReadingRoom.do";
+		int result=service.cancelSRBooking(bookingNo);
+		if(result>0) {
+			msg="예약을 취소하였습니다.";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "common/msg";
 	}
 	
 	@RequestMapping("/member/membershipCard.do")
@@ -367,9 +393,10 @@ public class MemberController {
 		return "member/memberDelete";
 	}
 	@RequestMapping("/member/memberDropRequest.do")
-	public String memberDropRequest(@RequestParam Map param,@ModelAttribute("loginMember") Member m, Model model) {
+	public String memberDropRequest(@RequestParam Map param,@ModelAttribute("loginMember") Member m, Model model,
+									HttpSession session, SessionStatus ss) {
 		String msg="비밀번호가 확인되었습니다. 회원님의 계정을 탈퇴를 요청합니다.";
-		String loc="/member/memberDelete.do";
+		String loc="/";
 		Map map = new HashMap();
 		map.put("userId", m.getUserId());
 		map.put("request", "Y");
@@ -380,10 +407,14 @@ public class MemberController {
 			model.addAttribute("msg",msg);
 			model.addAttribute("loc",loc);
 		}else{
-			Member md=service.selectMemberDropRequestList(map);
+			MemberDrop md=service.selectMemberDropRequestList(map);
 			if(md==null) {
 				result=service.insertMemberDropRequest(map);
 				System.out.println("result값 : " + result);
+				if(session!=null) session.invalidate();
+				if(!ss.isComplete()) {
+					ss.setComplete();
+				}
 			}else {
 				msg="이미 탈퇴요청된 계정입니다.";
 			}
@@ -393,7 +424,6 @@ public class MemberController {
 		
 		return "common/msg";
 	}
-	
 	
 	@RequestMapping("/member/memberTest.do")
 	public String memberTest() {

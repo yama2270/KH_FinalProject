@@ -2,11 +2,14 @@ package com.kh.klibrary.search.controller;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -70,15 +73,67 @@ public ModelAndView bookDetail(
 	String bookNo=b.getBookNo();
 	if(service.selectLending(bookNo)!=null) {
 		mv.addObject("lending",service.selectLending(bookNo));
-	}
+	    }else{mv.addObject("lending",null);}
+	
+	String publisher=b.getBookInfo().getBookCompany();
+		HashMap param= new HashMap();
+		param.put("publisher", publisher);
+		List<BookInfo> publisherList = service.selectDetailSearch(param, 1, 6);
+		String setname="";
+		String setname2="";
+			for(int i=0;i<publisherList.size();i++) {
+				if(publisherList.get(i).getBookName().length()>25) {
+				  setname=publisherList.get(i).getBookName().substring(0,23);
+				  publisherList.get(i).setBookName(setname);
+				}
+				System.out.println(setname);
+				
+				if(publisherList.get(i).getIsbnNo().equals(isbnNo)) {
+					publisherList.remove(i);
+				}
+			}
+			
+			if(publisherList.size()>5) {
+				publisherList.remove(5);
+			}
+			
+			
+		System.out.println("publisherList테스트"+publisherList);
+		
+	String category2=b.getBookInfo().getBookKdc();	
+	    HashMap param2= new HashMap();	    
+	    param2.put("kdcNo", category2);
+	    List<BookInfo> kdcNoList = service.kdcNoSearch(param2, 1, 6);
+		    for(int i=0;i<kdcNoList.size();i++) {
+		    	if(kdcNoList.get(i).getBookName().length()>25) {
+		           setname2=kdcNoList.get(i).getBookName().substring(0,23);
+		           kdcNoList.get(i).setBookName(setname2);
+		    	}
+		    	System.out.println(setname2);
+		    	
+				if(kdcNoList.get(i).getIsbnNo().equals(isbnNo)) {
+					kdcNoList.remove(i);
+				}
+			}
+		    
+		    if(kdcNoList.size()>5) {
+		    	kdcNoList.remove(5);
+			}
+	    System.out.println("kdcNoList테스트"+kdcNoList);
+	
+	mv.addObject("publisherList",publisherList);
+	mv.addObject("kdcNoList",kdcNoList);
 	mv.addObject("keyword",keyword);
 	mv.addObject("category",category);
-	mv.addObject("lending",null);
+	
+	
 	System.out.println("lending테스트"+service.selectLending(bookNo));
 	mv.setViewName("/searchpage/bookDetail");
 		
 	return mv;
    }
+
+
 
 @RequestMapping("/searchpage/detailSearch.do")
 public String detailSearch(){
@@ -251,7 +306,7 @@ public ModelAndView bookTotalSearch(
 @RequestMapping("/searchpage/interestingbook")
 public String interestingbook ( 
 								@RequestParam Map param,
-								@RequestParam("isbnNo") String isbnNo,
+								@RequestParam(value="isbnNo", required=false) String isbnNo,
 								@ModelAttribute("loginMember") Member m,
 								HttpServletRequest request,
 								Model model
@@ -262,6 +317,8 @@ public String interestingbook (
 			System.out.println("bookCheckArray테스트"+bookCheckArray);
 			int result=0;
 			param.put("userId", m.getUserId());
+			
+			
 			
 			if(isbnNo!=null) { //북상세페이지 버튼선택시
 				param.put("isbnNo",isbnNo);
@@ -320,6 +377,7 @@ public String interestingbook (
 						      HttpServletRequest request,
 						      Model model           
 		                       ) {
+	       System.out.println("isbnNo테스트"+isbnNo);
 			Book book=service.selectBook(isbnNo);
 			param.put("userId", m.getUserId());
 			param.put("bookNo",book.getBookNo());
@@ -428,8 +486,9 @@ public String interestingbook (
 	 
 	          List<BookInfo> bookList=service.kdcNoSearch(param,cPage,searchNumber);
 	          int kdcBookListCount=service.kdcBookListCount(param);
-	         
+	        
 	          mv.addObject("list",bookList);
+	         
 	          mv.addObject("totalData",kdcBookListCount);
 	          mv.addObject("kdcNo",kdcNo);
 	          mv.addObject("category",category);
@@ -440,7 +499,76 @@ public String interestingbook (
 	return mv;
  }
 
-
+//관심도서 나이 
+	@RequestMapping("/searchpage/selectAge.do")
+	@ResponseBody
+	public Map selectAge(@RequestParam Map param) {
+		
+		String isbnNo=(String)param.get("isbnNo");
+		List<Integer> list = service.selectAge(isbnNo);
+		
+		System.out.println("list테스트"+list);
+		Map<String,Integer> result = new HashMap<String,Integer>();
+		
+		int lessTeenageCount=0;
+		int teenageCount=0;
+		int twentyCount=0;
+		int thirtyCount=0;
+		int fortyCount=0;
+		int fiftyCount=0;
+		int sixtyCount=0;
+		for(Integer age : list) {
+			System.out.println("age테스트="+age);
+			if(age<10) {	
+				System.out.println(age<10);
+			++lessTeenageCount;
+			
+			}
+			if(age>=10 && age<20) {	
+				System.out.println(age>=10);
+				++teenageCount;
+				
+				}
+			if(age>=20 && age<30) {	
+				System.out.println(age>=20);
+				++twentyCount;
+				
+				}
+			if(age>=30 && age<40) {	
+				System.out.println(age>=30);
+				++thirtyCount;
+				
+				}
+			if(age>=40 && age<50) {			
+				++fortyCount;
+				
+				}
+			if(age>=50 && age<60) {			
+				++fiftyCount;
+				
+				}
+			if(age>=60 ) {			
+				++sixtyCount;
+				
+				}
+			
+		}
+		
+		result.put("10대미만", lessTeenageCount);
+		result.put("10대", teenageCount);
+		result.put("20대", twentyCount);
+		result.put("30대", thirtyCount);
+		result.put("40대", fortyCount);
+		result.put("50대", fiftyCount);
+		result.put("60대", sixtyCount);
+		
+		
+		
+		return result;
+	}
+	
+	
+	
 
 
 
