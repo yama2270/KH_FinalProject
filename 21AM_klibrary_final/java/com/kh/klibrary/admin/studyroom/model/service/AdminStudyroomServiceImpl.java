@@ -66,6 +66,11 @@ public class AdminStudyroomServiceImpl implements AdminStudyroomService {
 		return dao.selUsingTime(session,param);
 	}
 	
+	// 열람실 예약 정보 수정 
+	public int updateStuBooking(AdminStudyroomBooking booking) {
+		return dao.updateStuBooking(session,booking);
+	}
+	
 	// A열람실 현황조회
 	@Override
 	public List<Map> selectInfoA() {

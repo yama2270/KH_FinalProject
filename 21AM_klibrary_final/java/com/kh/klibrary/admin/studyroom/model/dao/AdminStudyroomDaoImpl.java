@@ -57,6 +57,11 @@ public class AdminStudyroomDaoImpl implements AdminStudyroomDao{
 		return session.selectOne("adminStudyroom.selUsingTimeMap",param);
 	}
 	
+	// 열람실 에약 정보 수정
+	public int updateStuBooking(SqlSessionTemplate session,AdminStudyroomBooking booking) {
+		return session.update("adminStudyroom.updateStuBooking",booking);
+	}
+	
 	// 열람실A 현황조회
 	public List<Map> selectInfoA(SqlSessionTemplate session) {
 		return session.selectList("adminStudyroom.selectInfoA");

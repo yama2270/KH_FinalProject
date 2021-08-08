@@ -33,6 +33,9 @@ public interface AdminStudyroomService {
 	// 열람실 예약 수정 - 열람식 현재 사용여부
 	Map selUsingTime(Map param);
 	
+	// 열람실 예약 정보 수정 
+	int updateStuBooking(AdminStudyroomBooking booking);
+	
 	// A열람실 현황조회 
 	List<Map> selectInfoA();
 	

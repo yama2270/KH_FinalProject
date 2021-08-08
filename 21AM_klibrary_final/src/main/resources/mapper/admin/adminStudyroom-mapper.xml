@@ -69,6 +69,13 @@
 		</choose>
 	</select>	
 	
+	<!-- 열람실 예약 정보 수정 -->
+	<update id="updateStuBooking" parameterType="adminStudyroomBooking">
+		UPDATE STUDYROOM_BOOKING 
+		SET STUDYROOM_TYPE=#{roomName},SEAT_NO=#{seatNo},START_TIME=#{startTime},END_TIME=#{endTime}
+		WHERE BOOKING_NO = #{bookingNo}
+	</update>
+	
 	<!-- 열람실A 현황조회 -->
 	<select id="selectInfoA" resultType="Map">
 		SELECT USAGE_STATUS AS STATUS,COUNT(*) AS COUNT 

@@ -35,6 +35,9 @@ public interface AdminStudyroomDao {
 	// 열람실 수정 - 열람실 좌석 이용시간 
 	Map selUsingTime(SqlSessionTemplate session,Map param);
 	
+	// 열람실 에약 정보 수정
+	int updateStuBooking(SqlSessionTemplate session,AdminStudyroomBooking booking);
+	
 	// 열람실A 현황조회
 	List<Map> selectInfoA(SqlSessionTemplate session);
 	
