@@ -17,10 +17,11 @@
     <div id="modiWrap">
         <div id="moTitle">열람실 예약수정</div>
         <table id="studyTab">
+        <input name="bookingNo" value="${bookingInfo.bookingNo }" style="display:none;"/>
             <tr>
                 <td>열람실</td>
                 <td>
-                <select id="selRoom">
+                <select id="selRoom" name="selRoom">
                     <option value="열람실A" ${bookingInfo.roomName=='열람실A'?'selected':'' }>열람실A</option>
                     <option value="열람실B" ${bookingInfo.roomName=='열람실B'?'selected':'' }>열람실B</option>    
                     <option value="열람실C" ${bookingInfo.roomName=='열람실C'?'selected':'' }>열람실C</option>    
@@ -31,13 +32,13 @@
             <tr>
                 <td>좌석</td>
                 <td>
-                    <select id="selSeat"></select>
+                    <select id="selSeat" name="selSeat"></select>
                 </td>
             </tr>
             <tr>
                 <td>시작시간</td>
                 <td>
-                    <select id="selStart">
+                    <select id="selStart" name="selStart">
                         <option value="09:00">09:00</option>
                         <option value="10:00">10:00</option>
                         <option value="11:00">11:00</option>
@@ -58,7 +59,7 @@
             <tr>
                 <td>종료시간</td>
                 <td>
-                    <select id="selEnd">
+                    <select id="selEnd" name="selEnd">
                         <option value="10:00">10:00</option>
                         <option value="11:00">11:00</option>
                         <option value="12:00">12:00</option>
@@ -78,11 +79,11 @@
             </tr>
         </table>
         <div id="moBtnWrap">
-            <input type="submit" name="conModi" onclick="fn_modi()" value="수정">
+            <input type="button" name="conModi" onclick="fn_modi_on();" value="수정">
             <input type="button" name="conExit" onclick="javascript:window.close();" value="닫기"> 
         </div>
     </div>
-
+	
 </body>
 </html>
 
@@ -258,16 +259,33 @@
 	
 	
     // 열람실 선택 이벤트 
+    
     $("#selRoom").on("input",(e)=>{
         
     	const room = $('#selRoom').val();
     	
-    	console.log(room);
-    	
-    	// selRoom option 삭제
+    	// selSeat option 삭제
     	$("#selSeat").children().remove();
     	
-    	//열람실 선택 
+    	// 시작시간 & 종료시간 생성 
+    	$("#selStart").children().remove();
+    	$("#selEnd").children().remove();
+    	
+    	// 시작시간 생성
+    	for(i=9;i<23;i++){
+    		if(i==9){
+    			$("#selStart").append('<option value="09:00">09:00</option>');
+    		} else {
+    			$("#selStart").append('<option value="'+i+':00">'+i+':00</option>');
+    		}
+    	}
+    	
+    	// 종료시간 생성
+    	for(i=10;i<24;i++){
+    		$("#selEnd").append('<option value="'+i+':00">'+i+':00</option>');
+    	}
+    	
+    	//열람실 선택시 좌석 생성
     	switch(room){
     	
     	case '열람실A':
@@ -391,9 +409,27 @@
     	})
     });
     
- 	// 열람실 선택 이벤트
+ 	// 좌석 선택 이벤트
  	
  	$("#selSeat").change((e)=>{
+ 		
+ 		// 시작시간 & 종료시간 생성 
+    	$("#selStart").children().remove();
+    	$("#selEnd").children().remove();
+    	
+    	// 시작시간 생성
+    	for(i=9;i<23;i++){
+    		if(i==9){
+    			$("#selStart").append('<option value="09:00">09:00</option>');
+    		} else {
+    			$("#selStart").append('<option value="'+i+':00">'+i+':00</option>');
+    		}
+    	}
+    	
+    	// 종료시간 생성
+    	for(i=10;i<24;i++){
+    		$("#selEnd").append('<option value="'+i+':00">'+i+':00</option>');
+    	}
  		
  		const selRoomVal = $("#selRoom option:selected").val();
     	const selSeatVal = $("#selSeat option:selected").val();
@@ -483,7 +519,7 @@
     	})
  	});
  	
- 	const fn_modi = function(){
+ 	const fn_modi_on = function(){
  		
  		// 시작시간 종료시간 대소비교  
  		const selStart = $("#selStart option:selected");
@@ -491,7 +527,7 @@
 			
 		if(selStart.val()>=selEnd.val()){
 			alert("종료시간을 다시 선택해주세요");
-			return;
+			return false;
 		}
 		
 		// 시작시간
@@ -502,18 +538,28 @@
  		
  		let checkDis = $('#selEnd').find('option[value="'+selComEnd+'"]').nextUntil('option:selected');
  		
- 		/* if($('#selEnd').find('option:selected').is(":disabled")==true){
- 			alert("종료시간을 다시 선택해주세요");
- 			return;
- 		} */
- 		
  		for(i=0;i<checkDis.length;i++){
  			console.log(checkDis[i]);
  			if(checkDis[i]['disabled']==true){
  				alert("종료시간을 다시 선택해주세요");
- 	 			return;
+ 	 			return false;
  			}
  		}
+		
+ 		let bookingNo = $("input[name=bookingNo]").val(); 
+ 		let roomName = $("select[name=selRoom]").val();
+ 		let seatNo = $("select[name=selSeat]").val();
+ 		let startTime = $("select[name=selStart]").val();
+ 		let endTime = $("select[name=selEnd]").val();
+ 		
+ 		$.ajax({
+ 			url: "${path}/admin/studyroom/modiBookingInfo.do?bookingNo="+bookingNo+"&roomName="+roomName+"&seatNo="+seatNo+"&startTime="+startTime+"&endTime="+endTime,
+ 			success : function(data){
+ 				alert(data.msg);
+ 				opener.window.location.reload();
+ 				window.close();
+ 			}
+ 		})
  		
  	}
 

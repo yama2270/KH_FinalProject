@@ -88,6 +88,14 @@ public class AdminStudyroomController {
 		return result; 
 	}
 	
+	@RequestMapping("/admin/studyroom/modiBookingInfo.do")
+	@ResponseBody
+	public Map modiBookingInfo(AdminStudyroomBooking booking) {
+		Map result = new HashMap();
+		result.put("msg", service.updateStuBooking(booking)>0?"성공":"실패");
+		return result;
+	}
+	
 	// A열람실
 	@RequestMapping("/admin/studyroom/studyroomA.do")
 	public String studyroomA(Model mo) {
