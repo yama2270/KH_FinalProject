@@ -278,11 +278,6 @@ public class AdminBookController {
 	}
 	
 
-	// 희망도서목록
-	@RequestMapping("/admin/book/bookWishList.do")
-	public String wishList() {
-		return "admin/book/bookWishList";
-	}
 
 	// 도서 등록 
 	@RequestMapping("/admin/book/registerBook.do")
