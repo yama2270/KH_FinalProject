@@ -145,6 +145,15 @@ public class SearchDaoImpl implements SearchDao{
 	public List<Integer> selectAge(SqlSessionTemplate session, String isbnNo){
 		return session.selectList("selectAge", isbnNo);
 	};
+	
+	@Override
+	public List<Map> likeBest(SqlSessionTemplate session){
+		return session.selectList("likeBest");
+	}
 	 
+	@Override
+	public List<Map> lendingBest(SqlSessionTemplate session){
+		return session.selectList("lendingBest");
+	}
 	 
 }
