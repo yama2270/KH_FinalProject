@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
 import com.kh.klibrary.book.model.vo.WishBook;
@@ -144,5 +145,11 @@ public interface AdminBookDao {
 	
 	//희망도서 삭제
 	int deleteWishBook(SqlSessionTemplate session, String wishBookNo);
+	//희망도서 검색
+	List<WishBook> searchWishBookNo(SqlSessionTemplate session, String keyWord);
+	
+	//희망도서 등록
+	int insertWishBook(SqlSessionTemplate session, WishBook wishBook);
 	
 }
+	

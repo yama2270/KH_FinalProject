@@ -16,12 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.admin.book.model.service.AdminBookService;
 import com.kh.klibrary.admin.common.AdminPagingTemplate;
+import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
+import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.BookingHistory;
@@ -421,7 +424,7 @@ public class AdminBookController {
 		return mv;
 	}
 	
-	//게시글 삭제
+	//희망도서 삭제
 	@RequestMapping("/admin/book/wishBookDelete.do")
 	public String ajaxTest(HttpServletRequest request) throws Exception{
 		String[] ajaxMsg = request.getParameterValues("valueArr");
@@ -431,6 +434,25 @@ public class AdminBookController {
 		}
 		return "redirect:/admin/book/bookWishList.do";
 	}
+	
+	//희망도서 검색
+	@RequestMapping("/admin/notice/insertWishBook.do")
+	public ModelAndView wishBookInsert(WishBook wishBook,ModelAndView mv) {
+		int result=service.insertWishBook(wishBook);
+		String msg="";
+		if(result>0) {
+			msg="도서 등록완료";
+		}else{
+			msg="도서 등록실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/admin/notice/bookWishList.do");
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	
+	
 	
 	
 }

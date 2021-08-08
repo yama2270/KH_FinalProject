@@ -295,5 +295,19 @@ public class AdminBookDaoImpl implements AdminBookDao {
 		// TODO Auto-generated method stub
 		return session.delete("adminBook.deleteWishBook", wishBookNo);
 	}
+
+	@Override
+	public List<WishBook> searchWishBookNo(SqlSessionTemplate session, String keyWord) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.searchWishBookNo", keyWord);
+	}
+
+	@Override
+	public int insertWishBook(SqlSessionTemplate session, WishBook wishBook) {
+		// TODO Auto-generated method stub
+		return session.insert("wishBook.insertWishBook", wishBook);
+	}
+
+
 	
 }

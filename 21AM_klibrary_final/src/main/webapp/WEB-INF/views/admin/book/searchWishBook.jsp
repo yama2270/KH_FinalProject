@@ -15,16 +15,16 @@
 		<div id="contentTitle">희망도서목록</div>
 		<div id="searchWrap">
 			<div class="container-fluid" style="padding-right: 0px;">
-				<form class="d-flex" action="${path }/admin/book/bookWishList.do" method="post">
+				<form id="searchWishBook" action="${path }/admin/book/bookWishList.do" method="post">
 					<select id="searchOption" class="form-select"
 						aria-label="Default select example">
-						<option value="" ${param.searchOption !=null? "":"selected"}>검색옵션</option>
-						<option value="wishbook_no" ${param.searchOption =="wishbook_no"? "selected":""}>희망도서번호</option>
-						<option value="user_id" ${param.searchOption =="user_id"? "selected":""}>아이디</option>
-						<option value="isbn" ${param.searchOption =="isbn"? "selected":""}>ISBN</option>
-						<option value="book_name" ${param.searchOption =="book_name"? "selected":""}>도서명</option>
-						<option value="book_author" ${param.searchOption =="book_author"? "selected":""}>저자</option>			
-						<option value="book_company" ${param.searchOption =="book_company"? "selected":""}>출판사</option>
+						<option value="" >검색옵션</option>
+						<option value="wishbook_no">희망도서번호</option>
+						<option value="user_id" >아이디</option>
+						<option value="isbn" >ISBN</option>
+						<option value="book_name" >도서명</option>
+						<option value="book_author" >저자</option>			
+						<option value="book_company" >출판사</option>
 
 					</select> <input id="searchWord" class="form-control me-2" type="search" name="searchWord"
 							placeholder="Search" aria-label="Search" value='${param.searchWord!=null?param.searchWord:"" }' required>

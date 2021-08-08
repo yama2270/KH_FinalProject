@@ -134,6 +134,12 @@ public interface AdminBookService {
 	
 	//희망도서 삭제
 	int deleteWishBook(String wishBookNo);
+	//희망도서 검색
+	List<WishBook> searchWishBook(int cPage, int numPerpage, Map param);
+	
+	//희망도서 구입
+	int insertWishBook(WishBook wishBook, String wishBookNo);
+	
 	
 }
 
