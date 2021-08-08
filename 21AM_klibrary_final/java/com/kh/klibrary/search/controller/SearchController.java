@@ -75,6 +75,54 @@ public ModelAndView bookDetail(
 		mv.addObject("lending",service.selectLending(bookNo));
 	    }else{mv.addObject("lending",null);}
 	
+	String publisher=b.getBookInfo().getBookCompany();
+		HashMap param= new HashMap();
+		param.put("publisher", publisher);
+		List<BookInfo> publisherList = service.selectDetailSearch(param, 1, 6);
+		String setname="";
+		String setname2="";
+			for(int i=0;i<publisherList.size();i++) {
+				if(publisherList.get(i).getBookName().length()>25) {
+				  setname=publisherList.get(i).getBookName().substring(0,23);
+				  publisherList.get(i).setBookName(setname);
+				}
+				System.out.println(setname);
+				
+				if(publisherList.get(i).getIsbnNo().equals(isbnNo)) {
+					publisherList.remove(i);
+				}
+			}
+			
+			if(publisherList.size()>5) {
+				publisherList.remove(5);
+			}
+			
+			
+		System.out.println("publisherList테스트"+publisherList);
+		
+	String category2=b.getBookInfo().getBookKdc();	
+	    HashMap param2= new HashMap();	    
+	    param2.put("kdcNo", category2);
+	    List<BookInfo> kdcNoList = service.kdcNoSearch(param2, 1, 6);
+		    for(int i=0;i<kdcNoList.size();i++) {
+		    	if(kdcNoList.get(i).getBookName().length()>25) {
+		           setname2=kdcNoList.get(i).getBookName().substring(0,23);
+		           kdcNoList.get(i).setBookName(setname2);
+		    	}
+		    	System.out.println(setname2);
+		    	
+				if(kdcNoList.get(i).getIsbnNo().equals(isbnNo)) {
+					kdcNoList.remove(i);
+				}
+			}
+		    
+		    if(kdcNoList.size()>5) {
+		    	kdcNoList.remove(5);
+			}
+	    System.out.println("kdcNoList테스트"+kdcNoList);
+	
+	mv.addObject("publisherList",publisherList);
+	mv.addObject("kdcNoList",kdcNoList);
 	mv.addObject("keyword",keyword);
 	mv.addObject("category",category);
 	
@@ -84,6 +132,8 @@ public ModelAndView bookDetail(
 		
 	return mv;
    }
+
+
 
 @RequestMapping("/searchpage/detailSearch.do")
 public String detailSearch(){

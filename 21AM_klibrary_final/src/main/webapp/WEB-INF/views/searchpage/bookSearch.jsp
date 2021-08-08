@@ -296,11 +296,11 @@ String totalData=request.getParameter("totalData");
     </c:forEach>
     </c:when>
     
-    <c:otherwise>
-   					<tr>
-   					<td colspan="5"></td>
-   					</tr>
-   				</c:otherwise>  
+	    <c:otherwise>
+	   					<tr>
+	   					<td colspan="5"></td>
+	   					</tr>
+	   	</c:otherwise>  
     </c:choose>
   </table>
   </form>
