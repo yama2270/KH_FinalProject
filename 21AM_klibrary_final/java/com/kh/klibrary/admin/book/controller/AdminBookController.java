@@ -417,17 +417,18 @@ public class AdminBookController {
 	
 	
 	//희망도서 리스트
-	@RequestMapping("/admin/book/bookWishList.do")
-	public ModelAndView bookWishList(
-			@RequestParam(value = "cPage", defaultValue = "1") int cPage,
-			@RequestParam(value = "numPerpage", defaultValue = "4") int numPerpage, 
-			ModelAndView mv) {
-		mv.addObject("list", service.selectBookWishList(cPage, numPerpage));
-		int totalData=service.selectWishBookCount();
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage, "bookWishList.do"));
-		mv.setViewName("admin/book/bookWishList");
-		return mv;
-	}
+	/*
+	 * @RequestMapping("/admin/book/bookWishList.do") public ModelAndView
+	 * bookWishList(
+	 * 
+	 * @RequestParam(value = "cPage", defaultValue = "1") int cPage,
+	 * 
+	 * @RequestParam(value = "numPerpage", defaultValue = "4") int numPerpage,
+	 * ModelAndView mv) { mv.addObject("list", service.selectBookWishList(cPage,
+	 * numPerpage)); int totalData=service.selectWishBookCount();
+	 * mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,
+	 * "bookWishList.do")); mv.setViewName("admin/book/bookWishList"); return mv; }
+	 */
 	
 	//게시글 삭제
 	@RequestMapping("/admin/book/wishBookDelete.do")

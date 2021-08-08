@@ -26,36 +26,36 @@
             <tr>
               <td>
               	<a href="">
-                	<img src="${path }/resources/images/search.png" width=150 height=100>
+                	<img src="${path }/resources/images/search.jpg" width=150 height=100>
                 </a>
               </td>
               <td>
                 <a href="">
-                	<img src="${path }/resources/images/infor.png" width=150 height=100>
+                	<img src="${path }/resources/images/infor.jpg" width=150 height=100>
                 </a>
               </td>
             </tr>
             <tr>
               <td>
                 <a href="">
-                	<img src="${path }/resources/images/borrow.png" width=150 height=100>
+                	<img src="${path }/resources/images/borrow.jpg" width=150 height=100>
                 </a>
               </td>
               <td>
                 <a href="">
-                	<img src="${path }/resources/images/hope.png" width=150 height=100>
+                	<img src="${path }/resources/images/hope.jpg" width=150 height=100>
                 </a>
               </td>
             </tr>
              <tr>
               <td>
                 <a href="">
-                	<img src="${path }/resources/images/room.png" width=150 height=100>
+                	<img src="${path }/resources/images/room.jpg" width=150 height=100>
                 </a>
               </td>
               <td>
                 <a href="">
-                	<img src="${path }/resources/images/mypage.png" width=150 height=100>
+                	<img src="${path }/resources/images/mypage.jpg" width=150 height=100>
                 </a>
               </td>
             </tr>
