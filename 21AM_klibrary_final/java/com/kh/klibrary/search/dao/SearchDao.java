@@ -41,5 +41,7 @@ public interface SearchDao {
 	
 	List<BookInfo> selectBookInfoList(SqlSessionTemplate session, Map param);
 	int insertWishBook(SqlSessionTemplate session, Map param);
+	
+	List<BookInfo> bookRecomend(SqlSessionTemplate session);
 
 }

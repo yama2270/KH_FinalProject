@@ -154,4 +154,6 @@ public interface AdminBookDao {
 	//희망도서 삭제
 	int deleteWishBook(SqlSessionTemplate session, String wishBookNo);
 	
+	
+	
 }

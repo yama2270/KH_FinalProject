@@ -315,5 +315,9 @@ public class AdminBookDaoImpl implements AdminBookDao {
 		// TODO Auto-generated method stub
 		return session.delete("adminBook.deleteWishBook", wishBookNo);
 	}
+
+	
+	
+	
 	
 }

@@ -58,4 +58,6 @@ public interface NoticeDao {
 	int AvailableD(SqlSessionTemplate session);
 	int cannotusedD(SqlSessionTemplate session);
 	StudyRoomD redingDroom(SqlSessionTemplate session,String seatno);
+	
+	List<Notice> findRecentNotices(SqlSessionTemplate session);
 }

@@ -339,5 +339,8 @@ public class AdminBookServiceImpl implements AdminBookService {
 		// TODO Auto-generated method stub
 		return dao.deleteWishBook(session, wishBookNo);
 	}
+
+	
+
 	
 }

@@ -7,11 +7,42 @@
 	<jsp:param name="title" value="메인페이지"/>
 </jsp:include>
  
+ 
+ 	<style>
+ 	.main-top-tr{
+ 		float:left;
+ 	}
+ 	</style>
     <div id="main-wraper">
       <container id="main-top">
-        <h1> K-추천 도서</h1>
+        <h3> K-추천 도서</h3>
         <div id="reco-book">
-
+			<table class="main-top-table">
+	        	<tr>
+	               <c:forEach items="${recomendBook }" var="result">
+		              	<td class="main-top-table-td">
+		              		<a href="">
+		              			<img src="${result.bookImg}">
+		              		</a>
+		              	</td>
+		           </c:forEach>
+		        </tr>
+		        <tr>
+		           <c:forEach items="${recomendBook }" var="result">
+		              	<td class="main-top-table-td-text"><c:out value="${result.bookName }"/></td>
+		           </c:forEach>
+		        </tr>
+		        <tr>
+		           <c:forEach items="${recomendBook }" var="result">
+		              	<td class="main-top-table-td-text"><c:out value="${result.bookWriter }"/></td>
+		           </c:forEach>
+		        </tr>
+		        <tr>
+		           <c:forEach items="${recomendBook }" var="result">
+		              	<td class="main-top-table-td-text"><c:out value="${result.bookCompany }"/></td>
+	               </c:forEach>
+	            </tr>
+          	</table>
         </div>
       </container><!-- main-top -->
 
@@ -67,17 +98,20 @@
           <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">공지사항</a>
-              <!--  테이블 형식으로 뿌림 -->
-			<table class="main-service">
+            </div>
+          </nav>
+          <table class="main-service">
                <c:forEach items="${notices }" var="result">
-             	  <tr>
-	              	<td><c:out value="${result.title }"/></td>
-	              	<td><c:out value="${result.content }"/></td>
+             	  <tr class="main-service-tr">
+	              	<td class="main-service-td">
+	              		<a href="" class="main-service-a">
+	              			<c:out value="${result.noticeTitle }"/>
+	              		</a>
+	              	</td>
+	              	<td class="main-service-td"><c:out value="${result.noticeDate }"/></td>
 	              </tr>
                </c:forEach>
           </table>
-            </div>
-          </nav>
         </div>
 
       </container><!-- main-mid -->

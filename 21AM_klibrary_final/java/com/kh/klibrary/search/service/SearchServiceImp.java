@@ -195,5 +195,10 @@ public Lending selectLending(String bookNo) {
 		 return dao.selectAge(session,isbnNo);
 	 }
 	 
+	 @Override
+		public List<BookInfo> bookRecomend() {
+		 
+			return dao.bookRecomend(session);
+		}
 	 
 }

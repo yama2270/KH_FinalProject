@@ -143,5 +143,7 @@ public interface AdminBookService {
 	//희망도서 삭제
 	int deleteWishBook(String wishBookNo);
 	
+	
+	
 }
 

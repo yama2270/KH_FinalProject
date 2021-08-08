@@ -269,6 +269,12 @@ public class NoticeDaoImpl implements NoticeDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("redingroomA.cannotusedD");
 	}
+
+	@Override
+	public List<Notice> findRecentNotices(SqlSessionTemplate session) {
+		
+		return session.selectList("notice.findRecentNotice");
+	}
 	
 	
 	

@@ -251,6 +251,12 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return dao.cannotusedD(session);
 	}
+
+	@Override
+	public List<Notice> findRecentNotices() {
+		
+		return dao.findRecentNotices(session);
+	}
 	
 	
 

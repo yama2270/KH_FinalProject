@@ -533,5 +533,7 @@
 	  <delete id="deleteWishBook" parameterType="String">
   	DELETE FROM WISHBOOK WHERE WISH_BOOK_NO = #{wishBookNo}
   	</delete>
+  	
+  	
 	
 </mapper>

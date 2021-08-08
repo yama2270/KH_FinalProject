@@ -50,4 +50,6 @@ public interface NoticeService {
 	int AvailableD();
 	int cannotusedD();
 	StudyRoomD redingDroom(String seatno);
+	
+	List<Notice> findRecentNotices();
 }
