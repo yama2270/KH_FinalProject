@@ -92,9 +92,9 @@
 				</table>
 			</div>
 			<div id="seatStas">
-				<button type="button" class="btn btn-primary">사용중</button>
-				<button type="button" class="btn btn-secondary">사용가능</button>
-				<button type="button" class="btn btn-danger">이용불가</button>				
+				<button type="button" onclick="userin();" class="btn btn-primary">사용중</button>
+				<button type="button" onclick="usernull();" class="btn btn-success">사용가능</button>
+				<button type="button" onclick="userno();" class="btn btn-danger">이용불가</button>				
 			</div>
 		</div>
 	</div>
@@ -103,6 +103,12 @@
     
 
 <script>
+	$(function(){
+	    // ul show()
+	    $(".submenu").eq(1).show();
+	    // ul li 배경화면 
+	    $(".submenu").eq(1).children().eq(0).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+	})
 	
 	var cells = document.getElementsByTagName('td');
 	var userid="${loginMember.userId}";
@@ -165,11 +171,48 @@
 	    	if($(cellss[i]).val()=="이용중"){
 	    		$(cellss[i]).parent().css({"background": "#007bff"}); 
 	    	}else if($(cellss[i]).val()=="이용가능"){
-	    		$(cellss[i]).parent().css({"background": "#6c757d"});
+	    		$(cellss[i]).parent().css({"background": "#218838"});
 	    	}else{
 	    		$(cellss[i]).parent().css({"background": "#bd2130"});
 	    	}
 	}
+   	
+   	function userin(){
+   		var cellss = document.getElementsByTagName('input')
+   		for(var i = 0; i < cellss.length; i++){
+   			if($(cellss[i]).val()!="이용중"){
+   				$(cellss[i]).parent().css({"visibility": "hidden"});
+   			}else{
+   				$(cellss[i]).parent().css({"visibility": "visible"});
+   			}
+   		}
+   	}
+   	
+   	function usernull(){
+   		var cellss = document.getElementsByTagName('input')
+   		for(var i = 0; i < cellss.length; i++){
+   			if($(cellss[i]).val()!="이용가능"){
+   				$(cellss[i]).parent().css({"visibility": "hidden"});
+   			}else{
+   				$(cellss[i]).parent().css({"visibility": "visible"});
+   			}
+   		}
+   	}
+   	
+   	function userno(){
+   		var cellss = document.getElementsByTagName('input')
+   		for(var i = 0; i < cellss.length; i++){
+   			if($(cellss[i]).val()!="사용불가"){
+   				$(cellss[i]).parent().css({"visibility": "hidden"});
+   			}else{
+   				$(cellss[i]).parent().css({"visibility": "visible"});
+   			}
+   		}
+   	}
+   
+   
+   
+   
 
 	
 </script>

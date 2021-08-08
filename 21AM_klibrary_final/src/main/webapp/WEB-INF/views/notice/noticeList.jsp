@@ -76,24 +76,37 @@
             </div>
         </div>
     </section>
+</body>
     <script>
+    
+    
+    
     const fn_searchKey = function(cPage){
     	const searchKey = $("#searchOption").val();
      	const searchWord = $("#searchWord").val();
 		location.assign('${path}/admin/member/SearchMember.do?cPage='+cPage+"&searchOption="+searchKey+"&searchWord="+searchWord);
 	}
-	// 페이지 이동 
+    
+	/* // 페이지 이동 
     const fn_paging = function(cPage){
     	location.assign('${path}/admin/member/memberList.do?cPage='+cPage);
-    }
+    } */
     
     $(function(){
 	   $('.list-group-item').click(function(){
 	      $('.list-group-item').removeClass('on')
 	        $(this).addClass('on')
 	   })
-	   
 	})
+	
+	 $(function(){
+		console.log(window.location.href );
+		
+		  
+		  $(".list-group").children().eq(1).css({"backgroundColor" : "lightgrey"})
+		  
+			 	   
+		})
+	
 	</script>
-</body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
