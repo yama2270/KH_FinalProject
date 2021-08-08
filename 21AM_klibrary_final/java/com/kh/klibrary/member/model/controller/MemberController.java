@@ -12,8 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,9 +56,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/enrollIdCheck.do")
-	public int enrollIdCheck(Member m, Model model) {
+	@ResponseBody
+	public Map<Object, Object> enrollIdCheck(@RequestBody String userId) {
 		
-		return 0;
+		System.out.println(userId);
+		int count=0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		count = service.enrollIdCheck(userId);
+		map.put("cnt", count);
+		System.out.println(count);
+		return map;
 	}
 	
 	@RequestMapping("/member/memberLogin.do")

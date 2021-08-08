@@ -51,49 +51,8 @@
 				<button type="button" class="btn btn-danger">사용불가</button>
 			</div>
 			<div style="margin-top: 20px;">
-				<div class="rooTabTit">이용 중 회원목록</div>
-				<table id="roomUseTab">
-					<tr>
-						<th>아이디</th>
-						<th>이름</th>
-						<th>예약번호</th>
-						<th>좌석번호</th>
-						<th>시작시간</th>
-						<th>종료시간</th>
-					</tr>
-					<tr>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>예약번호</td>
-						<td>좌석번호</td>
-						<td>시작시간</td>
-						<td>종료시간</td>
-					</tr>
-					<tr>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>예약번호</td>
-						<td>좌석번호</td>
-						<td>시작시간</td>
-						<td>종료시간</td>
-					</tr>
-					<tr>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>예약번호</td>
-						<td>좌석번호</td>
-						<td>시작시간</td>
-						<td>종료시간</td>
-					</tr>
-					<tr>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>예약번호</td>
-						<td>좌석번호</td>
-						<td>시작시간</td>
-						<td>종료시간</td>
-					</tr>
-				</table>
+				<div id="useMemTit" class="rooTabTit">이용 중 회원목록</div>
+				<div id="useMemTabWrap"></div>
 			</div>
 		</div>
 	</div>
@@ -109,9 +68,24 @@
         $(".navOptions").eq(3).children().eq(1).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
     })
     
-    $("#roomTab").find("td").click((e)=>{
-    	console.log($(e.target));
-    }) 
+    $(function(){
+   			$.ajax({
+   			url : "${path}/admin/studyroom/selUsingListA",
+   			success : function(data){
+   			$("#useMemTabWrap").html(data);
+   			}
+    	})
+    })
+    
+    const fn_paging= function(cPage){
+    	$.ajax({
+   			url : "${path}/admin/studyroom/selUsingListA?cPage="+cPage,
+   			success : function(data){
+   				$("#useMemTabWrap").html(data);
+   			}
+    	})
+    }
+    
     
 	</script>
 

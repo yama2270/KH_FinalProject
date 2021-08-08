@@ -33,10 +33,12 @@ public interface SearchService {
 	int bookingBook(Map param);//예약도서"불가능"update
 	int booking(Map param);//예약테이블
 	
-	
+	List<Integer> selectAge(String isbnNo);//관심도서연령대선택
 	
 	List<BookInfo> selectBookInfoList(Map param);//wishbook,cg
-
+	
+	List<Map> likeBest();//관심도서순위 이름갖고오기
+    List<Map> lendingBest();//대출순위
 	
 	int insertWishBook(Map param);
 	

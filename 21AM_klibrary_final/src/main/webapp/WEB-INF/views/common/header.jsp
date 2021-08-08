@@ -61,15 +61,15 @@
                 </c:if>
                 <c:if test='${loginMember!=null && (loginMember.userId).equals("admin") }'>
                 	<li>
-                		<a href="${path }/admin/main.do" class="hader_a">관리자페이지</a>
+                		<a href="${path }/admin/main.do" class="hader_a btn btn-outline-light text-dark">관리자페이지</a>
                 	</li>
                 	<li>
-                		<button class="btn btn-outline-light text-dark" type="button" onclick="location.replace('${path}/member/memberLogout.do');">로그아웃</button>
+                		<button class="btn btn-outline-light text-dark hader_a" type="button" onclick="location.replace('${path}/member/memberLogout.do');">로그아웃</button>
                 	</li>
                 </c:if>
                 <c:if test='${loginMember!=null && !"admin".equals(loginMember.userId) }'>
                 	<li>
-                		<a href="" class="hader_a">마이페이지</a>
+                		<a href="" class="hader_a btn btn-outline-light text-dark">마이페이지</a>
                 	</li>
                 	<li>
                 		<button class="btn btn-outline-light text-dark" type="button" onclick="location.replace('${path}/member/memberLogout.do');">로그아웃</button>
@@ -81,7 +81,7 @@
 		
 		<div id="nav">	
 			<div>
-				<a href="${path }/main/mainPage.do"><img src="${path }/resources/images/logo.png" width="400" height="200"></a>
+				<a href="${path }/"><img src="${path }/resources/images/logo.png" width="400" height="200"></a>
 			</div>
 			<div>
 			<ul id="main-menu">			

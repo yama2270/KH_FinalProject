@@ -6,12 +6,11 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/hy.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yh.css">
+
 <body>
-    <div class="divcontainer1">
+<div class="divcontainer1">
     <br>
-    	<h2 id="title11">열람실 B</h2>
+    <h2 id="title11">열람실 B</h2>
     <br>
   </div>
     <section id="ad_containerad">
@@ -42,12 +41,12 @@
 		<div id="contBodyroom">
 			<div id="roomHeaWrap">
 				<div class="rooTabTit">열람실 B</div>
-				<table id="roomHeaTabs">
+				<table id="roomHeaTabss">
 					<tr>
-						<td>총좌석 : <c:out value="${total }"/></td>
-						<td>이용좌석 : <c:out value="${usetotal }"/></td>
-						<td>잔여좌석 : <c:out value="${Available }"/></td>
-						<td>사용불가 : <c:out value="${cannotused }"/></td>
+						<th>총좌석 : <c:out value="${total }"/></th>
+						<th>이용좌석 : <c:out value="${usetotal }"/></th>
+						<th>잔여좌석 : <c:out value="${Available }"/></th>
+						<th>사용불가 : <c:out value="${cannotused }"/></th>
 					</tr>
 				</table>
 			</div>
@@ -60,23 +59,32 @@
                     	<c:forEach var="n" items="${list }" begin="0" end="9"><!-- begin : 시작번호 end : 끝번호 -->
 							<td>
 								<c:out value="${n.seatNo }"/>
-								<input type="hidden" class="test" value="${n.usageStatus }">
+								<input id="test" type="hidden" name="test" class="test" value="${n.usageStatus }">
 							</td>
 						</c:forEach>
 					</tr>
 					<tr>
 						<c:forEach var="n" items="${list }" begin="10" end="19">
-							<td><c:out value="${n.seatNo }"/></td>
+							<td>
+								<c:out value="${n.seatNo }"/>
+								<input id="test" type="hidden" name="test" class="test" value="${n.usageStatus }">
+							</td>
 						</c:forEach>
 					</tr>
 					<tr>
 						<c:forEach var="n" items="${list }" begin="20" end="29">
-							<td><c:out value="${n.seatNo }"/></td>
+							<td>
+								<c:out value="${n.seatNo }"/>
+								<input id="test" type="hidden" name="test" class="test" value="${n.usageStatus }">
+							</td>
 						</c:forEach>
 					</tr>
 					<tr>
 						<c:forEach var="n" items="${list }" begin="30" end="39">
-							<td><c:out value="${n.seatNo }"/></td>
+							<td>
+								<c:out value="${n.seatNo }"/>
+								<input id="test" type="hidden" name="test" class="test" value="${n.usageStatus }">
+							</td>
 						</c:forEach>
 					</tr>
                     	</c:when>
@@ -84,10 +92,9 @@
 				</table>
 			</div>
 			<div id="seatStas">
-				<button type="button" class="btn btn-primary">사용중</button>
-				<button type="button" class="btn btn-secondary">사용가능</button>
-				<button type="button" class="btn btn-danger">이용불가</button>
-				
+				<button type="button" onclick="userin();" class="btn btn-primary">사용중</button>
+				<button type="button" onclick="usernull();" class="btn btn-success">사용가능</button>
+				<button type="button" onclick="userno();" class="btn btn-danger">이용불가</button>						
 			</div>
 		</div>
 	</div>
@@ -96,29 +103,40 @@
     
 
 <script>
+	$(function(){
+	    // ul show()
+	    $(".submenu").eq(1).show();
+	    // ul li 배경화면 
+	    $(".submenu").eq(1).children().eq(1).css({ "font-size": "20px", "fontWeight": "bold", "backgroundColor": "#7DA5E1" });
+	})
+
 	
 	var cells = document.getElementsByTagName('td');
+	var userid="${loginMember.userId}";
+	
+	if(userid != ""){
 	for(var i = 0; i < cells.length; i++){
 	    cells[i].addEventListener('click', clickHandler);
 	}
 	
 	function clickHandler()
 	{
-		var userid="${loginMember.userId}";
-		console.log(userid);
-	    open("${path}/notice/redingroom.do?seatno="+this.textContent+'&userid='+userid,"_blank","height=440,width=660");
+	    open("${path}/notice/Bredingroom.do?seatno="+this.textContent+'&userid='+userid,"_blank","height=440,width=660");
 	}
 	
-    /* const seat=()=>{
-    	var y = document.getElementById("seatno").innerText;
-    	console.log(y);
-       open("${path}/notice/redingroom.do","_blank","height=440,width=660");
-    } */
+	}else{
+		for(var i = 0; i < cells.length; i++){
+		    cells[i].addEventListener('click', clickHandler);
+		}
+		
+		function clickHandler()
+		{
+		    alert("로그인 후 이용해주세요");
+		}
+	}
     
-    // navigation 이벤트
     
    $(function(){
-
         const naviList = $(".list-group").children();
         const options = $(".submenu")
 
@@ -147,6 +165,54 @@
         })
     })
     
+    //좌석 색깔변경
+     var cellss = document.getElementsByTagName('input')
+	 for(var i = 0; i < cellss.length; i++){
+	    	console.log($(cellss[i]).val());
+	    	if($(cellss[i]).val()=="이용중"){
+	    		$(cellss[i]).parent().css({"background": "#007bff"}); 
+	    	}else if($(cellss[i]).val()=="이용가능"){
+	    		$(cellss[i]).parent().css({"background": "#218838"});
+	    	}else{
+	    		$(cellss[i]).parent().css({"background": "#bd2130"});
+	    	}
+	}
+   
+   
+   function userin(){
+  		var cellss = document.getElementsByTagName('input')
+  		for(var i = 0; i < cellss.length; i++){
+  			if($(cellss[i]).val()!="이용중"){
+  				$(cellss[i]).parent().css({"visibility": "hidden"});
+  			}else{
+  				$(cellss[i]).parent().css({"visibility": "visible"});
+  			}
+  		}
+  	}
+  	
+  	function usernull(){
+  		var cellss = document.getElementsByTagName('input')
+  		for(var i = 0; i < cellss.length; i++){
+  			if($(cellss[i]).val()!="이용가능"){
+  				$(cellss[i]).parent().css({"visibility": "hidden"});
+  			}else{
+  				$(cellss[i]).parent().css({"visibility": "visible"});
+  			}
+  		}
+  	}
+  	
+  	function userno(){
+  		var cellss = document.getElementsByTagName('input')
+  		for(var i = 0; i < cellss.length; i++){
+  			if($(cellss[i]).val()!="사용불가"){
+  				$(cellss[i]).parent().css({"visibility": "hidden"});
+  			}else{
+  				$(cellss[i]).parent().css({"visibility": "visible"});
+  			}
+  		}
+  	}
+
+	
 </script>
 
 

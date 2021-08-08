@@ -190,7 +190,20 @@ public Lending selectLending(String bookNo) {
 		 return dao.booking(session,param);
 	 }
 	 
-	
+	 @Override
+	 public List<Integer> selectAge(String isbnNo){
+		 return dao.selectAge(session,isbnNo);
+	 }
+	 
+	 @Override
+	 public List<Map> likeBest(){
+		 return dao.likeBest(session);
+	 }
+	 
+	 @Override
+	 public List<Map> lendingBest(){
+		 return dao.lendingBest(session);
+	 }
 	 
 	 
 }

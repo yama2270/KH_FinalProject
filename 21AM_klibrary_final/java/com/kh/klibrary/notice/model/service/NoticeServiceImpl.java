@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.notice.model.dao.NoticeDao;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomB;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomC;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomD;
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
@@ -102,6 +105,151 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<StudyRoomA> selectareding(String userid) {
 		// TODO Auto-generated method stub
 		return dao.selectareding(session,userid);
+	}
+	
+	@Override
+	public List<StudyRoomB> selectbreding(String userid) {
+		// TODO Auto-generated method stub
+		return dao.selectbreding(session,userid);
+	}
+
+	@Override
+	public StudyRoomB redingBroom(String seatno) {
+		// TODO Auto-generated method stub
+		return dao.redingBroom(session,seatno);
+	}
+	
+	
+	
+	
+	
+
+	@Override
+	public List<StudyRoomC> selectcreding(String userid) {
+		// TODO Auto-generated method stub
+		return dao.selectcreding(session,userid);
+	}
+	
+
+	@Override
+	public StudyRoomC redingCroom(String seatno) {
+		// TODO Auto-generated method stub
+		return dao.redingCroom(session,seatno);
+	}
+
+	@Override
+	public List<StudyRoomD> selectdreding(String userid) {
+		// TODO Auto-generated method stub
+		return dao.selectdreding(session,userid);
+	}
+	
+	@Override
+	public StudyRoomD redingDroom(String seatno) {
+		// TODO Auto-generated method stub
+		return dao.redingDroom(session,seatno);
+	}
+	
+	
+	
+	
+
+	@Override
+	public List<StudyRoomB> redingroomB() {
+		// TODO Auto-generated method stub
+		return dao.redingroomB(session);
+	}
+
+	@Override
+	public int totalDataB() {
+		// TODO Auto-generated method stub
+		return dao.totalDataB(session);
+	}
+
+	@Override
+	public int usetotalB() {
+		// TODO Auto-generated method stub
+		return dao.usetotalB(session);
+	}
+
+	@Override
+	public int AvailableB() {
+		// TODO Auto-generated method stub
+		return dao.AvailableB(session);
+	}
+
+	@Override
+	public int cannotusedB() {
+		// TODO Auto-generated method stub
+		return dao.cannotusedB(session);
+	}
+
+	
+	
+	
+	
+	@Override
+	public List<StudyRoomC> redingroomC() {
+		// TODO Auto-generated method stub
+		return dao.redingroomC(session);
+	}
+
+	@Override
+	public int totalDataC() {
+		// TODO Auto-generated method stub
+		return dao.totalDataC(session);
+	}
+
+	@Override
+	public int usetotalC() {
+		// TODO Auto-generated method stub
+		return dao.usetotalC(session);
+	}
+
+	@Override
+	public int AvailableC() {
+		// TODO Auto-generated method stub
+		return dao.AvailableC(session);
+	}
+
+	@Override
+	public int cannotusedC() {
+		// TODO Auto-generated method stub
+		return dao.cannotusedC(session);
+	}
+
+	
+	
+	
+	
+	
+	@Override
+	public List<StudyRoomD> redingroomD() {
+		// TODO Auto-generated method stub
+		return dao.redingroomD(session);
+	}
+
+	@Override
+	public int totalDataD() {
+		// TODO Auto-generated method stub
+		return dao.totalDataD(session);
+	}
+
+	@Override
+	public int usetotalD() {
+		// TODO Auto-generated method stub
+		return dao.usetotalD(session);
+	}
+
+	@Override
+	public int AvailableD() {
+		// TODO Auto-generated method stub
+		return dao.AvailableD(session);
+	}
+
+	@Override
+	public int cannotusedD() {
+		// TODO Auto-generated method stub
+		return dao.cannotusedD(session);
 	}
 	
 	

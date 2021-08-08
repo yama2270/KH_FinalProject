@@ -23,6 +23,59 @@
 		DELETE FROM STUDYROOM_BOOKING WHERE BOOKING_NO = #{bookingNo}
 	</delete>
 	
+	<!-- 열람실 예약 수정 - 예약테이블 좌석 이용시간 -->
+	<select id="selBookingTime" parameterType="adminStudyroomBooking" resultType="Map">
+		SELECT START_TIME AS STARTTIME,END_TIME AS ENDTIME FROM STUDYROOM_BOOKING WHERE SEAT_NO = #{seatNo} AND BOOKING_NO != #{bookingNo}
+	</select>
+	
+	<!-- 열람실 예약 수정 - 예약테이블 좌석 이용시간 -->
+	<select id="selBookingTimeMap" parameterType="Map" resultType="Map">
+		SELECT START_TIME AS STARTTIME,END_TIME AS ENDTIME FROM STUDYROOM_BOOKING WHERE SEAT_NO = #{seatNo} AND BOOKING_NO != #{bookingNo}
+	</select>
+	
+	<!-- 열람실 예약 수정 - 열람실 좌석 이용시간  -->
+	<select id="selUsingTime" parameterType="adminStudyroomBooking" resultType="Map">
+		<choose>
+			<when test="roomName=='열람실A'">
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_A WHERE SEAT_NO = #{seatNo}
+			</when>
+			<when test="roomName=='열람실B'">
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_B WHERE SEAT_NO = #{seatNo}
+			</when>
+			<when test="roomName=='열람실C'">
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_C WHERE SEAT_NO = #{seatNo}
+			</when>
+			<otherwise>
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_D WHERE SEAT_NO = #{seatNo}
+			</otherwise>
+		</choose>
+	</select>	
+	
+	<!-- 열람실 예약 수정 - 열람실 좌석 이용시간  -->
+	<select id="selUsingTimeMap" parameterType="Map" resultType="Map">
+		<choose>
+			<when test="roomName=='열람실A'">
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_A WHERE SEAT_NO = #{seatNo}
+			</when>
+			<when test="roomName=='열람실B'">
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_B WHERE SEAT_NO = #{seatNo}
+			</when>
+			<when test="roomName=='열람실C'">
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_C WHERE SEAT_NO = #{seatNo}
+			</when>
+			<otherwise>
+				SELECT START_TIME AS STARTTIME , END_TIME AS ENDTIME FROM STUDYROOM_D WHERE SEAT_NO = #{seatNo}
+			</otherwise>
+		</choose>
+	</select>	
+	
+	<!-- 열람실 예약 정보 수정 -->
+	<update id="updateStuBooking" parameterType="adminStudyroomBooking">
+		UPDATE STUDYROOM_BOOKING 
+		SET STUDYROOM_TYPE=#{roomName},SEAT_NO=#{seatNo},START_TIME=#{startTime},END_TIME=#{endTime}
+		WHERE BOOKING_NO = #{bookingNo}
+	</update>
+	
 	<!-- 열람실A 현황조회 -->
 	<select id="selectInfoA" resultType="Map">
 		SELECT USAGE_STATUS AS STATUS,COUNT(*) AS COUNT 
@@ -34,6 +87,107 @@
 	<select id="selectListA" resultMap="adminStudyroomMap">
 		SELECT * 
 		FROM STUDYROOM_A LEFT OUTER JOIN MEMBER USING(USER_ID)		
+	</select>
+	
+	<!-- 열람실A 이용자 조회 -->
+	<select id="selUsingListA" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_A JOIN MEMBER USING(USER_ID)
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실A 이용자 전체회원 수 -->
+	<select id="selUsingCountA" resultType="_int">
+		SELECT COUNT(*) 
+		FROM STUDYROOM_A
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실 B -->
+	
+	<!-- 열람실B 현황조회 -->
+	<select id="selectInfoB" resultType="Map">
+		SELECT USAGE_STATUS AS STATUS,COUNT(*) AS COUNT 
+		FROM STUDYROOM_B
+		GROUP BY USAGE_STATUS
+	</select>
+	
+	<!-- 열람실B  -->
+	<select id="selectListB" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_B LEFT OUTER JOIN MEMBER USING(USER_ID)		
+	</select>
+	
+	<!-- 열람실B 이용자 조회 -->
+	<select id="selUsingListB" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_B JOIN MEMBER USING(USER_ID)
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실B 이용자 전체회원 수 -->
+	<select id="selUsingCountB" resultType="_int">
+		SELECT COUNT(*) 
+		FROM STUDYROOM_B
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실 C -->
+	
+	<!-- 열람실C 현황조회 -->
+	<select id="selectInfoC" resultType="Map">
+		SELECT USAGE_STATUS AS STATUS,COUNT(*) AS COUNT 
+		FROM STUDYROOM_C
+		GROUP BY USAGE_STATUS
+	</select>
+	
+	<!-- 열람실C  -->
+	<select id="selectListC" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_C LEFT OUTER JOIN MEMBER USING(USER_ID)		
+	</select>
+	
+	<!-- 열람실B 이용자 조회 -->
+	<select id="selUsingListC" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_C JOIN MEMBER USING(USER_ID)
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실B 이용자 전체회원 수 -->
+	<select id="selUsingCountC" resultType="_int">
+		SELECT COUNT(*) 
+		FROM STUDYROOM_C
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실 D -->
+	
+	<!-- 열람실D 현황조회 -->
+	<select id="selectInfoD" resultType="Map">
+		SELECT USAGE_STATUS AS STATUS,COUNT(*) AS COUNT 
+		FROM STUDYROOM_D
+		GROUP BY USAGE_STATUS
+	</select>
+	
+	<!-- 열람실 D  -->
+	<select id="selectListD" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_D LEFT OUTER JOIN MEMBER USING(USER_ID)		
+	</select>
+	
+	<!-- 열람실D 이용자 조회 -->
+	<select id="selUsingListD" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_D JOIN MEMBER USING(USER_ID)
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실D 이용자 전체회원 수 -->
+	<select id="selUsingCountD" resultType="_int">
+		SELECT COUNT(*) 
+		FROM STUDYROOM_D
+		WHERE USAGE_STATUS = '이용중'
 	</select>
 	
 	<resultMap id="studyroomManageMap" type="adminStudyroomManage">

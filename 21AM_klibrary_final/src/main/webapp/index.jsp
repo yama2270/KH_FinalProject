@@ -7,129 +7,117 @@
 	<jsp:param name="title" value="메인페이지"/>
 </jsp:include>
  
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-            <img src="https://mblogthumb-phinf.pstatic.net/MjAxNzA1MzFfMTAg/MDAxNDk2MTkyODgzODIz.jhmAXS2asxbS1M9-IeBvi65TFbo50D9UYlOHNlmRm-kg.WGunJDi22LU6Wy_zX73ZSQ_TcNrR35gNwJpybs-eTLQg.JPEG.heeyy2/%EB%8F%84%EC%84%9C%EA%B4%80%EC%82%AC%EC%A7%84_3.jpg?type=w800" class="d-block w-100 image_container" alt="...">
-            </div>
-        </div>
-    </div>
-    
-	<div id="main-mid">
-    <div id="carouselExampleSlidesOnly" class="carousel slide readingroom" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-            <a href=""><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj8K9DoY26dO6lExcxc6JVZCAY2ivpfv8a-w&usqp=CAU" class="d-block w-100 image_readingroom" alt="..."></a>
-            </div>
-        </div>
-    </div>
+    <div id="main-wraper">
+      <container id="main-top">
+        <h1> K-추천 도서</h1>
+        <div id="reco-book">
 
-    <div id="user_info">
-  <!-- As a heading -->
-  <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">이용안내</span>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-          메뉴
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <li><button class="dropdown-item" type="button">이용시간</button></li>
-          <li><button class="dropdown-item" type="button">휴무일</button></li>
-          <li><button class="dropdown-item" type="button">찾아오시는 길</button></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-	
-  <div id="use_inform">
-    <div class="use_inform">
-        <ul>
+        </div>
+      </container><!-- main-top -->
+
+      <container id="main-mid">
+        <div id="main-service">
+          <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+              <span class="navbar-brand mb-0 h1">서비스 바로가기</span>
+            </div>
+          </nav>
+          <table class="main-service">
+            <tr>
+              <td>
+              	<a href="">
+                	<img src="${path }/resources/images/search.jpg" width=150 height=100>
+                </a>
+              </td>
+              <td>
+                <a href="">
+                	<img src="${path }/resources/images/infor.jpg" width=150 height=100>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="">
+                	<img src="${path }/resources/images/borrow.jpg" width=150 height=100>
+                </a>
+              </td>
+              <td>
+                <a href="">
+                	<img src="${path }/resources/images/hope.jpg" width=150 height=100>
+                </a>
+              </td>
+            </tr>
+             <tr>
+              <td>
+                <a href="">
+                	<img src="${path }/resources/images/room.jpg" width=150 height=100>
+                </a>
+              </td>
+              <td>
+                <a href="">
+                	<img src="${path }/resources/images/mypage.jpg" width=150 height=100>
+                </a>
+              </td>
+            </tr>
+
+          </table>
+        </div><!-- main-service -->
+
+        <div id="main-notice">
+          <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">공지사항</a>
+              <!--  테이블 형식으로 뿌림 -->
+			<table class="main-service">
+               <c:forEach items="${notices }" var="result">
+             	  <tr>
+	              	<td><c:out value="${result.title }"/></td>
+	              	<td><c:out value="${result.content }"/></td>
+	              </tr>
+               </c:forEach>
+          </table>
+            </div>
+          </nav>
+        </div>
+
+      </container><!-- main-mid -->
+
+      
+      <container id="main-bottom">
+        <div id="main-room">
+          <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">열람실 현황</a>
+            </div>
+          </nav>
+          <ul class="main-room">
+            <li>열람실 A</li>
+            <li>열람실 B</li>
+            <li>열람실 C</li>
+            <li>열람실 D</li>
+            <li>열람실 E</li>
+          </ul>
+        </div><!-- main-room -->
+
+        <div id="main-information">
+          <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">이용안내</a>
+            </div>
+          </nav>
+          <ul id="infor-ul">
             이용시간
-
             <li>도서관 이용시간 : 09:00 ~ 18:00</li>
             <li>열람실 이용시간 : 09:00 ~ 22:00</li>
-            <li>공휴일 : 매주 수요일 휴무</li>
-        </ul>
-        </div>
-        <div class="use_inform">
-            <ul>
-                찾아오시는길
-                <li>주소 및 위치</li>
-            </ul>
-        </div>
-    </div>
-    </div>
-    </div>
-    <div>
-    </div>
-    <div>
-    <div id="library_tab">
-        <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">도서관</span>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                메뉴
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <li><button class="dropdown-item" type="button">뭐넣지</button></li>
-                <li><button class="dropdown-item" type="button">뭐넣지</button></li>
-                <li><button class="dropdown-item" type="button">뭐넣지</button></li>
-                </ul>
-            </div>
-            </div>
-        </nav>
-        
-        <div id="main_cate">
-            <button type="button" class="btn btn-outline-secondary">소설</button>
-            <button type="button" class="btn btn-outline-secondary">수필</button>
-            <button type="button" class="btn btn-outline-secondary">시</button>
-            <button type="button" class="btn btn-outline-secondary">과학</button>
-            <button type="button" class="btn btn-outline-secondary">수학</button>
-        </div>
-        </div>  
-        
-      <!-- </div>
+            <li>휴무일 : 매주 화요일 휴무</li>
+          </ul>
+          <ul>
+            찾아오시는길
+            <li>주소 및 위치</li>
+          </ul>
 
-      <div id="main_list">
+        </div><!-- main-information -->
+      </container><!-- main bottom -->
+    </div><!-- main-wraper -->
 
-      </div> -->
-
-
-
-    <!-- footer -->
-    <div id="footer">
-        <hr>
-        <p>
-            TEL. 02.1234.5678 / 서울시 강남구 강남로<br>
-            Copyright 2021. 코딩육망주<br>
-            All right reserved.
-        </p>
-    </div>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-	
-	<script>
-
-	
-
-
-
-
-
-
-
-
-
-</script>
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+   <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

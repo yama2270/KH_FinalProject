@@ -9,7 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomB;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomC;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomD;
 @Repository
 public class NoticeDaoImpl implements NoticeDao {
 
@@ -99,7 +102,180 @@ public class NoticeDaoImpl implements NoticeDao {
 		return session.selectList("redingroomA.selectareding",userid);
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<StudyRoomB> selectbreding(SqlSessionTemplate session, String userid) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.selectbreding",userid);
+	}
+	
+	@Override
+	public StudyRoomB redingBroom(SqlSessionTemplate session, String seatno) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.redingBroom",seatno);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
+	@Override
+	public List<StudyRoomC> selectcreding(SqlSessionTemplate session, String userid) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.selectcreding",userid);
+	}
+	
+	
+	@Override
+	public StudyRoomC redingCroom(SqlSessionTemplate session, String seatno) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.redingCroom",seatno);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<StudyRoomD> selectdreding(SqlSessionTemplate session, String userid) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.selectdreding",userid);
+	}
+	
+	@Override
+	public StudyRoomD redingDroom(SqlSessionTemplate session, String seatno) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.redingDroom",seatno);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	@Override
+	public List<StudyRoomB> redingroomB(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.redingroomB");
+	}
+
+	@Override
+	public int totalDataB(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.totalDataB");
+	}
+
+	@Override
+	public int usetotalB(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.usetotalB");
+	}
+
+	@Override
+	public int AvailableB(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.AvailableB");
+	}
+
+	@Override
+	public int cannotusedB(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.cannotusedB");
+	}
+
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<StudyRoomC> redingroomC(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.redingroomC");
+	}
+
+	@Override
+	public int totalDataC(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.totalDataC");
+	}
+
+	@Override
+	public int usetotalC(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.usetotalC");
+	}
+
+	@Override
+	public int AvailableC(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.AvailableC");
+	}
+
+	@Override
+	public int cannotusedC(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.cannotusedC");
+	}
+
+	@Override
+	public List<StudyRoomD> redingroomD(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.redingroomD");
+	}
+
+	@Override
+	public int totalDataD(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.totalDataD");
+	}
+
+	@Override
+	public int usetotalD(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.usetotalD");
+	}
+
+	@Override
+	public int AvailableD(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.AvailableD");
+	}
+
+	@Override
+	public int cannotusedD(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("redingroomA.cannotusedD");
+	}
+	
+	
+	
+
+	
+	
+	
 	
 	
 

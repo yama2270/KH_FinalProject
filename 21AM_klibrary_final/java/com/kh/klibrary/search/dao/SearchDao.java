@@ -36,8 +36,13 @@ public interface SearchDao {
      int deleteBookNo(SqlSessionTemplate session, String bookNo);//대출예정날짜 지난 책 지우기
 		/* int deleteBookNo2(SqlSessionTemplate session, String no); */
      int updateBookNo(SqlSessionTemplate session, String bookNo);//도서예약여부 가능으로 바꾸기
+     
+     List<Integer> selectAge(SqlSessionTemplate session, String isbnNo);//관심도서연령대선택
 	
 	List<BookInfo> selectBookInfoList(SqlSessionTemplate session, Map param);
 	int insertWishBook(SqlSessionTemplate session, Map param);
+	
+	List<Map> likeBest(SqlSessionTemplate session);//관심도서순위 이름 선택;
+	List<Map> lendingBest(SqlSessionTemplate session);//대출도서순위선택;
 
 }

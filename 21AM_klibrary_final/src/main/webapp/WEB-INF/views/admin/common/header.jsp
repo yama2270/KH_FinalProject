@@ -69,6 +69,7 @@
                             <li><a href="${path }/admin/book/bookReservedList.do" class="opStyle">예약도서</a></li>
                             <li><a href="${path }/admin/book/bookWishList.do" class="opStyle">희망도서</a></li>
                             <li><a href="${path }/admin/book/registerBook.do" class="opStyle">도서등록</a></li>
+                            <li><a href="${path }/admin/book/bookRecommendList.do" class="opStyle">추천도서</a></li>
                         </ul>
                     </li>
                     <li>게시글 관리 <i class="fas fa-plus"></i>

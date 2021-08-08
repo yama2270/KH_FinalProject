@@ -824,17 +824,18 @@ canvas {
 
 #roomUseTab {
   width : 1150px;
-  height : 230px;
+  /* height : 230px; */
 }
 
 #roomUseTab tr th , #roomUseTab tr td {
   text-align : center;
   border : 1px solid gray;
+  height : 40px;
 }
 
 #roomUseTab tr th {
   background-color : #DADADA;
-  height : 60px;
+  height : 50px;
 }
 
 #roomWrap {

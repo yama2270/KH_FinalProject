@@ -59,6 +59,15 @@
     	const backbutton=()=>{
     		location.assign("${path}/notice/noticeList.do")
     	}
+    	
+    	 $(function(){
+ 
+    			
+    			  
+    			  $(".list-group").children().eq(1).css({"backgroundColor" : "lightgrey"})
+    			  
+    				 	   
+    			})
     </script>
 
 

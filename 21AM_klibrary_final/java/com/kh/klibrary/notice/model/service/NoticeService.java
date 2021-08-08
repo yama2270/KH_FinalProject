@@ -5,7 +5,10 @@ import java.util.Map;
 
 import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomA;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomB;
 import com.kh.klibrary.studyroom.model.vo.StudyRoomBooKing;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomC;
+import com.kh.klibrary.studyroom.model.vo.StudyRoomD;
 
 public interface NoticeService {
 	
@@ -23,5 +26,28 @@ public interface NoticeService {
 	int redingroombooking(Map param);
 	List<StudyRoomBooKing> selectreding(String userid);
 	List<StudyRoomA> selectareding(String userid);
+	List<StudyRoomB> selectbreding(String userid);
+	List<StudyRoomC> selectcreding(String userid);
+	List<StudyRoomD> selectdreding(String userid);
+	
+	List<StudyRoomB> redingroomB();
+	int totalDataB();
+	int usetotalB();
+	int AvailableB();
+	int cannotusedB();
+	StudyRoomB redingBroom(String seatno);
+	
+	List<StudyRoomC> redingroomC();
+	int totalDataC();
+	int usetotalC();
+	int AvailableC();
+	int cannotusedC();
+	StudyRoomC redingCroom(String seatno);
 
+	List<StudyRoomD> redingroomD();
+	int totalDataD();
+	int usetotalD();
+	int AvailableD();
+	int cannotusedD();
+	StudyRoomD redingDroom(String seatno);
 }

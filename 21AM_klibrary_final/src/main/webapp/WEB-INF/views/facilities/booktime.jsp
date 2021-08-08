@@ -106,6 +106,9 @@
 </body>
  
     <script>
+    
+    
+    
     //DB에서 가져온값 일정에 넣어주기
     $(function(){
    	 $.get("${path}/notice/eventCalendar.do",data=>{
@@ -199,6 +202,15 @@
         })
 
     })
+    
+    $(function(){
+		console.log(window.location.href );
+		
+		  
+		  $(".list-group").children().eq(1).css({"backgroundColor" : "lightgrey"})
+		  
+			 	   
+		})
     
     
     

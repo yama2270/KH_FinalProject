@@ -180,6 +180,26 @@ public class AdminBookDaoImpl implements AdminBookDao {
 		return session.insert("adminBook.insertLendingHistory", ld);
 	}
 	
+	//대출도서 체크 카운트
+	@Override
+	public List<Lending> selectDRTCList(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.selectList("adminBook.selectDRTCList", map);
+	}
+	//대출도서 체크 삭제
+	@Override
+	public int deleteRentalCheck(SqlSessionTemplate session, Map map) {
+		// TODO Auto-generated method stub
+		return session.delete("adminBook.deleteRentalCheck", map);
+	}
+	
+	//대출도서 체크 내역삽입
+	@Override
+	public int insertDRTCList(SqlSessionTemplate session, List list) {
+		// TODO Auto-generated method stub
+		return session.insert("adminBook.insertDRTCList", list);
+	}
+	
 	//예약도서 리스트
 	@Override
 	public List<Booking> reservedList(SqlSessionTemplate session) {

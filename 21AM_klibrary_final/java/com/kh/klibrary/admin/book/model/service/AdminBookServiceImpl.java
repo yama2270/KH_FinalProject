@@ -202,6 +202,24 @@ public class AdminBookServiceImpl implements AdminBookService {
 		return dao.insertLendingHistory(session, ld);
 	}
 	
+	@Override
+	public List<Lending> selectDRTCList(Map map) {
+		// TODO Auto-generated method stub
+		return dao.selectDRTCList(session, map);
+	}
+	
+	@Override
+	public int insertDRTCList(List list) {
+		// TODO Auto-generated method stub
+		return dao.insertDRTCList(session, list);
+	}
+	
+	@Override
+	public int deleteRentalCheck(Map map) {
+		// TODO Auto-generated method stub
+		return dao.deleteRentalCheck(session, map);
+	}
+	
 	//예약도서 리스트
 	@Override
 	public List<Booking> reservedList() {

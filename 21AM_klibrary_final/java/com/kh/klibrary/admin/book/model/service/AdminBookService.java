@@ -83,6 +83,14 @@ public interface AdminBookService {
 	//대출내역 삽입
 	int insertLendingHistory(Lending ld);
 	
+	//반납도서 체크 리스트
+	List<Lending> selectDRTCList(Map map);
+	//반납도서 체크 내역삽입
+	int insertDRTCList(List list);
+	
+	//반납도서 체크 삭제
+	int deleteRentalCheck(Map map);
+	
 	//예약도서 리스트
 	List<Booking> reservedList();
 	

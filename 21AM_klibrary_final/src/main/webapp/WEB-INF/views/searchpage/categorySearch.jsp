@@ -2706,6 +2706,7 @@ String pageId = request.getParameter("pageId");
 
 <form id="searchResultForm" method="get" action="interestingbook">
 <input type="hidden" name=category value=${category }/>
+<input type="hidden" name=totaldata value=${totalData }/>
 <table id=searchResultTable2 >
 
  <c:choose> 
@@ -2716,7 +2717,7 @@ String pageId = request.getParameter("pageId");
 		    <th colspan="5" id="searchCaptionTh2">
 		      <div style="text-align:center">
 		        <div id="searchCaption22">
-		            <p>            
+		            <p id="totalData">            
 		             ${totalData }건  이 검색되었습니다.             
 		             </p>
 		        </div>
@@ -2898,24 +2899,28 @@ String pageId = request.getParameter("pageId");
 		 		
 	 
 			 let images=document.getElementsByClassName("ico");
-			 for(let i=0; i<images.length; i++){			
-				 
-				 if( ($("input[name='category']").attr('value')).substring(0,1)== i ){
-					 console.log( $("#kdcDepth2List_"+i));
-					 $("#kdcDepth2List_"+i).show();	//category범위맞으면 해당메뉴보여주기,(hidden으로가져옴)
+			 console.log($("input[name='totaldata']").attr('value')=='0/');
+			 console.log("totaldata테스트"+$("input[name='totaldata']").attr('value') );
+			 
+			 
+			  for(let i=0; i<images.length; i++){ 			
+				   
+				  /* $("#kdcDepth2List_"+i).hide();
+					 $("#nonsearch").hide(); */
+				  if($("input[name='totaldata']").attr('value')=='0/' && $("input[name='category']").attr('value').substring(0,1)==i){
+		        	  console.log($("input[name='totaldata']").attr('value')=='0/');
+		        	  $("#kdcDepth2List_"+i).show();
+		        	 $("#nonsearch").show(); 
+		        	 			 	        	 
+				
+			       } else if( $("#totaldata").text()!=null|| $("#totaldata").text()!='' && $("input[name='totaldata']").attr('value')!='0/'){					 
+					  $("#kdcDepth2List_"+i).hide();
+					
+					 console.log("totaldata테스트"+$("input[name='totaldata']").attr('value') );					
 					 
-					 if($("button[name='bookCheck']").attr('value')!=null ){
-						 for(let i=0; i<images.length;i++){		 		 
-								 $("#kdcDepth2List_"+i).hide();	//검색된북리스트가있어면 메뉴 숨기기
-					     }
-					 }else{
-						 $("#nonsearch").show();
-					 }
-					 
-				 }else{
-					 $("#kdcDepth2List_"+i).hide();
-				 }
-			 }	 
+				   }
+			          
+			  } 	 
 			 			 			
 		 
         })
@@ -2923,7 +2928,7 @@ String pageId = request.getParameter("pageId");
  $(function(){
    $(".asearch").click(function(){
 	  let kdcNo=$(this).attr('id');	 
-	   console.log(kdcNo);
+	   console.log("kdcNo테스트"+"kdcNo "+kdcNo+"kdcNo의 substring"+kdcNo.substring(0,1));
 	  let category=kdcNo.substring(0,1);
 	/*    let images=document.getElementsByClassName("ico");
 	 for(let i=0; i<images.length;i++){		 		 
