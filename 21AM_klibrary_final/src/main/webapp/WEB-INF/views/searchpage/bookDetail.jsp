@@ -207,7 +207,7 @@ String isbnNo = request.getParameter("isbnNo");
 		<c:choose>
 		<c:when test="${not empty publisherList }" >
 		
-				<table id=recommendTable2>
+				<table id=recommendTable2 style="margin:auto; text-align:center;">
 				 
 				  <tr>
 				    <td colspan="5" >
@@ -246,7 +246,7 @@ String isbnNo = request.getParameter("isbnNo");
 		<c:choose>
 		<c:when test="${not empty kdcNoList }" >
 		
-		      <table id=recommendTable2>      
+		      <table id=recommendTable2 style="margin:auto; text-align:center;">      
 				 
 				  <tr>
 				    <td colspan="5" >
@@ -278,9 +278,10 @@ String isbnNo = request.getParameter("isbnNo");
 		     </table>	
 		
 		 </c:when>
-		</c:choose>   
+		</c:choose>
+		<br><br><br><br>  
 </div>
- <br><br><br>
+ 
  
  
        

@@ -89,6 +89,107 @@
 		FROM STUDYROOM_A LEFT OUTER JOIN MEMBER USING(USER_ID)		
 	</select>
 	
+	<!-- 열람실A 이용자 조회 -->
+	<select id="selUsingListA" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_A JOIN MEMBER USING(USER_ID)
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실A 이용자 전체회원 수 -->
+	<select id="selUsingCountA" resultType="_int">
+		SELECT COUNT(*) 
+		FROM STUDYROOM_A
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실 B -->
+	
+	<!-- 열람실B 현황조회 -->
+	<select id="selectInfoB" resultType="Map">
+		SELECT USAGE_STATUS AS STATUS,COUNT(*) AS COUNT 
+		FROM STUDYROOM_B
+		GROUP BY USAGE_STATUS
+	</select>
+	
+	<!-- 열람실B  -->
+	<select id="selectListB" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_B LEFT OUTER JOIN MEMBER USING(USER_ID)		
+	</select>
+	
+	<!-- 열람실B 이용자 조회 -->
+	<select id="selUsingListB" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_B JOIN MEMBER USING(USER_ID)
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실B 이용자 전체회원 수 -->
+	<select id="selUsingCountB" resultType="_int">
+		SELECT COUNT(*) 
+		FROM STUDYROOM_B
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실 C -->
+	
+	<!-- 열람실C 현황조회 -->
+	<select id="selectInfoC" resultType="Map">
+		SELECT USAGE_STATUS AS STATUS,COUNT(*) AS COUNT 
+		FROM STUDYROOM_C
+		GROUP BY USAGE_STATUS
+	</select>
+	
+	<!-- 열람실C  -->
+	<select id="selectListC" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_C LEFT OUTER JOIN MEMBER USING(USER_ID)		
+	</select>
+	
+	<!-- 열람실B 이용자 조회 -->
+	<select id="selUsingListC" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_C JOIN MEMBER USING(USER_ID)
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실B 이용자 전체회원 수 -->
+	<select id="selUsingCountC" resultType="_int">
+		SELECT COUNT(*) 
+		FROM STUDYROOM_C
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실 D -->
+	
+	<!-- 열람실D 현황조회 -->
+	<select id="selectInfoD" resultType="Map">
+		SELECT USAGE_STATUS AS STATUS,COUNT(*) AS COUNT 
+		FROM STUDYROOM_D
+		GROUP BY USAGE_STATUS
+	</select>
+	
+	<!-- 열람실 D  -->
+	<select id="selectListD" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_D LEFT OUTER JOIN MEMBER USING(USER_ID)		
+	</select>
+	
+	<!-- 열람실D 이용자 조회 -->
+	<select id="selUsingListD" resultMap="adminStudyroomMap">
+		SELECT * 
+		FROM STUDYROOM_D JOIN MEMBER USING(USER_ID)
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
+	<!-- 열람실D 이용자 전체회원 수 -->
+	<select id="selUsingCountD" resultType="_int">
+		SELECT COUNT(*) 
+		FROM STUDYROOM_D
+		WHERE USAGE_STATUS = '이용중'
+	</select>
+	
 	<resultMap id="studyroomManageMap" type="adminStudyroomManage">
 		<id column="studyroom_manage_no" property="studyManageNo"/>
 		<result column="study_room_name" property="roomName"/>

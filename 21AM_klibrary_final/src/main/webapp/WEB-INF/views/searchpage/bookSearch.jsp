@@ -107,7 +107,7 @@ String totalData=request.getParameter("totalData");
 	  </td>
 	</tr>
   </table>
-
+<br><br><br><br>
 </div>
 
 
@@ -311,12 +311,216 @@ String totalData=request.getParameter("totalData");
         </div>
        </c:when>
    </c:choose>
-
+ <br>
+ <c:choose>
+   <c:when test="${empty list }">
+     <div style="text-align:center;"><h5>도서를 검색하세요</h5></div>
+     <br><br><br>
+      <table id=recommendTable2 style="margin:auto; text-align:left;">      
+				 
+				
+	  </table>	
+   
+   </c:when>
+  </c:choose> 
+   
+<br><br><br><br><br><br><br><br>
 
 </body>
 
 </html>
 <script>
+   
+$(function(){
+$.get("${pageContext.request.contextPath}/searchpage/likeBest",data=>{
+		console.log("data테스트"+data);		
+		console.log("data테스트2"+data[0]["bookName"]);
+		
+		let str="<tr>";	
+		str+="<td colspan='5' >";
+		str+="<hr>";
+		str+="&nbsp;&nbsp;<a id='likebest' style='cursor:pointer; font-size:20px; color:skyblue' onclick='fn_likebest()'>관심도서순위</a> &nbsp;&nbsp;  <a id='lendingbest' style='cursor:pointer' onclick='fn_lendingbest()'>대출베스트</a>  &nbsp;&nbsp; <a id='recommend'style='cursor:pointer'  onclick='fn_recommend()'>기관추천도서</a>";
+		str+="<hr>"
+		str+="</td>"
+		str+="</tr>"
+		str+="<tr>"
+		  for(let i=0;i<data.length; i++){
+			str+="<td id='imgContainerDiv'  >"
+			  str+="<img id='bookImg' src='"+data[i]["bookImg"]+"' alt='"+data[i]["bookName"]+"'"
+			  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br>"
+					  str+="<span>"+data[i]["bookName"].substring(0,13)+"</span>"  	
+			str+="</td>"
+		  }
+	   str+="</tr>"
+	   str+="<tr>"
+	   str+="<td colspan='5'>"
+	   str+="<hr>"
+	   str+="</td>"
+	   str+="</tr>"
+	 
+	   $('#recommendTable2').html("");
+	   $('#recommendTable2').html(str).show(500);
+      
+	});
+	
+  
+	
+})
+
+function fn_likebest(){
+	$.get("${pageContext.request.contextPath}/searchpage/likeBest",data=>{
+		console.log("data테스트"+data);		
+		console.log("data테스트2"+data[0]["bookName"]);
+		
+		
+		let str="<tr>"
+		str+="<td colspan='5' >";
+		str+="<hr>";
+		str+="&nbsp;&nbsp;<a id='likebest' style='cursor:pointer; font-size:20px; color:skyblue' onclick='fn_likebest()'>관심도서순위</a> &nbsp;&nbsp;  <a id='lendingbest' style='cursor:pointer' onclick='fn_lendingbest()'>대출베스트</a>  &nbsp;&nbsp; <a id='recommend' style='cursor:pointer'  onclick='fn_recommend()'>기관추천도서</a>";
+		str+="<hr>"
+		str+="</td>"
+		str+="</tr>"
+		str+="<tr>"
+		  for(let i=0;i<data.length; i++){
+			str+="<td id='imgContainerDiv'  >"
+			  str+="<img id='bookImg' src='"+data[i]["bookImg"]+"' alt='"+data[i]["bookName"]+"'"
+			  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br>"
+					  str+="<span>"+data[i]["bookName"].substring(0,13)+"</span>"  	
+			str+="</td>"
+		  }
+	   str+="</tr>"
+	   str+="<tr>"
+	   str+="<td colspan='5'>"
+	   str+="<hr>"
+	   str+="</td>"
+	   str+="</tr>"
+	 
+	   $('#recommendTable2').html("");
+	   $('#recommendTable2').html(str).show(500);
+      
+	});
+		
+}
+
+function fn_lendingbest(){
+	
+	$.get("${pageContext.request.contextPath}/searchpage/lendingbest",data=>{
+		console.log("data테스트"+data);		
+		console.log("data테스트2"+data[0]["bookName"]);
+		
+		
+		let str="<tr>";	
+		str+="<td colspan='5' >";
+		str+="<hr>";
+		str+="&nbsp;&nbsp;<a id='likebest' style='cursor:pointer' onclick='fn_likebest()'>관심도서순위</a> &nbsp;&nbsp;  <a id='lendingbest' style='cursor:pointer; font-size:20px; color:skyblue' onclick='fn_lendingbest()'>대출베스트</a>  &nbsp;&nbsp; <a id='recommend' style='cursor:pointer'  onclick='fn_recommend()'>기관추천도서</a>";
+		str+="<hr>"
+		str+="</td>"
+		str+="</tr>"
+		str+="<tr>"
+		  for(let i=0;i<data.length; i++){
+			str+="<td id='imgContainerDiv'  >"
+			  str+="<img id='bookImg' src='"+data[i]["bookImg"]+"' alt='"+data[i]["bookName"]+"'"
+			  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br>"
+					  str+="<span>"+data[i]["bookName"].substring(0,13)+"</span>"  	
+			str+="</td>"
+		  }
+	   str+="</tr>"
+	   str+="<tr>"
+	   str+="<td colspan='5'>"
+	   str+="<hr>"
+	   str+="</td>"
+	   str+="</tr>"
+	 
+	   $('#recommendTable2').html("");
+	   $('#recommendTable2').html(str).show(500);
+	
+	
+   });
+}
+
+function fn_recommend(){
+	
+	$.ajax({
+		url: 'http://api.kcisa.kr/openapi/service/rest/meta/KPEagen?serviceKey=7768636f-81cf-4cd9-8da9-f46a57b56e89&numOfRows=20&pageNo=1',
+		type: 'GET',
+		dataType: 'xml',
+		timeout: 1000,
+		error: function(){
+			alert('Error loading XML document');
+		},
+		success: function(xml){
+			let arr = [];
+			let bookArr = [];
+			$(xml).find('item').each(function(){ // xml 문서 item 기준으로 분리후 반복
+				 let creator = $(this).find("creator").text(); 
+				 let title = $(this).find("title").text(); 
+				 let description = $(this).find("description").text(); 
+				 let rights = $(this).find("rights").text(); 
+				 /*var view_text = link + title + description + tag ;
+				 $("#id").append(view_text);   */
+				 let obj= new Object();
+				 
+				 obj["title"] = title.replace(/\(.*\)/g, '');
+				 
+				 arr.push(obj);
+				  console.log("creator="+creator+"title="+title+"description="+description+"rights="+rights); 
+				 
+			});	
+			
+			
+			   let formData = {
+					   "nameArr": [  arr[0]["title"],arr[1]["title"],arr[2]["title"],arr[3]["title"],arr[4]["title"]  ]
+					   }
+			   
+				   console.log("formData테스트"+formData);
+			   $.ajax({
+				  url : "${pageContext.request.contextPath}/searchpage/recommendBook",
+				  type : "post",
+				  dataType: "json",
+				  data : formData,				  
+				  success : function(data){
+					  
+					 
+					    let str="<tr>";	
+						str+="<td colspan='5' >";
+						str+="<hr>";
+						str+="&nbsp;&nbsp;<a id='likebest' style='cursor:pointer' onclick='fn_likebest()'>관심도서순위</a> &nbsp;&nbsp;  <a id='lendingbest' style='cursor:pointer' onclick='fn_lendingbest()'>대출베스트</a>  &nbsp;&nbsp; <a id='recommend' style='cursor:pointer; font-size:20px; color:skyblue;'  onclick='fn_recommend()'>기관추천도서</a>";
+						str+="<hr>"
+						str+="</td>"
+						str+="</tr>"
+						str+="<tr>"
+						  for(let i=0;i<data.length; i++){
+							str+="<td id='imgContainerDiv'  >"
+							  str+="<img id='bookImg' src='"+data[i]["bookImg"]+"' alt='"+data[i]["bookName"]+"'"
+							  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br>"
+									  str+="<span>"+data[i]["bookName"].substring(0,13)+"</span>"  	
+							str+="</td>"
+						  }
+					   str+="</tr>"
+					   str+="<tr>"
+					   str+="<td colspan='5'>"
+					   str+="<hr>"
+					   str+="</td>"
+					   str+="</tr>"
+					 
+					   $('#recommendTable2').html("");
+					   $('#recommendTable2').html(str).show(500);
+					  
+				  }
+			   
+			   })
+			   	
+			
+		}
+				
+	})
+		
+}
+
+
+
+
+
 	 let setCookie= function(cookie_name, value, days) {
 		 let exdate = new Date();
 		  exdate.setDate(exdate.getDate() + days);

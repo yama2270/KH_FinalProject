@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.klibrary.admin.common.AdminPagingTemplate;
 import com.kh.klibrary.admin.studyroom.model.service.AdminStudyroomService;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroom;
 import com.kh.klibrary.admin.studyroom.model.vo.AdminStudyroomBooking;
@@ -117,22 +118,154 @@ public class AdminStudyroomController {
 		return "admin/studyroom/studyroomA";
 	}
 	
+	// A열람실 사용자 조회 
+	@RequestMapping("/admin/studyroom/selUsingListA")
+	@ResponseBody
+	public ModelAndView selUsingListA(
+			@RequestParam(required=false,defaultValue="1") int cPage,
+			@RequestParam(required=false,defaultValue="3") int numPerPage,
+			ModelAndView mv) {
+		
+		// 회원 리스트
+		List<AdminStudyroom> list = service.selUsingListA(cPage,numPerPage);
+		
+		// 전체회원 수  
+		int count = service.selUsingCountA();
+		
+		String pageBar = new AdminPagingTemplate().adminPagingTemplate3(cPage,numPerPage,count);
+		
+		mv.addObject("list",list);
+		mv.addObject("pageBar",pageBar);
+		mv.setViewName("admin/studyroom/usingMemberAjax");
+		return mv;
+	}
 	
 	// B열람실
 	@RequestMapping("/admin/studyroom/studyroomB.do")
-	public String studyroomB() {
+	public String studyroomB(Model mo) {
+		// 현황조회 
+		List<Map> listMana = service.selectInfoB();
+		
+		Map manage = new HashMap(); 
+		for(Map m : listMana) {
+			manage.put(m.get("STATUS"), m.get("COUNT"));
+		}
+		
+		// 좌석조회
+		List<AdminStudyroom> listStudy = service.selectListB();
+		 
+		mo.addAttribute("manage",manage);
+		mo.addAttribute("listStudy",listStudy);
+		
 		return "admin/studyroom/studyroomB";
+	}
+	
+	// B열람실 사용자 조회 
+	@RequestMapping("/admin/studyroom/selUsingListB")
+	@ResponseBody
+	public ModelAndView selUsingListB(
+			@RequestParam(required=false,defaultValue="1") int cPage,
+			@RequestParam(required=false,defaultValue="3") int numPerPage,
+			ModelAndView mv) {
+		
+		// 회원 리스트
+		List<AdminStudyroom> list = service.selUsingListB(cPage,numPerPage);
+		
+		// 전체회원 수  
+		int count = service.selUsingCountB();
+		
+		String pageBar = new AdminPagingTemplate().adminPagingTemplate3(cPage,numPerPage,count);
+		
+		mv.addObject("list",list);
+		mv.addObject("pageBar",pageBar);
+		mv.setViewName("admin/studyroom/usingMemberAjax");
+		return mv;
 	}
 	
 	// C열람실 
 	@RequestMapping("/admin/studyroom/studyroomC.do")
-	public String studyroomC() {
+	public String studyroomC(Model mo) {
+		
+		// 현황조회 
+		List<Map> listMana = service.selectInfoC();
+		
+		Map manage = new HashMap(); 
+		for(Map m : listMana) {
+			manage.put(m.get("STATUS"), m.get("COUNT"));
+		}
+		
+		// 좌석조회
+		List<AdminStudyroom> listStudy = service.selectListC();
+		 
+		mo.addAttribute("manage",manage);
+		mo.addAttribute("listStudy",listStudy);
+		
 		return "admin/studyroom/studyroomC";
 	}
 	
+	// C열람실 사용자 조회 
+	@RequestMapping("/admin/studyroom/selUsingListC")
+	@ResponseBody
+	public ModelAndView selUsingListC(
+			@RequestParam(required=false,defaultValue="1") int cPage,
+			@RequestParam(required=false,defaultValue="3") int numPerPage,
+			ModelAndView mv) {
+		
+		// 회원 리스트
+		List<AdminStudyroom> list = service.selUsingListC(cPage,numPerPage);
+		
+		// 전체회원 수  
+		int count = service.selUsingCountC();
+		
+		String pageBar = new AdminPagingTemplate().adminPagingTemplate3(cPage,numPerPage,count);
+		
+		mv.addObject("list",list);
+		mv.addObject("pageBar",pageBar);
+		mv.setViewName("admin/studyroom/usingMemberAjax");
+		return mv;
+		}
+	
 	// D열람실
 	@RequestMapping("/admin/studyroom/studyroomD.do")
-	public String studyroomD() {
+	public String studyroomD(Model mo) {
+		
+		// 현황조회 
+		List<Map> listMana = service.selectInfoD();
+		
+		Map manage = new HashMap(); 
+		for(Map m : listMana) {
+			manage.put(m.get("STATUS"), m.get("COUNT"));
+		}
+		
+		// 좌석조회
+		List<AdminStudyroom> listStudy = service.selectListD();
+		 
+		mo.addAttribute("manage",manage);
+		mo.addAttribute("listStudy",listStudy);
+		
 		return "admin/studyroom/studyroomD";
 	}
+	
+	// D열람실 사용자 조회 
+	@RequestMapping("/admin/studyroom/selUsingListD")
+	@ResponseBody
+	public ModelAndView selUsingListD(
+			@RequestParam(required=false,defaultValue="1") int cPage,
+			@RequestParam(required=false,defaultValue="3") int numPerPage,
+			ModelAndView mv) {
+		
+		// 회원 리스트
+		List<AdminStudyroom> list = service.selUsingListD(cPage,numPerPage);
+		
+		// 전체회원 수  
+		int count = service.selUsingCountD();
+		
+		String pageBar = new AdminPagingTemplate().adminPagingTemplate3(cPage,numPerPage,count);
+		
+		mv.addObject("list",list);
+		mv.addObject("pageBar",pageBar);
+		mv.setViewName("admin/studyroom/usingMemberAjax");
+		return mv;
+		}
+	
 }

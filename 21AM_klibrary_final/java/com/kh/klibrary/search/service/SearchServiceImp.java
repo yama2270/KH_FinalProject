@@ -200,5 +200,15 @@ public Lending selectLending(String bookNo) {
 		 
 			return dao.bookRecomend(session);
 		}
+	 @Override
+	 public List<Map> likeBest(){
+		 return dao.likeBest(session);
+	 }
+	 
+	 @Override
+	 public List<Map> lendingBest(){
+		 return dao.lendingBest(session);
+	 }
+	 
 	 
 }

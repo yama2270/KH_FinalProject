@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -195,13 +196,6 @@ public String wishBookCheckInsert(@ModelAttribute("loginMember") Member m, Model
 	model.addAttribute("loc", loc);
 	return "common/msg";
 }
-
-@RequestMapping("/searchpage/bookRegisterTest.do")
-public String bookRegisterTest1(){
-	
-	return "searchpage/bookRegisterTest";
-   }
-
 
 
 //@RequestMapping("searchpage/wishbookPopup.do/{title}")
@@ -567,9 +561,66 @@ public String interestingbook (
 		return result;
 	}
 	
+   @RequestMapping("/searchpage/likeBest")
+   @ResponseBody
+   public List<BookInfo> likeBest(){
+	   List<Map> list1=service.likeBest();	   
+	   List<BookInfo> list=new ArrayList<BookInfo>();
+	   HashMap param=new HashMap();
+	   
+	   for(Map m: list1) {
+		   String bookname=(String)m.get("BOOK_NAME");
+		   param.put("bookName", bookname);
+		   List<BookInfo> b=service.selectDetailSearch(param, 1, 1);
+		   BookInfo b2=b.get(0);
+		   list.add(b2);
+	   }
+	   System.out.println(list);
+	   
+	   return list;
+   }
 	
-	
+   @RequestMapping("/searchpage/lendingbest")
+   @ResponseBody
+   public List<BookInfo> lendingBest(){
+	   
+	  List<BookInfo> list=new ArrayList<BookInfo>();
+	  List<Map> list1=service.lendingBest();
+	  HashMap param=new HashMap();
+	  for(Map m:list1) {
+		  String isbnNo=(String)m.get("ISBN_NO");
+		  param.put("isbnNo",isbnNo);
+		  List<BookInfo> b=service.selectDetailSearch(param, 1, 1);
+		  BookInfo b2=b.get(0);
+		  list.add(b2);
+	  }
+	   
+	   
+	   return list;
+   }
 
-
-
+   @RequestMapping("/searchpage/recommendBook")
+   @ResponseBody
+   public List<BookInfo> recommendBook(HttpServletRequest request) {
+	   
+	   List<BookInfo> list=new ArrayList<BookInfo>();
+	   String[] booknameArr = request.getParameterValues("nameArr[]");
+	   System.out.println("booknameArr테스트"+booknameArr);
+	   for(int i=0; i <booknameArr.length; i++) {
+		   String bookName=booknameArr[i];
+		   HashMap param=new HashMap();
+		   param.put("bookName", bookName);
+		   
+		   List<BookInfo> b=service.selectDetailSearch(param, 1, 1);
+			   if(b!=null && b.size()!=0) { 
+			   list.add(b.get(0));
+			   }//outofbounds exception때문에 size()!=0 꼭필요
+	   }
+	     
+	  
+	   return list;
+	   
+   }
+   
+   
 }
