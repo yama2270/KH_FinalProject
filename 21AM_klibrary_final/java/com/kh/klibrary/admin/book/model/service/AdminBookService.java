@@ -146,8 +146,8 @@ public interface AdminBookService {
 	List<WishBook> searchWishBook(int cPage, int numPerpage, Map param);
 	
 	//희망도서 구입
-	int insertWishBook(WishBook wishBook, String wishBookNo);
-	
+	int insertWishBookToBook(Map m);
+	int insertWishBookToBookInfo(Map m);
 	
 }
 

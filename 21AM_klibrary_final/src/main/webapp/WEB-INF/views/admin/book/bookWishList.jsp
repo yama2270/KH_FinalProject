@@ -46,6 +46,7 @@
 					<th style="width: 100px;">출판사 <i class="fas fa-arrows-alt-v"></i></th>
 					<th style="width: 100px;">발행일</th>
 					<th style="width: 80px;">가격 <i class="fas fa-arrows-alt-v"></i></th>
+					<th style="width: 80px;">구매 <i class="fas fa-arrows-alt-v"></i></th>
 	
 				</tr>
 				
@@ -62,6 +63,10 @@
 					<td><c:out value="${ w.bookCompany}"/></td>
 					<td><c:out value="${ w.bookDate}"/></td>
 					<td><c:out value="${ w.bookPrice}"/></td>
+					<td>
+					<button type="button" class="btn btn-outline-secondary" style="height:30px;margin-top:15px;" onclick="regPopup(this)" value="${w.bookName }">구입</button>
+					<input type="text" value="${w.wishBookNo }" style="display:none;"/>
+					</td>
 		
 				</tr>
 							</c:forEach>
@@ -74,7 +79,6 @@
           	</c:choose>
 			</table>
 			<div id="bookWishListBtn">
-				<input type="button" value="구입" class="btn btn-outline-dark" style="" onclick="deleteValue();">
 				<input type="button" value="삭제" class="btn btn-outline-dark" style="" onclick="deleteValue();">
 			</div>
 		</div>
@@ -140,6 +144,16 @@
 			});
 		}
 	}
+	
+	
+	
+	// 팝업창 
+    const regPopup = function(e){
+    	let bookName = $(e).val();
+    	let wishBookNo = $(e).next().val();
+    	window.open("${path}/admin/book/insertWishBook.do?bookName="+bookName+"&wishBookNo="+wishBookNo,"regPopup","width=700,height=600,scrollbars=yes");
+	}
+	
 	
     $(function(){
         // ul show()
