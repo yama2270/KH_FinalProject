@@ -40,7 +40,7 @@ String pageId = request.getParameter("pageId");
             <td colspan="3">
 
                 <input type="text" name="bookName" placeholder="내용을 입력해주세요" class="bookinfoinput" onkeypress="if(event.keyCode == 13){fn_searchPopup(); return false;}" id="bookinfoinput1">
-                <button id="button22" type="button" onclick="fn_searchPopup();">검색</button>
+                <button id="button22" type="button" style="margin-left:10px; font-size:20px; width:10%"onclick="fn_searchPopup();">검색</button>
                 
             </td>
             
@@ -123,16 +123,16 @@ String pageId = request.getParameter("pageId");
             
 
         </tr>
-
-
+  
 </table>
+
+	  <div id="buttonContainer2">
+		<button id="button22" style="margin-right:10px;" type="button" onclick='fn_requestSubmit()'>신청하기</button>
+		<button id="button22" type="button" onclick='fn_requestCancel()'>초기화</button>
+	</div>
 </form>
 <br><br><br>
-<div id="buttonContainer">
-<button id="button22" type="button" onclick='fn_requestSubmit()'>신청하기</button>
-<button id="button22" type="button" onclick='fn_requestCancel()'>초기화</button>
-</div>
-<br><br><br>
+
 
 
 

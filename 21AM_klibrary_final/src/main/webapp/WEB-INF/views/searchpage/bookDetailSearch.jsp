@@ -353,7 +353,7 @@ String pageId = request.getParameter("pageId");
 <br><br><br><br> --%>
 
 <form id="searchResultForm" method="get" action="interestingbook">
-<table id=searchResultTable2 >
+<table id=searchResultTable2 style="margin:auto;" >
 
  <c:choose> 
    	<c:when test="${not empty list }">
@@ -378,21 +378,31 @@ String pageId = request.getParameter("pageId");
           <option value=50 ${searchNumber == 50? "selected":""}>50건</option>
   
         </select>
-        <button id="button44" type="button" onclick="fn_searchBook2();" style="border:none">확인</button>
+        <button id="button44"  type="button" onclick="fn_searchBook2();" style="border:none;width:50px;height:40px;">확인</button>
       </div>
      </div>
    </th>
    </tr>
    
-   <tr>
-    <td colspan="5">
-      <hr>
-      
-      <input type="checkbox" name="bookSelect" id="allCheck" onclick="selectAll(this)" value="all">
-      <button id="button22" type="submit"  >관심도서담기</button>
-      <hr>
-   </td>
-  </tr>
+        <tr>
+		    <td colspan="5" >
+		      <hr>
+		    <td>
+	   </tr> 
+	   <tr>
+		     <td colspan="1" id="searchTable2td">
+		      <input type="checkbox" name="bookSelect" id="allCheck" onclick="selectAll(this)" value="all">
+		      
+		     </td>
+		     <td colspan="4">
+		       <button id="button22" type="submit"  >관심도서담기</button>
+		     </td>
+	   </tr>
+	   <tr>
+	     <td td colspan="5">
+	      <hr>
+	    </td>
+	  </tr>
  		  
      </c:when>
      </c:choose>
@@ -433,7 +443,7 @@ String pageId = request.getParameter("pageId");
       </td>
       <td id="buttonWrapTd" rowspan="2">
         <div class="buttonWrap">
-          <button id="button22" type="button" onclick="bookReservation('${b.isbnNo }')" >도서예약신청</button>
+          <button id="button22" style="margin-right:10px; onclick="bookReservation('${b.isbnNo }')" >도서예약신청</button>
 		  <button id="button22" type="button" onclick="location.href='${path}/searchpage/interestingbook?isbnNo=${b.isbnNo}'"  >관심도서담기</button>
           </div>
       </td>
@@ -502,7 +512,7 @@ String pageId = request.getParameter("pageId");
   </form>
   <c:choose> 
    	<c:when test="${not empty list }">
-       <div id="pagebar-container">
+       <div id="pagebar-container" style="margin-left:25%;">
         	${pageBar }
         </div>
      </c:when>
