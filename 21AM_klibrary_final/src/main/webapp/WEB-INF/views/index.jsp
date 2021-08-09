@@ -56,7 +56,7 @@
           <table class="main-service">
             <tr>
               <td>
-              	<a href="">
+              	<a href="${path}/searchpage/bookSearch.do">
                 	<img src="${path }/resources/images/search.jpg" width=150 height=100>
                 </a>
               </td>
@@ -68,12 +68,12 @@
             </tr>
             <tr>
               <td>
-                <a href="">
+                <a href="${path }/member/memberBorrowing.do">
                 	<img src="${path }/resources/images/borrow.jpg" width=150 height=100>
                 </a>
               </td>
               <td>
-                <a href="">
+                <a href="${path}/searchpage/wishbook.do">
                 	<img src="${path }/resources/images/hope.jpg" width=150 height=100>
                 </a>
               </td>
@@ -85,7 +85,7 @@
                 </a>
               </td>
               <td>
-                <a href="">
+                <a href="/member/memberInfo.do">
                 	<img src="${path }/resources/images/mypage.jpg" width=150 height=100>
                 </a>
               </td>

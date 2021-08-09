@@ -40,7 +40,7 @@ public class MainPageController {
 		model.addAttribute("recomendBook", recomendBook);
 		 
 		
-		return "../../index";
+		return "index";
 	}
 
 }
