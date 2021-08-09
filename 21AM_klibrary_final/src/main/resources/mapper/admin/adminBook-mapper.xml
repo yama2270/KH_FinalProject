@@ -534,6 +534,20 @@
   	DELETE FROM WISHBOOK WHERE WISH_BOOK_NO = #{wishBookNo}
   	</delete>
   	
-  	
+  	<!--  희망도서 검색 -->
+		<select id="searchWishBook" parameterType="Map" resultMap="bookWishList">
+		SELECT * FROM
+		WISHBOOK LEFT JOIN MEMBER USING(USER_ID) LEFT JOIN (SELECT * FROM BOOK LEFT JOIN BOOK_INFO USING(ISBN_NO)) USING(BOOK_NO)
+		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
+	</select>
+	
+	<!--  희망도서 등록 -->
+		<insert id="insertWishBook">
+		INSERT INTO BOOK
+		VALUES(SEQ_BOOK_NO.NEXTVAL,#{isbnNo},#{bookingState},#{lendingState})
+		<selectKey keyProperty="bookNo" resultType="String" order="AFTER">
+			SELECT SEQ_BOOK_NO.CURRVAL FROM DUAL
+		</selectKey>	
+	</insert>
 	
 </mapper>
