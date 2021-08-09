@@ -21,9 +21,9 @@
 	        	<tr>
 	               <c:forEach items="${recomendBook }" var="result">
 		              	<td class="main-top-table-td">
-		              		<a href="">
-		              			<img src="${result.bookImg}">
-		              		</a>
+		              		<!-- <a href=""> -->
+		              			<img src="${result.bookImg} " onclick="location.href='${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo=8989708117;'"/>
+		              		<!-- </a> -->
 		              	</td>
 		           </c:forEach>
 		        </tr>

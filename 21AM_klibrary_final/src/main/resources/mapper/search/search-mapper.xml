@@ -24,7 +24,7 @@
 	
 	<select id="bookRecomend" resultMap="bookInfo">
   		<![CDATA[ 
-			SELECT BOOK_IMG, BOOK_NAME, BOOK_WRITER, BOOK_COMPANY
+			SELECT *
 			FROM (SELECT * FROM BOOK_INFO ORDER BY DBMS_RANDOM.VALUE)
 			WHERE ROWNUM <=5
 		]]>
