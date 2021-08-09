@@ -420,18 +420,17 @@ public class AdminBookController {
 	
 	
 	//희망도서 리스트
-	/*
-	 * @RequestMapping("/admin/book/bookWishList.do") public ModelAndView
-	 * bookWishList(
-	 * 
-	 * @RequestParam(value = "cPage", defaultValue = "1") int cPage,
-	 * 
-	 * @RequestParam(value = "numPerpage", defaultValue = "4") int numPerpage,
-	 * ModelAndView mv) { mv.addObject("list", service.selectBookWishList(cPage,
-	 * numPerpage)); int totalData=service.selectWishBookCount();
-	 * mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,
-	 * "bookWishList.do")); mv.setViewName("admin/book/bookWishList"); return mv; }
-	 */
+	
+	  @RequestMapping("/admin/book/bookWishList.do") public ModelAndView
+	  bookWishList(
+	  @RequestParam(value = "cPage", defaultValue = "1") int cPage,
+	  @RequestParam(value = "numPerpage", defaultValue = "4") int numPerpage,
+	  ModelAndView mv) { mv.addObject("list", service.selectBookWishList(cPage,
+	 numPerpage)); int totalData=service.selectWishBookCount();
+	  mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,
+	  "bookWishList.do")); mv.setViewName("admin/book/bookWishList"); return mv; 
+	  }
+	 
 	
 	//희망도서 삭제
 	@RequestMapping("/admin/book/wishBookDelete.do")
@@ -444,8 +443,8 @@ public class AdminBookController {
 		return "redirect:/admin/book/bookWishList.do";
 	}
 	
-	//희망도서 검색
-	@RequestMapping("/admin/notice/insertWishBook.do")
+	//희망도서 구입
+	@RequestMapping("/admin/book/insertWishBook.do")
 	public ModelAndView wishBookInsert(WishBook wishBook,String wishBookNo, ModelAndView mv) {
 		int result=service.insertWishBook(wishBook,wishBookNo);
 		String msg="";
@@ -459,6 +458,8 @@ public class AdminBookController {
 		mv.setViewName("common/msg");
 		return mv;
 	}
+	
+	//희망도서 검색
 	
 	
 	

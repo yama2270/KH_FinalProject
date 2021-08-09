@@ -74,8 +74,8 @@
           	</c:choose>
 			</table>
 			<div id="bookWishListBtn">
-				<button type="button" class="btn btn-outline-secondary">구입</button>
-				<input type="button" value="삭제" class="btn btn-outline-dark" style="margin-top:2%;" onclick="deleteValue();">
+				<input type="button" value="구입" class="btn btn-outline-dark" style="" onclick="deleteValue();">
+				<input type="button" value="삭제" class="btn btn-outline-dark" style="" onclick="deleteValue();">
 			</div>
 		</div>
 		     <div id="pagebar-container" style="margin-top:30px; margin-left:60px;">
