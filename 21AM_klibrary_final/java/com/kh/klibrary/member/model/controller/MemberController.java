@@ -270,6 +270,7 @@ public class MemberController {
 		m1.put("userId", m.getUserId());
 		m1.put("bookNo", bookNo);
 		int result= service.cancelBooking(m1);
+		int result2= service.cancelBookingUpdate(m1);
 		String msg="예약취소를 실패하었습니다.";
 		String loc="/member/memberBooking.do";
 		

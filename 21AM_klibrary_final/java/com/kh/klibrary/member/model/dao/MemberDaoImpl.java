@@ -144,6 +144,12 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public int cancelBookingUpdate(SqlSessionTemplate session, Map m1) {
+		// TODO Auto-generated method stub
+		return session.update("member.cancelBookingUpdate",m1);
+	}
+	
+	@Override
 	public int selectBookMarkCount(SqlSessionTemplate session, String userId) {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.selectBookMarkCount", userId);

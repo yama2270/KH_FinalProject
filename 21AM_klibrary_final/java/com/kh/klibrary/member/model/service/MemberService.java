@@ -35,6 +35,7 @@ public interface MemberService {
 	int selectDateCount(Map m1);
 	int selectBookingCount(String userId);
 	int cancelBooking(Map m1);
+	int cancelBookingUpdate(Map m1);
 	int selectBookMarkCount(String userId);
 	int cancelMark(Map m1);
 	int selectHopeRecordCount(String userId);
