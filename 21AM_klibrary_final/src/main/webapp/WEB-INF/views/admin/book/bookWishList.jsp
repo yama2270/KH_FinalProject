@@ -73,7 +73,7 @@
 						</c:when>
 				<c:otherwise>
    					<tr>
-   					<td colspan="6">조회된 자료가 없습니다</td>
+   					<td colspan="10">조회된 자료가 없습니다</td>
    					</tr>
    				</c:otherwise>       		
           	</c:choose>
