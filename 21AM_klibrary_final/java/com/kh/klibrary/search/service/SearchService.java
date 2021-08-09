@@ -42,6 +42,7 @@ public interface SearchService {
 	
 	int insertWishBook(Map param);
 	
+	List<BookInfo> bookRecomend();
 
 	
 }

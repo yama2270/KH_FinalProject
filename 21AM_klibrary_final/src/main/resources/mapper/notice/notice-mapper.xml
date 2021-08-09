@@ -92,6 +92,12 @@
 		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
 	</select>
 	
-	
+    <select id="findRecentNotice" resultMap="noticeMap">
+    <![CDATA[ 
+		SELECT *
+		FROM (SELECT * FROM NOTICE ORDER BY NOTICE_DATE DESC)
+		WHERE ROWNUM <= 7
+	]]>
+	</select>
   
 </mapper>

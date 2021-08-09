@@ -149,5 +149,7 @@ public interface AdminBookService {
 	int insertWishBook(WishBook wishBook, String wishBookNo);
 	
 	
+	
+	
 }
 

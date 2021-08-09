@@ -160,5 +160,7 @@ public interface AdminBookDao {
 	//희망도서 등록
 	int insertWishBook(SqlSessionTemplate session, WishBook wishBook);
 	
+	
+	
 }
 	
