@@ -42,6 +42,8 @@ public interface SearchDao {
 	List<BookInfo> selectBookInfoList(SqlSessionTemplate session, Map param);
 	int insertWishBook(SqlSessionTemplate session, Map param);
 	
+	List<BookInfo> bookRecomend(SqlSessionTemplate session);
+	
 	List<Map> likeBest(SqlSessionTemplate session);//관심도서순위 이름 선택;
 	List<Map> lendingBest(SqlSessionTemplate session);//대출도서순위선택;
 

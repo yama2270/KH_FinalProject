@@ -71,7 +71,36 @@
 		<interceptor>
 		   <mapping path="/member/memberHopeBookRecord.do*"/>
 		   <beans:bean id="memberHopeBookRecord" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
-		</interceptor>			 
+		</interceptor>
+		<interceptor>
+		   <mapping path="/member/memberInfo.do*"/>
+		   <beans:bean id="memberInfo" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+		   <mapping path="/member/memberInfoUpdate.do*"/>
+		   <beans:bean id="memberInfoUpdate" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+		   <mapping path="/member/memberBorrowing.do*"/>
+		   <beans:bean id="memberBorrowing" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+		   <mapping path="/member/memberBorrowed.do*"/>
+		   <beans:bean id="memberBorrowed" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+		   <mapping path="/member/memberBooking.do*"/>
+		   <beans:bean id="memberBooking" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+		   <mapping path="/member/memberDelete.do*"/>
+		   <beans:bean id="memberDelete" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+		   <mapping path="/member/membershipCard.do*"/>
+		   <beans:bean id="membershipCard" class="com.kh.klibrary.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
+					 
 	</interceptors>
 	
 	

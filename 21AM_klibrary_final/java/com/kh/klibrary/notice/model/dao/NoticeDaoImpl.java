@@ -102,6 +102,18 @@ public class NoticeDaoImpl implements NoticeDao {
 		return session.selectList("redingroomA.selectareding",userid);
 	}
 	
+	@Override
+	public List<StudyRoomBooKing> redingaroom(SqlSessionTemplate session, String seatno) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.redingaroom",seatno);
+	}
+
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -268,6 +280,12 @@ public class NoticeDaoImpl implements NoticeDao {
 	public int cannotusedD(SqlSessionTemplate session) {
 		// TODO Auto-generated method stub
 		return session.selectOne("redingroomA.cannotusedD");
+	}
+
+	@Override
+	public List<Notice> findRecentNotices(SqlSessionTemplate session) {
+		
+		return session.selectList("notice.findRecentNotice");
 	}
 	
 	

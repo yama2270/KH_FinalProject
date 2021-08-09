@@ -161,5 +161,7 @@ public interface AdminBookDao {
 	int insertWishBookToBook(SqlSessionTemplate session, Map m);
 	int insertWishBookToBookInfo(SqlSessionTemplate session, Map m);
 	
+	
+	
 }
 	

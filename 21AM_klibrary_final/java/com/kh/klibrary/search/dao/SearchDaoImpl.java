@@ -147,6 +147,12 @@ public class SearchDaoImpl implements SearchDao{
 	};
 	
 	@Override
+	public List<BookInfo> bookRecomend(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectList("search.bookRecomend");
+	}
+	
+	@Override
 	public List<Map> likeBest(SqlSessionTemplate session){
 		return session.selectList("likeBest");
 	}

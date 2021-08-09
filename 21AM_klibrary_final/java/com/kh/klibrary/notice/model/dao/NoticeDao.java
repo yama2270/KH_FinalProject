@@ -31,6 +31,7 @@ public interface NoticeDao {
 	List<StudyRoomB> selectbreding(SqlSessionTemplate session,String userid);
 	List<StudyRoomC> selectcreding(SqlSessionTemplate session,String userid);
 	List<StudyRoomD> selectdreding(SqlSessionTemplate session,String userid);
+	List<StudyRoomBooKing> redingaroom(SqlSessionTemplate session,String seatno);
 
 	
 	List<StudyRoomB> redingroomB(SqlSessionTemplate session);
@@ -58,4 +59,6 @@ public interface NoticeDao {
 	int AvailableD(SqlSessionTemplate session);
 	int cannotusedD(SqlSessionTemplate session);
 	StudyRoomD redingDroom(SqlSessionTemplate session,String seatno);
+	
+	List<Notice> findRecentNotices(SqlSessionTemplate session);
 }

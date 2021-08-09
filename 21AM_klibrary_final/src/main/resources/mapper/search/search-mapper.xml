@@ -21,4 +21,12 @@
 	<insert id="insertWishBook">
 		INSERT INTO WISHBOOK VALUES(SEQ_wishbook_NO.NEXTVAL,#{userId},#{isbn},#{bookName},#{author},#{publisher},#{publishYear},#{price})
 	</insert>
+	
+	<select id="bookRecomend" resultMap="bookInfo">
+  		<![CDATA[ 
+			SELECT *
+			FROM (SELECT * FROM BOOK_INFO ORDER BY DBMS_RANDOM.VALUE)
+			WHERE ROWNUM <=5
+		]]>
+  	</select>
 </mapper>

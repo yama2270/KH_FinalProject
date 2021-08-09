@@ -48,8 +48,8 @@
 </head>
 <body>
 <header>
-	
-	<div id="header_top">
+	<div id=header-wraper>
+		<div id="header_top">
                 <ul id="header_ul">
                 <c:if test="${loginMember==null }">
                     <li>
@@ -77,58 +77,59 @@
                 </c:if>
                 </ul>
             </div>
-        </div>
+        
 		
 		<div id="nav">	
 			<div>
 				<a href="${path }/"><img src="${path }/resources/images/logo.png" width="400" height="200"></a>
 			</div>
-			<div>
+			<div class="nav">
 			<ul id="main-menu">			
-			<li><a href="">자료검색</a>
+			<li id="subtitle"><a class="subtitle" href="">자료검색</a>
 				<ul id="sub-menu">
-					<li><a href="${path}/searchpage/bookSearch.do" aria-label="subemnu">통합검색</a></li>
-					<li><a href="${path}/searchpage/detailSearch.do" aria-label="subemnu">상세검색</a></li>
-					<li><a href="${path}/searchpage/categorySearch.do" aria-label="subemnu">주제별검색</a></li>
-					<li><a href="${path}/searchpage/wishbook.do" aria-label="subemnu">희망도서신청</a></li>
+					<li class="main-menu-li"><a href="${path}/searchpage/bookSearch.do" aria-label="subemnu">통합검색</a></li>
+					<li class="main-menu-li"><a href="${path}/searchpage/detailSearch.do" aria-label="subemnu">상세검색</a></li>
+					<li class="main-menu-li"><a href="${path}/searchpage/categorySearch.do" aria-label="subemnu">주제별검색</a></li>
+					<li class="main-menu-li"><a href="${path}/searchpage/wishbook.do" aria-label="subemnu">희망도서신청</a></li>
 				</ul>
 			</li>
-			<li><a href="">열람실</a>
+			<li id="subtitle"><a class="subtitle" href="">열람실</a>
 				<ul id="sub-menu">
 						
-						<li><a href="${path}/notice/redingroomA.do" aria-label="subemnu">열람실 A</a></li>
-	                    <li><a href="${path}/notice/redingroomB.do" aria-label="subemnu">열람실 B</a></li>
-	                    <li><a href="${path}/notice/redingroomC.do" aria-label="subemnu">열람실 C</a></li>
-	                    <li><a href="${path}/notice/redingroomD.do" aria-label="subemnu">열람실 D</a></li>
-	                    <li><a href="${path}/notice/redingroomnotice.do" aria-label="subemnu">열람실 이용안내</a></li>
+						<li class="main-menu-li"><a href="${path}/notice/redingroomA.do" aria-label="subemnu">열람실 A</a></li>
+	                    <li class="main-menu-li"><a href="${path}/notice/redingroomB.do" aria-label="subemnu">열람실 B</a></li>
+	                    <li class="main-menu-li"><a href="${path}/notice/redingroomC.do" aria-label="subemnu">열람실 C</a></li>
+	                    <li class="main-menu-li"><a href="${path}/notice/redingroomD.do" aria-label="subemnu">열람실 D</a></li>
+	                    <li class="main-menu-li"><a href="${path}/notice/redingroomnotice.do" aria-label="subemnu">열람실 이용안내</a></li>
 				</ul>
 			</li>
-			<li><a href="">이용안내</a>
+			<li id="subtitle"><a class="subtitle" href="">이용안내</a>
 				<ul id="sub-menu">
-					<li><a href="${path}/notice/booktime.do" aria-label="subemnu">이용시간</a></li>
-					<li><a href="${path}/notice/copymachine.do" aria-label="subemnu">편의시설</a></li>
-					<li><a href="${path}/notice/noticeList.do" aria-label="subemnu">공지사항</a></li>
-					<li><a href="${path}/faq/faqList.do" aria-label="subemnu">자주묻는질문</a></li>
-					<li><a href="${path}/qna/qnaList.do" aria-label="subemnu">QNA</a></li>
+					<li class="main-menu-li"><a href="${path}/notice/booktime.do" aria-label="subemnu">이용시간</a></li>
+					<li class="main-menu-li"><a href="${path}/notice/copymachine.do" aria-label="subemnu">편의시설</a></li>
+					<li class="main-menu-li"><a href="${path}/notice/noticeList.do" aria-label="subemnu">공지사항</a></li>
+					<li class="main-menu-li"><a href="${path}/faq/faqList.do" aria-label="subemnu">자주묻는질문</a></li>
+					<li class="main-menu-li"><a href="${path}/qna/qnaList.do" aria-label="subemnu">QNA</a></li>
 				</ul>
 			</li>
 			<c:if test="${loginMember!=null }">
-				<li><a href="${path }/member/memberInfo.do">마이페이지</a>
+				<li id="subtitle"><a class="subtitle" href="${path }/member/memberInfo.do">마이페이지</a>
 					<ul id="sub-menu">
-						<li><a href="${path }/member/memberInfo.do" aria-label="subemnu">개인정보확인</a></li>
-						<li><a href="${path }/member/memberBorrowing.do" aria-label="subemnu">도서이용내역</a></li>    
-						<li><a href="${path }/member/memberHopeBookRecord.do" aria-label="subemnu">희망도서</a></li>
-						<li><a href="${path }/member/memberBookMark.do" aria-label="subemnu">관심도서</a></li>
-						<li><a href="${path }/member/memberReadingRoom.do" aria-label="subemnu">열람실 이용내역</a></li>
-						<li><a href="${path }/member/membershipCard.do" aria-label="subemnu">모바일 회원증</a></li>  
-						<li><a href="${path }/member/memberDelete.do" aria-label="subemnu">회원탈퇴</a></li>              
+						<li class="main-menu-li"><a href="${path }/member/memberInfo.do" aria-label="subemnu">개인정보확인</a></li>
+						<li class="main-menu-li"><a href="${path }/member/memberBorrowing.do" aria-label="subemnu">도서이용내역</a></li>    
+						<li class="main-menu-li"><a href="${path }/member/memberHopeBookRecord.do" aria-label="subemnu">희망도서</a></li>
+						<li class="main-menu-li"><a href="${path }/member/memberBookMark.do" aria-label="subemnu">관심도서</a></li>
+						<li class="main-menu-li"><a href="${path }/member/memberReadingRoom.do" aria-label="subemnu">열람실 이용내역</a></li>
+						<li class="main-menu-li"><a href="${path }/member/membershipCard.do" aria-label="subemnu">모바일 회원증</a></li>  
+						<li class="main-menu-li"><a href="${path }/member/memberDelete.do" aria-label="subemnu">회원탈퇴</a></li>              
 					</ul>
 				</li>
 			</c:if>
 			<c:if test="${loginMember==null }">
 				<li><a href="${path }/member/memberLogin.do">마이페이지</a></li>
 			</c:if>
-		</ul>
+			</ul>
+			</div>
 		</div>
 	</div>
 </header> 

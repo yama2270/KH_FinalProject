@@ -340,6 +340,9 @@ public class AdminBookServiceImpl implements AdminBookService {
 		return dao.deleteWishBook(session, wishBookNo);
 	}
 
+	
+
+
 	@Override
 	public List<WishBook> searchWishBook(int cPage, int numPerpage, Map param) {
 		// TODO Auto-generated method stub

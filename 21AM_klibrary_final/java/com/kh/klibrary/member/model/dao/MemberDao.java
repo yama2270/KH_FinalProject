@@ -51,6 +51,8 @@ public interface MemberDao {
 	int selectBookingCount(SqlSessionTemplate session, String userId);
 	//예약 취소
 	int cancelBooking(SqlSessionTemplate session, Map m1);
+	//예약 취소 업데이트
+	int cancelBookingUpdate(SqlSessionTemplate session, Map m1);
 	//관심 도서 리스트 카운트
 	int selectBookMarkCount(SqlSessionTemplate session, String userId);
 	//관심 도서 취소

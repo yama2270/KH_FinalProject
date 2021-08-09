@@ -2,6 +2,11 @@
 
 /* 헤더 */
 
+#header-wraper{
+	margin: 0 auto;
+	max-width:1500px;
+}
+
   #header_ul{
       list-style:none;
       float:right;
@@ -10,6 +15,11 @@
       float:left;
       padding-right:20px;
   }
+  
+  .main-menu-li{
+  	
+  }
+  
   .header_a{
       text-decoration:none;
       color:black;
@@ -33,6 +43,12 @@
     clear:left;
     display:flex;
     flex-direction:row;
+    width:1500px;
+  }
+  
+  .nav{
+  	display:flex;
+  	flex-direction:row;
   }
 
   #main-menu{
@@ -44,11 +60,11 @@
   #main-menu > li {
     float: left;
     position: relative;
-    margin:100px;
+    margin:60px;
   }
 
 #main-menu > li > a {
-    font-size: 40px;
+    font-size: 30px;
     color: black;
     text-align: left;
     text-decoration: none;
@@ -57,6 +73,8 @@
 
 #sub-menu {
     position: absolute;
+    list-style:none;
+    padding-left:0px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.15s ease-in;
@@ -66,7 +84,7 @@
 #sub-menu > li >  a {
     color: black;
     text-decoration: none;
-    font-size:20px;
+    font-size:15px;
   }
 
 #main-menu > li:hover #sub-menu {
@@ -86,13 +104,35 @@
         margin: 0 auto;
       }
 
-      #main-top>h1{
+      #main-top>h3{
         text-align:center;
       }
 
       #reco-book{
         width:100%;
-        height:400px;
+        text-align:center;
+        margin-top:50px;
+        margin-bottom:50px;
+      }
+      
+      .main-top-table{
+      	width:100%;
+      	table-layout:fixed;    
+      	font-size:12px;  	
+      }
+      
+      .main-top-table-td{
+      	text-overFlow: ellipsis;
+      	overflow:hidden;
+      	whithe-apace: nowrap;
+  
+      }
+      
+      .main-top-table-td{
+      	text-overFlow: ellipsis;
+      	overflow:hidden;
+      	whithe-apace: nowrap;
+  		height:70px;
       }
 
       #main-mid{
@@ -106,17 +146,21 @@
         width:30%;
         margin-right:10%;
       }
-      
-      .main-service td{
-      	text-align:center;
-      }
 
       .main-service{
         width:100%;
+        height:80%;
       }
-
-      .main-service>td{
+      
+     .main-service-td{
         text-align:center;
+      }
+      
+      .main-service-a{
+      	color:black;
+      }
+      .main-service-a:hover{
+      	text-decoration:none;
       }
 
       #main-notice{

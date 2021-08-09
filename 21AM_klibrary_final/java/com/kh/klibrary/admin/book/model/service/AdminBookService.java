@@ -149,5 +149,7 @@ public interface AdminBookService {
 	int insertWishBookToBook(Map m);
 	int insertWishBookToBookInfo(Map m);
 	
+	
+	
 }
 
