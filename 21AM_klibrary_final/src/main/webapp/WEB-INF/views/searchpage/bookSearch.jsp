@@ -347,7 +347,7 @@ $.get("${pageContext.request.contextPath}/searchpage/likeBest",data=>{
 		  for(let i=0;i<data.length; i++){
 			str+="<td id='imgContainerDiv'  >"
 			  str+="<img id='bookImg' src='"+data[i]["bookImg"]+"' alt='"+data[i]["bookName"]+"'"
-			  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br>"
+			  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br><br>"
 					  str+="<span>"+data[i]["bookName"].substring(0,13)+"</span>"  	
 			str+="</td>"
 		  }
@@ -384,7 +384,7 @@ function fn_likebest(){
 		  for(let i=0;i<data.length; i++){
 			str+="<td id='imgContainerDiv'  >"
 			  str+="<img id='bookImg' src='"+data[i]["bookImg"]+"' alt='"+data[i]["bookName"]+"'"
-			  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br>"
+			  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br><br>"
 					  str+="<span>"+data[i]["bookName"].substring(0,13)+"</span>"  	
 			str+="</td>"
 		  }
@@ -420,7 +420,7 @@ function fn_lendingbest(){
 		  for(let i=0;i<data.length; i++){
 			str+="<td id='imgContainerDiv'  >"
 			  str+="<img id='bookImg' src='"+data[i]["bookImg"]+"' alt='"+data[i]["bookName"]+"'"
-			  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br>"
+			  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br><br>"
 					  str+="<span>"+data[i]["bookName"].substring(0,13)+"</span>"  	
 			str+="</td>"
 		  }
@@ -492,7 +492,7 @@ function fn_recommend(){
 						  for(let i=0;i<data.length; i++){
 							str+="<td id='imgContainerDiv'  >"
 							  str+="<img id='bookImg' src='"+data[i]["bookImg"]+"' alt='"+data[i]["bookName"]+"'"
-							  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br>"
+							  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br><br>"
 									  str+="<span>"+data[i]["bookName"].substring(0,13)+"</span>"  	
 							str+="</td>"
 						  }
