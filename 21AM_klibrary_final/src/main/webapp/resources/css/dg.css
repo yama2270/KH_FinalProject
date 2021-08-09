@@ -2,6 +2,11 @@
 
 /* 헤더 */
 
+#header-wraper{
+	margin: 0 auto;
+	max-width:1500px;
+}
+
   #header_ul{
       list-style:none;
       float:right;
@@ -38,6 +43,12 @@
     clear:left;
     display:flex;
     flex-direction:row;
+    width:1500px;
+  }
+  
+  .nav{
+  	display:flex;
+  	flex-direction:row;
   }
 
   #main-menu{
@@ -49,7 +60,7 @@
   #main-menu > li {
     float: left;
     position: relative;
-    margin:100px;
+    margin:60px;
   }
 
 #main-menu > li > a {

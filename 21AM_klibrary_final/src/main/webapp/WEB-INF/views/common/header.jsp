@@ -48,8 +48,8 @@
 </head>
 <body>
 <header>
-	
-	<div id="header_top">
+	<div id=header-wraper>
+		<div id="header_top">
                 <ul id="header_ul">
                 <c:if test="${loginMember==null }">
                     <li>
@@ -77,13 +77,13 @@
                 </c:if>
                 </ul>
             </div>
-        </div>
+        
 		
 		<div id="nav">	
 			<div>
 				<a href="${path }/"><img src="${path }/resources/images/logo.png" width="400" height="200"></a>
 			</div>
-			<div>
+			<div class="nav">
 			<ul id="main-menu">			
 			<li id="subtitle"><a class="subtitle" href="">자료검색</a>
 				<ul id="sub-menu">
@@ -128,7 +128,8 @@
 			<c:if test="${loginMember==null }">
 				<li><a href="${path }/member/memberLogin.do">마이페이지</a></li>
 			</c:if>
-		</ul>
+			</ul>
+			</div>
 		</div>
 	</div>
 </header> 
