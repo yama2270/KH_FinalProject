@@ -148,6 +148,8 @@ public class NoticeController {
 						List<StudyRoomD> sd=service.selectdreding(userid);
 						if(sd.size()<1) {
 							mv.addObject("list",service.redingroom(seatno));
+							List<StudyRoomBooKing> lsa=service.redingaroom(seatno);
+							mv.addObject("time",lsa);
 							mv.setViewName("redingroom/redingroomAseat");
 							return mv;
 						}else {
@@ -223,6 +225,8 @@ public class NoticeController {
 						List<StudyRoomD> sd=service.selectdreding(userid);
 						if(sd.size()<1) {
 							mv.addObject("list",service.redingBroom(seatno));
+							List<StudyRoomBooKing> lsa=service.redingaroom(seatno);
+							mv.addObject("time",lsa);
 							mv.setViewName("redingroom/redingroomBseat");
 							return mv;
 						}else {
@@ -289,6 +293,8 @@ public class NoticeController {
 						List<StudyRoomD> sd=service.selectdreding(userid);
 						if(sd.size()<1) {
 							mv.addObject("list",service.redingCroom(seatno));
+							List<StudyRoomBooKing> lsa=service.redingaroom(seatno);
+							mv.addObject("time",lsa);
 							mv.setViewName("redingroom/redingroomCseat");
 							return mv;
 						}else {
@@ -354,6 +360,8 @@ public class NoticeController {
 						List<StudyRoomD> sd=service.selectdreding(userid);
 						if(sd.size()<1) {
 							mv.addObject("list",service.redingDroom(seatno));
+							List<StudyRoomBooKing> lsa=service.redingaroom(seatno);
+							mv.addObject("time",lsa);
 							mv.setViewName("redingroom/redingroomDseat");
 							return mv;
 						}else {

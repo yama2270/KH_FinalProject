@@ -29,6 +29,7 @@ public interface NoticeService {
 	List<StudyRoomB> selectbreding(String userid);
 	List<StudyRoomC> selectcreding(String userid);
 	List<StudyRoomD> selectdreding(String userid);
+	List<StudyRoomBooKing> redingaroom(String seatno);
 	
 	List<StudyRoomB> redingroomB();
 	int totalDataB();

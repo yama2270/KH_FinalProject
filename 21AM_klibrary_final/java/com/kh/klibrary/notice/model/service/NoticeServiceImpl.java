@@ -108,6 +108,22 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 	@Override
+	public List<StudyRoomBooKing> redingaroom(String seatno) {
+		// TODO Auto-generated method stub
+		return dao.redingaroom(session,seatno);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	@Override
 	public List<StudyRoomB> selectbreding(String userid) {
 		// TODO Auto-generated method stub
 		return dao.selectbreding(session,userid);
@@ -118,6 +134,7 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		return dao.redingBroom(session,seatno);
 	}
+	
 	
 	
 	
@@ -257,6 +274,8 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		return dao.findRecentNotices(session);
 	}
+
+	
 	
 	
 

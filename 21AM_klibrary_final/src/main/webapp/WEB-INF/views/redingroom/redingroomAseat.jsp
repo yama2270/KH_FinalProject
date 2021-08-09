@@ -37,6 +37,7 @@
                 <td class="seattablehead">
                
                 	<select class="fontsize" id="selStart" name="searchOption" aria-label="Default select example">
+                		<option>시간선택</option>
                         <option value="09:00">09:00</option>
                         <option value="10:00">10:00</option>
                         <option value="11:00">11:00</option>
@@ -58,6 +59,7 @@
                 <td class="seattablehead">끝나는시간</td>
                 <td class="seattablehead">
                 	<select class="fontsize" id="selEnd" name="searchOption2" aria-label="Default select example">
+                        <option>시간선택</option>
                         <option value="10:00">10:00</option>
                         <option value="11:00">11:00</option>
                         <option value="12:00">12:00</option>
@@ -112,6 +114,22 @@
 		}
 	}
 	
+	// 시작시간 - 예약테이블 
+	let stGap;
+	<c:forEach var="t" items="${time}">
+		stGap = Number('${t.endTime}'.substring(0,2) - '${t.startTime}'.substring(0,2));
+		for(i=0;i<14;i++){
+			const timeOp = $("#selStart").children().eq(i);
+			if(timeOp.val()=='${t.startTime}'){
+				for(j=0;j<stGap;j++){
+					timeOp.prop("disabled",true);
+					i++;
+				}
+			}
+		}		
+	</c:forEach>
+	
+	
 	// 시작시간 - 현재이용
 	const usingStart = '${list.startTime}';
 	const usingEnd = '${list.endTime}';
@@ -137,6 +155,21 @@
 			$("#selEnd").children().eq(i).prop("disabled",true);
 		}
 	}
+	
+	
+	// 종료시간 - 예약테이블 
+	let endGap;
+	<c:forEach var="b" items="${time}">
+	endGap = Number('${b.endTime}'.substring(0,2) - '${b.startTime}'.substring(0,2));
+		for(i=13;i>-1;i--){
+			if($("#selEnd").children().eq(i).val()=='${b.endTime}'){
+				for(j=0;j<endGap;j++){
+					$("#selEnd").children().eq(i).prop("disabled",true);
+					i--;
+				}
+			}
+		}	
+	</c:forEach>
 	
 	// 종료시간 - 현재이용
 	

@@ -102,6 +102,18 @@ public class NoticeDaoImpl implements NoticeDao {
 		return session.selectList("redingroomA.selectareding",userid);
 	}
 	
+	@Override
+	public List<StudyRoomBooKing> redingaroom(SqlSessionTemplate session, String seatno) {
+		// TODO Auto-generated method stub
+		return session.selectList("redingroomA.redingaroom",seatno);
+	}
+
+	
+	
+	
+	
+	
+	
 	
 	
 	
