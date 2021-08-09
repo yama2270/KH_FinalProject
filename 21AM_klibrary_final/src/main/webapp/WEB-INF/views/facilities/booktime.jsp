@@ -40,7 +40,8 @@
             <div id="he_right">
                 <div id="titleheadnamec">이용시간
                 <c:if test='${loginMember!=null && (loginMember.userId).equals("admin") }'>
-                	<button class="btn btn-outline-dark" onclick="location.assign('${path }/notice/calendar.do')">일정추가</button>
+                	<%-- <button class="btn btn-outline-dark" onclick="location.assign('${path }/notice/calendar.do')">일정추가</button> --%>
+                	<button class="btn btn-outline-dark" onclick="setcalendar();">일정추가</button>
                 </c:if>
                 </div>
                 
@@ -106,7 +107,9 @@
 </body>
  
     <script>
-    
+    function setcalendar(){
+    	open("${path }/notice/calendar.do","_blank","height=440,width=660");
+    }
     
     
     //DB에서 가져온값 일정에 넣어주기

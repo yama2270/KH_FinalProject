@@ -545,7 +545,7 @@
 		<insert id="insertWishBook">
 		INSERT INTO BOOK
 		VALUES(SEQ_BOOK_NO.NEXTVAL,#{isbnNo},#{bookingState},#{lendingState})
-		<selectKey keyProperty="bookNo" resultType="_String" order="AFTER">
+		<selectKey keyProperty="bookNo" resultType="String" order="AFTER">
 			SELECT SEQ_BOOK_NO.CURRVAL FROM DUAL
 		</selectKey>	
 	</insert>
