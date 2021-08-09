@@ -31,6 +31,7 @@ public interface NoticeDao {
 	List<StudyRoomB> selectbreding(SqlSessionTemplate session,String userid);
 	List<StudyRoomC> selectcreding(SqlSessionTemplate session,String userid);
 	List<StudyRoomD> selectdreding(SqlSessionTemplate session,String userid);
+	List<StudyRoomBooKing> redingaroom(SqlSessionTemplate session,String seatno);
 
 	
 	List<StudyRoomB> redingroomB(SqlSessionTemplate session);
