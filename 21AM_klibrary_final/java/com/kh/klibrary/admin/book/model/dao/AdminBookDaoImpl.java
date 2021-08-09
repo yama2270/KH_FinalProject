@@ -316,6 +316,10 @@ public class AdminBookDaoImpl implements AdminBookDao {
 		return session.delete("adminBook.deleteWishBook", wishBookNo);
 	}
 
+	
+	
+	
+
 	@Override
 	public List<WishBook> searchWishBookNo(SqlSessionTemplate session, String keyWord) {
 		// TODO Auto-generated method stub
