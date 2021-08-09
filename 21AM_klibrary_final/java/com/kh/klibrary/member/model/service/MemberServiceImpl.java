@@ -144,6 +144,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public int cancelBookingUpdate(Map m1) {
+		// TODO Auto-generated method stub
+		return dao.cancelBookingUpdate(session, m1);
+	}
+	
+	@Override
 	public int selectBookMarkCount(String userId) {
 		// TODO Auto-generated method stub
 		return dao.selectBookMarkCount(session, userId);

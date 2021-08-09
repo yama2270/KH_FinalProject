@@ -139,6 +139,12 @@
 		DELETE FROM BOOKING WHERE USER_ID=#{userId} AND BOOK_NO=#{bookNo}
 	</delete>
 	
+	<update id="cancelBookingUpdate">
+		UPDATE BOOK 
+		SET BOOKING_STATE='가능', LENDING_STATE='가능'
+		WHERE BOOK_NO=#{bookNo}
+	</update>
+	
 	<resultMap type="com.kh.klibrary.member.model.vo.Booking" id="booking">
 		<id column="BOOKING_NO" property="bookingNo"/>
 		<result column="USER_ID" property="userId"/>
