@@ -607,13 +607,14 @@ public String interestingbook (
 	   String[] booknameArr = request.getParameterValues("nameArr[]");
 	   System.out.println("booknameArr테스트"+booknameArr);
 	   for(int i=0; i <booknameArr.length; i++) {
-		   String bookName=booknameArr[i];
+		   String bookName=booknameArr[i].trim();
 		   HashMap param=new HashMap();
 		   param.put("bookName", bookName);
 		   
 		   List<BookInfo> b=service.selectDetailSearch(param, 1, 1);
 			   if(b!=null && b.size()!=0) { 
 			   list.add(b.get(0));
+			   System.out.println("test하기"+b.get(0));
 			   }//outofbounds exception때문에 size()!=0 꼭필요
 	   }
 	     
