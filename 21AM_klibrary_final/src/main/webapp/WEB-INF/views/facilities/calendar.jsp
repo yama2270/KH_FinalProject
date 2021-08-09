@@ -7,6 +7,7 @@
 <script src="${path }/resources/js/main.js"></script> 
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
  <script>
+ 
  var calendar;
  //DB에서 가져온값 일정에 넣어주기
  $(function(){
@@ -22,7 +23,6 @@
 			console.log(event);
 			calendar.addEvent(event);
 		}),
-		
 		calendar.render();
 	 });
  })
@@ -60,12 +60,12 @@
     	            calendar.addEvent({
     	              title: content,
     	              start: dateStr,
-    	              end:dateEnd,
+    	              
     	              allDay: true
     	            });
     	            $.ajax({
     	            	url:"${path}/insertcalendar.do",
-    	            	data: {"title":content,"str":dateStr,"end":dateEnd},
+    	            	data: {"title":content,"str":dateStr},
     	            	//async:false,
     	            	success:data=>{
     	            		console.log(data);
