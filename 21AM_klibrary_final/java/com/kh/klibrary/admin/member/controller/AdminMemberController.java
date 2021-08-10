@@ -56,11 +56,9 @@ public class AdminMemberController {
 		List<AdminMember> list=service.searchMember(param,cPage,numPerpage);
 		
 		int totalData=service.totalsearchMember(param);
-		
-		String pageBar=new AdminPagingTemplate().searchKeyPagingTemplate(cPage, numPerpage, totalData);
-		
+
 		mv.addObject("list",list);
-		mv.addObject("pageBar",pageBar);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberList.do"));
 		mv.addObject("param",param);
 		mv.setViewName("admin/member/memberList");
 		return mv;
