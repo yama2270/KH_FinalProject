@@ -55,10 +55,9 @@ public class NoticeController {
 		
 		int totalData=service.totalsearchnotice(param);
 
-		String pageBar = new AdminPagingTemplate().searchKeyPagingTemplate(cPage,numPerpage,totalData);
-		
+
 		mv.addObject("list",list);
-		mv.addObject("pageBar",pageBar);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"noticeList.do"));
 		mv.addObject("param",param);
 		System.out.println(param);
 		mv.setViewName("notice/noticeList");
@@ -148,6 +147,8 @@ public class NoticeController {
 						List<StudyRoomD> sd=service.selectdreding(userid);
 						if(sd.size()<1) {
 							mv.addObject("list",service.redingroom(seatno));
+							List<StudyRoomBooKing> lsa=service.redingaroom(seatno);
+							mv.addObject("time",lsa);
 							mv.setViewName("redingroom/redingroomAseat");
 							return mv;
 						}else {
@@ -223,6 +224,8 @@ public class NoticeController {
 						List<StudyRoomD> sd=service.selectdreding(userid);
 						if(sd.size()<1) {
 							mv.addObject("list",service.redingBroom(seatno));
+							List<StudyRoomBooKing> lsa=service.redingaroom(seatno);
+							mv.addObject("time",lsa);
 							mv.setViewName("redingroom/redingroomBseat");
 							return mv;
 						}else {
@@ -289,6 +292,8 @@ public class NoticeController {
 						List<StudyRoomD> sd=service.selectdreding(userid);
 						if(sd.size()<1) {
 							mv.addObject("list",service.redingCroom(seatno));
+							List<StudyRoomBooKing> lsa=service.redingaroom(seatno);
+							mv.addObject("time",lsa);
 							mv.setViewName("redingroom/redingroomCseat");
 							return mv;
 						}else {
@@ -354,6 +359,8 @@ public class NoticeController {
 						List<StudyRoomD> sd=service.selectdreding(userid);
 						if(sd.size()<1) {
 							mv.addObject("list",service.redingDroom(seatno));
+							List<StudyRoomBooKing> lsa=service.redingaroom(seatno);
+							mv.addObject("time",lsa);
 							mv.setViewName("redingroom/redingroomDseat");
 							return mv;
 						}else {

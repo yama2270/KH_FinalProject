@@ -33,6 +33,12 @@
   		SELECT * FROM STUDYROOM_A WHERE SEAT_NO LIKE #{seatno}
   	</select>
   	
+  	<select id="redingaroom" resultMap="studyroombookingMap">
+  		SELECT START_TIME, END_TIME FROM STUDYROOM_BOOKING WHERE SEAT_NO LIKE #{seatno}
+  	</select>
+  	
+  	
+  	
   	<resultMap type="studyroombooking" id="studyroombookingMap">
 	  	<id column="BOOKING_NO" property="bookingNo"/>
 	  	<result column="USER_ID" property="userId"/>

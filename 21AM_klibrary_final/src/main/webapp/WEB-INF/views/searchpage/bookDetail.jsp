@@ -41,7 +41,7 @@ String isbnNo = request.getParameter("isbnNo");
 </div>
 
 
-<div id="searchResultDiv">
+<div id="searchResultDiv5">
  <c:choose> 
    	<c:when test="${not empty book }">
 <input type=hidden name="isbnNo" value="${book.bookInfo.isbnNo }">
@@ -66,20 +66,14 @@ String isbnNo = request.getParameter("isbnNo");
             
     </td>
     <th id="bookInfoTd">
-         
-           
+                 
                     저자   <br>
                     발행자  <br>              
                     발행연도 <br>            
                     ISBN  <br>
                     분류번호 <br>
                     위치번호      
-                                                               
-                                                            
-               
-          
-         
-
+   
       </th>
       <td id="bookInfoTd2">
          <span><c:out value="${book.bookInfo.bookWriter }"/></span><br>
@@ -196,18 +190,22 @@ String isbnNo = request.getParameter("isbnNo");
        
         
 </div>
-<br><br>
-        <div class="canQua" >
-					<div class="canQuaHea" style="float:right;"><h4>연령별 관심 현황</h4></div><br><br>
-					<div class="quaCat" style="margin-left:30%;">
-						<canvas id="likeBook" width="600px" height="300px"  ></canvas>
-					</div>
-		</div>
+<br><br><br><br><br><br>
+	      <c:choose>
+	      <c:when test="${not empty ageList }">
+		        <div class="canQua" >
+							<div class="canQuaHea" style="text-align:right;"><h4>연령별 관심 현황</h4></div><br><br>
+							<div class="quaCat" style="margin-left:35%;">
+								<canvas id="likeBook" width="600px" height="300px"  ></canvas>
+							</div>
+				</div>
+		</c:when>
+		</c:choose>
 <br><br><br>		
 		<c:choose>
 		<c:when test="${not empty publisherList }" >
 		
-				<table id=recommendTable2 style="margin:auto; text-align:center;">
+				<table id=recommendTable2 style=" text-align:center;">
 				 
 				  <tr>
 				    <td colspan="5" >
@@ -246,7 +244,7 @@ String isbnNo = request.getParameter("isbnNo");
 		<c:choose>
 		<c:when test="${not empty kdcNoList }" >
 		
-		      <table id=recommendTable2 style="margin:auto; text-align:center;">      
+		      <table id=recommendTable2 style=" text-align:center;">      
 				 
 				  <tr>
 				    <td colspan="5" >

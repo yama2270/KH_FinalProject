@@ -113,36 +113,36 @@ String totalData=request.getParameter("totalData");
 
 
 <div class="book-search-container">
-  <div class="populor-words">
-  
-    <span>추천도서<i class="fa fa-search"></i></span>&nbsp;&nbsp;   
-    
-  </div>
+		  <div class="populor-words">
+		  
+		    <span>추천도서<i class="fa fa-search"></i></span>&nbsp;&nbsp;   
+		    
+		  </div>
+		
+		  <form id="bookSearchForm" action="${path}/searchpage/bookTotalSearch">
+		
+		    <div class="searchSelectDiv">
+		      <label for="searchKey" class="blind"></label>
+		      <select id="searchKey" name="category" title="검색 선택">
+		        <option value="all" selected>전체</option>
+		        <option value="book_name" >도서명</option>
+		        <option value="book_writer">저자</option>
+		        <option value="book_company">발행자</option>
+		        <option value="isbnNo">ISBN</option>
+		        
+		
+		      </select>
+		
+		    </div>
+		      
+		    <input type="text" placeholder="  검색" name="keyword" id="inputtext" onkeypress="if(event.keyCode == 13){fn_searchBook(); return false;}"
+		    <%if(keyword!=null) {%>
+		    value="<%=keyword %>" <%}else{ %>
+		    value="" <%} %>>
+		    <button id="searchButton" type="button" onclick="fn_searchBook();" ><i class="fa fa-search"></i>검색</button>
+		  </form>
 
-  <form id="bookSearchForm" action="${path}/searchpage/bookTotalSearch">
 
-    <div class="searchSelectDiv">
-      <label for="searchKey" class="blind"></label>
-      <select id="searchKey" name="category" title="검색 선택">
-        <option value="all" selected>전체</option>
-        <option value="book_name" >도서명</option>
-        <option value="book_writer">저자</option>
-        <option value="book_company">발행자</option>
-        <option value="isbnNo">ISBN</option>
-        
-
-      </select>
-
-    </div>
-      
-    <input type="text" placeholder="  검색" name="keyword" id="inputtext" onkeypress="if(event.keyCode == 13){fn_searchBook(); return false;}"
-    <%if(keyword!=null) {%>
-    value="<%=keyword %>" <%}else{ %>
-    value="" <%} %>>
-    <button id="searchButton" type="button" onclick="fn_searchBook();" ><i class="fa fa-search"></i>검색</button>
-  </form>
-
-</div>
 <br><br><br><br>
 
 
@@ -166,37 +166,41 @@ String totalData=request.getParameter("totalData");
         </div>
   
         <div class="selectForm3">
-       <!--  <select id="searchType" title="검색선택" name="category">
-            <option value="all" selected="selected">전체</option>
-            <option value="book_name" >도서명</option>
-          <option value="book_writer">저자</option>
-          <option value="book_company">발행자</option>
-          <option value="isbnNo">ISBN</option>
-  
-        </select> -->
-        <select id="searchNumber" title="검색건수" name="searchNumber">
-          <option value=10 ${searchNumber == 10? "selected":""}>10건</option>
-          <option value=20 ${searchNumber == 20? "selected":""}>20건</option>
-          <option value=30 ${searchNumber == 30? "selected":""}>30건</option>
-          <option value=40 ${searchNumber == 40? "selected":""}>40건</option>
-          <option value=50 ${searchNumber == 50? "selected":""}>50건</option>
-  
-        </select>
-        <button id="button44" type="button" onclick="fn_searchBook2();" style="border:none">확인</button>
+      
+	        
+	        <select id="searchNumber" title="검색건수" name="searchNumber">
+	          <option value=10 ${searchNumber == 10? "selected":""}>10건</option>
+	          <option value=20 ${searchNumber == 20? "selected":""}>20건</option>
+	          <option value=30 ${searchNumber == 30? "selected":""}>30건</option>
+	          <option value=40 ${searchNumber == 40? "selected":""}>40건</option>
+	          <option value=50 ${searchNumber == 50? "selected":""}>50건</option>
+	  
+	        </select>
+	        <button id="button44" type="button" onclick="fn_searchBook2();" style="border:none">확인</button>
       </div>
      </div>
    </th>
    </tr>
    
-   <tr>
-    <td colspan="5">
-      <hr>
-      
-      <input type="checkbox" name="bookSelect" id="allCheck" onclick="selectAll(this)" value="all">
-      <button id="button22" type="submit"  >관심도서담기</button>
-      <hr>
-   </td>
-  </tr>
+	   <tr>
+		    <td colspan="5" >
+		      <hr>
+		    <td>
+	   </tr> 
+	   <tr>
+		     <td colspan="1" id="searchTable2td">
+		      <input type="checkbox" name="bookSelect" id="allCheck" onclick="selectAll(this)" value="all">
+		      
+		     </td>
+		     <td colspan="4">
+		       <button id="button22" type="submit"  >관심도서담기</button>
+		     </td>
+	   </tr>
+	   <tr>
+	     <td td colspan="5">
+	      <hr>
+	    </td>
+	  </tr>
  		  
      </c:when>
      </c:choose>
@@ -237,8 +241,8 @@ String totalData=request.getParameter("totalData");
       </td>
       <td id="buttonWrapTd" rowspan="2">
         <div class="buttonWrap">
-          <button id="button22" type="button" onclick="bookReservation('${b.isbnNo }')" >도서예약신청</button>
-          <button id="button22" type="button" onclick="location.href='${path}/searchpage/interestingbook?isbnNo=${b.isbnNo}'"  >관심도서담기</button>
+          <button id="button33" type="button" onclick="bookReservation('${b.isbnNo }')" >도서예약신청</button>
+          <button id="button33" type="button" onclick="location.href='${path}/searchpage/interestingbook?isbnNo=${b.isbnNo}'"  >관심도서담기</button>
           </div>
       </td>
     </tr>
@@ -314,16 +318,18 @@ String totalData=request.getParameter("totalData");
  <br>
  <c:choose>
    <c:when test="${empty list }">
-     <div style="text-align:center;"><h5>도서를 검색하세요</h5></div>
+     <div style="text-align:center; "><h5>도서를 검색하세요</h5></div>
      <br><br><br>
-      <table id=recommendTable2 style="margin:auto; text-align:left;">      
+      <table id=recommendTable2 style="text-align:left;">      
 				 
 				
 	  </table>	
    
    </c:when>
   </c:choose> 
-   
+  
+  
+</div>  
 <br><br><br><br><br><br><br><br>
 
 </body>
@@ -469,7 +475,7 @@ function fn_recommend(){
 			
 			
 			   let formData = {
-					   "nameArr": [  arr[0]["title"],arr[1]["title"],arr[2]["title"],arr[3]["title"],arr[4]["title"]  ]
+					   "nameArr": [  arr[0]["title"],arr[1]["title"],arr[2]["title"],arr[3]["title"],arr[4]["title"],arr[5]["title"],arr[6]["title"],arr[7]["title"]  ]
 					   }
 			   
 				   console.log("formData테스트"+formData);
@@ -496,6 +502,7 @@ function fn_recommend(){
 									  str+="<span>"+data[i]["bookName"].substring(0,13)+"</span>"  	
 							str+="</td>"
 						  }
+								
 					   str+="</tr>"
 					   str+="<tr>"
 					   str+="<td colspan='5'>"
