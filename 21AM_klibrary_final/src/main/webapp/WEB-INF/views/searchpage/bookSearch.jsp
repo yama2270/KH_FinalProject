@@ -475,7 +475,7 @@ function fn_recommend(){
 			
 			
 			   let formData = {
-					   "nameArr": [  arr[0]["title"],arr[1]["title"],arr[2]["title"],arr[3]["title"],arr[4]["title"]  ]
+					   "nameArr": [  arr[0]["title"],arr[1]["title"],arr[2]["title"],arr[3]["title"],arr[4]["title"],arr[5]["title"],arr[6]["title"],arr[7]["title"]  ]
 					   }
 			   
 				   console.log("formData테스트"+formData);
