@@ -83,7 +83,7 @@
                         <label>생년월일</label>
                         <p class="mark-required">*</p>
                       </div>
-                      <input type="text" name="birthDate" id="birthDate" class="regiester-form" >
+                      <input type="date" name="birthDate" id="birthDate" class="regiester-form" >
                     </div>
                     <div class="regiester-container-no-margin">
                       <div class="container-label">
@@ -113,7 +113,7 @@
                         <p class="mark-required">*</p>
                       </div>
                       <div>                      
-                        <input type="text" class="regiester-phone" id="phone" name="phone" required>
+                        <input type="text" class="regiester-form regiester-phone" id="phone" name="phone" required>
                       </div>
                     </div>
                   </div>   

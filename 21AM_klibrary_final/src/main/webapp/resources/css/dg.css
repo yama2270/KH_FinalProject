@@ -289,7 +289,6 @@
 }
 
 .regiester-phone {
-  width: 150px;
   height: 30px;
 }
 
@@ -307,6 +306,12 @@
 .title-regiester {
 	width:1000px;
  	height: 200px;
+}
+
+.regiester-form {
+  height: 30px;
+  margin: 5px;
+  width: 200px;
 }
 
 .title-regiester>p {
@@ -344,10 +349,7 @@
   margin-bottom: 5px;
 }
 
-.regiester-form {
-  height: 30px;
-  margin: 5px;
-}
+
 
 .regiester-container-no-margin {
   display: flex;
@@ -417,6 +419,7 @@
 
     #login-content{
         float:center;
+        
     }
 
     #login-container{
@@ -424,6 +427,8 @@
         align-items:center;
         flex-direction:row;
         justify-content:center;
+        width: 40%;
+   		margin-top: 100px;
     }
     
     #login-input{
