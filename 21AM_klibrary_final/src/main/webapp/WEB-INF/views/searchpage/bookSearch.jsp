@@ -241,8 +241,8 @@ String totalData=request.getParameter("totalData");
       </td>
       <td id="buttonWrapTd" rowspan="2">
         <div class="buttonWrap">
-          <button id="button33" type="button" onclick="bookReservation('${b.isbnNo }')" >도서예약신청</button>
-          <button id="button33" type="button" onclick="location.href='${path}/searchpage/interestingbook?isbnNo=${b.isbnNo}'"  >관심도서담기</button>
+           <button id="button22" type="button" onclick="location.href='${path}/searchpage/bookReservation?isbnNo=${b.isbnNo}'"  >도서예약신청</button>
+          <button id="button22" type="button" onclick="location.href='${path}/searchpage/interestingbook?isbnNo=${b.isbnNo}'"  >관심도서담기</button>
           </div>
       </td>
     </tr>
@@ -637,11 +637,7 @@ function fn_paging(pageNo,totalData){
 	
 } */
 
-function bookReservation(isbnNo){
-	console.log("메인페이지에서테스트"+isbnNo);
-	location.href="${path}/searchpage/bookReservation?isbnNo="+isbnNo;
-	
-}
+
 
 function selectAll(selectAll)  {
 	  const checkboxes 

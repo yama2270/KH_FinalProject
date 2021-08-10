@@ -443,7 +443,7 @@ String pageId = request.getParameter("pageId");
       </td>
       <td id="buttonWrapTd" rowspan="2">
         <div class="buttonWrap">
-          <button id="button22" style="margin-right:10px; onclick="bookReservation('${b.isbnNo }')" >도서예약신청</button>
+           <input type="button" id="button22" style="margin-right:10px;"  onclick="location.href='${path}/searchpage/bookReservation?isbnNo=${b.isbnNo}'" value="도서예약신청" > 
 		  <button id="button22" type="button" onclick="location.href='${path}/searchpage/interestingbook?isbnNo=${b.isbnNo}'"  >관심도서담기</button>
           </div>
       </td>
@@ -580,17 +580,7 @@ String pageId = request.getParameter("pageId");
         	
         } 
 
-    /*     function fn_paging(pageNo,totalData){
-        	console.log(totalData);
-        	let totalData2=parseInt(totalData);
-        	let keyword=$("#inputtext").val();
-        	let category=$("#searchType").val();
-        	let searchNumber=$("#searchNumber").val();
-        	
-        	location.href="${path}/searchpage/bookTotalSearch?keyword="+keyword+"&category="+category+"&searchNumber="+searchNumber+"&cPage="+pageNo+"&totalData="+totalData2;
-        	
-        }
- */
+  
        
         
         function fn_paging(pageNo,totalData,numPerpage){
@@ -655,12 +645,12 @@ String pageId = request.getParameter("pageId");
         	
         }
 
-        function bookReservation(isbnNo){
+      /*   function bookReservation(isbnNo){
         	console.log(isbnNo);
         	location.href="${path}/searchpage/bookReservation?isbnNo="+isbnNo;
         	
         }
-
+ */
         function selectAll(selectAll)  {
         	  const checkboxes 
         	       = document.getElementsByName('bookCheck');
