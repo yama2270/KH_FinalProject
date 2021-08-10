@@ -191,12 +191,16 @@ String isbnNo = request.getParameter("isbnNo");
         
 </div>
 <br><br><br><br><br><br>
-        <div class="canQua" >
-					<div class="canQuaHea" style="text-align:right;"><h4>연령별 관심 현황</h4></div><br><br>
-					<div class="quaCat" style="margin-left:35%;">
-						<canvas id="likeBook" width="600px" height="300px"  ></canvas>
-					</div>
-		</div>
+	      <c:choose>
+	      <c:when test="${not empty ageList }">
+		        <div class="canQua" >
+							<div class="canQuaHea" style="text-align:right;"><h4>연령별 관심 현황</h4></div><br><br>
+							<div class="quaCat" style="margin-left:35%;">
+								<canvas id="likeBook" width="600px" height="300px"  ></canvas>
+							</div>
+				</div>
+		</c:when>
+		</c:choose>
 <br><br><br>		
 		<c:choose>
 		<c:when test="${not empty publisherList }" >
