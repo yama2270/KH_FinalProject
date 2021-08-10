@@ -31,7 +31,7 @@
                 <div class="borderbody">
                     <form name="qnaForm" action="${path }/qna/updateQna.do" method="post" enctype="multipart/form-data">
                         <table class="table2">
-                            <input type="hidden" name="qnaNo" value="${qna.qnaNo }">
+                            <input type="hidden" name="qnaNo" value="${qna.qnaNo}">
                             <tr>
                                 <td class="title">제목</td>
                                 <td class="nameq"><input type="text" class="titlename2" name="qnaTitle" readonly="readonly" value="${qna.qnaTitle }"></td>
@@ -47,7 +47,7 @@
                             </tr>
                             <tr>
                                 <td class="title">작성자</td>
-                                <td><input type="text" name="userId" readonly="readonly" value="${qna.userId }"></td>
+                                <td><input type="text" name="userId" readonly="readonly" value="${qna.userId}"></td>
                             </tr>
 				<!-- 			<tr>
                                 <td class="title">작성일</td>
@@ -71,7 +71,7 @@
                             	  </div>	
                             </tr>		
                         </table>
-                        <textarea name="qnaContent" id="" cols="110" rows="10" class="textarea"><c:out value="${qna.qnaContent }"/></textarea>
+                        <textarea name="qnaContent" id="" cols="110" rows="10" class="textarea"><c:out value="${qna.qnaContent}"/></textarea>
                         <input type="submit" value="수정" class="btn btn-outline-info" style= "margin-left: 35%;">                        	                        		
                     </form>
                         <!-- <button class="qf-cancel" onclick="fn_moveQnaList();" >취소</button> -->
