@@ -82,16 +82,7 @@
    
 
 	<script>
-	// 페이지 도서 key 검색 
-	const fn_searchKey = function(cPage){
-    	const searchKey = $("#searchOption").val();
-     	const searchWord = $("#searchWord").val();
-		location.assign('${path}/admin/member/SearchMember.do?cPage='+cPage+"&searchOption="+searchKey+"&searchWord="+searchWord);
-	}
-	// 페이지 이동 
-    const fn_paging = function(cPage){
-    	location.assign('${path}/admin/member/memberList.do?cPage='+cPage);
-    }
+	
 	
 	function checkSelectAll()  {
 		  // 전체 체크박스

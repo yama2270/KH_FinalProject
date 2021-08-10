@@ -77,6 +77,16 @@
 				</if>
 			</trim>
 	</select>
+	
+	  	<!-- 관리자 공지 제목 검색 -->
+	<select id="searchNoticeTitle" resultMap="noticeMap">
+		SELECT * FROM NOTICE WHERE NOTICE_TITLE LIKE '%'||#{keyWord}||'%'
+	</select>	
+  
+  	<!-- 관리자 공지 내용 검색 -->
+	<select id="searchNoticeContent" resultMap="noticeMap">
+		SELECT * FROM NOTICE WHERE NOTICE_CONTENT LIKE '%'||#{keyWord}||'%'
+	</select>	
   
   
   	<select id="searchnotice" parameterType="map" resultMap="noticeMap">

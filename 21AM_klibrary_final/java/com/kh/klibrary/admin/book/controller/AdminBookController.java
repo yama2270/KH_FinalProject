@@ -16,15 +16,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.klibrary.admin.book.model.service.AdminBookService;
 import com.kh.klibrary.admin.common.AdminPagingTemplate;
-import com.kh.klibrary.admin.notice.model.vo.Notice;
 import com.kh.klibrary.book.model.vo.Book;
 import com.kh.klibrary.book.model.vo.BookInfo;
-import com.kh.klibrary.book.model.vo.WishBook;
 import com.kh.klibrary.common.PageFactory;
 import com.kh.klibrary.member.model.vo.Booking;
 import com.kh.klibrary.member.model.vo.BookingHistory;
@@ -169,6 +166,11 @@ public class AdminBookController {
 		param.put("returnDate", addDate(param.get("returnDate").toString()));
 		String msg="연장 횟수 3회로 추가연장 실패하였습니다.";
 		String loc="/admin/book/bookRentalList.do";
+		if(param.get("checkloc")==null) {
+			loc="/admin/book/bookRentalList.do";
+		}else {
+			loc="/member/memberBorrowing.do";
+		}
 		if(bookExtend>=3){
 			model.addAttribute("msg",msg);
 			model.addAttribute("loc",loc);
@@ -420,18 +422,17 @@ public class AdminBookController {
 	
 	
 	//희망도서 리스트
-	/*
-	 * @RequestMapping("/admin/book/bookWishList.do") public ModelAndView
-	 * bookWishList(
-	 * 
-	 * @RequestParam(value = "cPage", defaultValue = "1") int cPage,
-	 * 
-	 * @RequestParam(value = "numPerpage", defaultValue = "4") int numPerpage,
-	 * ModelAndView mv) { mv.addObject("list", service.selectBookWishList(cPage,
-	 * numPerpage)); int totalData=service.selectWishBookCount();
-	 * mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,
-	 * "bookWishList.do")); mv.setViewName("admin/book/bookWishList"); return mv; }
-	 */
+	
+	  @RequestMapping("/admin/book/bookWishList.do") public ModelAndView
+	  bookWishList(
+	  @RequestParam(value = "cPage", defaultValue = "1") int cPage,
+	  @RequestParam(value = "numPerpage", defaultValue = "4") int numPerpage,
+	  ModelAndView mv) { mv.addObject("list", service.selectBookWishList(cPage,
+	 numPerpage)); int totalData=service.selectWishBookCount();
+	  mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,
+	  "bookWishList.do")); mv.setViewName("admin/book/bookWishList"); return mv; 
+	  }
+	 
 	
 	//희망도서 삭제
 	@RequestMapping("/admin/book/wishBookDelete.do")
@@ -444,24 +445,26 @@ public class AdminBookController {
 		return "redirect:/admin/book/bookWishList.do";
 	}
 	
-	//희망도서 검색
-	@RequestMapping("/admin/notice/insertWishBook.do")
-	public ModelAndView wishBookInsert(WishBook wishBook,String wishBookNo, ModelAndView mv) {
-		int result=service.insertWishBook(wishBook,wishBookNo);
-		String msg="";
-		if(result>0) {
-			msg="도서 등록완료";
-		}else{
-			msg="도서 등록실패";
-		}
-		mv.addObject("msg",msg);
-		mv.addObject("loc","/admin/notice/bookWishList.do");
-		mv.setViewName("common/msg");
-		return mv;
+	//희망도서 구매 (도서등록페이지로 이동)
+	@RequestMapping("/admin/book/insertWishBook.do")
+	public String insertWishBook(String bookName,String wishBookNo,Model m) {	
+		m.addAttribute("bookName",bookName);
+		m.addAttribute("wishBookNo",wishBookNo);
+		return "admin/book/insertWishBook";
 	}
 	
-	
-	
-	
+	//희망도서 검색
+	@RequestMapping("/admin/book/insertWishBook")
+	@ResponseBody
+	public Map insertWishBook(@RequestParam Map m,@RequestParam(value="wishBookNo") String wishBookNo) {
+		
+		int result = service.insertWishBookToBookInfo(m);
+		result += service.insertWishBookToBook(m);
+		result += service.deleteWishBook(wishBookNo);
+		
+		Map resultMap = new HashMap(); 
+		resultMap.put("msg",result>1?"성공":"실패");
+		return resultMap;
+	}
 	
 }

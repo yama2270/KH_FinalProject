@@ -121,7 +121,9 @@ public ModelAndView bookDetail(
 		    	kdcNoList.remove(5);
 			}
 	    System.out.println("kdcNoList테스트"+kdcNoList);
-	
+	    List agelist=service.selectAge(isbnNo);
+	    
+	mv.addObject("ageList",agelist);
 	mv.addObject("publisherList",publisherList);
 	mv.addObject("kdcNoList",kdcNoList);
 	mv.addObject("keyword",keyword);
@@ -511,43 +513,47 @@ public String interestingbook (
 		int fortyCount=0;
 		int fiftyCount=0;
 		int sixtyCount=0;
-		for(Integer age : list) {
-			System.out.println("age테스트="+age);
-			if(age<10) {	
-				System.out.println(age<10);
-			++lessTeenageCount;
-			
-			}
-			if(age>=10 && age<20) {	
-				System.out.println(age>=10);
-				++teenageCount;
-				
-				}
-			if(age>=20 && age<30) {	
-				System.out.println(age>=20);
-				++twentyCount;
-				
-				}
-			if(age>=30 && age<40) {	
-				System.out.println(age>=30);
-				++thirtyCount;
-				
-				}
-			if(age>=40 && age<50) {			
-				++fortyCount;
-				
-				}
-			if(age>=50 && age<60) {			
-				++fiftyCount;
-				
-				}
-			if(age>=60 ) {			
-				++sixtyCount;
-				
-				}
-			
-		}
 		
+		
+			for(Integer age : list) {
+				if(list!=null&&list.size()!=0&&age!=null) {
+					
+					System.out.println("age테스트="+age);
+					if(age<10) {	
+						System.out.println(age<10);
+					++lessTeenageCount;
+					
+					}
+					if(age>=10 && age<20) {	
+						System.out.println(age>=10);
+						++teenageCount;
+						
+						}
+					if(age>=20 && age<30) {	
+						System.out.println(age>=20);
+						++twentyCount;
+						
+						}
+					if(age>=30 && age<40) {	
+						System.out.println(age>=30);
+						++thirtyCount;
+						
+						}
+					if(age>=40 && age<50) {			
+						++fortyCount;
+						
+						}
+					if(age>=50 && age<60) {			
+						++fiftyCount;
+						
+						}
+					if(age>=60 ) {			
+						++sixtyCount;
+						
+						}
+					
+				}
+		}
 		result.put("10대미만", lessTeenageCount);
 		result.put("10대", teenageCount);
 		result.put("20대", twentyCount);
@@ -607,13 +613,14 @@ public String interestingbook (
 	   String[] booknameArr = request.getParameterValues("nameArr[]");
 	   System.out.println("booknameArr테스트"+booknameArr);
 	   for(int i=0; i <booknameArr.length; i++) {
-		   String bookName=booknameArr[i];
+		   String bookName=booknameArr[i].trim();
 		   HashMap param=new HashMap();
 		   param.put("bookName", bookName);
 		   
 		   List<BookInfo> b=service.selectDetailSearch(param, 1, 1);
 			   if(b!=null && b.size()!=0) { 
 			   list.add(b.get(0));
+			   System.out.println("test하기"+b.get(0));
 			   }//outofbounds exception때문에 size()!=0 꼭필요
 	   }
 	     

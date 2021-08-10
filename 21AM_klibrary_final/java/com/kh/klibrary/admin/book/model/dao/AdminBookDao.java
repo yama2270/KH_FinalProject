@@ -158,7 +158,8 @@ public interface AdminBookDao {
 	List<WishBook> searchWishBookNo(SqlSessionTemplate session, String keyWord);
 	
 	//희망도서 등록
-	int insertWishBook(SqlSessionTemplate session, WishBook wishBook);
+	int insertWishBookToBook(SqlSessionTemplate session, Map m);
+	int insertWishBookToBookInfo(SqlSessionTemplate session, Map m);
 	
 	
 	

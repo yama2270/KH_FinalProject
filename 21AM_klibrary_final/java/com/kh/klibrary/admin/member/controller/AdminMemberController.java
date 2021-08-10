@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,9 @@ public class AdminMemberController {
 	
 	@Autowired
 	private AdminMemberService service;
+	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
 	
 	// 회원상세
 	@RequestMapping("/admin/member/memberDetail.do")
@@ -52,11 +56,9 @@ public class AdminMemberController {
 		List<AdminMember> list=service.searchMember(param,cPage,numPerpage);
 		
 		int totalData=service.totalsearchMember(param);
-		
-		String pageBar=new AdminPagingTemplate().searchKeyPagingTemplate(cPage, numPerpage, totalData);
-		
+
 		mv.addObject("list",list);
-		mv.addObject("pageBar",pageBar);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"memberList.do"));
 		mv.addObject("param",param);
 		mv.setViewName("admin/member/memberList");
 		return mv;
@@ -96,6 +98,7 @@ public class AdminMemberController {
 	
 	@RequestMapping("/admin/member/memberUpdateEnd.do")
 	public String UpdatememberEnd(AdminMember m,Model model) {
+		m.setUserPassword(pwEncoder.encode(m.getUserPassword()));
 		int result=service.updateMember(m);
 		model.addAttribute("msg",result>0?"수정성공":"수정실패");
 		model.addAttribute("loc","/admin/member/memberList.do");

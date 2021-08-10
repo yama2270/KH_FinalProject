@@ -9,8 +9,8 @@
 <body id="ad_body">
     <section id="ad_container">
         <div id="he_right">
-            <div id="titleheadname">공지사항</div>
-            <div class="tableMap2">
+            <div id="noticeTitleHead" style="width:1260px;font-size:30px;border-bottom:2px gray solid;margin-top:20px;">공지사항</div>
+            <div class="tableMap2" style="width:1260px;">
                 <table class="table2">
                      <tr class="line">
                         <td class="line3">분류</td>
@@ -37,10 +37,10 @@
                     </tr>
                 </table>
                 
-                <div class="contentbox"><c:out value="${notice.noticeContent}"/></div>
+                <div class="contentbox" style="width:1260px;"><c:out value="${notice.noticeContent}"/></div>
              	    <div class="notice_update">
                       <a href="${path }/admin/notice/noticeUpdate.do?noticeNo=${notice.noticeNo}">	
-                         <button class="notice_update_bt" >수정하기</button>
+                         <button class="notice_update_bt" style="margin-left:150px; margin-top:10px;" >수정하기</button>
 						 </a>	
                 <button class="backbutton" onclick="backbutton();">목록으로</button>
                     </div>

@@ -541,13 +541,17 @@
 		WHERE ${searchOption} LIKE '%'||#{searchWord}||'%'
 	</select>
 	
-	<!--  희망도서 등록 -->
-		<insert id="insertWishBook">
+	<!--  구매한 희망도서 도서에 등록하기 -->
+	
+	<insert id="insertWishBookToBook" parameterType="Map">
 		INSERT INTO BOOK
-		VALUES(SEQ_BOOK_NO.NEXTVAL,#{isbnNo},#{bookingState},#{lendingState})
-		<selectKey keyProperty="bookNo" resultType="String" order="AFTER">
-			SELECT SEQ_BOOK_NO.CURRVAL FROM DUAL
-		</selectKey>	
+		VALUES(SEQ_BOOK_NO.NEXTVAL,#{isbnNo},default,default)
 	</insert>
+	
+	<insert id="insertWishBookToBookInfo" parameterType="Map">
+		INSERT INTO BOOK_INFO
+		VALUES(#{isbnNo},#{bookName},#{writer},#{company},#{date},#{price},#{location},#{content},#{img},#{kdc})
+	</insert>
+	
 	
 </mapper>

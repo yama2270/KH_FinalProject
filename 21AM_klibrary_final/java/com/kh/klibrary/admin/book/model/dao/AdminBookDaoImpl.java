@@ -326,10 +326,17 @@ public class AdminBookDaoImpl implements AdminBookDao {
 		return session.selectList("adminBook.searchWishBookNo", keyWord);
 	}
 
+
 	@Override
-	public int insertWishBook(SqlSessionTemplate session, WishBook wishBook) {
+	public int insertWishBookToBook(SqlSessionTemplate session, Map m) {
 		// TODO Auto-generated method stub
-		return session.insert("wishBook.insertWishBook", wishBook);
+		return session.insert("adminBook.insertWishBookToBook",m);
+	}
+
+	@Override
+	public int insertWishBookToBookInfo(SqlSessionTemplate session,Map m) {
+		// TODO Auto-generated method stub
+		return session.insert("adminBook.insertWishBookToBookInfo",m);
 	}
 
 
