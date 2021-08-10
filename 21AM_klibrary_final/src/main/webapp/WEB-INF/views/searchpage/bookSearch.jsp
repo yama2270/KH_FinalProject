@@ -501,13 +501,8 @@ function fn_recommend(){
 							  str+="onclick='location.href=\"${pageContext.request.contextPath}/searchpage/bookDetail.do?isbnNo="+data[i]["isbnNo"]+"\" ' style='cursor:pointer;'><br><br>"
 									  str+="<span>"+data[i]["bookName"].substring(0,13)+"</span>"  	
 							str+="</td>"
-								if(data.length<5){
-									for(let i=data.length; i<5; i++){
-										str+="<td>"
-										str+="</td>"
-									}
-								}
 						  }
+								
 					   str+="</tr>"
 					   str+="<tr>"
 					   str+="<td colspan='5'>"
