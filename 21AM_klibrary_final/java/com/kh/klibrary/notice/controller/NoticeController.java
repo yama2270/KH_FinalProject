@@ -55,10 +55,9 @@ public class NoticeController {
 		
 		int totalData=service.totalsearchnotice(param);
 
-		String pageBar = new AdminPagingTemplate().searchKeyPagingTemplate(cPage,numPerpage,totalData);
-		
+
 		mv.addObject("list",list);
-		mv.addObject("pageBar",pageBar);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData,cPage,numPerpage,"noticeList.do"));
 		mv.addObject("param",param);
 		System.out.println(param);
 		mv.setViewName("notice/noticeList");

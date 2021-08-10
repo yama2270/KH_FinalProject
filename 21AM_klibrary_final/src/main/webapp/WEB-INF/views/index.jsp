@@ -61,7 +61,7 @@
                 </a>
               </td>
               <td>
-                <a href="">
+                <a href="${path }/notice/booktime.do">
                 	<img src="${path }/resources/images/infor.jpg" width=150 height=100>
                 </a>
               </td>
@@ -80,7 +80,7 @@
             </tr>
              <tr>
               <td>
-                <a href="">
+                <a href="${path }/notice/redingroomA.do">
                 	<img src="${path }/resources/images/room.jpg" width=150 height=100>
                 </a>
               </td>
