@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,9 @@ public class AdminMemberController {
 	
 	@Autowired
 	private AdminMemberService service;
+	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
 	
 	// 회원상세
 	@RequestMapping("/admin/member/memberDetail.do")
@@ -96,6 +100,7 @@ public class AdminMemberController {
 	
 	@RequestMapping("/admin/member/memberUpdateEnd.do")
 	public String UpdatememberEnd(AdminMember m,Model model) {
+		m.setUserPassword(pwEncoder.encode(m.getUserPassword()));
 		int result=service.updateMember(m);
 		model.addAttribute("msg",result>0?"수정성공":"수정실패");
 		model.addAttribute("loc","/admin/member/memberList.do");
