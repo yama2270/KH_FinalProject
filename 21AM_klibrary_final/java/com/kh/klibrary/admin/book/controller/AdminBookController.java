@@ -169,6 +169,11 @@ public class AdminBookController {
 		param.put("returnDate", addDate(param.get("returnDate").toString()));
 		String msg="연장 횟수 3회로 추가연장 실패하였습니다.";
 		String loc="/admin/book/bookRentalList.do";
+		if(param.get("checkloc")==null) {
+			loc="/admin/book/bookRentalList.do";
+		}else {
+			loc="/member/memberBorrowing.do";
+		}
 		if(bookExtend>=3){
 			model.addAttribute("msg",msg);
 			model.addAttribute("loc",loc);

@@ -201,6 +201,12 @@ section#content		{min-height:600px;}
 	border:gray 1px dashed;
 	margin-top:50px;
 }
+#AddExtendBtn{
+	width:90px;
+	height:30px;
+	margin-left:20px;
+	font-size:18px;
+}
 
 /*memberBorrowed*/
 #Borrowed_Info_Container{

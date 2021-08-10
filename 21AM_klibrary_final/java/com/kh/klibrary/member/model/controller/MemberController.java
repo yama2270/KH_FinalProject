@@ -1,6 +1,8 @@
 package com.kh.klibrary.member.model.controller;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -251,7 +253,7 @@ public class MemberController {
 		mv.setViewName("member/memberBorrowed");
 		return mv;
 	}
-	
+
 	@RequestMapping("/member/memberBooking.do")
 	public ModelAndView Booking(ModelAndView mv, @ModelAttribute("loginMember") Member m,
 								@RequestParam(value="cPage", defaultValue="1") int cPage,

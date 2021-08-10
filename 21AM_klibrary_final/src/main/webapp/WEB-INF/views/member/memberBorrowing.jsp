@@ -97,7 +97,7 @@
 						</tr>
 						<tr>
 							<th>연장 횟수 : </th>
-							<td><c:out value="${l.bookExtend }"/></td>
+							<td><c:out value="${l.bookExtend }"/><button id="AddExtendBtn" type="button" onclick="location.assign('${path}/admin/book/addBookExtend.do?lendingNo=${l.lendingNo }&bookExtend=${l.bookExtend }&returnDate=${l.returnDate }&userId=${l.member.userId }&checkloc=mb')">연장하기</button></td>
 						</tr>
 					</table>
 					<hr>
@@ -114,5 +114,4 @@
 	</div>
 </div>
 </section>
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
