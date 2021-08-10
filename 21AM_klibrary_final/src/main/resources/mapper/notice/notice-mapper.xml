@@ -79,7 +79,7 @@
 	</select>
 	
 	  	<!-- 관리자 공지 제목 검색 -->
-	<select id="searchNoticeContent" resultMap="noticeMap">
+	<select id="searchNoticeTitle" resultMap="noticeMap">
 		SELECT * FROM NOTICE WHERE NOTICE_TITLE LIKE '%'||#{keyWord}||'%'
 	</select>	
   
