@@ -2793,7 +2793,7 @@ String pageId = request.getParameter("pageId");
 			      </td>
 			      <td id="buttonWrapTd" rowspan="2">
 			        <div class="buttonWrap">
-			          <button id="button22" style="margin-right:10px; type="button" onclick="bookReservation('${b.isbnNo }')" >도서예약신청</button>
+			           <input type="button" id="button22" style="margin-right:10px;"  onclick="location.href='${path}/searchpage/bookReservation?isbnNo=${b.isbnNo}'" value="도서예약신청" >
 			          <button id="button22" type="button" onclick="location.href='${path}/searchpage/interestingbook?isbnNo=${b.isbnNo}'"  >관심도서담기</button>
 			          </div>
 			      </td>
