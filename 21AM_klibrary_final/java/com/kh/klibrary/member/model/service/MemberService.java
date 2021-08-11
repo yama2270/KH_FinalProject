@@ -19,7 +19,7 @@ public interface MemberService {
 	Member selectMember1(Map param);
 	Member memberFindId(Map param);
 	int memberFindPw(Member m);
-	int enrollIdCheck(String userId);
+	int enrollIdCheck(Member m);
 	//cg
 	Member selectMember(Map m1);
 	int updateMember(Member m);

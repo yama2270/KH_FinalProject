@@ -9,7 +9,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="회원가입"/>
 </jsp:include>
-
+	<div enroll-wraper>
     <div id="login-nav">
         <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
@@ -32,7 +32,7 @@
 	</div>
         <section>
             <div class="container-regiester">
-                  <form action="${path }/member/memberEnrollEnd.do" method="post" id="memberForm" name="memberEnrollFrm" >
+                  <form action="${path }/member/memberEnrollEnd.do" method="post" id="memberForm" name="memberEnrollFrm"  >
                   <div class="wrapper-regiester">
                     <div class="regiester-container">
                       <div class="container-label">
@@ -76,6 +76,17 @@
                       </div>
                       <div>
                         <input type="email" name="email" id="email" class="regiester-email regiester-form" required>
+                        <button type="button" class="regiester-btn-frame basic" onclick="email_check()">이메일 확인</button>
+                      </div>
+                    </div>
+                    <div class="regiester-container">
+                      <div class="container-label">
+                        <label>인증번호</label>
+                        <p class="mark-required">*</p>
+                      </div>
+                      <div>
+                        <input type="text" name="emailCheck" id="emailCheck" class="regiester-email regiester-form" required>
+                        <button type="button" class="regiester-btn-frame basic" onclick="num_check()">인증번호 확인</button>
                       </div>
                     </div>
                     <div class="regiester-container">
@@ -118,16 +129,46 @@
                     </div>
                   </div>   
                   <div class="regiester-container-button">
-                    <input type="submit" class="regiester-btn-frame primary" name="frm" id="frm" value="회원가입" onclick="enrollCheck()">
+                    <input type="submit" class="regiester-btn-frame primary" name="frm" id="frm" value="회원가입">
                     <input type="reset" class="regiester-btn-frame basic" value="취소">
                   </div>
                   </form>
                 </div>
           </section>
-    
+    </div>
     <!-- As a heading -->
     
     <script>
+    
+    var code="";
+    
+    
+    
+    function id_check(){
+
+    	var id = document.getElementById('userId').value;
+
+        if(id.length < 6 || id.length>20){
+            window.alert('아이디는 6글자 이상 20글자 이하로 입력해주세요.');
+            document.getElementById('userId').value='';
+            $("#userId").focus();
+        }
+        else{
+	    	$.ajax({
+	    		url : "idCheck.do",
+	    		type : "post",
+	    		dataType : "json",
+	    		data : {"userId" : $("#userId").val()},
+	    		success : function(data){
+	    			if(data == 1){
+	    				window.alert("중복된 아이디입니다.");
+	    			}else if(data == 0){
+	    				window.alert("사용가능한 아이디 입니다.");
+	    			}
+	    		}
+	    	})
+        }
+    }
     
     function check_id(){
     	var id = document.getElementById('userId').value;
@@ -137,6 +178,26 @@
             document.getElementById('userId').value='';
             $("#userId").focus();
         }
+    }
+    
+    function email_check(){
+    	$.ajax({
+    		url : "mailCheck.do",
+    		type : "GET",
+    		dataType : "json",
+    		data : {"email" : $("#email").val()},
+    		success : function(data){
+    			
+    			code=data;
+    			
+    			if(data){
+    				window.alert("인증번호를 보냈습니다. 메일을 확인해주세요.");
+    			}else{
+    				window.alert("");
+    			}
+    			
+    		}
+    	})
     }
   
     
@@ -179,6 +240,15 @@
 	    }).open();
 	}
     
+    function num_check(){
+    	var num=$("#emailCheck").val();
+    	
+    	if(code != num){
+    		window.alert("잘못입력하셨습니다.");
+    	}else{
+    		window.alert("인증번호가 확인되었습니다.")
+    	}
+    }
    
     
     $(function(){
@@ -189,7 +259,7 @@ $('.list-group-item').click(function(){
 
 })
  
-    
+  
     </script>
 
 

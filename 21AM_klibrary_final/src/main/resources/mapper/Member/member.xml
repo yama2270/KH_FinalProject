@@ -6,7 +6,7 @@
 		INSERT INTO MEMBER VALUES(#{userId},#{userPassword},#{userName},#{email},#{birthDate},#{address},#{phone},default)
 	</insert>
 	
-	<select id="enrollIdCheck">
+	<select id="enrollIdCheck" resultType="int">
 		SELECT COUNT(*) FROM MEMBER WHERE USER_ID=#{userId}
 	</select>
 	

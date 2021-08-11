@@ -1,20 +1,21 @@
 package com.kh.klibrary.member.model.controller;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +40,9 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
 	
+	@Autowired
+	private JavaMailSender mailSender;
+	
 	//dg
 	@RequestMapping("/member/memberEnroll.do")
 	public String memberEnroll() {
@@ -57,18 +61,13 @@ public class MemberController {
 		return "common/msg";
 	}
 	
-	@RequestMapping("/member/enrollIdCheck.do")
+	@RequestMapping("/member/idCheck.do")
 	@ResponseBody
-	public Map<Object, Object> enrollIdCheck(@RequestBody String userId) {
+	public int enrollIdCheck(Member m) throws Exception{
 		
-		System.out.println(userId);
-		int count=0;
-		Map<Object, Object> map = new HashMap<Object, Object>();
+		int result = service.enrollIdCheck(m);
 		
-		count = service.enrollIdCheck(userId);
-		map.put("cnt", count);
-		System.out.println(count);
-		return map;
+		return result;
 	}
 	
 	@RequestMapping("/member/memberLogin.do")
@@ -153,6 +152,41 @@ public class MemberController {
 			model.addAttribute("loc",loc);
 		}
 		return "common/msg";
+	}
+	
+	//이메일 인증
+	@RequestMapping("/member/mailCheck.do")
+	@ResponseBody
+	public int mailCheckGet(String email) throws Exception{
+		System.out.println("실행되니?"+email);
+		
+		Random random = new Random();
+		int checkNum = random.nextInt(888888)+111111;
+		System.out.println("인증번호 " + checkNum);
+		
+		String setFrom = "khamklibrary@gmail.com";
+		String toMail = email;
+		String title = "회원가입 인증번호 입니다.";
+		String content = "인증번호는" +checkNum+"입니다."+
+						 "<br>"+
+						 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+		
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+			helper.setFrom(setFrom);
+			helper.setTo(toMail);
+			helper.setSubject(title);
+			helper.setText(content, true);
+			mailSender.send(message);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return checkNum;
 	}
 	
 	//cg

@@ -10,7 +10,7 @@
 	<jsp:param name="title" value="아이디찾기"/>
 </jsp:include>
 
-
+	<div id=id-wraper>
 	<div id="login-nav">
         <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
@@ -36,13 +36,13 @@
             <form action="${path }/member/memberIdCheck.do" method="post">
                 <input type="text" name="userName" class="login-input" placeholder="이름 입력"><br>
                 <input type="email" name="email" class="login-input" placeholder="이메일 입력">
-                <input type="button" value="이메일 인증" class="login-btn"><br>
+                <br>
                 <input type="submit" value="아이디 찾기" class="findId-btn">
 
             </form>
             </div>
         </div>
-    
+    </div>
     <!-- As a heading -->
     
     

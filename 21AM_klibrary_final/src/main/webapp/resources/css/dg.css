@@ -208,6 +208,11 @@
       
       /* 회원가입 */
      
+     #enroll-wraper{
+ 		max-width:1500px;
+ 		margin: 0 auto;
+ 	}
+     
       .list-group-item:not(#menutitle1,#menutitle):hover {
    
     cursor:pointer;
@@ -395,6 +400,11 @@
 
 /* 로그인 */
  
+ 	#login-wraper{
+ 		max-width:1500px;
+ 		margin: 0 auto;
+ 	}
+ 
     #login-group{
         float:left;
         width:20%;
@@ -458,7 +468,12 @@
     }
     
     /* 비밀번호 찾기 */
-     
+    
+    #pw-wraper{
+ 		max-width:1500px;
+ 		margin: 0 auto;
+ 	}
+    
     #login-group{
         float:left;
         width:20%;
@@ -526,6 +541,11 @@
     
     
     /* 아이디 찾기 */
+    
+    #id-wraper{
+ 		max-width:1500px;
+ 		margin: 0 auto;
+ 	}
     
     #login-group{
         float:left;

@@ -21,7 +21,8 @@ public interface MemberDao {
 	Member selectMember1(SqlSessionTemplate session, Map param);
 	Member memberFindId(SqlSessionTemplate session, Map param);
 	int memberFindPw(SqlSessionTemplate session, Member m);
-	int enrollIdCheck(SqlSessionTemplate session, String userId);
+	int enrollIdCheck(SqlSessionTemplate session, Member m);
+
 	
 	//cg
 	Member selectMember(SqlSessionTemplate session, Map m1);

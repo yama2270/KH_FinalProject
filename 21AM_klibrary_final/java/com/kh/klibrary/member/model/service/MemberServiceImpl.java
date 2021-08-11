@@ -34,12 +34,16 @@ public class MemberServiceImpl implements MemberService {
 		return dao.insertMember(session, m);
 	}
 
-	@Override
-	public int enrollIdCheck(String userId) {
-		
-		return dao.enrollIdCheck(session, userId);
-	}
 	
+	
+	@Override
+	public int enrollIdCheck(Member m) {
+		
+		return dao.enrollIdCheck(session, m);
+	}
+
+
+
 	@Override
 	public Member selectMember1(Map param) {
 		// TODO Auto-generated method stub
